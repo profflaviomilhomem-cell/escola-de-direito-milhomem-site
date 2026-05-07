@@ -1,26 +1,279 @@
+/**
+ * Globals — Escola Flávio Milhomem
+ *
+ * Design System dark mode em formato CSS-first (Tailwind v4 com @theme).
+ * Paleta absorvida do mockup oficial (carbon/amber/paper).
+ * Tokens semânticos legados (tinta/dourado/slate) preservados como
+ * paleta secundária para compor profundidade onde fizer sentido.
+ *
+ * Arquétipo: Sábio + Cuidador. Tom: erudito acessível.
+ */
+
 @import "tailwindcss";
 
+@theme {
+  /* === Paleta principal (mockup oficial) === */
+  --color-carbon: #0b0a09;
+  --color-paper: #f5f0e6;
+  --color-amber: #9c5b1e;
+  --color-amber-soft: #b87a3a;
+
+  /* Tons auxiliares derivados (para hover/borders/overlays) */
+  --color-paper-50: rgba(245, 240, 230, 0.04);
+  --color-paper-100: rgba(245, 240, 230, 0.08);
+  --color-paper-200: rgba(245, 240, 230, 0.12);
+  --color-paper-400: rgba(245, 240, 230, 0.4);
+  --color-paper-600: rgba(245, 240, 230, 0.6);
+  --color-paper-700: rgba(245, 240, 230, 0.7);
+  --color-paper-800: rgba(245, 240, 230, 0.8);
+
+  /* === Paleta secundária (legado — preservado para outras páginas) === */
+  --color-tinta-50: #f3f5fa;
+  --color-tinta-100: #e3e8f3;
+  --color-tinta-200: #c1cce4;
+  --color-tinta-300: #94a7d0;
+  --color-tinta-400: #637bb6;
+  --color-tinta-500: #3f5a9e;
+  --color-tinta-600: #2a4485;
+  --color-tinta-700: #1f3268;
+  --color-tinta-800: #16234c;
+  --color-tinta-900: #0f1734;
+
+  --color-dourado-50: #fdf9ec;
+  --color-dourado-100: #faefcb;
+  --color-dourado-200: #f5dd8e;
+  --color-dourado-300: #efc650;
+  --color-dourado-400: #e6ad26;
+  --color-dourado-500: #cb8d12;
+  --color-dourado-600: #a36c0c;
+  --color-dourado-700: #7e510b;
+  --color-dourado-800: #5d3b0d;
+  --color-dourado-900: #3f280c;
+
+  --color-slate-50: #f8f8f6;
+  --color-slate-100: #eeede8;
+  --color-slate-200: #dcdacf;
+  --color-slate-300: #bdbaaa;
+  --color-slate-400: #94907d;
+  --color-slate-500: #6f6c5a;
+  --color-slate-600: #54513f;
+  --color-slate-700: #3e3b2e;
+  --color-slate-800: #28261e;
+  --color-slate-900: #15140f;
+
+  /* === Estados funcionais === */
+  --color-alerta-400: #ef6b73;
+  --color-alerta-500: #dc4a52;
+  --color-alerta-600: #b8323a;
+  --color-sucesso-400: #7cd992;
+  --color-sucesso-500: #5dba73;
+  --color-sucesso-600: #3d9a55;
+
+  /* === Aliases semânticos (agora dark) === */
+  --color-primary: #9c5b1e;
+  --color-accent: #9c5b1e;
+  --color-background: #0b0a09;
+  --color-foreground: #f5f0e6;
+  --color-muted: rgba(245, 240, 230, 0.6);
+  --color-border: rgba(156, 91, 30, 0.2);
+
+  /* === Fontes (variáveis vêm de next/font no layout) === */
+  --font-serif:
+    var(--font-cormorant), "Cormorant Garamond", "Source Serif 4", Georgia,
+    "Times New Roman", serif;
+  --font-sans:
+    var(--font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+  --font-mono:
+    var(--font-jetbrains-mono), "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* === Espaçamentos editoriais semânticos === */
+  --spacing-gutter: 1.5rem;
+  --spacing-stack: 2rem;
+  --spacing-section: 5rem;
+  --spacing-page: 8rem;
+
+  /* === Larguras de leitura === */
+  --container-prose: 68ch;
+  --container-prose-wide: 76ch;
+  --container-narrow: 1200px;
+}
+
+/* Reset/base institucional */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background: var(--color-carbon);
+  color: var(--color-paper);
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-paper);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+}
+
+/* Foco acessível — outline âmbar */
+*:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+/* === Camadas decorativas globais === */
+
+.fm-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(156, 91, 30, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(156, 91, 30, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.fm-bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+
+/* === Mono helper (uppercase tracking) === */
+.fm-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* === Cursor custom: oculta cursor nativo só onde o componente estiver ativo === */
+html.fm-cursor-active,
+html.fm-cursor-active body {
+  cursor: none;
+}
+
+html.fm-cursor-active a,
+html.fm-cursor-active button {
+  cursor: none;
+}
+
+/* Restaura cursor nativo em campos de texto (a11y) */
+html.fm-cursor-active input,
+html.fm-cursor-active textarea,
+html.fm-cursor-active select,
+html.fm-cursor-active [contenteditable="true"] {
+  cursor: text;
+}
+
+/* === Reveal on scroll (DESATIVADO) ===
+ *  Mantemos o seletor sem efeitos pra que [data-reveal] sempre fique
+ *  visível. A camada de JS pode reativar depois com `.fm-reveal-on`.
+ */
+[data-reveal] {
+  opacity: 1;
+}
+
+/* === Hero stagger entrance (CSS-driven, sem dependência de JS) === */
+.fm-hero-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fmHeroFadeIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.fm-hero-fade--eyebrow {
+  animation-delay: 0.3s;
+}
+.fm-hero-fade--title {
+  animation-delay: 0.5s;
+  animation-duration: 1s;
+}
+.fm-hero-fade--tagline {
+  animation-delay: 0.85s;
+}
+.fm-hero-fade--bio {
+  animation-delay: 1s;
+}
+.fm-hero-fade--cta {
+  animation-delay: 1.15s;
+}
+/* Dossiê: fade-in só por opacity para preservar contexto 3D do stage interno.
+   (translateY no wrapper interfere com perspective + preserve-3d) */
+.fm-hero-fade--dossie {
+  transform: none;
+  animation-name: fmDossieFadeIn;
+  animation-delay: 0.6s;
+  animation-duration: 1.2s;
+}
+
+@keyframes fmDossieFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fmHeroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-hero-fade {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* === Reduced motion: anula animações === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* === Tipografia editorial padrão para prosa jurídica === */
+.prose-juridica {
+  font-family: var(--font-serif);
+  max-width: var(--container-prose);
+  line-height: 1.7;
 }

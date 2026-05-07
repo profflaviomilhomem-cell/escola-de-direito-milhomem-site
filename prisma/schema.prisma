@@ -1,0 +1,252 @@
+// Schema Prisma — Escola Flávio Milhomem
+// Camada 3 (Backend e CRM) do Guia de Desenvolvimento Web.
+// Adapter Neon serverless habilitado em src/lib/prisma.ts.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================================
+// IDENTIDADE E ACESSO
+// ============================================================
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  passwordHash  String?        // null = só magic link
+  role          UserRole       @default(ALUNO)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // Relações
+  orders        Order[]
+  subscriptions Subscription[]
+  comments      Comment[]
+  utmEvents    UTMEvent[]
+
+  @@index([email])
+}
+
+enum UserRole {
+  ALUNO
+  ADMIN
+}
+
+// ============================================================
+// CATÁLOGO E COMPRA
+// ============================================================
+
+model Product {
+  id            String         @id @default(cuid())
+  slug          String         @unique
+  name          String
+  description   String         @db.Text
+  type          ProductType
+  priceCents    Int
+  active        Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  orders        Order[]
+  subscriptions Subscription[]
+  lessons       Lesson[]
+
+  @@index([slug])
+}
+
+enum ProductType {
+  COHORT          // Edição Lançamento (cohort de 12 semanas)
+  TRIPWIRE        // Masterclass / análise pontual
+  COMUNIDADE      // Assinatura mensal
+  EBOOK           // Eduzz legado
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  userId          String
+  productId       String
+  status          OrderStatus
+  amountCents     Int
+  paymentMethod   PaymentMethod
+  pagarmeChargeId String?       @unique
+  pagarmeOrderId  String?       @unique
+  utmSource       String?
+  utmMedium       String?
+  utmCampaign     String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([userId])
+  @@index([status])
+}
+
+enum OrderStatus {
+  PENDING
+  AUTHORIZED
+  PAID
+  REFUSED
+  REFUNDED
+  CHARGEDBACK
+}
+
+enum PaymentMethod {
+  CARD
+  PIX
+  BOLETO
+}
+
+model Subscription {
+  id                 String             @id @default(cuid())
+  userId             String
+  productId          String
+  status             SubscriptionStatus
+  pagarmeSubId       String?            @unique
+  startedAt          DateTime           @default(now())
+  canceledAt         DateTime?
+  nextBillingAt      DateTime?
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([userId])
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  PAUSED
+}
+
+// ============================================================
+// PLATAFORMA DE CURSO
+// ============================================================
+
+model Lesson {
+  id           String    @id @default(cuid())
+  productId    String
+  slug         String
+  title        String
+  description  String?   @db.Text
+  videoId      String?   // Cloudflare Stream UID
+  position     Int
+  durationSec  Int?
+  publishedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  product  Product   @relation(fields: [productId], references: [id])
+  comments Comment[]
+
+  @@unique([productId, slug])
+  @@index([productId, position])
+}
+
+model Comment {
+  id               String           @id @default(cuid())
+  userId           String
+  lessonId         String
+  parentId         String?
+  content          String           @db.Text
+  moderationStatus ModerationStatus @default(APPROVED)
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id])
+  lesson   Lesson    @relation(fields: [lessonId], references: [id])
+  parent   Comment?  @relation("CommentTree", fields: [parentId], references: [id])
+  replies  Comment[] @relation("CommentTree")
+
+  @@index([lessonId])
+  @@index([userId])
+}
+
+enum ModerationStatus {
+  APPROVED
+  PENDING
+  REJECTED
+}
+
+// ============================================================
+// MARKETING (CRM CODADO)
+// ============================================================
+
+model LeadMagnet {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  fileUrl     String?
+  description String?  @db.Text
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  leads Lead[]
+}
+
+model Lead {
+  id            String      @id @default(cuid())
+  email         String
+  name          String?
+  source        String?     // ex: "newsletter", "calculadora", "isca-stj"
+  leadMagnetId  String?
+  optInAt       DateTime?
+  doubleOptInAt DateTime?
+  utmSource     String?
+  utmMedium     String?
+  utmCampaign   String?
+  createdAt     DateTime    @default(now())
+
+  leadMagnet LeadMagnet? @relation(fields: [leadMagnetId], references: [id])
+
+  @@unique([email, leadMagnetId])
+  @@index([email])
+}
+
+model EmailCampaign {
+  id           String           @id @default(cuid())
+  slug         String           @unique
+  name         String
+  subject      String
+  bodyMarkdown String           @db.Text
+  status       CampaignStatus   @default(DRAFT)
+  scheduledAt  DateTime?
+  sentAt       DateTime?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENT
+  CANCELED
+}
+
+model UTMEvent {
+  id          String   @id @default(cuid())
+  userId      String?
+  shortCode   String?
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  utmTerm     String?
+  destination String
+  ipHash      String?
+  userAgent   String?  @db.Text
+  geo         String?
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id])
+
+  @@index([shortCode])
+  @@index([utmCampaign])
+}

@@ -1,0 +1,9 @@
+node_modules
+.next
+out
+build
+coverage
+.vercel
+public/llms.txt
+public/robots.txt
+*.lock
