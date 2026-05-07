@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CalculadoraWizard } from "@/components/marketing/calculadora/wizard";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -57,8 +58,10 @@ export default function CalculadoraPage() {
           Calculadora de <em className="text-amber italic">Pena</em> Hipotética
         </h1>
         <p className="text-paper-700 mt-8 text-lg leading-[1.7]">
-          Em desenvolvimento — disponível a partir de junho de 2026 (sprints
-          S3-S6 do roadmap).
+          Simulação didática da aplicação trifásica da pena privativa de
+          liberdade (CP, art. 68): pena-base sob art. 59, pena intermediária
+          com atenuantes/agravantes e pena definitiva com causas de aumento e
+          diminuição.
         </p>
 
         <aside
@@ -73,6 +76,8 @@ export default function CalculadoraPage() {
           Flávio Milhomem em sua condição de Promotor de Justiça do MPDFT, nem
           o próprio MPDFT a qualquer resultado calculado.
         </aside>
+
+        <CalculadoraWizard />
       </section>
     </>
   );
