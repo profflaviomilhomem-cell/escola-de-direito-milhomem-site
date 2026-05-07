@@ -178,6 +178,24 @@ h6,
   background-size: 80px 80px;
 }
 
+/* === Textura kraft (papel pardo institucional do dossiê) ===
+ * Foto real de papel kraft em /images/kraft.jpg + vinheta sutil
+ * pra profundidade. Cor de fallback aproximada.
+ */
+.fm-paper-kraft {
+  background-color: #b89968;
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 230, 180, 0) 30%,
+      rgba(40, 25, 10, 0.2) 100%
+    ),
+    url("/images/kraft.jpg");
+  background-size: 100% 100%, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
 .fm-bg-noise {
   position: fixed;
   inset: 0;

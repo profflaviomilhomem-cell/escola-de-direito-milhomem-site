@@ -70,38 +70,39 @@ export function Dossie3D() {
           aria-hidden="true"
         />
 
-        {/* Capa — translateZ positivo, fica na frente das folhas */}
+        {/* Capa — papel kraft institucional (manila folder) com textura
+            de fibra. Acabamento dourado discreto na borda. */}
         <div
-          className="bg-carbon border-amber/30 absolute inset-0 flex flex-col justify-between border p-10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+          className="fm-paper-kraft absolute inset-0 flex flex-col justify-between border border-[#3a2614]/30 p-10 shadow-[0_30px_60px_rgba(0,0,0,0.55)]"
           style={{ transform: "translateZ(20px)" }}
         >
-          <div className="text-paper-600 flex justify-between font-mono text-[10px] tracking-[0.2em]">
+          <div className="flex justify-between font-mono text-[10px] tracking-[0.2em] text-[#1a0f05]/65">
             <div>
-              DOSSIÊ <strong className="text-paper">Nº 001</strong>
+              DOSSIÊ <strong className="text-[#1a0f05]">Nº 001</strong>
             </div>
             <div className="text-right">
-              CLASSIFICAÇÃO <strong className="text-paper">COHORT I</strong>
+              CLASSIFICAÇÃO <strong className="text-[#1a0f05]">COHORT I</strong>
             </div>
           </div>
 
           <div className="my-10">
-            <h2 className="font-serif text-4xl italic leading-none">
+            <h2 className="font-serif text-4xl italic leading-none text-[#1a0f05]">
               A Escola do
               <br />
               <em className="text-amber not-italic">Promotor</em>
             </h2>
             <div className="bg-amber my-6 h-px w-10" />
-            <p className="text-paper-600 text-sm italic">
+            <p className="text-sm italic text-[#1a0f05]/70">
               Programa inaugural · Brasília · 2026
             </p>
           </div>
 
-          <div className="text-paper-600 flex justify-between font-mono text-[10px] tracking-[0.2em]">
+          <div className="flex justify-between font-mono text-[10px] tracking-[0.2em] text-[#1a0f05]/65">
             <div>
-              ACESSO <strong className="text-paper">RESTRITO</strong>
+              ACESSO <strong className="text-[#1a0f05]">RESTRITO</strong>
             </div>
             <div className="text-right">
-              INÍCIO <strong className="text-paper">11 AGO</strong>
+              INÍCIO <strong className="text-[#1a0f05]">11 AGO</strong>
             </div>
           </div>
         </div>
