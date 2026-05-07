@@ -24,7 +24,7 @@ const leagueSpartan = localFont({
 });
 
 const hiragino = localFont({
-  src: "./fonts/HiraginoMaruGothicProN-W4.otf",
+  src: "./fonts/HiraginoMaruGothicProN-W4.woff2",
   variable: "--font-hiragino",
   display: "swap",
   weight: "400",
