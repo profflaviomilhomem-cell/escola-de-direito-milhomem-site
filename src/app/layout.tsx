@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import {
-  Cormorant_Garamond,
-  Fraunces,
-  JetBrains_Mono,
-} from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Toaster } from "sonner";
 
@@ -12,26 +9,26 @@ import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 /**
- * Fontes via next/font (Seção 3.13 do guia — sem layout shift).
+ * Fontes via next/font — identidade Flávio Milhomem.
  *
- * Família display (h1, h2, h3, .serif): Cormorant Garamond, com itálicos
- * que protagonizam o tom editorial. Body: Fraunces (variable, opsz).
+ * Display: League Spartan Bold (geométrica, OFL) — h1/h2/h3 e marca.
+ * Body: Hiragino Maru Gothic ProN W4 (humanística arredondada) — corpo de texto.
  * Mono: JetBrains Mono — labels uppercase com tracking-wide.
  */
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "latin-ext"],
+const leagueSpartan = localFont({
+  src: "./fonts/LeagueSpartan-Bold.woff2",
+  variable: "--font-league-spartan",
   display: "swap",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: "700",
+  style: "normal",
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin", "latin-ext"],
+const hiragino = localFont({
+  src: "./fonts/HiraginoMaruGothicProN-W4.otf",
+  variable: "--font-hiragino",
   display: "swap",
-  axes: ["opsz"],
-  style: ["normal", "italic"],
+  weight: "400",
+  style: "normal",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -42,7 +39,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0b0a09",
+  themeColor: "#06172f",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -112,7 +109,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.locale}
-      className={`${cormorant.variable} ${fraunces.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${leagueSpartan.variable} ${hiragino.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="bg-carbon text-paper flex min-h-full flex-col font-sans">
         {children}

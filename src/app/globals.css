@@ -12,20 +12,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* === Paleta principal (mockup oficial) === */
-  --color-carbon: #0b0a09;
-  --color-paper: #f5f0e6;
-  --color-amber: #9c5b1e;
-  --color-amber-soft: #b87a3a;
+  /* === Paleta principal (identidade oficial Flávio Milhomem) ===
+   * #06172F navy profundo · #DDAD0C mostarda · #EAE4D9 creme · #242A34 ink
+   * Os nomes legados (carbon/paper/amber) foram preservados apontando
+   * para os novos HEX para evitar refactor em massa nos componentes.
+   */
+  --color-carbon: #06172f;
+  --color-carbon-elevated: #242a34;
+  --color-paper: #eae4d9;
+  --color-amber: #ddad0c;
+  --color-amber-soft: #e8c547;
 
-  /* Tons auxiliares derivados (para hover/borders/overlays) */
-  --color-paper-50: rgba(245, 240, 230, 0.04);
-  --color-paper-100: rgba(245, 240, 230, 0.08);
-  --color-paper-200: rgba(245, 240, 230, 0.12);
-  --color-paper-400: rgba(245, 240, 230, 0.4);
-  --color-paper-600: rgba(245, 240, 230, 0.6);
-  --color-paper-700: rgba(245, 240, 230, 0.7);
-  --color-paper-800: rgba(245, 240, 230, 0.8);
+  /* Tons auxiliares derivados de paper #EAE4D9 (RGB 234, 228, 217) */
+  --color-paper-50: rgba(234, 228, 217, 0.04);
+  --color-paper-100: rgba(234, 228, 217, 0.08);
+  --color-paper-200: rgba(234, 228, 217, 0.12);
+  --color-paper-400: rgba(234, 228, 217, 0.4);
+  --color-paper-600: rgba(234, 228, 217, 0.6);
+  --color-paper-700: rgba(234, 228, 217, 0.7);
+  --color-paper-800: rgba(234, 228, 217, 0.8);
 
   /* === Paleta secundária (legado — preservado para outras páginas) === */
   --color-tinta-50: #f3f5fa;
@@ -69,20 +74,35 @@
   --color-sucesso-500: #5dba73;
   --color-sucesso-600: #3d9a55;
 
-  /* === Aliases semânticos (agora dark) === */
-  --color-primary: #9c5b1e;
-  --color-accent: #9c5b1e;
-  --color-background: #0b0a09;
-  --color-foreground: #f5f0e6;
-  --color-muted: rgba(245, 240, 230, 0.6);
-  --color-border: rgba(156, 91, 30, 0.2);
+  /* === Aliases semânticos (agora dark navy) === */
+  --color-primary: #ddad0c;
+  --color-accent: #ddad0c;
+  --color-background: #06172f;
+  --color-foreground: #eae4d9;
+  --color-muted: rgba(234, 228, 217, 0.6);
+  --color-border: rgba(221, 173, 12, 0.2);
 
-  /* === Fontes (variáveis vêm de next/font no layout) === */
+  /* === Fontes (variáveis vêm de next/font no layout) ===
+   * Display: League Spartan Bold (geométrica) — títulos e marca
+   * Body: Hiragino Maru Gothic ProN W4 (humanística arredondada)
+   * Mono: JetBrains Mono — labels uppercase com tracking
+   * Os tokens font-serif e font-sans foram remapeados para a nova
+   * dupla, mantendo as classes existentes (font-serif, font-sans).
+   */
+  --font-display:
+    var(--font-league-spartan), "League Spartan", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  --font-body:
+    var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
   --font-serif:
-    var(--font-cormorant), "Cormorant Garamond", "Source Serif 4", Georgia,
-    "Times New Roman", serif;
+    var(--font-league-spartan), "League Spartan", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
   --font-sans:
-    var(--font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+    var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
   --font-mono:
     var(--font-jetbrains-mono), "JetBrains Mono", Menlo, Consolas, monospace;
 
@@ -115,21 +135,26 @@ body {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background: var(--color-carbon);
   color: var(--color-paper);
   line-height: 1.6;
 }
 
-::selection {
-  background: var(--color-amber);
-  color: var(--color-paper);
-}
-
 h1,
 h2,
-h3 {
-  font-family: var(--font-serif);
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-amber);
+  color: var(--color-carbon);
 }
 
 /* Foco acessível — outline âmbar */
@@ -148,8 +173,8 @@ h3 {
   pointer-events: none;
   opacity: 0.5;
   background-image:
-    linear-gradient(rgba(156, 91, 30, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(156, 91, 30, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(221, 173, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(221, 173, 12, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
@@ -273,7 +298,7 @@ html.fm-cursor-active [contenteditable="true"] {
 
 /* === Tipografia editorial padrão para prosa jurídica === */
 .prose-juridica {
-  font-family: var(--font-serif);
+  font-family: var(--font-body);
   max-width: var(--container-prose);
-  line-height: 1.7;
+  line-height: 1.75;
 }

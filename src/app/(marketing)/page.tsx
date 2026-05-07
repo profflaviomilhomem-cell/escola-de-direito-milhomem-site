@@ -97,7 +97,7 @@ export default function HomePage() {
           style={{
             fontSize: "80vh",
             lineHeight: 1,
-            color: "rgba(156, 91, 30, 0.08)",
+            color: "rgba(221, 173, 12, 0.08)",
           }}
         >
           I
