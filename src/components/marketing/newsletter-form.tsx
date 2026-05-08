@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { track } from "@/lib/analytics/track";
 import { newsletterSchema, type NewsletterInput } from "@/schemas/newsletter";
 
 type Status =
@@ -55,6 +56,10 @@ export function NewsletterForm({ source = "newsletter", leadMagnetSlug }: Props)
         });
         return;
       }
+      track("lead_capture", {
+        source: input.source ?? source,
+        lead_magnet: input.leadMagnetSlug ?? leadMagnetSlug ?? null,
+      });
       setStatus({ state: "success" });
     } catch {
       setStatus({

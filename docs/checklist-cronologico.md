@@ -107,12 +107,15 @@ lead funcionando, CI verde.
 
 ### 1.5 Tracking baseline
 
-- [ ] GTM container plugado em produção
-- [ ] GA4 com eventos customizados (`lead_capture`, `page_view`)
-- [ ] Meta Pixel client-side ativo
-- [ ] LinkedIn Insight Tag instalado
-- [ ] Web Vitals reportados (próprio + Vercel Analytics)
-- [ ] PostHog capturando navegação
+- [x] GTM container condicional (`@next/third-parties/google`) — ativa só se `NEXT_PUBLIC_GTM_ID` estiver presente
+- [x] Helper único `src/lib/analytics/track.ts` empurra para `dataLayer` (GTM/GA4) e PostHog
+- [x] Evento `lead_capture` disparado pelo formulário de newsletter ao confirmar inscrição
+- [x] Meta Pixel client-side em `src/components/shared/analytics-providers.tsx` — gated por `NEXT_PUBLIC_META_PIXEL_ID`
+- [x] LinkedIn Insight Tag — gated por `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`
+- [x] Web Vitals via `next/web-vitals` em `src/components/shared/web-vitals-reporter.tsx`, com `sendBeacon` para `/api/metrics` + push paralelo no `dataLayer` (`event: web_vital`)
+- [x] PostHog client-side com autocapture/pageleave gated por `NEXT_PUBLIC_POSTHOG_KEY`
+- [ ] Validação em produção com IDs reais (depende da Fase 0.2 — contas externas)
+- [ ] Vercel Analytics (a habilitar quando o projeto estiver linkado no painel)
 
 ### 1.6 Disciplina de PR (vale para todas as fases seguintes)
 

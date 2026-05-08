@@ -51,10 +51,16 @@ export const siteConfig = {
     mpdft: "https://www.mpdft.mp.br/",
   },
 
-  // IDs de tracking — preencher via .env quando criar conta
+  // IDs de tracking — preencher via .env quando criar conta.
+  // Cada bloco é renderizado/inicializado SOMENTE se o ID estiver
+  // presente, então o site funciona sem credenciais em dev/CI.
   tracking: {
     gtmId: process.env.NEXT_PUBLIC_GTM_ID ?? "",
     metaPixelId: process.env.NEXT_PUBLIC_META_PIXEL_ID ?? "",
+    linkedinPartnerId: process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID ?? "",
+    posthogKey: process.env.NEXT_PUBLIC_POSTHOG_KEY ?? "",
+    posthogHost:
+      process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
   },
 
   // Navegação principal — máximo 5 itens (Seção 8.1 do guia)

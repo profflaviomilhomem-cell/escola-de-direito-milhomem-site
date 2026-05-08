@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Toaster } from "sonner";
 
+import { AnalyticsProviders } from "@/components/shared/analytics-providers";
+import { WebVitalsReporter } from "@/components/shared/web-vitals-reporter";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
@@ -109,6 +111,8 @@ export default function RootLayout({
       <body className="bg-carbon text-paper flex min-h-full flex-col font-sans">
         {children}
         <Toaster position="top-right" richColors theme="dark" />
+        <AnalyticsProviders />
+        <WebVitalsReporter />
       </body>
       {siteConfig.tracking.gtmId ? (
         <GoogleTagManager gtmId={siteConfig.tracking.gtmId} />
