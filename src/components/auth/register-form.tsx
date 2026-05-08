@@ -1,10 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { FloatingInput } from "@/components/auth/floating-input";
 import { track } from "@/lib/analytics/track";
 import { registerSchema, type RegisterInput } from "@/schemas/auth";
 
@@ -75,82 +77,30 @@ export function RegisterForm({ redirectTo = "/aluno/dashboard" }: Props) {
   });
 
   return (
-    <form
-      onSubmit={onSubmit}
-      noValidate
-      className="mt-stack flex flex-col gap-5"
-    >
-      <label className="block">
-        <span className="text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]">
-          Seu nome
-        </span>
-        <input
-          type="text"
-          autoComplete="name"
-          aria-invalid={Boolean(errors.name) || undefined}
-          aria-describedby={errors.name ? "register-name-error" : undefined}
-          {...register("name")}
-          className="border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-          placeholder="Como devemos te chamar"
-        />
-        {errors.name?.message && (
-          <span
-            id="register-name-error"
-            className="text-alerta-400 mt-1 block text-sm"
-          >
-            {errors.name.message}
-          </span>
-        )}
-      </label>
-
-      <label className="block">
-        <span className="text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]">
-          E-mail*
-        </span>
-        <input
-          type="email"
-          autoComplete="email"
-          required
-          aria-invalid={Boolean(errors.email) || undefined}
-          aria-describedby={errors.email ? "register-email-error" : undefined}
-          {...register("email")}
-          className="border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-          placeholder="voce@exemplo.com"
-        />
-        {errors.email?.message && (
-          <span
-            id="register-email-error"
-            className="text-alerta-400 mt-1 block text-sm"
-          >
-            {errors.email.message}
-          </span>
-        )}
-      </label>
-
-      <label className="block">
-        <span className="text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]">
-          Senha* — mínimo 8 caracteres
-        </span>
-        <input
-          type="password"
-          autoComplete="new-password"
-          required
-          aria-invalid={Boolean(errors.password) || undefined}
-          aria-describedby={
-            errors.password ? "register-password-error" : undefined
-          }
-          {...register("password")}
-          className="border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-        />
-        {errors.password?.message && (
-          <span
-            id="register-password-error"
-            className="text-alerta-400 mt-1 block text-sm"
-          >
-            {errors.password.message}
-          </span>
-        )}
-      </label>
+    <form onSubmit={onSubmit} noValidate className="space-y-5">
+      <FloatingInput
+        label="Seu nome"
+        type="text"
+        autoComplete="name"
+        error={errors.name?.message}
+        {...register("name")}
+      />
+      <FloatingInput
+        label="E-mail"
+        type="email"
+        autoComplete="email"
+        required
+        error={errors.email?.message}
+        {...register("email")}
+      />
+      <FloatingInput
+        label="Senha (mínimo 8 caracteres)"
+        type="password"
+        autoComplete="new-password"
+        required
+        error={errors.password?.message}
+        {...register("password")}
+      />
 
       {status.state === "error" && (
         <p
@@ -164,20 +114,26 @@ export function RegisterForm({ redirectTo = "/aluno/dashboard" }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 inline-flex items-center justify-center gap-2 self-start px-7 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Cadastrando…" : "Criar conta"}
       </button>
 
-      <p className="text-paper-600 mt-2 text-sm leading-relaxed">
-        Ao criar conta você concorda com nossos{" "}
-        <a className="border-amber border-b" href="/termos">
+      <p className="text-paper-600 pt-2 text-xs leading-relaxed">
+        Ao criar conta você concorda com os{" "}
+        <Link
+          href="/termos"
+          className="text-paper-700 hover:text-paper underline-offset-2 hover:underline"
+        >
           Termos
-        </a>{" "}
+        </Link>{" "}
         e a{" "}
-        <a className="border-amber border-b" href="/privacidade">
+        <Link
+          href="/privacidade"
+          className="text-paper-700 hover:text-paper underline-offset-2 hover:underline"
+        >
           Política de Privacidade
-        </a>
+        </Link>
         .
       </p>
     </form>

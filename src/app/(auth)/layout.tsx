@@ -1,62 +1,55 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { BackgroundLayers } from "@/components/marketing/animation/background-layers";
+
 /**
  * Layout dedicado das telas de autenticação (`/entrar`, `/cadastro`).
  *
  * Sem o header/footer institucional do `(marketing)` — o padrão
- * streaming exige tela cheia com brand mark sutil no canto superior
- * e backdrop atmosférico. Página filha controla seu próprio backdrop
- * (pode ser gradient, image, ou padrão).
+ * streaming exige tela cheia com brand mark sutil no canto superior,
+ * caixa de formulário central translúcida sobre o backdrop atmosférico,
+ * e footer reduzido com links institucionais essenciais.
+ *
+ * O backdrop (mesh gradient + grid amber + noise) vem do componente
+ * `BackgroundLayers` global; aqui só estruturamos o contorno da página.
  */
 export default function AuthLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <div className="bg-carbon text-paper relative min-h-screen overflow-hidden">
-      {/* Atmosfera de fundo — radial mostarda + grid amber sutil + vinheta */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse 80% 60% at 70% 20%, rgba(221, 173, 12, 0.18), transparent 60%), radial-gradient(ellipse 80% 60% at 20% 80%, rgba(221, 173, 12, 0.08), transparent 65%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="fm-bg-grid pointer-events-none absolute inset-0"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, transparent 30%, rgba(6, 23, 47, 0.7) 100%)",
-        }}
-      />
+    <div className="text-paper relative flex min-h-screen flex-col overflow-hidden">
+      <BackgroundLayers />
 
-      {/* Brand mark canto superior esquerdo */}
+      {/* Brand mark canto superior esquerdo — sticky no topo, sem nav */}
       <header className="relative z-10 flex items-center justify-between px-6 py-6 md:px-14 md:py-8">
         <Link
           href="/"
           className="flex items-center gap-3 no-underline"
           aria-label="Escola Flávio Milhomem — voltar para a home"
         >
-          <span className="border-amber text-amber grid h-10 w-10 place-items-center rounded-full border font-serif text-base italic">
+          <span className="border-amber text-amber grid h-11 w-11 place-items-center rounded-full border font-serif text-[20px] italic">
             FM
           </span>
-          <span className="hidden font-serif text-xl leading-none md:inline">
+          <span className="hidden font-serif text-[22px] leading-none md:inline">
             Escola{" "}
             <em className="text-amber italic">Flávio Milhomem</em>
           </span>
         </Link>
+        <Link
+          href="/"
+          className="text-paper-700 hover:text-paper font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+        >
+          ← Voltar ao site
+        </Link>
       </header>
 
-      <main className="relative z-10">{children}</main>
+      <main className="relative z-10 flex flex-1 items-center justify-center px-6 py-10 md:px-14">
+        {children}
+      </main>
 
       {/* Footer reduzido — links institucionais essenciais */}
-      <footer className="relative z-10 mt-auto px-6 py-10 md:px-14">
+      <footer className="relative z-10 px-6 py-10 md:px-14">
         <div className="border-paper-100 mx-auto max-w-[450px] border-t pt-6 md:max-w-2xl">
           <p className="text-paper-600 text-xs leading-relaxed">
             Esta página é protegida contra automação e fraude. Seus dados

@@ -1,10 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { FloatingInput } from "@/components/auth/floating-input";
 import { loginSchema, type LoginInput } from "@/schemas/auth";
 
 type Status =
@@ -66,55 +68,23 @@ export function LoginForm({ redirectTo = "/aluno/dashboard" }: Props) {
   });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="mt-stack flex flex-col gap-5">
-      <label className="block">
-        <span className="text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]">
-          E-mail
-        </span>
-        <input
-          type="email"
-          autoComplete="email"
-          required
-          aria-invalid={Boolean(errors.email) || undefined}
-          aria-describedby={errors.email ? "login-email-error" : undefined}
-          {...register("email")}
-          className="border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-          placeholder="voce@exemplo.com"
-        />
-        {errors.email?.message && (
-          <span
-            id="login-email-error"
-            className="text-alerta-400 mt-1 block text-sm"
-          >
-            {errors.email.message}
-          </span>
-        )}
-      </label>
-
-      <label className="block">
-        <span className="text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]">
-          Senha
-        </span>
-        <input
-          type="password"
-          autoComplete="current-password"
-          required
-          aria-invalid={Boolean(errors.password) || undefined}
-          aria-describedby={
-            errors.password ? "login-password-error" : undefined
-          }
-          {...register("password")}
-          className="border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-        />
-        {errors.password?.message && (
-          <span
-            id="login-password-error"
-            className="text-alerta-400 mt-1 block text-sm"
-          >
-            {errors.password.message}
-          </span>
-        )}
-      </label>
+    <form onSubmit={onSubmit} noValidate className="space-y-5">
+      <FloatingInput
+        label="E-mail"
+        type="email"
+        autoComplete="email"
+        required
+        error={errors.email?.message}
+        {...register("email")}
+      />
+      <FloatingInput
+        label="Senha"
+        type="password"
+        autoComplete="current-password"
+        required
+        error={errors.password?.message}
+        {...register("password")}
+      />
 
       {status.state === "error" && (
         <p
@@ -128,10 +98,27 @@ export function LoginForm({ redirectTo = "/aluno/dashboard" }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 inline-flex items-center justify-center gap-2 self-start px-7 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Entrando…" : "Entrar"}
       </button>
+
+      <div className="flex items-center justify-between gap-3 pt-2 text-[13px]">
+        <label className="text-paper-700 flex cursor-pointer items-center gap-2 select-none">
+          <input
+            type="checkbox"
+            defaultChecked
+            className="border-paper-400 accent-amber h-4 w-4 cursor-pointer"
+          />
+          Lembrar de mim
+        </label>
+        <Link
+          href="/contato"
+          className="text-paper-700 hover:text-paper transition-colors"
+        >
+          Esqueci minha senha
+        </Link>
+      </div>
     </form>
   );
 }

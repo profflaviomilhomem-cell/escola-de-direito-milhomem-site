@@ -45,6 +45,12 @@ export function Header() {
           </Link>
         ))}
         <Link
+          href="/entrar"
+          className="text-paper-700 hover:text-paper font-mono text-[16px] uppercase tracking-[0.2em] transition-colors"
+        >
+          Entrar
+        </Link>
+        <Link
           href="#cohort"
           className="border-amber text-amber hover:bg-amber hover:text-paper border px-4 py-2 font-mono text-[16px] uppercase tracking-[0.2em] transition-colors"
         >
