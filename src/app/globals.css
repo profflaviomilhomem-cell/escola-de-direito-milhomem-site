@@ -190,10 +190,37 @@ h6,
 
 /* === Camadas decorativas globais === */
 
-.fm-bg-grid {
+/* === Mesh gradient (atmosfera principal) ===
+ * Sopreposição de:
+ *   1. Linear gradient (navy mais aberto no topo → carbon no rodapé)
+ *   2. Radial mostarda canto superior direito (~7%)
+ *   3. Radial mostarda canto inferior esquerdo (~4%)
+ * Gera ilusão de luz ambiente sem usar imagem. Position fixed mantém
+ * a atmosfera estática enquanto o conteúdo rola por cima.
+ */
+.fm-bg-mesh {
   position: fixed;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 80% 8%,
+      rgba(221, 173, 12, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 12% 92%,
+      rgba(221, 173, 12, 0.05),
+      transparent 65%
+    ),
+    linear-gradient(180deg, #0e2547 0%, #06172f 55%, #06172f 100%);
+}
+
+.fm-bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
   opacity: 0.5;
   background-image:
@@ -223,7 +250,7 @@ h6,
 .fm-bg-noise {
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   opacity: 0.6;
   mix-blend-mode: overlay;

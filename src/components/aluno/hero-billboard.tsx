@@ -23,7 +23,7 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
   return (
     <section
       aria-label={`Continue assistindo — ${course.title}`}
-      className="relative -mt-16 overflow-hidden"
+      className="relative -mt-24 overflow-hidden"
     >
       {/* Cover full-bleed */}
       <div

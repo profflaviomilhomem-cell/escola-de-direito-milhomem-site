@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
 import { ProgressBar } from "@/components/aluno/progress-bar";
 import {
   formatDuration,
@@ -52,7 +53,7 @@ export default async function CursoMatriculadoPage({
     <>
       {/* Hero do curso */}
       <section
-        className="relative -mt-16 overflow-hidden"
+        className="relative -mt-24 overflow-hidden"
         aria-label={mockCourse.title}
       >
         <div
@@ -154,125 +155,133 @@ export default async function CursoMatriculadoPage({
         </div>
       </section>
 
-      {/* Módulos */}
+      {/* Módulos — linha do tempo vertical com cards de aula */}
       <section className="px-gutter mx-auto max-w-(--container-narrow) pb-20 lg:px-12">
-        <h2 className="text-paper mb-8 font-serif text-3xl">Módulos</h2>
-        <div className="space-y-4">
-          {mockCourse.modules.map((mod, i) => {
-            const moduleSec = mod.lessons.reduce(
-              (acc, l) => acc + l.durationSec,
-              0,
-            );
-            const moduleDone = mod.lessons.filter(
-              (l) => l.status === "concluida",
-            ).length;
-            const moduleProgress = moduleDone / mod.lessons.length;
+        <header className="mb-10 flex items-end justify-between">
+          <div>
+            <p className="text-amber fm-mono">Sua jornada</p>
+            <h2 className="text-paper mt-2 font-serif text-3xl">
+              Módulos do curso
+            </h2>
+          </div>
+          <p className="text-paper-600 fm-mono hidden md:block">
+            {mockCourse.modules.length} módulos · {mockCourse.lessonCount} aulas
+          </p>
+        </header>
 
-            return (
-              <details
-                key={mod.slug}
-                open={i === 0 || mod.lessons.some((l) => l.status === "em-andamento")}
-                className="border-paper-100 hover:border-amber/60 bg-carbon-elevated group border transition-colors"
-              >
-                <summary className="flex cursor-pointer flex-col gap-3 p-6 md:flex-row md:items-center md:justify-between">
-                  <div className="flex items-start gap-4">
+        {/* Container relativo. A linha vertical fica como pseudo-fundo
+            entre o primeiro e o último marker, em amber/30. */}
+        <div className="relative">
+          <div
+            aria-hidden
+            className="bg-amber/30 absolute left-[27px] top-7 bottom-7 w-px md:left-[31px]"
+          />
+
+          <ol className="space-y-12">
+            {mockCourse.modules.map((mod, i) => {
+              const moduleSec = mod.lessons.reduce(
+                (acc, l) => acc + l.durationSec,
+                0,
+              );
+              const moduleDone = mod.lessons.filter(
+                (l) => l.status === "concluida",
+              ).length;
+              const moduleProgress = moduleDone / mod.lessons.length;
+
+              const moduleStatus: "done" | "active" | "todo" =
+                moduleDone === mod.lessons.length
+                  ? "done"
+                  : mod.lessons.some(
+                        (l) =>
+                          l.status === "em-andamento" ||
+                          l.status === "concluida",
+                      )
+                    ? "active"
+                    : "todo";
+
+              const markerClasses =
+                moduleStatus === "done"
+                  ? "bg-amber text-carbon border-amber"
+                  : moduleStatus === "active"
+                    ? "bg-amber/10 text-amber border-amber"
+                    : "bg-carbon-elevated text-paper-600 border-paper-200";
+
+              return (
+                <li
+                  key={mod.slug}
+                  className="grid gap-5 md:grid-cols-[64px_1fr] md:gap-7"
+                >
+                  {/* Marker da timeline */}
+                  <div className="relative flex items-start">
                     <span
-                      className="bg-amber/10 text-amber border-amber/40 grid h-12 w-12 flex-shrink-0 place-items-center rounded-full border font-serif italic"
+                      className={`relative z-10 grid h-14 w-14 place-items-center rounded-full border-2 font-serif text-xl italic ${markerClasses}`}
                     >
-                      {i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-paper font-serif text-xl leading-tight">
-                        {mod.title}
-                      </h3>
-                      <p className="text-paper-700 mt-1 text-sm">
-                        {mod.subtitle}
-                      </p>
-                      <p className="text-paper-600 fm-mono mt-2">
-                        {mod.lessons.length} aulas ·{" "}
-                        {formatDuration(moduleSec)}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="md:w-48 md:text-right">
-                    <ProgressBar
-                      value={moduleProgress}
-                      size="sm"
-                      label={`${moduleDone}/${mod.lessons.length}`}
-                    />
-                  </div>
-                </summary>
-
-                <ul className="border-paper-100 divide-paper-100 divide-y border-t">
-                  {mod.lessons.map((lesson) => {
-                    const lessonProgress =
-                      lesson.durationSec > 0
-                        ? lesson.watchedSec / lesson.durationSec
-                        : 0;
-                    return (
-                      <li key={lesson.id}>
-                        <Link
-                          href={`/aluno/aulas/${lesson.slug}`}
-                          className="hover:bg-paper-100 group/lesson flex items-center gap-4 p-5 transition-colors"
+                      {moduleStatus === "done" ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="22"
+                          height="22"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         >
-                          <span
-                            aria-hidden
-                            className={`grid h-9 w-9 flex-shrink-0 place-items-center rounded-full text-sm ${
-                              lesson.status === "concluida"
-                                ? "bg-amber text-carbon"
-                                : lesson.status === "em-andamento"
-                                  ? "border-amber text-amber border"
-                                  : "border-paper-200 text-paper-600 border"
-                            }`}
-                          >
-                            {lesson.status === "concluida" ? (
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              >
-                                <path d="M20 6 9 17l-5-5" />
-                              </svg>
-                            ) : (
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="12"
-                                height="12"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                              >
-                                <polygon points="6 3 20 12 6 21 6 3" />
-                              </svg>
-                            )}
-                          </span>
-                          <div className="min-w-0 flex-1">
-                            <p className="text-paper group-hover/lesson:text-amber font-serif text-base leading-tight transition-colors">
-                              {lesson.title}
-                            </p>
-                            <p className="text-paper-600 fm-mono mt-1">
-                              {formatDuration(lesson.durationSec)}
-                              {lesson.status === "em-andamento" &&
-                                ` · ${Math.round(lessonProgress * 100)}%`}
-                            </p>
-                          </div>
-                          <span className="text-paper-600 group-hover/lesson:text-amber fm-mono hidden md:block">
-                            Aula{" "}
-                            {lesson.position.toString().padStart(2, "0")}
-                          </span>
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </details>
-            );
-          })}
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                      ) : (
+                        i + 1
+                      )}
+                    </span>
+                  </div>
+
+                  {/* Conteúdo do módulo */}
+                  <div className="min-w-0">
+                    {/* Header do módulo */}
+                    <div className="border-paper-100 bg-carbon-elevated border p-6">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
+                        <div className="min-w-0">
+                          <p className="text-amber fm-mono">
+                            Módulo {i + 1}
+                            {moduleStatus === "done" && " · concluído"}
+                            {moduleStatus === "active" && " · em andamento"}
+                            {moduleStatus === "todo" && " · a iniciar"}
+                          </p>
+                          <h3 className="text-paper mt-2 font-serif text-2xl leading-tight">
+                            {mod.title}
+                          </h3>
+                          <p className="text-paper-700 mt-2 leading-relaxed">
+                            {mod.subtitle}
+                          </p>
+                        </div>
+                        <div className="text-paper-600 fm-mono whitespace-nowrap text-right">
+                          {mod.lessons.length} aulas
+                          <br />
+                          {formatDuration(moduleSec)}
+                        </div>
+                      </div>
+                      <div className="mt-5">
+                        <ProgressBar
+                          value={moduleProgress}
+                          label={`${moduleDone}/${mod.lessons.length}`}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Cards das aulas — vertical, com thumbnail */}
+                    <ul className="mt-4 space-y-3">
+                      {mod.lessons.map((lesson) => (
+                        <li key={lesson.id}>
+                          <LessonCardCompact lesson={lesson} />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </section>
     </>

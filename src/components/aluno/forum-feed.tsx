@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 import { CommentTree } from "@/components/aluno/comment-tree";
@@ -283,18 +284,26 @@ export function ForumFeed({ threads, course }: Props) {
                         className="bg-amber pointer-events-none absolute left-0 hidden h-full w-[3px] -translate-x-full opacity-0 transition-all group-open/thread:translate-x-0 group-open/thread:opacity-100 md:block"
                       />
 
-                      {/* Avatar */}
-                      <span
-                        className={`grid h-11 w-11 flex-shrink-0 place-items-center rounded-full text-sm font-bold ${
-                          thread.author.role === "professor"
-                            ? "bg-amber/20 text-amber border-amber border-2"
-                            : thread.author.role === "monitor"
+                      {/* Avatar — foto real para o professor, iniciais para os demais */}
+                      {thread.author.role === "professor" ? (
+                        <Image
+                          src="/images/professor/flavio-avatar-64.jpg"
+                          alt={`Foto de ${thread.author.name}`}
+                          width={44}
+                          height={44}
+                          className="border-amber h-11 w-11 flex-shrink-0 rounded-full border-2 object-cover"
+                        />
+                      ) : (
+                        <span
+                          className={`grid h-11 w-11 flex-shrink-0 place-items-center rounded-full text-sm font-bold ${
+                            thread.author.role === "monitor"
                               ? "bg-paper-200 text-paper border-paper-400 border"
                               : "bg-paper text-carbon"
-                        }`}
-                      >
-                        {initials(thread.author.name)}
-                      </span>
+                          }`}
+                        >
+                          {initials(thread.author.name)}
+                        </span>
+                      )}
 
                       {/* Mini-thumb da aula vinculada — visível na linha
                           recolhida para ancorar a pergunta no contexto. */}

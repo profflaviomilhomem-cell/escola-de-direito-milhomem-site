@@ -58,24 +58,6 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
           </span>
         )}
 
-        {/* Play overlay no hover */}
-        <span className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          <span className="bg-amber text-carbon grid h-9 w-9 place-items-center rounded-full shadow-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polygon points="6 3 20 12 6 21 6 3" />
-            </svg>
-          </span>
-        </span>
       </div>
 
       {/* Conteúdo textual */}

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { MockComment } from "@/data/mock-aluno";
 
 type Props = {
@@ -64,11 +66,21 @@ function CommentNode({
   return (
     <article className={tone.container}>
       <header className="mb-2 flex flex-wrap items-center gap-3">
-        <span
-          className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${tone.badge}`}
-        >
-          {initials(comment.author.name)}
-        </span>
+        {comment.author.role === "professor" ? (
+          <Image
+            src="/images/professor/flavio-avatar-64.jpg"
+            alt={`Foto de ${comment.author.name}`}
+            width={28}
+            height={28}
+            className="border-amber h-7 w-7 rounded-full border-2 object-cover"
+          />
+        ) : (
+          <span
+            className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${tone.badge}`}
+          >
+            {initials(comment.author.name)}
+          </span>
+        )}
         <span className="text-paper text-sm font-semibold">
           {comment.author.name}
         </span>

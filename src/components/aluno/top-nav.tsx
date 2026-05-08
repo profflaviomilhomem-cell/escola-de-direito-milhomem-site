@@ -49,34 +49,35 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
           : "bg-gradient-to-b from-carbon to-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-(--container-narrow) items-center justify-between px-gutter py-4 lg:px-12">
+      <div className="mx-auto flex max-w-(--container-narrow) items-center justify-between px-gutter py-5 lg:px-12">
         {/* Logo + brand */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-8 lg:gap-10">
           <Link
             href="/aluno/dashboard"
             className="flex items-center gap-3 no-underline"
             aria-label="Escola Flávio Milhomem — área do aluno"
           >
-            <span className="border-amber text-amber grid h-9 w-9 place-items-center rounded-full border font-serif text-base italic">
+            <span className="border-amber text-amber grid h-11 w-11 place-items-center rounded-full border font-serif text-[20px] italic">
               FM
             </span>
-            <span className="hidden font-serif text-[20px] leading-none md:inline">
-              Escola
+            <span className="hidden font-serif leading-none md:inline">
+              <span className="text-[22px]">Escola</span>{" "}
+              <em className="text-amber text-[22px] italic">Aluno</em>
             </span>
           </Link>
 
           <nav
             aria-label="Navegação do aluno"
-            className="hidden items-center gap-6 md:flex"
+            className="hidden items-center gap-7 md:flex"
           >
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={`fm-mono font-mono transition-colors ${
+                className={`font-mono text-[15px] uppercase tracking-[0.2em] transition-colors ${
                   isActive(l.href)
                     ? "text-paper"
-                    : "text-paper-600 hover:text-paper"
+                    : "text-paper-700 hover:text-paper"
                 }`}
               >
                 {l.label}
@@ -86,7 +87,7 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
         </div>
 
         {/* Profile + actions */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
           {/* Search ícone — placeholder visual */}
           <button
             type="button"
@@ -95,8 +96,8 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
+              width="22"
+              height="22"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -115,17 +116,17 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
               onBlur={() => setTimeout(() => setMenuOpen(false), 120)}
-              className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border pl-1 pr-3 py-1 transition-colors"
+              className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition-colors"
               aria-haspopup="menu"
               aria-expanded={menuOpen}
             >
-              <span className="bg-amber text-carbon grid h-7 w-7 place-items-center rounded-full font-mono text-xs font-bold">
+              <span className="bg-amber text-carbon grid h-9 w-9 place-items-center rounded-full font-mono text-sm font-bold">
                 {initials}
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -192,8 +193,8 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="22"
+              width="26"
+              height="26"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

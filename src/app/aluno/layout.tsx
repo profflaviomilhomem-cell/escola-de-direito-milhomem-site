@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 
 import { AlunoTopNav } from "@/components/aluno/top-nav";
+import { BackgroundLayers } from "@/components/marketing/animation/background-layers";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { mockUser } from "@/data/mock-aluno";
 
@@ -32,13 +33,14 @@ export default async function AlunoLayout({
           .toUpperCase();
 
   return (
-    <div className="bg-carbon text-paper min-h-screen">
+    <div className="text-paper relative min-h-screen">
+      <BackgroundLayers />
       <AlunoTopNav
         userName={session.name ?? session.email}
         userEmail={session.email}
         initials={initials}
       />
-      <main className="pt-16">{children}</main>
+      <main className="relative z-10 pt-24">{children}</main>
     </div>
   );
 }
