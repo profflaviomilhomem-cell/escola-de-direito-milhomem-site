@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup B · Calculadora trifásica com sentença redigida</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300..700;1,300..700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        carbon: '#06172F',
+        'carbon-elevated': '#242A34',
+        amber: { DEFAULT: '#DDAD0C', soft: '#E8C547' },
+        paper: {
+          DEFAULT: '#EAE4D9',
+          50:  'rgba(234, 228, 217, 0.04)',
+          100: 'rgba(234, 228, 217, 0.08)',
+          200: 'rgba(234, 228, 217, 0.12)',
+          400: 'rgba(234, 228, 217, 0.4)',
+          600: 'rgba(234, 228, 217, 0.6)',
+          700: 'rgba(234, 228, 217, 0.7)',
+          800: 'rgba(234, 228, 217, 0.8)',
+        },
+        alerta: { 400: '#ef6b73' },
+      },
+      fontFamily: {
+        serif: ['Newsreader', 'Source Serif 4', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'Menlo', 'monospace'],
+      },
+    }
+  }
+}
+</script>
+
+<style>
+  html, body { background: #06172F; color: #EAE4D9; }
+  body { font-family: Inter, sans-serif; }
+
+  /* Mesh gradient global */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 50% at 80% 8%, rgba(221, 173, 12, 0.08), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 12% 92%, rgba(221, 173, 12, 0.05), transparent 65%),
+      linear-gradient(180deg, #0E2547 0%, #06172F 55%, #06172F 100%);
+  }
+
+  ::selection { background: #DDAD0C; color: #06172F; }
+  *:focus-visible { outline: 2px solid #DDAD0C; outline-offset: 2px; }
+
+  .fm-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* Papel kraft real (textura do dossiê institucional) */
+  .kraft-paper {
+    background-color: #d9c4a3;
+    background-image:
+      radial-gradient(ellipse at center, rgba(255, 240, 200, 0) 30%, rgba(40, 25, 10, 0.18) 100%),
+      url('https://www.transparenttextures.com/patterns/cardboard.png');
+    color: #2a1f10;
+  }
+  .kraft-paper .ink-amber { color: #8a6a09; }
+  .kraft-paper .ink-strong { color: #1a0f04; }
+
+  /* Hide scrollbar */
+  *::-webkit-scrollbar { display: none; }
+  * { scrollbar-width: none; }
+
+  /* Timeline progress fill animation */
+  @keyframes pulse-amber {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(221, 173, 12, 0.55); }
+    70% { box-shadow: 0 0 0 10px rgba(221, 173, 12, 0); }
+  }
+  .pulse-amber { animation: pulse-amber 2s ease-out infinite; }
+
+  /* Toggle styles */
+  input[type="checkbox"].fm-check {
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 1px solid rgba(234, 228, 217, 0.4);
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+  }
+  input[type="checkbox"].fm-check:checked {
+    background: #DDAD0C;
+    border-color: #DDAD0C;
+  }
+  input[type="checkbox"].fm-check:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #06172F;
+    font-size: 0.85rem;
+    font-weight: 800;
+  }
+
+  .step-active { color: #DDAD0C; }
+  .step-done { color: #DDAD0C; }
+  .step-todo { color: rgba(234, 228, 217, 0.4); }
+
+  .ink-pulse {
+    transition: color .25s ease;
+  }
+  .ink-pulse.changed { color: #b8870a; }
+</style>
+</head>
+<body>
+
+<div class="relative z-10 min-h-screen">
+
+  <!-- Header de página -->
+  <header class="border-b border-paper-100">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="border border-amber text-amber grid h-11 w-11 place-items-center rounded-full font-serif text-[20px] italic">FM</span>
+        <span class="font-serif text-[22px]">Escola <em class="text-amber italic">Flávio Milhomem</em></span>
+      </div>
+      <span class="hidden md:inline border border-paper-200 px-3 py-1.5 fm-mono text-paper-700">Mockup B · Calculadora redesigned</span>
+    </div>
+  </header>
+
+  <!-- Disclaimer slim ribbon (não rouba a dobra principal) -->
+  <div class="bg-amber/10 border-b border-amber/30">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-2 flex items-center justify-center gap-2 text-paper-800 text-[13px]">
+      <span class="fm-mono text-amber">Modo didático</span>
+      <span class="text-paper-600">·</span>
+      <span>Não constitui parecer jurídico. Não vincula MPDFT, Escola ou o Prof. Flávio.</span>
+    </div>
+  </div>
+
+  <!-- Hero compacto -->
+  <section class="px-6 lg:px-12 pt-14 pb-10">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="text-amber fm-mono">Dosimetria Trifásica · CP art. 68</p>
+      <h1 class="mt-4 font-serif leading-[1.02]" style="font-size: clamp(40px, 5vw, 64px);">
+        Calculadora de <em class="text-amber italic">pena hipotética</em>.
+      </h1>
+      <p class="mt-5 max-w-2xl text-paper-700 leading-relaxed text-[17px]">
+        Os parâmetros do lado esquerdo. A sentença sendo redigida do lado direito, em tempo real. Como um promotor pensaria a peça acusatória.
+      </p>
+    </div>
+  </section>
+
+  <!-- Split-screen principal -->
+  <section class="px-6 lg:px-12 pb-24">
+    <div class="max-w-[1400px] mx-auto grid gap-8 lg:grid-cols-[1.15fr_1fr]">
+
+      <!-- COLUNA ESQUERDA — formulário -->
+      <div class="bg-carbon-elevated/80 border border-paper-100 backdrop-blur">
+
+        <!-- Timeline visual de passos -->
+        <div class="border-b border-paper-100 px-6 py-5">
+          <ol id="timeline" class="grid grid-cols-4 gap-2 relative">
+            <!-- linha de fundo -->
+            <div class="absolute left-[10%] right-[10%] top-[18px] h-px bg-paper-200 -z-0"></div>
+            <li class="relative flex flex-col items-center gap-2">
+              <span data-step="0" class="step-node grid h-9 w-9 place-items-center rounded-full bg-amber text-carbon font-mono text-sm font-bold ring-4 ring-carbon-elevated z-10">1</span>
+              <span class="fm-mono">Crime</span>
+            </li>
+            <li class="relative flex flex-col items-center gap-2">
+              <span data-step="1" class="step-node grid h-9 w-9 place-items-center rounded-full bg-carbon-elevated border border-paper-200 text-paper-600 font-mono text-sm font-bold ring-4 ring-carbon-elevated z-10">2</span>
+              <span class="fm-mono text-paper-600">Fase 1 · base</span>
+            </li>
+            <li class="relative flex flex-col items-center gap-2">
+              <span data-step="2" class="step-node grid h-9 w-9 place-items-center rounded-full bg-carbon-elevated border border-paper-200 text-paper-600 font-mono text-sm font-bold ring-4 ring-carbon-elevated z-10">3</span>
+              <span class="fm-mono text-paper-600">Fase 2 · interm.</span>
+            </li>
+            <li class="relative flex flex-col items-center gap-2">
+              <span data-step="3" class="step-node grid h-9 w-9 place-items-center rounded-full bg-carbon-elevated border border-paper-200 text-paper-600 font-mono text-sm font-bold ring-4 ring-carbon-elevated z-10">4</span>
+              <span class="fm-mono text-paper-600">Fase 3 · final</span>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Panels -->
+        <div class="p-6 lg:p-10 min-h-[520px]">
+
+          <!-- Step 0: crime -->
+          <div data-panel="0" class="step-panel">
+            <p class="text-amber fm-mono mb-2">01 · Tipo penal</p>
+            <h2 class="font-serif text-3xl mb-3">Selecione o crime hipotético</h2>
+            <p class="text-paper-700 mb-6 text-[15px]">Os limites mínimo e máximo seguem a redação atual do CP.</p>
+
+            <!-- Search -->
+            <div class="relative mb-5">
+              <input id="crime-search" type="search" placeholder="Buscar por nome ou artigo (ex.: estelionato, art. 171)…" class="w-full bg-carbon border border-paper-200 focus:border-amber px-4 py-3 outline-none text-paper text-sm placeholder:text-paper-600">
+            </div>
+
+            <!-- Filter chips por categoria -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              <button data-cat="all" class="cat-chip bg-amber/10 border border-amber text-amber fm-mono px-3 py-1.5">Todos (5)</button>
+              <button data-cat="patrimonio" class="cat-chip border border-paper-200 text-paper-700 hover:text-paper fm-mono px-3 py-1.5">Patrimônio (3)</button>
+              <button data-cat="pessoa" class="cat-chip border border-paper-200 text-paper-700 hover:text-paper fm-mono px-3 py-1.5">Pessoa (1)</button>
+              <button data-cat="drogas" class="cat-chip border border-paper-200 text-paper-700 hover:text-paper fm-mono px-3 py-1.5">Drogas (1)</button>
+            </div>
+
+            <ul id="crime-list" class="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+              <!-- preenchido por JS -->
+            </ul>
+          </div>
+
+          <!-- Step 1: pena-base -->
+          <div data-panel="1" class="step-panel hidden">
+            <p class="text-amber fm-mono mb-2">02 · Fase 1</p>
+            <h2 class="font-serif text-3xl mb-3">Pena-base — vetores do art. 59</h2>
+            <p class="text-paper-700 mb-6 text-[15px]">Marque os vetores <em>desfavoráveis</em> ao acusado. Cada um afasta a pena-base do mínimo legal.</p>
+
+            <div id="vetores" class="grid sm:grid-cols-2 gap-3">
+              <!-- preenchido por JS -->
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-paper-100">
+              <div class="flex items-end justify-between">
+                <div>
+                  <p class="fm-mono text-paper-600">Pena-base parcial</p>
+                  <p id="pena-base-display" class="font-serif text-4xl text-amber mt-1">—</p>
+                </div>
+                <div class="text-right">
+                  <p class="fm-mono text-paper-600">Range legal</p>
+                  <p id="range-legal" class="font-serif text-2xl text-paper-700 mt-1">—</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: intermediária -->
+          <div data-panel="2" class="step-panel hidden">
+            <p class="text-amber fm-mono mb-2">03 · Fase 2</p>
+            <h2 class="font-serif text-3xl mb-3">Pena intermediária</h2>
+            <p class="text-paper-700 mb-6 text-[15px]">Atenuantes reduzem; agravantes aumentam. Toggle as que se aplicam.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="fm-mono text-amber mb-3">Atenuantes (–)</h3>
+                <ul id="atenuantes" class="space-y-2"></ul>
+              </div>
+              <div>
+                <h3 class="fm-mono text-alerta-400 mb-3">Agravantes (+)</h3>
+                <ul id="agravantes" class="space-y-2"></ul>
+              </div>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-paper-100">
+              <div class="flex items-end justify-between">
+                <div>
+                  <p class="fm-mono text-paper-600">Pena intermediária</p>
+                  <p id="pena-interm-display" class="font-serif text-4xl text-amber mt-1">—</p>
+                </div>
+                <div class="text-right text-paper-700">
+                  <p class="fm-mono">Variação</p>
+                  <p id="pena-interm-delta" class="font-mono text-base mt-1">±0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: definitiva -->
+          <div data-panel="3" class="step-panel hidden">
+            <p class="text-amber fm-mono mb-2">04 · Fase 3</p>
+            <h2 class="font-serif text-3xl mb-3">Pena definitiva</h2>
+            <p class="text-paper-700 mb-6 text-[15px]">Causas de aumento e diminuição operam por <em>frações</em> sobre a pena intermediária.</p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="fm-mono text-amber mb-3">Diminuições (×)</h3>
+                <ul id="diminuicoes" class="space-y-2"></ul>
+              </div>
+              <div>
+                <h3 class="fm-mono text-alerta-400 mb-3">Aumentos (×)</h3>
+                <ul id="aumentos" class="space-y-2"></ul>
+              </div>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-paper-100">
+              <div>
+                <p class="fm-mono text-paper-600">Pena definitiva</p>
+                <p id="pena-final-display" class="font-serif text-5xl text-amber mt-2">—</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Nav -->
+        <div class="border-t border-paper-100 px-6 py-4 flex items-center justify-between">
+          <button id="btn-prev" class="border border-paper-200 enabled:hover:border-amber enabled:hover:text-amber disabled:opacity-30 disabled:cursor-not-allowed text-paper-700 fm-mono px-5 py-2 transition-colors">← Anterior</button>
+          <button id="btn-next" class="bg-amber text-carbon hover:bg-amber-soft fm-mono px-5 py-2 transition-colors">Próximo →</button>
+        </div>
+      </div>
+
+      <!-- COLUNA DIREITA — sentença redigida em papel kraft -->
+      <aside class="kraft-paper relative shadow-2xl">
+        <!-- Cabeçalho institucional do papel -->
+        <div class="border-b border-amber/40 px-8 py-6">
+          <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] ink-strong">
+            <span>República Federativa do Brasil</span>
+            <span>Modo didático</span>
+          </div>
+          <h3 class="mt-3 font-serif text-2xl ink-strong">
+            Manuscrito da <em class="ink-amber italic">sentença</em>
+          </h3>
+          <p class="text-[13px] mt-1 ink-strong/80">Atualiza-se em tempo real conforme você ajusta os parâmetros.</p>
+        </div>
+
+        <!-- Sentença -->
+        <article class="px-8 py-8 leading-[1.85] text-[15px] font-serif">
+          <p class="mb-5">
+            <strong class="ink-strong">Vistos os autos.</strong>
+            Considerando o crime hipotético de
+            <strong id="s-crime" class="ink-amber ink-pulse">furto simples (CP, art. 155)</strong>,
+            cuja pena cominada varia de <span id="s-range" class="ink-amber ink-pulse">1 a 4 anos</span> de reclusão,
+          </p>
+
+          <p class="mb-5">
+            atendendo às <strong>circunstâncias judiciais do art. 59</strong> do Código Penal —
+            avaliando culpabilidade, antecedentes, conduta social, personalidade, motivos, circunstâncias, consequências e
+            comportamento da vítima — verificou-se que <span id="s-vetores" class="ink-amber ink-pulse">0 dos 8 vetores</span>
+            depõem contra o acusado, razão pela qual fixo a
+            <strong>pena-base</strong> em <strong id="s-pena-base" class="ink-amber ink-pulse">1 ano de reclusão</strong>,
+            no piso da escala penal abstrata.
+          </p>
+
+          <p id="s-fase2-paragraph" class="mb-5">
+            <strong>Na fase intermediária</strong>, <span id="s-fase2-text">não há atenuantes nem agravantes a considerar</span>,
+            permanecendo a pena em <strong id="s-pena-interm" class="ink-amber ink-pulse">1 ano de reclusão</strong>.
+          </p>
+
+          <p id="s-fase3-paragraph" class="mb-7">
+            <strong>Em última fase</strong>, <span id="s-fase3-text">não incidem causas de aumento ou diminuição</span>,
+            de modo que se torna <strong>definitiva</strong> a pena de
+            <strong id="s-pena-final" class="ink-amber ink-pulse">1 ano de reclusão</strong>.
+          </p>
+
+          <hr class="border-amber/40 my-7"/>
+
+          <p class="text-[13px] ink-strong/70 italic">
+            Este documento é exercício acadêmico de simulação trifásica, não vincula juízo, MP ou advogado.
+          </p>
+        </article>
+
+        <!-- Botão exportar -->
+        <div class="border-t border-amber/40 px-8 py-5 flex items-center justify-between">
+          <p class="text-[11px] uppercase tracking-[0.2em] ink-strong/70">PDF · 1 página · A4</p>
+          <button class="bg-carbon text-paper hover:bg-amber hover:text-carbon fm-mono px-5 py-2.5 transition-colors">
+            Exportar como PDF
+          </button>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- Footer mockup -->
+  <footer class="border-t border-paper-100 px-6 lg:px-12 py-8">
+    <div class="max-w-[1400px] mx-auto text-paper-600 fm-mono">
+      Mockup interativo · Calculadora redesigned · Mexa nos parâmetros pra ver o lado direito mudar
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// ============================================================
+// DADOS — mock pequeno só pra demonstrar interação
+// ============================================================
+const CRIMES = [
+  { slug: 'furto-simples',     cat: 'patrimonio', name: 'Furto simples',                 article: 'CP, art. 155',         min: 12, max: 48 },  // meses
+  { slug: 'furto-qualificado', cat: 'patrimonio', name: 'Furto qualificado',             article: 'CP, art. 155, §4°',   min: 24, max: 96 },
+  { slug: 'estelionato',       cat: 'patrimonio', name: 'Estelionato',                   article: 'CP, art. 171',         min: 12, max: 60 },
+  { slug: 'lesao-corporal',    cat: 'pessoa',     name: 'Lesão corporal grave',          article: 'CP, art. 129, §1°',   min: 12, max: 60 },
+  { slug: 'trafico',           cat: 'drogas',     name: 'Tráfico (caput)',                article: 'Lei 11.343, art. 33', min: 60, max: 180 },
+];
+
+const VETORES = [
+  'Culpabilidade',
+  'Antecedentes',
+  'Conduta social',
+  'Personalidade do agente',
+  'Motivos do crime',
+  'Circunstâncias do crime',
+  'Consequências do crime',
+  'Comportamento da vítima',
+];
+
+const ATENUANTES = [
+  { slug: 'menoridade',     label: 'Menoridade relativa (< 21 anos)', frac: 1/6 },
+  { slug: 'confissao',      label: 'Confissão espontânea',             frac: 1/6 },
+  { slug: 'reparacao',      label: 'Reparação do dano',                frac: 1/6 },
+];
+
+const AGRAVANTES = [
+  { slug: 'reincidencia',   label: 'Reincidência',                     frac: 1/6 },
+  { slug: 'motivo-torpe',   label: 'Motivo torpe',                     frac: 1/6 },
+  { slug: 'premeditacao',   label: 'Premeditação',                     frac: 1/6 },
+];
+
+const DIMINUICOES = [
+  { slug: 'tentativa',          label: 'Tentativa (art. 14, II)',      mult: 2/3 },
+  { slug: 'arrependimento',     label: 'Arrependimento posterior',      mult: 1/3 },
+];
+
+const AUMENTOS = [
+  { slug: 'continuidade',       label: 'Continuidade delitiva',         mult: 2/3 },
+  { slug: 'concurso-formal',    label: 'Concurso formal',               mult: 1/3 },
+];
+
+// ============================================================
+// ESTADO
+// ============================================================
+const state = {
+  step: 0,
+  crime: CRIMES[0],
+  vetoresMarcados: new Set(),
+  atenuantes: new Set(),
+  agravantes: new Set(),
+  diminuicoes: new Set(),
+  aumentos: new Set(),
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+const $  = (s, p = document) => p.querySelector(s);
+const $$ = (s, p = document) => Array.from(p.querySelectorAll(s));
+
+function fmtMonths(m) {
+  m = Math.round(m);
+  const anos = Math.floor(m / 12);
+  const meses = m - anos * 12;
+  if (anos === 0) return `${meses} mês${meses === 1 ? '' : 'es'}`;
+  if (meses === 0) return `${anos} ano${anos === 1 ? '' : 's'}`;
+  return `${anos} ano${anos === 1 ? '' : 's'} e ${meses} mês${meses === 1 ? '' : 'es'}`;
+}
+
+function fmtRange(c) {
+  return `${fmtMonths(c.min)} a ${fmtMonths(c.max)}`;
+}
+
+// ============================================================
+// CÁLCULO trifásico (didático)
+// ============================================================
+function calcular() {
+  const c = state.crime;
+  const range = c.max - c.min;
+  const n = state.vetoresMarcados.size;
+  // Pena-base: cresce do mínimo até a "média da escala" conforme vetores marcados
+  const penaBase = c.min + (n / 8) * (range / 2);
+
+  // Atenuantes/agravantes operam sobre pena-base
+  let interm = penaBase;
+  state.atenuantes.forEach(s => {
+    const a = ATENUANTES.find(x => x.slug === s);
+    interm -= penaBase * a.frac;
+  });
+  state.agravantes.forEach(s => {
+    const a = AGRAVANTES.find(x => x.slug === s);
+    interm += penaBase * a.frac;
+  });
+  // bound
+  interm = Math.max(c.min, Math.min(c.max, interm));
+
+  // Causas operam sobre intermediária
+  let final = interm;
+  state.diminuicoes.forEach(s => {
+    const d = DIMINUICOES.find(x => x.slug === s);
+    final = final * (1 - d.mult);
+  });
+  state.aumentos.forEach(s => {
+    const a = AUMENTOS.find(x => x.slug === s);
+    final = final * (1 + a.mult);
+  });
+  final = Math.max(0, final);
+
+  return { penaBase, interm, final, vetoresN: n };
+}
+
+// ============================================================
+// RENDERIZAÇÃO — formulário esquerdo
+// ============================================================
+function renderTimeline() {
+  $$('.step-node').forEach((node, i) => {
+    node.classList.remove('bg-amber', 'text-carbon', 'bg-carbon-elevated', 'border', 'border-paper-200', 'text-paper-600', 'pulse-amber');
+    if (i < state.step) {
+      node.classList.add('bg-amber', 'text-carbon');
+      node.innerHTML = '✓';
+    } else if (i === state.step) {
+      node.classList.add('bg-amber', 'text-carbon', 'pulse-amber');
+      node.innerHTML = String(i + 1);
+    } else {
+      node.classList.add('bg-carbon-elevated', 'border', 'border-paper-200', 'text-paper-600');
+      node.innerHTML = String(i + 1);
+    }
+  });
+  // text labels
+  $$('#timeline li > span:last-child').forEach((el, i) => {
+    el.classList.toggle('text-paper-600', i > state.step);
+    el.classList.toggle('text-amber', i === state.step);
+    el.classList.toggle('text-paper', i < state.step);
+  });
+}
+
+function renderPanels() {
+  $$('.step-panel').forEach((p, i) => {
+    p.classList.toggle('hidden', i !== state.step);
+  });
+  $('#btn-prev').disabled = state.step === 0;
+  $('#btn-next').textContent = state.step === 3 ? 'Concluir' : 'Próximo →';
+}
+
+function renderCrimeList(filterCat = 'all', search = '') {
+  const list = $('#crime-list');
+  const filtered = CRIMES.filter(c => {
+    if (filterCat !== 'all' && c.cat !== filterCat) return false;
+    if (search && !`${c.name} ${c.article}`.toLowerCase().includes(search.toLowerCase())) return false;
+    return true;
+  });
+  list.innerHTML = filtered.map(c => `
+    <li>
+      <button data-slug="${c.slug}" class="crime-row group w-full flex items-center justify-between gap-4 p-4 border ${c.slug === state.crime.slug ? 'border-amber bg-amber/5' : 'border-paper-100 hover:border-amber/60'} text-left transition-colors">
+        <span class="grid h-5 w-5 place-items-center rounded-full border ${c.slug === state.crime.slug ? 'border-amber' : 'border-paper-400'}">
+          ${c.slug === state.crime.slug ? '<span class="block h-2.5 w-2.5 bg-amber rounded-full"></span>' : ''}
+        </span>
+        <span class="flex-1">
+          <span class="block font-serif text-lg ${c.slug === state.crime.slug ? 'text-amber' : 'text-paper'}">${c.name}</span>
+          <span class="block fm-mono text-paper-600 mt-1">${c.article}</span>
+        </span>
+        <span class="fm-mono text-paper-700 whitespace-nowrap">${fmtRange(c)}</span>
+      </button>
+    </li>
+  `).join('') || `<li class="text-paper-600 italic p-4">Nenhum crime nessa busca.</li>`;
+}
+
+function renderVetores() {
+  const wrap = $('#vetores');
+  wrap.innerHTML = VETORES.map((v, i) => {
+    const checked = state.vetoresMarcados.has(i);
+    return `
+      <label class="flex items-center gap-3 p-3 border ${checked ? 'border-amber bg-amber/5' : 'border-paper-100 hover:border-amber/60'} cursor-pointer transition-colors">
+        <input type="checkbox" data-vetor="${i}" class="fm-check" ${checked ? 'checked' : ''}>
+        <span class="text-paper text-sm leading-tight">${v}</span>
+      </label>
+    `;
+  }).join('');
+}
+
+function renderAtAg() {
+  $('#atenuantes').innerHTML = ATENUANTES.map(a => `
+    <li>
+      <label class="flex items-center gap-3 p-3 border ${state.atenuantes.has(a.slug) ? 'border-amber bg-amber/5' : 'border-paper-100 hover:border-amber/60'} cursor-pointer transition-colors">
+        <input type="checkbox" data-aten="${a.slug}" class="fm-check" ${state.atenuantes.has(a.slug) ? 'checked' : ''}>
+        <span class="text-sm">${a.label}</span>
+        <span class="ml-auto fm-mono text-paper-600">−1/6</span>
+      </label>
+    </li>
+  `).join('');
+  $('#agravantes').innerHTML = AGRAVANTES.map(a => `
+    <li>
+      <label class="flex items-center gap-3 p-3 border ${state.agravantes.has(a.slug) ? 'border-alerta-400 bg-alerta-400/10' : 'border-paper-100 hover:border-alerta-400/60'} cursor-pointer transition-colors">
+        <input type="checkbox" data-agra="${a.slug}" class="fm-check" ${state.agravantes.has(a.slug) ? 'checked' : ''}>
+        <span class="text-sm">${a.label}</span>
+        <span class="ml-auto fm-mono text-paper-600">+1/6</span>
+      </label>
+    </li>
+  `).join('');
+}
+
+function renderCausas() {
+  $('#diminuicoes').innerHTML = DIMINUICOES.map(d => `
+    <li>
+      <label class="flex items-center gap-3 p-3 border ${state.diminuicoes.has(d.slug) ? 'border-amber bg-amber/5' : 'border-paper-100 hover:border-amber/60'} cursor-pointer transition-colors">
+        <input type="checkbox" data-dim="${d.slug}" class="fm-check" ${state.diminuicoes.has(d.slug) ? 'checked' : ''}>
+        <span class="text-sm">${d.label}</span>
+        <span class="ml-auto fm-mono text-paper-600">×${(1 - d.mult).toFixed(2)}</span>
+      </label>
+    </li>
+  `).join('');
+  $('#aumentos').innerHTML = AUMENTOS.map(a => `
+    <li>
+      <label class="flex items-center gap-3 p-3 border ${state.aumentos.has(a.slug) ? 'border-alerta-400 bg-alerta-400/10' : 'border-paper-100 hover:border-alerta-400/60'} cursor-pointer transition-colors">
+        <input type="checkbox" data-aum="${a.slug}" class="fm-check" ${state.aumentos.has(a.slug) ? 'checked' : ''}>
+        <span class="text-sm">${a.label}</span>
+        <span class="ml-auto fm-mono text-paper-600">×${(1 + a.mult).toFixed(2)}</span>
+      </label>
+    </li>
+  `).join('');
+}
+
+// ============================================================
+// RENDERIZAÇÃO — sentença direita (real-time)
+// ============================================================
+function renderSentenca() {
+  const c = state.crime;
+  const r = calcular();
+
+  $('#s-crime').textContent = `${c.name.toLowerCase()} (${c.article})`;
+  $('#s-range').textContent = fmtRange(c);
+
+  $('#s-vetores').textContent = `${r.vetoresN} d${r.vetoresN === 1 ? 'os 8' : 'os 8'} vetores`;
+  $('#s-pena-base').textContent = fmtMonths(r.penaBase);
+
+  // Painel de status na coluna esquerda
+  $('#range-legal').textContent = fmtRange(c);
+  $('#pena-base-display').textContent = fmtMonths(r.penaBase);
+
+  // Fase 2 — frase contextual
+  const atens = Array.from(state.atenuantes);
+  const agras = Array.from(state.agravantes);
+  let fase2text;
+  if (atens.length === 0 && agras.length === 0) {
+    fase2text = 'não há atenuantes nem agravantes a considerar';
+  } else {
+    const partes = [];
+    if (atens.length) partes.push(`a${atens.length > 1 ? 's' : ''} atenuante${atens.length > 1 ? 's' : ''} de ${atens.map(s => ATENUANTES.find(x => x.slug === s).label.toLowerCase()).join(', ')}`);
+    if (agras.length) partes.push(`${atens.length ? 'mas presente' : 'presente'} ${agras.length > 1 ? 'as agravantes' : 'a agravante'} de ${agras.map(s => AGRAVANTES.find(x => x.slug === s).label.toLowerCase()).join(', ')}`);
+    fase2text = `verificad${atens.length === 0 && agras.length === 1 ? 'a' : agras.length === 0 && atens.length === 1 ? 'a' : 'as'} ${partes.join(' — ')}`;
+  }
+  $('#s-fase2-text').textContent = fase2text;
+  $('#s-pena-interm').textContent = fmtMonths(r.interm);
+  $('#pena-interm-display').textContent = fmtMonths(r.interm);
+  const delta = Math.round(r.interm - r.penaBase);
+  $('#pena-interm-delta').textContent = `${delta > 0 ? '+' : ''}${delta} meses`;
+
+  // Fase 3 — frase contextual
+  const dims = Array.from(state.diminuicoes);
+  const aums = Array.from(state.aumentos);
+  let fase3text;
+  if (dims.length === 0 && aums.length === 0) {
+    fase3text = 'não incidem causas de aumento ou diminuição';
+  } else {
+    const partes = [];
+    if (aums.length) partes.push(`${aums.length > 1 ? 'as causas de aumento' : 'a causa de aumento'} de ${aums.map(s => AUMENTOS.find(x => x.slug === s).label.toLowerCase()).join(', ')}`);
+    if (dims.length) partes.push(`${aums.length ? 'e' : ''} ${dims.length > 1 ? 'as causas de diminuição' : 'a causa de diminuição'} de ${dims.map(s => DIMINUICOES.find(x => x.slug === s).label.toLowerCase()).join(', ')}`);
+    fase3text = `incidente${aums.length + dims.length > 1 ? 's' : ''} ${partes.join(' ')}`;
+  }
+  $('#s-fase3-text').textContent = fase3text;
+  $('#s-pena-final').textContent = fmtMonths(r.final);
+  $('#pena-final-display').textContent = fmtMonths(r.final);
+
+  // Pulso visual nas trocas
+  ['#s-crime', '#s-range', '#s-vetores', '#s-pena-base', '#s-pena-interm', '#s-pena-final'].forEach(sel => {
+    const el = $(sel);
+    el.classList.add('changed');
+    setTimeout(() => el.classList.remove('changed'), 250);
+  });
+}
+
+// ============================================================
+// EVENTOS
+// ============================================================
+function attachEvents() {
+  // Nav
+  $('#btn-next').addEventListener('click', () => {
+    if (state.step < 3) state.step++;
+    renderTimeline(); renderPanels(); renderSentenca();
+  });
+  $('#btn-prev').addEventListener('click', () => {
+    if (state.step > 0) state.step--;
+    renderTimeline(); renderPanels(); renderSentenca();
+  });
+
+  // Timeline (clique direto)
+  $$('#timeline .step-node').forEach((n, i) => {
+    n.addEventListener('click', () => {
+      state.step = i;
+      renderTimeline(); renderPanels(); renderSentenca();
+    });
+  });
+
+  // Crime select
+  $('#crime-list').addEventListener('click', (e) => {
+    const btn = e.target.closest('.crime-row');
+    if (!btn) return;
+    const slug = btn.dataset.slug;
+    state.crime = CRIMES.find(c => c.slug === slug);
+    renderCrimeList(currentCat, $('#crime-search').value);
+    renderSentenca();
+  });
+
+  // Search e categorias
+  let currentCat = 'all';
+  $('#crime-search').addEventListener('input', e => renderCrimeList(currentCat, e.target.value));
+  $$('.cat-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      $$('.cat-chip').forEach(c => {
+        c.classList.remove('bg-amber/10', 'border-amber', 'text-amber');
+        c.classList.add('border-paper-200', 'text-paper-700');
+      });
+      chip.classList.remove('border-paper-200', 'text-paper-700');
+      chip.classList.add('bg-amber/10', 'border-amber', 'text-amber');
+      currentCat = chip.dataset.cat;
+      renderCrimeList(currentCat, $('#crime-search').value);
+    });
+  });
+
+  // Vetores, atenuantes, agravantes, causas
+  document.addEventListener('change', (e) => {
+    const el = e.target;
+    if (el.matches('[data-vetor]')) {
+      const i = +el.dataset.vetor;
+      el.checked ? state.vetoresMarcados.add(i) : state.vetoresMarcados.delete(i);
+      renderVetores(); renderSentenca();
+    } else if (el.matches('[data-aten]')) {
+      const s = el.dataset.aten;
+      el.checked ? state.atenuantes.add(s) : state.atenuantes.delete(s);
+      renderAtAg(); renderSentenca();
+    } else if (el.matches('[data-agra]')) {
+      const s = el.dataset.agra;
+      el.checked ? state.agravantes.add(s) : state.agravantes.delete(s);
+      renderAtAg(); renderSentenca();
+    } else if (el.matches('[data-dim]')) {
+      const s = el.dataset.dim;
+      el.checked ? state.diminuicoes.add(s) : state.diminuicoes.delete(s);
+      renderCausas(); renderSentenca();
+    } else if (el.matches('[data-aum]')) {
+      const s = el.dataset.aum;
+      el.checked ? state.aumentos.add(s) : state.aumentos.delete(s);
+      renderCausas(); renderSentenca();
+    }
+  });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+renderTimeline();
+renderPanels();
+renderCrimeList();
+renderVetores();
+renderAtAg();
+renderCausas();
+renderSentenca();
+attachEvents();
+</script>
+
+</body>
+</html>

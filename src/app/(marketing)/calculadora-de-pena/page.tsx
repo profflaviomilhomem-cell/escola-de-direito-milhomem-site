@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CalculadoraWizard } from "@/components/marketing/calculadora/wizard";
+import { CalculadoraCaseFile } from "@/components/marketing/calculadora/case-file";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -47,37 +47,42 @@ export default function CalculadoraPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
       />
-      <section className="relative z-10 mx-auto max-w-3xl px-[5%] pt-32 pb-24">
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
-          Ferramenta interativa
-        </p>
-        <h1
-          className="text-paper mt-6 font-serif leading-[1.1]"
-          style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
-        >
-          Calculadora de <em className="text-amber italic">Pena</em> Hipotética
-        </h1>
-        <p className="text-paper-700 mt-8 text-lg leading-[1.7]">
-          Simulação didática da aplicação trifásica da pena privativa de
-          liberdade (CP, art. 68): pena-base sob art. 59, pena intermediária
-          com atenuantes/agravantes e pena definitiva com causas de aumento e
-          diminuição.
-        </p>
+      <section className="relative z-10 mx-auto max-w-(--container-narrow) px-[5%] pt-32 pb-24 lg:px-12">
+        <header className="max-w-3xl">
+          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+            Ferramenta interativa · Modo case file
+          </p>
+          <h1
+            className="text-paper mt-6 font-serif leading-[1.1]"
+            style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+          >
+            Calculadora de <em className="text-amber italic">Pena</em>{" "}
+            Hipotética
+          </h1>
+          <p className="text-paper-700 mt-7 text-lg leading-[1.7]">
+            Simulação didática da aplicação trifásica da pena privativa de
+            liberdade (CP, art. 68). Os parâmetros à esquerda; a sentença
+            sendo redigida do lado direito, em tempo real.
+          </p>
+        </header>
 
+        {/* Aviso slim — uma linha, não rouba a primeira dobra */}
         <aside
           role="note"
-          className="border-amber/40 bg-amber/5 text-paper-800 mt-10 border-l-2 p-5 text-sm italic leading-relaxed"
+          className="border-amber/40 bg-amber/5 text-paper-800 mt-8 flex flex-wrap items-start gap-3 border-l-2 px-5 py-3 text-[13px] leading-relaxed"
         >
-          <strong className="text-amber not-italic">Aviso institucional —</strong>{" "}
-          Esta calculadora é instrumento didático. A estimativa será simulação
-          de aplicação trifásica da pena para fins de estudo, não constitui
-          parecer jurídico, não substitui consulta a advogado, não opina sobre
-          casos reais em juízo, e não vincula a {siteConfig.name}, o Prof.
-          Flávio Milhomem em sua condição de Promotor de Justiça do MPDFT, nem
-          o próprio MPDFT a qualquer resultado calculado.
+          <span className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+            Modo didático
+          </span>
+          <span className="flex-1">
+            Instrumento de estudo. Não constitui parecer jurídico, não
+            substitui consulta a advogado, não vincula a {siteConfig.name},
+            o Prof. Flávio Milhomem em sua condição de Promotor de Justiça
+            do MPDFT, nem o próprio MPDFT a qualquer resultado calculado.
+          </span>
         </aside>
 
-        <CalculadoraWizard />
+        <CalculadoraCaseFile />
       </section>
     </>
   );
