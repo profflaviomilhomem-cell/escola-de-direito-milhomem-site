@@ -103,7 +103,7 @@ lead funcionando, CI verde.
 - [x] Endpoint `/api/leads/confirm` valida JWT (TTL 48h, issuer dedicado) e marca `doubleOptInAt`
 - [x] Página `/newsletter/confirmado` com 4 estados (ok / inválido / não encontrado / erro)
 - [ ] CRM dashboard interno mínimo: lista, filtros, exportação CSV (depende da auth admin da Fase 2)
-- [ ] Teste e2e (Playwright) cobre o fluxo completo (Playwright ainda não instalado)
+- [x] Teste e2e (Playwright) cobre o fluxo completo — `tests/e2e/newsletter.spec.ts` com 7 cenários (render, validação Zod, sucesso com mock de `/api/leads`, rate-limit 429, e os 3 estados de `/newsletter/confirmado`)
 
 ### 1.5 Tracking baseline
 
