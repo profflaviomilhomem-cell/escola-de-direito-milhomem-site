@@ -1,34 +1,44 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 
+import { AlunoTopNav } from "@/components/aluno/top-nav";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { mockUser } from "@/data/mock-aluno";
 
 /**
- * Layout da área logada do aluno (route group `(aluno)`).
+ * Layout da área logada (route group `aluno`).
  *
- * Toda página deste grupo exige sessão válida. O middleware Next.js
- * já bloqueia acesso a `/dashboard`, `/aulas/*`, `/forum`, etc.,
- * mas reforçamos aqui no SSR como defesa em profundidade.
+ * - SSR exige sessão válida (defesa em profundidade — o proxy já bloqueia).
+ * - Em dev, `NEXT_PUBLIC_DEV_FAKE_SESSION=1` injeta uma sessão mock
+ *   (Rafael) para a UI ser navegável sem DB.
+ * - Top nav fixa, fundo carbon. As páginas controlam seu próprio
+ *   container (algumas full-bleed pro billboard, outras com max-width).
  */
 export default async function AlunoLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const session = await getSessionFromCookies();
-  if (!session) {
-    redirect("/entrar?unauthorized=1");
-  }
+  if (!session) redirect("/entrar?unauthorized=1");
+
+  const initials =
+    session.name === mockUser.name
+      ? mockUser.initials
+      : (session.name ?? session.email)
+          .split(/\s+/)
+          .map((p) => p[0])
+          .filter(Boolean)
+          .slice(0, 2)
+          .join("")
+          .toUpperCase();
 
   return (
-    <div className="bg-slate-50 flex min-h-full flex-col">
-      <header className="border-border bg-tinta-800 text-slate-50 border-b">
-        <div className="mx-auto flex max-w-(--container-narrow) items-center justify-between px-gutter py-3">
-          <span className="font-serif text-lg font-bold">Área do aluno</span>
-          <span className="text-slate-300 text-sm">
-            Olá, {session.name ?? "aluno(a)"}
-          </span>
-        </div>
-      </header>
-      <main className="flex-1">{children}</main>
+    <div className="bg-carbon text-paper min-h-screen">
+      <AlunoTopNav
+        userName={session.name ?? session.email}
+        userEmail={session.email}
+        initials={initials}
+      />
+      <main className="pt-16">{children}</main>
     </div>
   );
 }

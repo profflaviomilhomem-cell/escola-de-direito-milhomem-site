@@ -10,7 +10,34 @@ const SESSION_COOKIE = "escola_session";
  */
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 dias
 
+/**
+ * Sessão fake usada APENAS quando `NEXT_PUBLIC_DEV_FAKE_SESSION=1` em
+ * desenvolvimento. Permite navegar `/aluno/*` sem DB / login real
+ * enquanto a UI está sendo construída. Triplo guard:
+ *   1. `NODE_ENV !== "production"` (fail-safe)
+ *   2. flag explícita
+ *   3. nome do cookie inalterado para não vazar token real
+ */
+const DEV_FAKE_SESSION: SessionPayload = {
+  sub: "user_rafael_mock",
+  email: "rafael@advogados-rj.com",
+  name: "Rafael Andrade",
+  role: "aluno",
+};
+
+export function isDevFakeSessionEnabled(): boolean {
+  return (
+    process.env.NODE_ENV !== "production" &&
+    process.env.NEXT_PUBLIC_DEV_FAKE_SESSION === "1"
+  );
+}
+
+export function getDevFakeSession(): SessionPayload {
+  return DEV_FAKE_SESSION;
+}
+
 export async function getSessionFromCookies(): Promise<SessionPayload | null> {
+  if (isDevFakeSessionEnabled()) return DEV_FAKE_SESSION;
   const store = await cookies();
   const token = store.get(SESSION_COOKIE)?.value;
   if (!token) return null;

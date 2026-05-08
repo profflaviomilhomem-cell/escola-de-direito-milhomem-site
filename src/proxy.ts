@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { verifySession } from "@/lib/auth/jwt";
-import { sessionCookieName } from "@/lib/auth/session";
+import { isDevFakeSessionEnabled, sessionCookieName } from "@/lib/auth/session";
 
 /**
  * Proxy Next.js — defesa em profundidade.
@@ -31,7 +31,7 @@ export async function proxy(req: NextRequest) {
     pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
 
-  if (isProtected) {
+  if (isProtected && !isDevFakeSessionEnabled()) {
     const token = req.cookies.get(sessionCookieName)?.value;
     const session = token ? await verifySession(token) : null;
     if (!session) {
