@@ -35,7 +35,7 @@ export async function proxy(req: NextRequest) {
     const token = req.cookies.get(sessionCookieName)?.value;
     const session = token ? await verifySession(token) : null;
     if (!session) {
-      const loginUrl = new URL("/", req.url);
+      const loginUrl = new URL("/entrar", req.url);
       loginUrl.searchParams.set("unauthorized", "1");
       loginUrl.searchParams.set("from", pathname);
       return NextResponse.redirect(loginUrl);

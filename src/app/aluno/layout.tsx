@@ -15,7 +15,7 @@ export default async function AlunoLayout({
 }: Readonly<{ children: ReactNode }>) {
   const session = await getSessionFromCookies();
   if (!session) {
-    redirect("/?unauthorized=1");
+    redirect("/entrar?unauthorized=1");
   }
 
   return (

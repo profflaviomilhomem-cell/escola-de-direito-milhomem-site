@@ -137,13 +137,15 @@ Objetivo: aluno consegue se cadastrar, fazer login, ver dashboard mock.
 
 ### 2.1 Cadastro e login
 
-- [ ] Endpoint `/api/auth/register` com Zod + bcrypt + rate limit Upstash
-- [ ] Endpoint `/api/auth/login` com bcrypt verify + JWT (`jose`)
-- [ ] Cookie HttpOnly + SameSite=Lax + Secure em produção
+- [x] Endpoint `/api/auth/register` com Zod + bcrypt + rate limit Upstash (`src/app/api/auth/register/route.ts`)
+- [x] Endpoint `/api/auth/login` com bcrypt verify + JWT (`jose`) — rate-limit duplo IP+email para frear brute force focado
+- [x] Cookie HttpOnly + SameSite=Lax + Secure em produção (`setSessionCookie` em `src/lib/auth/session.ts`)
 - [ ] Magic link opcional via Resend
-- [ ] **Validação 72 bytes** no Zod e no servidor (testes cobrem)
+- [x] **Validação 72 bytes** no Zod e no servidor — `src/schemas/auth.ts` mede em bytes via `TextEncoder` (cobre acento e emoji); cobertura em `tests/unit/auth/schemas.test.ts`
 - [ ] Recuperação de senha (`/api/auth/forgot` + `/reset-password`)
-- [ ] Logout limpa cookie
+- [x] Logout limpa cookie (`/api/auth/logout` POST + `clearSessionCookie`)
+- [x] Páginas `/entrar` e `/cadastro` (route group `(marketing)`) com formulários RHF + Zod consistentes com a paleta navy/mostarda
+- [x] `proxy.ts` e `(aluno)/layout.tsx` redirecionam não-autenticado para `/entrar?from=...`
 
 ### 2.2 Proteção de rotas
 
