@@ -173,12 +173,15 @@ export default function HomePage() {
           <h2
             data-reveal
             className="mb-10 font-serif leading-[1.1]"
-            style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+            style={{ fontSize: "clamp(48px, 6vw, 88px)" }}
           >
             O Promotor que te ensina o que o{" "}
             <em className="text-amber italic">Promotor vê</em>.
           </h2>
-          <p data-reveal className="text-paper-800 mb-10 text-xl leading-[1.8]">
+          <p
+            data-reveal
+            className="text-paper-800 mb-10 leading-[1.7]"
+          >
             Quase todo curso de Direito Penal ensina pela ótica da defesa ou da
             abstração acadêmica. A perspectiva do Ministério Público — de quem
             sustenta a ação e defende a sociedade — é sistematicamente ignorada.

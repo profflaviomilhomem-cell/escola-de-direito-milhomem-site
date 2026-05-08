@@ -77,7 +77,11 @@ lead funcionando, CI verde.
 - [ ] Registrar três variantes em Registro.br
 - [ ] Logo definitivo entregue pelo design (Figma)
 - [ ] Substituir foto institucional placeholder por sessão profissional
-- [ ] Favicon + Apple touch icon + ícones do `manifest.ts`
+- [x] Paleta institucional navy/mostarda aplicada (commit `90c20c7`)
+- [x] Fontes proprietárias subsetadas (Hiragino Maru Gothic latin + League Spartan, commits `90c20c7` e `4e9d222`)
+- [x] Capa de dossiê em papel kraft real para landing institucional (commit `0d5e4e3`)
+- [x] Favicon presente em `/src/app/favicon.ico`
+- [ ] Apple touch icon + ícones completos do `manifest.ts`
 - [ ] OG image padrão `/public/og-default.png` (1200×630)
 
 ### 1.3 Conteúdo institucional inicial
@@ -260,14 +264,14 @@ Sprint dedicada e isolada — primeira vez da equipe com Pagar.me.
 
 ### 6.2 Calculadora de Pena Hipotética (S3-S6 do roadmap, finaliza aqui)
 
-- [ ] 50 tipos penais carregados (validação Flávio + revisor)
-- [ ] Wizard 3 etapas com React Hook Form + Zod
-- [ ] API Route com lógica trifásica determinística
-- [ ] **30 casos de teste Jest** cobrindo tipos comuns + edge cases
-- [ ] Bloco de explicação passo a passo
+- [x] 50 tipos penais carregados em `src/lib/business/crimes.ts` — **pendente apenas a validação final por Flávio + revisor**
+- [x] Wizard 3 etapas com React Hook Form + Zod (commit `ec8e079`)
+- [x] API Route com lógica trifásica determinística (`/api/calculadora` + `src/lib/business/dosimetria.ts`)
+- [ ] **30 casos de teste Jest** cobrindo tipos comuns + edge cases (hoje só `password.test.ts` em `tests/unit/`)
+- [x] Bloco de explicação passo a passo (renderizado no resultado do wizard)
 - [ ] PDF de exportação (WeasyPrint)
-- [ ] Disclaimer institucional renderizado no servidor (não removível)
-- [ ] Schema `WebApplication` + `FAQPage`
+- [x] Disclaimer institucional renderizado no servidor (não removível)
+- [x] Schema `WebApplication` + `FAQPage`
 - [ ] Beta fechado com 10-20 usuários piloto antes do go-live
 - [ ] Telemetria: `calculator_started/completed/pdf_exported`
 
@@ -403,8 +407,11 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ---
 
-**Última atualização:** 07/05/2026 (sprint 1 concluída — fundação técnica
-do repositório).
+**Última atualização:** 08/05/2026 (identidade visual navy/mostarda aplicada,
+fontes próprias subsetadas, capa de dossiê em kraft real e wizard funcional
+da calculadora de dosimetria publicado).
 
 **Próxima ação:** revisar Fase 0.2 (contas externas) e Fase 0.3 (compliance)
-em reunião com Flávio.
+em reunião com Flávio; em paralelo, expandir o catálogo de crimes da
+calculadora (12 → 50) e cobrir a lógica trifásica com os 30 casos de teste
+exigidos pela Fase 6.2.
