@@ -134,19 +134,20 @@ body {
   overflow-x: hidden;
 }
 
-/* === Scrollbars invisíveis (decisão de design 2026-05-08) ===
- * Esconde o indicador visual em todos os contextos com overflow
- * (body, rows horizontais, sidebars internos). A scrollabilidade
- * real (wheel, teclado, touch, trackpad) permanece intacta — só o
- * cromo gráfico fica oculto, deixando a UI "preenchida" sem barra
- * cinza ao lado. Vale para Webkit e Firefox.
+/* === Scrollbar lateral do site invisível (decisão de design 2026-05-08) ===
+ * Esconde APENAS a barra vertical da janela (body/html), mantendo o
+ * fundo carbon contínuo até a borda. Scrollbars internas (rows
+ * horizontais, sidebars de módulos, modais) seguem com o indicador
+ * padrão do navegador — são úteis para indicar mais conteúdo lateral.
+ * Scrollabilidade do site continua intacta via wheel, teclado, touch.
  */
-*::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   width: 0;
-  height: 0;
   display: none;
 }
-* {
+html,
+body {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
