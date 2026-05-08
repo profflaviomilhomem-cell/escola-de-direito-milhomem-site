@@ -5,6 +5,7 @@ import { DashboardRow } from "@/components/aluno/dashboard-row";
 import { ForumThreadCard } from "@/components/aluno/forum-thread-card";
 import { HeroBillboard } from "@/components/aluno/hero-billboard";
 import { LessonCard } from "@/components/aluno/lesson-card";
+import { LessonCardRanked } from "@/components/aluno/lesson-card-ranked";
 import {
   formatDuration,
   mockAnnouncements,
@@ -94,12 +95,7 @@ export default async function DashboardPage() {
           title="Próximas aulas no programa"
         >
           {upcoming.map((lesson) => (
-            <LessonCard
-              key={lesson.id}
-              lesson={lesson}
-              width="md"
-              showModule
-            />
+            <LessonCardRanked key={lesson.id} lesson={lesson} />
           ))}
         </DashboardRow>
 
@@ -128,12 +124,7 @@ export default async function DashboardPage() {
             title="Já assistidas"
           >
             {completed.map((lesson) => (
-              <LessonCard
-                key={lesson.id}
-                lesson={lesson}
-                width="md"
-                showModule
-              />
+              <LessonCardRanked key={lesson.id} lesson={lesson} />
             ))}
           </DashboardRow>
         )}

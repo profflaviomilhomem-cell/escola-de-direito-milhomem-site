@@ -14,9 +14,9 @@ type Props = {
  * conteúdo em scroll-x com snap. Setas de paginação aparecem só quando
  * há overflow real.
  *
- * Design choice: NÃO ocultamos a scrollbar com `.no-scrollbar` por
- * acessibilidade — usuários de teclado e mouse trackball precisam dela.
- * Usamos uma scrollbar fininha customizada via CSS.
+ * Scrollbars são ocultas globalmente (regra em `globals.css`); a
+ * scrollabilidade real (wheel, teclado, trackpad, touch) permanece e
+ * as setas suprem o caso de mouse-only.
  */
 export function DashboardRow({ title, eyebrow, cta, children }: Props) {
   const ref = useRef<HTMLDivElement>(null);
