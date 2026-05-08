@@ -94,11 +94,13 @@ lead funcionando, CI verde.
 
 ### 1.4 Captura de lead funcional ponta a ponta
 
-- [ ] Formulário `/newsletter` com React Hook Form + Zod
-- [ ] Endpoint `/api/leads` com duplo opt-in (Resend)
-- [ ] E-mail de confirmação branded
-- [ ] CRM dashboard interno mínimo: lista, filtros, exportação CSV
-- [ ] Teste e2e (Playwright) cobre o fluxo completo
+- [x] Formulário `/newsletter` com React Hook Form + Zod (`src/components/marketing/newsletter-form.tsx`) — estados idle/submitting/success/error, mensagens inline, honeypot anti-bot
+- [x] Endpoint `/api/leads` com Zod servidor-side, idempotência, rate-limit Upstash (no-op em dev) e disparo do duplo opt-in
+- [x] E-mail de confirmação branded em `src/lib/resend/templates/confirm-newsletter.ts` (paleta navy/mostarda, HTML + texto)
+- [x] Endpoint `/api/leads/confirm` valida JWT (TTL 48h, issuer dedicado) e marca `doubleOptInAt`
+- [x] Página `/newsletter/confirmado` com 4 estados (ok / inválido / não encontrado / erro)
+- [ ] CRM dashboard interno mínimo: lista, filtros, exportação CSV (depende da auth admin da Fase 2)
+- [ ] Teste e2e (Playwright) cobre o fluxo completo (Playwright ainda não instalado)
 
 ### 1.5 Tracking baseline
 
