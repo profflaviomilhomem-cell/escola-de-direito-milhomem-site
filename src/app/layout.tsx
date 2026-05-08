@@ -74,20 +74,15 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [
-      {
-        url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
-        alt: siteConfig.name,
-      },
-    ],
+    // images: gerada dinamicamente por `app/opengraph-image.tsx`
+    // (file-based wins; não declarar aqui evita drift entre PNG e
+    // ImageResponse).
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
-    images: [siteConfig.ogImage],
+    // images: idem — `app/twitter-image.tsx` ou herda do OG.
   },
   robots: {
     index: true,

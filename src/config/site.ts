@@ -19,7 +19,7 @@ export const siteConfig = {
   url:
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://escolaflaviomilhomem.com.br",
   locale: "pt-BR",
-  ogImage: "/og-default.png",
+  // OG image gerada por `app/opengraph-image.tsx` (file-based).
 
   professor: {
     fullName: "Flávio Milhomem",

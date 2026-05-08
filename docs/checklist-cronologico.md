@@ -80,9 +80,10 @@ lead funcionando, CI verde.
 - [x] Paleta institucional navy/mostarda aplicada (commit `90c20c7`)
 - [x] Fontes proprietárias subsetadas (Hiragino Maru Gothic latin + League Spartan, commits `90c20c7` e `4e9d222`)
 - [x] Capa de dossiê em papel kraft real para landing institucional (commit `0d5e4e3`)
-- [x] Favicon presente em `/src/app/favicon.ico`
-- [ ] Apple touch icon + ícones completos do `manifest.ts`
-- [ ] OG image padrão `/public/og-default.png` (1200×630)
+- [x] Favicon dinâmico via `src/app/icon.tsx` (32×32, ImageResponse navy/mostarda)
+- [x] Apple touch icon dinâmico via `src/app/apple-icon.tsx` (180×180, monograma "FM")
+- [x] `src/app/manifest.ts` aponta para `/icon` e `/apple-icon` com cores institucionais
+- [x] OG default 1200×630 dinâmico via `src/app/opengraph-image.tsx` (file-based, sobrescreve manual)
 
 ### 1.3 Conteúdo institucional inicial
 
