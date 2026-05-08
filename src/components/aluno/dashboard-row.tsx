@@ -12,9 +12,9 @@ type Props = {
 /**
  * Row horizontal estilo streaming — título à esquerda, CTA à direita,
  * conteúdo em scroll-x com snap. Setas de paginação aparecem só quando
- * há overflow real. A scrollbar interna mostra o indicador padrão do
- * navegador (no macOS, fina e auto-hide); só a barra vertical do
- * site é escondida globalmente.
+ * há overflow real. Scrollbar é ocultada globalmente (regra em
+ * `globals.css`); a scrollabilidade real (wheel, trackpad, touch,
+ * teclado) permanece e as setas suprem o caso de mouse-only.
  */
 export function DashboardRow({ title, eyebrow, cta, children }: Props) {
   const ref = useRef<HTMLDivElement>(null);
