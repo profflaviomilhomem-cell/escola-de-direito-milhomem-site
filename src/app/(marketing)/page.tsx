@@ -245,12 +245,11 @@ export default function HomePage() {
               className="border-amber/30 relative aspect-[3/4] overflow-hidden border"
             >
               <Image
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                src="/images/professor/flavio-hero.png"
                 alt={`Retrato de ${siteConfig.professor.fullName}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 480px"
-                className="object-cover"
-                style={{ filter: "grayscale(1) contrast(1.1)" }}
+                className="object-cover object-top"
                 priority={false}
               />
             </div>
