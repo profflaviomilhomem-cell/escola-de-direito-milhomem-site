@@ -88,10 +88,12 @@ lead funcionando, CI verde.
 ### 1.3 Conteúdo institucional inicial
 
 - [ ] Texto da home aprovado por Diana (mentoria estratégica)
-- [ ] Página `/sobre` com biografia completa (3-4 parágrafos)
-- [ ] Política de Privacidade redigida pela assessoria jurídica
-- [ ] Termos de Uso redigidos
-- [ ] Política de Reembolso (15 dias incondicionais para cohort)
+- [x] Página `/sobre` com biografia placeholder (2 parágrafos com identidade navy/mostarda; 3-4 parágrafos finais aguardam aprovação editorial)
+- [x] Esqueleto de Política de Privacidade em 10 seções LGPD (`src/app/(marketing)/privacidade/page.tsx`) — texto aguarda redação final pela assessoria jurídica
+- [x] Esqueleto de Termos de Uso em 9 seções (`src/app/(marketing)/termos/page.tsx`)
+- [x] Esqueleto de Política de Reembolso (15 dias incondicionais + pro-rata pós-prazo em `src/app/(marketing)/reembolso/page.tsx`)
+- [x] Componente compartilhado `src/components/marketing/legal-page.tsx` para manter as 3 páginas em consistência editorial
+- [x] Footer com links para Privacidade, Termos e Reembolso
 
 ### 1.4 Captura de lead funcional ponta a ponta
 

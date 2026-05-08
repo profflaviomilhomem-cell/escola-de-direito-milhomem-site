@@ -61,6 +61,18 @@ export function Footer() {
         >
           Privacidade
         </Link>
+        <Link
+          href="/termos"
+          className="text-paper-700 hover:text-amber transition-colors"
+        >
+          Termos
+        </Link>
+        <Link
+          href="/reembolso"
+          className="text-paper-700 hover:text-amber transition-colors"
+        >
+          Reembolso
+        </Link>
       </nav>
 
       <div className="text-paper-600 mt-6 flex flex-wrap items-center justify-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em]">
