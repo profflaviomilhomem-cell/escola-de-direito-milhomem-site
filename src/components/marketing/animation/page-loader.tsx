@@ -15,6 +15,7 @@ export function PageLoader() {
     if (typeof window === "undefined") return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMounted(false);
       return;
     }

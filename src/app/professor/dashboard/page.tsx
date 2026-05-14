@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -34,6 +35,9 @@ const ACTIVITY_LABEL: Record<
  */
 export default function ProfessorDashboardPage() {
   const pending = pendingThreadsForProfessor();
+
+  // eslint-disable-next-line react-hooks/purity
+  const now = useMemo(() => Date.now(), []);
 
   return (
     <>
@@ -189,7 +193,7 @@ export default function ProfessorDashboardPage() {
                       {Math.max(
                         1,
                         Math.floor(
-                          (Date.now() - new Date(t.createdAt).getTime()) /
+                          (now - new Date(t.createdAt).getTime()) /
                             (1000 * 60 * 60 * 24),
                         ),
                       )}{" "}

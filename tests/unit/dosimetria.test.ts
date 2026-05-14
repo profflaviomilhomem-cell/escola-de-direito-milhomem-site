@@ -1,5 +1,4 @@
 import { calcular, formatarPena } from "../../src/lib/business/dosimetria";
-import { crimes } from "../../src/lib/business/crimes";
 
 describe("Dosimetria - Lógica de Cálculo Trifásico", () => {
   const ANO = 365;
@@ -83,6 +82,7 @@ describe("Dosimetria - Lógica de Cálculo Trifásico", () => {
       const result = calcular({
         minDias: furtoSimples.minDias,
         maxDias: furtoSimples.maxDias,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         desfavoraveis: ["culpabilidade", "culpabilidade"] as any,
         agravantes: 0,
         atenuantes: 0,
@@ -204,7 +204,7 @@ describe("Dosimetria - Lógica de Cálculo Trifásico", () => {
   describe("Fase 3 - Pena Definitiva (Causas de Aumento e Diminuição)", () => {
     test("deve aplicar frações variadas (1/6, 1/4, 2/3)", () => {
       const base = 6 * ANO;
-      const r1 = calcular({ minDias: 1, maxDias: 20 * ANO, desfavoraveis: [], agravantes: 0, atenuantes: 0, causasAumento: [1/6], causasDiminuicao: [], minDias: 1, maxDias: 20 * ANO });
+      calcular({ minDias: 1, maxDias: 20 * ANO, desfavoraveis: [], agravantes: 0, atenuantes: 0, causasAumento: [1/6], causasDiminuicao: [] });
       // Forçando pena intermediaria a ser 'base' é chato com a API atual. 
       // Vou usar input direto.
       const r1_fix = calcular({ minDias: base, maxDias: 20 * ANO, desfavoraveis: [], agravantes: 0, atenuantes: 0, causasAumento: [1/6], causasDiminuicao: [] });

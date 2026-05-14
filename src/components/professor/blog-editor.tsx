@@ -196,7 +196,7 @@ export function BlogEditor({ post }: Props) {
         </div>
 
         <p className="text-paper-600 text-[12px] leading-relaxed italic">
-          Persistência entra na fase de "wiring" (Prisma + Neon). Por
+          Persistência entra na fase de &quot;wiring&quot; (Prisma + Neon). Por
           enquanto, o salvar é simulado.
         </p>
       </aside>
