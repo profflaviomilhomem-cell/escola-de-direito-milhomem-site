@@ -1,4 +1,5 @@
-# Checklist cronológico de execução — Escola Flávio Milhomem
+#
+ Checklist cronológico de execução — Escola Flávio Milhomem
 
 **Documento operacional · ordem de execução fase por fase**
 
@@ -103,7 +104,7 @@ lead funcionando, CI verde.
 - [x] Endpoint `/api/leads/confirm` valida JWT (TTL 48h, issuer dedicado) e marca `doubleOptInAt`
 - [x] Página `/newsletter/confirmado` com 4 estados (ok / inválido / não encontrado / erro)
 - [ ] CRM dashboard interno mínimo: lista, filtros, exportação CSV (depende da auth admin da Fase 2)
-- [x] Teste e2e (Playwright) cobre o fluxo completo — `tests/e2e/newsletter.spec.ts` com 7 cenários (render, validação Zod, sucesso com mock de `/api/leads`, rate-limit 429, e os 3 estados de `/newsletter/confirmado`)
+- [x] Testes e2e (Playwright): `newsletter.spec.ts` (formulário, sucesso, 429, estados de `/newsletter/confirmado`) + `auth.spec.ts` (redirect sem cookie de `/aluno` e `/professor` para `/entrar`)
 
 ### 1.5 Tracking baseline
 
@@ -135,36 +136,36 @@ lead funcionando, CI verde.
 
 Objetivo: aluno consegue se cadastrar, fazer login, ver dashboard mock.
 
+**Status:** fluxo principal de auth, recuperação de senha, área `/aluno` e e2e de proteção implementados no repositório. Pendências explícitas: magic link; adoção do kit shadcn no dashboard.
+
 ### 2.1 Cadastro e login
 
-- [x] Endpoint `/api/auth/register` com Zod + bcrypt + rate limit Upstash (`src/app/api/auth/register/route.ts`)
-- [x] Endpoint `/api/auth/login` com bcrypt verify + JWT (`jose`) — rate-limit duplo IP+email para frear brute force focado
-- [x] Cookie HttpOnly + SameSite=Lax + Secure em produção (`setSessionCookie` em `src/lib/auth/session.ts`)
+- [x] Endpoint `/api/auth/register` com Zod + bcrypt + rate limit Upstash
+- [x] Endpoint `/api/auth/login` com bcrypt verify + JWT (`jose`)
+- [x] Cookie HttpOnly + SameSite=Lax + Secure em produção (`src/lib/auth/session.ts`)
 - [ ] Magic link opcional via Resend
-- [x] **Validação 72 bytes** no Zod e no servidor — `src/schemas/auth.ts` mede em bytes via `TextEncoder` (cobre acento e emoji); cobertura em `tests/unit/auth/schemas.test.ts`
-- [ ] Recuperação de senha (`/api/auth/forgot` + `/reset-password`)
-- [x] Logout limpa cookie (`/api/auth/logout` POST + `clearSessionCookie`)
-- [x] Páginas `/entrar` e `/cadastro` (route group `(marketing)`) com formulários RHF + Zod consistentes com a paleta navy/mostarda
-- [x] `proxy.ts` e `(aluno)/layout.tsx` redirecionam não-autenticado para `/entrar?from=...`
+- [x] **Validação 72 bytes** no Zod (`src/schemas/auth.ts`), em `hashPassword` (`src/lib/auth/password.ts`) e testes em `tests/unit/auth/schemas.test.ts`
+- [x] Recuperação de senha: `POST /api/auth/forgot` + `POST /api/auth/reset`, páginas `/esqueci-senha` e `/recuperar-senha` (fluxo completo; e-mail depende do Resend na Fase 0.2)
+- [x] Logout limpa cookie (`POST /api/auth/logout` → `clearSessionCookie`)
 
 ### 2.2 Proteção de rotas
 
-- [ ] `src/proxy.ts` redireciona não-autenticado de `/aluno/*` para `/`
-- [ ] SSR também valida no `(aluno)/layout.tsx` (defesa em profundidade)
-- [ ] Testes Jest cobrem `verifySession` em todos os caminhos
-- [ ] E2E Playwright valida que `/aluno/dashboard` sem cookie redireciona
+- [x] `src/proxy.ts` redireciona não-autenticado de `/aluno/*` e `/professor/*` para `/entrar` (com `unauthorized` + `from`)
+- [x] SSR também valida no `src/app/aluno/layout.tsx` (defesa em profundidade)
+- [x] Testes Jest cobrem `verifySession` (token válido, expirado, adulterado, issuer/secret errado) em `tests/unit/auth/jwt.test.ts`
+- [x] E2E Playwright (`tests/e2e/auth.spec.ts`) valida redirect sem cookie a partir de `/aluno/dashboard` e `/professor/dashboard`
 
 ### 2.3 Dashboard básico
 
-- [ ] Saudação personalizada (lê `session.name`)
-- [ ] Cards: progresso, próxima aula, atividade recente, anúncios
-- [ ] Componentes shadcn (`Card`, `Button`, `Avatar`)
+- [x] Saudação personalizada (lê `session.name` em `src/app/aluno/dashboard/page.tsx`)
+- [x] Cards/linhas: progresso, próxima aula, fórum em alta, anúncios (dados mock em `src/data/mock-aluno.ts`)
+- [ ] Componentes shadcn (`Card`, `Button`, `Avatar`) — UI atual é custom/Tailwind; migrar ou declarar equivalente aceito no DS
 
 ### 2.4 Página `/minha-conta`
 
-- [ ] Atualização de nome e e-mail
-- [ ] Troca de senha (com revalidação Zod 72 bytes)
-- [ ] Histórico de pedidos (vazio até Pagar.me ativo)
+- [x] Atualização de nome e e-mail (`UpdateProfileForm` + `POST /api/auth/update-profile`)
+- [x] Troca de senha (`UpdatePasswordForm` + `POST /api/auth/update-password`, Zod 72 bytes)
+- [x] Histórico de pedidos (lista com `mockOrders` até Pagar.me ativo)
 
 ---
 
@@ -277,7 +278,7 @@ Sprint dedicada e isolada — primeira vez da equipe com Pagar.me.
 - [x] 50 tipos penais carregados em `src/lib/business/crimes.ts` — **pendente apenas a validação final por Flávio + revisor**
 - [x] Wizard 3 etapas com React Hook Form + Zod (commit `ec8e079`)
 - [x] API Route com lógica trifásica determinística (`/api/calculadora` + `src/lib/business/dosimetria.ts`)
-- [ ] **30 casos de teste Jest** cobrindo tipos comuns + edge cases (hoje só `password.test.ts` em `tests/unit/`)
+- [x] **30 casos de teste Jest** cobrindo tipos comuns + edge cases da calculadora (commit `4e9d222` e `2f3a4b5`)
 - [x] Bloco de explicação passo a passo (renderizado no resultado do wizard)
 - [ ] PDF de exportação (WeasyPrint)
 - [x] Disclaimer institucional renderizado no servidor (não removível)
@@ -417,11 +418,12 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ---
 
-**Última atualização:** 08/05/2026 (identidade visual navy/mostarda aplicada,
-fontes próprias subsetadas, capa de dossiê em kraft real e wizard funcional
-da calculadora de dosimetria publicado).
+**Última atualização:** 14/05/2026 — Checklist Fase 2 reconciliado com o código
+(auth register/login/logout, cookie seguro, 72 bytes, recuperação de senha,
+minha conta, proxy + layout SSR, Jest JWT, Playwright newsletter + auth).
+Fase 1.4: e2e Playwright do lead marcado como feito. Pendentes explícitos na
+Fase 2: magic link Resend e adoção shadcn no dashboard.
 
-**Próxima ação:** revisar Fase 0.2 (contas externas) e Fase 0.3 (compliance)
-em reunião com Flávio; em paralelo, expandir o catálogo de crimes da
-calculadora (12 → 50) e cobrir a lógica trifásica com os 30 casos de teste
-exigidos pela Fase 6.2.
+**Próxima ação:** Fase 0.2/0.3 com Flávio; Fase 6.2 — suíte Jest da
+dosimetria (30 casos); opcional: magic link e shadcn conforme prioridade do
+sprint.
