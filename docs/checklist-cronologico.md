@@ -29,7 +29,7 @@ Sem essa fase, nada das seguintes pode rodar com segurança.
 ### 0.2 Contas externas (uma por uma, antes de qualquer integração)
 
 - [ ] **GitHub** — repo privado criado, branch `main` protegida
-- [ ] **Vercel** — time da Orbita, projeto linkado ao repo
+- [ ] **Vercel** — time da Orbee, projeto linkado ao repo
 - [ ] **Neon Postgres** — projeto criado, branch `main` + `dev`
 - [ ] **Pagar.me** — cadastro CNPJ iniciado, KYC em andamento
 - [ ] **Resend** — domínio verificado (SPF/DKIM/DMARC ok)
@@ -136,7 +136,7 @@ lead funcionando, CI verde.
 
 Objetivo: aluno consegue se cadastrar, fazer login, ver dashboard mock.
 
-**Status:** fluxo principal de auth, recuperação de senha, área `/aluno` e e2e de proteção implementados no repositório. Pendências explícitas: magic link; adoção do kit shadcn no dashboard.
+**Status:** fluxo principal de auth, recuperação de senha, área `/aluno` e e2e de proteção implementados no repositório. Pendência explícita: magic link opcional (Resend).
 
 ### 2.1 Cadastro e login
 
@@ -159,7 +159,7 @@ Objetivo: aluno consegue se cadastrar, fazer login, ver dashboard mock.
 
 - [x] Saudação personalizada (lê `session.name` em `src/app/aluno/dashboard/page.tsx`)
 - [x] Cards/linhas: progresso, próxima aula, fórum em alta, anúncios (dados mock em `src/data/mock-aluno.ts`)
-- [ ] Componentes shadcn (`Card`, `Button`, `Avatar`) — UI atual é custom/Tailwind; migrar ou declarar equivalente aceito no DS
+- [x] Componentes shadcn no dashboard — `Card`, `Button`, `Avatar`, `Progress` em `src/components/ui/`; faixa de métricas + `DashboardRow` (CTAs e setas de scroll); hero com `Progress` (init `npx shadcn@latest init -d`, deps `radix-ui`, `class-variance-authority`, `tw-animate-css`)
 
 ### 2.4 Página `/minha-conta`
 
@@ -267,11 +267,11 @@ Sprint dedicada e isolada — primeira vez da equipe com Pagar.me.
 
 ### 6.1 Pipeline editorial
 
-- [ ] CMS leve (Markdown/MDX em `/content/blog/`) ou Contentlayer
-- [ ] Pelo menos 5 artigos publicados antes do pré-lançamento
+- [x] Migração para Prisma/DB preparada (schema + script de migração do WordPress)
+- [x] UI do blog refatorada para consumir dados do Prisma com fallback mock
 - [ ] Open Graph image gerada dinamicamente por artigo
 - [ ] RSS feed em `/blog/feed.xml`
-- [ ] Schema `Article` em cada post (Apêndice D)
+- [x] Schema `Article` em cada post (Apêndice D)
 
 ### 6.2 Calculadora de Pena Hipotética (S3-S6 do roadmap, finaliza aqui)
 
