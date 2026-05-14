@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  CATEGORY_LABEL,
-  publishedBlogPosts,
-} from "@/data/mock-blog";
+import { CATEGORY_LABEL, publishedBlogPosts } from "@/data/mock-blog";
+import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "Blog — Escola Flávio Milhomem",
@@ -14,16 +12,50 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
 };
 
+// Map de categorias do DB para o label mock (ajuste conforme necessário)
+const DB_CATEGORY_LABEL: Record<string, string> = {
+  ANALISE_DECISAO: "Análise de decisão",
+  DOGMATICA: "Dogmática aplicada",
+  COMENTARIO: "Comentário atual",
+  GERAL: "Geral",
+};
+
 /**
- * Listagem do blog (blueprint Seção 8.5).
- * Três tipos editoriais: análise de decisão · dogmática aplicada ·
- * comentário atual. Cadência: 4-5 artigos/mês inicialmente.
- *
- * Layout: hero editorial + featured (post mais recente em destaque) +
- * grid 3 colunas com os demais. Cards usam o gradient cover do post.
+ * Listagem do blog (Puxando do Prisma com fallback para mock).
  */
-export default function BlogPage() {
-  const posts = publishedBlogPosts();
+export default async function BlogPage() {
+  let posts: any[] = [];
+
+  try {
+    const dbPosts = await prisma.blogPost.findMany({
+      where: { status: "PUBLISHED" },
+      orderBy: { publishedAt: "desc" },
+      include: { author: true },
+    });
+
+    if (dbPosts.length > 0) {
+      posts = dbPosts.map((p) => ({
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        category: p.category,
+        publishedAt: p.publishedAt?.toISOString(),
+        author: {
+          name: p.author.name,
+          avatarSrc: "/images/professor/flavio-avatar-64.jpg", // Placeholder fixo
+        },
+        // Atributos visuais que não estão no DB (usamos fixo ou random)
+        cover: { from: "#06172f", to: "#0a2a4d" },
+        readingMin: Math.ceil(p.body.length / 1000) || 5,
+      }));
+    } else {
+      posts = publishedBlogPosts();
+    }
+  } catch (error) {
+    console.warn("Falha ao buscar posts do Prisma, usando mock data:", error);
+    posts = publishedBlogPosts();
+  }
+
   const [featured, ...rest] = posts;
 
   return (
@@ -69,7 +101,7 @@ export default function BlogPage() {
 
             <div className="relative z-10 flex h-full max-w-3xl flex-col justify-end p-6 md:p-12">
               <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
-                Em destaque · {CATEGORY_LABEL[featured.category]}
+                Em destaque · {DB_CATEGORY_LABEL[featured.category] || featured.category}
               </p>
               <h2
                 className="text-paper group-hover:text-amber mt-3 font-serif leading-[1.05] transition-colors"
@@ -82,11 +114,12 @@ export default function BlogPage() {
               </p>
               <div className="text-paper-600 mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em]">
                 <span>
-                  {new Date(featured.publishedAt).toLocaleDateString("pt-BR", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  {featured.publishedAt &&
+                    new Date(featured.publishedAt).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "long",
+                      year: "numeric",
+                    })}
                 </span>
                 <span aria-hidden>·</span>
                 <span>{featured.readingMin} min de leitura</span>
@@ -113,7 +146,7 @@ export default function BlogPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
-                      {CATEGORY_LABEL[post.category]}
+                      {DB_CATEGORY_LABEL[post.category] || post.category}
                     </p>
                   </div>
                 </div>
@@ -124,20 +157,23 @@ export default function BlogPage() {
                   {post.excerpt}
                 </p>
                 <div className="text-paper-600 mt-4 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em]">
-                  <Image
-                    src={post.author.avatarSrc}
-                    alt={post.author.name}
-                    width={20}
-                    height={20}
-                    className="border-amber/60 h-5 w-5 rounded-full border object-cover"
-                  />
+                  {post.author.avatarSrc && (
+                    <Image
+                      src={post.author.avatarSrc}
+                      alt={post.author.name}
+                      width={20}
+                      height={20}
+                      className="border-amber/60 h-5 w-5 rounded-full border object-cover"
+                    />
+                  )}
                   <span>{post.author.name.split(" ")[0]}</span>
                   <span aria-hidden>·</span>
                   <span>
-                    {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
-                      day: "2-digit",
-                      month: "short",
-                    })}
+                    {post.publishedAt &&
+                      new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+                        day: "2-digit",
+                        month: "short",
+                      })}
                   </span>
                   <span aria-hidden>·</span>
                   <span>{post.readingMin} min</span>

@@ -5,11 +5,51 @@ import { notFound } from "next/navigation";
 
 import {
   CATEGORY_LABEL,
-  findBlogPost,
-  relatedPosts,
+  findBlogPost as findMockPost,
+  relatedPosts as findMockRelated,
 } from "@/data/mock-blog";
+import { prisma } from "@/lib/prisma";
 
 type Params = Promise<{ slug: string }>;
+
+// Map de categorias do DB para o label mock (ajuste conforme necessário)
+const DB_CATEGORY_LABEL: Record<string, string> = {
+  ANALISE_DECISAO: "Análise de decisão",
+  DOGMATICA: "Dogmática aplicada",
+  COMENTARIO: "Comentário atual",
+  GERAL: "Geral",
+};
+
+async function getPostData(slug: string) {
+  try {
+    const p = await prisma.blogPost.findUnique({
+      where: { slug },
+      include: { author: true },
+    });
+
+    if (p) {
+      return {
+        slug: p.slug,
+        title: p.title,
+        excerpt: p.excerpt,
+        body: p.body,
+        category: p.category,
+        publishedAt: p.publishedAt?.toISOString(),
+        author: {
+          name: p.author.name,
+          role: "Professor de Direito Criminal",
+          avatarSrc: "/images/professor/flavio-avatar-64.jpg",
+        },
+        cover: { from: "#06172f", to: "#0a2a4d" },
+        readingMin: Math.ceil(p.body.length / 1000) || 5,
+        tags: ["Geral"],
+      };
+    }
+  } catch (e) {
+    console.warn("DB offline ou post não encontrado no Prisma, usando mock.");
+  }
+  return findMockPost(slug);
+}
 
 export async function generateMetadata({
   params,
@@ -17,7 +57,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = findBlogPost(slug);
+  const post = await getPostData(slug);
   if (!post) return { title: "Artigo não encontrado" };
   return {
     title: post.title,
@@ -34,12 +74,7 @@ export async function generateMetadata({
 }
 
 /**
- * Página individual do artigo (blueprint Seção 8.5).
- *
- * Tipografia editorial Newsreader 18px sobre carbon, coluna 68ch,
- * cover em gradient cobrindo o topo (eco do hero da home), bio do
- * autor no fim, posts relacionados e CTA pro boletim. Schema Article
- * compatível com generateMetadata.
+ * Página individual do artigo (Puxando do Prisma com fallback mock).
  */
 export default async function BlogArtigoPage({
   params,
@@ -47,10 +82,27 @@ export default async function BlogArtigoPage({
   params: Params;
 }) {
   const { slug } = await params;
-  const post = findBlogPost(slug);
+  const post = await getPostData(slug);
   if (!post) notFound();
 
-  const related = relatedPosts(slug, 3);
+  // Related posts fallback: tenta do DB, se não mock
+  let related: any[] = [];
+  try {
+    const dbRelated = await prisma.blogPost.findMany({
+      where: { slug: { not: slug }, status: "PUBLISHED" },
+      take: 3,
+    });
+    related = dbRelated.length > 0 
+      ? dbRelated.map(p => ({
+          slug: p.slug,
+          title: p.title,
+          category: p.category,
+          cover: { from: "#06172f", to: "#0a2a4d" }
+        }))
+      : findMockRelated(slug, 3);
+  } catch {
+    related = findMockRelated(slug, 3);
+  }
 
   // Schema Article (rich results)
   const articleLd = {
@@ -60,7 +112,7 @@ export default async function BlogArtigoPage({
     description: post.excerpt,
     datePublished: post.publishedAt,
     author: { "@type": "Person", name: post.author.name },
-    keywords: post.tags.join(", "),
+    keywords: post.tags?.join(", ") || "",
   };
 
   return (
@@ -92,7 +144,7 @@ export default async function BlogArtigoPage({
             ← Todos os artigos
           </Link>
           <p className="text-amber mt-8 font-mono text-[11px] uppercase tracking-[0.2em]">
-            {CATEGORY_LABEL[post.category]}
+            {DB_CATEGORY_LABEL[post.category] || post.category}
           </p>
           <h1
             className="mt-4 max-w-4xl font-serif leading-[1.05]"
@@ -105,13 +157,15 @@ export default async function BlogArtigoPage({
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Image
-              src={post.author.avatarSrc}
-              alt={post.author.name}
-              width={44}
-              height={44}
-              className="border-amber/60 h-11 w-11 rounded-full border-2 object-cover"
-            />
+            {post.author.avatarSrc && (
+              <Image
+                src={post.author.avatarSrc}
+                alt={post.author.name}
+                width={44}
+                height={44}
+                className="border-amber/60 h-11 w-11 rounded-full border-2 object-cover"
+              />
+            )}
             <div>
               <p className="text-paper text-sm font-semibold">
                 {post.author.name}
@@ -122,7 +176,7 @@ export default async function BlogArtigoPage({
             </div>
             <span className="border-paper-200 hidden h-8 border-l md:inline-block" />
             <p className="text-paper-700 font-mono text-[10px] uppercase tracking-[0.2em]">
-              {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+              {post.publishedAt && new Date(post.publishedAt).toLocaleDateString("pt-BR", {
                 day: "2-digit",
                 month: "long",
                 year: "numeric",
@@ -154,7 +208,7 @@ export default async function BlogArtigoPage({
           <span className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
             Tags ·
           </span>
-          {post.tags.map((tag) => (
+          {post.tags?.map((tag) => (
             <span
               key={tag}
               className="border-paper-200 text-paper-700 border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em]"
@@ -166,13 +220,15 @@ export default async function BlogArtigoPage({
 
         {/* Bio do autor — bloco mais editorial */}
         <aside className="border-amber/30 bg-amber/5 mt-12 flex flex-wrap items-center gap-6 border-l-2 px-6 py-6 md:px-10">
-          <Image
-            src={post.author.avatarSrc}
-            alt={post.author.name}
-            width={64}
-            height={64}
-            className="border-amber h-16 w-16 rounded-full border-2 object-cover"
-          />
+          {post.author.avatarSrc && (
+            <Image
+              src={post.author.avatarSrc}
+              alt={post.author.name}
+              width={64}
+              height={64}
+              className="border-amber h-16 w-16 rounded-full border-2 object-cover"
+            />
+          )}
           <div className="min-w-0 flex-1">
             <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
               Sobre o autor
@@ -217,7 +273,7 @@ export default async function BlogArtigoPage({
                     <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
                   </div>
                   <p className="text-amber mt-4 font-mono text-[10px] uppercase tracking-[0.2em]">
-                    {CATEGORY_LABEL[p.category]}
+                    {DB_CATEGORY_LABEL[p.category] || p.category}
                   </p>
                   <h3 className="text-paper group-hover:text-amber mt-2 font-serif text-lg leading-tight transition-colors">
                     {p.title}
