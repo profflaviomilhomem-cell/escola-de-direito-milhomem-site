@@ -26,16 +26,18 @@ declare global {
 export function track(event: string, props: TrackProps = {}): void {
   if (typeof window === "undefined") return;
 
-  // GTM dataLayer — Google Analytics 4 e tags downstream consomem daqui.
-  window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push({ event, ...props });
+  // Macrotask: evita `dataLayer.push` / captura PostHog no mesmo stack que
+  // ainda pode estar dentro de um render ou de hidratação (tags GTM e o
+  // próprio PostHog podem disparar actualizações de estado noutros widgets).
+  window.setTimeout(() => {
+    window.dataLayer = window.dataLayer ?? [];
+    window.dataLayer.push({ event, ...props });
 
-  // PostHog — usado apenas no cliente; carregado preguiçosamente para
-  // evitar SSR e para não pesar bundle se sem credencial.
-  void import("posthog-js").then((mod) => {
-    const ph = mod.default;
-    if (typeof ph?.capture === "function" && ph.__loaded) {
-      ph.capture(event, props);
-    }
-  });
+    void import("posthog-js").then((mod) => {
+      const ph = mod.default;
+      if (typeof ph?.capture === "function" && ph.__loaded) {
+        ph.capture(event, props);
+      }
+    });
+  }, 0);
 }

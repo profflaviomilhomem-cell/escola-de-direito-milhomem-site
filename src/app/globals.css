@@ -201,12 +201,7 @@ body {
 
 body {
   font-family: var(--font-body);
-  background: var(--color-carbon);
-  color: var(--color-paper);
-  /* Tamanho-padrão de texto editorial. Componentes que usam utilities
-     do Tailwind (text-sm, text-xl, etc.) seguem rem-based em cima do
-     html, então não são afetados — só herda o texto sem classe. */
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.6;
 }
 
@@ -519,4 +514,176 @@ html.fm-cursor-active [contenteditable="true"] {
     @apply font-sans;
     letter-spacing: var(--site-tracking);
   }
+}
+
+/* === Acessibilidade: escala de texto na raiz (rem) === */
+html[data-fm-text-step="0"] {
+  font-size: 87.5%;
+}
+html[data-fm-text-step="1"] {
+  font-size: 93.75%;
+}
+html[data-fm-text-step="2"] {
+  font-size: 100%;
+}
+html[data-fm-text-step="3"] {
+  font-size: 106.25%;
+}
+html[data-fm-text-step="4"] {
+  font-size: 114%;
+}
+
+/* === Modo claro (`html.light`) — paleta espelhada === */
+html.light {
+  color-scheme: light;
+  --color-carbon: #f0ebe3;
+  --color-carbon-elevated: #ffffff;
+  --color-paper: #101820;
+  --color-amber: #9a7200;
+  --color-amber-soft: #b88910;
+  --color-paper-50: rgba(16, 24, 32, 0.04);
+  --color-paper-100: rgba(16, 24, 32, 0.08);
+  --color-paper-200: rgba(16, 24, 32, 0.12);
+  --color-paper-400: rgba(16, 24, 32, 0.42);
+  --color-paper-600: rgba(16, 24, 32, 0.58);
+  --color-paper-700: rgba(16, 24, 32, 0.72);
+  --color-paper-800: rgba(16, 24, 32, 0.88);
+  --background: #f0ebe3;
+  --foreground: #101820;
+  --card: #ffffff;
+  --card-foreground: #101820;
+  --popover: #ffffff;
+  --popover-foreground: #101820;
+  --primary: #9a7200;
+  --primary-foreground: #fffef8;
+  --secondary: rgba(16, 24, 32, 0.06);
+  --secondary-foreground: #101820;
+  --muted: rgba(16, 24, 32, 0.08);
+  --muted-foreground: rgba(16, 24, 32, 0.62);
+  --accent: rgba(154, 114, 0, 0.12);
+  --accent-foreground: #101820;
+  --destructive: #b8323a;
+  --border: rgba(16, 24, 32, 0.12);
+  --input: rgba(16, 24, 32, 0.14);
+  --ring: #9a7200;
+  --chart-1: #9a7200;
+  --chart-2: #b88910;
+  --chart-3: #637bb6;
+  --chart-4: #94a7d0;
+  --chart-5: #3e3b2e;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #101820;
+  --sidebar-primary: #9a7200;
+  --sidebar-primary-foreground: #fffef8;
+  --sidebar-accent: rgba(16, 24, 32, 0.06);
+  --sidebar-accent-foreground: #101820;
+  --sidebar-border: rgba(16, 24, 32, 0.12);
+  --sidebar-ring: #9a7200;
+}
+
+html.light ::selection {
+  background: var(--color-amber);
+  color: #fffef8;
+}
+
+html.light .fm-bg-mesh {
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 80% 8%,
+      rgba(184, 134, 11, 0.14),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 45% at 12% 92%,
+      rgba(184, 134, 11, 0.08),
+      transparent 65%
+    ),
+    linear-gradient(180deg, #e8e4dc 0%, #f0ebe3 55%, #f0ebe3 100%);
+}
+
+html.light .fm-bg-grid {
+  opacity: 0.35;
+  background-image:
+    linear-gradient(rgba(16, 24, 32, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 24, 32, 0.06) 1px, transparent 1px);
+}
+
+html.light .fm-bg-noise {
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+/* === Visão: contraste, monocromático, apoio leitura + mídia === */
+html[data-fm-vision="high-contrast"]:not(.light) {
+  --color-paper-700: rgba(234, 228, 217, 0.95);
+  --color-paper-800: rgba(234, 228, 217, 1);
+  --color-amber: #f2c84c;
+  --color-amber-soft: #ffd54d;
+  --color-paper-100: rgba(234, 228, 217, 0.16);
+}
+
+html[data-fm-vision="high-contrast"].light {
+  --color-paper-700: rgba(16, 24, 32, 0.92);
+  --color-paper-800: rgba(16, 24, 32, 1);
+  --color-amber: #6b4f00;
+  --color-amber-soft: #7a5a00;
+  --color-paper-100: rgba(16, 24, 32, 0.14);
+}
+
+html[data-fm-vision="mono"] body {
+  filter: grayscale(1) contrast(1.08);
+}
+
+/* Apoio real: contraste, texto mais legível, links visíveis, mídia mais nítida */
+html[data-fm-vision="assist-full"]:not(.light) {
+  --color-paper-700: rgba(234, 228, 217, 0.97);
+  --color-paper-800: rgba(234, 228, 217, 1);
+  --color-amber: #f5d54a;
+  --color-amber-soft: #ffe08a;
+  --color-paper-100: rgba(234, 228, 217, 0.18);
+  --color-paper-600: rgba(234, 228, 217, 0.78);
+}
+
+html[data-fm-vision="assist-full"].light {
+  --color-paper-700: rgba(16, 24, 32, 0.94);
+  --color-paper-800: rgba(16, 24, 32, 1);
+  --color-amber: #6b4f00;
+  --color-amber-soft: #7a5a00;
+  --color-paper-100: rgba(16, 24, 32, 0.16);
+}
+
+html[data-fm-vision="assist-full"] #conteudo,
+html[data-fm-vision="assist-full"] article,
+html[data-fm-vision="assist-full"] .prose-juridica,
+html[data-fm-vision="assist-full"] .wp-migrated-html {
+  line-height: 1.82;
+  letter-spacing: 0.025em;
+  word-spacing: 0.04em;
+}
+
+html[data-fm-vision="assist-full"] #conteudo a:link,
+html[data-fm-vision="assist-full"] #conteudo a:visited,
+html[data-fm-vision="assist-full"] .prose-juridica a:link,
+html[data-fm-vision="assist-full"] .prose-juridica a:visited,
+html[data-fm-vision="assist-full"] .wp-migrated-html a:link,
+html[data-fm-vision="assist-full"] .wp-migrated-html a:visited {
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 0.12em;
+}
+
+html[data-fm-vision="assist-full"] video,
+html[data-fm-vision="assist-full"] iframe {
+  filter: contrast(1.14) saturate(1.2) brightness(1.04);
+}
+
+/* Embeds WordPress (HTML migrado): contorno sem duplicar filtro no iframe */
+html[data-fm-vision="assist-full"] .wp-migrated-html .wp-block-embed__wrapper {
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 2px rgba(221, 173, 12, 0.35);
+}
+
+html[data-fm-vision="assist-full"] [data-fm-media-surface] {
+  filter: contrast(1.12) saturate(1.22) brightness(1.02);
+  box-shadow: inset 0 0 0 2px rgba(221, 173, 12, 0.45);
 }

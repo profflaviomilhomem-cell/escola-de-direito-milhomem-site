@@ -14,10 +14,20 @@ export function PageLoader() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    let cancelled = false;
+    const safeUnmount = () => {
+      if (!cancelled) {
+        queueMicrotask(() => {
+          if (!cancelled) setMounted(false);
+        });
+      }
+    };
+
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setMounted(false);
-      return;
+      safeUnmount();
+      return () => {
+        cancelled = true;
+      };
     }
 
     const el = ref.current;
@@ -28,10 +38,11 @@ export function PageLoader() {
       duration: 1.2,
       ease: "power4.inOut",
       delay: 0.4,
-      onComplete: () => setMounted(false),
+      onComplete: safeUnmount,
     });
 
     return () => {
+      cancelled = true;
       tl.kill();
     };
   }, []);

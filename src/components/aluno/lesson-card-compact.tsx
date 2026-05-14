@@ -28,6 +28,7 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
     >
       {/* Thumbnail */}
       <div
+        data-fm-media-surface
         className="relative aspect-video"
         style={{
           backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,

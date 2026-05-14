@@ -23,6 +23,7 @@ export function PlayerVideoMock({ lesson }: Props) {
 
   return (
     <div
+      data-fm-media-surface
       className="border-paper-100 relative aspect-video w-full overflow-hidden border"
       style={{
         backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,

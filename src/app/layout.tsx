@@ -2,16 +2,40 @@ import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { GoogleTagManager } from "@next/third-parties/google";
-import { Toaster } from "sonner";
 
 import { AnalyticsProviders } from "@/components/shared/analytics-providers";
+import { ClientProviders } from "@/components/shared/client-providers";
 import { WebVitalsReporter } from "@/components/shared/web-vitals-reporter";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+
+/** Executado antes da hidratação — tema, escala de letra e visão (localStorage). */
+const FM_A11Y_BOOTSTRAP = `
+(function(){
+  try{
+    var h=document.documentElement;
+    h.classList.remove('dark','light');
+    var t=localStorage.getItem('fm-theme');
+    if(t==='light'){h.classList.add('light');}else{h.classList.add('dark');}
+    var s=localStorage.getItem('fm-text-step');
+    if(s==='0'||s==='1'||s==='2'||s==='3'||s==='4'){h.setAttribute('data-fm-text-step',s);}
+    else{h.setAttribute('data-fm-text-step','2');}
+    var v=localStorage.getItem('fm-vision');
+    if(v==='high-contrast'||v==='mono'||v==='assist-full'){h.setAttribute('data-fm-vision',v);}
+    else{h.removeAttribute('data-fm-vision');}
+  }catch(e){
+    var r=document.documentElement;
+    r.classList.remove('dark','light');
+    r.classList.add('dark');
+    r.setAttribute('data-fm-text-step','2');
+    r.removeAttribute('data-fm-vision');
+  }
+})();
+`;
 
 /**
  * Fontes via next/font — identidade Flávio Milhomem.
@@ -109,8 +133,8 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.locale}
+      suppressHydrationWarning
       className={cn(
-        "dark",
         "h-full",
         "antialiased",
         leagueSpartan.variable,
@@ -120,9 +144,17 @@ export default function RootLayout({
         geist.variable,
       )}
     >
-      <body className="bg-carbon text-paper flex min-h-full flex-col font-sans">
-        {children}
-        <Toaster position="top-right" richColors theme="dark" />
+      <head>
+        {/* Inline no <head>: `next/script` com corpo inline no <body> dispara
+            aviso no React 19 ("Scripts inside React components…"). Isto corre
+            no HTML inicial antes da hidratação, como beforeInteractive. */}
+        <script
+          id="fm-a11y-prefs"
+          dangerouslySetInnerHTML={{ __html: FM_A11Y_BOOTSTRAP.trim() }}
+        />
+      </head>
+      <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
+        <ClientProviders>{children}</ClientProviders>
         <AnalyticsProviders />
         <WebVitalsReporter />
       </body>

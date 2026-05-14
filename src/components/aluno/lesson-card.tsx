@@ -35,6 +35,7 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
     >
       {/* Thumbnail */}
       <div
+        data-fm-media-surface
         className="border-paper-100 relative aspect-video overflow-hidden border transition-all duration-300 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(221,173,12,0.15)]"
         style={{
           backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,

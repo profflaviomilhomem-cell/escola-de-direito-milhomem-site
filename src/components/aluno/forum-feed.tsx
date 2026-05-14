@@ -350,6 +350,7 @@ export function ForumFeed({ threads, course }: Props) {
                         <span
                           role="img"
                           aria-label={`Capa da aula: ${lesson.title}`}
+                          data-fm-media-surface
                           className="border-paper-100 group-open/thread:border-amber relative aspect-video w-24 flex-shrink-0 overflow-hidden border transition-colors sm:w-28 md:w-32"
                           style={{
                             backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,

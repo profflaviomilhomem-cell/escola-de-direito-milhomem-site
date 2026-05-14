@@ -1,7 +1,7 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
 
@@ -18,25 +18,36 @@ export function AnalyticsProviders() {
   const { metaPixelId, linkedinPartnerId, posthogKey, posthogHost } =
     siteConfig.tracking;
 
+  const [clientReady, setClientReady] = useState(false);
   useEffect(() => {
-    if (!posthogKey) return;
-    let cancelled = false;
-    void import("posthog-js").then((mod) => {
-      if (cancelled) return;
-      const ph = mod.default;
-      if (ph.__loaded) return;
-      ph.init(posthogKey, {
-        api_host: posthogHost,
-        defaults: "2025-05-24",
-        capture_pageview: true,
-        capture_pageleave: true,
-        person_profiles: "identified_only",
-      });
+    const id = requestAnimationFrame(() => {
+      setClientReady(true);
     });
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    if (!clientReady || !posthogKey) return;
+    let cancelled = false;
+    const t = window.setTimeout(() => {
+      void import("posthog-js").then((mod) => {
+        if (cancelled) return;
+        const ph = mod.default;
+        if (ph.__loaded) return;
+        ph.init(posthogKey, {
+          api_host: posthogHost,
+          defaults: "2025-05-24",
+          capture_pageview: true,
+          capture_pageleave: true,
+          person_profiles: "identified_only",
+        });
+      });
+    }, 0);
     return () => {
       cancelled = true;
+      window.clearTimeout(t);
     };
-  }, [posthogKey, posthogHost]);
+  }, [clientReady, posthogKey, posthogHost]);
 
   return (
     <>
