@@ -269,8 +269,8 @@ Sprint dedicada e isolada — primeira vez da equipe com Pagar.me.
 
 - [x] Migração para Prisma/DB preparada (schema + script de migração do WordPress)
 - [x] UI do blog refatorada para consumir dados do Prisma com fallback mock
-- [ ] Open Graph image gerada dinamicamente por artigo
-- [ ] RSS feed em `/blog/feed.xml`
+- [x] Open Graph image gerada dinamicamente por artigo
+- [x] RSS feed em `/blog/feed.xml`
 - [x] Schema `Article` em cada post (Apêndice D)
 
 ### 6.2 Calculadora de Pena Hipotética (S3-S6 do roadmap, finaliza aqui)
