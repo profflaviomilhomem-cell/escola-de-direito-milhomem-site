@@ -4,13 +4,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import {
-  CATEGORY_LABEL,
   findBlogPost as findMockPost,
   relatedPosts as findMockRelated,
 } from "@/data/mock-blog";
+import { migratedPosts } from "@/data/migrated-posts";
 import { prisma } from "@/lib/prisma";
 
 type Params = Promise<{ slug: string }>;
+
+function bodyLooksLikeHtml(body: string) {
+  return /<\s*(p|div|h[1-6]|figure|ul|ol|blockquote|section|hr)\b/i.test(
+    body.trim().slice(0, 4000),
+  );
+}
 
 // Map de categorias do DB para o label mock (ajuste conforme necessário)
 const DB_CATEGORY_LABEL: Record<string, string> = {
@@ -19,6 +25,43 @@ const DB_CATEGORY_LABEL: Record<string, string> = {
   COMENTARIO: "Comentário atual",
   GERAL: "Geral",
 };
+
+function findMigratedPost(slug: string) {
+  const m = migratedPosts.find((p) => p.slug === slug);
+  if (!m) return undefined;
+
+  const coverImage =
+    "coverImage" in m && typeof m.coverImage === "string"
+      ? m.coverImage
+      : undefined;
+
+  return {
+    slug: m.slug,
+    title: m.title,
+    excerpt: m.excerpt ?? "",
+    body: m.body,
+    category: m.category,
+    coverImage,
+    publishedAt:
+      typeof m.publishedAt === "string"
+        ? m.publishedAt
+        : undefined,
+    author: {
+      name: m.author.name,
+      role:
+        "role" in m.author && typeof m.author.role === "string"
+          ? m.author.role
+          : "Professor de Direito Criminal",
+      avatarSrc:
+        "avatarSrc" in m.author && typeof m.author.avatarSrc === "string"
+          ? m.author.avatarSrc
+          : "/images/professor/flavio-avatar-64.jpg",
+    },
+    cover: m.cover,
+    readingMin: m.readingMin,
+    tags: m.tags ?? [],
+  };
+}
 
 async function getPostData(slug: string) {
   try {
@@ -31,12 +74,13 @@ async function getPostData(slug: string) {
       return {
         slug: p.slug,
         title: p.title,
-        excerpt: p.excerpt,
+        excerpt: p.excerpt ?? "",
         body: p.body,
         category: p.category,
+        coverImage: (p as { coverImage?: string | null }).coverImage ?? undefined,
         publishedAt: p.publishedAt?.toISOString(),
         author: {
-          name: p.author.name,
+          name: p.author.name ?? "Flávio Milhomem",
           role: "Professor de Direito Criminal",
           avatarSrc: "/images/professor/flavio-avatar-64.jpg",
         },
@@ -48,7 +92,7 @@ async function getPostData(slug: string) {
   } catch (e) {
     console.warn("DB offline ou post não encontrado no Prisma, usando mock.");
   }
-  return findMockPost(slug);
+  return findMockPost(slug) ?? findMigratedPost(slug);
 }
 
 export async function generateMetadata({
@@ -67,8 +111,8 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       type: "article",
-      publishedTime: post.publishedAt,
-      authors: [post.author.name],
+      publishedTime: post.publishedAt ?? undefined,
+      authors: [post.author.name ?? "Flávio Milhomem"],
     },
   };
 }
@@ -124,11 +168,20 @@ export default async function BlogArtigoPage({
 
       {/* Cover hero */}
       <section
-        className="relative overflow-hidden"
+        className="relative overflow-hidden bg-carbon"
         style={{
-          backgroundImage: `linear-gradient(135deg, ${post.cover.from}, ${post.cover.to})`,
+          backgroundImage: !post.coverImage ? `linear-gradient(135deg, ${post.cover.from}, ${post.cover.to})` : undefined,
         }}
       >
+        {post.coverImage && (
+          <Image
+            src={post.coverImage}
+            alt={post.title}
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+        )}
         <div
           aria-hidden
           className="absolute -right-32 top-1/3 h-[420px] w-[420px] rounded-full opacity-15 blur-3xl"
@@ -189,19 +242,26 @@ export default async function BlogArtigoPage({
 
       {/* Corpo do artigo */}
       <article className="px-gutter mx-auto max-w-prose-wide py-page lg:px-12">
-        <div className="prose-juridica space-y-6 text-[18px] leading-[1.8]">
-          {post.body.split(/\n\n+/).map((paragraph, i) => (
-            <p
-              key={i}
-              className="text-paper-800"
-              dangerouslySetInnerHTML={{
-                __html: paragraph
-                  .replace(/\*\*(.+?)\*\*/g, '<strong class="text-paper">$1</strong>')
-                  .replace(/\*(.+?)\*/g, '<em class="text-amber italic">$1</em>'),
-              }}
-            />
-          ))}
-        </div>
+        {bodyLooksLikeHtml(post.body) ? (
+          <div
+            className="wp-migrated-html prose-juridica text-paper-800 text-[18px] leading-[1.8] [&_a]:text-amber [&_a:hover]:underline [&_blockquote]:border-paper-200 [&_blockquote]:text-paper-700 [&_blockquote]:border-l-2 [&_blockquote]:pl-4 [&_h1]:text-paper [&_h2]:text-paper [&_h3]:text-paper [&_iframe]:aspect-video [&_iframe]:max-h-[80vh] [&_iframe]:w-full [&_iframe]:max-w-full [&_img]:h-auto [&_img]:max-w-full [&_li]:marker:text-amber [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_strong]:text-paper [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6"
+            dangerouslySetInnerHTML={{ __html: post.body }}
+          />
+        ) : (
+          <div className="prose-juridica space-y-6 text-[18px] leading-[1.8]">
+            {post.body.split(/\n\n+/).map((paragraph, i) => (
+              <p
+                key={i}
+                className="text-paper-800"
+                dangerouslySetInnerHTML={{
+                  __html: paragraph
+                    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-paper">$1</strong>')
+                    .replace(/\*(.+?)\*/g, '<em class="text-amber italic">$1</em>'),
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Tags */}
         <div className="border-paper-100 mt-12 flex flex-wrap items-center gap-2 border-t pt-8">

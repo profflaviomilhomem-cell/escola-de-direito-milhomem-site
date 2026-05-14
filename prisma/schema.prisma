@@ -262,6 +262,7 @@ model BlogPost {
   title       String
   excerpt     String?      @db.Text
   body        String       @db.Text
+  coverImage  String?      // URL da imagem de destaque do WordPress
   status      BlogStatus   @default(DRAFT)
   category    BlogCategory @default(GERAL)
   publishedAt DateTime?

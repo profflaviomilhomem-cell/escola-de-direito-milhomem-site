@@ -7,10 +7,17 @@ import { CommentTree } from "@/components/aluno/comment-tree";
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
 import {
   formatDuration,
+  mockUser,
+  type MockComment,
   type MockCourse,
   type MockForumThread,
   type MockLesson,
 } from "@/data/mock-aluno";
+import {
+  FORUM_ROOT_PARENT_ID,
+  mergeLocalRepliesIntoComments,
+  newLocalForumComment,
+} from "@/lib/forum/merge-local-replies";
 
 type SortKey = "recent" | "most-replies" | "oldest-no-prof";
 
@@ -66,10 +73,36 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
+function countCommentsInTree(nodes: MockComment[]): number {
+  let n = 0;
+  for (const c of nodes) {
+    n += 1;
+    if (c.replies?.length) n += countCommentsInTree(c.replies);
+  }
+  return n;
+}
+
 export function ForumFeed({ threads, course }: Props) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterKey>("all");
   const [sort, setSort] = useState<SortKey>("recent");
+  const [localReplies, setLocalReplies] = useState<
+    Array<{ threadId: string; parentId: string; comment: MockComment }>
+  >([]);
+  const [rootDrafts, setRootDrafts] = useState<Record<string, string>>({});
+
+  const publishReply =
+    (threadId: string) => (parentId: string, body: string) => {
+      if (!body.trim()) return;
+      setLocalReplies((prev) => [
+        ...prev,
+        {
+          threadId,
+          parentId,
+          comment: newLocalForumComment(body, mockUser.name),
+        },
+      ]);
+    };
 
   const lessonsBySlug = useMemo(() => {
     const map = new Map<string, MockLesson>();
@@ -274,6 +307,12 @@ export function ForumFeed({ threads, course }: Props) {
               const moduleSlug = thread.lessonSlug?.split("-aula-")[0];
               const moduleNumber = moduleSlug?.match(/modulo-(\d)/)?.[1];
 
+              const mergedComments = mergeLocalRepliesIntoComments(
+                thread.comments,
+                localReplies.filter((l) => l.threadId === thread.id),
+              );
+              const replyTotal = countCommentsInTree(mergedComments);
+
               return (
                 <li key={thread.id} id={thread.slug} className="scroll-mt-32">
                   <details className="group/thread">
@@ -385,7 +424,7 @@ export function ForumFeed({ threads, course }: Props) {
                           </span>
                         )}
                         <span className="text-paper-700 fm-mono whitespace-nowrap">
-                          {thread.replyCount} resp.
+                          {replyTotal} resp.
                         </span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -422,32 +461,59 @@ export function ForumFeed({ threads, course }: Props) {
 
                       <div className="mt-8">
                         <h3 className="text-amber fm-mono mb-4">
-                          {thread.replyCount} resposta
-                          {thread.replyCount === 1 ? "" : "s"}
+                          {replyTotal} resposta
+                          {replyTotal === 1 ? "" : "s"}
+                          <span className="text-paper-600 ml-2 font-sans text-xs font-normal normal-case tracking-normal">
+                            (ordem cronológica em cada fio · responda a qualquer
+                            mensagem)
+                          </span>
                         </h3>
-                        <CommentTree comments={thread.comments} />
+                        <CommentTree
+                          comments={mergedComments}
+                          maxDepth={32}
+                          interactive
+                          onPublishReply={(parentId, body) =>
+                            publishReply(thread.id)(parentId, body)
+                          }
+                        />
                       </div>
 
-                      {/* Form de resposta — só na thread aberta */}
-                      <form className="border-paper-100 mt-8 border-t pt-6">
+                      <form
+                        className="border-paper-100 mt-8 border-t pt-6"
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          const text = (rootDrafts[thread.id] ?? "").trim();
+                          if (!text) return;
+                          publishReply(thread.id)(FORUM_ROOT_PARENT_ID, text);
+                          setRootDrafts((p) => ({ ...p, [thread.id]: "" }));
+                        }}
+                      >
                         <label
                           htmlFor={`reply-${thread.id}`}
                           className="text-amber fm-mono"
                         >
-                          Sua resposta
+                          Resposta ao tópico (primeiro nível)
                         </label>
                         <textarea
                           id={`reply-${thread.id}`}
                           rows={3}
+                          value={rootDrafts[thread.id] ?? ""}
+                          onChange={(e) =>
+                            setRootDrafts((p) => ({
+                              ...p,
+                              [thread.id]: e.target.value,
+                            }))
+                          }
                           className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-400 mt-3 block w-full border px-3 py-2 outline-none"
                           placeholder="Escreva com clareza. Cite artigo/STJ quando puder."
                         />
                         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                           <p className="text-paper-600 fm-mono">
-                            Markdown básico · revisão antes de publicar
+                            Para responder a alguém no meio da discussão, use
+                            &quot;Responder&quot; na mensagem desejada.
                           </p>
                           <button
-                            type="button"
+                            type="submit"
                             className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-4 py-2 transition-colors"
                           >
                             Enviar resposta

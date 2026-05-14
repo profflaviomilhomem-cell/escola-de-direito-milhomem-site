@@ -1,4 +1,80 @@
-import { loginSchema, registerSchema } from "@/schemas/auth";
+import {
+  loginSchema,
+  registerSchema,
+  forgotPasswordSchema,
+  resetPasswordSchema,
+  updateProfileSchema,
+  updatePasswordSchema,
+} from "@/schemas/auth";
+
+describe("schemas/auth — forgotPasswordSchema", () => {
+  it("aceita e-mail válido", () => {
+    const result = forgotPasswordSchema.safeParse({ email: "x@y.com" });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejeita e-mail inválido", () => {
+    const result = forgotPasswordSchema.safeParse({ email: "nao-e-email" });
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("schemas/auth — resetPasswordSchema", () => {
+  it("aceita payload válido", () => {
+    const result = resetPasswordSchema.safeParse({
+      token: "algum-jwt-aqui",
+      password: "nova-senha-forte-1",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejeita sem token", () => {
+    const result = resetPasswordSchema.safeParse({
+      password: "nova-senha-forte-1",
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejeita senha curta", () => {
+    const result = resetPasswordSchema.safeParse({
+      token: "tok",
+      password: "curta",
+    });
+    expect(result.success).toBe(false);
+  });
+});
+
+describe("schemas/auth — updateProfileSchema", () => {
+  it("aceita payload válido (nome + email)", () => {
+    const result = updateProfileSchema.safeParse({
+      name: "Novo Nome",
+      email: "novo@e.com",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("aceita apenas e-mail (nome opcional)", () => {
+    const result = updateProfileSchema.safeParse({ email: "novo@e.com" });
+    expect(result.success).toBe(true);
+  });
+});
+
+describe("schemas/auth — updatePasswordSchema", () => {
+  it("aceita payload válido", () => {
+    const result = updatePasswordSchema.safeParse({
+      currentPassword: "senha-atual",
+      newPassword: "nova-senha-forte-8",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejeita sem senha atual", () => {
+    const result = updatePasswordSchema.safeParse({
+      newPassword: "nova-senha-forte-8",
+    });
+    expect(result.success).toBe(false);
+  });
+});
 
 describe("schemas/auth — registerSchema", () => {
   it("aceita payload mínimo válido (sem nome)", () => {

@@ -3,12 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
-import { ProgressBar } from "@/components/aluno/progress-bar";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import {
   formatDuration,
   mockCourse,
   nextLesson as pickNext,
 } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
 
@@ -106,9 +107,9 @@ export default async function CursoMatriculadoPage({
                   </Link>
                 )}
                 <div className="min-w-[260px] flex-1">
-                  <ProgressBar
-                    value={overall}
+                  <LabeledProgress
                     label={`${mockCourse.completedLessonCount} de ${mockCourse.lessonCount} aulas`}
+                    value={progressPercentFromRatio(overall)}
                   />
                 </div>
               </div>
@@ -262,9 +263,9 @@ export default async function CursoMatriculadoPage({
                         </div>
                       </div>
                       <div className="mt-5">
-                        <ProgressBar
-                          value={moduleProgress}
+                        <LabeledProgress
                           label={`${moduleDone}/${mod.lessons.length}`}
+                          value={progressPercentFromRatio(moduleProgress)}
                         />
                       </div>
                     </div>

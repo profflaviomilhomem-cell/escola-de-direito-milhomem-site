@@ -47,7 +47,12 @@ export const siteConfig = {
     instagram: "https://instagram.com/prof.flaviomilhomem",
     instagramHandle: "@prof.flaviomilhomem",
     linkedin: "https://linkedin.com/in/professorflaviomilhomem",
-    youtube: "https://youtube.com/@PROFESSORFLÁVIOMILHOMEM",
+    /** Canal oficial (URL ASCII — evita problemas em mailers e alguns browsers) */
+    youtube: "https://www.youtube.com/@professorflaviomilhomem",
+    /** Linha secundária no chip do footer (YouTube) */
+    youtubeFooterLabel: "Professor Flávio Milhomem",
+    /** Linha secundária no chip do footer (LinkedIn) */
+    linkedinFooterLabel: "/in/professorflaviomilhomem",
     mpdft: "https://www.mpdft.mp.br/",
   },
 

@@ -67,3 +67,36 @@ export const loginSchema = z.object({
 });
 
 export type LoginInput = z.infer<typeof loginSchema>;
+
+export const forgotPasswordSchema = z.object({
+  email: emailField,
+});
+
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
+
+export const resetPasswordSchema = z.object({
+  token: z.string().min(1, "Token de recuperação ausente."),
+  password: passwordField,
+});
+
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+
+export const updateProfileSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, "Informe um nome com pelo menos 2 caracteres.")
+    .max(120, "Nome longo demais.")
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  email: emailField,
+});
+
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
+
+export const updatePasswordSchema = z.object({
+  currentPassword: z.string().min(1, "Informe sua senha atual."),
+  newPassword: passwordField,
+});
+
+export type UpdatePasswordInput = z.infer<typeof updatePasswordSchema>;

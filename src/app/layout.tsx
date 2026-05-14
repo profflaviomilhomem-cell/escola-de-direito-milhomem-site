@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono } from "next/font/google";
+import { JetBrains_Mono, Geist } from "next/font/google";
 import localFont from "next/font/local";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Toaster } from "sonner";
@@ -9,6 +9,9 @@ import { WebVitalsReporter } from "@/components/shared/web-vitals-reporter";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 /**
  * Fontes via next/font — identidade Flávio Milhomem.
@@ -106,7 +109,16 @@ export default function RootLayout({
   return (
     <html
       lang={siteConfig.locale}
-      className={`${leagueSpartan.variable} ${hiragino.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={cn(
+        "dark",
+        "h-full",
+        "antialiased",
+        leagueSpartan.variable,
+        hiragino.variable,
+        jetbrainsMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="bg-carbon text-paper flex min-h-full flex-col font-sans">
         {children}

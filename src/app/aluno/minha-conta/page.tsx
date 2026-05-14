@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { mockOrders, mockUser } from "@/data/mock-aluno";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { UpdateProfileForm } from "@/components/aluno/update-profile-form";
+import { UpdatePasswordForm } from "@/components/aluno/update-password-form";
 
 export const metadata: Metadata = {
   title: "Minha conta — Escola Flávio Milhomem",
@@ -48,43 +50,12 @@ export default async function MinhaContaPage() {
 
       {/* Perfil */}
       <Section title="Perfil" eyebrow="01">
-        <form className="space-y-6">
-          <Field label="Nome completo" defaultValue={name} />
-          <Field label="E-mail" defaultValue={email} type="email" />
-          <Field
-            label="Telefone (WhatsApp)"
-            defaultValue=""
-            placeholder="+55 (61) 9XXXX-XXXX"
-          />
-          <p className="text-paper-600 fm-mono">
-            Mudança de e-mail dispara confirmação por link.
-          </p>
-          <button
-            type="button"
-            className="bg-amber text-carbon hover:bg-amber-soft fm-mono px-6 py-3 transition-colors"
-          >
-            Salvar alterações
-          </button>
-        </form>
+        <UpdateProfileForm initialName={name ?? undefined} initialEmail={email} />
       </Section>
 
       {/* Segurança */}
       <Section title="Segurança" eyebrow="02">
-        <form className="space-y-6">
-          <Field label="Senha atual" type="password" />
-          <Field
-            label="Nova senha"
-            type="password"
-            help="Mínimo 8 caracteres, máximo 72 bytes (acentos e emoji pesam mais)."
-          />
-          <Field label="Repetir nova senha" type="password" />
-          <button
-            type="button"
-            className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-6 py-3 transition-colors"
-          >
-            Trocar senha
-          </button>
-        </form>
+        <UpdatePasswordForm />
         <hr className="border-paper-100 my-8" />
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -211,36 +182,6 @@ function Section({
       </header>
       {children}
     </section>
-  );
-}
-
-function Field({
-  label,
-  defaultValue,
-  type = "text",
-  placeholder,
-  help,
-}: {
-  label: string;
-  defaultValue?: string;
-  type?: string;
-  placeholder?: string;
-  help?: string;
-}) {
-  const id = `mc-${label.replace(/\s+/g, "-").toLowerCase()}`;
-  return (
-    <label htmlFor={id} className="block">
-      <span className="text-paper-700 fm-mono">{label}</span>
-      <input
-        id={id}
-        type={type}
-        defaultValue={defaultValue}
-        placeholder={placeholder}
-        autoComplete="off"
-        className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
-      />
-      {help && <p className="text-paper-600 mt-2 text-xs">{help}</p>}
-    </label>
   );
 }
 

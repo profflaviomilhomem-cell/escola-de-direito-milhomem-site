@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, useEffect, type ReactNode } from "react";
+
+import { Button } from "@/components/ui/button";
 
 type Props = {
   title: string;
@@ -58,12 +61,11 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           </h2>
         </div>
         {cta && (
-          <a
-            href={cta.href}
-            className="text-paper-700 hover:text-amber fm-mono whitespace-nowrap transition-colors"
-          >
-            {cta.label} →
-          </a>
+          <Button variant="ghost" size="sm" className="text-paper-700 hover:text-amber fm-mono h-auto px-0 py-0" asChild>
+            <Link href={cta.href}>
+              {cta.label} →
+            </Link>
+          </Button>
         )}
       </div>
 
@@ -72,12 +74,14 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           da viewport). Setas sempre visíveis; a inativa fica em estado
           disabled (opacidade reduzida + cursor-not-allowed). */}
       <div className="relative mx-auto mt-6 max-w-(--container-narrow)">
-        <button
+        <Button
           type="button"
+          variant="outline"
+          size="icon"
           aria-label="Rolar para a esquerda"
           onClick={() => scrollBy(-1)}
           disabled={!canPrev}
-          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute left-3 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-all duration-200 lg:left-10 md:flex"
+          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute left-3 top-1/2 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 lg:left-10 md:flex"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -92,13 +96,15 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           >
             <path d="m15 18-6-6 6-6" />
           </svg>
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
+          variant="outline"
+          size="icon"
           aria-label="Rolar para a direita"
           onClick={() => scrollBy(1)}
           disabled={!canNext}
-          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute right-3 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-lg backdrop-blur-md transition-all duration-200 lg:right-10 md:flex"
+          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute right-3 top-1/2 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 lg:right-10 md:flex"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +119,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           >
             <path d="m9 18 6-6-6-6" />
           </svg>
-        </button>
+        </Button>
 
         {/* Fade decorativo nas bordas — sugere "tem mais conteúdo" só
             quando há de fato. Sumiu nos extremos para não conflitar

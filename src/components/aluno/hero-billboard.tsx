@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockCourse, MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
 
@@ -64,11 +64,11 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
               {course.description}
             </p>
 
-            {/* Progresso geral */}
             <div className="mt-7 max-w-md">
-              <ProgressBar
-                value={progress}
+              <LabeledProgress
                 label={`${course.completedLessonCount} de ${course.lessonCount} aulas`}
+                labelClassName="text-base tracking-normal normal-case"
+                value={Math.round(progress * 100)}
               />
             </div>
 

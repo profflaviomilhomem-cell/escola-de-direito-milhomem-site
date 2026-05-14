@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import { Dossie3D } from "@/components/marketing/animation/dossie-3d";
+import { BlogSection } from "@/components/marketing/blog-section";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -105,25 +106,25 @@ export default function HomePage() {
 
         <div className="mx-auto grid w-full max-w-[1200px] gap-20 lg:grid-cols-[1.2fr_1fr]">
           <div className="relative z-10 flex flex-col justify-center">
-            <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.32em]">
               Cohort Inaugural · 11 de Agosto 2026
             </p>
             <h1
-              className="fm-hero-fade fm-hero-fade--title mb-8 font-serif leading-[0.9]"
+              className="fm-hero-fade fm-hero-fade--title mb-8 font-serif leading-[1.02] tracking-[0.055em] md:tracking-[0.065em]"
               style={{ fontSize: "clamp(50px, 8vw, 100px)" }}
             >
               A <em className="text-amber italic">Escola</em> do
               <br />
               <em className="text-amber italic">Promotor</em>
             </h1>
-            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-10 max-w-xl text-2xl italic">
+            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-10 max-w-xl text-2xl italic leading-relaxed tracking-[0.03em]">
               Direito Penal pela{" "}
               <em className="text-amber not-italic">
                 perspectiva da acusação
               </em>{" "}
               — pelo Promotor que está no Tribunal, não no manual.
             </p>
-            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-10 max-w-xl text-base">
+            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-10 max-w-xl text-base leading-relaxed tracking-[0.025em]">
               <strong className="text-paper">Flávio Milhomem</strong> —
               Promotor de Justiça do MPDFT há 30 anos. Ouvidor-Geral 2025–2027.
               Mestre pela Católica de Portugal e Especialista pela ENM França.
@@ -172,7 +173,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[800px] text-center">
           <h2
             data-reveal
-            className="mb-10 font-serif leading-[1.1]"
+            className="mb-10 font-serif leading-[1.12] tracking-[0.05em] md:tracking-[0.06em]"
             style={{ fontSize: "clamp(48px, 6vw, 88px)" }}
           >
             O Promotor que te ensina o que o{" "}
@@ -235,6 +236,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* === Blog / Artigos === */}
+      <BlogSection />
 
       {/* === Bio do professor === */}
       <section id="professor" className="relative z-10 px-[5%] py-32">

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { mockCertificates, mockCourse } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Certificados — Escola Flávio Milhomem",
@@ -46,9 +47,9 @@ export default function CertificadosPage() {
             </p>
           </div>
           <div>
-            <ProgressBar
-              value={cursoProgress}
+            <LabeledProgress
               label={`${Math.round(cursoProgress * 100)}%`}
+              value={progressPercentFromRatio(cursoProgress)}
             />
             <p className="text-paper-700 mt-3 text-sm">
               Faltam{" "}

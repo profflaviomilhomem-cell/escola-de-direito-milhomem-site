@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {
   lesson: MockLesson;
@@ -74,7 +75,10 @@ export function PlayerVideoMock({ lesson }: Props) {
         <>
           <div className="absolute inset-0 bg-carbon/30" />
           <div className="absolute inset-x-0 bottom-0 p-4">
-            <ProgressBar value={Math.max(0.1, initialProgress)} />
+            <LabeledProgress
+              value={Math.max(1, progressPercentFromRatio(initialProgress))}
+              barClassName="h-1"
+            />
             <div className="mt-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <button

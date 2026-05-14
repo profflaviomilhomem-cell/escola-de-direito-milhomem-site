@@ -12,16 +12,16 @@ const prisma = new PrismaClient();
  */
 async function migrate() {
   const WP_URL =
-    "https://professorflaviomilhomem.com.br/wp-json/wp/v2/posts?per_page=100";
+    "https://professorflaviomilhomem.com.br/wp-json/wp/v2/posts?per_page=100&_embed";
 
-  console.log("🚀 Iniciando busca de posts no WordPress...");
-  
+  console.log("🚀 Iniciando busca de posts no WordPress (com imagens)...");
+
   try {
     const response = await fetch(WP_URL);
     if (!response.ok) {
       throw new Error(`Erro ao buscar posts: ${response.statusText}`);
     }
-    
+
     const posts = await response.json() as any[];
     console.log(`📦 Encontrados ${posts.length} posts.`);
 
@@ -51,7 +51,10 @@ async function migrate() {
       const body = wpPost.content.rendered;
       const publishedAt = new Date(wpPost.date);
 
-      console.log(`📝 Migrando: ${title} (${slug})`);
+      // Busca imagem de destaque nos dados embutidos (_embed)
+      const coverImage = wpPost._embedded?.["wp:featuredmedia"]?.[0]?.source_url || null;
+
+      console.log(`📝 Migrando: ${title} (${slug}) ${coverImage ? "📸" : "🌑"}`);
 
       await prisma.blogPost.upsert({
         where: { slug },
@@ -60,6 +63,7 @@ async function migrate() {
           excerpt,
           body,
           publishedAt,
+          coverImage,
           status: "PUBLISHED",
         },
         create: {
@@ -68,12 +72,14 @@ async function migrate() {
           excerpt,
           body,
           publishedAt,
+          coverImage,
           status: "PUBLISHED",
           authorId: author.id,
           category: "GERAL",
         },
       });
     }
+
 
     console.log("✅ Migração concluída com sucesso!");
   } catch (error) {

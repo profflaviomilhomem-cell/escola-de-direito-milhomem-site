@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
-import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
+import { Progress } from "@/components/ui/progress";
+import { formatDuration, type MockLesson } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {
   lesson: MockLesson;
@@ -76,7 +76,10 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
         </p>
         {inProgress && (
           <div className="mt-2 max-w-[200px]">
-            <ProgressBar value={progress} size="sm" />
+            <Progress
+              value={progressPercentFromRatio(progress)}
+              className="h-[3px] bg-paper-200"
+            />
           </div>
         )}
       </div>

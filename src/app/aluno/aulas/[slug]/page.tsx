@@ -3,9 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { CommentTree } from "@/components/aluno/comment-tree";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { LessonTabs } from "@/components/aluno/lesson-tabs";
 import { PlayerVideoMock } from "@/components/aluno/player-video-mock";
-import { ProgressBar } from "@/components/aluno/progress-bar";
 import {
   findLessonBySlug,
   formatDuration,
@@ -13,6 +13,7 @@ import {
   mockForumThreads,
   type MockLesson,
 } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
 
@@ -92,10 +93,12 @@ export default async function AulaPage({ params }: { params: Params }) {
               )}
             </div>
             {lesson.status === "em-andamento" && (
-              <ProgressBar
-                value={progress}
-                label={`${Math.round(progress * 100)}%`}
-              />
+              <div className="max-w-md">
+                <LabeledProgress
+                  label={`${Math.round(progress * 100)}%`}
+                  value={progressPercentFromRatio(progress)}
+                />
+              </div>
             )}
           </div>
 

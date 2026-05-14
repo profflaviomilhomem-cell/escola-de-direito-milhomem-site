@@ -1,10 +1,8 @@
-/**
- * Utilitários compartilhados — pequenos helpers sem dependência de domínio.
- */
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-/** Concatena classes de forma segura, descartando falsy. */
-export function cn(...classes: Array<string | undefined | null | false>): string {
-  return classes.filter(Boolean).join(" ");
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
 }
 
 /** Slugifica string para uso em URL (artigos, materiais, etc). */
@@ -12,7 +10,13 @@ export function slugify(text: string): string {
   return text
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
+}
+
+/** Fração 0–1 → inteiro 0–100 para `<Progress value={…} />` (shadcn). */
+export function progressPercentFromRatio(ratio: number): number {
+  if (!Number.isFinite(ratio)) return 0;
+  return Math.min(100, Math.max(0, Math.round(ratio * 100)));
 }

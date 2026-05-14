@@ -4,8 +4,10 @@ import { AnnouncementCard } from "@/components/aluno/announcement-card";
 import { DashboardRow } from "@/components/aluno/dashboard-row";
 import { ForumThreadCard } from "@/components/aluno/forum-thread-card";
 import { HeroBillboard } from "@/components/aluno/hero-billboard";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { LessonCard } from "@/components/aluno/lesson-card";
 import { LessonCardRanked } from "@/components/aluno/lesson-card-ranked";
+import { getSessionFromCookies } from "@/lib/auth/session";
 import {
   formatDuration,
   mockAnnouncements,
@@ -14,7 +16,15 @@ import {
   mockUser,
   nextLesson as pickNext,
 } from "@/data/mock-aluno";
-import { getSessionFromCookies } from "@/lib/auth/session";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Painel do aluno — Escola Flávio Milhomem",
@@ -28,13 +38,14 @@ export const metadata: Metadata = {
  * recomendação (próximas aulas, todas as aulas em andamento, em alta
  * no fórum, anúncios). Sem dados reais por enquanto — alimentado pelo
  * mock-aluno.
+ *
+ * Faixa de métricas: shadcn Card + Progress + Avatar (@cursor / Gemini).
  */
 export default async function DashboardPage() {
   const session = await getSessionFromCookies();
   const studentName = session?.name ?? mockUser.name;
   const next = pickNext();
 
-  // Aulas em andamento + a próxima sugerida (deduplicadas).
   const inProgress = mockCourse.modules.flatMap((m) =>
     m.lessons.filter((l) => l.status === "em-andamento"),
   );
@@ -42,32 +53,57 @@ export default async function DashboardPage() {
     ? [next, ...inProgress.filter((l) => l.id !== next.id)]
     : inProgress;
 
-  // Próximas: pega 6 não-iniciadas a partir de onde o aluno parou.
   const upcoming = mockCourse.modules
     .flatMap((m) => m.lessons)
     .filter((l) => l.status === "nao-iniciada")
     .slice(0, 6);
 
-  // Aulas concluídas para o "Já assistido"
   const completed = mockCourse.modules.flatMap((m) =>
     m.lessons.filter((l) => l.status === "concluida"),
   );
 
-  // Total de horas assistidas
-  const totalSec = completed.reduce((acc, l) => acc + l.durationSec, 0)
-    + (next?.watchedSec ?? 0);
+  const totalSec =
+    completed.reduce((acc, l) => acc + l.durationSec, 0) +
+    (next?.watchedSec ?? 0);
+
+  const lessonsProgressPct = Math.min(
+    100,
+    Math.round(
+      (completed.length / Math.max(1, mockCourse.lessonCount)) * 100,
+    ),
+  );
+
+  const initials = initialsFromName(studentName);
 
   return (
     <>
       <HeroBillboard course={mockCourse} nextLesson={next} studentName={studentName} />
 
-      {/* Faixa de stats — embaixo do billboard */}
       <section className="border-paper-100 border-y bg-carbon-elevated/50">
-        <div className="px-gutter mx-auto grid max-w-(--container-narrow) grid-cols-2 gap-6 py-6 md:grid-cols-4 lg:px-12">
-          <Stat label="Aulas concluídas" value={`${completed.length} / ${mockCourse.lessonCount}`} />
-          <Stat label="Tempo de estudo" value={formatDuration(totalSec)} />
-          <Stat label="Sequência semanal" value={`${mockUser.weeklyStreak} dias`} />
-          <Stat label="Próxima sessão ao vivo" value="15/mai · 20h" />
+        <div className="px-gutter mx-auto flex max-w-(--container-narrow) flex-col gap-4 py-6 lg:flex-row lg:items-stretch lg:gap-6 lg:px-12">
+          <Card
+            size="sm"
+            className="border-paper-100/50 bg-card/90 flex w-full shrink-0 items-center justify-center py-8 ring-1 ring-paper-100/10 lg:w-40 lg:py-6"
+          >
+            <Avatar size="lg" className="border border-paper-200">
+              <AvatarFallback className="bg-muted font-serif text-lg text-paper">
+                {initials}
+              </AvatarFallback>
+            </Avatar>
+          </Card>
+          <div className="grid flex-1 grid-cols-2 gap-4 lg:grid-cols-4">
+            <StatCard
+              label="Aulas concluídas"
+              value={`${completed.length} / ${mockCourse.lessonCount}`}
+              progress={lessonsProgressPct}
+            />
+            <StatCard label="Tempo de estudo" value={formatDuration(totalSec)} />
+            <StatCard
+              label="Sequência semanal"
+              value={`${mockUser.weeklyStreak} dias`}
+            />
+            <StatCard label="Próxima sessão ao vivo" value="15/mai · 20h" />
+          </div>
         </div>
       </section>
 
@@ -133,11 +169,46 @@ export default async function DashboardPage() {
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function initialsFromName(name: string): string {
+  return name
+    .split(/\s+/)
+    .map((p) => p[0])
+    .filter(Boolean)
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+}
+
+function StatCard({
+  label,
+  value,
+  progress,
+  className,
+}: {
+  label: string;
+  value: string;
+  progress?: number;
+  className?: string;
+}) {
   return (
-    <div>
-      <p className="text-paper-600 fm-mono">{label}</p>
-      <p className="text-paper mt-2 font-serif text-2xl">{value}</p>
-    </div>
+    <Card
+      size="sm"
+      className={cn(
+        "border-paper-100/50 bg-card/90 ring-1 ring-paper-100/10 shadow-none backdrop-blur-sm",
+        className,
+      )}
+    >
+      <CardHeader className="pb-2">
+        <CardDescription className="text-paper-600 fm-mono">{label}</CardDescription>
+        <CardTitle className="font-serif text-2xl leading-tight text-paper">
+          {value}
+        </CardTitle>
+      </CardHeader>
+      {progress != null && (
+        <CardContent className="pt-0">
+          <LabeledProgress value={progress} />
+        </CardContent>
+      )}
+    </Card>
   );
 }

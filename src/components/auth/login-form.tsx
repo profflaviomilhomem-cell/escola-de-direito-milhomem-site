@@ -113,7 +113,7 @@ export function LoginForm({ redirectTo = "/aluno/dashboard" }: Props) {
           Lembrar de mim
         </label>
         <Link
-          href="/contato"
+          href="/esqueci-senha"
           className="text-paper-700 hover:text-paper transition-colors"
         >
           Esqueci minha senha

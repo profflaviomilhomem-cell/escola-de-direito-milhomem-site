@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
+import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { formatDuration, mockCourse } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Meus cursos — Escola Flávio Milhomem",
@@ -61,9 +62,9 @@ export default function MeusCursosPage() {
             </div>
           </div>
           <div className="bg-carbon-elevated p-5">
-            <ProgressBar
-              value={overall}
+            <LabeledProgress
               label={`${mockCourse.completedLessonCount} de ${mockCourse.lessonCount} aulas`}
+              value={progressPercentFromRatio(overall)}
             />
             <p className="text-paper-700 fm-mono mt-3">
               {mockCourse.modules.length} módulos · {formatDuration(totalSec)}

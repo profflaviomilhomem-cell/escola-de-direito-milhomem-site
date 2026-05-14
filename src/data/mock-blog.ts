@@ -31,6 +31,8 @@ export type MockBlogPost = {
   tags: string[];
   /** Cover gradient (sem assets externos por enquanto) */
   cover: { from: string; to: string };
+  /** Imagem de capa opcional (URL absoluta ou /public) */
+  coverImage?: string;
   author: { name: string; role: string; avatarSrc: string };
 };
 

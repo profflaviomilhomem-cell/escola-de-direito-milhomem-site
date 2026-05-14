@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { ProgressBar } from "@/components/aluno/progress-bar";
-import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
+import { Progress } from "@/components/ui/progress";
+import { formatDuration, type MockLesson } from "@/data/mock-aluno";
+import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {
   lesson: MockLesson;
@@ -83,7 +83,12 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
       {/* Progress bar fora da thumbnail (mais legível) */}
       {(inProgress || isDone) && (
         <div className="mt-2">
-          <ProgressBar value={isDone ? 1 : progress} size="sm" />
+          <Progress
+            value={
+              isDone ? 100 : progressPercentFromRatio(progress)
+            }
+            className="h-[3px] bg-paper-200"
+          />
         </div>
       )}
 
