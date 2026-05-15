@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { siteConfig } from "@/config/site";
 
 function IconInstagram({ className }: { className?: string }) {
@@ -56,6 +57,9 @@ export function Footer() {
           Flávio <em className="text-amber italic">Milhomem</em>
         </span>
       </Link>
+      <p className="text-paper-500 mx-auto mt-3 max-w-sm font-mono text-[10px] uppercase tracking-[0.22em]">
+        {siteConfig.taglineInstitucional}
+      </p>
 
       <nav
         aria-label="Mapa do site"
@@ -168,7 +172,9 @@ export function Footer() {
         </nav>
       </div>
 
-      <p className="text-paper-400 mt-10 font-mono text-[9px] tracking-[0.3em]">
+      <InstitutionalNotice className="mx-auto mt-10 max-w-xl" />
+
+      <p className="text-paper-400 mt-8 font-mono text-[9px] tracking-[0.3em]">
         © {new Date().getFullYear()} {siteConfig.name.toUpperCase()} ·
         DESENVOLVIDO POR ORBEE LABS · TODOS OS DIREITOS RESERVADOS
       </p>

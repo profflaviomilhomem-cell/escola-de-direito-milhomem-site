@@ -2,23 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { CareerJourneyPath } from "@/components/marketing/career-journey-path";
+import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
+import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
+import { CAREER_JOURNEY_SPAN } from "@/data/career-journey";
 import { obrasMilhomemCatalogo } from "@/data/obras-milhomem";
 
 export const metadata: Metadata = {
   title: "Sobre Flávio Milhomem",
-  description:
-    "Promotor de Justiça do MPDFT desde 1996, mestre pela Universidade Católica Portuguesa, especialista pela ENM francesa, professor há 25 anos.",
+  description: copy.sobre.metaDescription,
   alternates: { canonical: "/sobre" },
 };
-
-const milestones = [
-  { year: "1996", text: "Ingresso no MPDFT como Promotor de Justiça" },
-  { year: "2001", text: "Mestrado pela Universidade Católica Portuguesa" },
-  { year: "2008", text: "Especialização pela École Nationale de la Magistrature (França)" },
-  { year: "2012", text: "Coordenador da Revista Jurídica do MPDFT" },
-  { year: "2025", text: "Ouvidor-Geral do MPDFT (biênio 2025-2027)" },
-] as const;
 
 const credentialHighlights = [
   {
@@ -41,7 +36,7 @@ const credentialHighlights = [
 const sidebarStats = [
   {
     value: String(siteConfig.professor.careerYears),
-    label: "Anos de carreira no MPDFT",
+    label: "Anos de prática jurídica",
   },
   {
     value: String(siteConfig.professor.teachingYears),
@@ -63,7 +58,10 @@ const sidebarLinks = [
  */
 export default function SobrePage() {
   return (
-    <article className="px-gutter py-page mx-auto max-w-(--container-narrow) lg:px-12">
+    <article
+      id="sobre-conteudo"
+      className="px-gutter py-page mx-auto max-w-(--container-narrow) lg:px-12"
+    >
       <header className="mb-10 max-w-4xl lg:mb-14">
         <p className="text-amber fm-mono">Sobre o professor</p>
         <h1
@@ -73,29 +71,20 @@ export default function SobrePage() {
           Flávio <em className="text-amber italic">Milhomem</em>
         </h1>
         <p className="text-paper-700 mt-6 max-w-3xl text-lg leading-relaxed md:text-xl">
-          Antes de falar em módulos ou datas, importa saber{" "}
-          <strong className="text-paper font-medium">de onde vem a autoridade</strong>{" "}
-          deste projeto. Flávio Milhomem articula, num só percurso, a carreira no
-          Ministério Público, a docência universitária e a produção académica que
-          atravessa concursos e tribunais — sem distância entre o retrato e o
-          rigor que exige de si em sala.
+          {copy.sobre.introLead}
         </p>
         <p className="text-paper-700 mt-5 max-w-3xl text-lg leading-relaxed md:text-xl">
-          Daqui em diante, o texto cruza esse percurso com a{" "}
-          <strong className="text-paper font-medium">proposta da Escola</strong>
-          : preparação e reflexão pelo ângulo da acusação, para quem já atua ou se
-          prepara para o ofício — com o mesmo critério técnico e ético que o
-          processo penal cobra de quem fala em nome do Estado.
+          {copy.sobre.introBody}
         </p>
       </header>
 
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[minmax(0,340px)_minmax(0,1fr)] xl:gap-10">
-        <aside className="mx-auto flex min-h-0 w-full max-w-sm flex-col gap-5 lg:sticky lg:top-28 lg:mx-0 lg:max-w-none">
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[minmax(0,440px)_minmax(0,1fr)] xl:gap-10">
+        <aside className="mx-auto flex min-h-0 w-full max-w-lg flex-col gap-5 lg:sticky lg:top-28 lg:mx-0 lg:max-w-none">
           <figure className="m-0 shrink-0">
             <div className="border-amber/30 relative overflow-hidden border">
               <Image
                 src="/images/professor/flavio-portrait.png"
-                alt="Retrato de Flávio Milhomem, Promotor de Justiça do MPDFT"
+                alt={`Retrato de ${siteConfig.professor.fullName}`}
                 width={528}
                 height={670}
                 priority
@@ -109,7 +98,7 @@ export default function SobrePage() {
               />
             </div>
             <figcaption className="text-paper-600 fm-mono mt-3 text-sm leading-relaxed">
-              MPDFT · 30 anos de carreira · Ouvidor-Geral 2025-2027
+              {copy.sobre.portraitCaption}
             </figcaption>
           </figure>
 
@@ -174,6 +163,8 @@ export default function SobrePage() {
               ))}
             </nav>
           </div>
+
+          <CareerJourneyPath />
         </aside>
 
         <div className="prose-juridica flex min-w-0 w-full max-w-none flex-col gap-12">
@@ -189,14 +180,7 @@ export default function SobrePage() {
               className="text-paper-800 leading-[1.65]"
               style={{ fontSize: "clamp(18px, 2.2vw, 20px)" }}
             >
-              Promotor de Justiça do{" "}
-              <strong className="text-paper">
-                Ministério Público do Distrito Federal e Territórios
-              </strong>{" "}
-              desde 1996, com 30 anos de carreira institucional. Mestre em
-              Ciências Jurídico-Criminais pela Universidade Católica Portuguesa,
-              especialista pela École Nationale de la Magistrature francesa.
-              Professor de Direito Penal e Processo Penal há 25 anos.
+              {copy.sobre.credentialsLead}
             </p>
 
             <dl className="not-prose mt-6 grid gap-4 sm:grid-cols-3 sm:items-start">
@@ -328,25 +312,14 @@ export default function SobrePage() {
             >
               Trajetória em marcos
             </h2>
-            <p className="text-paper-600 mb-6 max-w-prose text-sm leading-relaxed">
-              Marcos que ordenam formação académica, carreira no MP e funções de
-              destaque — fáceis de escanear antes da leitura linear.
+            <p className="text-paper-600 mb-2 max-w-prose text-sm leading-relaxed">
+              A sequência completa ({CAREER_JOURNEY_SPAN.from}–{CAREER_JOURNEY_SPAN.to}) está na
+              jornada animada — no desktop, no painel ao lado; no celular,{" "}
+              <a href="#jornada-carreira" className="text-amber underline-offset-2 hover:underline">
+                abra a animação
+              </a>
+              .
             </p>
-            <ul className="not-prose border-paper-100 mt-2 space-y-5 border-t pt-8">
-              {milestones.map((item) => (
-                <li
-                  key={item.year}
-                  className="grid grid-cols-[minmax(0,5.75rem)_1fr] items-baseline gap-x-4 gap-y-1 sm:grid-cols-[6.75rem_1fr] sm:gap-x-5"
-                >
-                  <span className="text-amber font-mono text-sm font-semibold tabular-nums tracking-[0.14em] sm:text-base">
-                    {item.year}
-                  </span>
-                  <span className="text-paper-800 text-[15px] leading-relaxed sm:text-base sm:leading-relaxed">
-                    {item.text}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </section>
 
           {/* — Tese da Escola (destaque editorial) — */}
@@ -368,9 +341,7 @@ export default function SobrePage() {
               </p>
             </blockquote>
             <p className="text-paper-700 mt-6 leading-[1.75]">
-              A Escola nasce dessa tese: respeitar a especificidade técnica do MP
-              e a ética processual que separa o promotor do litigante comum — em
-              vez de repetir doutrinária desatualizada.
+              {copy.sobre.propostaClosing}
             </p>
           </section>
 
@@ -391,6 +362,8 @@ export default function SobrePage() {
               Programa →
             </Link>
           </div>
+
+          <InstitutionalNotice variant="full" className="not-prose max-w-none" />
 
           <aside className="border-paper-100/60 text-paper-600 rounded-md border border-dashed px-4 py-3 text-sm italic">
             Texto editorial em revisão pela mentoria estratégica. Versão final

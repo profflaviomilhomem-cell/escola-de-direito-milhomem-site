@@ -1001,7 +1001,7 @@ function TabCalculo(p: TabCalculoProps) {
                   className="bg-amber absolute top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300"
                   style={{
                     left: `${p.rangeMarkerPct}%`,
-                    boxShadow: "0 0 12px rgba(221, 173, 12, 0.5)",
+                    boxShadow: "0 0 12px rgba(241, 187, 65, 0.5)",
                   }}
                 />
               </div>
@@ -1014,8 +1014,8 @@ function TabCalculo(p: TabCalculoProps) {
               Balança da justiça
             </p>
             <svg viewBox="0 0 220 200" className="w-full max-w-[220px]">
-              <line x1="110" y1="190" x2="110" y2="60" stroke="#DDAD0C" strokeWidth="2" />
-              <line x1="80" y1="190" x2="140" y2="190" stroke="#DDAD0C" strokeWidth="2" />
+              <line x1="110" y1="190" x2="110" y2="60" stroke="#f1bb41" strokeWidth="2" />
+              <line x1="80" y1="190" x2="140" y2="190" stroke="#f1bb41" strokeWidth="2" />
               <g
                 style={{
                   transform: `rotate(${p.balanceAngle}deg)`,
@@ -1023,14 +1023,14 @@ function TabCalculo(p: TabCalculoProps) {
                   transition: "transform .5s cubic-bezier(0.34, 1.3, 0.64, 1)",
                 }}
               >
-                <line x1="20" y1="60" x2="200" y2="60" stroke="#DDAD0C" strokeWidth="2" />
-                <line x1="20" y1="60" x2="20" y2="80" stroke="#DDAD0C" strokeWidth="1.5" />
-                <ellipse cx="20" cy="84" rx="22" ry="4" fill="#DDAD0C" opacity="0.85" />
-                <text x="20" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#EAE4D9" letterSpacing="1">−</text>
-                <line x1="200" y1="60" x2="200" y2="80" stroke="#DDAD0C" strokeWidth="1.5" />
-                <ellipse cx="200" cy="84" rx="22" ry="4" fill="#DDAD0C" opacity="0.85" />
-                <text x="200" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#EAE4D9" letterSpacing="1">+</text>
-                <circle cx="110" cy="60" r="4" fill="#DDAD0C" />
+                <line x1="20" y1="60" x2="200" y2="60" stroke="#f1bb41" strokeWidth="2" />
+                <line x1="20" y1="60" x2="20" y2="80" stroke="#f1bb41" strokeWidth="1.5" />
+                <ellipse cx="20" cy="84" rx="22" ry="4" fill="#f1bb41" opacity="0.85" />
+                <text x="20" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#e0e0e0" letterSpacing="1">−</text>
+                <line x1="200" y1="60" x2="200" y2="80" stroke="#f1bb41" strokeWidth="1.5" />
+                <ellipse cx="200" cy="84" rx="22" ry="4" fill="#f1bb41" opacity="0.85" />
+                <text x="200" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#e0e0e0" letterSpacing="1">+</text>
+                <circle cx="110" cy="60" r="4" fill="#f1bb41" />
               </g>
             </svg>
             <p className="text-paper-700 mt-2 font-mono text-[10px] uppercase tracking-[0.2em]">

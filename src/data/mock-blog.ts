@@ -63,7 +63,7 @@ export const mockBlogPosts: MockBlogPost[] = [
     readingMin: 7,
     views: 342,
     tags: ["STJ", "cadeia de custódia", "art. 158-D", "Lei 13.964/19"],
-    cover: { from: "#0E2547", to: "#06172F" },
+    cover: { from: "#0c0a38", to: "#030024" },
     author: FLAVIO,
   },
   {

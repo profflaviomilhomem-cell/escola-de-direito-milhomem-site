@@ -21,25 +21,24 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* === Paleta principal (identidade oficial Flávio Milhomem) ===
-   * #06172F navy profundo · #DDAD0C mostarda · #EAE4D9 creme · #242A34 ink
-   * Os nomes legados (carbon/paper/amber) foram preservados apontando
-   * para os novos HEX para evitar refactor em massa nos componentes.
+  /* === Paleta principal (identidade visual 2026) ===
+   * #030024 navy · #242A34 charcoal · #F1BB41 gold · #E0E0E0 gray
+   * Nomes legados (carbon/paper/amber) preservados nos componentes.
    */
-  --color-carbon: #06172f;
+  --color-carbon: #030024;
   --color-carbon-elevated: #242a34;
-  --color-paper: #eae4d9;
-  --color-amber: #ddad0c;
-  --color-amber-soft: #e8c547;
+  --color-paper: #e0e0e0;
+  --color-amber: #f1bb41;
+  --color-amber-soft: #f5ce6a;
 
-  /* Tons auxiliares derivados de paper #EAE4D9 (RGB 234, 228, 217) */
-  --color-paper-50: rgba(234, 228, 217, 0.04);
-  --color-paper-100: rgba(234, 228, 217, 0.08);
-  --color-paper-200: rgba(234, 228, 217, 0.12);
-  --color-paper-400: rgba(234, 228, 217, 0.4);
-  --color-paper-600: rgba(234, 228, 217, 0.6);
-  --color-paper-700: rgba(234, 228, 217, 0.7);
-  --color-paper-800: rgba(234, 228, 217, 0.8);
+  /* Tons auxiliares derivados de paper #E0E0E0 (RGB 224, 224, 224) */
+  --color-paper-50: rgba(224, 224, 224, 0.04);
+  --color-paper-100: rgba(224, 224, 224, 0.08);
+  --color-paper-200: rgba(224, 224, 224, 0.12);
+  --color-paper-400: rgba(224, 224, 224, 0.4);
+  --color-paper-600: rgba(224, 224, 224, 0.6);
+  --color-paper-700: rgba(224, 224, 224, 0.7);
+  --color-paper-800: rgba(224, 224, 224, 0.8);
 
   /* === Paleta secundária (legado — preservado para outras páginas) === */
   --color-tinta-50: #f3f5fa;
@@ -84,29 +83,27 @@
   --color-sucesso-600: #3d9a55;
 
   /* === Aliases semânticos (agora dark navy) === */
-  --color-primary: #ddad0c;
-  --color-accent: #ddad0c;
-  --color-background: #06172f;
-  --color-foreground: #eae4d9;
-  --color-muted: rgba(234, 228, 217, 0.6);
-  --color-border: rgba(221, 173, 12, 0.2);
+  --color-primary: #f1bb41;
+  --color-accent: #f1bb41;
+  --color-background: #030024;
+  --color-foreground: #e0e0e0;
+  --color-muted: rgba(224, 224, 224, 0.6);
+  --color-border: rgba(241, 187, 65, 0.2);
 
   /* === Fontes (variáveis vêm de next/font no layout) ===
-   * Display: League Spartan Bold (geométrica) — títulos e marca
-   * Body: Hiragino Maru Gothic ProN W4 (humanística arredondada)
+   * Display: Clash Display — títulos e marca
+   * Body: Hiragino Maru Gothic ProN W4 (secundária) — corpo
    * Mono: JetBrains Mono — labels uppercase com tracking
-   * Os tokens font-serif e font-sans foram remapeados para a nova
-   * dupla, mantendo as classes existentes (font-serif, font-sans).
    */
   --font-display:
-    var(--font-league-spartan), "League Spartan", "Helvetica Neue", Helvetica,
+    var(--font-clash-display), "Clash Display", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   --font-body:
     var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
     "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, sans-serif;
   --font-serif:
-    var(--font-league-spartan), "League Spartan", "Helvetica Neue", Helvetica,
+    var(--font-clash-display), "Clash Display", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   --font-sans:
     var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
@@ -134,38 +131,38 @@
 :root {
   color-scheme: dark;
   /* shadcn — alinhado a carbon / paper / amber (@theme --color-*) */
-  --background: #06172f;
-  --foreground: #eae4d9;
+  --background: #030024;
+  --foreground: #e0e0e0;
   --card: #242a34;
-  --card-foreground: #eae4d9;
+  --card-foreground: #e0e0e0;
   --popover: #242a34;
-  --popover-foreground: #eae4d9;
-  --primary: #ddad0c;
-  --primary-foreground: #06172f;
-  --secondary: rgba(234, 228, 217, 0.08);
-  --secondary-foreground: #eae4d9;
-  --muted: rgba(234, 228, 217, 0.1);
-  --muted-foreground: rgba(234, 228, 217, 0.62);
-  --accent: rgba(221, 173, 12, 0.14);
-  --accent-foreground: #eae4d9;
+  --popover-foreground: #e0e0e0;
+  --primary: #f1bb41;
+  --primary-foreground: #030024;
+  --secondary: rgba(224, 224, 224, 0.08);
+  --secondary-foreground: #e0e0e0;
+  --muted: rgba(224, 224, 224, 0.1);
+  --muted-foreground: rgba(224, 224, 224, 0.62);
+  --accent: rgba(241, 187, 65, 0.14);
+  --accent-foreground: #e0e0e0;
   --destructive: #dc4a52;
-  --border: rgba(234, 228, 217, 0.12);
-  --input: rgba(234, 228, 217, 0.14);
-  --ring: #ddad0c;
-  --chart-1: #ddad0c;
-  --chart-2: #e8c547;
+  --border: rgba(224, 224, 224, 0.12);
+  --input: rgba(224, 224, 224, 0.14);
+  --ring: #f1bb41;
+  --chart-1: #f1bb41;
+  --chart-2: #f5ce6a;
   --chart-3: #637bb6;
   --chart-4: #94a7d0;
   --chart-5: #3e3b2e;
   --radius: 0.625rem;
   --sidebar: #242a34;
-  --sidebar-foreground: #eae4d9;
-  --sidebar-primary: #ddad0c;
-  --sidebar-primary-foreground: #06172f;
-  --sidebar-accent: rgba(234, 228, 217, 0.08);
-  --sidebar-accent-foreground: #eae4d9;
-  --sidebar-border: rgba(234, 228, 217, 0.12);
-  --sidebar-ring: #ddad0c;
+  --sidebar-foreground: #e0e0e0;
+  --sidebar-primary: #f1bb41;
+  --sidebar-primary-foreground: #030024;
+  --sidebar-accent: rgba(224, 224, 224, 0.08);
+  --sidebar-accent-foreground: #e0e0e0;
+  --sidebar-border: rgba(224, 224, 224, 0.12);
+  --sidebar-ring: #f1bb41;
 }
 
 html {
@@ -246,15 +243,15 @@ h6,
   background:
     radial-gradient(
       ellipse 70% 50% at 80% 8%,
-      rgba(221, 173, 12, 0.08),
+      rgba(241, 187, 65, 0.08),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 45% at 12% 92%,
-      rgba(221, 173, 12, 0.05),
+      rgba(241, 187, 65, 0.05),
       transparent 65%
     ),
-    linear-gradient(180deg, #0e2547 0%, #06172f 55%, #06172f 100%);
+    linear-gradient(180deg, #0c0a38 0%, #030024 55%, #030024 100%);
 }
 
 .fm-bg-grid {
@@ -264,8 +261,8 @@ h6,
   pointer-events: none;
   opacity: 0.5;
   background-image:
-    linear-gradient(rgba(221, 173, 12, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(221, 173, 12, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(241, 187, 65, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 187, 65, 0.04) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
@@ -469,37 +466,37 @@ html.fm-cursor-active [contenteditable="true"] {
  */
 .dark {
   /* Mesma paleta — classe .dark usada por alguns primitives shadcn */
-  --background: #06172f;
-  --foreground: #eae4d9;
+  --background: #030024;
+  --foreground: #e0e0e0;
   --card: #242a34;
-  --card-foreground: #eae4d9;
+  --card-foreground: #e0e0e0;
   --popover: #242a34;
-  --popover-foreground: #eae4d9;
-  --primary: #ddad0c;
-  --primary-foreground: #06172f;
-  --secondary: rgba(234, 228, 217, 0.08);
-  --secondary-foreground: #eae4d9;
-  --muted: rgba(234, 228, 217, 0.1);
-  --muted-foreground: rgba(234, 228, 217, 0.62);
-  --accent: rgba(221, 173, 12, 0.14);
-  --accent-foreground: #eae4d9;
+  --popover-foreground: #e0e0e0;
+  --primary: #f1bb41;
+  --primary-foreground: #030024;
+  --secondary: rgba(224, 224, 224, 0.08);
+  --secondary-foreground: #e0e0e0;
+  --muted: rgba(224, 224, 224, 0.1);
+  --muted-foreground: rgba(224, 224, 224, 0.62);
+  --accent: rgba(241, 187, 65, 0.14);
+  --accent-foreground: #e0e0e0;
   --destructive: #dc4a52;
-  --border: rgba(234, 228, 217, 0.12);
-  --input: rgba(234, 228, 217, 0.14);
-  --ring: #ddad0c;
-  --chart-1: #ddad0c;
-  --chart-2: #e8c547;
+  --border: rgba(224, 224, 224, 0.12);
+  --input: rgba(224, 224, 224, 0.14);
+  --ring: #f1bb41;
+  --chart-1: #f1bb41;
+  --chart-2: #f5ce6a;
   --chart-3: #637bb6;
   --chart-4: #94a7d0;
   --chart-5: #3e3b2e;
   --sidebar: #242a34;
-  --sidebar-foreground: #eae4d9;
-  --sidebar-primary: #ddad0c;
-  --sidebar-primary-foreground: #06172f;
-  --sidebar-accent: rgba(234, 228, 217, 0.08);
-  --sidebar-accent-foreground: #eae4d9;
-  --sidebar-border: rgba(234, 228, 217, 0.12);
-  --sidebar-ring: #ddad0c;
+  --sidebar-foreground: #e0e0e0;
+  --sidebar-primary: #f1bb41;
+  --sidebar-primary-foreground: #030024;
+  --sidebar-accent: rgba(224, 224, 224, 0.08);
+  --sidebar-accent-foreground: #e0e0e0;
+  --sidebar-border: rgba(224, 224, 224, 0.12);
+  --sidebar-ring: #f1bb41;
 }
 /*---break---
  */
@@ -615,11 +612,11 @@ html.light .fm-bg-noise {
 
 /* === Visão: contraste, monocromático, apoio leitura + mídia === */
 html[data-fm-vision="high-contrast"]:not(.light) {
-  --color-paper-700: rgba(234, 228, 217, 0.95);
-  --color-paper-800: rgba(234, 228, 217, 1);
-  --color-amber: #f2c84c;
-  --color-amber-soft: #ffd54d;
-  --color-paper-100: rgba(234, 228, 217, 0.16);
+  --color-paper-700: rgba(224, 224, 224, 0.95);
+  --color-paper-800: rgba(224, 224, 224, 1);
+  --color-amber: #f5cd6a;
+  --color-amber-soft: #ffe08a;
+  --color-paper-100: rgba(224, 224, 224, 0.16);
 }
 
 html[data-fm-vision="high-contrast"].light {
@@ -636,12 +633,12 @@ html[data-fm-vision="mono"] body {
 
 /* Apoio real: contraste, texto mais legível, links visíveis, mídia mais nítida */
 html[data-fm-vision="assist-full"]:not(.light) {
-  --color-paper-700: rgba(234, 228, 217, 0.97);
-  --color-paper-800: rgba(234, 228, 217, 1);
-  --color-amber: #f5d54a;
-  --color-amber-soft: #ffe08a;
-  --color-paper-100: rgba(234, 228, 217, 0.18);
-  --color-paper-600: rgba(234, 228, 217, 0.78);
+  --color-paper-700: rgba(224, 224, 224, 0.97);
+  --color-paper-800: rgba(224, 224, 224, 1);
+  --color-amber: #f7d878;
+  --color-amber-soft: #ffe9a8;
+  --color-paper-100: rgba(224, 224, 224, 0.18);
+  --color-paper-600: rgba(224, 224, 224, 0.78);
 }
 
 html[data-fm-vision="assist-full"].light {
@@ -680,10 +677,10 @@ html[data-fm-vision="assist-full"] iframe {
 /* Embeds WordPress (HTML migrado): contorno sem duplicar filtro no iframe */
 html[data-fm-vision="assist-full"] .wp-migrated-html .wp-block-embed__wrapper {
   border-radius: 4px;
-  box-shadow: inset 0 0 0 2px rgba(221, 173, 12, 0.35);
+  box-shadow: inset 0 0 0 2px rgba(241, 187, 65, 0.35);
 }
 
 html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   filter: contrast(1.12) saturate(1.22) brightness(1.02);
-  box-shadow: inset 0 0 0 2px rgba(221, 173, 12, 0.45);
+  box-shadow: inset 0 0 0 2px rgba(241, 187, 65, 0.45);
 }

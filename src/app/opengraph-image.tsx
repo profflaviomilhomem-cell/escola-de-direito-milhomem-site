@@ -17,9 +17,9 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OGImage() {
-  const navy = "#06172F";
-  const mostarda = "#DDAD0C";
-  const creme = "#EAE4D9";
+  const navy = "#030024";
+  const mostarda = "#f1bb41";
+  const creme = "#e0e0e0";
 
   return new ImageResponse(
     (
@@ -33,7 +33,7 @@ export default async function OGImage() {
           background: navy,
           padding: "72px 88px",
           color: creme,
-          backgroundImage: `radial-gradient(ellipse at 80% 20%, rgba(221,173,12,0.12) 0%, rgba(221,173,12,0) 60%)`,
+          backgroundImage: `radial-gradient(ellipse at 80% 20%, rgba(241, 187, 65,0.12) 0%, rgba(241, 187, 65,0) 60%)`,
         }}
       >
         <div
@@ -49,7 +49,7 @@ export default async function OGImage() {
           }}
         >
           <span>Escola Flávio Milhomem</span>
-          <span style={{ color: "rgba(234,228,217,0.55)" }}>MPDFT · Brasília</span>
+          <span style={{ color: "rgba(224, 224, 224,0.55)" }}>MPDFT · Brasília</span>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -82,7 +82,7 @@ export default async function OGImage() {
               fontSize: 30,
               lineHeight: 1.35,
               fontStyle: "italic",
-              color: "rgba(234,228,217,0.88)",
+              color: "rgba(224, 224, 224,0.88)",
               maxWidth: 940,
             }}
           >
@@ -99,7 +99,7 @@ export default async function OGImage() {
             fontSize: 16,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "rgba(234,228,217,0.6)",
+            color: "rgba(224, 224, 224,0.6)",
           }}
         >
           <span>Edição Lançamento · 2026</span>

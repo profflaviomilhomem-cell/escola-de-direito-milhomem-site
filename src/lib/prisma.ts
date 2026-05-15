@@ -19,7 +19,6 @@ import { PrismaNeon } from "@prisma/adapter-neon";
  */
 
 declare global {
-  // eslint-disable-next-line no-var
   var prismaGlobal: PrismaClient | undefined;
 }
 

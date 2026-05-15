@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CATEGORY_LABEL, publishedBlogPosts } from "@/data/mock-blog";
+import { publishedBlogPosts } from "@/data/mock-blog";
 import { migratedPosts } from "@/data/migrated-posts";
 import {
   blogListHref,
   filterPostsByPublishedRange,
   resolveDateRangeFromSearchParams,
 } from "@/lib/blog/date-filter";
+import {
+  DB_CATEGORY_LABEL,
+  mapPrismaPostToList,
+  type BlogListPost,
+} from "@/lib/blog/prisma-posts";
 import { prisma } from "@/lib/prisma";
 import { BlogCard } from "@/components/marketing/blog-card";
 
@@ -17,14 +22,6 @@ export const metadata: Metadata = {
   description:
     "Análise de decisões do STJ/STF, dogmática aplicada e comentários atuais sobre Direito Penal e Processo Penal pelo ângulo da acusação.",
   alternates: { canonical: "/blog" },
-};
-
-// Map de categorias do DB para o label mock (ajuste conforme necessário)
-const DB_CATEGORY_LABEL: Record<string, string> = {
-  ANALISE_DECISAO: "Análise de decisão",
-  DOGMATICA: "Dogmática aplicada",
-  COMENTARIO: "Comentário atual",
-  GERAL: "Geral",
 };
 
 const PAGE_SIZE = 9;
@@ -58,7 +55,7 @@ export default async function BlogPage({
   const requestedPage =
     Number.isFinite(parsed) && parsed >= 1 ? Math.floor(parsed) : 1;
 
-  let posts: any[] = [];
+  let posts: BlogListPost[] = [];
 
   try {
     const dbPosts = await prisma.blogPost.findMany({
@@ -68,23 +65,8 @@ export default async function BlogPage({
     });
 
     if (dbPosts.length > 0) {
-      posts = dbPosts.map((p) => ({
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt,
-        category: p.category,
-        coverImage:
-          (p as { coverImage?: string | null }).coverImage ?? undefined,
-        publishedAt: p.publishedAt?.toISOString(),
-        author: {
-          name: p.author.name ?? "Flávio Milhomem",
-          avatarSrc: "/images/professor/flavio-avatar-64.jpg", // Placeholder fixo
-        },
-        // Atributos visuais que não estão no DB (usamos fixo ou random)
-        cover: { from: "#06172f", to: "#0a2a4d" },
-        readingMin: Math.ceil(p.body.length / 1000) || 5,
-      }));
-    } else if (migratedPosts && migratedPosts.length > 0) {
+      posts = dbPosts.map(mapPrismaPostToList);
+    } else if (migratedPosts.length > 0) {
       posts = migratedPosts;
     } else {
       posts = publishedBlogPosts();

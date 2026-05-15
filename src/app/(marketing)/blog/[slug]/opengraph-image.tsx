@@ -32,7 +32,7 @@ export default async function Image({ params }: Params) {
       (
         <div
           style={{
-            background: "#06172f",
+            background: "#030024",
             width: "100%",
             height: "100%",
             display: "flex",
@@ -64,7 +64,7 @@ export default async function Image({ params }: Params) {
     (
       <div
         style={{
-          background: "#06172f",
+          background: "#030024",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -136,7 +136,7 @@ export default async function Image({ params }: Params) {
                  alignItems: "center", 
                  justifyContent: "center",
                  fontSize: 24,
-                 color: "#06172f",
+                 color: "#030024",
                  fontWeight: "bold",
                  marginRight: 20
                }}
@@ -145,7 +145,7 @@ export default async function Image({ params }: Params) {
              </div>
              <div style={{ display: "flex", flexDirection: "column" }}>
                 <span style={{ color: "#fcfaf2", fontSize: 24, fontWeight: "bold" }}>Flávio Milhomem</span>
-                <span style={{ color: "rgba(252, 250, 242, 0.6)", fontSize: 18, textTransform: "uppercase", letterSpacing: "0.1em" }}>Promotor de Justiça</span>
+                <span style={{ color: "rgba(252, 250, 242, 0.6)", fontSize: 18, textTransform: "uppercase", letterSpacing: "0.1em" }}>Professor de Direito Penal</span>
              </div>
           </div>
           <div style={{ color: "#e6c35c", fontSize: 20, fontWeight: "bold", letterSpacing: "0.1em" }}>

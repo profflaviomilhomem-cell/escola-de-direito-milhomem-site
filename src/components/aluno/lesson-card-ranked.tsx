@@ -45,7 +45,7 @@ export function LessonCardRanked({ lesson }: Props) {
 
       {/* Card poster 2:3 */}
       <div
-        className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(221,173,12,0.18)] relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 md:ml-20"
+        className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241, 187, 65,0.18)] relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 md:ml-20"
         style={{
           backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
         }}
@@ -56,7 +56,7 @@ export function LessonCardRanked({ lesson }: Props) {
           className="absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at top right, rgba(221,173,12,0.12), transparent 60%)",
+              "radial-gradient(ellipse at top right, rgba(241, 187, 65,0.12), transparent 60%)",
           }}
         />
 

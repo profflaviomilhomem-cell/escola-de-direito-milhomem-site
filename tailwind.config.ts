@@ -86,26 +86,24 @@ export default {
         border: "#dcdacf",
       },
       fontFamily: {
-        // Newsreader — serifa de títulos e citações.
-        // Família variável (peso 200-800), feita para tela.
+        // Clash Display — títulos e marca (ver globals.css + layout.tsx).
         serif: [
-          "var(--font-newsreader)",
-          "Newsreader",
-          "Source Serif 4",
-          "Georgia",
-          "Times New Roman",
-          "serif",
+          "var(--font-clash-display)",
+          "Clash Display",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "sans-serif",
         ],
-        // Inter — sans para corpo, UI, microcopy.
+        // Hiragino Maru Gothic — corpo e UI (secundária).
         sans: [
-          "var(--font-inter)",
-          "Inter",
-          "system-ui",
+          "var(--font-hiragino)",
+          "Hiragino Maru Gothic ProN",
+          "Hiragino Sans",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
-          "Helvetica",
-          "Arial",
+          "Roboto",
           "sans-serif",
         ],
         // JetBrains Mono — código jurídico (artigo, inciso, número).

@@ -8,6 +8,14 @@ import {
   relatedPosts as findMockRelated,
 } from "@/data/mock-blog";
 import { migratedPosts } from "@/data/migrated-posts";
+import {
+  BLOG_COVER,
+  DB_CATEGORY_LABEL,
+  mapPrismaPostToArticle,
+  mapPrismaPostToRelated,
+  type BlogArticlePost,
+  type BlogRelatedPost,
+} from "@/lib/blog/prisma-posts";
 import { prisma } from "@/lib/prisma";
 
 type Params = Promise<{ slug: string }>;
@@ -18,15 +26,7 @@ function bodyLooksLikeHtml(body: string) {
   );
 }
 
-// Map de categorias do DB para o label mock (ajuste conforme necessário)
-const DB_CATEGORY_LABEL: Record<string, string> = {
-  ANALISE_DECISAO: "Análise de decisão",
-  DOGMATICA: "Dogmática aplicada",
-  COMENTARIO: "Comentário atual",
-  GERAL: "Geral",
-};
-
-function findMigratedPost(slug: string) {
+function findMigratedPost(slug: string): BlogArticlePost | undefined {
   const m = migratedPosts.find((p) => p.slug === slug);
   if (!m) return undefined;
 
@@ -57,42 +57,26 @@ function findMigratedPost(slug: string) {
           ? m.author.avatarSrc
           : "/images/professor/flavio-avatar-64.jpg",
     },
-    cover: m.cover,
+    cover: m.cover ?? { ...BLOG_COVER },
     readingMin: m.readingMin,
     tags: m.tags ?? [],
   };
 }
 
-async function getPostData(slug: string) {
+async function getPostData(slug: string): Promise<BlogArticlePost | undefined> {
   try {
     const p = await prisma.blogPost.findUnique({
       where: { slug },
       include: { author: true },
     });
 
-    if (p) {
-      return {
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt ?? "",
-        body: p.body,
-        category: p.category,
-        coverImage: (p as { coverImage?: string | null }).coverImage ?? undefined,
-        publishedAt: p.publishedAt?.toISOString(),
-        author: {
-          name: p.author.name ?? "Flávio Milhomem",
-          role: "Professor de Direito Criminal",
-          avatarSrc: "/images/professor/flavio-avatar-64.jpg",
-        },
-        cover: { from: "#06172f", to: "#0a2a4d" },
-        readingMin: Math.ceil(p.body.length / 1000) || 5,
-        tags: ["Geral"],
-      };
-    }
-  } catch (e) {
+    if (p) return mapPrismaPostToArticle(p);
+  } catch {
     console.warn("DB offline ou post não encontrado no Prisma, usando mock.");
   }
-  return findMockPost(slug) ?? findMigratedPost(slug);
+  const mock = findMockPost(slug);
+  if (mock) return mock;
+  return findMigratedPost(slug);
 }
 
 export async function generateMetadata({
@@ -129,23 +113,28 @@ export default async function BlogArtigoPage({
   const post = await getPostData(slug);
   if (!post) notFound();
 
-  // Related posts fallback: tenta do DB, se não mock
-  let related: any[] = [];
+  let related: BlogRelatedPost[] = [];
   try {
     const dbRelated = await prisma.blogPost.findMany({
       where: { slug: { not: slug }, status: "PUBLISHED" },
       take: 3,
     });
-    related = dbRelated.length > 0 
-      ? dbRelated.map(p => ({
-          slug: p.slug,
-          title: p.title,
-          category: p.category,
-          cover: { from: "#06172f", to: "#0a2a4d" }
-        }))
-      : findMockRelated(slug, 3);
+    related =
+      dbRelated.length > 0
+        ? dbRelated.map(mapPrismaPostToRelated)
+        : findMockRelated(slug, 3).map((p) => ({
+            slug: p.slug,
+            title: p.title,
+            category: p.category,
+            cover: p.cover,
+          }));
   } catch {
-    related = findMockRelated(slug, 3);
+    related = findMockRelated(slug, 3).map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      cover: p.cover,
+    }));
   }
 
   // Schema Article (rich results)

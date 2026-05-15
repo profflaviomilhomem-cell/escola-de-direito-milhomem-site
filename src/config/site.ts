@@ -4,38 +4,32 @@
  * Single source of truth para metadata, URLs canônicas,
  * informações institucionais e canais.
  *
+ * Textos de marketing e tom de voz: `src/config/copy.ts`.
  * NÃO duplique strings deste arquivo em outros lugares —
  * sempre importe daqui. Isso evita drift entre páginas.
  */
 
+import { copy } from "./copy";
+
 export const siteConfig = {
   name: "Escola Flávio Milhomem",
   shortName: "Escola Flávio Milhomem",
-  tagline: "A Escola do Promotor",
-  pvuShort:
-    "Direito Penal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia.",
-  description:
-    "Escola digital de Direito Penal pela perspectiva da acusação, dirigida por Flávio Milhomem, Promotor de Justiça do MPDFT desde 1996, Ouvidor-Geral do MPDFT (2025-2027), professor há 25 anos.",
+  tagline: copy.site.tagline,
+  taglineInstitucional: copy.guia.taglineInstitucional,
+  pvuShort: copy.site.pvuShort,
+  description: copy.site.description,
   url:
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://escolaflaviomilhomem.com.br",
   locale: "pt-BR",
   // OG image gerada por `app/opengraph-image.tsx` (file-based).
 
   professor: {
-    fullName: "Flávio Milhomem",
-    role: "Promotor de Justiça — MPDFT · Ouvidor-Geral do MPDFT (2025-2027)",
-    careerYears: 30,
-    teachingYears: 25,
-    education: [
-      {
-        institution: "Universidade Católica Portuguesa",
-        program: "Mestrado em Ciências Jurídico-Criminais",
-      },
-      {
-        institution: "École Nationale de la Magistrature (França)",
-        program: "Especialização",
-      },
-    ],
+    fullName: copy.professor.fullName,
+    role: copy.professor.marketingTitle,
+    bioRoleLine: copy.professor.bioRoleLine,
+    careerYears: copy.professor.careerYears,
+    teachingYears: copy.professor.teachingYears,
+    education: copy.professor.education,
   },
 
   contact: {

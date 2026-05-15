@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
+import { copy } from "@/config/copy";
+
 /**
  * Dossiê 3D — capa institucional com parallax acompanhando o mouse.
  *
@@ -201,13 +203,13 @@ export function Dossie3D() {
               className="font-serif text-6xl italic leading-none text-[#1a0f05]"
               style={{ WebkitTextStroke: "0.7px #1a0f05" }}
             >
-              A Escola do
+              {copy.dossie.coverTitle1}
               <br />
               <em
                 className="text-amber not-italic"
                 style={{ WebkitTextStroke: "0.7px var(--color-amber)" }}
               >
-                Promotor
+                {copy.dossie.coverTitleEmphasis}
               </em>
             </h2>
             <div className="bg-amber mx-auto my-6 h-px w-10" />
@@ -215,7 +217,7 @@ export function Dossie3D() {
               className="text-lg italic text-[#1a0f05]/85"
               style={{ WebkitTextStroke: "0.35px #1a0f05" }}
             >
-              Programa inaugural · Brasília · 2026
+              {copy.dossie.coverSubtitle}
             </p>
           </div>
 
@@ -260,12 +262,12 @@ export function Dossie3D() {
           </span>
         </div>
 
-        {/* Selo MPDFT — mais à frente ainda */}
+        {/* Selo editorial — mais à frente ainda */}
         <div
           className="bg-amber text-paper absolute -bottom-4 -right-4 flex h-16 w-16 items-center justify-center rounded-full font-serif text-xs italic shadow-xl"
           style={{ transform: "translateZ(50px)" }}
         >
-          MPDFT
+          {copy.dossie.sealLabel}
         </div>
       </div>
     </div>

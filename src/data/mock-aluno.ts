@@ -134,10 +134,10 @@ export const mockUser: MockUser = {
 // CURSO PRINCIPAL
 // =====================================================================
 
-const NAVY = "#06172F";
+const NAVY = "#030024";
 const CARBON = "#242A34";
-const AMBER = "#DDAD0C";
-const PAPER = "#EAE4D9";
+const AMBER = "#f1bb41";
+const PAPER = "#e0e0e0";
 
 const lessons = (
   moduleSlug: string,
@@ -192,7 +192,7 @@ export const mockCourse: MockCourse = {
     "Cada módulo entrega ferramentas para sustentar acusação com lastro " +
     "técnico e ética processual. Aulas gravadas em vídeo, fórum direto " +
     "com Flávio Milhomem, certificado de 60h.",
-  cover: { from: NAVY, via: "#0E2547", to: CARBON, angle: 135 },
+  cover: { from: NAVY, via: "#0c0a38", to: CARBON, angle: 135 },
   modules: [
     {
       slug: "modulo-1-fundamentos",
@@ -216,7 +216,7 @@ export const mockCourse: MockCourse = {
             { title: "Modelo de denúncia comentada — STJ HC 612.345", pages: 14, sizeKb: 280 },
             { title: "Glossário do MP federal", pages: 6, sizeKb: 120 },
           ],
-          cover: { from: "#0E2547", to: "#06172F", angle: 135 },
+          cover: { from: "#0c0a38", to: "#030024", angle: 135 },
         },
         {
           title: "Tipicidade material: o que importa de fato",
@@ -370,7 +370,7 @@ export const mockCourse: MockCourse = {
             "Citações de doutrina valem mais que de jurisprudência genérica.",
             "Pedido sempre com numeração explícita ('item 1, item 2').",
           ],
-          cover: { from: "#0F1734", to: "#0E2547", angle: 135 },
+          cover: { from: "#0F1734", to: "#0c0a38", angle: 135 },
         },
         {
           title: "Réplica: o que responder e o que ignorar",
@@ -583,7 +583,7 @@ export const mockCertificates: MockCertificate[] = [
     issuedAt: "2026-03-22",
     hash: "fmcert_a8c3d12e9b4f7",
     hoursLoad: 8,
-    cover: { from: "#1F3268", to: "#06172F" },
+    cover: { from: "#1F3268", to: "#030024" },
   },
 ];
 

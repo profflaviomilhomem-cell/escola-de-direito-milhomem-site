@@ -1,24 +1,50 @@
 import type { Metadata } from "next";
 
+import { CursoVitrineCard } from "@/components/marketing/curso-vitrine-card";
+import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
+import { produtosEscola } from "@/data/produtos-escola";
+
 export const metadata: Metadata = {
   title: "Cursos",
   description:
-    "Vitrine dos cursos da Escola Flávio Milhomem — Edição Lançamento, produtos legados Eduzz, e ondas futuras.",
+    "Vitrine dos cursos da Escola Flávio Milhomem — Edição Lançamento em cohort e produtos legados na Eduzz.",
   alternates: { canonical: "/cursos" },
 };
 
 /**
- * Vitrine de cursos (blueprint Seção 8.3).
- * No lançamento: Edição Lançamento destacada + produtos Eduzz secundários.
- * Filtro por área (Penal, Processual, Militar) em ondas futuras.
+ * Vitrine de cursos (Livro-Guia 5.8).
  */
 export default function CursosPage() {
+  const principal = produtosEscola.filter((p) => p.tipo === "cohort");
+  const legados = produtosEscola.filter((p) => p.tipo === "legado");
+
   return (
     <section className="mx-auto max-w-(--container-narrow) px-gutter py-page">
-      <h1 className="font-serif text-heading-1 text-tinta-700">Cursos</h1>
-      <p className="text-slate-700 mt-2">
-        Vitrine em construção — Edição Lançamento abre inscrições em junho.
+      <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">Programas</p>
+      <h1 className="mt-3 font-serif leading-[1.05]" style={{ fontSize: "clamp(40px, 5vw, 56px)" }}>
+        Cursos da <em className="text-amber italic">Escola</em>
+      </h1>
+      <p className="text-paper-700 mt-5 max-w-2xl text-lg leading-relaxed">
+        No lançamento, a Edição Lançamento concentra o cohort inaugural. Os produtos na
+        Eduzz permanecem disponíveis durante a transição para a plataforma própria.
       </p>
+
+      <div className="mt-12 space-y-6">
+        {principal.map((p) => (
+          <CursoVitrineCard key={p.slug} produto={p} />
+        ))}
+      </div>
+
+      <h2 className="text-paper fm-mono mt-16 text-[11px] uppercase tracking-[0.22em]">
+        Catálogo em transição
+      </h2>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        {legados.map((p) => (
+          <CursoVitrineCard key={p.slug} produto={p} />
+        ))}
+      </div>
+
+      <InstitutionalNotice className="mt-14 max-w-2xl" />
     </section>
   );
 }

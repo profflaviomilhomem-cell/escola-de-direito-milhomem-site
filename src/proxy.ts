@@ -1,10 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 import { verifySession } from "@/lib/auth/jwt";
-import {
-  getDevFakeSession,
-  sessionCookieName,
-} from "@/lib/auth/session";
+import { DEV_ROLE_COOKIE, resolveDevFakeSession } from "@/lib/auth/dev-session";
+import { sessionCookieName } from "@/lib/auth/session";
 
 /**
  * Proxy Next.js — defesa em profundidade.
@@ -41,7 +39,8 @@ export async function proxy(req: NextRequest) {
   if (isProtected) {
     // Em dev, a flag `NEXT_PUBLIC_DEV_FAKE_SESSION` injeta sessão mock —
     // a role da sessão fake decide quem entra em /professor.
-    const fake = getDevFakeSession();
+    const devRole = req.cookies.get(DEV_ROLE_COOKIE)?.value;
+    const fake = resolveDevFakeSession(devRole);
     let session = fake;
     if (!session) {
       const token = req.cookies.get(sessionCookieName)?.value;

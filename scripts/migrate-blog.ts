@@ -22,7 +22,17 @@ async function migrate() {
       throw new Error(`Erro ao buscar posts: ${response.statusText}`);
     }
 
-    const posts = await response.json() as any[];
+    type WpPost = {
+      slug: string;
+      date: string;
+      title: { rendered: string };
+      excerpt: { rendered: string };
+      content: { rendered: string };
+      _embedded?: {
+        "wp:featuredmedia"?: Array<{ source_url?: string }>;
+      };
+    };
+    const posts = (await response.json()) as WpPost[];
     console.log(`📦 Encontrados ${posts.length} posts.`);
 
     // Tenta encontrar o autor principal (ADMIN)

@@ -123,7 +123,7 @@ function mapPost(p) {
     publishedAt: p.date,
     category: primaryCategory(p),
     author: authorBlock(p),
-    cover: { from: "#06172f", to: "#0a2a4d" },
+    cover: { from: "#030024", to: "#0c0a38" },
     coverImage: featuredUrl(p),
     readingMin: readingMinutes(p.content?.rendered ?? ""),
     tags: tagsFrom(p).length ? tagsFrom(p) : ["Blog"],

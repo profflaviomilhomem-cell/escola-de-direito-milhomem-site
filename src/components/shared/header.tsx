@@ -1,57 +1,46 @@
 import Link from "next/link";
 
 import { HeaderAccessibilityMenu } from "@/components/shared/header-accessibility-menu";
+import { siteConfig } from "@/config/site";
 
 /**
- * Header institucional dark — absorvido do mockup oficial.
- * Brand mark circular "FM" + nav uppercase mono + CTA Cohort destacado.
- * Fixed top com backdrop-blur sobre as camadas de grid/noise.
+ * Header institucional — nav do Livro-Guia 5.7 (máx. 5 itens) + CTA lista.
  */
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Manifesto", href: "/sobre" },
-  { label: "Programa", href: "/cursos" },
-  { label: "Blog", href: "/blog" },
-  { label: "Calculadora", href: "/calculadora-de-pena" },
-  { label: "Professor", href: "/sobre" },
-  { label: "FAQ", href: "/contato" },
-];
-
 export function Header() {
   return (
     <header className="bg-carbon/70 border-amber/10 fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b px-[5%] py-5 backdrop-blur-md">
       <Link
         href="/"
         className="flex min-w-0 shrink-0 items-center gap-3 text-inherit no-underline"
-        aria-label="Escola Flávio Milhomem — início"
+        aria-label={`${siteConfig.name} — início`}
       >
         <span className="border-amber text-amber grid h-11 w-11 shrink-0 place-items-center rounded-full border font-serif text-[20px] italic">
           FM
         </span>
-        <span className="font-serif text-[28px] leading-tight">
+        <span className="hidden font-serif text-[28px] leading-tight sm:inline">
           Flávio <em className="text-amber italic">Milhomem</em>
         </span>
       </Link>
 
-      <div className="flex min-w-0 items-center justify-end gap-4 md:gap-8">
+      <div className="flex min-w-0 items-center justify-end gap-3 md:gap-6">
         <nav
           aria-label="Navegação principal"
-          className="hidden min-w-0 items-center gap-6 md:flex lg:gap-8"
+          className="hidden min-w-0 items-center gap-5 md:flex lg:gap-7"
         >
-          {navItems.map((item) => (
+          {siteConfig.mainNav.map((item) => (
             <Link
-              key={item.href + item.label}
+              key={item.href}
               href={item.href}
-              className="text-paper-700 hover:text-paper font-mono text-[18px] uppercase tracking-[0.2em] transition-colors"
+              className="text-paper-700 hover:text-paper font-mono text-[13px] uppercase tracking-[0.18em] transition-colors lg:text-[14px]"
             >
               {item.label}
             </Link>
           ))}
           <Link
-            href="#cohort"
-            className="border-amber text-amber hover:bg-amber hover:text-paper shrink-0 border px-4 py-2 font-mono text-[16px] uppercase tracking-[0.2em] transition-colors"
+            href="/newsletter"
+            className="border-amber text-amber hover:bg-amber hover:text-paper shrink-0 border px-3 py-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors lg:text-[13px]"
           >
-            Cohort 2026 →
+            Entre na lista
           </Link>
         </nav>
 

@@ -1,5 +1,10 @@
 import { cookies } from "next/headers";
 
+import {
+  DEV_ROLE_COOKIE,
+  isDevFakeSessionEnabled,
+  resolveDevFakeSession,
+} from "./dev-session";
 import { verifySession, type SessionPayload } from "./jwt";
 
 const SESSION_COOKIE = "escola_session";
@@ -10,48 +15,18 @@ const SESSION_COOKIE = "escola_session";
  */
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 dias
 
-/**
- * Sessões fake usadas APENAS em desenvolvimento, controladas pela env
- * `NEXT_PUBLIC_DEV_FAKE_SESSION`:
- *   - "aluno" ou "1" → mock do Rafael (role: aluno)
- *   - "professor" ou "admin" → mock do Flávio (role: admin)
- *   - qualquer outro valor / vazio → desabilitado, fluxo real
- *
- * Triplo guard:
- *   1. `NODE_ENV !== "production"` (fail-safe)
- *   2. flag explícita com valor reconhecido
- *   3. nome do cookie inalterado para não vazar token real
- */
-const ALUNO_FAKE_SESSION: SessionPayload = {
-  sub: "user_rafael_mock",
-  email: "rafael@advogados-rj.com",
-  name: "Rafael Andrade",
-  role: "aluno",
-};
-
-const PROFESSOR_FAKE_SESSION: SessionPayload = {
-  sub: "user_flavio_mock",
-  email: "flavio@escolaflaviomilhomem.com.br",
-  name: "Flávio Milhomem",
-  role: "admin",
-};
-
-export function getDevFakeSession(): SessionPayload | null {
-  if (process.env.NODE_ENV === "production") return null;
-  const flag = process.env.NEXT_PUBLIC_DEV_FAKE_SESSION;
-  if (flag === "professor" || flag === "admin") return PROFESSOR_FAKE_SESSION;
-  if (flag === "aluno" || flag === "1") return ALUNO_FAKE_SESSION;
-  return null;
+/** @see resolveDevFakeSession — env `NEXT_PUBLIC_DEV_FAKE_SESSION` ou cookie `fm_dev_role` */
+export function getDevFakeSession(roleHint?: string | null): SessionPayload | null {
+  return resolveDevFakeSession(roleHint);
 }
 
-export function isDevFakeSessionEnabled(): boolean {
-  return getDevFakeSession() !== null;
-}
+export { isDevFakeSessionEnabled };
 
 export async function getSessionFromCookies(): Promise<SessionPayload | null> {
-  const dev = getDevFakeSession();
-  if (dev) return dev;
   const store = await cookies();
+  const devRole = store.get(DEV_ROLE_COOKIE)?.value;
+  const dev = resolveDevFakeSession(devRole);
+  if (dev) return dev;
   const token = store.get(SESSION_COOKIE)?.value;
   if (!token) return null;
   return verifySession(token);

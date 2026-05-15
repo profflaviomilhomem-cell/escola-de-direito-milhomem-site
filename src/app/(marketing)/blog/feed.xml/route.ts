@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { publishedBlogPosts } from "@/data/mock-blog";
+import { mapPrismaPostToFeed, type BlogFeedItem } from "@/lib/blog/prisma-posts";
 
 /**
  * RSS Feed do blog.
@@ -8,7 +9,7 @@ import { publishedBlogPosts } from "@/data/mock-blog";
 export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://escolaflaviomilhomem.com.br";
   
-  let posts: any[] = [];
+  let posts: BlogFeedItem[] = [];
   try {
     const dbPosts = await prisma.blogPost.findMany({
       where: { status: "PUBLISHED" },
@@ -17,14 +18,9 @@ export async function GET() {
     });
 
     if (dbPosts.length > 0) {
-      posts = dbPosts.map(p => ({
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt,
-        publishedAt: p.publishedAt,
-      }));
+      posts = dbPosts.map(mapPrismaPostToFeed);
     } else {
-      posts = publishedBlogPosts().map(p => ({
+      posts = publishedBlogPosts().map((p) => ({
         slug: p.slug,
         title: p.title,
         excerpt: p.excerpt,
@@ -32,7 +28,7 @@ export async function GET() {
       }));
     }
   } catch {
-    posts = publishedBlogPosts().map(p => ({
+    posts = publishedBlogPosts().map((p) => ({
       slug: p.slug,
       title: p.title,
       excerpt: p.excerpt,

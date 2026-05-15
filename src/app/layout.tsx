@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Geist } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -10,8 +10,6 @@ import { siteConfig } from "@/config/site";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 /** Executado antes da hidratação — tema, escala de letra e visão (localStorage). */
 const FM_A11Y_BOOTSTRAP = `
@@ -40,16 +38,45 @@ const FM_A11Y_BOOTSTRAP = `
 /**
  * Fontes via next/font — identidade Flávio Milhomem.
  *
- * Display: League Spartan Bold (geométrica, OFL) — h1/h2/h3 e marca.
- * Body: Hiragino Maru Gothic ProN W4 (humanística arredondada) — corpo de texto.
+ * Display: Clash Display — títulos, marca e destaques.
+ * Body: Hiragino Maru Gothic ProN W4 (secundária) — corpo de texto.
  * Mono: JetBrains Mono — labels uppercase com tracking-wide.
  */
-const leagueSpartan = localFont({
-  src: "./fonts/LeagueSpartan-Bold.woff2",
-  variable: "--font-league-spartan",
+const clashDisplay = localFont({
+  src: [
+    {
+      path: "./fonts/clash-display/ClashDisplay-Extralight.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "./fonts/clash-display/ClashDisplay-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/clash-display/ClashDisplay-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/clash-display/ClashDisplay-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "./fonts/clash-display/ClashDisplay-Semibold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "./fonts/clash-display/ClashDisplay-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-clash-display",
   display: "swap",
-  weight: "700",
-  style: "normal",
 });
 
 const hiragino = localFont({
@@ -68,7 +95,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#06172f",
+  themeColor: "#030024",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -137,11 +164,10 @@ export default function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        leagueSpartan.variable,
+        clashDisplay.variable,
         hiragino.variable,
         jetbrainsMono.variable,
         "font-sans",
-        geist.variable,
       )}
     >
       <head>
