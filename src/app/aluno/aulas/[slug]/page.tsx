@@ -13,6 +13,11 @@ import {
   mockForumThreads,
   type MockLesson,
 } from "@/data/mock-aluno";
+import { getSessionFromCookies } from "@/lib/auth/session";
+import {
+  getLessonProgress,
+  mergeMockLessonProgress,
+} from "@/lib/lessons/progress";
 import { progressPercentFromRatio } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
@@ -37,8 +42,23 @@ export async function generateMetadata({
  */
 export default async function AulaPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const lesson = findLessonBySlug(slug);
-  if (!lesson) notFound();
+  const baseLesson = findLessonBySlug(slug);
+  if (!baseLesson) notFound();
+
+  const session = await getSessionFromCookies();
+  let lesson = baseLesson;
+  if (session && process.env.DATABASE_URL) {
+    try {
+      const row = await getLessonProgress(
+        session.sub,
+        mockCourse.slug,
+        slug,
+      );
+      lesson = mergeMockLessonProgress(baseLesson, row);
+    } catch {
+      /* mock puro se o banco não estiver acessível */
+    }
+  }
 
   const flat: MockLesson[] = mockCourse.modules.flatMap((m) => m.lessons);
   const idx = flat.findIndex((l) => l.id === lesson.id);

@@ -9,6 +9,7 @@
  *   page_view          (auto via PostHog)
  *   lead_capture       (newsletter, isca)
  *   calculator_started / completed / pdf_exported
+ *   lesson_started / lesson_completed (área do aluno)
  *   purchase_completed (servidor, via webhook)
  */
 

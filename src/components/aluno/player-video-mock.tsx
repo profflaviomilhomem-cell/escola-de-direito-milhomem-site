@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
+import { formatDuration, mockCourse } from "@/data/mock-aluno";
+import { patchLessonProgress } from "@/lib/lessons/progress-client";
+import { track } from "@/lib/analytics/track";
 import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {
@@ -19,7 +21,43 @@ type Props = {
 export function PlayerVideoMock({ lesson }: Props) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [markedComplete, setMarkedComplete] = useState(
+    lesson.status === "concluida",
+  );
+  const startedTracked = useRef(false);
+  const completedTracked = useRef(lesson.status === "concluida");
   const initialProgress = lesson.watchedSec / Math.max(1, lesson.durationSec);
+
+  const lessonProps = {
+    lesson_slug: lesson.slug,
+    lesson_id: lesson.id,
+    course_slug: mockCourse.slug,
+    module_title: lesson.moduleTitle,
+    player: "mock" as const,
+  };
+
+  const handlePlay = () => {
+    setPlaying(true);
+    if (startedTracked.current) return;
+    startedTracked.current = true;
+    track("lesson_started", lessonProps);
+  };
+
+  const handleMarkComplete = () => {
+    if (completedTracked.current) return;
+    completedTracked.current = true;
+    setMarkedComplete(true);
+    track("lesson_completed", {
+      ...lessonProps,
+      completion_source: "manual_mock",
+    });
+    void patchLessonProgress({
+      productSlug: mockCourse.slug,
+      lessonSlug: lesson.slug,
+      watchedSec: lesson.durationSec,
+      completed: true,
+    });
+  };
 
   return (
     <div
@@ -37,7 +75,7 @@ export function PlayerVideoMock({ lesson }: Props) {
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
           <button
             type="button"
-            onClick={() => setPlaying(true)}
+            onClick={handlePlay}
             aria-label={`Reproduzir aula: ${lesson.title}`}
             className="group bg-paper text-carbon hover:bg-amber relative grid h-20 w-20 place-items-center rounded-full transition-all hover:scale-110"
           >
@@ -187,6 +225,20 @@ export function PlayerVideoMock({ lesson }: Props) {
                 </button>
               </div>
             </div>
+            {!markedComplete && (
+              <button
+                type="button"
+                onClick={handleMarkComplete}
+                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors"
+              >
+                Marcar aula como concluída
+              </button>
+            )}
+            {markedComplete && (
+              <p className="text-amber fm-mono mt-3 text-center text-[10px] uppercase tracking-[0.14em]">
+                Aula concluída
+              </p>
+            )}
           </div>
         </>
       )}

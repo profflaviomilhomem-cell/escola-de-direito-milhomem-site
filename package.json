@@ -21,7 +21,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "sync:blog": "node scripts/sync-wordpress-blog.mjs",
-    "mirror:blog-images": "node scripts/mirror-blog-images.mjs"
+    "mirror:blog-images": "node scripts/mirror-blog-images.mjs",
+    "seed:mock-course": "node scripts/seed-mock-course.mjs"
   },
   "engines": {
     "node": ">=20.0.0",

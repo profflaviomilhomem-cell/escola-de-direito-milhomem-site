@@ -213,18 +213,18 @@ Sprint dedicada e isolada — primeira vez da equipe com Pagar.me.
 - [ ] Cloudflare Stream provisionado, primeiro vídeo de teste
 - [ ] Componente `<PlayerVideo>` custom (legenda, velocidade, +15s)
 - [ ] URL assinada para aluno autenticado (token Cloudflare)
-- [ ] Eventos `lesson_started`, `lesson_completed` no GA4
+- [x] Eventos `lesson_started`, `lesson_completed` via `track()` no `PlayerVideoMock` (GTM/dataLayer + PostHog; conclusão manual no mock até Stream + progresso real)
 
 ### 4.2 Estrutura de curso
 
 - [ ] CRUD interno de `Product`, `Lesson` (admin dashboard)
-- [ ] Página `/aluno/cursos/[slug]` lista módulos
-- [ ] Página `/aluno/aulas/[slug]` carrega player + abas (resumo / PDF / fórum)
-- [ ] Marcador de progresso persistido (`UserLessonProgress`)
+- [x] Página `/aluno/cursos/[slug]` lista módulos (mock `mockCourse` em `src/data/mock-aluno.ts`)
+- [x] Página `/aluno/aulas/[slug]` carrega player + abas Resumo / Materiais / Fórum (`LessonTabs`, `CommentTree` filtrado)
+- [x] Marcador de progresso persistido (`UserLessonProgress` + `PATCH /api/aluno/lessons/progress`; seed `npm run seed:mock-course`)
 
 ### 4.3 Fórum aninhado
 
-- [ ] Componente `<CommentTree>` com profundidade visual de 3
+- [x] Componente `<CommentTree>` com profundidade visual de 3 (UI mock; persistência na Fase 4.3)
 - [ ] CRUD de `Comment` com Zod (markdown sanitizado)
 - [ ] Moderação: usuário novo → fila; palavras-chave → fila
 - [ ] Notificação por e-mail quando o professor responde
@@ -418,12 +418,9 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ---
 
-**Última atualização:** 14/05/2026 — Checklist Fase 2 reconciliado com o código
-(auth register/login/logout, cookie seguro, 72 bytes, recuperação de senha,
-minha conta, proxy + layout SSR, Jest JWT, Playwright newsletter + auth).
-Fase 1.4: e2e Playwright do lead marcado como feito. Pendentes explícitos na
-Fase 2: magic link Resend e adoção shadcn no dashboard.
+**Última atualização:** 15/05/2026 — Fase 4 (mock) reconciliada: páginas de curso/aula,
+`CommentTree`, telemetria `lesson_started` / `lesson_completed` no player mock.
+Fase 2 quase fechada (pende magic link Resend). Dosimetria: 30 testes Jest já no repo.
 
-**Próxima ação:** Fase 0.2/0.3 com Flávio; Fase 6.2 — suíte Jest da
-dosimetria (30 casos); opcional: magic link e shadcn conforme prioridade do
-sprint.
+**Próxima ação:** Cloudflare Stream + `<PlayerVideo>` real; `prisma migrate deploy`
++ `npm run seed:mock-course` no Neon; Fase 0.2/0.3 (contas externas); Pagar.me quando KYC ok.

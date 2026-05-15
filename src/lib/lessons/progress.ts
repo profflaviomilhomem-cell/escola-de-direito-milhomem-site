@@ -1,0 +1,124 @@
+import type { MockLesson, MockLessonStatus } from "@/data/mock-aluno";
+import { prisma } from "@/lib/prisma";
+
+const COMPLETION_RATIO = 0.9;
+
+export type LessonProgressRow = {
+  watchedSec: number;
+  completedAt: Date | null;
+};
+
+export async function findLessonBySlugs(productSlug: string, lessonSlug: string) {
+  return prisma.lesson.findFirst({
+    where: {
+      slug: lessonSlug,
+      product: { slug: productSlug },
+    },
+    select: {
+      id: true,
+      slug: true,
+      durationSec: true,
+    },
+  });
+}
+
+export async function getLessonProgress(
+  userId: string,
+  productSlug: string,
+  lessonSlug: string,
+): Promise<LessonProgressRow | null> {
+  const lesson = await findLessonBySlugs(productSlug, lessonSlug);
+  if (!lesson) return null;
+
+  const row = await prisma.userLessonProgress.findUnique({
+    where: {
+      userId_lessonId: { userId, lessonId: lesson.id },
+    },
+    select: { watchedSec: true, completedAt: true },
+  });
+
+  return row;
+}
+
+export async function upsertLessonProgress(
+  userId: string,
+  input: {
+    productSlug: string;
+    lessonSlug: string;
+    watchedSec?: number;
+    completed?: boolean;
+  },
+) {
+  const lesson = await findLessonBySlugs(input.productSlug, input.lessonSlug);
+  if (!lesson) {
+    return { ok: false as const, error: "LESSON_NOT_FOUND" as const };
+  }
+
+  const durationSec = lesson.durationSec ?? 0;
+  const existing = await prisma.userLessonProgress.findUnique({
+    where: {
+      userId_lessonId: { userId, lessonId: lesson.id },
+    },
+  });
+
+  let watchedSec = input.watchedSec ?? existing?.watchedSec ?? 0;
+  let completedAt = existing?.completedAt ?? null;
+
+  if (input.completed) {
+    watchedSec = Math.max(watchedSec, durationSec);
+    completedAt = new Date();
+  } else if (
+    durationSec > 0 &&
+    watchedSec >= Math.floor(durationSec * COMPLETION_RATIO)
+  ) {
+    completedAt = completedAt ?? new Date();
+  }
+
+  const row = await prisma.userLessonProgress.upsert({
+    where: {
+      userId_lessonId: { userId, lessonId: lesson.id },
+    },
+    create: {
+      userId,
+      lessonId: lesson.id,
+      watchedSec,
+      completedAt,
+    },
+    update: {
+      watchedSec,
+      completedAt,
+    },
+    select: {
+      watchedSec: true,
+      completedAt: true,
+      lesson: { select: { slug: true, durationSec: true } },
+    },
+  });
+
+  return { ok: true as const, progress: row };
+}
+
+/** Aplica progresso do banco sobre o mock (SSR). */
+export function mergeMockLessonProgress(
+  lesson: MockLesson,
+  row: LessonProgressRow | null,
+): MockLesson {
+  if (!row) return lesson;
+
+  const durationSec = lesson.durationSec;
+  const watchedSec = Math.min(row.watchedSec, durationSec);
+  const isComplete = row.completedAt !== null;
+
+  let status: MockLessonStatus = "nao-iniciada";
+  if (isComplete) {
+    status = "concluida";
+  } else if (watchedSec > 0) {
+    status = "em-andamento";
+  }
+
+  return {
+    ...lesson,
+    watchedSec: isComplete ? durationSec : watchedSec,
+    status,
+  };
+}
