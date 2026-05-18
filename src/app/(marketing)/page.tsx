@@ -136,10 +136,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section
-        id="programa"
-        className="fm-site-section bg-amber/[0.02] py-16 lg:py-32"
-      >
+      <section id="programa" className="fm-site-section py-16 lg:py-32">
         <div className="fm-site-container">
           <h2
             data-reveal

@@ -72,7 +72,7 @@ export default async function BlogArtigoPage({
 
       {/* Cover hero */}
       <section
-        className="relative overflow-hidden bg-carbon"
+        className="relative overflow-hidden"
         style={{
           backgroundImage: !post.coverImage ? `linear-gradient(135deg, ${post.cover.from}, ${post.cover.to})` : undefined,
         }}
@@ -148,7 +148,7 @@ export default async function BlogArtigoPage({
 
       {/* Corpo do artigo */}
       <article
-        className={`blog-article fm-site-page max-w-prose-wide pb-page ${hasLeadVideo ? "bg-carbon pt-0" : "py-page"}`}
+        className={`blog-article fm-site-page max-w-prose-wide pb-page ${hasLeadVideo ? "pt-0" : "py-page"}`}
       >
         <BlogArticleBody body={post.body} isHtml={bodyIsHtml} />
 

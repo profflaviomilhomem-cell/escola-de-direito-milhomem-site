@@ -128,6 +128,11 @@
 }
 
 /* Site — recuo lateral único (evita 5% / gutter + max-width empilhados) */
+/*
+ * Seções full-width: evitar bg-carbon / bg-amber/[n] / bg-white/[n] no <section>
+ * — tapam o BackgroundLayers (mesh + grid) e geram faixa horizontal na junção.
+ * Fundo local só em cards (border + backdrop-blur), não na seção inteira.
+ */
 .fm-site-section,
 .fm-home-section {
   position: relative;
