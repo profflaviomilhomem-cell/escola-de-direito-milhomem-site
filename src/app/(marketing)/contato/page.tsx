@@ -1,56 +1,83 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
+import { ContactForm } from "@/components/marketing/contact-form";
+import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Contato",
-  description: "Entre em contato com a Escola Flávio Milhomem.",
+  description: copy.contato.lead,
   alternates: { canonical: "/contato" },
 };
 
 export default function ContatoPage() {
+  const c = copy.contato;
+
   return (
-    <section className="mx-auto max-w-prose px-gutter py-page">
-      <h1 className="font-serif text-heading-1 text-tinta-700">Contato</h1>
-      <p className="text-slate-700 mt-stack">
-        Para dúvidas institucionais, parcerias acadêmicas e imprensa:
-      </p>
-      <ul className="mt-4 space-y-2 text-base">
-        <li>
-          E-mail:{" "}
-          <a
-            className="text-tinta-600 hover:underline"
-            href={`mailto:${siteConfig.contact.email}`}
-          >
-            {siteConfig.contact.email}
-          </a>
-        </li>
-        <li>
-          Instagram:{" "}
-          <a
-            className="text-tinta-600 hover:underline"
-            href={siteConfig.social.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {siteConfig.social.instagramHandle}
-          </a>
-        </li>
-        <li>
-          LinkedIn:{" "}
-          <a
-            className="text-tinta-600 hover:underline"
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Flávio Milhomem
-          </a>
-        </li>
-      </ul>
-      <p className="text-slate-500 mt-stack text-sm">
-        Prazo de resposta: até 3 dias úteis.
-      </p>
-    </section>
+    <article className="mx-auto max-w-prose px-gutter py-page">
+      <header>
+        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+          {c.eyebrow}
+        </p>
+        <h1
+          className="mt-3 font-serif leading-[1.05]"
+          style={{ fontSize: "clamp(40px, 5vw, 56px)" }}
+        >
+          {c.title}
+        </h1>
+        <p className="text-paper-700 mt-4 leading-relaxed">{c.lead}</p>
+        <p className="text-paper-500 mt-4 text-sm">{c.responseNote}</p>
+      </header>
+
+      <section className="mt-12" aria-labelledby="contact-channels">
+        <h2
+          id="contact-channels"
+          className="text-paper font-mono text-[11px] uppercase tracking-[0.2em]"
+        >
+          Canais diretos
+        </h2>
+        <ul className="text-paper-800 mt-4 space-y-2 text-base">
+          <li>
+            E-mail:{" "}
+            <a
+              className="text-amber underline-offset-2 hover:underline"
+              href={`mailto:${siteConfig.contact.email}`}
+            >
+              {siteConfig.contact.email}
+            </a>
+          </li>
+          <li>
+            Instagram:{" "}
+            <a
+              className="text-amber underline-offset-2 hover:underline"
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {siteConfig.social.instagramHandle}
+            </a>
+          </li>
+          <li>
+            LinkedIn:{" "}
+            <Link
+              className="text-amber underline-offset-2 hover:underline"
+              href={siteConfig.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Flávio Milhomem
+            </Link>
+          </li>
+        </ul>
+      </section>
+
+      <section className="mt-14" aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title" className="font-serif text-2xl">
+          {c.formTitle}
+        </h2>
+        <ContactForm />
+      </section>
+    </article>
   );
 }

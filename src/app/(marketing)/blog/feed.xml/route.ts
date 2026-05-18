@@ -1,40 +1,13 @@
-import { prisma } from "@/lib/prisma";
-import { publishedBlogPosts } from "@/data/mock-blog";
-import { mapPrismaPostToFeed, type BlogFeedItem } from "@/lib/blog/prisma-posts";
+import { getBlogFeedItems } from "@/lib/blog/content";
 
 /**
  * RSS Feed do blog.
- * Gera XML compatível com leitores de feed.
  */
 export async function GET() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://escolaflaviomilhomem.com.br";
-  
-  let posts: BlogFeedItem[] = [];
-  try {
-    const dbPosts = await prisma.blogPost.findMany({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-      take: 20,
-    });
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://escolaflaviomilhomem.com.br";
 
-    if (dbPosts.length > 0) {
-      posts = dbPosts.map(mapPrismaPostToFeed);
-    } else {
-      posts = publishedBlogPosts().map((p) => ({
-        slug: p.slug,
-        title: p.title,
-        excerpt: p.excerpt,
-        publishedAt: new Date(p.publishedAt),
-      }));
-    }
-  } catch {
-    posts = publishedBlogPosts().map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      excerpt: p.excerpt,
-      publishedAt: new Date(p.publishedAt),
-    }));
-  }
+  const posts = await getBlogFeedItems(20);
 
   const feedItems = posts
     .map((post) => {

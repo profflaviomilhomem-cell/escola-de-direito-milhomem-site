@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { CookieConsentBanner } from "@/components/shared/cookie-consent-banner";
 import { Toaster } from "sonner";
 import { useEffect, useState } from "react";
 
@@ -38,6 +39,7 @@ export function ClientProviders({
   return (
     <>
       {children}
+      <CookieConsentBanner />
       <Toaster position="top-right" richColors theme={toasterTheme} />
     </>
   );

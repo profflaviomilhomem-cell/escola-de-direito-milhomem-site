@@ -47,8 +47,8 @@ export function BlogCard({ post, categoryLabel }: BlogCardProps) {
             </p>
           </div>
         </div>
-        <h3 className="text-paper group-hover:text-amber mt-4 font-serif text-xl leading-tight transition-colors">
-          {post.title}
+        <h3 className="text-paper group-hover:text-amber mt-4 font-serif text-lg leading-snug transition-colors sm:text-xl">
+          {post.title || "Artigo sem título"}
         </h3>
         <p className="text-paper-700 mt-3 line-clamp-3 text-sm leading-relaxed">
           {post.excerpt}

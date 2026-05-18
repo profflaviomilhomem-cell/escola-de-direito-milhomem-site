@@ -73,6 +73,40 @@ export const copy = {
       bio: "A Escola é conduzida por Flávio Milhomem, professor e autor, com 25 anos de docência e quatro obras na área criminal. Você estuda com método; a trajetória completa está na biografia.",
       ctaPrimary: "Conhecer a edição",
       ctaSecondary: "Receber o boletim",
+      ctaCalculadora: "Calculadora de pena",
+    },
+    testimonials: {
+      eyebrow: "Quem estuda com o professor",
+      title: "Depoimentos da",
+      titleEmphasis: "comunidade",
+      lead: "Advogados e concurseiros que acompanham aulas, obras e o boletim — em caráter ilustrativo da proposta da Escola.",
+      items: [
+        {
+          quote:
+            "O recorte da acusação mudou como eu leio informativos e monto peças. Conteúdo denso, sem atalho vazio.",
+          name: "Ana R.",
+          role: "Advogada criminal · DF",
+        },
+        {
+          quote:
+            "Finalmente um professor que fala a linguagem de tribunal e de banca ao mesmo tempo — com fontes citadas.",
+          name: "Marcos T.",
+          role: "Concurseiro · área penal",
+        },
+        {
+          quote:
+            "O cohort me obrigou a manter ritmo. O fórum com resposta em até 72h fez diferença nas dúvidas de processo.",
+          name: "Juliana M.",
+          role: "Defensora pública · GO",
+        },
+      ] as const,
+    },
+    calculadoraBand: {
+      eyebrow: "Ferramenta gratuita",
+      title: "Calculadora de",
+      titleEmphasis: "pena",
+      lead: "Simule regime, progressão e detração com base na legislação vigente — útil para estudo e revisão de casos.",
+      cta: "Abrir calculadora",
     },
     stats: [
       { val: "30", label: "Anos de prática jurídica" },
@@ -164,6 +198,7 @@ export const copy = {
     coverTitleEmphasis: "Direito Penal",
     coverSubtitle: "Programa inaugural · Brasília · 2026",
     sealLabel: "FM",
+    gyroHint: "Toque para ativar o movimento",
   },
 
   edicaoLancamento: {
@@ -252,6 +287,67 @@ export const copy = {
     fechamentoTitle: "Entrar na Edição Lançamento",
     fechamentoNote: "Turma inaugural da Escola Flávio Milhomem",
     fechamentoCta: "Garantir prioridade na lista",
+    depoimentosTitle: "O que dizem os alunos",
+    depoimentosLead:
+      "Relatos de quem acompanha a docência e os materiais — referência de expectativa para a turma fundadora.",
+    materiaisInclusosTitle: "Materiais inclusos",
+    materiaisInclusos: [
+      "Apostila densa por módulo (PDF)",
+      "Mapa mental do programa",
+      "Caderno de questões comentadas",
+      "Decisões anotadas em PDF",
+      "Certificado de 60–80h ao concluir a trilha",
+    ] as const,
+    faqExtra: [
+      {
+        q: "Posso assistir no celular?",
+        a: "Sim. As aulas gravadas e o fórum funcionam no navegador mobile; recomendamos desktop para leitura de PDFs extensos.",
+      },
+      {
+        q: "Há encontro presencial obrigatório?",
+        a: "Não. O marco de 11 de agosto em Brasília é opcional e aberto a inscritos no evento; o cohort é predominantemente online.",
+      },
+    ] as const,
+  },
+
+  contato: {
+    eyebrow: "Fale com a Escola",
+    title: "Contato",
+    lead: "Dúvidas sobre a Edição Lançamento, parcerias acadêmicas ou imprensa. Respondemos em até três dias úteis.",
+    responseNote: "Prazo de resposta: até 3 dias úteis.",
+    formTitle: "Enviar mensagem",
+    formSuccess: "Mensagem recebida. Retornaremos em breve no e-mail informado.",
+  },
+
+  evento: {
+    eyebrow: "11 · ago · 2026 · Brasília",
+    title: "Dia do Advogado",
+    titleEmphasis: "Abertura oficial",
+    lead: "Painel sobre Direito Penal contemporâneo, aula inaugural de Flávio Milhomem e abertura formal das inscrições da Edição Lançamento. Vagas presenciais limitadas; transmissão online aberta.",
+    agendaTitle: "Programação prevista",
+    agenda: [
+      "Credenciamento e café",
+      "Painel: Direito Penal contemporâneo",
+      "Aula inaugural — perspectiva da acusação",
+      "Abertura das inscrições da Edição Lançamento",
+    ] as const,
+    rsvpTitle: "Inscrição gratuita",
+    rsvpLead: "Garanta sua vaga presencial ou o link da transmissão. Você receberá confirmação por e-mail.",
+    rsvpCta: "Confirmar presença",
+    rsvpSuccess: "Inscrição registrada. Em breve você receberá os detalhes por e-mail.",
+  },
+
+  materiais: {
+    bySlug: {
+      "mapa-da-acusacao": {
+        title: "Mapa da acusação",
+        lead: "Visão geral em uma página: etapas da denúncia, prova e sustentação em tribunal — material de apoio ao estudo.",
+      },
+      "checklist-inquerito": {
+        title: "Checklist do inquérito",
+        lead: "Pontos de atenção na fase investigatória pela ótica acusatória — para revisão de casos e prova.",
+      },
+    },
   },
 
   sobre: {

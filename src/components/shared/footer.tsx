@@ -84,17 +84,20 @@ export function Footer() {
           Blog
         </Link>
         <Link
-          href="/calculadora-de-pena"
+          href="/cursos/edicao-lancamento#faq"
           className="text-paper-700 hover:text-amber transition-colors"
         >
-          Calculadora
+          FAQ
         </Link>
-        <Link
-          href="/contato"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Contato
-        </Link>
+        {siteConfig.secondaryNav.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            {item.label}
+          </Link>
+        ))}
         <Link
           href="/privacidade"
           className="text-paper-700 hover:text-amber transition-colors"

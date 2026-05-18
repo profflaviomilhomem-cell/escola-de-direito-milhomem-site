@@ -7,6 +7,8 @@ import { siteConfig } from "@/config/site";
 import { copy } from "@/config/copy";
 import { Dossie3D } from "@/components/marketing/animation/dossie-3d";
 import { BlogSection } from "@/components/marketing/blog-section";
+import { TestimonialsSection } from "@/components/marketing/testimonials-section";
+import { HomeStatsSection } from "@/components/marketing/home-stats-section";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -61,7 +63,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
       />
 
-      <section className="relative flex min-h-screen items-center overflow-hidden px-[5%] pt-32 md:pt-20">
+      <section className="relative overflow-hidden px-[5%] pb-10 pt-28 md:pb-14 md:pt-20 lg:flex lg:min-h-screen lg:items-center lg:pb-0">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-serif"
@@ -74,13 +76,13 @@ export default function HomePage() {
           I
         </div>
 
-        <div className="mx-auto grid w-full max-w-[1200px] gap-20 lg:grid-cols-[1.2fr_1fr]">
-          <div className="relative z-10 flex flex-col justify-center">
+        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+          <div className="relative z-10 flex flex-col justify-center lg:col-start-1 lg:row-start-1">
             <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.32em]">
               {hero.eyebrow}
             </p>
             <h1
-              className="fm-hero-fade fm-hero-fade--title mb-8 font-serif leading-[1.02] tracking-[0.055em] md:tracking-[0.065em]"
+              className="fm-hero-fade fm-hero-fade--title mb-0 font-serif leading-[1.02] tracking-[0.055em] md:tracking-[0.065em] lg:mb-8"
               style={{ fontSize: "clamp(50px, 8vw, 100px)" }}
             >
               {hero.titleLine1}{" "}
@@ -89,56 +91,51 @@ export default function HomePage() {
               {hero.titleLine2}{" "}
               <em className="text-amber italic">{hero.titleEmphasis2}</em>
             </h1>
-            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-10 max-w-xl text-2xl italic leading-relaxed tracking-[0.03em]">
+          </div>
+
+          <div className="fm-hero-fade fm-hero-fade--dossie relative z-10 mx-auto mb-4 w-full max-w-[280px] shrink-0 overflow-visible pb-8 py-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:mb-0 lg:max-w-none lg:overflow-visible lg:pb-0 lg:py-0 lg:self-center">
+            <div className="lg:hidden">
+              <Dossie3D compact />
+            </div>
+            <div className="hidden lg:block">
+              <Dossie3D />
+            </div>
+          </div>
+
+          <div className="relative z-20 flex flex-col justify-center lg:col-start-1 lg:row-start-2">
+            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-6 max-w-xl text-xl italic leading-relaxed tracking-[0.03em] md:mb-10 md:text-2xl">
               {hero.tagline}
             </p>
-            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-10 max-w-xl text-base leading-relaxed tracking-[0.025em]">
+            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-8 max-w-xl text-base leading-relaxed tracking-[0.025em] md:mb-10">
               {hero.bio}
             </p>
-            <div className="fm-hero-fade fm-hero-fade--cta flex flex-wrap gap-4">
+            <div className="fm-hero-fade fm-hero-fade--cta flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3">
               <Link
                 href="#cohort"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaPrimary} →
               </Link>
               <Link
                 href="/newsletter"
-                className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber inline-flex items-center gap-2 border px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+                className="border-amber/35 text-paper hover:border-amber hover:bg-amber/5 inline-flex w-full items-center justify-center gap-2 border bg-white/[0.03] px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] backdrop-blur-sm transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaSecondary}
               </Link>
+              <Link
+                href="/calculadora-de-pena"
+                className="text-paper-600 hover:text-amber inline-flex w-full items-center justify-center gap-2 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors sm:w-auto sm:px-2 sm:py-4 sm:text-[11px]"
+              >
+                {hero.ctaCalculadora} →
+              </Link>
             </div>
           </div>
-
-          <div className="fm-hero-fade fm-hero-fade--dossie relative z-10 hidden lg:block">
-            <Dossie3D />
-          </div>
         </div>
       </section>
 
-      <section className="relative z-10 px-[5%] py-32">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                data-reveal
-                className="border-amber/20 border bg-white/[0.02] p-10 backdrop-blur-sm"
-              >
-                <div className="text-amber mb-3 font-serif text-6xl leading-none">
-                  {stat.val}
-                </div>
-                <div className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HomeStatsSection stats={stats} />
 
-      <section className="relative z-10 px-[5%] py-32">
+      <section className="relative z-10 px-[5%] py-16 lg:py-32">
         <div className="mx-auto max-w-[800px] text-center">
           <h2
             data-reveal
@@ -164,7 +161,7 @@ export default function HomePage() {
 
       <section
         id="programa"
-        className="bg-amber/[0.02] relative z-10 px-[5%] py-32"
+        className="bg-amber/[0.02] relative z-10 px-[5%] py-16 lg:py-32"
       >
         <div className="mx-auto max-w-[1200px]">
           <h2
@@ -203,7 +200,40 @@ export default function HomePage() {
 
       <BlogSection />
 
-      <section id="professor" className="relative z-10 px-[5%] py-32">
+      <TestimonialsSection />
+
+      <section
+        className="relative z-10 px-[5%] py-24"
+        aria-labelledby="calc-band-title"
+      >
+        <div className="border-amber/25 mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-8 border bg-white/[0.02] p-10 md:flex-row md:items-center">
+          <div>
+            <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+              {copy.home.calculadoraBand.eyebrow}
+            </p>
+            <h2
+              id="calc-band-title"
+              className="mt-3 font-serif text-3xl leading-tight md:text-4xl"
+            >
+              {copy.home.calculadoraBand.title}{" "}
+              <em className="text-amber italic">
+                {copy.home.calculadoraBand.titleEmphasis}
+              </em>
+            </h2>
+            <p className="text-paper-700 mt-3 max-w-xl text-base leading-relaxed">
+              {copy.home.calculadoraBand.lead}
+            </p>
+          </div>
+          <Link
+            href="/calculadora-de-pena"
+            className="bg-amber text-paper hover:bg-amber-soft shrink-0 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          >
+            {copy.home.calculadoraBand.cta}
+          </Link>
+        </div>
+      </section>
+
+      <section id="professor" className="relative z-10 px-[5%] py-16 lg:py-32">
         <div className="mx-auto max-w-[1200px]">
           <div className="grid items-center gap-20 md:grid-cols-[1fr_1.5fr]">
             <div
@@ -252,7 +282,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="cohort" className="relative z-10 px-[5%] py-32">
+      <section id="cohort" className="relative z-10 px-[5%] py-16 lg:py-32">
         <div className="mx-auto max-w-[1200px]">
           <div
             data-reveal

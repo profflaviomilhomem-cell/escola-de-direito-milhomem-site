@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
+import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { copy } from "@/config/copy";
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
@@ -46,6 +47,14 @@ export function EdicaoLancamentoLanding() {
           </Link>
         </div>
         <p className="text-paper-500 mt-4 text-sm">{ed.videoNote}</p>
+        <div
+          className="border-paper-100 mt-10 flex aspect-video max-w-2xl items-center justify-center rounded-lg border bg-carbon-elevated/40"
+          aria-hidden
+        >
+          <p className="text-paper-500 font-mono text-[10px] uppercase tracking-[0.2em]">
+            Vídeo em breve
+          </p>
+        </div>
       </header>
 
       {/* Bloco 2 */}
@@ -117,6 +126,27 @@ export function EdicaoLancamentoLanding() {
         </div>
       </section>
 
+      <section className="mt-20" aria-labelledby="materiais-title">
+        <h2 id="materiais-title" className="font-serif text-3xl">
+          {ed.materiaisInclusosTitle}
+        </h2>
+        <ul className="text-paper-700 mt-6 grid gap-3 sm:grid-cols-2">
+          {ed.materiaisInclusos.map((item) => (
+            <li
+              key={item}
+              className="border-paper-100 flex items-start gap-2 rounded-lg border px-4 py-3 text-sm leading-relaxed"
+            >
+              <span className="text-amber mt-0.5" aria-hidden>
+                ✓
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <TestimonialsSection variant="edicao" />
+
       {/* Bloco 11 */}
       <section
         id="investimento"
@@ -145,12 +175,12 @@ export function EdicaoLancamentoLanding() {
       </section>
 
       {/* Bloco 12 */}
-      <section className="mt-16" aria-labelledby="faq-title">
+      <section id="faq" className="mt-16 scroll-mt-28" aria-labelledby="faq-title">
         <h2 id="faq-title" className="font-serif text-3xl">
           {ed.faqTitle}
         </h2>
         <dl className="mt-8 space-y-6">
-          {ed.faq.map((item) => (
+          {[...ed.faq, ...ed.faqExtra].map((item) => (
             <div key={item.q}>
               <dt className="text-paper font-medium">{item.q}</dt>
               <dd className="text-paper-600 mt-2 text-sm leading-relaxed">{item.a}</dd>

@@ -27,6 +27,13 @@ declare global {
 export function track(event: string, props: TrackProps = {}): void {
   if (typeof window === "undefined") return;
 
+  void import("@/lib/analytics/consent").then(({ hasAnalyticsConsent }) => {
+    if (!hasAnalyticsConsent()) return;
+    pushTrack(event, props);
+  });
+}
+
+function pushTrack(event: string, props: TrackProps): void {
   // Macrotask: evita `dataLayer.push` / captura PostHog no mesmo stack que
   // ainda pode estar dentro de um render ou de hidratação (tags GTM e o
   // próprio PostHog podem disparar actualizações de estado noutros widgets).

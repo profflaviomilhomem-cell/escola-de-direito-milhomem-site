@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BlogEditor } from "@/components/professor/blog-editor";
-import { findBlogPost } from "@/data/mock-blog";
+import { getProfessorBlogPostBySlug } from "@/lib/blog/professor";
 
 type Params = Promise<{ slug: string }>;
 
@@ -13,7 +13,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = findBlogPost(slug);
+  const post = await getProfessorBlogPostBySlug(slug);
   return {
     title: post
       ? `Editar — ${post.title}`
@@ -28,7 +28,7 @@ export default async function EditarArtigoPage({
   params: Params;
 }) {
   const { slug } = await params;
-  const post = findBlogPost(slug);
+  const post = await getProfessorBlogPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -51,7 +51,7 @@ export default async function EditarArtigoPage({
             {post.title}
           </h1>
         </div>
-        {post.status === "publicado" && (
+        {post.status === "PUBLISHED" && (
           <Link
             href={`/blog/${post.slug}`}
             className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"

@@ -3,81 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BlogArticleBody } from "@/components/marketing/blog-article-body";
 import {
-  findBlogPost as findMockPost,
-  relatedPosts as findMockRelated,
-} from "@/data/mock-blog";
-import { migratedPosts } from "@/data/migrated-posts";
-import {
-  BLOG_COVER,
-  DB_CATEGORY_LABEL,
-  mapPrismaPostToArticle,
-  mapPrismaPostToRelated,
-  type BlogArticlePost,
-  type BlogRelatedPost,
-} from "@/lib/blog/prisma-posts";
-import { prisma } from "@/lib/prisma";
+  getBlogArticleBySlug,
+  getRelatedBlogPosts,
+} from "@/lib/blog/content";
+import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
+import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 
 type Params = Promise<{ slug: string }>;
-
-function bodyLooksLikeHtml(body: string) {
-  return /<\s*(p|div|h[1-6]|figure|ul|ol|blockquote|section|hr)\b/i.test(
-    body.trim().slice(0, 4000),
-  );
-}
-
-function findMigratedPost(slug: string): BlogArticlePost | undefined {
-  const m = migratedPosts.find((p) => p.slug === slug);
-  if (!m) return undefined;
-
-  const coverImage =
-    "coverImage" in m && typeof m.coverImage === "string"
-      ? m.coverImage
-      : undefined;
-
-  return {
-    slug: m.slug,
-    title: m.title,
-    excerpt: m.excerpt ?? "",
-    body: m.body,
-    category: m.category,
-    coverImage,
-    publishedAt:
-      typeof m.publishedAt === "string"
-        ? m.publishedAt
-        : undefined,
-    author: {
-      name: m.author.name,
-      role:
-        "role" in m.author && typeof m.author.role === "string"
-          ? m.author.role
-          : "Professor de Direito Criminal",
-      avatarSrc:
-        "avatarSrc" in m.author && typeof m.author.avatarSrc === "string"
-          ? m.author.avatarSrc
-          : "/images/professor/flavio-avatar-64.jpg",
-    },
-    cover: m.cover ?? { ...BLOG_COVER },
-    readingMin: m.readingMin,
-    tags: m.tags ?? [],
-  };
-}
-
-async function getPostData(slug: string): Promise<BlogArticlePost | undefined> {
-  try {
-    const p = await prisma.blogPost.findUnique({
-      where: { slug },
-      include: { author: true },
-    });
-
-    if (p) return mapPrismaPostToArticle(p);
-  } catch {
-    console.warn("DB offline ou post não encontrado no Prisma, usando mock.");
-  }
-  const mock = findMockPost(slug);
-  if (mock) return mock;
-  return findMigratedPost(slug);
-}
 
 export async function generateMetadata({
   params,
@@ -85,7 +19,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostData(slug);
+  const post = await getBlogArticleBySlug(slug);
   if (!post) return { title: "Artigo não encontrado" };
   return {
     title: post.title,
@@ -110,34 +44,14 @@ export default async function BlogArtigoPage({
   params: Params;
 }) {
   const { slug } = await params;
-  const post = await getPostData(slug);
+  const post = await getBlogArticleBySlug(slug);
   if (!post) notFound();
 
-  let related: BlogRelatedPost[] = [];
-  try {
-    const dbRelated = await prisma.blogPost.findMany({
-      where: { slug: { not: slug }, status: "PUBLISHED" },
-      take: 3,
-    });
-    related =
-      dbRelated.length > 0
-        ? dbRelated.map(mapPrismaPostToRelated)
-        : findMockRelated(slug, 3).map((p) => ({
-            slug: p.slug,
-            title: p.title,
-            category: p.category,
-            cover: p.cover,
-          }));
-  } catch {
-    related = findMockRelated(slug, 3).map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      category: p.category,
-      cover: p.cover,
-    }));
-  }
+  const related = await getRelatedBlogPosts(slug, 3);
 
-  // Schema Article (rich results)
+  const bodyIsHtml = bodyLooksLikeHtml(post.body);
+  const hasLeadVideo = bodyIsHtml && hasBlogLeadVideo(post.body);
+
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -178,7 +92,9 @@ export default async function BlogArtigoPage({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
 
-        <div className="relative z-10 px-gutter mx-auto max-w-(--container-narrow) pt-32 pb-20 lg:px-12">
+        <div
+          className={`relative z-10 px-gutter mx-auto max-w-(--container-narrow) pt-32 lg:px-12 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
+        >
           <Link
             href="/blog"
             className="text-paper-700 hover:text-amber font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
@@ -230,27 +146,10 @@ export default async function BlogArtigoPage({
       </section>
 
       {/* Corpo do artigo */}
-      <article className="px-gutter mx-auto max-w-prose-wide py-page lg:px-12">
-        {bodyLooksLikeHtml(post.body) ? (
-          <div
-            className="wp-migrated-html prose-juridica text-paper-800 text-[18px] leading-[1.8] [&_a]:text-amber [&_a:hover]:underline [&_blockquote]:border-paper-200 [&_blockquote]:text-paper-700 [&_blockquote]:border-l-2 [&_blockquote]:pl-4 [&_h1]:text-paper [&_h2]:text-paper [&_h3]:text-paper [&_iframe]:aspect-video [&_iframe]:max-h-[80vh] [&_iframe]:w-full [&_iframe]:max-w-full [&_img]:h-auto [&_img]:max-w-full [&_li]:marker:text-amber [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_strong]:text-paper [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6"
-            dangerouslySetInnerHTML={{ __html: post.body }}
-          />
-        ) : (
-          <div className="prose-juridica space-y-6 text-[18px] leading-[1.8]">
-            {post.body.split(/\n\n+/).map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-paper-800"
-                dangerouslySetInnerHTML={{
-                  __html: paragraph
-                    .replace(/\*\*(.+?)\*\*/g, '<strong class="text-paper">$1</strong>')
-                    .replace(/\*(.+?)\*/g, '<em class="text-amber italic">$1</em>'),
-                }}
-              />
-            ))}
-          </div>
-        )}
+      <article
+        className={`blog-article px-gutter mx-auto max-w-prose-wide pb-page lg:px-12 ${hasLeadVideo ? "bg-carbon pt-0" : "py-page"}`}
+      >
+        <BlogArticleBody body={post.body} isHtml={bodyIsHtml} />
 
         {/* Tags */}
         <div className="border-paper-100 mt-12 flex flex-wrap items-center gap-2 border-t pt-8">

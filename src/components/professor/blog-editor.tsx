@@ -1,46 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import type { BlogCategory, BlogStatus } from "@prisma/client";
 
-import {
-  CATEGORY_LABEL,
-  type BlogCategory,
-  type BlogStatus,
-  type MockBlogPost,
-} from "@/data/mock-blog";
+import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
+import { PROFESSOR_STATUS_LABEL, type ProfessorBlogPost } from "@/lib/blog/professor";
 
 type Props = {
-  /** Post existente para edição. Omitido = novo artigo (form vazio). */
-  post?: MockBlogPost;
+  post?: ProfessorBlogPost;
 };
 
-const STATUS_OPTIONS: Array<{ value: BlogStatus; label: string }> = [
-  { value: "rascunho", label: "Rascunho" },
-  { value: "agendado", label: "Agendado" },
-  { value: "publicado", label: "Publicado" },
-];
+const STATUS_OPTIONS: Array<{ value: BlogStatus; label: string }> = (
+  Object.keys(PROFESSOR_STATUS_LABEL) as BlogStatus[]
+).map((value) => ({
+  value,
+  label: PROFESSOR_STATUS_LABEL[value].label,
+}));
 
-/**
- * Editor visual de artigo. Por enquanto é um form HTML controlado, sem
- * persistência — em produção integra com Prisma `Post` ou MDX em
- * /content/blog/. O preview renderiza o body em tempo real (simples
- * markdown: **bold**, *itálico amber*, parágrafos por linha em branco).
- */
+const CATEGORY_OPTIONS = Object.entries(DB_CATEGORY_LABEL) as Array<
+  [BlogCategory, string]
+>;
+
 export function BlogEditor({ post }: Props) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [slug, setSlug] = useState(post?.slug ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [body, setBody] = useState(post?.body ?? "");
   const [category, setCategory] = useState<BlogCategory>(
-    post?.category ?? "analise-decisao",
+    post?.category ?? "GERAL",
   );
-  const [status, setStatus] = useState<BlogStatus>(post?.status ?? "rascunho");
-  const [tags, setTags] = useState((post?.tags ?? []).join(", "));
+  const [status, setStatus] = useState<BlogStatus>(post?.status ?? "DRAFT");
+  const [tags, setTags] = useState("");
   const [publishedAt, setPublishedAt] = useState(
-    post?.publishedAt ?? new Date().toISOString().slice(0, 10),
+    post?.publishedAt
+      ? post.publishedAt.slice(0, 10)
+      : new Date().toISOString().slice(0, 10),
   );
 
-  // Preview HTML (mesma transformação simples do artigo público)
   const bodyHtml = body
     .split(/\n\n+/)
     .map(
@@ -53,7 +49,6 @@ export function BlogEditor({ post }: Props) {
 
   return (
     <form className="grid gap-8 lg:grid-cols-[1.2fr_1fr]">
-      {/* Coluna esquerda — campos de edição */}
       <div className="space-y-5">
         <Field label="Título" required>
           <input
@@ -85,7 +80,10 @@ export function BlogEditor({ post }: Props) {
           />
         </Field>
 
-        <Field label="Corpo" hint="**negrito** e *itálico amber* aceitos. Quebra de linha dupla = novo parágrafo.">
+        <Field
+          label="Corpo"
+          hint="HTML do WordPress ou texto com **negrito** e *itálico*."
+        >
           <textarea
             value={body}
             onChange={(e) => setBody(e.target.value)}
@@ -102,7 +100,7 @@ export function BlogEditor({ post }: Props) {
               onChange={(e) => setCategory(e.target.value as BlogCategory)}
               className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
             >
-              {Object.entries(CATEGORY_LABEL).map(([key, label]) => (
+              {CATEGORY_OPTIONS.map(([key, label]) => (
                 <option key={key} value={key}>
                   {label}
                 </option>
@@ -135,7 +133,7 @@ export function BlogEditor({ post }: Props) {
             />
           </Field>
 
-          <Field label="Tags" hint="Separadas por vírgula">
+          <Field label="Tags" hint="Separadas por vírgula (em breve no banco)">
             <input
               type="text"
               value={tags}
@@ -147,11 +145,10 @@ export function BlogEditor({ post }: Props) {
         </div>
       </div>
 
-      {/* Coluna direita — preview + ações */}
       <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
         <div className="border-paper-100 bg-carbon-elevated border p-6">
           <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-3">
-            Preview · {CATEGORY_LABEL[category]}
+            Preview · {DB_CATEGORY_LABEL[category]}
           </p>
           <h2 className="text-paper font-serif text-xl leading-tight">
             {title || "Sem título"}
@@ -161,7 +158,9 @@ export function BlogEditor({ post }: Props) {
           </p>
           <div
             className="prose-juridica text-paper-800 mt-5 max-h-[280px] overflow-y-auto text-[14px] leading-[1.7]"
-            dangerouslySetInnerHTML={{ __html: bodyHtml || "<p><em>Corpo vazio…</em></p>" }}
+            dangerouslySetInnerHTML={{
+              __html: bodyHtml || "<p><em>Corpo vazio…</em></p>",
+            }}
           />
         </div>
 
@@ -173,9 +172,11 @@ export function BlogEditor({ post }: Props) {
             <button
               type="button"
               className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
-              onClick={() => alert("Salvar — ainda mock; persistência entra com o wiring de DB.")}
+              onClick={() =>
+                alert("Salvar em breve — API de persistência no Prisma.")
+              }
             >
-              {status === "publicado" ? "Atualizar publicação" : "Salvar rascunho"}
+              {status === "PUBLISHED" ? "Atualizar publicação" : "Salvar rascunho"}
             </button>
             <button
               type="button"
@@ -184,7 +185,7 @@ export function BlogEditor({ post }: Props) {
             >
               Cancelar
             </button>
-            {post && post.status === "publicado" && (
+            {post?.status === "PUBLISHED" && (
               <button
                 type="button"
                 className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
@@ -194,11 +195,6 @@ export function BlogEditor({ post }: Props) {
             )}
           </div>
         </div>
-
-        <p className="text-paper-600 text-[12px] leading-relaxed italic">
-          Persistência entra na fase de &quot;wiring&quot; (Prisma + Neon). Por
-          enquanto, o salvar é simulado.
-        </p>
       </aside>
     </form>
   );

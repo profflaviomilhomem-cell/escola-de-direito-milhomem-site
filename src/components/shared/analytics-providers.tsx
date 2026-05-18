@@ -4,30 +4,28 @@ import Script from "next/script";
 import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
+import { hasAnalyticsConsent } from "@/lib/analytics/consent";
 
 /**
  * Carga client-side de Meta Pixel, LinkedIn Insight Tag e PostHog.
- *
- * Cada bloco é gated pelo ID correspondente em `siteConfig.tracking`:
- * sem ID, nada é renderizado e nenhum script externo é carregado.
- *
- * GTM já vem do `app/layout.tsx` via `@next/third-parties/google` —
- * não duplicado aqui.
+ * Scripts só carregam após consentimento explícito (LGPD).
  */
 export function AnalyticsProviders() {
   const { metaPixelId, linkedinPartnerId, posthogKey, posthogHost } =
     siteConfig.tracking;
 
-  const [clientReady, setClientReady] = useState(false);
+  const [consented, setConsented] = useState(false);
+
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      setClientReady(true);
-    });
-    return () => cancelAnimationFrame(id);
+    const sync = () => setConsented(hasAnalyticsConsent());
+    sync();
+    const onConsent = () => sync();
+    window.addEventListener("fm-analytics-consent", onConsent);
+    return () => window.removeEventListener("fm-analytics-consent", onConsent);
   }, []);
 
   useEffect(() => {
-    if (!clientReady || !posthogKey) return;
+    if (!consented || !posthogKey) return;
     let cancelled = false;
     const t = window.setTimeout(() => {
       void import("posthog-js").then((mod) => {
@@ -47,11 +45,13 @@ export function AnalyticsProviders() {
       cancelled = true;
       window.clearTimeout(t);
     };
-  }, [clientReady, posthogKey, posthogHost]);
+  }, [consented, posthogKey, posthogHost]);
+
+  if (!consented) return null;
 
   return (
     <>
-      {metaPixelId && (
+      {metaPixelId ? (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
             {`
@@ -78,9 +78,9 @@ export function AnalyticsProviders() {
             />
           </noscript>
         </>
-      )}
+      ) : null}
 
-      {linkedinPartnerId && (
+      {linkedinPartnerId ? (
         <>
           <Script id="linkedin-insight" strategy="afterInteractive">
             {`
@@ -109,7 +109,7 @@ export function AnalyticsProviders() {
             />
           </noscript>
         </>
-      )}
+      ) : null}
     </>
   );
 }

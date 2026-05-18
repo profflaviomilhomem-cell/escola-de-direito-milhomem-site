@@ -69,8 +69,9 @@ lead funcionando, CI verde.
 - [x] `public/llms.txt` + `public/robots.txt` (Apêndices B e C do guia)
 - [x] `src/lib/auth/jwt.ts`, `password.ts`, `session.ts`
 - [x] `src/proxy.ts` com proteção de `/aluno`
-- [x] Layout raiz com fontes Newsreader/Inter/JetBrains via `next/font`
-- [x] **Build verde** — 20 rotas geradas, typecheck e Jest passando
+- [x] Layout raiz com fontes Clash Display / Hiragino / JetBrains via `next/font`
+- [x] `prisma.config.ts` alinhado ao Prisma 7 (`datasource.url`)
+- [x] **Build verde** — rotas geradas, typecheck, ESLint e Jest passando
 
 ### 1.2 Marca e identidade visual
 
@@ -78,8 +79,9 @@ lead funcionando, CI verde.
 - [ ] Registrar três variantes em Registro.br
 - [ ] Logo definitivo entregue pelo design (Figma)
 - [ ] Substituir foto institucional placeholder por sessão profissional
-- [x] Paleta institucional navy/mostarda aplicada (commit `90c20c7`)
-- [x] Fontes proprietárias subsetadas (Hiragino Maru Gothic latin + League Spartan, commits `90c20c7` e `4e9d222`)
+- [x] Paleta institucional 2026 aplicada: `#030024` · `#242A34` · `#F1BB41` · `#E0E0E0` (`globals.css`, OG, manifest, e-mail)
+- [x] **Clash Display** como fonte principal (títulos/marca) + **Hiragino Maru Gothic** corpo (secundária) + JetBrains Mono labels
+- [x] `src/lib/blog/prisma-posts.ts` — mapeadores tipados Prisma → blog (sem `any` legado)
 - [x] Capa de dossiê em papel kraft real para landing institucional (commit `0d5e4e3`)
 - [x] Favicon dinâmico via `src/app/icon.tsx` (32×32, ImageResponse navy/mostarda)
 - [x] Apple touch icon dinâmico via `src/app/apple-icon.tsx` (180×180, monograma "FM")
@@ -89,7 +91,8 @@ lead funcionando, CI verde.
 ### 1.3 Conteúdo institucional inicial
 
 - [ ] Texto da home aprovado por Diana (mentoria estratégica)
-- [x] Página `/sobre` com biografia placeholder (2 parágrafos com identidade navy/mostarda; 3-4 parágrafos finais aguardam aprovação editorial)
+- [x] `src/config/copy.ts` — tom Sábio+Cuidador; home, sobre, newsletter, landing cohort, avisos legais
+- [x] Página `/sobre` com biografia + **jornada animada** (`CareerJourneyPath`, `src/data/career-journey.ts`); copy final aguarda aprovação editorial
 - [x] Esqueleto de Política de Privacidade em 10 seções LGPD (`src/app/(marketing)/privacidade/page.tsx`) — texto aguarda redação final pela assessoria jurídica
 - [x] Esqueleto de Termos de Uso em 9 seções (`src/app/(marketing)/termos/page.tsx`)
 - [x] Esqueleto de Política de Reembolso (15 dias incondicionais + pro-rata pós-prazo em `src/app/(marketing)/reembolso/page.tsx`)
@@ -418,9 +421,29 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ---
 
-**Última atualização:** 15/05/2026 — Fase 4 (mock) reconciliada: páginas de curso/aula,
-`CommentTree`, telemetria `lesson_started` / `lesson_completed` no player mock.
-Fase 2 quase fechada (pende magic link Resend). Dosimetria: 30 testes Jest já no repo.
+**Última atualização:** 18/05/2026 — Identidade visual 2026 (Clash Display + paleta navy/ouro/cinza),
+jornada na `/sobre`, `copy.ts`, blog tipado, `prisma.config` Prisma 7, build/lint/typecheck verdes.
 
-**Próxima ação:** Cloudflare Stream + `<PlayerVideo>` real; `prisma migrate deploy`
-+ `npm run seed:mock-course` no Neon; Fase 0.2/0.3 (contas externas); Pagar.me quando KYC ok.
+---
+
+## Panorama rápido (o que falta de verdade)
+
+| Fase | Status | Bloqueadores principais |
+|------|--------|-------------------------|
+| **0** Pré-requisitos | 🔴 Não iniciada no checklist | Contas externas (Neon, Pagar.me, Resend, GTM…), compliance CSMPDFT/LGPD |
+| **1** Fundação | 🟡 ~85% código | Domínio/logo/foto pro; home aprovada; CRM admin; IDs reais de tracking |
+| **2** Auth / aluno esqueleto | 🟡 ~95% | Magic link Resend |
+| **3** Pagar.me | 🔴 0% implementação | KYC + checkout + webhook HMAC + reembolso API |
+| **4** LMS MVP | 🟡 ~40% | Stream real, CRUD aulas, fórum persistido, certificado PDF |
+| **5** UTM + CAPI | 🔴 | UTM builder, Meta CAPI server-side |
+| **6** Conteúdo / calculadora | 🟡 ~75% | PDF calculadora; iscas PDF; tripwire checkout |
+| **7** Pré-lançamento | 🔴 | 14 blocos landing cohort; e-mails; evento 11/08; cookie consent |
+| **8** Lançamento | 🔴 | Operação cohort + carrinho ago/2026 |
+
+**Próximas ações sugeridas (ordem):**
+
+1. **Fase 0.2** — Vercel + Neon linkados; `DATABASE_URL` em preview/prod; `prisma migrate deploy` + `npm run seed:mock-course`
+2. **Fase 3** — Pagar.me sandbox (checkout + webhook) — desbloqueia cohort e tripwire
+3. **Fase 4.1** — Cloudflare Stream + `<PlayerVideo>` real
+4. **Fase 7** — Banner consentimento cookies antes de GTM/Pixel; fechar 14 blocos `/cursos/edicao-lancamento`
+5. **Fase 1.2** — Foto profissional + logo definitivo (substituir placeholders)

@@ -1,42 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import {
-  CATEGORY_LABEL,
-  mockBlogPosts,
-  type BlogStatus,
-} from "@/data/mock-blog";
+  getProfessorBlogPosts,
+  PROFESSOR_STATUS_LABEL,
+} from "@/lib/blog/professor";
 
 export const metadata: Metadata = {
   title: "Blog — Painel do professor",
   robots: { index: false, follow: false },
 };
 
-const STATUS_TONE: Record<BlogStatus, { label: string; cls: string }> = {
-  publicado: {
-    label: "Publicado",
-    cls: "border-amber/60 bg-amber/10 text-amber",
-  },
-  rascunho: {
-    label: "Rascunho",
-    cls: "border-paper-200 text-paper-700",
-  },
-  agendado: {
-    label: "Agendado",
-    cls: "border-amber/40 text-amber-soft",
-  },
-};
-
-/**
- * Gestão editorial — lista todos os artigos (publicados, rascunhos,
- * agendados), com ações rápidas de edição e visualização.
- */
-export default function ProfessorBlogPage() {
-  const total = mockBlogPosts.length;
-  const publicados = mockBlogPosts.filter((p) => p.status === "publicado");
-  const rascunhos = mockBlogPosts.filter((p) => p.status === "rascunho");
-  const agendados = mockBlogPosts.filter((p) => p.status === "agendado");
-  const totalViews = mockBlogPosts.reduce((acc, p) => acc + p.views, 0);
+export default async function ProfessorBlogPage() {
+  const posts = await getProfessorBlogPosts();
+  const publicados = posts.filter((p) => p.status === "PUBLISHED");
+  const rascunhos = posts.filter((p) => p.status === "DRAFT");
+  const agendados = posts.filter((p) => p.status === "SCHEDULED");
 
   return (
     <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
@@ -52,7 +32,7 @@ export default function ProfessorBlogPage() {
             <em className="text-amber italic">Blog</em> da Escola.
           </h1>
           <p className="text-paper-700 mt-3 max-w-2xl text-base leading-relaxed">
-            {total} artigos no total · {publicados.length} publicados ·{" "}
+            {posts.length} artigos no total · {publicados.length} publicados ·{" "}
             {rascunhos.length} rascunho{rascunhos.length === 1 ? "" : "s"} ·{" "}
             {agendados.length} agendado{agendados.length === 1 ? "" : "s"}.
           </p>
@@ -61,20 +41,6 @@ export default function ProfessorBlogPage() {
           href="/professor/blog/novo"
           className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M5 12h14" />
-            <path d="M12 5v14" />
-          </svg>
           Novo artigo
         </Link>
       </header>
@@ -87,7 +53,7 @@ export default function ProfessorBlogPage() {
           tone="alert"
         />
         <Stat label="Agendados" value={agendados.length.toString()} />
-        <Stat label="Views totais" value={totalViews.toString()} tone="positive" />
+        <Stat label="No catálogo" value={posts.length.toString()} />
       </div>
 
       <div className="border-paper-100 bg-carbon-elevated overflow-hidden border">
@@ -99,15 +65,12 @@ export default function ProfessorBlogPage() {
                 Categoria
               </th>
               <th className="px-5 py-3 text-left">Status</th>
-              <th className="hidden px-5 py-3 text-right md:table-cell">
-                Views
-              </th>
               <th className="px-5 py-3 text-right">Ações</th>
             </tr>
           </thead>
           <tbody className="divide-paper-100 divide-y">
-            {mockBlogPosts.map((post) => {
-              const tone = STATUS_TONE[post.status];
+            {posts.map((post) => {
+              const tone = PROFESSOR_STATUS_LABEL[post.status];
               return (
                 <tr key={post.slug} className="hover:bg-paper-50">
                   <td className="px-5 py-4">
@@ -125,7 +88,7 @@ export default function ProfessorBlogPage() {
                   </td>
                   <td className="hidden px-5 py-4 md:table-cell">
                     <span className="text-paper-700 font-mono text-[10px] uppercase tracking-[0.15em]">
-                      {CATEGORY_LABEL[post.category]}
+                      {DB_CATEGORY_LABEL[post.category] ?? post.category}
                     </span>
                   </td>
                   <td className="px-5 py-4">
@@ -135,12 +98,9 @@ export default function ProfessorBlogPage() {
                       {tone.label}
                     </span>
                   </td>
-                  <td className="text-paper-700 hidden px-5 py-4 text-right font-mono text-[11px] md:table-cell">
-                    {post.views > 0 ? post.views.toLocaleString("pt-BR") : "—"}
-                  </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {post.status === "publicado" && (
+                      {post.status === "PUBLISHED" && (
                         <Link
                           href={`/blog/${post.slug}`}
                           className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors"

@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1", "localhost"],
+  allowedDevOrigins: [
+    "127.0.0.1",
+    "localhost",
+    "*.trycloudflare.com",
+  ],
   /** Declaração vazia: o projeto usa `webpack()` para dev; o build precisa
    *  deste campo para o Next 16 (Turbopack por defeito) não abortar. */
   turbopack: {},

@@ -1,0 +1,88 @@
+import { publishedBlogPosts } from "@/data/mock-blog";
+import {
+  mapPrismaPostToArticle,
+  mapPrismaPostToList,
+  type BlogArticlePost,
+  type BlogFeedItem,
+  type BlogListPost,
+  type BlogRelatedPost,
+} from "@/lib/blog/prisma-posts";
+import { prisma } from "@/lib/prisma";
+
+async function fetchPublishedFromDb(): Promise<BlogListPost[]> {
+  const rows = await prisma.blogPost.findMany({
+    where: { status: "PUBLISHED" },
+    orderBy: { publishedAt: "desc" },
+    include: { author: true },
+  });
+  return rows.map(mapPrismaPostToList);
+}
+
+/** Posts publicados (Prisma). Mock só se DB vazio e sem posts. */
+export async function getPublishedBlogListPosts(): Promise<BlogListPost[]> {
+  try {
+    const posts = await fetchPublishedFromDb();
+    if (posts.length > 0) return posts;
+  } catch {
+    /* offline */
+  }
+  return publishedBlogPosts();
+}
+
+export async function getBlogArticleBySlug(
+  slug: string,
+): Promise<BlogArticlePost | undefined> {
+  try {
+    const row = await prisma.blogPost.findUnique({
+      where: { slug },
+      include: { author: true },
+    });
+    if (row?.status === "PUBLISHED") return mapPrismaPostToArticle(row);
+  } catch {
+    /* offline */
+  }
+  return undefined;
+}
+
+export async function getBlogPostMeta(
+  slug: string,
+): Promise<{ title: string; category: string } | undefined> {
+  try {
+    const row = await prisma.blogPost.findUnique({
+      where: { slug },
+      select: { title: true, category: true, status: true },
+    });
+    if (row?.status === "PUBLISHED") {
+      return { title: row.title, category: row.category };
+    }
+  } catch {
+    /* offline */
+  }
+  return undefined;
+}
+
+export async function getRelatedBlogPosts(
+  slug: string,
+  limit = 3,
+): Promise<BlogRelatedPost[]> {
+  const posts = await getPublishedBlogListPosts();
+  return posts
+    .filter((p) => p.slug !== slug)
+    .slice(0, limit)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      cover: p.cover,
+    }));
+}
+
+export async function getBlogFeedItems(limit = 20): Promise<BlogFeedItem[]> {
+  const posts = await getPublishedBlogListPosts();
+  return posts.slice(0, limit).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    excerpt: p.excerpt,
+    publishedAt: new Date(p.publishedAt ?? Date.now()),
+  }));
+}

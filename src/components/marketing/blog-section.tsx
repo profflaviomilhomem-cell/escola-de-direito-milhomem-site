@@ -1,41 +1,13 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
-import { migratedPosts } from "@/data/migrated-posts";
-import { publishedBlogPosts } from "@/data/mock-blog";
-import {
-  DB_CATEGORY_LABEL,
-  mapPrismaPostToList,
-  type BlogListPost,
-} from "@/lib/blog/prisma-posts";
+import { getPublishedBlogListPosts } from "@/lib/blog/content";
+import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { BlogCard } from "./blog-card";
 
 /**
  * Seção de Blog para a Home - Traz os 3 posts mais recentes.
  */
 export async function BlogSection() {
-  let posts: BlogListPost[] = [];
-
-  try {
-    const dbPosts = await prisma.blogPost.findMany({
-      where: { status: "PUBLISHED" },
-      orderBy: { publishedAt: "desc" },
-      take: 3,
-      include: { author: true },
-    });
-
-    if (dbPosts.length > 0) {
-      posts = dbPosts.map(mapPrismaPostToList);
-    } else if (migratedPosts.length > 0) {
-      posts = migratedPosts.slice(0, 3);
-    } else {
-      posts = publishedBlogPosts().slice(0, 3);
-    }
-  } catch {
-    posts =
-      migratedPosts.length > 0
-        ? migratedPosts.slice(0, 3)
-        : publishedBlogPosts().slice(0, 3);
-  }
+  const posts = (await getPublishedBlogListPosts()).slice(0, 3);
 
   if (posts.length === 0) return null;
 

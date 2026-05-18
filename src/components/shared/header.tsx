@@ -1,10 +1,12 @@
 import Link from "next/link";
 
 import { HeaderAccessibilityMenu } from "@/components/shared/header-accessibility-menu";
+import { HeaderMobileNav } from "@/components/shared/header-mobile-nav";
 import { siteConfig } from "@/config/site";
 
 /**
- * Header institucional — nav do Livro-Guia 5.7 (máx. 5 itens) + CTA lista.
+ * Header institucional — Início, Sobre, Cursos, FAQ, Blog + CTA lista.
+ * Eventos, Contato e Calculadora ficam no footer (`siteConfig.secondaryNav`).
  */
 export function Header() {
   return (
@@ -44,6 +46,7 @@ export function Header() {
           </Link>
         </nav>
 
+        <HeaderMobileNav />
         <HeaderAccessibilityMenu />
       </div>
     </header>

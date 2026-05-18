@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
-import { prisma } from "@/lib/prisma";
-import { findBlogPost as findMockPost } from "@/data/mock-blog";
+
+import { getBlogPostMeta } from "@/lib/blog/content";
+import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 
 export const runtime = "edge";
 export const alt = "Escola Flávio Milhomem — Blog";
@@ -9,23 +10,16 @@ export const contentType = "image/png";
 
 type Params = { params: Promise<{ slug: string }> };
 
-/**
- * Gera imagem de compartilhamento dinâmica para cada artigo.
- * Título + Categoria + Marca da Escola.
- */
+const CATEGORY_LABEL: Record<string, string> = {
+  ...DB_CATEGORY_LABEL,
+  "analise-decisao": "Análise de decisão",
+  "dogmatica-aplicada": "Dogmática aplicada",
+  "comentario-atual": "Comentário atual",
+};
+
 export default async function Image({ params }: Params) {
   const { slug } = await params;
-  
-  let post;
-  try {
-    const dbPost = await prisma.blogPost.findUnique({
-      where: { slug },
-      select: { title: true, category: true },
-    });
-    post = dbPost ? { title: dbPost.title, category: dbPost.category } : findMockPost(slug);
-  } catch {
-    post = findMockPost(slug);
-  }
+  const post = await getBlogPostMeta(slug);
 
   if (!post) {
     return new ImageResponse(
@@ -46,19 +40,9 @@ export default async function Image({ params }: Params) {
           Escola Flávio Milhomem
         </div>
       ),
-      { ...size }
+      { ...size },
     );
   }
-
-  const categoryLabel: Record<string, string> = {
-    ANALISE_DECISAO: "Análise de decisão",
-    DOGMATICA: "Dogmática aplicada",
-    COMENTARIO: "Comentário atual",
-    GERAL: "Blog",
-    "analise-decisao": "Análise de decisão",
-    "dogmatica-aplicada": "Dogmática aplicada",
-    "comentario-atual": "Comentário atual",
-  };
 
   return new ImageResponse(
     (
@@ -74,7 +58,6 @@ export default async function Image({ params }: Params) {
           fontFamily: "sans-serif",
         }}
       >
-        {/* Background gradient element */}
         <div
           style={{
             position: "absolute",
@@ -100,7 +83,7 @@ export default async function Image({ params }: Params) {
               marginBottom: 32,
             }}
           >
-            {categoryLabel[post.category] || "Artigo"}
+            {CATEGORY_LABEL[post.category] || "Artigo"}
           </p>
           <h1
             style={{
@@ -126,34 +109,54 @@ export default async function Image({ params }: Params) {
           }}
         >
           <div style={{ display: "flex", alignItems: "center" }}>
-             <div 
-               style={{ 
-                 width: 60, 
-                 height: 60, 
-                 background: "#e6c35c", 
-                 borderRadius: "50%", 
-                 display: "flex", 
-                 alignItems: "center", 
-                 justifyContent: "center",
-                 fontSize: 24,
-                 color: "#030024",
-                 fontWeight: "bold",
-                 marginRight: 20
-               }}
-             >
-               FM
-             </div>
-             <div style={{ display: "flex", flexDirection: "column" }}>
-                <span style={{ color: "#fcfaf2", fontSize: 24, fontWeight: "bold" }}>Flávio Milhomem</span>
-                <span style={{ color: "rgba(252, 250, 242, 0.6)", fontSize: 18, textTransform: "uppercase", letterSpacing: "0.1em" }}>Professor de Direito Penal</span>
-             </div>
+            <div
+              style={{
+                width: 60,
+                height: 60,
+                background: "#e6c35c",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 24,
+                color: "#030024",
+                fontWeight: "bold",
+                marginRight: 20,
+              }}
+            >
+              FM
+            </div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span
+                style={{ color: "#fcfaf2", fontSize: 24, fontWeight: "bold" }}
+              >
+                Flávio Milhomem
+              </span>
+              <span
+                style={{
+                  color: "rgba(252, 250, 242, 0.6)",
+                  fontSize: 18,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                }}
+              >
+                Professor de Direito Penal
+              </span>
+            </div>
           </div>
-          <div style={{ color: "#e6c35c", fontSize: 20, fontWeight: "bold", letterSpacing: "0.1em" }}>
-             ESCOLAFLAVIOMILHOMEM.COM.BR
+          <div
+            style={{
+              color: "#e6c35c",
+              fontSize: 20,
+              fontWeight: "bold",
+              letterSpacing: "0.1em",
+            }}
+          >
+            ESCOLAFLAVIOMILHOMEM.COM.BR
           </div>
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }
