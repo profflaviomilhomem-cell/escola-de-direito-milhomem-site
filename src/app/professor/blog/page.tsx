@@ -19,7 +19,7 @@ export default async function ProfessorBlogPage() {
   const agendados = posts.filter((p) => p.status === "SCHEDULED");
 
   return (
-    <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
+    <section className="fm-site-page py-12">
       <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">

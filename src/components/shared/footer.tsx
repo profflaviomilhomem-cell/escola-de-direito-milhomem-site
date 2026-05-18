@@ -45,7 +45,8 @@ const socialPillClass =
  */
 export function Footer() {
   return (
-    <footer className="border-amber/20 relative z-10 border-t px-[5%] py-16 text-center">
+    <footer className="border-amber/20 fm-site-section relative z-10 border-t py-16 text-center">
+      <div className="fm-site-container">
       <Link
         href="/"
         className="mx-auto inline-flex items-center justify-center gap-3 text-inherit no-underline"
@@ -82,6 +83,12 @@ export function Footer() {
           className="text-paper-700 hover:text-amber transition-colors"
         >
           Blog
+        </Link>
+        <Link
+          href="/calculadora-de-pena"
+          className="text-paper-700 hover:text-amber transition-colors"
+        >
+          Calculadora
         </Link>
         <Link
           href="/cursos/edicao-lancamento#faq"
@@ -181,6 +188,7 @@ export function Footer() {
         © {new Date().getFullYear()} {siteConfig.name.toUpperCase()} ·
         DESENVOLVIDO POR ORBEE LABS · TODOS OS DIREITOS RESERVADOS
       </p>
+      </div>
     </footer>
   );
 }

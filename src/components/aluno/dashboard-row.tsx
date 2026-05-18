@@ -51,7 +51,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
 
   return (
     <section className="relative">
-      <div className="px-gutter mx-auto flex max-w-(--container-narrow) items-end justify-between lg:px-12">
+      <div className="fm-site-page flex items-end justify-between">
         <div>
           {eyebrow && (
             <p className="text-amber fm-mono">{eyebrow}</p>
@@ -73,7 +73,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           então as setas ficam coladas nas bordas dos cards (não na borda
           da viewport). Setas sempre visíveis; a inativa fica em estado
           disabled (opacidade reduzida + cursor-not-allowed). */}
-      <div className="relative mx-auto mt-6 max-w-(--container-narrow)">
+      <div className="relative fm-site-container mt-6">
         <Button
           type="button"
           variant="outline"
@@ -139,7 +139,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
 
         <div
           ref={ref}
-          className="px-gutter flex gap-4 overflow-x-auto scroll-smooth pb-4 lg:px-12"
+          className="flex w-full gap-4 overflow-x-auto scroll-smooth pb-4"
           style={{ scrollSnapType: "x proximity" }}
         >
           {children}

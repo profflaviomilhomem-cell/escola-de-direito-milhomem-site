@@ -79,7 +79,7 @@ export default async function BlogPage({
     });
 
   return (
-    <section className="px-gutter py-page mx-auto max-w-(--container-narrow) lg:px-12">
+    <section className="fm-site-page py-page">
       {/* Hero editorial */}
       <header className="mb-10 max-w-3xl md:mb-14">
         <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">

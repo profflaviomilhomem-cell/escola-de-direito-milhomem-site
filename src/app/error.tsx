@@ -15,7 +15,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <main className="mx-auto flex max-w-prose flex-1 flex-col items-center justify-center px-gutter py-page text-center">
+    <main className="fm-site-page flex max-w-prose flex-1 flex-col items-center justify-center py-page text-center">
       <p className="text-overline text-alerta-500">Erro inesperado</p>
       <h1 className="font-serif text-display-2 text-tinta-700 mt-3">
         Algo saiu do trilho

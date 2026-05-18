@@ -15,7 +15,7 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
   const { hash } = await params;
 
   return (
-    <article className="mx-auto max-w-prose px-gutter py-page text-center">
+    <article className="fm-site-page max-w-prose py-page text-center">
       <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
         Escola Flávio Milhomem
       </p>

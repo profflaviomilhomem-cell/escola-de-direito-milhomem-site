@@ -14,7 +14,7 @@ export default function EventoDiaAdvogadoPage() {
   const e = copy.evento;
 
   return (
-    <article className="mx-auto max-w-(--container-narrow) px-gutter py-page">
+    <article className="fm-site-page py-page">
       <header className="max-w-3xl">
         <p className="text-amber font-mono text-[11px] uppercase tracking-[0.22em]">
           {e.eyebrow}

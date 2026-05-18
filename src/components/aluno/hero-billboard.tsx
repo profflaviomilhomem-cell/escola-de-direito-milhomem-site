@@ -50,7 +50,7 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
 
         {/* Conteúdo */}
         <div className="relative z-10 flex h-full items-end pb-20">
-          <div className="px-gutter mx-auto w-full max-w-(--container-narrow) lg:px-12">
+          <div className="fm-site-container w-full">
             <p className="text-amber fm-mono mb-3">
               Bem-vindo de volta, {firstName} · Continue assistindo
             </p>

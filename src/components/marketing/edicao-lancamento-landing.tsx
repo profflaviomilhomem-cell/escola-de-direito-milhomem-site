@@ -12,7 +12,7 @@ export function EdicaoLancamentoLanding() {
   const ed = copy.edicaoLancamento;
 
   return (
-    <article className="px-gutter py-page mx-auto max-w-(--container-narrow)">
+    <article className="fm-site-page py-page">
       {/* Bloco 1 */}
       <header className="max-w-3xl">
         <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">

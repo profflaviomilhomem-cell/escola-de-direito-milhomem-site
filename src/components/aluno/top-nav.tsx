@@ -43,13 +43,13 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
 
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
+      className={`fm-a11y-chrome fm-site-section fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-carbon/85 border-paper-100 border-b backdrop-blur-md"
           : "bg-gradient-to-b from-carbon to-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-(--container-narrow) items-center justify-between px-gutter py-5 lg:px-12">
+      <div className="fm-site-container flex items-center justify-between py-5">
         {/* Logo + brand */}
         <div className="flex items-center gap-8 lg:gap-10">
           <Link
@@ -225,7 +225,7 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
           aria-label="Navegação móvel"
           className="border-paper-100 bg-carbon/95 border-t backdrop-blur-md md:hidden"
         >
-          <ul className="px-gutter flex flex-col py-2">
+          <ul className="fm-site-container flex flex-col py-2">
             {links.map((l) => (
               <li key={l.href}>
                 <Link

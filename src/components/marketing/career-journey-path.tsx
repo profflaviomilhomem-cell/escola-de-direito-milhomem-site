@@ -158,20 +158,29 @@ function JourneyFigure({ stage }: { stage: number }) {
   );
 }
 
+/** Pseudoaleatório determinístico (mesmo valor no SSR e no cliente). */
+function seededUnit(seed: number) {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+function particleProps(index: number) {
+  const s = index * 6.28318 + 1.41;
+  return {
+    r: seededUnit(s + 1) * 1.5 + 0.5,
+    opacity: seededUnit(s + 2) * 0.5 + 0.2,
+    fromX: seededUnit(s + 3) * 360,
+    toX: seededUnit(s + 4) * 360,
+    durX: seededUnit(s + 5) * 10 + 10,
+    durY: seededUnit(s + 6) * 15 + 10,
+  };
+}
+
 /**
  * Sistema de Partículas para atmosfera
  */
 function Particles({ count = 15 }: { count?: number }) {
-  const [particles] = useState(() => 
-    Array.from({ length: count }).map(() => ({
-      r: Math.random() * 1.5 + 0.5,
-      opacity: Math.random() * 0.5 + 0.2,
-      fromX: Math.random() * 360,
-      toX: Math.random() * 360,
-      durX: Math.random() * 10 + 10,
-      durY: Math.random() * 15 + 10,
-    }))
-  );
+  const particles = Array.from({ length: count }, (_, i) => particleProps(i));
 
   return (
     <g className="particles" opacity="0.4">

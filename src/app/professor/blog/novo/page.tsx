@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function NovoArtigoPage() {
   return (
-    <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
+    <section className="fm-site-page py-12">
       <Link
         href="/professor/blog"
         className="text-paper-700 hover:text-amber font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"

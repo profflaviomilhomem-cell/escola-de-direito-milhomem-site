@@ -15,7 +15,7 @@ export default function ContatoPage() {
   const c = copy.contato;
 
   return (
-    <article className="mx-auto max-w-prose px-gutter py-page">
+    <article className="fm-site-page max-w-prose py-page">
       <header>
         <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
           {c.eyebrow}

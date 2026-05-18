@@ -72,7 +72,7 @@ export default async function CursoMatriculadoPage({
           <div className="absolute inset-0 bg-gradient-to-r from-carbon/85 via-carbon/40 to-transparent" />
 
           <div className="relative z-10 flex h-full items-end pb-16">
-            <div className="px-gutter mx-auto w-full max-w-(--container-narrow) lg:px-12">
+            <div className="fm-site-container w-full">
               <p className="text-amber fm-mono">Cohort 2026 · Edição Lançamento</p>
               <h1
                 className="mt-3 font-serif leading-[1.05]"
@@ -119,7 +119,7 @@ export default async function CursoMatriculadoPage({
       </section>
 
       {/* Resumo do curso */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
+      <section className="fm-site-page py-12">
         <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
           <div>
             <h2 className="text-paper font-serif text-2xl">Sobre o curso</h2>
@@ -157,7 +157,7 @@ export default async function CursoMatriculadoPage({
       </section>
 
       {/* Módulos — linha do tempo vertical com cards de aula */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) pb-20 lg:px-12">
+      <section className="fm-site-page pb-20">
         <header className="mb-10 flex items-end justify-between">
           <div>
             <p className="text-amber fm-mono">Sua jornada</p>

@@ -5,12 +5,13 @@ import { HeaderMobileNav } from "@/components/shared/header-mobile-nav";
 import { siteConfig } from "@/config/site";
 
 /**
- * Header institucional — Início, Sobre, Cursos, FAQ, Blog + CTA lista.
- * Eventos, Contato e Calculadora ficam no footer (`siteConfig.secondaryNav`).
+ * Header institucional — `siteConfig.mainNav` + CTA lista.
+ * Eventos e Contato ficam em `secondaryNav` (footer / menu mobile “Mais”).
  */
 export function Header() {
   return (
-    <header className="bg-carbon/70 border-amber/10 fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b px-[5%] py-5 backdrop-blur-md">
+    <header className="fm-a11y-chrome bg-carbon/70 border-amber/10 fm-site-section fixed left-0 right-0 top-0 z-50 border-b py-5 backdrop-blur-md">
+      <div className="fm-site-container flex items-center justify-between">
       <Link
         href="/"
         className="flex min-w-0 shrink-0 items-center gap-3 text-inherit no-underline"
@@ -48,6 +49,7 @@ export function Header() {
 
         <HeaderMobileNav />
         <HeaderAccessibilityMenu />
+      </div>
       </div>
     </header>
   );

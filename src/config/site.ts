@@ -62,21 +62,21 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
   },
 
-  // Navegação principal — máximo 5 itens (Seção 8.1 do guia) + CTA lista.
+  // Navegação principal do header + CTA lista (6 itens — Calculadora e FAQ no topo).
   // Sem link "Entrar" de propósito: acesso à área do aluno só por convite/e-mail
   // (magic link ou URL direta), para não expor o login no site público.
   mainNav: [
     { label: "Início", href: "/" },
     { label: "Sobre", href: "/sobre" },
     { label: "Cursos", href: "/cursos" },
-    { label: "FAQ", href: "/cursos/edicao-lancamento#faq" },
     { label: "Blog", href: "/blog" },
+    { label: "Calculadora", href: "/calculadora-de-pena" },
+    { label: "FAQ", href: "/cursos/edicao-lancamento#faq" },
   ],
-  /** Links secundários (footer e páginas legais) */
+  /** Links secundários (footer e menu mobile “Mais”) */
   secondaryNav: [
     { label: "Eventos", href: "/eventos/dia-do-advogado-2026" },
     { label: "Contato", href: "/contato" },
-    { label: "Calculadora", href: "/calculadora-de-pena" },
   ],
 } as const;
 

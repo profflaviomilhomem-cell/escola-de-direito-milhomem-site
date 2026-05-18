@@ -80,7 +80,7 @@ export default async function DashboardPage() {
       <HeroBillboard course={mockCourse} nextLesson={next} studentName={studentName} />
 
       <section className="border-paper-100 border-y bg-carbon-elevated/50">
-        <div className="px-gutter mx-auto flex max-w-(--container-narrow) flex-col gap-4 py-6 lg:flex-row lg:items-stretch lg:gap-6 lg:px-12">
+        <div className="fm-site-page flex flex-col gap-4 py-6 lg:flex-row lg:items-stretch lg:gap-6">
           <Card
             size="sm"
             className="border-paper-100/50 bg-card/90 flex w-full shrink-0 items-center justify-center py-8 ring-1 ring-paper-100/10 lg:w-40 lg:py-6"

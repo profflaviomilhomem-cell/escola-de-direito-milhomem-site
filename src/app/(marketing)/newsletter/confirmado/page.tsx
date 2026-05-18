@@ -62,7 +62,7 @@ export default async function ConfirmadoPage({
   const copy = COPY[status];
 
   return (
-    <section className="mx-auto max-w-prose px-gutter py-page">
+    <section className="fm-site-page max-w-prose py-page">
       <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
         {copy.eyebrow}
       </p>

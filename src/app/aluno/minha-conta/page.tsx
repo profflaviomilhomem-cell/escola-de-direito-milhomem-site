@@ -35,7 +35,7 @@ export default async function MinhaContaPage() {
   const email = session?.email ?? mockUser.email;
 
   return (
-    <section className="px-gutter mx-auto max-w-3xl py-20 lg:px-12">
+    <section className="fm-site-page max-w-3xl py-20">
       <p className="text-amber fm-mono">Sua conta</p>
       <h1
         className="mt-3 font-serif leading-[1.05]"

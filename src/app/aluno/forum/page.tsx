@@ -22,7 +22,7 @@ export default function ForumPage() {
   return (
     <>
       {/* Header editorial — só na primeira dobra; toolbar mora em ForumFeed */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) pb-6 pt-12 lg:px-12 lg:pt-16">
+      <section className="fm-site-page pb-6 pt-12 lg:pt-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="text-amber fm-mono">Comunidade</p>

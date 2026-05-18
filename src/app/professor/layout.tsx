@@ -29,7 +29,9 @@ export default async function ProfessorLayout({
         userEmail={session.email}
         avatarSrc={mockProfessor.avatarSrc}
       />
-      <main className="relative z-10 pt-24">{children}</main>
+      <main id="conteudo" className="relative z-10 pt-24">
+        {children}
+      </main>
     </div>
   );
 }

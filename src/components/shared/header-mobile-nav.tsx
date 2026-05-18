@@ -13,10 +13,6 @@ const PANEL_STYLE: React.CSSProperties = {
   backdropFilter: "blur(24px) saturate(1.4)",
 };
 
-const secondaryLinks = siteConfig.secondaryNav.filter(
-  (item) => item.href !== "/calculadora-de-pena",
-);
-
 /**
  * Menu mobile em tela cheia — vidro fosco + fundo navy quase sólido.
  * Renderizado via portal para não competir com o hero.
@@ -55,7 +51,7 @@ export function HeaderMobileNav() {
           <nav
             id="mobile-nav-panel"
             aria-label="Navegação mobile"
-            className="fixed inset-0 z-[200] flex flex-col px-[5%] pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
+            className="fixed inset-0 z-[200] flex flex-col fm-site-section pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
             style={PANEL_STYLE}
           >
             {/* Camada extra de opacidade — garante leitura se blur falhar no browser */}
@@ -92,24 +88,15 @@ export function HeaderMobileNav() {
                       </Link>
                     </li>
                   ))}
-                  <li>
-                    <Link
-                      href="/calculadora-de-pena"
-                      onClick={close}
-                      className="text-paper hover:bg-paper/8 hover:text-amber block rounded-lg px-3 py-3.5 font-mono text-[15px] uppercase tracking-[0.2em] transition-colors"
-                    >
-                      Calculadora
-                    </Link>
-                  </li>
                 </ul>
 
-                {secondaryLinks.length > 0 ? (
+                {siteConfig.secondaryNav.length > 0 ? (
                   <div className="border-paper-100/30 mt-8 border-t pt-8">
                     <p className="text-paper-500 mb-4 font-mono text-[10px] uppercase tracking-[0.2em]">
                       Mais
                     </p>
                     <ul className="flex flex-col gap-1">
-                      {secondaryLinks.map((item) => (
+                      {siteConfig.secondaryNav.map((item) => (
                         <li key={item.href}>
                           <Link
                             href={item.href}

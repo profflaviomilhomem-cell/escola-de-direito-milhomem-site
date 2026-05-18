@@ -124,7 +124,60 @@
   /* === Larguras de leitura === */
   --container-prose: 68ch;
   --container-prose-wide: 76ch;
-  --container-narrow: 1200px;
+  --container-narrow: 1400px;
+}
+
+/* Site — recuo lateral único (evita 5% / gutter + max-width empilhados) */
+.fm-site-section,
+.fm-home-section {
+  position: relative;
+  z-index: 10;
+  padding-inline: max(1rem, env(safe-area-inset-left, 0px))
+    max(1rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+  .fm-site-section,
+  .fm-home-section {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fm-site-section,
+  .fm-home-section {
+    padding-inline: 2rem;
+  }
+}
+
+.fm-site-container,
+.fm-home-container {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+/* Páginas com um único bloco (section + container no mesmo nível) */
+.fm-site-page {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-inline: max(1rem, env(safe-area-inset-left, 0px))
+    max(1rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+  .fm-site-page {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fm-site-page {
+    padding-inline: 2rem;
+  }
 }
 
 /* Reset/base institucional + tokens shadcn (navy / mostarda / creme) */
@@ -419,6 +472,11 @@ h6,
   line-height: 1.75;
 }
 
+/* Páginas institucionais em grid largo (ex.: Sobre) */
+.prose-juridica--fluid {
+  max-width: none;
+}
+
 /* === Blog: embeds WordPress (vídeo) — regra global no artigo === */
 .blog-article .wp-migrated-html .wp-block-embed__wrapper {
   width: 100%;
@@ -604,21 +662,80 @@ h6,
   }
 }
 
-/* === Acessibilidade: escala de texto na raiz (rem) === */
-html[data-fm-text-step="0"] {
-  font-size: 87.5%;
-}
-html[data-fm-text-step="1"] {
-  font-size: 93.75%;
-}
-html[data-fm-text-step="2"] {
+/* === Acessibilidade: escala de texto ===
+ * Uma única alavanca: `font-size` em <html> escala todos os `rem` do site.
+ * Chrome fixo (header, menu, dossiê) usa compensação 1/scale para não mudar.
+ * Passo 2 = 100% (original). Só 3 e 4 aumentam — nunca reduz.
+ */
+html {
+  --fm-text-scale: 1;
   font-size: 100%;
 }
-html[data-fm-text-step="3"] {
-  font-size: 106.25%;
+
+html[data-fm-text-step="2"],
+html[data-fm-text-step="0"],
+html[data-fm-text-step="1"] {
+  --fm-text-scale: 1;
+  font-size: 100%;
 }
+
+html[data-fm-text-step="3"] {
+  --fm-text-scale: 1.125;
+  font-size: 112.5%;
+}
+
 html[data-fm-text-step="4"] {
-  font-size: 114%;
+  --fm-text-scale: 1.25;
+  font-size: 125%;
+}
+
+/* Navegação e UI decorativa — tamanho visual constante */
+.fm-a11y-chrome,
+.fm-a11y-no-scale,
+#fm-a11y-panel {
+  font-size: calc(1rem / var(--fm-text-scale, 1));
+}
+
+/* Títulos com clamp em px (fmTitleClamp) — escalam junto com o passo */
+.fm-title-fluid {
+  font-size: clamp(
+    var(--fm-title-min),
+    var(--fm-title-fluid),
+    var(--fm-title-max)
+  );
+}
+
+html[data-fm-text-step="3"] .fm-title-fluid,
+html[data-fm-text-step="4"] .fm-title-fluid {
+  font-size: clamp(
+    calc(var(--fm-title-min) * var(--fm-text-scale)),
+    calc(var(--fm-title-fluid) * var(--fm-text-scale)),
+    calc(var(--fm-title-max) * var(--fm-text-scale))
+  );
+}
+
+/* Labels mono em px fixo (text-[10px], text-[11px]) — escalam com o passo */
+html[data-fm-text-step="3"] #conteudo [class*="text-[10px]"],
+html[data-fm-text-step="4"] #conteudo [class*="text-[10px]"],
+html[data-fm-text-step="3"] footer [class*="text-[10px]"],
+html[data-fm-text-step="4"] footer [class*="text-[10px]"] {
+  font-size: calc(10px * var(--fm-text-scale)) !important;
+}
+
+html[data-fm-text-step="3"] #conteudo [class*="text-[11px]"],
+html[data-fm-text-step="4"] #conteudo [class*="text-[11px]"],
+html[data-fm-text-step="3"] footer [class*="text-[11px]"],
+html[data-fm-text-step="4"] footer [class*="text-[11px]"] {
+  font-size: calc(11px * var(--fm-text-scale)) !important;
+}
+
+.fm-dossie-evidence-photo {
+  flex-shrink: 0;
+}
+
+.fm-dossie-evidence-photo img {
+  display: block;
+  max-width: none;
 }
 
 /* === Modo claro (`html.light`) — paleta espelhada === */
@@ -703,17 +820,23 @@ html.light .fm-bg-noise {
 
 /* === Visão: contraste, monocromático, apoio leitura + mídia === */
 html[data-fm-vision="high-contrast"]:not(.light) {
-  --color-paper-700: rgba(224, 224, 224, 0.95);
-  --color-paper-800: rgba(224, 224, 224, 1);
-  --color-amber: #f5cd6a;
+  --color-background: #000010;
+  --color-foreground: #ffffff;
+  --color-paper: #ffffff;
+  --color-paper-700: rgba(255, 255, 255, 0.95);
+  --color-paper-800: rgba(255, 255, 255, 1);
+  --color-amber: #ffd966;
   --color-amber-soft: #ffe08a;
   --color-paper-100: rgba(224, 224, 224, 0.16);
 }
 
 html[data-fm-vision="high-contrast"].light {
-  --color-paper-700: rgba(16, 24, 32, 0.92);
-  --color-paper-800: rgba(16, 24, 32, 1);
-  --color-amber: #6b4f00;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-paper: #101820;
+  --color-paper-700: rgba(0, 0, 0, 0.92);
+  --color-paper-800: rgba(0, 0, 0, 1);
+  --color-amber: #5c4300;
   --color-amber-soft: #7a5a00;
   --color-paper-100: rgba(16, 24, 32, 0.14);
 }

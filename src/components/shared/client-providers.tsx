@@ -32,7 +32,10 @@ export function ClientProviders({
         setToasterTheme(readHtmlTheme());
       }, 0);
     });
-    obs.observe(el, { attributes: true, attributeFilter: ["class"] });
+    obs.observe(el, {
+      attributes: true,
+      attributeFilter: ["class", "data-fm-text-step", "data-fm-vision"],
+    });
     return () => obs.disconnect();
   }, []);
 

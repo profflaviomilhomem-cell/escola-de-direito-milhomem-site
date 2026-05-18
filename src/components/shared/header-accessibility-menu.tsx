@@ -1,7 +1,8 @@
 "use client";
 
 import { Accessibility, Glasses, Minus, Plus, Sun, Moon } from "lucide-react";
-import { startTransition, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -14,12 +15,12 @@ import {
   applyThemeToDom,
   applyVisionToDom,
   readDomPreferences,
-  readStoredPreferences,
 } from "@/lib/ui/accessibility-preferences";
+import { cn } from "@/lib/utils";
 
 const visionOptions: { value: VisionPref; label: string; hint?: string }[] = [
   { value: "none", label: "Cores padrão" },
-  { value: "high-contrast", label: "Alto contraste (texto)" },
+  { value: "high-contrast", label: "Alto contraste" },
   { value: "mono", label: "Monocromático" },
   {
     value: "assist-full",
@@ -28,34 +29,104 @@ const visionOptions: { value: VisionPref; label: string; hint?: string }[] = [
   },
 ];
 
-const labels = ["Muito pequeno", "Pequeno", "Normal", "Grande", "Muito grande"];
+const labels = ["Normal", "Grande", "Muito grande"] as const;
+
+function textStepLabel(step: TextStep): string {
+  return labels[step - TEXT_STEP_MIN];
+}
+
+function stopMenuClose(e: React.SyntheticEvent) {
+  e.stopPropagation();
+}
 
 /**
- * Menu compacto (native `<details>`) para não competir com a navegação.
- * Painel com controlos de letra, tema e visão.
+ * Menu de acessibilidade — tema, escala de texto e modos de visão.
+ * Painel em portal; não fecha ao ajustar (só Esc, toggle ou clique fora).
  */
 export function HeaderAccessibilityMenu() {
   const idVision = useId();
   const idRange = useId();
-  const [theme, setTheme] = useState<ThemePref>(
-    () => readStoredPreferences().theme,
-  );
-  const [textStep, setTextStep] = useState<TextStep>(
-    () => readStoredPreferences().textStep,
-  );
-  const [vision, setVision] = useState<VisionPref>(
-    () => readStoredPreferences().vision,
-  );
+  const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const [panelStyle, setPanelStyle] = useState<{
+    top: number;
+    left: number;
+    width: number;
+  }>();
+  const [theme, setTheme] = useState<ThemePref>("dark");
+  const [textStep, setTextStep] = useState<TextStep>(2);
+  const [vision, setVision] = useState<VisionPref>("none");
+  const [ready, setReady] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  /** Alinhar ao `<html>` após o script inline (evita drift hidratação vs DOM). */
-  useEffect(() => {
+  const syncFromDom = useCallback(() => {
     const d = readDomPreferences();
-    startTransition(() => {
-      setTheme(d.theme);
-      setTextStep(d.textStep);
-      setVision(d.vision);
+    setTheme(d.theme);
+    setTextStep(d.textStep);
+    setVision(d.vision);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+    syncFromDom();
+    setReady(true);
+  }, [syncFromDom]);
+
+  const positionPanel = useCallback(() => {
+    const trigger = triggerRef.current;
+    if (!trigger) return;
+    const rect = trigger.getBoundingClientRect();
+    const width = Math.min(window.innerWidth - 20, 296);
+    setPanelStyle({
+      top: rect.bottom + 8,
+      left: Math.max(
+        10,
+        Math.min(rect.right - width, window.innerWidth - width - 10),
+      ),
+      width,
     });
   }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    positionPanel();
+    const onLayout = () => positionPanel();
+    window.addEventListener("resize", onLayout);
+    window.addEventListener("scroll", onLayout, true);
+    return () => {
+      window.removeEventListener("resize", onLayout);
+      window.removeEventListener("scroll", onLayout, true);
+    };
+  }, [open, positionPanel]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClickOutside = (e: MouseEvent) => {
+      const target = e.target;
+      if (!(target instanceof Node)) return;
+      if (triggerRef.current?.contains(target)) return;
+      if (panelRef.current?.contains(target)) return;
+      setOpen(false);
+    };
+    const id = window.setTimeout(() => {
+      document.addEventListener("click", onClickOutside);
+    }, 0);
+    return () => {
+      window.clearTimeout(id);
+      document.removeEventListener("click", onClickOutside);
+    };
+  }, [open]);
 
   const setThemeAndPersist = (next: ThemePref) => {
     applyThemeToDom(next);
@@ -72,24 +143,23 @@ export function HeaderAccessibilityMenu() {
     setVision(next);
   };
 
-  return (
-    <details className="group relative z-[60]">
-      <summary
-        className="border-amber/25 text-paper-700 hover:border-amber/50 hover:text-paper fm-mono list-none flex cursor-pointer items-center gap-2 rounded-md border bg-paper/[0.04] px-2.5 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors marker:content-none [&::-webkit-details-marker]:hidden"
-        aria-label="Abrir opções de acessibilidade"
-      >
-        <Accessibility className="text-amber size-5 shrink-0" aria-hidden />
-        <span className="text-paper-700 hidden max-w-[11rem] truncate sm:inline">
-          Acessibilidade
-        </span>
-      </summary>
-
+  const panel =
+    open && panelStyle && mounted ? (
       <div
-        role="presentation"
-        className="border-amber/20 bg-carbon-elevated/95 text-paper-700 absolute right-0 top-[calc(100%+0.5rem)] w-[min(calc(100vw-2.5rem),18.5rem)] rounded-lg border p-4 shadow-lg backdrop-blur-md"
-        onPointerDown={(e) => e.stopPropagation()}
-        onClick={(e) => e.stopPropagation()}
-        onKeyDown={(e) => e.stopPropagation()}
+        ref={panelRef}
+        id="fm-a11y-panel"
+        role="dialog"
+        aria-label="Preferências de acessibilidade"
+        style={{
+          position: "fixed",
+          top: panelStyle.top,
+          left: panelStyle.left,
+          width: panelStyle.width,
+          zIndex: 200,
+        }}
+        className="border-amber/20 bg-carbon-elevated text-paper rounded-lg border p-4 shadow-lg backdrop-blur-md"
+        onPointerDown={stopMenuClose}
+        onClick={stopMenuClose}
       >
         <div role="toolbar" aria-label="Preferências de acessibilidade">
           <p className="text-paper fm-mono mb-4 border-b border-paper-100/20 pb-3 text-[10px] uppercase tracking-[0.18em]">
@@ -108,7 +178,7 @@ export function HeaderAccessibilityMenu() {
                   size="icon-sm"
                   className="text-paper hover:text-amber h-8 w-8 shrink-0"
                   aria-label="Diminuir texto"
-                  disabled={textStep <= TEXT_STEP_MIN}
+                  disabled={!ready || textStep <= TEXT_STEP_MIN}
                   onClick={() =>
                     setStepAndPersist(
                       Math.max(TEXT_STEP_MIN, textStep - 1) as TextStep,
@@ -119,7 +189,7 @@ export function HeaderAccessibilityMenu() {
                 </Button>
                 <div className="min-w-0 flex-1 px-1">
                   <label htmlFor={idRange} className="sr-only">
-                    Tamanho do texto: {labels[textStep]}
+                    Tamanho do texto: {textStepLabel(textStep)}
                   </label>
                   <input
                     id={idRange}
@@ -128,10 +198,11 @@ export function HeaderAccessibilityMenu() {
                     max={TEXT_STEP_MAX}
                     step={1}
                     value={textStep}
+                    disabled={!ready}
                     aria-valuemin={TEXT_STEP_MIN}
                     aria-valuemax={TEXT_STEP_MAX}
                     aria-valuenow={textStep}
-                    aria-valuetext={labels[textStep]}
+                    aria-valuetext={textStepLabel(textStep)}
                     className="accent-amber h-2 w-full cursor-pointer"
                     onChange={(e) =>
                       setStepAndPersist(Number(e.target.value) as TextStep)
@@ -144,7 +215,7 @@ export function HeaderAccessibilityMenu() {
                   size="icon-sm"
                   className="text-paper hover:text-amber h-8 w-8 shrink-0"
                   aria-label="Aumentar texto"
-                  disabled={textStep >= TEXT_STEP_MAX}
+                  disabled={!ready || textStep >= TEXT_STEP_MAX}
                   onClick={() =>
                     setStepAndPersist(
                       Math.min(TEXT_STEP_MAX, textStep + 1) as TextStep,
@@ -154,8 +225,11 @@ export function HeaderAccessibilityMenu() {
                   <Plus className="size-4" aria-hidden />
                 </Button>
               </div>
-              <p className="text-paper-600 mt-1.5 text-center text-[11px]">
-                {labels[textStep]}
+              <p
+                className="text-paper-600 mt-1.5 text-center text-[11px]"
+                aria-live="polite"
+              >
+                {textStepLabel(textStep)}
               </p>
             </div>
 
@@ -190,37 +264,74 @@ export function HeaderAccessibilityMenu() {
             </div>
 
             <div>
-              <p className="text-paper-600 fm-mono mb-2 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.14em]">
+              <p
+                id={idVision}
+                className="text-paper-600 fm-mono mb-2 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.14em]"
+              >
                 <Glasses className="text-amber size-3" aria-hidden />
                 Leitura, cores e vídeos
               </p>
-              <label htmlFor={idVision} className="sr-only">
-                Modo de cores
-              </label>
-              <select
-                id={idVision}
-                value={vision}
-                onChange={(e) =>
-                  setVisionAndPersist(e.target.value as VisionPref)
-                }
-                className="border-paper-100/40 bg-carbon text-paper focus-visible:ring-amber w-full cursor-pointer rounded-md border py-2 pl-2.5 pr-8 text-xs outline-none focus-visible:ring-2"
+              <div
+                role="radiogroup"
+                aria-labelledby={idVision}
+                className="flex flex-col gap-1.5"
               >
                 {visionOptions.map((o) => (
-                  <option key={o.value} value={o.value}>
+                  <button
+                    key={o.value}
+                    type="button"
+                    role="radio"
+                    aria-checked={vision === o.value}
+                    disabled={!ready}
+                    onClick={() => setVisionAndPersist(o.value)}
+                    className={cn(
+                      "fm-mono rounded-md border px-2.5 py-2 text-left text-[10px] uppercase tracking-[0.1em] transition-colors",
+                      vision === o.value
+                        ? "border-amber/50 bg-amber/15 text-paper"
+                        : "border-paper-100/30 text-paper-700 hover:border-amber/35 hover:text-paper bg-transparent",
+                    )}
+                  >
                     {o.label}
-                  </option>
+                  </button>
                 ))}
-              </select>
-              {vision !== "none" && (
+              </div>
+              {vision !== "none" ? (
                 <p className="text-paper-600 mt-2 text-[11px] leading-snug">
                   {visionOptions.find((o) => o.value === vision)?.hint ??
                     "Ajusta contraste e legibilidade em todo o site."}
                 </p>
-              )}
+              ) : null}
             </div>
           </div>
         </div>
       </div>
-    </details>
+    ) : null;
+
+  return (
+    <div ref={rootRef} className="relative z-[120]">
+      <button
+        ref={triggerRef}
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        aria-controls="fm-a11y-panel"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((v) => {
+            const next = !v;
+            if (next) requestAnimationFrame(positionPanel);
+            return next;
+          });
+        }}
+        className="border-amber/25 text-paper-700 hover:border-amber/50 hover:text-paper fm-mono flex cursor-pointer items-center gap-2 rounded-md border bg-paper/[0.04] px-2.5 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors"
+      >
+        <Accessibility className="text-amber size-5 shrink-0" aria-hidden />
+        <span className="text-paper-700 hidden max-w-[11rem] truncate sm:inline">
+          Acessibilidade
+        </span>
+      </button>
+
+      {mounted && panel ? createPortal(panel, document.body) : null}
+    </div>
   );
 }

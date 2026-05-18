@@ -47,7 +47,7 @@ export default function CalculadoraPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
       />
-      <section className="relative z-10 mx-auto max-w-(--container-narrow) px-3 pt-20 pb-4 sm:px-[5%] md:pt-28 lg:px-12 lg:pt-32 lg:pb-24">
+      <section className="relative z-10 fm-site-page px-3 pt-20 pb-4 sm:px-4 md:pt-28 lg:pt-32 lg:pb-24">
         <h1 className="sr-only">Calculadora de Pena Hipotética</h1>
         <header className="hidden max-w-3xl lg:block">
           <p className="text-amber font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.2em]">

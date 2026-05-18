@@ -9,14 +9,16 @@ export type VisionPref =
   | "mono"
   | "assist-full";
 
-export const TEXT_STEP_MIN = 0;
+/** Mínimo = normal do site (sem redução de fonte). */
+export const TEXT_STEP_MIN = 2;
 export const TEXT_STEP_MAX = 4;
-export type TextStep = 0 | 1 | 2 | 3 | 4;
+export type TextStep = 2 | 3 | 4;
 
 export function parseTextStep(raw: string | null): TextStep {
-  if (raw === "0" || raw === "1" || raw === "2" || raw === "3" || raw === "4") {
+  if (raw === "3" || raw === "4") {
     return Number(raw) as TextStep;
   }
+  /* 0/1 legados ou ausente → normal, nunca menor que o padrão */
   return 2;
 }
 
@@ -54,10 +56,11 @@ export function applyThemeToDom(theme: ThemePref): void {
 }
 
 export function applyTextStepToDom(step: TextStep): void {
+  const normalized = parseTextStep(String(step));
   const root = document.documentElement;
-  root.setAttribute("data-fm-text-step", String(step));
+  root.setAttribute("data-fm-text-step", String(normalized));
   try {
-    localStorage.setItem(LS_TEXT_STEP, String(step));
+    localStorage.setItem(LS_TEXT_STEP, String(normalized));
   } catch {
     /* ignore */
   }

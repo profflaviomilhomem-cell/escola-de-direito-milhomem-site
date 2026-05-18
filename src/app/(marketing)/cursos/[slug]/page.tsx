@@ -31,7 +31,7 @@ export default async function CursoSlugPage({ params }: Props) {
   if (!slug) notFound();
 
   return (
-    <article className="mx-auto max-w-prose-wide px-gutter py-page">
+    <article className="fm-site-page max-w-prose-wide py-page">
       <h1 className="font-serif text-heading-1 text-tinta-700">Curso: {slug}</h1>
       <p className="text-slate-700 mt-2">Página do produto em construção.</p>
     </article>

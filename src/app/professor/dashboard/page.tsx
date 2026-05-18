@@ -42,7 +42,7 @@ export default function ProfessorDashboardPage() {
   return (
     <>
       {/* Hero saudação */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) pt-12 pb-8 lg:px-12">
+      <section className="fm-site-page pt-12 pb-8">
         <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
           {mockProfessor.title}
         </p>
@@ -108,7 +108,7 @@ export default function ProfessorDashboardPage() {
       </section>
 
       {/* Métricas */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) py-6 lg:px-12">
+      <section className="fm-site-page py-6">
         <div className="border-paper-100 bg-carbon-elevated/60 grid grid-cols-2 gap-px border md:grid-cols-4">
           {mockMetrics.map((m) => (
             <div
@@ -138,7 +138,7 @@ export default function ProfessorDashboardPage() {
       </section>
 
       {/* Aguardando sua resposta */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
+      <section className="fm-site-page py-12">
         <header className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
             <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
@@ -214,7 +214,7 @@ export default function ProfessorDashboardPage() {
       </section>
 
       {/* Atividade recente + Anúncios em duas colunas */}
-      <section className="px-gutter mx-auto max-w-(--container-narrow) grid gap-10 pb-20 lg:grid-cols-2 lg:px-12">
+      <section className="fm-site-page grid gap-10 pb-20 lg:grid-cols-2">
         {/* Atividade */}
         <div>
           <header className="mb-6">

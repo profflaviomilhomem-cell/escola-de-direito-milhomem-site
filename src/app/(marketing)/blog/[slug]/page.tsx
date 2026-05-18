@@ -93,7 +93,7 @@ export default async function BlogArtigoPage({
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
 
         <div
-          className={`relative z-10 px-gutter mx-auto max-w-(--container-narrow) pt-32 lg:px-12 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
+          className={`relative z-10 fm-site-page pt-32 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
         >
           <Link
             href="/blog"
@@ -147,7 +147,7 @@ export default async function BlogArtigoPage({
 
       {/* Corpo do artigo */}
       <article
-        className={`blog-article px-gutter mx-auto max-w-prose-wide pb-page lg:px-12 ${hasLeadVideo ? "bg-carbon pt-0" : "py-page"}`}
+        className={`blog-article fm-site-page max-w-prose-wide pb-page ${hasLeadVideo ? "bg-carbon pt-0" : "py-page"}`}
       >
         <BlogArticleBody body={post.body} isHtml={bodyIsHtml} />
 
@@ -201,7 +201,7 @@ export default async function BlogArtigoPage({
       {/* Posts relacionados */}
       {related.length > 0 && (
         <section className="border-paper-100 border-t">
-          <div className="px-gutter mx-auto max-w-(--container-narrow) py-section lg:px-12">
+          <div className="fm-site-page py-section">
             <h2 className="text-paper mb-8 font-serif text-3xl">
               Continue lendo
             </h2>

@@ -9,6 +9,7 @@ import { Dossie3D } from "@/components/marketing/animation/dossie-3d";
 import { BlogSection } from "@/components/marketing/blog-section";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { HomeStatsSection } from "@/components/marketing/home-stats-section";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -63,27 +64,15 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
       />
 
-      <section className="relative overflow-hidden px-[5%] pb-10 pt-28 md:pb-14 md:pt-20 lg:flex lg:min-h-screen lg:items-center lg:pb-0">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 font-serif"
-          style={{
-            fontSize: "80vh",
-            lineHeight: 1,
-            color: "rgba(241, 187, 65, 0.08)",
-          }}
-        >
-          I
-        </div>
-
-        <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-6 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+      <section className="fm-site-section relative overflow-x-clip pb-10 pt-28 md:pb-14 md:pt-20 lg:flex lg:min-h-screen lg:items-center lg:overflow-visible lg:pb-0">
+        <div className="fm-site-container grid w-full grid-cols-1 gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12 xl:gap-16">
           <div className="relative z-10 flex flex-col justify-center lg:col-start-1 lg:row-start-1">
             <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.32em]">
               {hero.eyebrow}
             </p>
             <h1
-              className="fm-hero-fade fm-hero-fade--title mb-0 font-serif leading-[1.02] tracking-[0.055em] md:tracking-[0.065em] lg:mb-8"
-              style={{ fontSize: "clamp(50px, 8vw, 100px)" }}
+              className="fm-title-fluid fm-hero-fade fm-hero-fade--title mb-0 font-serif leading-[1.02] tracking-[0.055em] md:tracking-[0.065em] lg:mb-8"
+              style={fmTitleClamp("50px", "8vw", "100px")}
             >
               {hero.titleLine1}{" "}
               <em className="text-amber italic">{hero.titleEmphasis1}</em>
@@ -103,30 +92,18 @@ export default function HomePage() {
           </div>
 
           <div className="relative z-20 flex flex-col justify-center lg:col-start-1 lg:row-start-2">
-            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-6 max-w-xl text-xl italic leading-relaxed tracking-[0.03em] md:mb-10 md:text-2xl">
+            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-6 max-w-2xl text-xl italic leading-relaxed tracking-[0.03em] md:mb-10 md:text-2xl lg:max-w-none">
               {hero.tagline}
             </p>
-            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-8 max-w-xl text-base leading-relaxed tracking-[0.025em] md:mb-10">
+            <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-8 max-w-2xl text-base leading-relaxed tracking-[0.025em] md:mb-10 lg:max-w-none">
               {hero.bio}
             </p>
-            <div className="fm-hero-fade fm-hero-fade--cta flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3">
+            <div className="fm-hero-fade fm-hero-fade--cta flex justify-center lg:justify-start">
               <Link
                 href="#cohort"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
+                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaPrimary} →
-              </Link>
-              <Link
-                href="/newsletter"
-                className="border-amber/35 text-paper hover:border-amber hover:bg-amber/5 inline-flex w-full items-center justify-center gap-2 border bg-white/[0.03] px-6 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] backdrop-blur-sm transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
-              >
-                {hero.ctaSecondary}
-              </Link>
-              <Link
-                href="/calculadora-de-pena"
-                className="text-paper-600 hover:text-amber inline-flex w-full items-center justify-center gap-2 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors sm:w-auto sm:px-2 sm:py-4 sm:text-[11px]"
-              >
-                {hero.ctaCalculadora} →
               </Link>
             </div>
           </div>
@@ -135,12 +112,12 @@ export default function HomePage() {
 
       <HomeStatsSection stats={stats} />
 
-      <section className="relative z-10 px-[5%] py-16 lg:py-32">
-        <div className="mx-auto max-w-[800px] text-center">
+      <section className="fm-site-section py-16 lg:py-32">
+        <div className="fm-site-container mx-auto max-w-5xl text-center">
           <h2
             data-reveal
-            className="mb-10 font-serif leading-[1.12] tracking-[0.05em] md:tracking-[0.06em]"
-            style={{ fontSize: "clamp(48px, 6vw, 88px)" }}
+            className="fm-title-fluid mb-10 font-serif leading-[1.12] tracking-[0.05em] md:tracking-[0.06em]"
+            style={fmTitleClamp("48px", "6vw", "88px")}
           >
             {manifesto.title}{" "}
             <em className="text-amber italic">{manifesto.titleEmphasis}</em>{" "}
@@ -161,13 +138,13 @@ export default function HomePage() {
 
       <section
         id="programa"
-        className="bg-amber/[0.02] relative z-10 px-[5%] py-16 lg:py-32"
+        className="fm-site-section bg-amber/[0.02] py-16 lg:py-32"
       >
-        <div className="mx-auto max-w-[1200px]">
+        <div className="fm-site-container">
           <h2
             data-reveal
-            className="mb-16 font-serif leading-[1.1]"
-            style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+            className="fm-title-fluid mb-16 font-serif leading-[1.1]"
+            style={fmTitleClamp("40px", "5vw", "72px")}
           >
             {programa.sectionTitle}{" "}
             <em className="text-amber italic">{programa.sectionEmphasis}</em>
@@ -203,10 +180,10 @@ export default function HomePage() {
       <TestimonialsSection />
 
       <section
-        className="relative z-10 px-[5%] py-24"
+        className="fm-site-section py-24"
         aria-labelledby="calc-band-title"
       >
-        <div className="border-amber/25 mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-8 border bg-white/[0.02] p-10 md:flex-row md:items-center">
+        <div className="fm-site-container border-amber/25 flex flex-col items-start justify-between gap-8 border bg-white/[0.02] p-8 md:flex-row md:items-center md:p-10">
           <div>
             <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
               {copy.home.calculadoraBand.eyebrow}
@@ -226,16 +203,16 @@ export default function HomePage() {
           </div>
           <Link
             href="/calculadora-de-pena"
-            className="bg-amber text-paper hover:bg-amber-soft shrink-0 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="bg-amber text-carbon hover:bg-amber-soft shrink-0 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
           >
             {copy.home.calculadoraBand.cta}
           </Link>
         </div>
       </section>
 
-      <section id="professor" className="relative z-10 px-[5%] py-16 lg:py-32">
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid items-center gap-20 md:grid-cols-[1fr_1.5fr]">
+      <section id="professor" className="fm-site-section py-16 lg:py-32">
+        <div className="fm-site-container">
+          <div className="grid items-center gap-12 lg:grid-cols-[minmax(260px,0.9fr)_1.35fr] lg:gap-16 xl:gap-20">
             <div
               data-reveal
               className="border-amber/30 relative aspect-[3/4] overflow-hidden border"
@@ -258,8 +235,8 @@ export default function HomePage() {
               </p>
               <h2
                 data-reveal
-                className="mb-10 font-serif leading-[1.1]"
-                style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+                className="fm-title-fluid mb-10 font-serif leading-[1.1]"
+                style={fmTitleClamp("40px", "5vw", "72px")}
               >
                 {professorSection.titleLine1}{" "}
                 <em className="text-amber italic">{professorSection.titleEmphasis}</em>
@@ -282,8 +259,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="cohort" className="relative z-10 px-[5%] py-16 lg:py-32">
-        <div className="mx-auto max-w-[1200px]">
+      <section id="cohort" className="fm-site-section py-16 lg:py-32">
+        <div className="fm-site-container">
           <div
             data-reveal
             className="border-amber/30 relative my-12 border px-10 py-24 text-center"
@@ -296,8 +273,8 @@ export default function HomePage() {
               {cohort.eyebrow}
             </p>
             <h2
-              className="mt-6 font-serif leading-[1.1]"
-              style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
+              className="fm-title-fluid mt-6 font-serif leading-[1.1]"
+              style={fmTitleClamp("40px", "5vw", "72px")}
             >
               {cohort.title}{" "}
               <em className="text-amber italic">{cohort.titleEmphasis}</em>
@@ -311,7 +288,7 @@ export default function HomePage() {
             </p>
             <Link
               href="/newsletter"
-              className="bg-amber text-paper hover:bg-amber-soft inline-flex items-center gap-2 px-16 py-5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+              className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-16 py-5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
             >
               {cohort.cta}
             </Link>

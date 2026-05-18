@@ -73,7 +73,7 @@ export default async function AulaPage({ params }: { params: Params }) {
   );
 
   return (
-    <div className="px-gutter mx-auto max-w-(--container-narrow) py-10 lg:px-12">
+    <div className="fm-site-page py-10">
       {/* Breadcrumb editorial */}
       <nav className="text-paper-600 fm-mono mb-6 flex flex-wrap items-center gap-2">
         <Link href={`/aluno/cursos/${mockCourse.slug}`} className="hover:text-amber">

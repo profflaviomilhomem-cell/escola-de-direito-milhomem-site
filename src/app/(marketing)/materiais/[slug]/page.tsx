@@ -29,7 +29,7 @@ export default async function MaterialPage({ params }: Props) {
   if (!item) notFound();
 
   return (
-    <article className="mx-auto max-w-prose px-gutter py-page">
+    <article className="fm-site-page max-w-prose py-page">
       <header>
         <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
           Material gratuito

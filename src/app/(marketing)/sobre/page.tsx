@@ -58,28 +58,34 @@ const sidebarLinks = [
  */
 export default function SobrePage() {
   return (
-    <article
-      id="sobre-conteudo"
-      className="px-gutter py-page mx-auto max-w-(--container-narrow) lg:px-12"
-    >
-      <header className="mb-10 max-w-4xl lg:mb-14">
-        <p className="text-amber fm-mono">Sobre o professor</p>
-        <h1
-          className="mt-4 font-serif leading-[1.02]"
-          style={{ fontSize: "clamp(44px, 5vw, 72px)" }}
-        >
-          Flávio <em className="text-amber italic">Milhomem</em>
-        </h1>
-        <p className="text-paper-700 mt-6 max-w-3xl text-lg leading-relaxed md:text-xl">
-          {copy.sobre.introLead}
-        </p>
-        <p className="text-paper-700 mt-5 max-w-3xl text-lg leading-relaxed md:text-xl">
-          {copy.sobre.introBody}
-        </p>
-      </header>
+    <article id="sobre-conteudo" className="fm-site-section py-page">
+      <div className="fm-site-container">
+        <header className="mb-10 lg:mb-16 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-10 xl:gap-16">
+          <div className="min-w-0">
+            <p className="text-amber fm-mono mb-5 text-[10px] uppercase tracking-[0.32em] lg:mb-6">
+              Sobre o professor
+            </p>
+            <h1
+              className="font-serif leading-[0.9] tracking-[0.02em]"
+              style={{ fontSize: "clamp(3.5rem, 10vw, 7.75rem)" }}
+            >
+              <span className="text-paper block">Flávio</span>
+              <span
+                className="text-amber mt-1 block italic lg:mt-2"
+                style={{ WebkitTextStroke: "0.5px var(--color-amber)" }}
+              >
+                Milhomem
+              </span>
+            </h1>
+          </div>
+          <div className="text-paper-700 space-y-5 text-base leading-relaxed sm:text-lg md:text-xl lg:max-w-2xl lg:justify-self-end xl:max-w-none">
+            <p>{copy.sobre.introLead}</p>
+            <p>{copy.sobre.introBody}</p>
+          </div>
+        </header>
 
-      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,400px)_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[minmax(0,440px)_minmax(0,1fr)] xl:gap-10">
-        <aside className="mx-auto flex min-h-0 w-full max-w-lg flex-col gap-5 lg:sticky lg:top-28 lg:mx-0 lg:max-w-none">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(300px,34%)_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[minmax(340px,36%)_minmax(0,1fr)] xl:gap-14">
+        <aside className="mx-auto flex min-h-0 w-full max-w-md flex-col gap-5 lg:sticky lg:top-28 lg:mx-0 lg:max-w-none">
           <figure className="m-0 shrink-0">
             <div className="border-amber/30 relative overflow-hidden border">
               <Image
@@ -88,7 +94,7 @@ export default function SobrePage() {
                 width={528}
                 height={670}
                 priority
-                sizes="(max-width: 1024px) 100vw, 340px"
+                sizes="(max-width: 1024px) 100vw, (max-width: 1400px) 36vw, 420px"
                 unoptimized
                 className="h-auto w-full object-cover"
               />
@@ -167,7 +173,7 @@ export default function SobrePage() {
           <CareerJourneyPath />
         </aside>
 
-        <div className="prose-juridica flex min-w-0 w-full max-w-none flex-col gap-12">
+        <div className="prose-juridica prose-juridica--fluid flex min-w-0 w-full flex-col gap-12">
           {/* — Credenciais (escaneável) — */}
           <section aria-labelledby="sobre-credenciais">
             <h2
@@ -183,19 +189,19 @@ export default function SobrePage() {
               {copy.sobre.credentialsLead}
             </p>
 
-            <dl className="not-prose mt-6 grid gap-4 sm:grid-cols-3 sm:items-start">
+            <dl className="not-prose mt-6 grid gap-4 sm:grid-cols-2 sm:items-stretch lg:grid-cols-3">
               {credentialHighlights.map((item) => (
                 <div
                   key={item.label}
-                  className="border-amber/15 bg-paper/[0.02] flex flex-col rounded-lg border px-4 py-3.5 sm:min-h-0 sm:py-4"
+                  className="border-amber/15 bg-paper/[0.02] flex h-full min-h-[8.25rem] flex-col rounded-lg border px-4 py-4 sm:min-h-0"
                 >
-                  <dt className="text-amber fm-mono text-[10px] uppercase tracking-[0.18em]">
+                  <dt className="text-amber fm-mono shrink-0 text-[10px] uppercase tracking-[0.18em]">
                     {item.label}
                   </dt>
-                  <dd className="text-paper mt-2 font-serif text-xl tracking-tight">
+                  <dd className="text-paper mt-2 shrink-0 font-serif text-xl leading-none tracking-tight sm:text-[1.35rem]">
                     {item.value}
                   </dd>
-                  <p className="text-paper-800 mt-2 text-[15px] font-medium leading-snug sm:text-base sm:leading-relaxed">
+                  <p className="text-paper-800 mt-3 flex-1 text-[14px] leading-[1.55] text-pretty sm:text-[15px]">
                     {item.hint}
                   </p>
                 </div>
@@ -220,7 +226,7 @@ export default function SobrePage() {
                 </span>
               </div>
 
-              <ul className="grid gap-5 sm:grid-cols-2">
+              <ul className="grid gap-6 sm:grid-cols-2 xl:gap-8">
                 {obrasMilhomemCatalogo.map((obra) => (
                   <li
                     key={obra.isbn}
@@ -370,6 +376,7 @@ export default function SobrePage() {
             será publicada após o aval institucional.
           </aside>
         </div>
+      </div>
       </div>
     </article>
   );

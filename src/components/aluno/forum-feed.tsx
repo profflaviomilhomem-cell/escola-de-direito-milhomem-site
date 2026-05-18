@@ -163,7 +163,7 @@ export function ForumFeed({ threads, course }: Props) {
     <>
       {/* Toolbar sticky abaixo do top nav (h-16) */}
       <div className="border-paper-100 bg-carbon/85 sticky top-16 z-30 border-b backdrop-blur-md">
-        <div className="px-gutter mx-auto max-w-(--container-narrow) py-4 lg:px-12">
+        <div className="fm-site-page py-4">
           <div className="flex flex-wrap items-center gap-3">
             {/* Search */}
             <label className="border-paper-200 focus-within:border-amber bg-carbon-elevated flex min-w-[260px] flex-1 items-center gap-2 border px-3 py-2 transition-colors">
@@ -288,7 +288,7 @@ export function ForumFeed({ threads, course }: Props) {
       </div>
 
       {/* Feed compacto */}
-      <div className="px-gutter mx-auto max-w-(--container-narrow) py-10 lg:px-12">
+      <div className="fm-site-page py-10">
         {filtered.length === 0 ? (
           <div className="border-paper-100 bg-carbon-elevated border p-12 text-center">
             <p className="text-paper-700 font-serif text-xl">

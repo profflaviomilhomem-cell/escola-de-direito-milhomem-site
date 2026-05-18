@@ -11,10 +11,10 @@ export function HomeStatsSection({
 }: HomeStatsSectionProps) {
   return (
     <section
-      className="relative z-10 px-[5%] pb-14 pt-2 sm:pb-16 sm:pt-4 lg:py-24"
+      className="fm-site-section pb-14 pt-2 sm:pb-16 sm:pt-4 lg:py-24"
       aria-label={eyebrow}
     >
-      <div className="mx-auto max-w-[1200px]">
+      <div className="fm-site-container">
         <p
           data-reveal
           className="text-amber/90 mb-4 text-center font-mono text-[9px] uppercase tracking-[0.28em] sm:mb-5 sm:text-[10px]"

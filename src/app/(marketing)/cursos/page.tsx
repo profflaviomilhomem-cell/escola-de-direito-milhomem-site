@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CursoVitrineCard } from "@/components/marketing/curso-vitrine-card";
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { produtosEscola } from "@/data/produtos-escola";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Cursos",
@@ -19,9 +20,12 @@ export default function CursosPage() {
   const legados = produtosEscola.filter((p) => p.tipo === "legado");
 
   return (
-    <section className="mx-auto max-w-(--container-narrow) px-gutter py-page">
+    <section className="fm-site-page py-page">
       <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">Programas</p>
-      <h1 className="mt-3 font-serif leading-[1.05]" style={{ fontSize: "clamp(40px, 5vw, 56px)" }}>
+      <h1
+        className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+        style={fmTitleClamp("40px", "5vw", "56px")}
+      >
         Cursos da <em className="text-amber italic">Escola</em>
       </h1>
       <p className="text-paper-700 mt-5 max-w-2xl text-lg leading-relaxed">

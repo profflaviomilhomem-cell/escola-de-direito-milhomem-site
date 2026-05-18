@@ -23,7 +23,7 @@ export default function MeusCursosPage() {
     mockCourse.completedLessonCount / mockCourse.lessonCount;
 
   return (
-    <section className="px-gutter mx-auto max-w-(--container-narrow) py-20 lg:px-12">
+    <section className="fm-site-page py-20">
       <p className="text-amber fm-mono">Sua biblioteca</p>
       <h1
         className="mt-3 font-serif leading-[1.05]"

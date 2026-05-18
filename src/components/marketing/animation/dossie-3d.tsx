@@ -245,8 +245,8 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
       ref={containerRef}
       className={
         compact
-          ? "relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-visible"
-          : "relative aspect-[4/5] w-full"
+          ? "fm-a11y-no-scale relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-visible"
+          : "fm-a11y-no-scale relative aspect-[4/5] w-full overflow-visible"
       }
       style={{ perspective: compact ? "1400px" : "2000px" }}
     >
@@ -279,7 +279,8 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                 transform: `translateZ(${10 + i}px)`,
                 top: `${15 + i * 15}%`,
                 opacity: 0,
-                padding: isClipping ? "0" : paperPad,
+                padding:
+                  isClipping ? "0" : i === 2 ? "0.5rem 0.35rem 0.5rem 0.75rem" : paperPad,
                 overflow: "hidden",
                 filter: isClipping ? "grayscale(1) contrast(1.1)" : "none",
               }}
@@ -309,17 +310,21 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                   </div>
                 </div>
               ) : (
-                <div className="flex h-full flex-col gap-3">
+                <div className="relative flex h-full min-h-0 w-full justify-end">
                   <div
-                    className={`w-full border border-black/10 bg-[#F5F0E8] p-1 grayscale contrast-125 ${compact ? "h-16" : "h-24"}`}
+                    className={`fm-dossie-evidence-photo shrink-0 overflow-hidden border border-black/10 bg-[#F5F0E8] p-0.5 grayscale contrast-125 ${compact ? "h-[5.5rem] w-[82%]" : "h-[9.75rem] w-[84%]"}`}
                   >
                     <img
                       src="/images/professor/flavio-hero.png"
                       alt=""
-                      className="h-full w-full object-cover"
+                      width={600}
+                      height={600}
+                      className="h-full w-full object-cover object-[72%_12%]"
                     />
                   </div>
-                  <div className="space-y-2 opacity-[0.08]">
+                  <div
+                    className={`absolute bottom-0 right-0 space-y-1.5 opacity-[0.08] ${compact ? "left-[18%]" : "left-[16%]"}`}
+                  >
                     <div className="h-1.5 w-full bg-black" />
                     <div className="h-1.5 w-[70%] bg-black" />
                   </div>
@@ -367,7 +372,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
           />
           {compact ? (
             <>
-              <div className="text-carbon absolute inset-0 flex flex-col items-center justify-center gap-0.5 px-2 pb-5 text-center font-mono font-bold">
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 px-2 pb-5 text-center font-mono font-bold text-[#1a0f05]">
                 <span className="text-[8px] leading-none tracking-[0.12em]">INÍCIO</span>
                 <span className="text-[10px] font-extrabold leading-none tracking-[0.08em]">
                   11 AGOSTO
@@ -399,9 +404,11 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             </div>
           </div>
 
-          <div className={compact ? "my-3 text-center" : "my-6 text-center"}>
+          <div
+            className={`mx-auto w-full max-w-full px-1 text-center ${compact ? "my-3" : "my-6"}`}
+          >
             <h2
-              className={`font-serif italic leading-none text-[#1a0f05] ${compact ? "text-[1.65rem]" : "text-6xl"}`}
+              className={`font-serif mx-auto max-w-full italic leading-[1.02] text-[#1a0f05] ${compact ? "text-[1.65rem]" : "text-[clamp(1.75rem,5.2vw,3.35rem)]"}`}
               style={{ WebkitTextStroke: "0.7px #1a0f05" }}
             >
               {copy.dossie.coverTitle1}
@@ -450,10 +457,10 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             </div>
 
             <div
-              className="text-carbon absolute -right-[8%] top-[80%] flex h-[30%] w-[68%] items-center justify-center font-mono text-[14px] font-bold tracking-[0.2em]"
+              className="absolute -right-[8%] top-[80%] flex h-[30%] w-[68%] items-center justify-center font-mono text-[14px] font-bold tracking-[0.2em] text-[#1a0f05]"
               style={{
                 transform: "translateZ(45px) rotate(6deg)",
-                WebkitTextStroke: "0.5px currentColor",
+                WebkitTextStroke: "0.5px #1a0f05",
               }}
             >
               <span className="whitespace-nowrap">

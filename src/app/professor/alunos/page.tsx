@@ -14,7 +14,7 @@ export const metadata: Metadata = {
  */
 export default function ProfessorAlunosPage() {
   return (
-    <section className="px-gutter mx-auto max-w-(--container-narrow) py-12 lg:px-12">
+    <section className="fm-site-page py-12">
       <header className="mb-10">
         <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
           CRM do cohort

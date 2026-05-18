@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <Header />
-      <main className="mx-auto flex max-w-prose flex-1 flex-col items-center justify-center px-gutter py-page text-center">
+      <main className="fm-site-page flex max-w-prose flex-1 flex-col items-center justify-center py-page text-center">
         <p className="text-overline text-dourado-600">Erro 404</p>
         <h1 className="font-serif text-display-2 text-tinta-700 mt-3">
           Página não encontrada

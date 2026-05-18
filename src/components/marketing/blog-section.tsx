@@ -12,8 +12,8 @@ export async function BlogSection() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="relative z-10 px-[5%] py-32 bg-carbon">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="fm-site-section bg-carbon py-24 lg:py-32">
+      <div className="fm-site-container">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-4">

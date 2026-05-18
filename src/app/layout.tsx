@@ -20,7 +20,8 @@ const FM_A11Y_BOOTSTRAP = `
     var t=localStorage.getItem('fm-theme');
     if(t==='light'){h.classList.add('light');}else{h.classList.add('dark');}
     var s=localStorage.getItem('fm-text-step');
-    if(s==='0'||s==='1'||s==='2'||s==='3'||s==='4'){h.setAttribute('data-fm-text-step',s);}
+    if(s==='0'||s==='1'){s='2';}
+    if(s==='2'||s==='3'||s==='4'){h.setAttribute('data-fm-text-step',s);}
     else{h.setAttribute('data-fm-text-step','2');}
     var v=localStorage.getItem('fm-vision');
     if(v==='high-contrast'||v==='mono'||v==='assist-full'){h.setAttribute('data-fm-vision',v);}

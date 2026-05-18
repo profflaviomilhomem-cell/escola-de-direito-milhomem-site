@@ -40,7 +40,9 @@ export default async function AlunoLayout({
         userEmail={session.email}
         initials={initials}
       />
-      <main className="relative z-10 pt-24">{children}</main>
+      <main id="conteudo" className="relative z-10 pt-24">
+        {children}
+      </main>
     </div>
   );
 }
