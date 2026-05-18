@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+
 /**
  * Layout editorial para páginas institucionais e legais
  * (Privacidade, Termos, Reembolso). Mesma família tipográfica das
@@ -42,8 +44,8 @@ export function LegalPage({
           {eyebrow}
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("40px", "5vw", "64px")}
         >
           {title}
         </h1>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactForm } from "@/components/marketing/contact-form";
 import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -21,8 +22,8 @@ export default function ContatoPage() {
           {c.eyebrow}
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(40px, 5vw, 56px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("40px", "5vw", "56px")}
         >
           {c.title}
         </h1>

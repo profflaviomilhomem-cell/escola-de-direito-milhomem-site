@@ -46,16 +46,6 @@ const FM_A11Y_BOOTSTRAP = `
 const clashDisplay = localFont({
   src: [
     {
-      path: "./fonts/clash-display/ClashDisplay-Extralight.otf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "./fonts/clash-display/ClashDisplay-Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
       path: "./fonts/clash-display/ClashDisplay-Regular.otf",
       weight: "400",
       style: "normal",
@@ -78,6 +68,8 @@ const clashDisplay = localFont({
   ],
   variable: "--font-clash-display",
   display: "swap",
+  /* Títulos/marketing — evita 4–6 preloads não usados em páginas só com mono/body (ex.: calculadora) */
+  preload: false,
 });
 
 const hiragino = localFont({
@@ -86,13 +78,15 @@ const hiragino = localFont({
   display: "swap",
   weight: "400",
   style: "normal",
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500"],
+  weight: ["400"],
+  preload: false,
 });
 
 export const viewport: Viewport = {

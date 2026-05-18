@@ -10,6 +10,7 @@ import {
   mockProfessorAnnouncements,
   pendingThreadsForProfessor,
 } from "@/data/mock-professor";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Painel do professor — Escola Flávio Milhomem",
@@ -47,8 +48,8 @@ export default function ProfessorDashboardPage() {
           {mockProfessor.title}
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(36px, 4.5vw, 56px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("36px", "4.5vw", "56px")}
         >
           Bom dia,{" "}
           <em className="text-amber italic">

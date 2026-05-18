@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import type { MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = {
   lesson: MockLesson;
@@ -28,9 +29,9 @@ export function LessonCardRanked({ lesson }: Props) {
       {/* Numeral outline gigante — atrás do card */}
       <span
         aria-hidden
-        className="font-display pointer-events-none absolute bottom-0 left-0 z-0 select-none leading-[0.78]"
+        className="fm-title-fluid font-display pointer-events-none absolute bottom-0 left-0 z-0 select-none leading-[0.78]"
         style={{
-          fontSize: "clamp(8rem, 14vw, 12rem)",
+          ...fmTitleClamp("8rem", "14vw", "12rem"),
           fontWeight: 700,
           color: "var(--color-carbon)",
           WebkitTextStroke:

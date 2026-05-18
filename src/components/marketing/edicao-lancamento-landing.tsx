@@ -3,6 +3,7 @@ import Link from "next/link";
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { copy } from "@/config/copy";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
  * Checkout Pagar.me entra quando a integração estiver ativa (bloco 11).
@@ -19,8 +20,8 @@ export function EdicaoLancamentoLanding() {
           {ed.eyebrow}
         </p>
         <h1
-          className="mt-4 font-serif leading-[1.02]"
-          style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+          className="fm-title-fluid mt-4 font-serif leading-[1.02]"
+          style={fmTitleClamp("40px", "5vw", "64px")}
         >
           {ed.title}{" "}
           <em className="text-amber italic">{ed.titleEmphasis}</em>

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { activeCourse } from "@/data/mock-professor";
 import { formatDuration } from "@/data/mock-aluno";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Aulas — Painel do professor",
@@ -24,8 +25,8 @@ export default function ProfessorAulasPage() {
             Estrutura curricular · {activeCourse.shortTitle}
           </p>
           <h1
-            className="mt-3 font-serif leading-[1.05]"
-            style={{ fontSize: "clamp(36px, 4.5vw, 56px)" }}
+            className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+            style={fmTitleClamp("36px", "4.5vw", "56px")}
           >
             <em className="text-amber italic">Módulos</em> e aulas.
           </h1>

@@ -8,6 +8,7 @@ import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 import { CAREER_JOURNEY_SPAN } from "@/data/career-journey";
 import { obrasMilhomemCatalogo } from "@/data/obras-milhomem";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Sobre Flávio Milhomem",
@@ -66,8 +67,8 @@ export default function SobrePage() {
               Sobre o professor
             </p>
             <h1
-              className="font-serif leading-[0.9] tracking-[0.02em]"
-              style={{ fontSize: "clamp(3.5rem, 10vw, 7.75rem)" }}
+              className="fm-title-fluid font-serif leading-[0.9] tracking-[0.02em]"
+              style={fmTitleClamp("3.5rem", "10vw", "7.75rem")}
             >
               <span className="text-paper block">Flávio</span>
               <span
@@ -183,8 +184,8 @@ export default function SobrePage() {
               Credenciais e atuação
             </h2>
             <p
-              className="text-paper-800 leading-[1.65]"
-              style={{ fontSize: "clamp(18px, 2.2vw, 20px)" }}
+              className="fm-title-fluid text-paper-800 leading-[1.65]"
+              style={fmTitleClamp("18px", "2.2vw", "20px")}
             >
               {copy.sobre.credentialsLead}
             </p>

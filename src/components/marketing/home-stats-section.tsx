@@ -1,3 +1,5 @@
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+
 type Stat = { readonly val: string; readonly label: string };
 
 type HomeStatsSectionProps = {
@@ -33,8 +35,8 @@ export function HomeStatsSection({
                 className="fm-home-stat group relative flex min-h-[5.25rem] flex-col items-center justify-center px-3.5 py-4 text-center sm:min-h-[6.25rem] sm:px-6 sm:py-6 lg:min-h-[7.25rem] lg:px-8 lg:py-8"
               >
                 <span
-                  className="text-amber relative z-[1] block w-full font-serif leading-none tabular-nums"
-                  style={{ fontSize: "clamp(2rem, 6.5vw, 3.5rem)" }}
+                  className="fm-title-fluid text-amber relative z-[1] block w-full font-serif leading-none tabular-nums"
+                  style={fmTitleClamp("2rem", "6.5vw", "3.5rem")}
                 >
                   {stat.val}
                 </span>

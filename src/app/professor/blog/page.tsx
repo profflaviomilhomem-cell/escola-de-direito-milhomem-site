@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import {
   getProfessorBlogPosts,
   PROFESSOR_STATUS_LABEL,
@@ -26,8 +27,8 @@ export default async function ProfessorBlogPage() {
             Pipeline editorial
           </p>
           <h1
-            className="mt-3 font-serif leading-[1.05]"
-            style={{ fontSize: "clamp(36px, 4.5vw, 56px)" }}
+            className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+            style={fmTitleClamp("36px", "4.5vw", "56px")}
           >
             <em className="text-amber italic">Blog</em> da Escola.
           </h1>

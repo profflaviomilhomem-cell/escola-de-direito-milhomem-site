@@ -10,6 +10,7 @@ import {
   nextLesson as pickNext,
 } from "@/data/mock-aluno";
 import { progressPercentFromRatio } from "@/lib/utils";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Params = Promise<{ slug: string }>;
 
@@ -75,8 +76,8 @@ export default async function CursoMatriculadoPage({
             <div className="fm-site-container w-full">
               <p className="text-amber fm-mono">Cohort 2026 · Edição Lançamento</p>
               <h1
-                className="mt-3 font-serif leading-[1.05]"
-                style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+                className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+                style={fmTitleClamp("2.25rem", "4.5vw", "3.75rem")}
               >
                 {mockCourse.title}
               </h1>

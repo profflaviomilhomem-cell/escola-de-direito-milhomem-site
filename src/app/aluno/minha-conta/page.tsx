@@ -4,6 +4,7 @@ import { mockOrders, mockUser } from "@/data/mock-aluno";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { UpdateProfileForm } from "@/components/aluno/update-profile-form";
 import { UpdatePasswordForm } from "@/components/aluno/update-password-form";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Minha conta — Escola Flávio Milhomem",
@@ -38,8 +39,8 @@ export default async function MinhaContaPage() {
     <section className="fm-site-page max-w-3xl py-20">
       <p className="text-amber fm-mono">Sua conta</p>
       <h1
-        className="mt-3 font-serif leading-[1.05]"
-        style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
+        className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+        style={fmTitleClamp("2.25rem", "4.5vw", "3.5rem")}
       >
         {name}.
       </h1>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { ForumFeed } from "@/components/aluno/forum-feed";
 import { mockCourse, mockForumThreads } from "@/data/mock-aluno";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Fórum — Escola Flávio Milhomem",
@@ -27,8 +28,8 @@ export default function ForumPage() {
           <div>
             <p className="text-amber fm-mono">Comunidade</p>
             <h1
-              className="mt-3 font-serif leading-[1.05]"
-              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
+              className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+              style={fmTitleClamp("2.25rem", "4.5vw", "3.5rem")}
             >
               Fórum da Escola.
             </h1>

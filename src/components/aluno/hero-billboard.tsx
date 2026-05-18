@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockCourse, MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = {
   course: MockCourse;
@@ -55,8 +56,8 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
               Bem-vindo de volta, {firstName} · Continue assistindo
             </p>
             <h1
-              className="font-serif leading-[1.02]"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.25rem)" }}
+              className="fm-title-fluid font-serif leading-[1.02]"
+              style={fmTitleClamp("2.5rem", "5vw", "4.25rem")}
             >
               {course.title}
             </h1>

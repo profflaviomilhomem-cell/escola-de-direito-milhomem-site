@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { BlogEditor } from "@/components/professor/blog-editor";
 import { getProfessorBlogPostBySlug } from "@/lib/blog/professor";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Params = Promise<{ slug: string }>;
 
@@ -45,8 +46,8 @@ export default async function EditarArtigoPage({
             Editar artigo
           </p>
           <h1
-            className="mt-3 font-serif leading-[1.05]"
-            style={{ fontSize: "clamp(28px, 3.5vw, 44px)" }}
+            className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+            style={fmTitleClamp("28px", "3.5vw", "44px")}
           >
             {post.title}
           </h1>

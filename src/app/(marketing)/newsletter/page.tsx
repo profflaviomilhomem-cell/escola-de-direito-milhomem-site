@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { copy } from "@/config/copy";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 const { newsletter } = copy;
 
@@ -23,8 +24,8 @@ export default function NewsletterPage() {
         {newsletter.eyebrow}
       </p>
       <h1
-        className="mt-3 font-serif leading-[1.05]"
-        style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+        className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+        style={fmTitleClamp("40px", "5vw", "64px")}
       >
         {newsletter.title}{" "}
         <em className="text-amber italic">{newsletter.titleEmphasis}</em>.

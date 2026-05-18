@@ -20,6 +20,12 @@ O projeto é guiado por dois documentos vivos mantidos em
 - **Guia de Desenvolvimento Web v1.0** (`dev/guia-desenvolvimento-web.md`)
   — fonte de verdade técnica deste repositório.
 
+## Handoff de sessão (agente / continuidade)
+
+- [`handoff-sessao-2026-05-18.md`](./handoff-sessao-2026-05-18.md) — contexto da sessão de
+  acessibilidade, commit `271fb8b`, arquivos-chave e pendências. **Ler primeiro** ao retomar
+  em novo chat.
+
 ## Auditoria alinhamento (Livro-Guia × site)
 
 - [`auditoria-tecnica-livro-guia.md`](./auditoria-tecnica-livro-guia.md) — **principal:** produto, rotas, integrações e funil (sem copy nem identidade visual).

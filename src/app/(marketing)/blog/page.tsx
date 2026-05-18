@@ -11,6 +11,7 @@ import { getPublishedBlogListPosts } from "@/lib/blog/content";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { BlogCard } from "@/components/marketing/blog-card";
 import { BlogDateFilter } from "@/components/marketing/blog-date-filter";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Blog — Escola Flávio Milhomem",
@@ -86,8 +87,8 @@ export default async function BlogPage({
           Bastidor da acusação · Blog
         </p>
         <h1
-          className="mt-4 font-serif leading-[1.02]"
-          style={{ fontSize: "clamp(48px, 6vw, 88px)" }}
+          className="fm-title-fluid mt-4 font-serif leading-[1.02]"
+          style={fmTitleClamp("48px", "6vw", "88px")}
         >
           O penal pelo{" "}
           <em className="text-amber italic">ângulo da acusação</em>.
@@ -162,8 +163,8 @@ export default async function BlogPage({
                   Em destaque · {DB_CATEGORY_LABEL[featured.category] || featured.category}
                 </p>
                 <h2
-                  className="text-paper group-hover:text-amber mt-3 font-serif leading-[1.05] transition-colors"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 44px)" }}
+                  className="fm-title-fluid text-paper group-hover:text-amber mt-3 font-serif leading-[1.05] transition-colors"
+                  style={fmTitleClamp("28px", "3.5vw", "44px")}
                 >
                   {featured.title}
                 </h2>

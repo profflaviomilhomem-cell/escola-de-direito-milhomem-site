@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { CalculadoraCaseFile } from "@/components/marketing/calculadora/case-file";
 import { siteConfig } from "@/config/site";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Calculadora de Pena Hipotética",
@@ -47,15 +48,15 @@ export default function CalculadoraPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
       />
-      <section className="relative z-10 fm-site-page px-3 pt-20 pb-4 sm:px-4 md:pt-28 lg:pt-32 lg:pb-24">
+      <section className="relative z-10 fm-site-page px-3 pt-20 pb-8 sm:px-4 md:pt-28 lg:pb-16 lg:pt-28">
         <h1 className="sr-only">Calculadora de Pena Hipotética</h1>
         <header className="hidden max-w-3xl lg:block">
           <p className="text-amber font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.2em]">
             Ferramenta interativa
           </p>
           <h1
-            className="text-paper mt-3 font-serif leading-[1.08] sm:mt-6 sm:leading-[1.1]"
-            style={{ fontSize: "clamp(30px, 7.5vw, 72px)" }}
+            className="fm-title-fluid text-paper mt-3 font-serif leading-[1.08] sm:mt-6 sm:leading-[1.1]"
+            style={fmTitleClamp("30px", "7.5vw", "72px")}
           >
             Calculadora de <em className="text-amber italic">Pena</em>{" "}
             Hipotética

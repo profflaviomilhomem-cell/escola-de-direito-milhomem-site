@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { copy } from "@/config/copy";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Dia do Advogado 2026 · Abertura oficial da Escola",
@@ -20,8 +21,8 @@ export default function EventoDiaAdvogadoPage() {
           {e.eyebrow}
         </p>
         <h1
-          className="mt-4 font-serif leading-[1.02]"
-          style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+          className="fm-title-fluid mt-4 font-serif leading-[1.02]"
+          style={fmTitleClamp("40px", "5vw", "64px")}
         >
           {e.title}{" "}
           <em className="text-amber italic">{e.titleEmphasis}</em>

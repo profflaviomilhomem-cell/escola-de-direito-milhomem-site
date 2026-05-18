@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { copy } from "@/config/copy";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -35,8 +36,8 @@ export default async function MaterialPage({ params }: Props) {
           Material gratuito
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(36px, 4vw, 52px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("36px", "4vw", "52px")}
         >
           {item.title}
         </h1>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 import {
   answeredThreadsForProfessor,
@@ -27,8 +28,8 @@ export default function ProfessorForumPage() {
           Fórum · administrativo
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(36px, 4.5vw, 56px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("36px", "4.5vw", "56px")}
         >
           Conversas do{" "}
           <em className="text-amber italic">cohort</em>.

@@ -10,6 +10,7 @@ import {
 } from "@/lib/blog/content";
 import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Params = Promise<{ slug: string }>;
 
@@ -105,8 +106,8 @@ export default async function BlogArtigoPage({
             {DB_CATEGORY_LABEL[post.category] || post.category}
           </p>
           <h1
-            className="mt-4 max-w-4xl font-serif leading-[1.05]"
-            style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+            className="fm-title-fluid mt-4 max-w-4xl font-serif leading-[1.05]"
+            style={fmTitleClamp("36px", "5vw", "64px")}
           >
             {post.title}
           </h1>

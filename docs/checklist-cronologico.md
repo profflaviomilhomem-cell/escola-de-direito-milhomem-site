@@ -121,6 +121,20 @@ lead funcionando, CI verde.
 - [ ] Validação em produção com IDs reais (depende da Fase 0.2 — contas externas)
 - [ ] Vercel Analytics (a habilitar quando o projeto estiver linkado no painel)
 
+### 1.7 Acessibilidade e layout transversal (✅ commit `271fb8b` — 18/05/2026)
+
+- [x] Menu de acessibilidade no header (`header-accessibility-menu.tsx`) — tema claro/escuro, visão (padrão, alto contraste, mono, apoio leitura), tamanho de texto (Normal / Grande / Muito grande)
+- [x] Preferências persistidas (`localStorage`) + bootstrap no `<head>` antes da hidratação (`layout.tsx`, `accessibility-preferences.ts`)
+- [x] Escala de texto global via `font-size` em `<html>` (100% / 112,5% / 125%); chrome e dossiê com compensação (`.fm-a11y-chrome`, `.fm-a11y-no-scale`)
+- [x] Helper `fm-title-clamp.ts` + `.fm-title-fluid` para títulos com clamp que escalam sem quebrar layout
+- [x] `main id="conteudo"` nos layouts marketing, aluno e professor
+- [x] Depoimentos e labels `10px`/`11px` ajustados para escalar com a preferência
+- [x] Dossiê 3D: legibilidade de **"INÍCIO 11 AGO"** no modo claro (`text-[#1a0f05]` fixo no cartão bege, não `text-carbon`)
+- [x] Páginas marketing/aluno/professor alinhadas a `.fm-site-section` / `.fm-site-container`
+- [x] Auditoria final: `fontSize: clamp(...)` inline migrado para `fmTitleClamp` + `.fm-title-fluid` (blog, legal, calculadora, aluno, professor, etc. — maio/2026)
+- [ ] Labels `text-[10px]`/`text-[11px]` fora de `#conteudo`/footer (header, auth, calculadora mobile) — revisar se precisam escalar
+- [ ] Lighthouse A11y = 100 em páginas críticas (meta Fase 7.5)
+
 ### 1.6 Disciplina de PR (vale para todas as fases seguintes)
 
 > Boas práticas não negociáveis a partir daqui:
@@ -421,8 +435,9 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ---
 
-**Última atualização:** 18/05/2026 — Identidade visual 2026 (Clash Display + paleta navy/ouro/cinza),
-jornada na `/sobre`, `copy.ts`, blog tipado, `prisma.config` Prisma 7, build/lint/typecheck verdes.
+**Última atualização:** 18/05/2026 — Menu de acessibilidade (escala global, visão, tema), layout
+`.fm-site-*`, depoimentos/dossiê (contraste modo claro), commit `271fb8b` em
+`feature/aluno-area`. Handoff: [`handoff-sessao-2026-05-18.md`](./handoff-sessao-2026-05-18.md).
 
 ---
 
@@ -431,7 +446,7 @@ jornada na `/sobre`, `copy.ts`, blog tipado, `prisma.config` Prisma 7, build/lin
 | Fase | Status | Bloqueadores principais |
 |------|--------|-------------------------|
 | **0** Pré-requisitos | 🔴 Não iniciada no checklist | Contas externas (Neon, Pagar.me, Resend, GTM…), compliance CSMPDFT/LGPD |
-| **1** Fundação | 🟡 ~85% código | Domínio/logo/foto pro; home aprovada; CRM admin; IDs reais de tracking |
+| **1** Fundação | 🟡 ~90% código | Domínio/logo/foto pro; home aprovada; CRM admin; IDs reais; auditoria a11y residual |
 | **2** Auth / aluno esqueleto | 🟡 ~95% | Magic link Resend |
 | **3** Pagar.me | 🔴 0% implementação | KYC + checkout + webhook HMAC + reembolso API |
 | **4** LMS MVP | 🟡 ~40% | Stream real, CRUD aulas, fórum persistido, certificado PDF |
@@ -442,6 +457,7 @@ jornada na `/sobre`, `copy.ts`, blog tipado, `prisma.config` Prisma 7, build/lin
 
 **Próximas ações sugeridas (ordem):**
 
+0. **Continuidade** — Ler [`handoff-sessao-2026-05-18.md`](./handoff-sessao-2026-05-18.md) ao abrir novo chat
 1. **Fase 0.2** — Vercel + Neon linkados; `DATABASE_URL` em preview/prod; `prisma migrate deploy` + `npm run seed:mock-course`
 2. **Fase 3** — Pagar.me sandbox (checkout + webhook) — desbloqueia cohort e tripwire
 3. **Fase 4.1** — Cloudflare Stream + `<PlayerVideo>` real

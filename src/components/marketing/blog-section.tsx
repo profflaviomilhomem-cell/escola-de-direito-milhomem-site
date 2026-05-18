@@ -1,5 +1,7 @@
 import Link from "next/link";
+
 import { getPublishedBlogListPosts } from "@/lib/blog/content";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { BlogCard } from "./blog-card";
 
@@ -19,7 +21,10 @@ export async function BlogSection() {
             <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-4">
               Análise e Dogmática
             </p>
-            <h2 className="font-serif leading-[1.1] text-paper" style={{ fontSize: "clamp(40px, 5vw, 72px)" }}>
+            <h2
+              className="fm-title-fluid font-serif leading-[1.1] text-paper"
+              style={fmTitleClamp("40px", "5vw", "72px")}
+            >
               O penal pelo <em className="text-amber italic">ângulo da acusação</em>.
             </h2>
           </div>

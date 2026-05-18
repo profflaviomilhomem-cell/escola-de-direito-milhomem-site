@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { mockMetrics } from "@/data/mock-professor";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Métricas — Painel do professor",
@@ -21,8 +22,8 @@ export default function ProfessorMetricasPage() {
           Painel · Métricas
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(36px, 4.5vw, 56px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("36px", "4.5vw", "56px")}
         >
           O <em className="text-amber italic">cohort</em> em números.
         </h1>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Inscrição confirmada — Bastidor da Acusação",
@@ -67,8 +68,8 @@ export default async function ConfirmadoPage({
         {copy.eyebrow}
       </p>
       <h1
-        className="mt-3 font-serif leading-[1.05]"
-        style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+        className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+        style={fmTitleClamp("40px", "5vw", "64px")}
       >
         {copy.title}
       </h1>
