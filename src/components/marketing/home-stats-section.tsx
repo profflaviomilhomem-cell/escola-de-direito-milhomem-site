@@ -40,7 +40,7 @@ export function HomeStatsSection({
                 >
                   {stat.val}
                 </span>
-                <p className="text-paper-600 relative z-[1] mx-auto mt-1.5 max-w-[10.5rem] font-mono text-[8px] leading-snug uppercase tracking-[0.13em] sm:mt-2 sm:max-w-[12rem] sm:text-[9px] sm:tracking-[0.16em] lg:max-w-[14rem] lg:text-[10px]">
+                <p className="fm-home-stat__label relative z-[1] mx-auto mt-1.5 max-w-[10.5rem] font-mono text-[8px] leading-snug uppercase tracking-[0.13em] sm:mt-2 sm:max-w-[12rem] sm:text-[9px] sm:tracking-[0.16em] lg:max-w-[14rem] lg:text-[10px]">
                   {stat.label}
                 </p>
               </article>

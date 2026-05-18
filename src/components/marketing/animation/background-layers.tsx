@@ -1,20 +1,26 @@
 /**
- * Camadas decorativas globais — pintadas em todas as páginas (marketing
- * + aluno) para criar uma atmosfera contínua.
+ * Camadas decorativas globais — marketing, aluno, professor e auth.
  *
- * Ordem de pintura (do mais ao fundo para o mais à frente):
- *   1. fm-bg-mesh  — gradient navy + radials mostarda (luz ambiente)
- *   2. fm-bg-grid  — malha amber sutil (textura editorial)
- *   3. fm-bg-noise — granulado overlay (profundidade táctil)
+ * `position: fixed` → o fundo fica fixo no viewport enquanto o conteúdo rola
+ * (parece “seguir” o scroll, mas é overlay estático).
  *
- * Conteúdo das páginas usa `relative z-10` para ficar acima dessas camadas.
+ * Por defeito: só `fm-bg-mesh` (gradiente navy + luz mostarda).
+ * Grid + noise desligados — textura granulada / malha (globals.css).
+ *
+ * Reativar texturas: `NEXT_PUBLIC_FM_BG_TEXTURE=1` em `.env.local`
  */
 export function BackgroundLayers() {
+  const textures = process.env.NEXT_PUBLIC_FM_BG_TEXTURE === "1";
+
   return (
     <>
       <div className="fm-bg-mesh" aria-hidden="true" />
-      <div className="fm-bg-grid" aria-hidden="true" />
-      <div className="fm-bg-noise" aria-hidden="true" />
+      {textures ? (
+        <>
+          <div className="fm-bg-grid" aria-hidden="true" />
+          <div className="fm-bg-noise" aria-hidden="true" />
+        </>
+      ) : null}
     </>
   );
 }

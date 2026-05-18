@@ -43,24 +43,26 @@ function HolographicDisplay({
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >
-      <div className="border-amber/50 bg-carbon/90 w-full max-w-[280px] rounded-xl border p-4 shadow-[0_0_30px_rgba(0,0,0,0.6)] backdrop-blur-xl">
-        <div className="flex items-center gap-3 border-b border-amber/30 pb-2 mb-2">
-          <span className="text-amber fm-mono text-xl font-black leading-none tracking-tighter drop-shadow-[0_0_8px_rgba(221,173,12,0.4)]">
+      <div className="fm-journey-hud w-full max-w-[280px] rounded-xl border p-4 backdrop-blur-xl">
+        <div className="fm-journey-hud__header flex items-center gap-3 border-b pb-2 mb-2">
+          <span className="fm-journey-hud__year fm-mono text-xl font-black leading-none tracking-tighter">
             {m.year}
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-amber/60 via-amber/20 to-transparent" />
         </div>
-        <p className="text-white text-[15px] font-semibold leading-tight drop-shadow-sm">
+        <p className="fm-journey-hud__body text-[15px] font-semibold leading-tight">
           {m.text}
         </p>
         <div className="mt-3 flex gap-1">
           {careerMilestones.map((_, i) => (
             <div 
               key={i} 
-              className={`h-1 flex-1 rounded-full transition-all duration-500 ${
-                i === activeIndex 
-                  ? "bg-amber shadow-[0_0_10px_rgba(221,173,12,0.6)]" 
-                  : i < activeIndex ? "bg-amber/40" : "bg-white/10"
+              className={`fm-journey-hud__dot h-1 flex-1 rounded-full transition-all duration-500 ${
+                i === activeIndex
+                  ? "fm-journey-hud__dot--active"
+                  : i < activeIndex
+                    ? "fm-journey-hud__dot--done"
+                    : "fm-journey-hud__dot--idle"
               }`}
             />
           ))}
@@ -159,58 +161,6 @@ function JourneyFigure({ stage }: { stage: number }) {
 }
 
 /** Pseudoaleatório determinístico (mesmo valor no SSR e no cliente). */
-function seededUnit(seed: number) {
-  const x = Math.sin(seed * 12.9898) * 43758.5453;
-  return x - Math.floor(x);
-}
-
-function particleProps(index: number) {
-  const s = index * 6.28318 + 1.41;
-  return {
-    r: seededUnit(s + 1) * 1.5 + 0.5,
-    opacity: seededUnit(s + 2) * 0.5 + 0.2,
-    fromX: seededUnit(s + 3) * 360,
-    toX: seededUnit(s + 4) * 360,
-    durX: seededUnit(s + 5) * 10 + 10,
-    durY: seededUnit(s + 6) * 15 + 10,
-  };
-}
-
-/**
- * Sistema de Partículas para atmosfera
- */
-function Particles({ count = 15 }: { count?: number }) {
-  const particles = Array.from({ length: count }, (_, i) => particleProps(i));
-
-  return (
-    <g className="particles" opacity="0.4">
-      {particles.map((p, i) => (
-        <circle
-          key={i}
-          r={p.r}
-          fill="#ddad0c"
-          opacity={p.opacity}
-        >
-          <animate
-            attributeName="cx"
-            from={p.fromX}
-            to={p.toX}
-            dur={`${p.durX}s`}
-            repeatCount="indefinite"
-          />
-          <animate
-            attributeName="cy"
-            from={480}
-            to={-20}
-            dur={`${p.durY}s`}
-            repeatCount="indefinite"
-          />
-        </circle>
-      ))}
-    </g>
-  );
-}
-
 function nearestMilestoneIndex(progress: number, thresholds: number[]) {
   let best = 0;
   let bestDist = Infinity;
@@ -320,10 +270,10 @@ export function CareerJourneyPath() {
   return (
     <section
       ref={rootRef}
-      className="bg-carbon/10 border-amber/20 relative mt-4 overflow-hidden rounded-2xl border aspect-[3/5]"
+      className="fm-journey-stage border-amber/20 relative mt-4 overflow-hidden rounded-2xl border aspect-[3/5]"
     >
       {/* Immersive Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-carbon/40 via-carbon/10 to-carbon/60 pointer-events-none" />
+      <div className="fm-journey-stage__veil pointer-events-none absolute inset-0" />
       
       <div className="relative z-10 p-5">
         <header className="flex items-center justify-between">
@@ -341,22 +291,18 @@ export function CareerJourneyPath() {
         overflow="visible"
       >
         <defs>
-          <filter id="spiral-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-          </filter>
           <filter id="jf-shadow-blur" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
           </filter>
           <linearGradient id="spiral-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#ffec8b" />
-            <stop offset="50%" stopColor="#ddad0c" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="#ddad0c" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="var(--color-amber-soft)" />
+            <stop offset="45%" stopColor="var(--color-amber)" />
+            <stop offset="100%" stopColor="var(--color-amber)" stopOpacity="0.92" />
           </linearGradient>
           <linearGradient id="jf-gold-stroke" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#ffec8b" />
-            <stop offset="50%" stopColor="#ddad0c" />
-            <stop offset="100%" stopColor="#a67c00" />
+            <stop offset="0%" stopColor="var(--color-amber-soft)" />
+            <stop offset="50%" stopColor="var(--color-amber)" />
+            <stop offset="100%" stopColor="var(--color-amber)" />
           </linearGradient>
           <radialGradient id="jf-skin" cx="35%" cy="30%" r="70%">
             <stop offset="0%" stopColor="#fff5e6" />
@@ -380,19 +326,13 @@ export function CareerJourneyPath() {
           </linearGradient>
         </defs>
 
-        <Particles count={15} />
-
-        {/* The Spiral Path */}
         <path
           ref={pathRef}
           d={CAREER_JOURNEY_PATH}
+          className="fm-journey-path"
           fill="none"
-          stroke="url(#spiral-grad)"
-          strokeWidth="2"
-          strokeDasharray="4 8"
           strokeLinecap="round"
-          style={{ filter: "url(#spiral-glow)" }}
-          opacity="0.4"
+          strokeLinejoin="round"
         />
 
         {/* Milestone Markers */}
@@ -400,17 +340,30 @@ export function CareerJourneyPath() {
           const isCurrent = i === activeIndex;
           const isLeft = m.x < 180;
           return (
-            <g key={m.id} className="transition-all duration-500" style={{ opacity: i <= activeIndex ? 1 : 0.2 }}>
+            <g
+              key={m.id}
+              className="fm-journey-milestone transition-all duration-500"
+              style={{ opacity: i <= activeIndex ? 1 : 0.38 }}
+            >
               <circle
                 cx={m.x}
                 cy={m.y}
                 r={isCurrent ? 12 : 6}
-                fill={isCurrent ? "#ddad0c" : "none"}
-                stroke="#ddad0c"
-                strokeWidth={isCurrent ? 4 : 1.5}
+                className={
+                  isCurrent
+                    ? "fm-journey-milestone-dot fm-journey-milestone-dot--active"
+                    : "fm-journey-milestone-dot"
+                }
               />
               {isCurrent && (
-                <circle cx={m.x} cy={m.y} r={20} fill="none" stroke="#ddad0c" strokeWidth="1" opacity="0.5">
+                <circle
+                  cx={m.x}
+                  cy={m.y}
+                  r={20}
+                  className="fm-journey-milestone-pulse"
+                  fill="none"
+                  strokeWidth="1"
+                >
                   <animate attributeName="r" values="12;24;12" dur="2s" repeatCount="indefinite" />
                   <animate attributeName="opacity" values="0.5;0;0.5" dur="2s" repeatCount="indefinite" />
                 </circle>
@@ -420,13 +373,14 @@ export function CareerJourneyPath() {
                 x={isLeft ? m.x - 22 : m.x + 22}
                 y={m.y + 6}
                 textAnchor={isLeft ? "end" : "start"}
-                fill={isCurrent ? "#ffec8b" : "#94a3b8"}
                 fontSize="12"
                 fontWeight="800"
-                style={{ 
-                  fontFamily: "var(--font-mono, monospace)",
-                  textShadow: isCurrent ? "0 0 8px rgba(221, 173, 12, 0.6)" : "none"
-                }}
+                className={
+                  isCurrent
+                    ? "fm-journey-milestone-year fm-journey-milestone-year--active"
+                    : "fm-journey-milestone-year"
+                }
+                style={{ fontFamily: "var(--font-mono, monospace)" }}
               >
                 {m.year}
               </text>
@@ -449,7 +403,7 @@ export function CareerJourneyPath() {
       <div className="absolute top-4 right-4 z-20">
         <button 
           onClick={() => setIsHudVisible(!isHudVisible)}
-          className="text-amber/60 hover:text-amber fm-mono text-[10px] uppercase tracking-wider transition-colors"
+          className="fm-journey-hud-toggle fm-mono text-[10px] uppercase tracking-wider transition-colors"
         >
           {isHudVisible ? "[ Esconder HUD ]" : "[ Mostrar HUD ]"}
         </button>

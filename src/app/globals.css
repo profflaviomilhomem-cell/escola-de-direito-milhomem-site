@@ -445,6 +445,184 @@ h6,
   background: rgba(241, 187, 65, 0.04);
 }
 
+/* Cards escuros em ambos os temas — rótulos sempre claros */
+.fm-home-stat__label {
+  color: rgba(224, 224, 224, 0.72);
+}
+
+html.light .fm-home-stat__label {
+  color: rgba(232, 228, 220, 0.85);
+}
+
+html.light .fm-home-stats .fm-home-stat .text-amber {
+  color: #e8c456;
+}
+
+/* === Sobre — jornada (timeline + HUD) === */
+.fm-journey-stage {
+  background: rgba(3, 0, 36, 0.12);
+}
+
+.fm-journey-stage__veil {
+  background: linear-gradient(
+    180deg,
+    rgba(3, 0, 36, 0.45) 0%,
+    rgba(3, 0, 36, 0.08) 45%,
+    rgba(3, 0, 36, 0.55) 100%
+  );
+}
+
+html.light .fm-journey-stage {
+  background: rgba(16, 24, 32, 0.04);
+}
+
+html.light .fm-journey-stage__veil {
+  background: linear-gradient(
+    180deg,
+    rgba(16, 24, 32, 0.08) 0%,
+    transparent 50%,
+    rgba(16, 24, 32, 0.1) 100%
+  );
+}
+
+.fm-journey-hud {
+  border-color: rgba(241, 187, 65, 0.45);
+  background: rgba(8, 10, 18, 0.92);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.55);
+}
+
+.fm-journey-hud__header {
+  border-color: rgba(241, 187, 65, 0.28);
+}
+
+.fm-journey-hud__year {
+  color: #f1bb41;
+}
+
+.fm-journey-hud__body {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.fm-journey-hud__dot--active {
+  background: #f1bb41;
+  box-shadow: 0 0 10px rgba(221, 173, 12, 0.55);
+}
+
+.fm-journey-hud__dot--done {
+  background: rgba(241, 187, 65, 0.45);
+}
+
+.fm-journey-hud__dot--idle {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+html.light .fm-journey-hud {
+  border-color: rgba(154, 114, 0, 0.35);
+  background: rgba(255, 253, 248, 0.97);
+  box-shadow:
+    0 16px 40px rgba(16, 24, 32, 0.12),
+    0 0 0 1px rgba(16, 24, 32, 0.06);
+}
+
+html.light .fm-journey-hud__header {
+  border-color: rgba(154, 114, 0, 0.22);
+}
+
+html.light .fm-journey-hud__year {
+  color: #7a5a00;
+}
+
+html.light .fm-journey-hud__body {
+  color: rgba(16, 24, 32, 0.9);
+}
+
+html.light .fm-journey-hud__dot--active {
+  background: #9a7200;
+  box-shadow: none;
+}
+
+html.light .fm-journey-hud__dot--done {
+  background: rgba(154, 114, 0, 0.45);
+}
+
+html.light .fm-journey-hud__dot--idle {
+  background: rgba(16, 24, 32, 0.12);
+}
+
+.fm-journey-milestone-year {
+  fill: #94a3b8;
+}
+
+html.light .fm-journey-milestone-year {
+  fill: rgba(16, 24, 32, 0.5);
+}
+
+/* Trilha — linha única, editorial (sem “estrada” dupla) */
+.fm-journey-path {
+  stroke: var(--color-amber);
+  stroke-width: 1.5;
+  stroke-opacity: 0.5;
+}
+
+html.light .fm-journey-path {
+  stroke: rgba(16, 24, 32, 0.2);
+  stroke-width: 1.75;
+  stroke-opacity: 1;
+}
+
+.fm-journey-hud-toggle {
+  color: rgba(241, 187, 65, 0.72);
+}
+
+.fm-journey-hud-toggle:hover {
+  color: var(--color-amber);
+}
+
+html.light .fm-journey-hud-toggle {
+  color: rgba(16, 24, 32, 0.55);
+}
+
+html.light .fm-journey-hud-toggle:hover {
+  color: var(--color-amber);
+}
+
+.fm-journey-milestone-dot {
+  fill: none;
+  stroke: var(--color-amber);
+  stroke-width: 1.5;
+  stroke-opacity: 0.85;
+}
+
+html.light .fm-journey-milestone-dot {
+  stroke: rgba(16, 24, 32, 0.35);
+  stroke-opacity: 1;
+}
+
+.fm-journey-milestone-dot--active {
+  fill: var(--color-amber);
+  stroke: var(--color-amber);
+  stroke-width: 2;
+  stroke-opacity: 1;
+}
+
+html.light .fm-journey-milestone-dot--active {
+  fill: var(--color-amber);
+  stroke: var(--color-amber);
+}
+
+.fm-journey-milestone-pulse {
+  stroke: var(--color-amber);
+  stroke-opacity: 0.4;
+}
+
+.fm-journey-milestone-year--active {
+  fill: var(--color-amber-soft);
+}
+
+html.light .fm-journey-milestone-year--active {
+  fill: var(--color-amber);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fm-hero-fade {
     opacity: 1;
