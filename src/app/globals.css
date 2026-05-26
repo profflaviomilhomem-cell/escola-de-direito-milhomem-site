@@ -913,52 +913,44 @@ html[data-fm-text-step="4"] {
   line-height: 0;
 }
 
-/* Logo no header — arquivo 1024² com arte na faixa central: zoom só no CSS */
+/* Logo no header — monograma PNG transparente; mesmos tamanhos de container */
 .fm-header-logo-wordmark {
   display: block;
   position: relative;
-  overflow: hidden;
-  height: clamp(3.25rem, 10vw, 4rem);
-  width: min(20rem, 72vw);
-  border-radius: 0.625rem;
-  background: #ffffff;
-  box-shadow:
-    0 0 0 1px rgba(3, 0, 36, 0.08),
-    0 4px 16px -4px rgba(0, 0, 0, 0.35);
+  overflow: visible;
+  height: clamp(3.5rem, 11vw, 4.5rem);
+  width: auto;
+  max-width: min(14rem, 52vw);
+  line-height: 0;
 }
 
 .fm-header-logo-wordmark__img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: clamp(13rem, 38vw, 15.5rem);
+  display: block;
+  height: 100%;
   width: auto;
-  max-width: none;
-  transform: translate(-50%, -50%);
+  max-width: min(14rem, 52vw);
   object-fit: contain;
+  object-position: left center;
 }
 
-/* Footer — logo maior e legível */
+/* Footer — mesmos tamanhos de container */
 .fm-footer-logo {
   display: block;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin-inline: auto;
   height: clamp(4rem, 14vw, 5.25rem);
-  width: min(26rem, 92vw);
-  border-radius: 0.75rem;
-  background: #ffffff;
-  box-shadow: 0 0 0 1px rgba(241, 187, 65, 0.15);
+  width: auto;
+  max-width: min(14rem, 55vw);
+  line-height: 0;
 }
 
 .fm-footer-logo__img {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  height: clamp(16rem, 48vw, 19rem);
+  display: block;
+  height: 100%;
   width: auto;
-  max-width: none;
-  transform: translate(-50%, -50%);
+  max-width: min(14rem, 55vw);
+  margin-inline: auto;
   object-fit: contain;
 }
 
@@ -968,7 +960,7 @@ html[data-fm-text-step="4"] {
 }
 
 .fm-footer-logo--compact .fm-footer-logo__img {
-  height: clamp(12rem, 36vw, 14rem);
+  height: 100%;
 }
 
 /* Hero — respiro sob o header fixo */

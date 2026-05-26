@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
@@ -12,6 +12,8 @@ import {
 } from "@/lib/course/aluno-courses";
 import { progressPercentFromRatio } from "@/lib/utils";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { getSessionFromCookies } from "@/lib/auth/session";
+import { userHasAccess } from "@/lib/enrollment";
 
 type Params = Promise<{ slug: string }>;
 
@@ -37,6 +39,12 @@ export default async function CursoMatriculadoPage({
   const { slug } = await params;
   const course = findCourseBySlug(slug);
   if (!course) notFound();
+
+  const session = await getSessionFromCookies();
+  if (!session) redirect("/entrar");
+
+  const hasAccess = await userHasAccess(session.sub, slug);
+  if (!hasAccess) redirect(`/cursos/${slug}`);
 
   const totalSec = course.modules
     .flatMap((m) => m.lessons)

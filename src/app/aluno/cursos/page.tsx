@@ -1,15 +1,27 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { getSessionFromCookies } from "@/lib/auth/session";
+import { redirect } from "next/navigation";
 
+import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { CourseLibraryCard } from "@/components/aluno/course-library-card";
-import { enrolledCourses } from "@/lib/course/aluno-courses";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { getEnrolledCourses } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
   title: "Meus cursos — Escola Flávio Milhomem",
   robots: { index: false, follow: false },
 };
 
-export default function MeusCursosPage() {
+export default async function MeusCursosPage() {
+  const session = await getSessionFromCookies();
+
+  // Proxy já redireciona não-autenticado, mas mantemos defesa em profundidade.
+  const userId = session?.sub;
+  if (!userId) redirect("/entrar");
+
+  const enrolled = await getEnrolledCourses(userId);
+
   return (
     <section className="fm-site-page py-20">
       <p className="text-amber fm-mono">Sua biblioteca</p>
@@ -26,9 +38,24 @@ export default function MeusCursosPage() {
       </p>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        {enrolledCourses.map((course) => (
-          <CourseLibraryCard key={course.id} course={course} />
-        ))}
+        {enrolled.length === 0 ? (
+          <>
+            <AreaEmptyState
+              title="Nenhum curso matriculado"
+              description="Após a compra ou concessão de acesso pela turma, seus cursos aparecerão nesta biblioteca."
+              className="md:col-span-2"
+            />
+            <p className="text-paper-600 text-center text-sm md:col-span-2">
+              <Link href="/cursos" className="text-amber hover:underline">
+                Ver cursos disponíveis →
+              </Link>
+            </p>
+          </>
+        ) : (
+          enrolled.map((course) => (
+            <CourseLibraryCard key={course.id} course={course} />
+          ))
+        )}
       </div>
     </section>
   );

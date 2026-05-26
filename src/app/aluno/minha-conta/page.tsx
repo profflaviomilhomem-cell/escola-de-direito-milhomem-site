@@ -5,6 +5,7 @@ import { UpdateProfileForm } from "@/components/aluno/update-profile-form";
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { initialsFromName } from "@/lib/course/format";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { getUserOrders } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
   title: "Minha conta — Escola Flávio Milhomem",
@@ -16,6 +17,13 @@ export default async function MinhaContaPage() {
   const name = session?.name ?? "Aluno";
   const email = session?.email ?? "";
   const initials = initialsFromName(name);
+  const orders = session?.sub ? await getUserOrders(session.sub) : [];
+
+  const formatMoney = (cents: number) =>
+    new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(cents / 100);
 
   return (
     <section className="fm-site-page py-20">
@@ -57,10 +65,40 @@ export default async function MinhaContaPage() {
         Pedidos
       </h2>
       <div className="mt-6">
-        <AreaEmptyState
-          title="Nenhum pedido registrado"
-          description="Suas compras e comprovantes de pagamento aparecerão aqui quando o checkout estiver integrado."
-        />
+        {orders.length === 0 ? (
+          <AreaEmptyState
+            title="Nenhum pedido registrado"
+            description="Suas compras e comprovantes de pagamento aparecerão aqui após a matrícula."
+          />
+        ) : (
+          <div className="space-y-3">
+            {orders.slice(0, 10).map((o) => (
+              <div
+                key={o.id}
+                className="border-paper-100 bg-carbon-elevated border p-5"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-paper font-semibold truncate">
+                      {o.product?.name ?? o.product?.slug ?? "Produto"}
+                    </p>
+                    <p className="text-paper-600 mt-1 text-sm fm-mono">
+                      {o.product?.slug ?? "—"}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-paper fm-mono text-sm">
+                      {formatMoney(o.amountCents)}
+                    </p>
+                    <p className="text-paper-600 fm-mono text-xs mt-1">
+                      status: {o.status}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

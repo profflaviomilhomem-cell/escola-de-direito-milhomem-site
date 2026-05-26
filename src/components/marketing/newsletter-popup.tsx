@@ -85,7 +85,7 @@ export function NewsletterPopup() {
       <button
         type="button"
         onClick={openModal}
-        className="border-amber/35 bg-carbon-elevated/90 text-paper hover:border-amber/60 fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 z-[55] flex max-w-[min(calc(100vw-1.5rem),14rem)] items-center gap-2 rounded-full border px-3.5 py-2.5 shadow-[0_8px_28px_-6px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors sm:left-4"
+        className="fm-newsletter-fab border-amber/35 bg-carbon-elevated/90 text-paper hover:border-amber/60 fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-3 z-[55] flex max-w-[min(calc(100vw-1.5rem),14rem)] items-center gap-2 rounded-full border px-3.5 py-2.5 shadow-[0_8px_28px_-6px_rgba(0,0,0,0.5)] backdrop-blur-md transition-colors sm:left-4"
         aria-haspopup="dialog"
         aria-expanded={open}
         aria-controls="newsletter-popup-dialog"

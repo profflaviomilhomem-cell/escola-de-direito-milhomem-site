@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { LessonTabs } from "@/components/aluno/lesson-tabs";
@@ -11,6 +11,7 @@ import {
   findLessonWithCourse,
 } from "@/lib/course/aluno-courses";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { userHasAccess } from "@/lib/enrollment";
 import {
   getLessonProgress,
   mergeMockLessonProgress,
@@ -45,6 +46,11 @@ export default async function AulaPage({ params }: { params: Params }) {
   const baseLesson = found.lesson;
 
   const session = await getSessionFromCookies();
+  if (!session) redirect("/entrar");
+
+  const hasAccess = await userHasAccess(session.sub, course.slug);
+  if (!hasAccess) redirect(`/cursos/${course.slug}`);
+
   let lesson = baseLesson;
   if (session && process.env.DATABASE_URL) {
     try {

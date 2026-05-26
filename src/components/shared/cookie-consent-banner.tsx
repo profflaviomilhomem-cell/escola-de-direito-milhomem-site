@@ -41,7 +41,7 @@ export function CookieConsentBanner() {
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex justify-center p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:inset-x-auto sm:right-4 sm:justify-end sm:p-4"
+      className="fm-cookie-consent pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex justify-center p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:inset-x-auto sm:right-4 sm:justify-end sm:p-4"
     >
       <div className="border-paper-100/60 bg-carbon-elevated/92 pointer-events-auto w-full max-w-[min(100%,22rem)] rounded-lg border shadow-[0_8px_32px_-8px_rgba(0,0,0,0.45)] backdrop-blur-md sm:max-w-[20rem]">
         <div className="flex items-start gap-2.5 px-3.5 py-3">

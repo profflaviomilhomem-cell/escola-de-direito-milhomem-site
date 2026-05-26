@@ -41,10 +41,16 @@ export function CursoProdutoPublico({ product }: Props) {
 
       <div className="mt-10 flex flex-wrap gap-4">
         <Link
-          href="/entrar"
+          href={`/checkout/${product.slug}`}
           className="bg-amber text-carbon hover:bg-amber-soft inline-flex px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
         >
-          Entrar na plataforma
+          Matricular-se
+        </Link>
+        <Link
+          href="/entrar"
+          className="border-paper-200 text-paper hover:border-amber inline-flex border px-6 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+        >
+          Já sou aluno
         </Link>
         <Link
           href="/cursos"
@@ -53,11 +59,6 @@ export function CursoProdutoPublico({ product }: Props) {
           Ver todos os cursos
         </Link>
       </div>
-
-      <p className="text-paper-600 mt-8 max-w-xl text-sm">
-        Checkout online em implementação. Enquanto isso, matrículas da turma
-        fundadora seguem pelos canais indicados na Edição Lançamento.
-      </p>
     </article>
   );
 }

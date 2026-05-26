@@ -9,7 +9,6 @@ import { provaDigitalModulosPublicos } from "@/data/curso-prova-digital-publico"
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
- * Checkout Pagar.me entra quando a integração estiver ativa (bloco 11).
  */
 export function EdicaoLancamentoLanding() {
   const ed = copy.edicaoLancamento;
@@ -184,7 +183,7 @@ export function EdicaoLancamentoLanding() {
         </p>
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
         <Link
-          href="/newsletter?source=edicao-lancamento-investimento"
+          href="/checkout/edicao-lancamento"
           className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
         >
           {ed.investimentoCta}

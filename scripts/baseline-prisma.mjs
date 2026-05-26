@@ -29,6 +29,8 @@ loadEnv();
 const migrations = [
   "20260515120000_user_lesson_progress",
   "20260519190000_product_media_publish",
+  "20260526140000_checkout_pagarme",
+  "20260526160000_manual_payment",
 ];
 
 for (const name of migrations) {

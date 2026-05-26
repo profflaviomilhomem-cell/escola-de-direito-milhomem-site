@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { DashboardRow } from "@/components/aluno/dashboard-row";
@@ -10,10 +11,10 @@ import { LessonCardRanked } from "@/components/aluno/lesson-card-ranked";
 import { formatDuration, initialsFromName } from "@/lib/course/format";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import {
-  enrolledCourses,
-  nextLesson as pickNext,
-  primaryCourse,
+  flattenCourseLessons,
+  nextLessonAcrossCourses,
 } from "@/lib/course/aluno-courses";
+import { getEnrolledCourses } from "@/lib/enrollment";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -31,12 +32,38 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
   const session = await getSessionFromCookies();
-  const studentName = session?.name ?? session?.email ?? "Aluno";
-  const next = pickNext();
+  const userId = session?.sub;
+  if (!userId) redirect("/entrar");
 
-  const allLessons = enrolledCourses.flatMap((c) =>
-    c.modules.flatMap((m) => m.lessons),
-  );
+  const studentName = session.name ?? session.email ?? "Aluno";
+  const enrolled = await getEnrolledCourses(userId);
+
+  if (enrolled.length === 0) {
+    return (
+      <section className="fm-site-page py-20">
+        <p className="text-amber fm-mono">Painel</p>
+        <h1 className="text-paper mt-3 font-serif text-3xl md:text-4xl">
+          Olá, {studentName.split(/\s+/)[0]}.
+        </h1>
+        <div className="mt-12">
+          <AreaEmptyState
+            title="Nenhum curso matriculado"
+            description="Quando você concluir a compra ou receber acesso da turma, seus cursos aparecerão aqui com aulas e progresso."
+          />
+          <p className="text-paper-600 mt-6 text-center text-sm">
+            <Link href="/cursos" className="text-amber hover:underline">
+              Ver cursos disponíveis →
+            </Link>
+          </p>
+        </div>
+      </section>
+    );
+  }
+
+  const primaryCourse = enrolled[0]!;
+  const next = nextLessonAcrossCourses(enrolled);
+
+  const allLessons = flattenCourseLessons(enrolled);
   const inProgress = allLessons.filter((l) => l.status === "em-andamento");
   const continueRow = next
     ? [next, ...inProgress.filter((l) => l.id !== next.id)]
@@ -47,7 +74,7 @@ export default async function DashboardPage() {
     .slice(0, 6);
 
   const completed = allLessons.filter((l) => l.status === "concluida");
-  const totalLessons = enrolledCourses.reduce((n, c) => n + c.lessonCount, 0);
+  const totalLessons = enrolled.reduce((n, c) => n + c.lessonCount, 0);
 
   const totalSec =
     completed.reduce((acc, l) => acc + l.durationSec, 0) +
@@ -87,7 +114,10 @@ export default async function DashboardPage() {
               progress={lessonsProgressPct}
             />
             <StatCard label="Tempo de estudo" value={formatDuration(totalSec)} />
-            <StatCard label="Cursos matriculados" value={String(enrolledCourses.length)} />
+            <StatCard
+              label="Cursos matriculados"
+              value={String(enrolled.length)}
+            />
           </div>
         </div>
       </section>

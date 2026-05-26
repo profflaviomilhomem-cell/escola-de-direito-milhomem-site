@@ -123,13 +123,21 @@ export default function HomePage() {
             <em className="text-amber italic">{manifesto.titleEmphasis}</em>{" "}
             {manifesto.titleEnd}
           </h2>
-          <p data-reveal className="text-paper-800 mb-10 leading-[1.7]">
-            {manifesto.body}
-          </p>
+          <div className="mx-auto max-w-3xl space-y-6">
+            {manifesto.paragraphs.map((paragraph) => (
+              <p
+                key={paragraph.slice(0, 48)}
+                data-reveal
+                className="text-paper-800 leading-[1.7]"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
           <Link
             data-reveal
             href="/sobre"
-            className="border-amber text-paper hover:text-amber inline-block border-b font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="border-amber text-paper hover:text-amber mt-10 inline-block border-b font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
           >
             {manifesto.linkLabel} →
           </Link>

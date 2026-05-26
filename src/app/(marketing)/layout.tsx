@@ -4,6 +4,7 @@ import { Header } from "@/components/shared/header";
 import { Footer } from "@/components/shared/footer";
 import { BackgroundLayers } from "@/components/marketing/animation/background-layers";
 import { NewsletterPopup } from "@/components/marketing/newsletter-popup";
+import { UtmCapture } from "@/components/marketing/utm-capture";
 
 /** Layout institucional: atmosfera visual (grid + noise), header e footer. */
 export default function MarketingLayout({
@@ -20,6 +21,7 @@ export default function MarketingLayout({
       </main>
       <Footer />
       <NewsletterPopup />
+      <UtmCapture />
     </>
   );
 }

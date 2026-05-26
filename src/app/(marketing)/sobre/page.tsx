@@ -24,7 +24,7 @@ const credentialHighlights = [
   },
   {
     label: "Docência",
-    value: "25 anos",
+    value: "30 anos",
     hint: "Direito Penal e Processo Penal",
   },
   {

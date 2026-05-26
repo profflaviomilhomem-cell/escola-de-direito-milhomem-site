@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { brandAssets } from "@/config/brand";
+import {
+  brandAssets,
+  brandLogoDimensions,
+  brandLogoVersion,
+} from "@/config/brand";
 
 export type BrandLogoVariant =
   | "mark"
@@ -16,12 +20,9 @@ type Props = {
 
 const ALT = "Flávio Milhomem — Escola de direito criminal";
 
-/** Dimensões nativas do arquivo do designer */
-const LOGO_W = 1024;
-const LOGO_H = 1024;
-
 /**
- * Logo oficial — `elementos_marca-13.jpg` sem edição (arquivo original).
+ * Logo oficial — monograma do designer (`logo-monogram.png`).
+ * Tamanhos visuais vêm do CSS (`.fm-header-logo-wordmark`, `.fm-footer-logo`).
  */
 export function BrandLogo({
   variant = "mark",
@@ -29,6 +30,8 @@ export function BrandLogo({
   priority = false,
 }: Props) {
   const src = brandAssets.logo;
+  const { width, height } = brandLogoDimensions.logo;
+  const imageKey = `${brandLogoVersion}-${variant}`;
 
   if (variant === "header") {
     return (
@@ -36,12 +39,14 @@ export function BrandLogo({
         className={cn("fm-header-logo-wordmark relative inline-block", className)}
       >
         <Image
+          key={imageKey}
           src={src}
           alt={ALT}
-          width={LOGO_W}
-          height={LOGO_H}
-          sizes="(max-width: 640px) 42vw, 240px"
+          width={width}
+          height={height}
+          sizes="(max-width: 640px) 48vw, 280px"
           priority={priority}
+          unoptimized
           className="fm-header-logo-wordmark__img"
         />
       </span>
@@ -52,11 +57,13 @@ export function BrandLogo({
     return (
       <span className={cn("fm-footer-logo", className)}>
         <Image
+          key={imageKey}
           src={src}
           alt={ALT}
-          width={LOGO_W}
-          height={LOGO_H}
+          width={width}
+          height={height}
           priority={priority}
+          unoptimized
           className="fm-footer-logo__img"
         />
       </span>
@@ -67,11 +74,13 @@ export function BrandLogo({
     return (
       <span className={cn("fm-header-logo-wordmark relative inline-block", className)}>
         <Image
+          key={imageKey}
           src={src}
           alt={ALT}
-          width={LOGO_W}
-          height={LOGO_H}
+          width={width}
+          height={height}
           priority={priority}
+          unoptimized
           className="fm-header-logo-wordmark__img"
         />
       </span>
@@ -80,11 +89,13 @@ export function BrandLogo({
 
   return (
     <Image
+      key={imageKey}
       src={src}
       alt={ALT}
-      width={LOGO_W}
-      height={LOGO_H}
+      width={width}
+      height={height}
       priority={priority}
+      unoptimized
       className={cn(
         "h-12 w-auto max-w-[4.5rem] shrink-0 object-contain object-left sm:h-[3.25rem] sm:max-w-[5rem]",
         className,

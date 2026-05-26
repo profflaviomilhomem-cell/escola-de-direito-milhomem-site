@@ -25,7 +25,7 @@ export const copy = {
     taglineAlternativa: "Direito criminal pela perspectiva da acusação.",
     /** Uso externo (Instagram, materiais onde o MP já é contexto público) */
     bioInstagram:
-      "Professor de Direito Penal · Perspectiva da acusação · Autor e docente há 25 anos",
+      "Professor de Direito Penal · Perspectiva da acusação · Autor e docente há 30 anos",
     /** Referência interna — não usar no hero de captação */
     heroPvuInstitucional:
       "Direito criminal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia.",
@@ -34,7 +34,7 @@ export const copy = {
   site: {
     tagline: "Direito criminal pela perspectiva da acusação",
     pvuShort:
-      "Cohorts com método, leitura de fontes e linguagem de tribunal — o ângulo da acusação explicado por quem leciona e publica no tema há 25 anos.",
+      "Cohorts com método, leitura de fontes e linguagem de tribunal — o ângulo da acusação explicado por quem leciona e publica no tema há 30 anos.",
     description:
       "Escola Flávio Milhomem — escola de direito criminal. Programas de direito penal e processo penal pela perspectiva da acusação, conduzidos por Flávio Milhomem, professor e autor, com formação na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
   },
@@ -43,12 +43,12 @@ export const copy = {
     fullName: "Flávio Milhomem",
     marketingTitle: "Professor de Direito Penal e Processo Penal",
     marketingBioShort:
-      "Professor, autor e docente há 25 anos. Obras em direito penal, processo penal e justiça militar; formação em Portugal e na França.",
+      "Professor, autor e docente há 30 anos. Obras em direito penal, processo penal e justiça militar; formação em Portugal e na França.",
     schemaJobTitle: "Professor de Direito Penal",
     bioRoleLine:
-      "Promotor de Justiça do MPDFT desde 1996. Professor de Direito Penal há 25 anos.",
+      "Promotor de Justiça do MPDFT desde 1996. Professor de Direito Penal há 30 anos.",
     careerYears: 30,
-    teachingYears: 25,
+    teachingYears: 30,
     education: [
       {
         institution: "Universidade Católica Portuguesa",
@@ -70,7 +70,7 @@ export const copy = {
       titleEmphasis2: "criminal",
       tagline:
         "Direito criminal pela perspectiva da acusação — com o rigor de quem ensina em sala e em tribunal, com método e leitura de fontes.",
-      bio: "A Escola é conduzida por Flávio Milhomem, professor e autor, com 25 anos de docência e quatro obras na área criminal. Você estuda com método; a trajetória completa está na biografia.",
+      bio: "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.",
       ctaPrimary: "Conhecer a edição",
       ctaSecondary: "Receber o boletim",
       ctaCalculadora: "Calculadora de pena",
@@ -90,16 +90,21 @@ export const copy = {
     },
     stats: [
       { val: "30", label: "Anos de prática jurídica" },
-      { val: "25", label: "Anos de docência superior" },
+      { val: "30", label: "Anos de docência superior" },
       { val: "IV", label: "Obras publicadas" },
       { val: "24k", label: "Seguidores na comunidade jurídica" },
     ] as const,
     manifesto: {
-      title: "Por que a",
-      titleEmphasis: "acusação",
-      titleEnd: "importa no seu estudo.",
-      body:
-        "Grande parte do mercado ensina a defesa ou permanece no nível da apostila. Se você prepara concurso criminal, atua na advocacia ou quer entender como a denúncia se constrói, sabe que falta um recorte claro: a acusação, com precedentes, artigos e estratégia — sem atalhos vazios e sem promessas vazias.",
+      title: "Feito para a",
+      titleEmphasis: "prática",
+      titleEnd: "forense.",
+      paragraphs: [
+        "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.",
+        "Se você atua na advocacia criminal, ou quer começar a atuar com consistência, já percebeu que falta algo nos cursos do mercado: a visão de quem está do outro lado.",
+        "Não basta dominar a teoria. Para defender bem, é preciso entender como a acusação pensa, como constrói sua estratégia e quais precedentes utiliza para sustentar uma denúncia ou um recurso.",
+        "É exatamente isso que você vai encontrar aqui.",
+        "Conteúdo produzido por um Promotor de Justiça em atividade, com mais de três décadas de atuação no sistema de justiça criminal, sem apostila reciclada, sem promessa vaga, sem atalho que não existe.",
+      ] as const,
       linkLabel: "Ler a proposta da Escola",
     },
     programa: {
@@ -113,7 +118,7 @@ export const copy = {
       titleLine1: "Flávio",
       titleEmphasis: "Milhomem",
       lead:
-        "Flávio Milhomem leciona Direito Penal e Processo Penal há 25 anos, é autor de obras adotadas em graduação e concurso, e formou-se academicamente na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
+        "Flávio Milhomem leciona Direito Penal e Processo Penal há 30 anos, é autor de obras adotadas em graduação e concurso, e formou-se academicamente na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
       body:
         "Você não recebe apenas videoaulas: recebe método, referências e espaço para dúvida — no formato de cohort, com fórum e encontros ao vivo na cadência do programa. Se a preparação pesa, a turma existe para sustentar o ritmo; a trajetória na carreira pública e os vínculos institucionais estão descritos com transparência na biografia.",
       ctaLabel: "Biografia e credenciais",
@@ -155,7 +160,7 @@ export const copy = {
     title: "Edição Lançamento — direito criminal pela",
     titleEmphasis: "perspectiva da acusação",
     lead:
-      "Doze semanas em cohort, com trilha semanal, fórum por aula e encontros ao vivo. A Escola é conduzida por Flávio Milhomem — professor, autor e docente com 25 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
+      "Doze semanas em cohort, com trilha semanal, fórum por aula e encontros ao vivo. A Escola é conduzida por Flávio Milhomem — professor, autor e docente com 30 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
     leadLinkLabel: "página Sobre",
     ctaInvestimento: "Ver investimento",
     ctaLista: "Entrar na lista de espera",
@@ -205,12 +210,12 @@ export const copy = {
     investimentoPriceInstallments: "",
     investimentoPriceLead: "",
     investimentoCheckoutNote:
-      "Valor único da turma fundadora. Checkout online em implementação.",
+      "Valor único da turma fundadora. Pagamento via PIX ou boleto (Pagar.me).",
     investimentoPix: "",
     investimentoSelo: "Turma fundadora · até 50 alunos",
     investimentoGarantia:
       "Garantia de 15 dias incondicionais, conforme política publicada em /reembolso.",
-    investimentoCta: "Entrar na lista de espera",
+    investimentoCta: "Garantir minha vaga",
     faqTitle: "Perguntas frequentes",
     faq: [
       {
@@ -304,12 +309,12 @@ export const copy = {
     metaDescription:
       "Escola Flávio Milhomem — escola de direito criminal. Biografia de Flávio Milhomem: docência, obras e trajetória. Credenciais acadêmicas e informações institucionais.",
     introLead:
-      "A Escola Flávio Milhomem é uma escola de direito criminal: programas de direito penal e processo penal pela perspectiva da acusação. Nesta página você conhece a proposta institucional e a trajetória de Flávio Milhomem — professor, autor e docente.",
+      "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.",
     introBody:
-      "Se você estuda para concurso criminal, atua na advocacia ou busca formação continuada, aqui encontra método, fontes e linguagem de tribunal. O conteúdo é oferecido em caráter educacional privado, em separação da atuação oficial no Ministério Público.",
+      "Se você atua na advocacia criminal, ou quer começar a atuar com consistência, já percebeu que falta algo nos cursos do mercado: a visão de quem está do outro lado. Não basta dominar a teoria — é preciso entender como a acusação pensa, como constrói sua estratégia e quais precedentes utiliza para sustentar uma denúncia ou um recurso. Conteúdo produzido por um Promotor de Justiça em atividade, com mais de três décadas de atuação no sistema de justiça criminal, sem apostila reciclada, sem promessa vaga, sem atalho que não existe.",
     portraitCaption: "Professor e autor · Docência e obras",
     credentialsLead:
-      "Na carreira pública, Flávio Milhomem é Promotor de Justiça do Ministério Público do Distrito Federal e Territórios (MPDFT) desde 1996. Na docência, leciona Direito Penal e Processo Penal há 25 anos, com mestrado pela Universidade Católica Portuguesa e especialização pela École Nationale de la Magistrature francesa.",
+      "Na carreira pública, Flávio Milhomem é Promotor de Justiça do Ministério Público do Distrito Federal e Territórios (MPDFT) desde 1996. Na docência, leciona Direito Penal e Processo Penal há 30 anos, com mestrado pela Universidade Católica Portuguesa e especialização pela École Nationale de la Magistrature francesa.",
     propostaClosing:
       "A Escola existe para transmitir, com rigor e ética, o modo de pensar a acusação — em cohort, com materiais densos e espaço para dúvida. O magistério privado não se confunde com a função institucional.",
   },

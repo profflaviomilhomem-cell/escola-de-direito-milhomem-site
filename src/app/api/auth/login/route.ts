@@ -103,12 +103,14 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const role = user.role === "ADMIN" ? "admin" : "aluno";
+
   const token = await signSession(
     {
       sub: user.id,
       email: user.email,
       name: user.name ?? undefined,
-      role: user.role === "ADMIN" ? "admin" : "aluno",
+      role,
     },
     sessionTtlSeconds,
   );
@@ -117,7 +119,8 @@ export async function POST(req: NextRequest) {
   return NextResponse.json(
     {
       ok: true,
-      user: { id: user.id, email: user.email, name: user.name },
+      user: { id: user.id, email: user.email, name: user.name, role },
+      redirectTo: role === "admin" ? "/professor/dashboard" : "/aluno/dashboard",
     },
     { status: 200 },
   );

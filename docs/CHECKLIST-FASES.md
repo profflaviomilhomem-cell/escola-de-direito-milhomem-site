@@ -78,9 +78,9 @@ flowchart TD
 
 ### 1.1 Modelo e regras de negócio
 
-- [ ] Definir: produto `COHORT` = compra única; `COMUNIDADE` = assinatura
-- [ ] Tabela ou campo de “acesso até” (validade) se necessário para cohort
-- [ ] Documentar fluxos: cartão, PIX, boleto (quais no MVP)
+- [x] Definir: produto `COHORT` = compra única; `COMUNIDADE` = assinatura
+- [x] Tabela ou campo de “acesso até” (validade) se necessário para cohort — **MVP: sem expiração automática** (ver `docs/FASE-1-COMERCIAL.md`)
+- [x] Documentar fluxos: cartão, PIX, boleto (quais no MVP)
 
 ### 1.2 Checkout (Pagar.me)
 
@@ -95,21 +95,21 @@ flowchart TD
 
 ### 1.3 Webhook
 
-- [ ] Validar HMAC (`PAGARME_WEBHOOK_SECRET`) em `api/webhooks/pagarme`
-- [ ] Idempotência por `eventId`
-- [ ] Mapear eventos → `Order.status` (`PAID`, `REFUSED`, `REFUNDED`, …)
-- [ ] Criar/atualizar `Subscription` quando produto for assinatura
-- [ ] Log/auditoria mínima de eventos (tabela ou log estruturado)
+- [x] Validar HMAC (`PAGARME_WEBHOOK_SECRET`) em `api/webhooks/pagarme`
+- [x] Idempotência por `eventId`
+- [x] Mapear eventos → `Order.status` (`PAID`, `REFUSED`, `REFUNDED`, …)
+- [x] Criar/atualizar `Subscription` quando produto for assinatura
+- [x] Log/auditoria mínima de eventos (tabela ou log estruturado)
 
 **Pronto quando:** pagamento teste em sandbox atualiza `Order` no Neon.
 
 ### 1.4 Matrícula e autorização
 
-- [ ] `lib/enrollment.ts`: `userHasAccess(userId, productSlug)`
-- [ ] Substituir `enrolledCourses` fixo por consulta a `Order`/`Subscription`
-- [ ] Guard em `/aluno/cursos/*` e `/aluno/aulas/*` (redirect ou upsell se sem acesso)
-- [ ] `/aluno/minha-conta`: listar pedidos reais do usuário
-- [ ] Admin: conceder acesso manual (opcional, útil para turma fundadora)
+- [x] `lib/enrollment.ts`: `userHasAccess(userId, productSlug)`
+- [x] Substituir `enrolledCourses` fixo por consulta a `Order`/`Subscription` (dashboard, certificados, `/aluno/cursos`)
+- [x] Guard em `/aluno/cursos/*` e `/aluno/aulas/*` (redirect ou upsell se sem acesso)
+- [x] `/aluno/minha-conta`: listar pedidos reais do usuário
+- [x] Admin: conceder acesso manual (opcional, útil para turma fundadora)
 
 **Pronto quando:** usuário sem `Order PAID` não abre o player; com `PAID`, abre.
 

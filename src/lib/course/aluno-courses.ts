@@ -45,12 +45,18 @@ export function nextLessonInCourse(course: Course): CourseLesson | null {
   return null;
 }
 
-export function nextLessonAcrossCourses(): CourseLesson | null {
-  for (const course of enrolledCourses) {
+export function nextLessonAcrossCourses(
+  courses: Course[] = enrolledCourses,
+): CourseLesson | null {
+  for (const course of courses) {
     const lesson = nextLessonInCourse(course);
     if (lesson) return lesson;
   }
   return null;
+}
+
+export function flattenCourseLessons(courses: Course[]): CourseLesson[] {
+  return courses.flatMap((c) => c.modules.flatMap((m) => m.lessons));
 }
 
 export function courseCatalogLabel(course: Course): string {

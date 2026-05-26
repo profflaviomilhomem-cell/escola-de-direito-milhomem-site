@@ -57,7 +57,21 @@ export function LoginForm({ redirectTo = "/aluno/dashboard" }: Props) {
         });
         return;
       }
-      router.push(redirectTo);
+
+      const data = (await res.json()) as {
+        redirectTo?: string;
+        user?: { role?: string };
+      };
+
+      const destination =
+        redirectTo !== "/aluno/dashboard"
+          ? redirectTo
+          : (data.redirectTo ??
+            (data.user?.role === "admin"
+              ? "/professor/dashboard"
+              : "/aluno/dashboard"));
+
+      router.push(destination);
       router.refresh();
     } catch {
       setStatus({

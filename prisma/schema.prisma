@@ -89,6 +89,8 @@ model Order {
   paymentMethod   PaymentMethod
   pagarmeChargeId String?       @unique
   pagarmeOrderId  String?       @unique
+  /// QR code, URL do boleto etc. — retorno da API Pagar.me (MVP checkout).
+  paymentPayload  Json?
   utmSource       String?
   utmMedium       String?
   utmCampaign     String?
@@ -100,6 +102,13 @@ model Order {
 
   @@index([userId])
   @@index([status])
+}
+
+/// Idempotência de webhooks Pagar.me (eventId = payload.id).
+model PagarmeWebhookEvent {
+  id        String   @id
+  type      String
+  createdAt DateTime @default(now())
 }
 
 enum OrderStatus {
@@ -115,6 +124,8 @@ enum PaymentMethod {
   CARD
   PIX
   BOLETO
+  /// Concessão manual (turma fundadora / cortesia) — sem Pagar.me.
+  MANUAL
 }
 
 model Subscription {

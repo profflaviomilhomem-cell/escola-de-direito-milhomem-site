@@ -62,3 +62,6 @@ next-env.d.ts
 /public/curso/milhomem/
 /public/JPEG.zip
 /public/PNG.zip
+.env*.local
+.pydeps/
+.tmp_*.png
