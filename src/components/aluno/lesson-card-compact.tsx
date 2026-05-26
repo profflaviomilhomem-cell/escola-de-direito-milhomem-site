@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
 import { Progress } from "@/components/ui/progress";
 import { formatDuration, type MockLesson } from "@/data/mock-aluno";
 import { progressPercentFromRatio } from "@/lib/utils";
@@ -27,15 +28,15 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
       className="group border-paper-100 hover:border-amber bg-carbon-elevated relative grid grid-cols-[120px_1fr] gap-4 overflow-hidden border no-underline transition-colors md:grid-cols-[180px_1fr] md:gap-5"
     >
       {/* Thumbnail */}
-      <div
-        data-fm-media-surface
-        className="relative aspect-video"
-        style={{
-          backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
-        }}
-      >
-        {/* Vinheta para profundidade */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-carbon/60 via-transparent to-transparent" />
+      <div data-fm-media-surface className="relative aspect-video overflow-hidden">
+        <LessonMediaCover
+          cover={lesson.cover}
+          posterSrc={lesson.posterSrc}
+          videoSrc={lesson.videoSrc}
+          alt={lesson.title}
+          className="absolute inset-0"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-carbon/60 via-transparent to-transparent" />
 
         {/* Status badge */}
         {isDone && (

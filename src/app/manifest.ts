@@ -1,17 +1,9 @@
 import type { MetadataRoute } from "next";
 
+import { brandIcons } from "@/config/brand";
 import { siteConfig } from "@/config/site";
 
-/**
- * Web App Manifest — pré-requisito para PWA (Seção 3.13 do guia).
- *
- * Cores e ícones alinhados ao Design System navy/mostarda. Ícones
- * 192/512 são servidos pelos files `app/icon.tsx` (Next gera as URLs
- * com hash automaticamente quando o cliente solicitar). Apple touch
- * vem de `app/apple-icon.tsx`. Quando o logo final do designer for
- * entregue, basta substituir os componentes ImageResponse por PNGs
- * estáticos em `/public/icons/` e atualizar este array.
- */
+/** Web App Manifest — ícones oficiais da marca (símbolo da ponte). */
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: siteConfig.name,
@@ -23,12 +15,24 @@ export default function manifest(): MetadataRoute.Manifest {
     theme_color: "#030024",
     icons: [
       {
-        src: "/icon",
+        src: brandIcons.favicon32,
         sizes: "32x32",
         type: "image/png",
       },
       {
-        src: "/apple-icon",
+        src: brandIcons.pwa192,
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: brandIcons.pwa512,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: brandIcons.appleTouch,
         sizes: "180x180",
         type: "image/png",
         purpose: "any",

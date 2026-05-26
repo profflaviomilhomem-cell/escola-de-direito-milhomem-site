@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correio Braziliense - Edição Impressa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=UnifrakturMaguntia&display=swap');
+
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1e1e1a;
+            color: #242321;
+            font-family: 'Lora', Georgia, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* Newspaper Paper Container */
+        .newspaper-page {
+            width: 1200px;
+            background-color: #f6f3eb;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 3px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.6),
+                0 10px 30px rgba(0, 0, 0, 0.25),
+                inset 0 0 120px rgba(139, 115, 85, 0.06),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+            padding: 45px 50px;
+            position: relative;
+            border: 1px solid #d3cdbe;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        /* Subtle aging effects */
+        .newspaper-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(160, 130, 80, 0.02) 0%, transparent 50%, rgba(160, 130, 80, 0.03) 100%),
+                radial-gradient(circle at 5% 95%, rgba(139, 90, 43, 0.03) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Top Header Area */
+        .newspaper-header {
+            text-align: center;
+            border-bottom: 5px double #242321;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
+        }
+
+        .newspaper-meta-top {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #55524c;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #242321;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+
+        .newspaper-logo {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 86px;
+            font-weight: normal;
+            line-height: 0.9;
+            color: #1a1918;
+            margin: 10px 0 15px 0;
+            letter-spacing: -1.5px;
+            text-shadow: 0.5px 0.5px 0px rgba(0,0,0,0.1);
+        }
+
+        .newspaper-meta-bottom {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #242321;
+            border-bottom: 2px solid #242321;
+            padding: 8px 12px;
+            margin-bottom: 20px;
+        }
+
+        .edition-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .section-tag {
+            flex: 1;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 900;
+            color: #1a1918;
+            letter-spacing: 5px;
+        }
+
+        .price-info {
+            flex: 1;
+            text-align: right;
+        }
+
+        /* Layout Grid */
+        .newspaper-grid {
+            display: grid;
+            grid-template-columns: 240px 1px 818px;
+            gap: 20px;
+        }
+
+        /* Vertical divider */
+        .vertical-divider {
+            background-color: #d8d4c9;
+            height: 100%;
+        }
+
+        /* Left Column (Sidebars) */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-section {
+            border-bottom: 1px solid #d8d4c9;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 800;
+            color: #8b2525;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .sidebar-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a1918;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-body {
+            font-size: 12.5px;
+            line-height: 1.5;
+            text-align: justify;
+            color: #383632;
+        }
+
+        /* Main Article Area */
+        .main-article {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-headline-container {
+            border-bottom: 1px solid #d8d4c9;
+            padding-bottom: 18px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .main-kicker {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 800;
+            color: #8b2525;
+            letter-spacing: 5px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .main-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 900;
+            line-height: 1.08;
+            letter-spacing: -0.8px;
+            color: #111;
+            margin-bottom: 12px;
+        }
+
+        .main-subheadline {
+            font-family: 'Lora', serif;
+            font-size: 15.5px;
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.45;
+            color: #4a4742;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .article-byline {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #55524c;
+            border-top: 1px solid #e2ded4;
+            border-bottom: 1px solid #e2ded4;
+            padding: 6px 0;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Real photo styling - Placed Higher Up */
+        .article-image-full {
+            border: 1px solid #242321;
+            padding: 10px;
+            background-color: #fcfbf9;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .article-image-full img {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(1) contrast(1.15) brightness(0.95);
+            border: 1px solid #e2ded4;
+        }
+
+        .image-caption {
+            font-family: 'Lora', serif;
+            font-size: 12px;
+            font-style: italic;
+            line-height: 1.4;
+            color: #4a4742;
+            margin-top: 10px;
+            border-top: 1px solid #e2ded4;
+            padding-top: 8px;
+        }
+
+        /* 3-Column Layout */
+        .main-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .text-column {
+            font-size: 13.5px;
+            line-height: 1.55;
+            text-align: justify;
+            color: #242321;
+        }
+
+        /* Drop cap */
+        .drop-cap::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            font-weight: 900;
+            float: left;
+            line-height: 0.85;
+            padding-right: 8px;
+            margin-top: 4px;
+            color: #1a1918;
+        }
+
+        /* Highlighted Quote */
+        .pull-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-style: italic;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #8b2525;
+            border-top: 2px solid #8b2525;
+            border-bottom: 2px solid #8b2525;
+            padding: 14px 8px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        /* Interview Section */
+        .interview-section {
+            border-top: 1px solid #d8d4c9;
+            padding-top: 18px;
+            margin-top: 10px;
+        }
+
+        .interview-title {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #8b2525;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .interview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .interview-col {
+            font-size: 13px;
+            line-height: 1.55;
+            text-align: justify;
+            color: #242321;
+        }
+
+        .speaker-q {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+            font-style: italic;
+            color: #8b2525;
+            margin-top: 10px;
+            border-left: 2px solid #8b2525;
+            padding-left: 8px;
+        }
+
+        .speaker-a {
+            font-family: 'Lora', serif;
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        .stamp-official {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            width: 110px;
+            height: 110px;
+            opacity: 0.15;
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="newspaper-page">
+        <!-- Top Section Kicker and Date Banner -->
+        <div class="newspaper-header">
+            <div class="newspaper-meta-top">
+                <span>Ano XCIX — Nº 34.872</span>
+                <span>Brasília, Distrito Federal</span>
+                <span>Fundado em 1960</span>
+            </div>
+            
+            <!-- Gothic Title Logo -->
+            <h1 class="newspaper-logo">Correio Braziliense</h1>
+            
+            <div class="newspaper-meta-bottom">
+                <div class="edition-info">EDIÇÃO IMPRESSA</div>
+                <div class="section-tag">Cidades-DF</div>
+                <div class="price-info">VALOR AVULSO: R$ 4,50</div>
+            </div>
+        </div>
+
+        <!-- Grid Layout for Columns -->
+        <div class="newspaper-grid">
+            
+            <!-- Left Column (Sidebars - Secondary Articles) -->
+            <div class="left-column">
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-tag">Desenvolvimento</div>
+                    <h3 class="sidebar-headline">Ceilândia se consolida como motor do DF</h3>
+                    <p class="sidebar-body">
+                        A cidade mais populosa do Distrito Federal celebra novos recordes de atividade comercial. Em entrevista recente, analistas destacaram o dinamismo dos empresários locais e o impacto das feiras populares na geração de emprego e renda para a região administrativa. A força econômica local continua a se expandir de maneira sem precedentes.
+                    </p>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-tag">Gestão Pública</div>
+                    <h3 class="sidebar-headline">"Ceilândia me ensinou muito", diz administrador</h3>
+                    <p class="sidebar-body">
+                        Em balanço de gestão, o administrador regional reforçou a importância do contato direto com a comunidade e a descentralização de recursos para obras de infraestrutura urbana, mobilidade e pavimentação asfáltica, promovendo melhorias diretas na qualidade de vida dos moradores locais.
+                    </p>
+                </div>
+
+                <div class="sidebar-section" style="background-color: #f1ebd8; padding: 14px; border: 1px dashed #cfc9bb;">
+                    <div class="sidebar-tag" style="color: #444;">Editorial</div>
+                    <h3 class="sidebar-headline" style="font-size: 16px;">O Papel do Controle Externo</h3>
+                    <p class="sidebar-body" style="font-size: 11.5px; line-height: 1.45;">
+                        A transparência na atuação das forças policiais é o pilar de sustentação de um Estado Democrático de Direito. A consolidação de novos canais de denúncia, sob a tutela ministerial, confere ao cidadão a certeza da escuta e afasta a perniciosa sensação de impunidade. O controle social exercido por mecanismos oficiais atua como garantia fundamental dos direitos civis.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vertical Rule -->
+            <div class="vertical-divider"></div>
+
+            <!-- Main Lead Article -->
+            <div class="main-article">
+                <div class="main-headline-container">
+                    <div class="main-kicker">Exclusivo</div>
+                    <h2 class="main-headline">CANAL DO MPDFT RECEBE 62 DENÚNCIAS DE VIOLÊNCIA POLICIAL EM 4 MESES</h2>
+                    <p class="main-subheadline">
+                        Ferramenta do MPDFT aponta abuso de autoridade como principal queixa e indica aumento da confiança da população nas denúncias.
+                    </p>
+                </div>
+
+                <div class="article-byline">
+                    <span>Por Adriana Bernardes e Paulo Gontijo</span>
+                    <span>Terça-feira, 31 de Março de 2026 — 10:51</span>
+                </div>
+
+                <!-- PHOTO PLACED HIGHER UP (Directly under the Byline) -->
+                <div class="article-image-full">
+                    <img src="flavio_milhomem.png" alt="Ouvidor do MPDFT, Flávio Milhomem">
+                    <div class="image-caption">
+                        Ouvidor do MPDFT, Flávio Milhomem avalia que canal de denúncias de violência policial para gerar mais confiança da população nas instituições e aprimoramento de políticas públicas. - (crédito: Divulgação)
+                    </div>
+                </div>
+
+                <!-- Unified Text Columns Flowing Underneath the Photo -->
+                <div class="main-columns">
+                    <!-- Column 1 -->
+                    <div class="text-column">
+                        <p class="drop-cap">
+                            Em apenas quatro meses de operação, o novo Canal de Combate à Violência Policial do MPDFT já oficializou 62 denúncias, revelando uma demanda reprimida por controle das forças de segurança do Distrito Federal. Segundo o levantamento da Ouvidoria, obtido com exclusividade pelo Correio, a Polícia Militar concentra 58% das queixas, com o abuso de autoridade liderando as violações (42%). O volume de registros evidencia não apenas a adesão dos cidadãos à ferramenta, mas a urgência de espaços oficiais de denúncia e controle da segurança pública, segundo avaliação do ouvidor-geral do MPDFT, Flávio Milhomem, idealizador da ferramenta.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Segundo o levantamento, a Polícia Civil aparece em segundo lugar nas denúncias (19%), seguida por casos envolvendo agentes do sistema carcerário (17%). Do total de queixas, 40 fazem referência direta à atuação da PMDF e de seus batalhões.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Entre os principais tipos de violação relatados, o abuso de autoridade lidera com 42% das manifestações, totalizando 26 casos, e apresentando crescimento significativo ao longo dos meses.
+                        </p>
+                    </div>
+                    
+                    <!-- Column 2 -->
+                    <div class="text-column">
+                        <p>
+                            Em seguida aparecem os registros de lesão corporal e tortura, que somam 13% das denúncias. Embora agrupadas no relatório, essas ocorrências são tratadas de forma distinta nas investigações, especialmente nos casos que indicam práticas recorrentes de violência.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Também foram identificados quatro episódios de letalidade policial, considerados críticos pelo órgão e que demandam análise rigorosa sobre a aplicação dos protocolos de necessidade e proporcionalidade no uso da força. Além dessas notificações feitas por cidadãos, o próprio MPDFT atuou de forma proativa ao encaminhar três casos, oficiando às Promotorias do Tribunal do Júri, reforçando o papel institucional na apuração de ocorrências mais graves.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Outras violações, como constrangimento ilegal, injúria racial e invasão de domicílio, também aparecem no levantamento, demonstrando a diversidade dos relatos e o alcance das denúncias em diferentes regiões administrativas do Distrito Federal.
+                        </p>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div class="text-column">
+                        <p>
+                            Criada em outubro do ano passado, a iniciativa surge com o objetivo de centralizar denúncias contra a conduta de agentes das forças de segurança, e convertê-las em dados estatísticos concretos, capazes de auxiliar a formulação de políticas públicas e aprimorar rotinas de trabalho.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            Essa é mais uma ferramenta que integra a estratégia do Ministério Público de fortalecer o controle externo da atuação policial, permitindo que relatos individuais deixem de ser tratados de forma isolada e passem a compor um panorama mais amplo sobre violações de direitos fundamentais.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            O levantamento aponta fevereiro de 2026 como o mês com maior número de registros, concentrando 21 denúncias, cerca de um terço de todo o volume analisado. “O dado é interpretado como um indicativo do aumento da confiança da população na plataforma e da eficácia das ações de divulgação. A tendência de crescimento ao longo dos meses reflete a consolidação da ferramenta, que passa a ser reconhecida como um espaço legítimo de escuta e encaminhamento institucional”, avalia Milhomem.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Secondary layout block for final text elements before Q&A -->
+                <div class="main-columns">
+                    <div class="text-column">
+                        <p>
+                            O canal foi instituído por meio de portaria normativa e segue um fluxo estruturado que inclui o recebimento das denúncias, o registro qualificado e o encaminhamento imediato às promotorias competentes para apuração nas esferas penal ou administrativa.
+                        </p>
+                    </div>
+                    <div class="text-column">
+                        <p>
+                            As equipes envolvidas passaram por capacitação específica, com foco no atendimento humanizado, buscando equilibrar o rigor técnico com a sensibilidade necessária diante de relatos, muitas vezes marcados por situações de vulnerabilidade.
+                        </p>
+                    </div>
+                    <div class="text-column">
+                        <p>
+                            Mais do que um espaço de recebimento de denúncias, a ferramenta foi desenhada para transformar relatos individuais em indicadores estatísticos, capazes de revelar padrões, identificar recorrências e orientar ações institucionais mais eficazes. A proposta é permitir que o Ministério Público avance de uma atuação reativa para uma postura estratégica, baseada em evidências.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interview / Q&A Section at bottom of page -->
+                <div class="interview-section">
+                    <h3 class="interview-title">Desafios e Perspectivas — Entrevista com o Ouvidor Flávio Milhomem</h3>
+                    
+                    <div class="interview-grid">
+                        <div class="interview-col">
+                            <p class="speaker-q">Correio: Qual é o maior desafio da Ouvidoria hoje ao lidar com denúncias de violência policial?</p>
+                            <p class="speaker-a"><strong>Flávio Milhomem:</strong> O principal desafio é garantir que as denúncias resultem in ações concretas e em respostas efetivas à população. Nenhuma denúncia fica parada. Assim que chega, ela é encaminhada para a promotoria competente, que tem a obrigação de adotar uma providência. Existem prazos e mecanismos de controle; no Distrito Federal, o tempo para atuação é de 30 dias, sob fiscalização da Corregedoria.</p>
+
+                            <p class="speaker-q">Correio: Como funciona o fluxo de investigação após o cidadão registrar a queixa?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> O promotor analisa o caso e pode seguir diferentes caminhos: instaurar uma investigação preliminar para reunir elementos, abrir diretamente um procedimento investigatório ou optar pelo arquivamento, caso não haja viabilidade. No entanto, diante de provas concretas, como vídeos, a investigação é imediata. E o retorno ao denunciante é peça-chave: quem nos procura não fica sem resposta sobre o que foi decidido.</p>
+
+                            <p class="speaker-q">Correio: O número de registros de abuso de autoridade deu um salto. Isso significa que a polícia está mais violenta?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> Ainda não é possível afirmar que houve aumento da violência policial. O que aumentou foi o número de notificações. O aumento nas denúncias não significa necessariamente maior incidência de violência, mas sim maior confiança no canal. A população está conhecendo a Ouvidoria e se sente mais segura para relatar abusos. A consolidação dos dados ao longo do semestre é que permitirá identificar padrões, regiões e unidades envolvidas.</p>
+                        </div>
+
+                        <div class="interview-col">
+                            <p class="speaker-q">Correio: No caso de mortes em intervenções policiais, a letalidade, como o MPDFT atua?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> O monitoramento vai além das denúncias formais. Muitos episódios são identificados pela imprensa e incluídos para acompanhamento. O objetivo é avaliar o uso da força ao longo do tempo. É importante ressaltar, porém, que a responsabilização final depende do Judiciário; cabe ao Tribunal do Júri definir se houve excesso ou legítima defesa.</p>
+
+                            <p class="speaker-q">Correio: O senhor pretende levar esses dados ao comando das forças de segurança?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> Sim, pretendo me reunir com o comando da Polícia Militar para apresentar esses números. O diálogo é fundamental. O Ministério Público exerce o controle externo, mas também contribui para o aprimoramento das instituições. Quando identificamos padrões, isso pode se transformar em políticas públicas para adequar a atuação policial à legalidade.</p>
+
+                            <p class="speaker-q">Correio: O medo de retaliação ainda afasta as vítimas. Como a Ouvidoria protege quem denuncia?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> Garantimos o sigilo das informações. Os dados pessoais não são repassados para quem vai investigar. Além disso, existe a possibilidade de anonimato total, o que amplia a participação. Por outro lado, há cidadãos que fazem questão de se identificar e apresentar vídeos, buscando justiça.</p>
+
+                            <p class="speaker-q">Correio: Essas denúncias podem travar a carreira de um policial que comete excessos?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> Embora o impacto direto na carreira não seja atribuição do MPDFT, os dados geram reflexos internos. A própria PMDF avalia a vida funcional dos agentes. Inquéritos, ações penais e condenações podem, sim, influenciar promoções ou até motivar o afastamento dos envolvidos.</p>
+
+                            <p class="speaker-q">Correio: Qual é o objetivo final dessa ferramenta a longo prazo?</p>
+                            <p class="speaker-a"><strong>Milhomem:</strong> Fortalecer a confiança institucional. À medida que acumulamos dados, entendemos melhor o cenário no DF. O mais importante é que o cidadão passe a enxergar as forças de segurança como garantidoras de direitos, e não como violadoras.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Official seal watermark (SVG) -->
+        <svg class="stamp-official" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#8b2525" stroke-width="2" stroke-dasharray="4 2"/>
+            <circle cx="50" cy="50" r="38" fill="none" stroke="#8b2525" stroke-width="1"/>
+            <text x="50" y="38" font-family="'Cinzel', serif" font-size="6" font-weight="bold" fill="#8b2525" text-anchor="middle">MINISTÉRIO PÚBLICO</text>
+            <text x="50" y="48" font-family="'Cinzel', serif" font-size="7" font-weight="bold" fill="#8b2525" text-anchor="middle">OUVIDORIA-GERAL</text>
+            <text x="50" y="58" font-family="'Cinzel', serif" font-size="6" font-weight="bold" fill="#8b2525" text-anchor="middle">MPDFT</text>
+            <text x="50" y="68" font-family="'Cinzel', serif" font-size="5" fill="#8b2525" text-anchor="middle">DOCUMENTO OFICIAL</text>
+        </svg>
+    </div>
+
+</body>
+</html>

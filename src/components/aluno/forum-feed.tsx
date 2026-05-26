@@ -5,14 +5,13 @@ import { useMemo, useState } from "react";
 
 import { CommentTree } from "@/components/aluno/comment-tree";
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
-import {
-  formatDuration,
-  mockUser,
-  type MockComment,
-  type MockCourse,
-  type MockForumThread,
-  type MockLesson,
-} from "@/data/mock-aluno";
+import { formatDuration } from "@/lib/course/format";
+import type {
+  Course,
+  CourseLesson,
+  ForumComment,
+  ForumThread,
+} from "@/lib/course/types";
 import {
   FORUM_ROOT_PARENT_ID,
   mergeLocalRepliesIntoComments,
@@ -31,8 +30,9 @@ type FilterKey =
   | "modulo-4-sustentacao";
 
 type Props = {
-  threads: MockForumThread[];
-  course: MockCourse;
+  threads: ForumThread[];
+  course: Course;
+  userName?: string;
 };
 
 const FILTERS: Array<{ key: FilterKey; label: string; tone?: "danger" | "amber" }> = [
@@ -73,7 +73,7 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
-function countCommentsInTree(nodes: MockComment[]): number {
+function countCommentsInTree(nodes: ForumComment[]): number {
   let n = 0;
   for (const c of nodes) {
     n += 1;
@@ -82,12 +82,12 @@ function countCommentsInTree(nodes: MockComment[]): number {
   return n;
 }
 
-export function ForumFeed({ threads, course }: Props) {
+export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterKey>("all");
   const [sort, setSort] = useState<SortKey>("recent");
   const [localReplies, setLocalReplies] = useState<
-    Array<{ threadId: string; parentId: string; comment: MockComment }>
+    Array<{ threadId: string; parentId: string; comment: ForumComment }>
   >([]);
   const [rootDrafts, setRootDrafts] = useState<Record<string, string>>({});
 
@@ -99,13 +99,13 @@ export function ForumFeed({ threads, course }: Props) {
         {
           threadId,
           parentId,
-          comment: newLocalForumComment(body, mockUser.name),
+          comment: newLocalForumComment(body, userName),
         },
       ]);
     };
 
   const lessonsBySlug = useMemo(() => {
-    const map = new Map<string, MockLesson>();
+    const map = new Map<string, CourseLesson>();
     for (const m of course.modules) {
       for (const l of m.lessons) {
         map.set(l.slug, l);

@@ -1,0 +1,243 @@
+{
+  "importedAt": "2026-05-19T20:19:10.828Z",
+  "courseSlug": "prova-digital-no-processo-penal",
+  "courseName": "Prova Digital no Processo Penal",
+  "summary": {
+    "videosOk": 10,
+    "slidesOk": 10,
+    "missingVideo": [],
+    "missingSlides": []
+  },
+  "lessons": [
+    {
+      "number": 1,
+      "slug": "aula-01",
+      "title": "Introdução à prova digital e cadeia de custódia",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-01/video.mp4",
+        "bytes": 1646644301,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-006.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 01-editada.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-01/poster.jpg",
+          "bytes": 146882
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-01/slides.pptx",
+        "bytes": 4594716,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "CADEIA DE CUSTÓDIA-Aula 01.pptx"
+      }
+    },
+    {
+      "number": 2,
+      "slug": "aula-02",
+      "title": "Cadeia de custódia — reconhecimento, isolamento e fixação",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-02/video.mp4",
+        "bytes": 2302836160,
+        "variant": "editado",
+        "sourceArchive": "(solto)",
+        "sourceFile": "PROVA DIGITAL - AULA 02-editada-009.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-02/poster.jpg",
+          "bytes": 154416
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-02/slides.pptx",
+        "bytes": 4590975,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "CADEIA DE CUSTÓDIA-Aula 02.pptx"
+      }
+    },
+    {
+      "number": 3,
+      "slug": "aula-03",
+      "title": "Coleta, acondicionamento e transporte da prova",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-03/video.mp4",
+        "bytes": 1603301953,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-003.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 03 - editada.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-03/poster.jpg",
+          "bytes": 132020
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-03/slides.pptx",
+        "bytes": 4591543,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 03.pptx"
+      }
+    },
+    {
+      "number": 4,
+      "slug": "aula-04",
+      "title": "Laudo pericial e integridade (hash)",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-04/video.mp4",
+        "bytes": 1262803733,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-011.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 04 EDITADA.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-04/poster.jpg",
+          "bytes": 154313
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-04/slides.pptx",
+        "bytes": 4591207,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 04.pptx"
+      }
+    },
+    {
+      "number": 5,
+      "slug": "aula-05",
+      "title": "Prova digital no CPP pós-Lei 13.964/2019",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-05/video.mp4",
+        "bytes": 1930689874,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-010.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 05-editada.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-05/poster.jpg",
+          "bytes": 137715
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-05/slides.pptx",
+        "bytes": 4601875,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 05.pptx"
+      }
+    },
+    {
+      "number": 6,
+      "slug": "aula-06",
+      "title": "Mensagens, prints e metadados",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-06/video.mp4",
+        "bytes": 947603446,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-005.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 6-editada.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-06/poster.jpg",
+          "bytes": 135927
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-06/slides.pptx",
+        "bytes": 4591198,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 06.pptx"
+      }
+    },
+    {
+      "number": 7,
+      "slug": "aula-07",
+      "title": "WhatsApp e aplicativos de mensagem",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-07/video.mp4",
+        "bytes": 1186443645,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-008.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 07-editada.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-07/poster.jpg",
+          "bytes": 133867
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-07/slides.pptx",
+        "bytes": 4596049,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-003.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 07.pptx"
+      }
+    },
+    {
+      "number": 8,
+      "slug": "aula-08",
+      "title": "Interceptação e prova derivada",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-08/video.mp4",
+        "bytes": 2196369842,
+        "variant": "editado",
+        "sourceArchive": "(solto)",
+        "sourceFile": "PROVA DIGITAL - AULA 08 EDITADA-001.mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-08/poster.jpg",
+          "bytes": 127720
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-08/slides.pptx",
+        "bytes": 12726079,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 8.pptx"
+      }
+    },
+    {
+      "number": 9,
+      "slug": "aula-09",
+      "title": "Prova digital em crimes patrimoniais e violentos",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-09/video.mp4",
+        "bytes": 1019653114,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-004.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 9 (editada).mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-09/poster.jpg",
+          "bytes": 136549
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-09/slides.pptx",
+        "bytes": 4588953,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 9-A.pptx"
+      }
+    },
+    {
+      "number": 10,
+      "slug": "aula-10",
+      "title": "Valoração da prova digital pelo juiz",
+      "pptxTitle": "PROVA DIGITAL",
+      "video": {
+        "path": "/curso/provas-digitais/aula-10/video.mp4",
+        "bytes": 1569246609,
+        "variant": "editado",
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL - AULA 10 (editada).mp4",
+        "poster": {
+          "path": "/curso/provas-digitais/aula-10/poster.jpg",
+          "bytes": 152442
+        }
+      },
+      "slides": {
+        "path": "/curso/provas-digitais/aula-10/slides.pptx",
+        "bytes": 4593595,
+        "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
+        "sourceFile": "PROVA DIGITAL-Aula 10.pptx"
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { BackgroundLayers } from "@/components/marketing/animation/background-layers";
+import { BrandLogo } from "@/components/shared/brand-logo";
 
 /**
  * Layout dedicado das telas de autenticação (`/entrar`, `/cadastro`).
@@ -25,16 +26,10 @@ export default function AuthLayout({
       <header className="relative z-10 flex items-center justify-between px-6 py-6 md:px-14 md:py-8">
         <Link
           href="/"
-          className="flex items-center gap-3 no-underline"
+          className="inline-flex items-center no-underline"
           aria-label="Escola Flávio Milhomem — voltar para a home"
         >
-          <span className="border-amber text-amber grid h-11 w-11 place-items-center rounded-full border font-serif text-[20px] italic">
-            FM
-          </span>
-          <span className="hidden font-serif text-[22px] leading-none md:inline">
-            Escola{" "}
-            <em className="text-amber italic">Flávio Milhomem</em>
-          </span>
+          <BrandLogo variant="stacked" className="fm-footer-logo--compact" priority />
         </Link>
         <Link
           href="/"

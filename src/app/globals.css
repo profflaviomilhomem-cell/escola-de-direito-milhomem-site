@@ -221,6 +221,8 @@
   --sidebar-accent-foreground: #e0e0e0;
   --sidebar-border: rgba(224, 224, 224, 0.12);
   --sidebar-ring: #f1bb41;
+  --fm-header-bar-h: 5rem;
+  --fm-header-offset: calc(1.75rem + var(--fm-header-bar-h));
 }
 
 html {
@@ -877,6 +879,137 @@ html[data-fm-text-step="4"] {
 .fm-a11y-no-scale,
 #fm-a11y-panel {
   font-size: calc(1rem / var(--fm-text-scale, 1));
+}
+
+/* Header — fixo no topo; logo horizontal (elementos_marca-13, cores originais) */
+.fm-site-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  overflow: visible;
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+  box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.45);
+}
+
+.fm-site-header-spacer {
+  flex-shrink: 0;
+  height: var(--fm-header-offset);
+  pointer-events: none;
+}
+
+.fm-site-header__inner {
+  min-height: var(--fm-header-bar-h);
+  align-items: center;
+}
+
+.fm-header-logo-slot {
+  position: relative;
+  z-index: 20;
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+/* Logo no header — arquivo 1024² com arte na faixa central: zoom só no CSS */
+.fm-header-logo-wordmark {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: clamp(3.25rem, 10vw, 4rem);
+  width: min(20rem, 72vw);
+  border-radius: 0.625rem;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(3, 0, 36, 0.08),
+    0 4px 16px -4px rgba(0, 0, 0, 0.35);
+}
+
+.fm-header-logo-wordmark__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: clamp(13rem, 38vw, 15.5rem);
+  width: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+/* Footer — logo maior e legível */
+.fm-footer-logo {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-inline: auto;
+  height: clamp(4rem, 14vw, 5.25rem);
+  width: min(26rem, 92vw);
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(241, 187, 65, 0.15);
+}
+
+.fm-footer-logo__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: clamp(16rem, 48vw, 19rem);
+  width: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+}
+
+.fm-footer-logo--compact {
+  height: clamp(3rem, 10vw, 3.75rem);
+  width: min(18rem, 88vw);
+}
+
+.fm-footer-logo--compact .fm-footer-logo__img {
+  height: clamp(12rem, 36vw, 14rem);
+}
+
+/* Hero — respiro sob o header fixo */
+.fm-hero-under-header {
+  padding-top: 1.25rem;
+}
+
+/* Hero aluno — revelação do asset oficial elementos_marca-18 (manual de marca) */
+.fm-hero-bridge-draw {
+  --fm-bridge-cycle: 14s;
+  --fm-bridge-banner-span: 75%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fm-hero-bridge-draw__svg {
+  display: block;
+  width: var(--fm-bridge-banner-span);
+  height: 100%;
+  max-height: 100%;
+  flex-shrink: 0;
+}
+
+.fm-bridge-mask-stroke,
+.fm-bridge-glow-stroke {
+  vector-effect: non-scaling-stroke;
+}
+
+.fm-bridge-glow-layer {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fm-bridge-mask-stroke {
+    stroke-dashoffset: 0 !important;
+  }
 }
 
 /* Títulos com clamp em px (fmTitleClamp) — escalam junto com o passo */

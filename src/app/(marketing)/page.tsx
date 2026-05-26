@@ -10,6 +10,7 @@ import { BlogSection } from "@/components/marketing/blog-section";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { HomeStatsSection } from "@/components/marketing/home-stats-section";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { provaDigitalModuloCards } from "@/data/curso-prova-digital-publico";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -23,7 +24,6 @@ export default function HomePage() {
     stats,
     manifesto,
     programa,
-    modules,
     professorSection,
     cohort,
   } = copy.home;
@@ -64,7 +64,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
       />
 
-      <section className="fm-site-section relative overflow-x-clip pb-10 pt-28 md:pb-14 md:pt-20 lg:flex lg:min-h-screen lg:items-center lg:overflow-visible lg:pb-0">
+      <section className="fm-site-section fm-hero-under-header relative overflow-x-clip pb-10 md:pb-14 lg:flex lg:min-h-screen lg:items-center lg:overflow-visible lg:pb-0">
         <div className="fm-site-container grid w-full grid-cols-1 gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12 xl:gap-16">
           <div className="relative z-10 flex flex-col justify-center lg:col-start-1 lg:row-start-1">
             <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.32em]">
@@ -146,8 +146,14 @@ export default function HomePage() {
             {programa.sectionTitle}{" "}
             <em className="text-amber italic">{programa.sectionEmphasis}</em>
           </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {modules.map((m) => (
+          <p
+            data-reveal
+            className="text-paper-600 mb-12 max-w-2xl text-sm leading-relaxed"
+          >
+            {programa.courseName} — ementa importada do acervo gravado do professor.
+          </p>
+          <div className="grid gap-8 md:grid-cols-2">
+            {provaDigitalModuloCards.map((m) => (
               <article
                 key={m.id}
                 data-reveal
@@ -163,7 +169,7 @@ export default function HomePage() {
           </div>
           <div data-reveal className="mt-16 text-center">
             <Link
-              href="/cursos"
+              href="/cursos/edicao-lancamento#ementa-title"
               className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
             >
               {programa.ctaLabel}
@@ -277,7 +283,7 @@ export default function HomePage() {
               <em className="text-amber italic">{cohort.titleEmphasis}</em>
             </h2>
             <div className="font-serif text-7xl my-8">
-              <span className="text-paper">{cohort.priceDisplay}</span>
+              <span className="text-paper">R$ {cohort.priceDisplay}</span>
               <small className="text-amber text-2xl">{cohort.priceSuffix}</small>
             </div>
             <p className="text-paper-600 mb-10 text-base">

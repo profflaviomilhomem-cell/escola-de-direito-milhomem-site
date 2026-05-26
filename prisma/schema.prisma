@@ -44,21 +44,33 @@ enum UserRole {
 // ============================================================
 
 model Product {
-  id            String         @id @default(cuid())
-  slug          String         @unique
+  id            String               @id @default(cuid())
+  slug          String               @unique
   name          String
-  description   String         @db.Text
+  tagline       String?
+  description   String               @db.Text
   type          ProductType
   priceCents    Int
-  active        Boolean        @default(true)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  coverImage    String?              // capa (card do aluno, listagens)
+  bannerImage   String?              // banner (hero / vitrine do curso)
+  publishStatus ProductPublishStatus @default(DRAFT)
+  publishedAt   DateTime?
+  active        Boolean              @default(true)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
 
   orders        Order[]
   subscriptions Subscription[]
   lessons       Lesson[]
 
   @@index([slug])
+  @@index([publishStatus])
+}
+
+enum ProductPublishStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
 }
 
 enum ProductType {
@@ -138,6 +150,7 @@ model Lesson {
   slug         String
   title        String
   description  String?   @db.Text
+  coverImage   String?   // thumbnail da aula no painel do aluno
   videoId      String?   // Cloudflare Stream UID
   position     Int
   durationSec  Int?

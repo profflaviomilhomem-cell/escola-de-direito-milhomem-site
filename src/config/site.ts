@@ -23,6 +23,11 @@ export const siteConfig = {
   locale: "pt-BR",
   // OG image gerada por `app/opengraph-image.tsx` (file-based).
 
+  /** Arte institucional (ponte JK) — hero da área do aluno e vitrines de curso. */
+  brand: {
+    courseHeroBanner: "/images/brand/elementos_marca-18.png",
+  },
+
   professor: {
     fullName: copy.professor.fullName,
     role: copy.professor.marketingTitle,
@@ -45,6 +50,11 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@professorflaviomilhomem",
     /** Linha secundária no chip do footer (YouTube) */
     youtubeFooterLabel: "Professor Flávio Milhomem",
+    /**
+     * Vídeo de abertura — Edição Lançamento (canal @professorflaviomilhomem).
+     * Metodologia: videoaulas + PDFs (~4 min). Trocar quando houver vídeo da edição.
+     */
+    edicaoLancamentoVideoId: "Sud0au_ogS0",
     /** Linha secundária no chip do footer (LinkedIn) */
     linkedinFooterLabel: "/in/professorflaviomilhomem",
     mpdft: "https://www.mpdft.mp.br/",

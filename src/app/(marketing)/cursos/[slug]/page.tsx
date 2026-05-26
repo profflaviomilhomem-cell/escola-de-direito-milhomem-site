@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: `Curso · ${slug}` };
   }
   return {
-    title: "Edição Lançamento — Direito Penal pela perspectiva da acusação",
+    title: "Edição Lançamento — direito criminal pela perspectiva da acusação",
     description:
       "Cohort inaugural de 12 semanas com Flávio Milhomem. Turma fundadora, trilha certificada e acesso ao professor no fórum.",
     alternates: { canonical: `/cursos/${EDICAO_SLUG}` },

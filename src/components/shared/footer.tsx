@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
+import { BrandLogo } from "@/components/shared/brand-logo";
 import { siteConfig } from "@/config/site";
 
 function IconInstagram({ className }: { className?: string }) {
@@ -49,14 +50,10 @@ export function Footer() {
       <div className="fm-site-container">
       <Link
         href="/"
-        className="mx-auto inline-flex items-center justify-center gap-3 text-inherit no-underline"
+        className="mx-auto inline-flex flex-col items-center justify-center text-inherit no-underline"
+        aria-label={`${siteConfig.name} — início`}
       >
-        <span className="border-amber text-amber grid h-9 w-9 place-items-center rounded-full border font-serif italic">
-          FM
-        </span>
-        <span className="font-serif text-base">
-          Flávio <em className="text-amber italic">Milhomem</em>
-        </span>
+        <BrandLogo variant="stacked" className="mx-auto" />
       </Link>
       <p className="text-paper-500 mx-auto mt-3 max-w-sm font-mono text-[10px] uppercase tracking-[0.22em]">
         {siteConfig.taglineInstitucional}

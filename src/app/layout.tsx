@@ -108,6 +108,8 @@ export const metadata: Metadata = {
   creator: siteConfig.professor.fullName,
   publisher: siteConfig.name,
   keywords: [
+    "escola de direito criminal",
+    "direito criminal",
     "Direito Penal",
     "Processo Penal",
     "Direito Penal Militar",

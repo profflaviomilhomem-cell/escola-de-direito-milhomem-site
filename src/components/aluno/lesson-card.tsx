@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
 import { Progress } from "@/components/ui/progress";
 import { formatDuration, type MockLesson } from "@/data/mock-aluno";
 import { progressPercentFromRatio } from "@/lib/utils";
@@ -37,16 +38,20 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
       <div
         data-fm-media-surface
         className="border-paper-100 relative aspect-video overflow-hidden border transition-all duration-300 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241, 187, 65,0.15)]"
-        style={{
-          backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
-        }}
       >
+        <LessonMediaCover
+          cover={lesson.cover}
+          posterSrc={lesson.posterSrc}
+          videoSrc={lesson.videoSrc}
+          alt={lesson.title}
+          className="absolute inset-0"
+        />
         {/* Vinheta sutil para legibilidade do título */}
-        <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
 
         {/* Status badge */}
         {isDone && (
-          <div className="bg-amber text-carbon absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full">
+          <div className="bg-amber text-carbon absolute right-2 top-2 z-[2] flex h-7 w-7 items-center justify-center rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -64,12 +69,12 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
         )}
 
         {/* Duração */}
-        <span className="bg-carbon/80 text-paper fm-mono absolute left-2 top-2 px-2 py-1 backdrop-blur-sm">
+        <span className="bg-carbon/80 text-paper fm-mono absolute left-2 top-2 z-[2] px-2 py-1 backdrop-blur-sm">
           {formatDuration(lesson.durationSec)}
         </span>
 
         {/* Título sobreposto */}
-        <div className="absolute inset-x-0 bottom-0 p-3">
+        <div className="absolute inset-x-0 bottom-0 z-[2] p-3">
           {showModule && (
             <p className="text-amber fm-mono mb-1 line-clamp-1">
               {lesson.moduleTitle}

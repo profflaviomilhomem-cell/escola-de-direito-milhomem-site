@@ -6,7 +6,7 @@ import { RegisterForm } from "@/components/auth/register-form";
 export const metadata: Metadata = {
   title: "Criar conta — Escola Flávio Milhomem",
   description:
-    "Cadastro na Escola Flávio Milhomem — análise penal pelo ângulo da acusação.",
+    "Cadastro na Escola Flávio Milhomem — escola de direito criminal, perspectiva da acusação.",
   alternates: { canonical: "/cadastro" },
   robots: { index: false, follow: false },
 };

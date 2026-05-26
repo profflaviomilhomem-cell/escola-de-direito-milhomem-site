@@ -25,7 +25,11 @@
     "sync:blog": "node scripts/sync-wordpress-blog.mjs",
     "migrate:blog": "npx tsx scripts/migrate-blog.ts",
     "mirror:blog-images": "node scripts/mirror-blog-images.mjs",
-    "seed:mock-course": "node scripts/seed-mock-course.mjs"
+    "seed:mock-course": "node scripts/seed-mock-course.mjs",
+    "seed:prova-digital": "node scripts/seed-prova-digital.mjs",
+    "import:provas-digitais": "node scripts/import-provas-digitais.mjs",
+    "trace:bridge": "node scripts/trace-bridge-art.mjs",
+    "generate:lesson-posters": "node scripts/generate-lesson-posters.mjs"
   },
   "engines": {
     "node": ">=20.0.0",
@@ -75,10 +79,12 @@
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.5",
+    "imagetracerjs": "^1.2.6",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "ts-jest": "^29.4.9",
     "typescript": "^5"

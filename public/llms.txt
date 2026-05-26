@@ -1,17 +1,17 @@
 # Escola Flávio Milhomem
 
-> A Escola do Promotor. Direito Penal e Processo Penal pela perspectiva da
-> acusação — cohorts com método, leitura de fontes e linguagem de tribunal.
-> Programas conduzidos por Flávio Milhomem, professor e autor, com 25 anos de
-> docência e formação na Universidade Católica Portuguesa e na École Nationale
-> de la Magistrature.
+> Escola de direito criminal. Programas de direito penal e processo penal pela
+> perspectiva da acusação — cohorts com método, leitura de fontes e linguagem de
+> tribunal. Programas conduzidos por Flávio Milhomem, professor e autor, com 25
+> anos de docência e formação na Universidade Católica Portuguesa e na École
+> Nationale de la Magistrature.
 
 ## Sobre a Escola
 
-A Escola Flávio Milhomem é um projeto educacional privado. Ensina a construção
-da denúncia, a prova, a dosimetria e a sustentação oral — com rigor técnico e
-tom erudito acessível. Não representa o Ministério Público e não utiliza cargo
-institucional para captação de alunos.
+A Escola Flávio Milhomem é um projeto educacional privado — escola de direito
+criminal. Ensina a construção da denúncia, a prova, a dosimetria e a
+sustentação oral — com rigor técnico e tom erudito acessível. Não representa o
+Ministério Público e não utiliza cargo institucional para captação de alunos.
 
 ## Sobre o professor
 
@@ -32,7 +32,7 @@ formação e cargos institucionais estão na página /sobre.
 
 - [Boletim quinzenal](/newsletter): jurisprudência penal (STJ/STF) pelo ângulo
   da acusação — Bastidor da Acusação.
-- [Blog](/blog): artigos longos em Direito Penal contemporâneo.
+- [Blog](/blog): artigos longos em direito criminal contemporâneo.
 - [Calculadora de Pena Hipotética](/calculadora-de-pena): simulação didática
   da dosimetria trifásica.
 

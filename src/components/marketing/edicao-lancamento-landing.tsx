@@ -2,14 +2,16 @@ import Link from "next/link";
 
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
+import { YoutubeEmbed } from "@/components/marketing/youtube-embed";
 import { copy } from "@/config/copy";
+import { siteConfig } from "@/config/site";
+import { provaDigitalModulosPublicos } from "@/data/curso-prova-digital-publico";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
  * Checkout Pagar.me entra quando a integração estiver ativa (bloco 11).
  */
 export function EdicaoLancamentoLanding() {
-  const { modules } = copy.home;
   const ed = copy.edicaoLancamento;
 
   return (
@@ -48,14 +50,11 @@ export function EdicaoLancamentoLanding() {
           </Link>
         </div>
         <p className="text-paper-500 mt-4 text-sm">{ed.videoNote}</p>
-        <div
-          className="border-paper-100 mt-10 flex aspect-video max-w-2xl items-center justify-center rounded-lg border bg-carbon-elevated/40"
-          aria-hidden
-        >
-          <p className="text-paper-500 font-mono text-[10px] uppercase tracking-[0.2em]">
-            Vídeo em breve
-          </p>
-        </div>
+        <YoutubeEmbed
+          videoId={siteConfig.social.edicaoLancamentoVideoId}
+          title={ed.videoTitle}
+          className="mt-10 max-w-2xl"
+        />
       </header>
 
       {/* Bloco 2 */}
@@ -91,17 +90,27 @@ export function EdicaoLancamentoLanding() {
         <h2 id="ementa-title" className="font-serif text-3xl">
           {ed.ementaTitle}
         </h2>
-        <ol className="mt-8 space-y-4">
-          {modules.map((m) => (
+        <ol className="mt-8 space-y-6">
+          {provaDigitalModulosPublicos.map((m) => (
             <li
               key={m.id}
               className="border-paper-100 rounded-lg border px-5 py-4"
             >
               <p className="text-amber font-mono text-[10px] tracking-[0.2em]">
-                Módulo {m.id}
+                Módulo {m.id} — {m.title}
               </p>
-              <h3 className="mt-1 font-serif text-xl">{m.title}</h3>
               <p className="text-paper-600 mt-2 text-sm leading-relaxed">{m.desc}</p>
+              <ul className="text-paper-700 mt-4 space-y-2 text-sm leading-relaxed">
+                {m.lessons.map((aula) => (
+                  <li key={aula.number}>
+                    <span className="text-amber font-mono text-[10px]">
+                      Aula {aula.number.toString().padStart(2, "0")}
+                    </span>
+                    {" — "}
+                    {aula.title}
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ol>
@@ -158,11 +167,18 @@ export function EdicaoLancamentoLanding() {
           {ed.investimentoTitle}
         </h2>
         <p className="text-paper-700 mt-4 text-lg">
-          <span className="text-paper font-serif text-4xl">{ed.investimentoPriceMain}</span>{" "}
-          {ed.investimentoPriceLead}{" "}
-          <span className="text-paper-800">{ed.investimentoPriceInstallments}</span>
+          <span className="text-paper font-serif text-4xl">{ed.investimentoPriceMain}</span>
+          {ed.investimentoPriceLead || ed.investimentoPriceInstallments ? (
+            <>
+              {" "}
+              {ed.investimentoPriceLead}{" "}
+              <span className="text-paper-800">{ed.investimentoPriceInstallments}</span>
+            </>
+          ) : null}
         </p>
-        <p className="text-paper-600 mt-2 text-sm">{ed.investimentoCheckoutNote}</p>
+        {ed.investimentoCheckoutNote ? (
+          <p className="text-paper-600 mt-2 text-sm">{ed.investimentoCheckoutNote}</p>
+        ) : null}
         <p className="text-amber mt-4 font-mono text-[10px] uppercase tracking-[0.2em]">
           {ed.investimentoSelo}
         </p>

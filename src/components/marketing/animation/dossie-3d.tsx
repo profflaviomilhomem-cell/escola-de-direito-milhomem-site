@@ -5,6 +5,9 @@ import gsap from "gsap";
 
 import { copy } from "@/config/copy";
 
+/** Recorte da capa do Correio (manchete + layout) para textura da folha */
+const DOSSIE_NEWSPAPER_TEXTURE = "/images/dossie/newspaper-correio-folha.jpg";
+
 /**
  * Dossiê 3D — capa institucional com parallax no desktop (mouse).
  * No mobile: inclinação do aparelho via giroscópio (`deviceorientation`)
@@ -193,18 +196,32 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
 
       const onMouseEnter = () => {
         gsap.to(".escaping-paper", {
-          x: (i) => 60 + i * 20,
-          rotation: (i) => 4 + i * 3,
+          x: (i) => {
+            if (i === 0) return 48;
+            if (i === 1) return 92;
+            return 134;
+          },
+          y: (i) => {
+            if (i === 0) return -16;
+            if (i === 1) return 12;
+            return 0;
+          },
+          rotation: (i) => {
+            if (i === 0) return -11;
+            if (i === 1) return 15;
+            return 9;
+          },
           opacity: 1,
-          stagger: 0.04,
-          duration: 0.7,
-          ease: "back.out(1.4)",
+          stagger: (i) => (i < 2 ? i * 0.07 : 0.14),
+          duration: 0.8,
+          ease: "back.out(1.55)",
         });
       };
 
       const onMouseLeave = () => {
         gsap.to(".escaping-paper", {
           x: 0,
+          y: 0,
           rotation: 0,
           opacity: 0,
           stagger: 0.02,
@@ -239,6 +256,19 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
   }, [compact]);
 
   const paperPad = compact ? "0.75rem" : "1.5rem";
+  const paperTop = (index: number) => {
+    if (compact) return 15 + index * 15;
+    if (index === 0) return 0;
+    if (index === 1) return 18;
+    return 30;
+  };
+
+  const paperRightClass = (index: number) => {
+    if (compact) return "right-[-6%]";
+    if (index === 0) return "right-[-2%]";
+    if (index === 1) return "right-[-18%]";
+    return "right-[-10%]";
+  };
 
   return (
     <div
@@ -265,24 +295,34 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
       >
         {[...Array(3)].map((_, i) => {
           const isClipping = i === 1;
+          const isNewspaper = i === 2;
+          const isTexturePaper = isClipping || isNewspaper;
           return (
             <div
               key={i}
-              className={`escaping-paper absolute h-[50%] border border-black/10 bg-[#FDFBF7] shadow-md ${compact ? "right-[-6%] w-[82%]" : "right-0 w-[70%]"}`}
+              className={`escaping-paper absolute h-[50%] w-[82%] border border-black/10 bg-[#FDFBF7] shadow-md ${paperRightClass(i)}`}
               style={{
-                backgroundColor: isClipping ? "#f3ece0" : "#FDFBF7",
+                backgroundColor: isTexturePaper ? "#f3ece0" : "#FDFBF7",
                 backgroundImage: isClipping
                   ? `url("https://bibdig.biblioteca.unesp.br/server/api/core/bitstreams/a588e871-dfbf-4260-9e4e-109e5ae42beb/content")`
-                  : "none",
+                  : isNewspaper
+                    ? `url("${DOSSIE_NEWSPAPER_TEXTURE}")`
+                    : "none",
                 backgroundSize: "cover",
-                backgroundPosition: "center",
+                backgroundPosition:
+                  isNewspaper && !compact ? "52% 48%" : "center",
                 transform: `translateZ(${10 + i}px)`,
-                top: `${15 + i * 15}%`,
+                transformOrigin:
+                  !compact && i === 0
+                    ? "18% 12%"
+                    : !compact && i === 1
+                      ? "28% 88%"
+                      : "center center",
+                top: `${paperTop(i)}%`,
                 opacity: 0,
-                padding:
-                  isClipping ? "0" : i === 2 ? "0.5rem 0.35rem 0.5rem 0.75rem" : paperPad,
+                padding: isTexturePaper ? "0" : paperPad,
                 overflow: "hidden",
-                filter: isClipping ? "grayscale(1) contrast(1.1)" : "none",
+                filter: isTexturePaper ? "grayscale(1) contrast(1.1)" : "none",
               }}
               aria-hidden="true"
             >
@@ -292,7 +332,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                 />
               )}
 
-              {isClipping ? null : i === 0 ? (
+              {isTexturePaper ? null : i === 0 ? (
                 <div className="relative h-full w-full">
                   <div
                     className={`absolute -right-2 top-0 border border-black/20 bg-white p-1 shadow-sm grayscale contrast-125 ${compact ? "h-12 w-9" : "h-16 w-12"}`}
@@ -309,27 +349,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                     <div className="h-1.5 w-[40%] bg-black" />
                   </div>
                 </div>
-              ) : (
-                <div className="relative flex h-full min-h-0 w-full justify-end">
-                  <div
-                    className={`fm-dossie-evidence-photo shrink-0 overflow-hidden border border-black/10 bg-[#F5F0E8] p-0.5 grayscale contrast-125 ${compact ? "h-[5.5rem] w-[82%]" : "h-[9.75rem] w-[84%]"}`}
-                  >
-                    <img
-                      src="/images/professor/flavio-hero.png"
-                      alt=""
-                      width={600}
-                      height={600}
-                      className="h-full w-full object-cover object-[72%_12%]"
-                    />
-                  </div>
-                  <div
-                    className={`absolute bottom-0 right-0 space-y-1.5 opacity-[0.08] ${compact ? "left-[18%]" : "left-[16%]"}`}
-                  >
-                    <div className="h-1.5 w-full bg-black" />
-                    <div className="h-1.5 w-[70%] bg-black" />
-                  </div>
-                </div>
-              )}
+              ) : null}
             </div>
           );
         })}

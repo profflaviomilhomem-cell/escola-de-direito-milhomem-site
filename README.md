@@ -1,7 +1,7 @@
 # Escola Flávio Milhomem — site
 
 Repositório do site institucional, vitrine de cursos e plataforma do aluno
-da **Escola Flávio Milhomem**. Direito Penal pela perspectiva da acusação.
+da **Escola Flávio Milhomem** — escola de direito criminal. Direito criminal pela perspectiva da acusação.
 
 > *"O Promotor que te ensina o que o Promotor vê."*
 

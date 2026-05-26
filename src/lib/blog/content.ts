@@ -1,4 +1,3 @@
-import { publishedBlogPosts } from "@/data/mock-blog";
 import {
   mapPrismaPostToArticle,
   mapPrismaPostToList,
@@ -18,15 +17,13 @@ async function fetchPublishedFromDb(): Promise<BlogListPost[]> {
   return rows.map(mapPrismaPostToList);
 }
 
-/** Posts publicados (Prisma). Mock só se DB vazio e sem posts. */
+/** Posts publicados (Prisma). Sem fallback mock. */
 export async function getPublishedBlogListPosts(): Promise<BlogListPost[]> {
   try {
-    const posts = await fetchPublishedFromDb();
-    if (posts.length > 0) return posts;
+    return await fetchPublishedFromDb();
   } catch {
-    /* offline */
+    return [];
   }
-  return publishedBlogPosts();
 }
 
 export async function getBlogArticleBySlug(

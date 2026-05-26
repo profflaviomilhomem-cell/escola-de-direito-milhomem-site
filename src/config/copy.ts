@@ -22,21 +22,21 @@ export const copy = {
   /** Variantes do guia 1.5 / 1.11 — uso por canal (redes, footer, biografia) */
   guia: {
     taglineInstitucional: "A Escola do Promotor.",
-    taglineAlternativa: "Direito Penal pela perspectiva da acusação.",
+    taglineAlternativa: "Direito criminal pela perspectiva da acusação.",
     /** Uso externo (Instagram, materiais onde o MP já é contexto público) */
     bioInstagram:
       "Professor de Direito Penal · Perspectiva da acusação · Autor e docente há 25 anos",
     /** Referência interna — não usar no hero de captação */
     heroPvuInstitucional:
-      "Direito Penal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia.",
+      "Direito criminal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia.",
   },
 
   site: {
-    tagline: "Direito Penal pela perspectiva da acusação",
+    tagline: "Direito criminal pela perspectiva da acusação",
     pvuShort:
       "Cohorts com método, leitura de fontes e linguagem de tribunal — o ângulo da acusação explicado por quem leciona e publica no tema há 25 anos.",
     description:
-      "Escola Flávio Milhomem — Direito Penal e Processo Penal pela perspectiva da acusação. Programas conduzidos por Flávio Milhomem, professor e autor, com formação na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
+      "Escola Flávio Milhomem — escola de direito criminal. Programas de direito penal e processo penal pela perspectiva da acusação, conduzidos por Flávio Milhomem, professor e autor, com formação na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
   },
 
   professor: {
@@ -66,40 +66,20 @@ export const copy = {
       eyebrow: "Edição Lançamento · 11 de agosto · Brasília",
       titleLine1: "A",
       titleEmphasis1: "Escola",
-      titleLine2: "de Direito",
-      titleEmphasis2: "Penal",
+      titleLine2: "de direito",
+      titleEmphasis2: "criminal",
       tagline:
-        "Direito Penal pela perspectiva da acusação — com o rigor de quem ensina em sala e em tribunal, com método e leitura de fontes.",
+        "Direito criminal pela perspectiva da acusação — com o rigor de quem ensina em sala e em tribunal, com método e leitura de fontes.",
       bio: "A Escola é conduzida por Flávio Milhomem, professor e autor, com 25 anos de docência e quatro obras na área criminal. Você estuda com método; a trajetória completa está na biografia.",
       ctaPrimary: "Conhecer a edição",
       ctaSecondary: "Receber o boletim",
       ctaCalculadora: "Calculadora de pena",
     },
+    /** Depoimentos: ver `src/data/turma-fundadora-avaliacoes.ts` */
     testimonials: {
-      eyebrow: "Quem estuda com o professor",
-      title: "Depoimentos da",
-      titleEmphasis: "comunidade",
-      lead: "Advogados e concurseiros que acompanham aulas, obras e o boletim — em caráter ilustrativo da proposta da Escola.",
-      items: [
-        {
-          quote:
-            "O recorte da acusação mudou como eu leio informativos e monto peças. Conteúdo denso, sem atalho vazio.",
-          name: "Ana R.",
-          role: "Advogada criminal · DF",
-        },
-        {
-          quote:
-            "Finalmente um professor que fala a linguagem de tribunal e de banca ao mesmo tempo — com fontes citadas.",
-          name: "Marcos T.",
-          role: "Concurseiro · área penal",
-        },
-        {
-          quote:
-            "O cohort me obrigou a manter ritmo. O fórum com resposta em até 72h fez diferença nas dúvidas de processo.",
-          name: "Juliana M.",
-          role: "Defensora pública · GO",
-        },
-      ] as const,
+      eyebrow: "Turma fundadora",
+      title: "Avaliações da",
+      titleEmphasis: "turma fundadora",
     },
     calculadoraBand: {
       eyebrow: "Ferramenta gratuita",
@@ -124,41 +104,10 @@ export const copy = {
     },
     programa: {
       sectionTitle: "O que você vai estudar",
-      sectionEmphasis: "no programa",
-      ctaLabel: "Ver ementa da edição",
+      sectionEmphasis: "no curso",
+      courseName: "Prova Digital no Processo Penal",
+      ctaLabel: "Ver ementa completa",
     },
-    modules: [
-      {
-        id: "01",
-        title: "Teoria da Acusação",
-        desc: "Como se estrutura a denúncia, onde a tipicidade é discutida na ótica acusatória e como a jurisprudência recente do STF e do STJ orienta a peça.",
-      },
-      {
-        id: "02",
-        title: "Tribunal do Júri",
-        desc: "Plenário, réplica e tréplica: tese, ordem de argumentos e linguagem forense em crimes dolosos contra a vida.",
-      },
-      {
-        id: "03",
-        title: "Prova Penal",
-        desc: "Cadeia de custódia, prova digital e valoração — o que a acusação precisa demonstrar e como sustentar no processo.",
-      },
-      {
-        id: "04",
-        title: "Direito Penal Militar",
-        desc: "Competência da Justiça Militar e ritos específicos, com base nas publicações e na prática docente do professor.",
-      },
-      {
-        id: "05",
-        title: "Dosimetria",
-        desc: "Aplicação trifásica na prática: cálculo, fundamentação e sustentação em plenário, com referência ao Código Penal e à jurisprudência.",
-      },
-      {
-        id: "06",
-        title: "Investigação e Compliance",
-        desc: "Responsabilidade penal da pessoa jurídica, integridade e investigação sob o crivo da acusação contemporânea.",
-      },
-    ] as const,
     professorSection: {
       eyebrow: "Quem conduz a Escola",
       titleLine1: "Flávio",
@@ -173,7 +122,7 @@ export const copy = {
       eyebrow: "Edição Lançamento",
       title: "Cohort inaugural",
       titleEmphasis: "2026",
-      priceDisplay: "1.997",
+      priceDisplay: "297",
       priceSuffix: ",00",
       note: "Turma com acompanhamento no fórum e em encontros ao vivo — vagas limitadas para manter escala humana e resposta em até 72 horas.",
       cta: "Entrar na lista da edição",
@@ -195,7 +144,7 @@ export const copy = {
 
   dossie: {
     coverTitle1: "A Escola de",
-    coverTitleEmphasis: "Direito Penal",
+    coverTitleEmphasis: "direito criminal",
     coverSubtitle: "Programa inaugural · Brasília · 2026",
     sealLabel: "FM",
     gyroHint: "Toque para ativar o movimento",
@@ -203,7 +152,7 @@ export const copy = {
 
   edicaoLancamento: {
     eyebrow: "Cohort inaugural · turma fundadora",
-    title: "Edição Lançamento — Direito Penal pela",
+    title: "Edição Lançamento — direito criminal pela",
     titleEmphasis: "perspectiva da acusação",
     lead:
       "Doze semanas em cohort, com trilha semanal, fórum por aula e encontros ao vivo. A Escola é conduzida por Flávio Milhomem — professor, autor e docente com 25 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
@@ -211,7 +160,9 @@ export const copy = {
     ctaInvestimento: "Ver investimento",
     ctaLista: "Entrar na lista de espera",
     videoNote:
-      "Em breve: vídeo de abertura do professor, com a apresentação da edição e da metodologia.",
+      "Vídeo do professor no YouTube: metodologia de estudo com videoaulas e materiais em PDF — base da trilha em cohort.",
+    videoTitle:
+      "Como usar videoaulas e PDFs para memorizar Direito — Professor Flávio Milhomem",
     pilaresTitle: "Por que esta edição",
     pilares: [
       {
@@ -223,8 +174,8 @@ export const copy = {
         body: "Turma com início e fim definidos, fórum por aula e encontros ao vivo. Você estuda com outros alunos e com acesso ao professor na cadência prevista.",
       },
       {
-        title: "Trilha de doze semanas",
-        body: "Seis módulos de duas semanas, entre 60 e 80 horas de carga, com certificado ao cumprir os requisitos da trilha.",
+        title: "Conteúdo gravado",
+        body: "10 aulas em 2 módulos (cadeia de custódia e prova digital no processo), com vídeo editado e slides — a mesma ementa publicada na vitrine do curso.",
       },
     ] as const,
     paraQuemTitle: "Para quem é",
@@ -234,7 +185,7 @@ export const copy = {
       "É para você se busca método aplicável, aceita dedicação semanal consistente e valoriza turma com acesso ao professor.",
     paraQuemNao:
       "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso.",
-    ementaTitle: "Ementa por módulo",
+    ementaTitle: "Ementa do curso (10 aulas)",
     cronogramaTitle: "Cronograma",
     cronogramaItems: [
       "Início previsto: 1º de setembro de 2026",
@@ -250,13 +201,12 @@ export const copy = {
       "Acesso à plataforma por 12 meses após o encerramento da turma",
     ] as const,
     investimentoTitle: "Investimento · edição fundadora",
-    investimentoPriceMain: "R$ 1.997",
-    investimentoPriceInstallments: "12× de R$ 199 no cartão",
-    investimentoPriceLead: "à vista ou",
+    investimentoPriceMain: "R$ 297,00",
+    investimentoPriceInstallments: "",
+    investimentoPriceLead: "",
     investimentoCheckoutNote:
-      "PIX com 10% de desconto: R$ 1.797 · valores de referência do programa; checkout online em implementação.",
-    investimentoPix:
-      "PIX à vista com 10% de desconto: R$ 1.797. Inscrições online serão abertas após o evento de agosto.",
+      "Valor único da turma fundadora. Checkout online em implementação.",
+    investimentoPix: "",
     investimentoSelo: "Turma fundadora · até 50 alunos",
     investimentoGarantia:
       "Garantia de 15 dias incondicionais, conforme política publicada em /reembolso.",
@@ -287,9 +237,9 @@ export const copy = {
     fechamentoTitle: "Entrar na Edição Lançamento",
     fechamentoNote: "Turma inaugural da Escola Flávio Milhomem",
     fechamentoCta: "Garantir prioridade na lista",
-    depoimentosTitle: "O que dizem os alunos",
+    depoimentosTitle: "Avaliações da turma fundadora",
     depoimentosLead:
-      "Relatos de quem acompanha a docência e os materiais — referência de expectativa para a turma fundadora.",
+      "Relatos de alunos da edição inaugural — publicados com autorização.",
     materiaisInclusosTitle: "Materiais inclusos",
     materiaisInclusos: [
       "Apostila densa por módulo (PDF)",
@@ -352,9 +302,9 @@ export const copy = {
 
   sobre: {
     metaDescription:
-      "Escola Flávio Milhomem e biografia de Flávio Milhomem — docência, obras e trajetória no Direito Penal. Credenciais acadêmicas e informações institucionais.",
+      "Escola Flávio Milhomem — escola de direito criminal. Biografia de Flávio Milhomem: docência, obras e trajetória. Credenciais acadêmicas e informações institucionais.",
     introLead:
-      "A Escola Flávio Milhomem reúne programas de Direito Penal e Processo Penal pela perspectiva da acusação. Nesta página você conhece a proposta institucional e a trajetória de Flávio Milhomem — professor, autor e docente.",
+      "A Escola Flávio Milhomem é uma escola de direito criminal: programas de direito penal e processo penal pela perspectiva da acusação. Nesta página você conhece a proposta institucional e a trajetória de Flávio Milhomem — professor, autor e docente.",
     introBody:
       "Se você estuda para concurso criminal, atua na advocacia ou busca formação continuada, aqui encontra método, fontes e linguagem de tribunal. O conteúdo é oferecido em caráter educacional privado, em separação da atuação oficial no Ministério Público.",
     portraitCaption: "Professor e autor · Docência e obras",

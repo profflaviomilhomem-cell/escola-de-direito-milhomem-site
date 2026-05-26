@@ -4,11 +4,12 @@ import { notFound } from "next/navigation";
 
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
+import { formatDuration } from "@/data/mock-aluno";
 import {
-  formatDuration,
-  mockCourse,
-  nextLesson as pickNext,
-} from "@/data/mock-aluno";
+  courseCatalogLabel,
+  findCourseBySlug,
+  nextLessonInCourse,
+} from "@/lib/course/aluno-courses";
 import { progressPercentFromRatio } from "@/lib/utils";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
@@ -20,9 +21,10 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug !== mockCourse.slug) return { title: "Curso não encontrado" };
+  const course = findCourseBySlug(slug);
+  if (!course) return { title: "Curso não encontrado" };
   return {
-    title: `${mockCourse.shortTitle} — área do aluno`,
+    title: `${course.shortTitle} — área do aluno`,
     robots: { index: false, follow: false },
   };
 }
@@ -33,35 +35,34 @@ export default async function CursoMatriculadoPage({
   params: Params;
 }) {
   const { slug } = await params;
-  if (slug !== mockCourse.slug) notFound();
+  const course = findCourseBySlug(slug);
+  if (!course) notFound();
 
-  const totalSec = mockCourse.modules
+  const totalSec = course.modules
     .flatMap((m) => m.lessons)
     .reduce((acc, l) => acc + l.durationSec, 0);
 
-  const completedSec = mockCourse.modules
+  const completedSec = course.modules
     .flatMap((m) => m.lessons)
     .reduce(
       (acc, l) =>
-        acc +
-        (l.status === "concluida" ? l.durationSec : l.watchedSec),
+        acc + (l.status === "concluida" ? l.durationSec : l.watchedSec),
       0,
     );
 
-  const next = pickNext();
-  const overall = mockCourse.completedLessonCount / mockCourse.lessonCount;
+  const next = nextLessonInCourse(course);
+  const overall = course.completedLessonCount / Math.max(1, course.lessonCount);
 
   return (
     <>
-      {/* Hero do curso */}
       <section
-        className="relative -mt-24 overflow-hidden"
-        aria-label={mockCourse.title}
+        className="relative fm-hero-under-header overflow-hidden"
+        aria-label={course.title}
       >
         <div
           className="relative h-[58vh] min-h-[440px] w-full"
           style={{
-            backgroundImage: `linear-gradient(${mockCourse.cover.angle ?? 135}deg, ${mockCourse.cover.from}, ${mockCourse.cover.via ?? mockCourse.cover.from}, ${mockCourse.cover.to})`,
+            backgroundImage: `linear-gradient(${course.cover.angle ?? 135}deg, ${course.cover.from}, ${course.cover.via ?? course.cover.from}, ${course.cover.to})`,
           }}
         >
           <div
@@ -74,15 +75,15 @@ export default async function CursoMatriculadoPage({
 
           <div className="relative z-10 flex h-full items-end pb-16">
             <div className="fm-site-container w-full">
-              <p className="text-amber fm-mono">Cohort 2026 · Edição Lançamento</p>
+              <p className="text-amber fm-mono">{courseCatalogLabel(course)}</p>
               <h1
                 className="fm-title-fluid mt-3 font-serif leading-[1.05]"
                 style={fmTitleClamp("2.25rem", "4.5vw", "3.75rem")}
               >
-                {mockCourse.title}
+                {course.title}
               </h1>
               <p className="text-paper-700 mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
-                {mockCourse.tagline}
+                {course.tagline}
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-6">
@@ -97,10 +98,6 @@ export default async function CursoMatriculadoPage({
                       height="18"
                       viewBox="0 0 24 24"
                       fill="currentColor"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
                     >
                       <polygon points="6 3 20 12 6 21 6 3" />
                     </svg>
@@ -109,7 +106,7 @@ export default async function CursoMatriculadoPage({
                 )}
                 <div className="min-w-[260px] flex-1">
                   <LabeledProgress
-                    label={`${mockCourse.completedLessonCount} de ${mockCourse.lessonCount} aulas`}
+                    label={`${course.completedLessonCount} de ${course.lessonCount} aulas`}
                     value={progressPercentFromRatio(overall)}
                   />
                 </div>
@@ -119,13 +116,12 @@ export default async function CursoMatriculadoPage({
         </div>
       </section>
 
-      {/* Resumo do curso */}
       <section className="fm-site-page py-12">
         <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
           <div>
             <h2 className="text-paper font-serif text-2xl">Sobre o curso</h2>
             <p className="text-paper-800 mt-4 leading-relaxed">
-              {mockCourse.description}
+              {course.description}
             </p>
           </div>
 
@@ -134,30 +130,25 @@ export default async function CursoMatriculadoPage({
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex justify-between gap-4">
                 <dt className="text-paper-700">Módulos</dt>
-                <dd className="text-paper">{mockCourse.modules.length}</dd>
+                <dd className="text-paper">{course.modules.length}</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-paper-700">Aulas</dt>
-                <dd className="text-paper">{mockCourse.lessonCount}</dd>
+                <dd className="text-paper">{course.lessonCount}</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-paper-700">Carga total</dt>
-                <dd className="text-paper">
-                  {formatDuration(totalSec)}
-                </dd>
+                <dd className="text-paper">{formatDuration(totalSec)}</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-paper-700">Já assistido</dt>
-                <dd className="text-paper">
-                  {formatDuration(completedSec)}
-                </dd>
+                <dd className="text-paper">{formatDuration(completedSec)}</dd>
               </div>
             </dl>
           </aside>
         </div>
       </section>
 
-      {/* Módulos — linha do tempo vertical com cards de aula */}
       <section className="fm-site-page pb-20">
         <header className="mb-10 flex items-end justify-between">
           <div>
@@ -167,12 +158,10 @@ export default async function CursoMatriculadoPage({
             </h2>
           </div>
           <p className="text-paper-600 fm-mono hidden md:block">
-            {mockCourse.modules.length} módulos · {mockCourse.lessonCount} aulas
+            {course.modules.length} módulos · {course.lessonCount} aulas
           </p>
         </header>
 
-        {/* Container relativo. A linha vertical fica como pseudo-fundo
-            entre o primeiro e o último marker, em amber/30. */}
         <div className="relative">
           <div
             aria-hidden
@@ -180,7 +169,7 @@ export default async function CursoMatriculadoPage({
           />
 
           <ol className="space-y-12">
-            {mockCourse.modules.map((mod, i) => {
+            {course.modules.map((mod, i) => {
               const moduleSec = mod.lessons.reduce(
                 (acc, l) => acc + l.durationSec,
                 0,
@@ -188,98 +177,38 @@ export default async function CursoMatriculadoPage({
               const moduleDone = mod.lessons.filter(
                 (l) => l.status === "concluida",
               ).length;
-              const moduleProgress = moduleDone / mod.lessons.length;
-
-              const moduleStatus: "done" | "active" | "todo" =
-                moduleDone === mod.lessons.length
-                  ? "done"
-                  : mod.lessons.some(
-                        (l) =>
-                          l.status === "em-andamento" ||
-                          l.status === "concluida",
-                      )
-                    ? "active"
-                    : "todo";
-
-              const markerClasses =
-                moduleStatus === "done"
-                  ? "bg-amber text-carbon border-amber"
-                  : moduleStatus === "active"
-                    ? "bg-amber/10 text-amber border-amber"
-                    : "bg-carbon-elevated text-paper-600 border-paper-200";
 
               return (
-                <li
-                  key={mod.slug}
-                  className="grid gap-5 md:grid-cols-[64px_1fr] md:gap-7"
-                >
-                  {/* Marker da timeline */}
-                  <div className="relative flex items-start">
-                    <span
-                      className={`relative z-10 grid h-14 w-14 place-items-center rounded-full border-2 font-serif text-xl italic ${markerClasses}`}
-                    >
-                      {moduleStatus === "done" ? (
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="22"
-                          height="22"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M20 6 9 17l-5-5" />
-                        </svg>
-                      ) : (
-                        i + 1
-                      )}
-                    </span>
-                  </div>
+                <li key={mod.slug} className="relative pl-16 md:pl-20">
+                  <span
+                    aria-hidden
+                    className="bg-amber text-carbon border-amber absolute left-0 top-0 grid h-14 w-14 place-items-center rounded-full border-2 font-serif text-xl italic md:h-16 md:w-16 md:text-2xl"
+                  >
+                    {i + 1}
+                  </span>
 
-                  {/* Conteúdo do módulo */}
-                  <div className="min-w-0">
-                    {/* Header do módulo */}
-                    <div className="border-paper-100 bg-carbon-elevated border p-6">
-                      <div className="flex flex-wrap items-start justify-between gap-4">
-                        <div className="min-w-0">
-                          <p className="text-amber fm-mono">
-                            Módulo {i + 1}
-                            {moduleStatus === "done" && " · concluído"}
-                            {moduleStatus === "active" && " · em andamento"}
-                            {moduleStatus === "todo" && " · a iniciar"}
-                          </p>
-                          <h3 className="text-paper mt-2 font-serif text-2xl leading-tight">
-                            {mod.title}
-                          </h3>
-                          <p className="text-paper-700 mt-2 leading-relaxed">
-                            {mod.subtitle}
-                          </p>
-                        </div>
-                        <div className="text-paper-600 fm-mono whitespace-nowrap text-right">
-                          {mod.lessons.length} aulas
-                          <br />
-                          {formatDuration(moduleSec)}
-                        </div>
-                      </div>
-                      <div className="mt-5">
-                        <LabeledProgress
-                          label={`${moduleDone}/${mod.lessons.length}`}
-                          value={progressPercentFromRatio(moduleProgress)}
+                  <header className="mb-6">
+                    <p className="text-amber fm-mono">Módulo {i + 1}</p>
+                    <h3 className="text-paper mt-1 font-serif text-2xl leading-tight">
+                      {mod.title}
+                    </h3>
+                    <p className="text-paper-700 mt-2 text-sm">{mod.subtitle}</p>
+                    <p className="text-paper-600 fm-mono mt-2 text-[11px]">
+                      {moduleDone}/{mod.lessons.length} aulas ·{" "}
+                      {formatDuration(moduleSec)}
+                    </p>
+                  </header>
+
+                  <ul className="space-y-3">
+                    {mod.lessons.map((lesson) => (
+                      <li key={lesson.id}>
+                        <LessonCardCompact
+                          lesson={lesson}
+                          eyebrow={`Aula ${lesson.position.toString().padStart(2, "0")}`}
                         />
-                      </div>
-                    </div>
-
-                    {/* Cards das aulas — vertical, com thumbnail */}
-                    <ul className="mt-4 space-y-3">
-                      {mod.lessons.map((lesson) => (
-                        <li key={lesson.id}>
-                          <LessonCardCompact lesson={lesson} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               );
             })}

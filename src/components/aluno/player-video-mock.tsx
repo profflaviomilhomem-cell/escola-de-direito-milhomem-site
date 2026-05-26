@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration, mockCourse } from "@/data/mock-aluno";
+import { formatDuration } from "@/data/mock-aluno";
+import { mockCourse } from "@/lib/course/aluno-courses";
 import { patchLessonProgress } from "@/lib/lessons/progress-client";
 import { track } from "@/lib/analytics/track";
 import { progressPercentFromRatio } from "@/lib/utils";

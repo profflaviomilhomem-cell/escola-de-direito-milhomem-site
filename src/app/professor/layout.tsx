@@ -3,33 +3,29 @@ import { redirect } from "next/navigation";
 
 import { ProfessorTopNav } from "@/components/professor/top-nav";
 import { BackgroundLayers } from "@/components/marketing/animation/background-layers";
-import { mockProfessor } from "@/data/mock-professor";
+import { professorUi } from "@/config/professor-ui";
 import { getSessionFromCookies } from "@/lib/auth/session";
 
-/**
- * Layout da área administrativa (route group `professor`).
- *
- * - Defesa em profundidade: o `proxy.ts` já redireciona acessos sem
- *   role admin para /aluno/dashboard, mas reforçamos aqui no SSR.
- * - Em dev, `NEXT_PUBLIC_DEV_FAKE_SESSION=professor` injeta uma sessão
- *   mock como Flávio (role admin) para a UI ser navegável sem DB.
- */
+/** Área autenticada + Prisma — não pré-renderizar no build (evita falha sem DATABASE_URL). */
+export const dynamic = "force-dynamic";
+
 export default async function ProfessorLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   const session = await getSessionFromCookies();
-  if (!session) redirect("/entrar?unauthorized=1&from=/professor/dashboard");
-  if (session.role !== "admin") redirect("/aluno/dashboard");
+  if (!session) redirect("/entrar?unauthorized=1");
+
+  const displayName = session.name ?? professorUi.defaultName;
 
   return (
     <div className="text-paper relative min-h-screen">
       <BackgroundLayers />
       <ProfessorTopNav
-        userName={session.name ?? mockProfessor.name}
+        userName={displayName}
         userEmail={session.email}
-        avatarSrc={mockProfessor.avatarSrc}
+        avatarSrc={professorUi.avatarSrc}
       />
-      <main id="conteudo" className="relative z-10 pt-24">
+      <main id="conteudo" className="relative z-10">
         {children}
       </main>
     </div>

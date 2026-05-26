@@ -54,3 +54,11 @@ next-env.d.ts
 # IDE
 .idea
 *.swp
+.cursor/
+
+# Mídia de curso (local / CDN — não versionar no Git)
+/public/curso/**/*.mp4
+/public/curso/**/*.zip
+/public/curso/milhomem/
+/public/JPEG.zip
+/public/PNG.zip

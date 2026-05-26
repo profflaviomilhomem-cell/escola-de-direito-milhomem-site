@@ -48,17 +48,36 @@ function localIp() {
 let printed = false;
 let tunnelUrl = null;
 
+const AREA_PATHS = [
+  { label: "Home (institucional)", path: "/" },
+  {
+    label: "Área do aluno",
+    path: "/dev/sessao?role=aluno&redirect=/aluno/dashboard",
+  },
+  {
+    label: "Área do professor",
+    path: "/dev/sessao?role=professor&redirect=/professor/dashboard",
+  },
+];
+
 function announce(url) {
   if (printed) return;
   printed = true;
   tunnelUrl = url;
+  const base = url.replace(/\/$/, "");
 
   console.log("\n╔══════════════════════════════════════════════════════════╗");
   console.log("║  CELULAR (Chrome / Android)                               ║");
   console.log("║  1. Escaneie o QR abaixo  OU  copie o link                ║");
   console.log("║  2. NÃO FECHE este terminal enquanto testar                 ║");
   console.log("╚══════════════════════════════════════════════════════════╝\n");
-  console.log(`  ${url}\n`);
+  console.log(`  Base: ${base}\n`);
+  console.log("  Rotas:\n");
+  for (const { label, path } of AREA_PATHS) {
+    console.log(`  · ${label}`);
+    console.log(`    ${base}${path}\n`);
+  }
+  console.log(`  Painel dev (as três áreas): ${base}/dev\n`);
 
   const ip = localIp();
   if (ip) {

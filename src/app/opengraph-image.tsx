@@ -2,16 +2,6 @@ import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/config/site";
 
-/**
- * OG image padrão da Escola — 1200×630.
- * Renderizada por `next/og` usando ImageResponse, mesma família visual
- * do dossiê: navy profundo, mostarda institucional, eyebrow mono.
- *
- * Por ser file-based, sobrescreve qualquer `metadata.openGraph.images`
- * declarada nos layouts. Páginas que precisarem de OG própria definem
- * o seu `opengraph-image.tsx` na própria rota.
- */
-
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -63,8 +53,8 @@ export default async function OGImage() {
               fontWeight: 400,
             }}
           >
-            <span>A Escola do</span>
-            <span style={{ color: mostarda }}>Promotor.</span>
+            <span>A Escola de</span>
+            <span style={{ color: mostarda }}>direito criminal</span>
           </div>
 
           <div
@@ -76,8 +66,9 @@ export default async function OGImage() {
             }}
           />
 
-          <div
+          <span
             style={{
+              display: "flex",
               marginTop: 28,
               fontSize: 30,
               lineHeight: 1.35,
@@ -86,9 +77,8 @@ export default async function OGImage() {
               maxWidth: 940,
             }}
           >
-            Direito Penal ensinado por quem está no Ministério Público — o lado
-            que decide o que vira denúncia.
-          </div>
+            {`${siteConfig.tagline} — com método, leitura de fontes e linguagem de tribunal.`}
+          </span>
         </div>
 
         <div
@@ -103,23 +93,7 @@ export default async function OGImage() {
           }}
         >
           <span>Edição Lançamento · 2026</span>
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 64,
-              height: 64,
-              borderRadius: 999,
-              background: mostarda,
-              color: navy,
-              fontSize: 14,
-              letterSpacing: "0.12em",
-              fontWeight: 700,
-            }}
-          >
-            FM
-          </span>
+          <span style={{ color: mostarda }}>escolaflaviomilhomem.com.br</span>
         </div>
       </div>
     ),

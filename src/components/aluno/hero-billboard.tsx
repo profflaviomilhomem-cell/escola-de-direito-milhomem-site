@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { HeroBridgeDrawAnimation } from "@/components/aluno/hero-bridge-draw";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockCourse, MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
@@ -12,10 +13,8 @@ type Props = {
 };
 
 /**
- * Billboard hero estilo streaming — full-bleed, gradient layers para
- * garantir contraste do texto sobre o cover. Mostra "Bom dia, X" em
- * eyebrow, título do curso, descrição truncada, CTAs primário (Play
- * próxima aula) + secundário (ver curso) + barra de progresso geral.
+ * Billboard hero estilo streaming — banner institucional full-bleed
+ * com overlays para legibilidade do texto e CTAs.
  */
 export function HeroBillboard({ course, nextLesson, studentName }: Props) {
   const firstName = studentName.split(/\s+/)[0];
@@ -24,32 +23,17 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
   return (
     <section
       aria-label={`Continue assistindo — ${course.title}`}
-      className="relative -mt-24 overflow-hidden"
+      className="relative fm-hero-under-header overflow-hidden"
     >
-      {/* Cover full-bleed */}
-      <div
-        className="relative h-[78vh] min-h-[560px] w-full"
-        style={{
-          backgroundImage: `linear-gradient(${course.cover.angle ?? 135}deg, ${course.cover.from}, ${course.cover.via ?? course.cover.from}, ${course.cover.to})`,
-        }}
-      >
-        {/* Detalhe dourado ornamental — círculo desfocado */}
+      <div className="relative h-[78vh] min-h-[560px] w-full bg-carbon">
+        <HeroBridgeDrawAnimation className="fm-hero-bridge-draw" />
         <div
           aria-hidden
-          className="absolute -right-24 top-1/4 h-[420px] w-[420px] rounded-full opacity-20 blur-3xl"
-          style={{ background: "var(--color-amber)" }}
+          className="border-amber/40 absolute right-12 top-0 z-[1] hidden h-full border-r lg:block"
         />
-        {/* Linha vertical institucional à direita (eco do site) */}
-        <div
-          aria-hidden
-          className="border-amber/40 absolute right-12 top-0 hidden h-full border-r lg:block"
-        />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-carbon via-carbon/80 to-carbon/25" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-carbon/95 via-carbon/55 to-transparent" />
 
-        {/* Gradient legibilidade — debaixo + esquerda */}
-        <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-carbon/85 via-carbon/40 to-transparent" />
-
-        {/* Conteúdo */}
         <div className="relative z-10 flex h-full items-end pb-20">
           <div className="fm-site-container w-full">
             <p className="text-amber fm-mono mb-3">
@@ -73,7 +57,6 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
               />
             </div>
 
-            {/* CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
               {nextLesson && (
                 <Link

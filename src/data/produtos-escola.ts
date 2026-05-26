@@ -19,11 +19,11 @@ export const produtosEscola: readonly ProdutoEscola[] = [
     slug: "edicao-lancamento",
     titulo: "Edição Lançamento",
     subtitulo:
-      "Direito Penal pela perspectiva da acusação · cohort de 12 semanas com acesso ao professor",
+      "Direito criminal pela perspectiva da acusação · cohort de 12 semanas com acesso ao professor",
     tipo: "cohort",
     destaque: true,
     cargaHoraria: "60–80 h",
-    ticketLabel: "A partir de R$ 1.997 (fundador)",
+    ticketLabel: "R$ 297,00 (turma fundadora)",
     href: "/cursos/edicao-lancamento",
   },
   {
@@ -35,11 +35,10 @@ export const produtosEscola: readonly ProdutoEscola[] = [
     externo: true,
   },
   {
-    slug: "prova-digital",
+    slug: "prova-digital-no-processo-penal",
     titulo: "Prova Digital no Processo Penal",
-    subtitulo: "Produto legado na Eduzz — prova digital e cadeia de custódia",
+    subtitulo: "10 aulas gravadas · vídeo editado e slides (acervo importado)",
     tipo: "legado",
-    href: "https://eduzz.com",
-    externo: true,
+    href: "/cursos/edicao-lancamento#ementa-title",
   },
 ] as const;

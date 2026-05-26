@@ -1,27 +1,13 @@
-import { copy } from "@/config/copy";
+import { turmaFundadoraAvaliacoes } from "@/data/turma-fundadora-avaliacoes";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = {
-  /** Usa depoimentos da home ou textos da landing da edição */
+  /** Mantido por compatibilidade — sempre exibe avaliações da turma fundadora. */
   variant?: "home" | "edicao";
 };
 
-export function TestimonialsSection({ variant = "home" }: Props) {
-  const home = copy.home.testimonials;
-  const ed = copy.edicaoLancamento;
-
-  const eyebrow = variant === "home" ? home.eyebrow : "Turma fundadora";
-  const title =
-    variant === "home" ? (
-      <>
-        {home.title}{" "}
-        <em className="text-amber italic">{home.titleEmphasis}</em>
-      </>
-    ) : (
-      ed.depoimentosTitle
-    );
-  const lead = variant === "home" ? home.lead : ed.depoimentosLead;
-  const items = home.items;
+export function TestimonialsSection({ variant: _variant = "home" }: Props) {
+  const { eyebrow, title, titleEmphasis, lead, items } = turmaFundadoraAvaliacoes;
 
   return (
     <section
@@ -37,7 +23,8 @@ export function TestimonialsSection({ variant = "home" }: Props) {
           className="fm-title-fluid mb-4 font-serif leading-[1.1]"
           style={fmTitleClamp("32px", "4vw", "56px")}
         >
-          {title}
+          {title}{" "}
+          <em className="text-amber italic">{titleEmphasis}</em>
         </h2>
         <p className="text-paper-700 mb-12 max-w-2xl text-base leading-relaxed">
           {lead}

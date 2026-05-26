@@ -2,17 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { CommentTree } from "@/components/aluno/comment-tree";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { LessonTabs } from "@/components/aluno/lesson-tabs";
-import { PlayerVideoMock } from "@/components/aluno/player-video-mock";
+import { PlayerVideo } from "@/components/aluno/player-video";
+import { formatDuration } from "@/lib/course/format";
+import type { CourseLesson } from "@/lib/course/types";
 import {
-  findLessonBySlug,
-  formatDuration,
-  mockCourse,
-  mockForumThreads,
-  type MockLesson,
-} from "@/data/mock-aluno";
+  findLessonWithCourse,
+} from "@/lib/course/aluno-courses";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import {
   getLessonProgress,
@@ -28,10 +25,10 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const lesson = findLessonBySlug(slug);
-  if (!lesson) return { title: "Aula não encontrada" };
+  const found = findLessonWithCourse(slug);
+  if (!found) return { title: "Aula não encontrada" };
   return {
-    title: `${lesson.title} — ${mockCourse.shortTitle}`,
+    title: `${found.lesson.title} — ${found.course.shortTitle}`,
     robots: { index: false, follow: false },
   };
 }
@@ -42,42 +39,35 @@ export async function generateMetadata({
  */
 export default async function AulaPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const baseLesson = findLessonBySlug(slug);
-  if (!baseLesson) notFound();
+  const found = findLessonWithCourse(slug);
+  if (!found) notFound();
+  const { course } = found;
+  const baseLesson = found.lesson;
 
   const session = await getSessionFromCookies();
   let lesson = baseLesson;
   if (session && process.env.DATABASE_URL) {
     try {
-      const row = await getLessonProgress(
-        session.sub,
-        mockCourse.slug,
-        slug,
-      );
+      const row = await getLessonProgress(session.sub, course.slug, slug);
       lesson = mergeMockLessonProgress(baseLesson, row);
     } catch {
       /* mock puro se o banco não estiver acessível */
     }
   }
 
-  const flat: MockLesson[] = mockCourse.modules.flatMap((m) => m.lessons);
+  const flat: CourseLesson[] = course.modules.flatMap((m) => m.lessons);
   const idx = flat.findIndex((l) => l.id === lesson.id);
   const prev = idx > 0 ? flat[idx - 1] : null;
   const next = idx < flat.length - 1 ? flat[idx + 1] : null;
   const progress =
     lesson.durationSec > 0 ? lesson.watchedSec / lesson.durationSec : 0;
 
-  // Discussões da aula — filtragem mock
-  const lessonThreads = mockForumThreads.filter(
-    (t) => t.lessonSlug === lesson.slug,
-  );
-
   return (
     <div className="fm-site-page py-10">
       {/* Breadcrumb editorial */}
       <nav className="text-paper-600 fm-mono mb-6 flex flex-wrap items-center gap-2">
-        <Link href={`/aluno/cursos/${mockCourse.slug}`} className="hover:text-amber">
-          {mockCourse.shortTitle}
+        <Link href={`/aluno/cursos/${course.slug}`} className="hover:text-amber">
+          {course.shortTitle}
         </Link>
         <span aria-hidden>/</span>
         <span>{lesson.moduleTitle}</span>
@@ -90,7 +80,7 @@ export default async function AulaPage({ params }: { params: Params }) {
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         {/* Coluna principal */}
         <div className="min-w-0">
-          <PlayerVideoMock lesson={lesson} />
+          <PlayerVideo lesson={lesson} course={course} />
 
           <div className="mt-6 space-y-3">
             <p className="text-amber fm-mono">{lesson.moduleTitle}</p>
@@ -172,15 +162,27 @@ export default async function AulaPage({ params }: { params: Params }) {
                                 {m.title}
                               </p>
                               <p className="text-paper-600 fm-mono mt-1">
-                                {m.pages} páginas · {m.sizeKb} KB · PDF
+                                {m.pages > 0 ? `${m.pages} páginas · ` : ""}
+                                {m.sizeKb} KB ·{" "}
+                                {lesson.slidesSrc ? "PPTX" : "PDF"}
                               </p>
                             </div>
-                            <button
-                              type="button"
-                              className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono shrink-0 border px-4 py-2 transition-colors"
-                            >
-                              Baixar
-                            </button>
+                            {lesson.slidesSrc ? (
+                              <a
+                                href={lesson.slidesSrc}
+                                download
+                                className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono shrink-0 border px-4 py-2 transition-colors"
+                              >
+                                Baixar
+                              </a>
+                            ) : (
+                              <button
+                                type="button"
+                                className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono shrink-0 border px-4 py-2 transition-colors"
+                              >
+                                Baixar
+                              </button>
+                            )}
                           </li>
                         ))}
                       </ul>
@@ -189,39 +191,12 @@ export default async function AulaPage({ params }: { params: Params }) {
                 {
                   id: "forum",
                   label: "Fórum desta aula",
-                  count: lessonThreads.reduce(
-                    (acc, t) => acc + t.replyCount,
-                    0,
+                  content: (
+                    <p className="text-paper-600 italic">
+                      O fórum por aula será habilitado em breve. Enquanto isso,
+                      use a página geral do fórum quando estiver disponível.
+                    </p>
                   ),
-                  content:
-                    lessonThreads.length === 0 ? (
-                      <p className="text-paper-600 italic">
-                        Nenhuma discussão nesta aula ainda.
-                      </p>
-                    ) : (
-                      <div className="space-y-8">
-                        {lessonThreads.map((thread) => (
-                          <article key={thread.id}>
-                            <header className="mb-3">
-                              <p className="text-amber fm-mono">
-                                {thread.author.name} ·{" "}
-                                {new Date(thread.createdAt).toLocaleDateString(
-                                  "pt-BR",
-                                  { day: "2-digit", month: "short" },
-                                )}
-                              </p>
-                              <h3 className="text-paper mt-2 font-serif text-xl">
-                                {thread.title}
-                              </h3>
-                              <p className="text-paper-700 mt-2 leading-relaxed">
-                                {thread.body}
-                              </p>
-                            </header>
-                            <CommentTree comments={thread.comments} />
-                          </article>
-                        ))}
-                      </div>
-                    ),
                 },
               ]}
             />
@@ -272,7 +247,7 @@ export default async function AulaPage({ params }: { params: Params }) {
         >
           <h2 className="text-amber fm-mono mb-4">Conteúdo do curso</h2>
           <div className="border-paper-100 bg-carbon-elevated divide-paper-100 max-h-[70vh] divide-y overflow-y-auto border">
-            {mockCourse.modules.map((mod) => (
+            {course.modules.map((mod) => (
               <details
                 key={mod.slug}
                 open={mod.slug === lesson.moduleSlug}

@@ -94,7 +94,7 @@ export default async function BlogArtigoPage({
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
 
         <div
-          className={`relative z-10 fm-site-page pt-32 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
+          className={`relative z-10 fm-site-page pt-10 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
         >
           <Link
             href="/blog"

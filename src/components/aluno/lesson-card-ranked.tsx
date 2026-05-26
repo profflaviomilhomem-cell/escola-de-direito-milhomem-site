@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
 import type { MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
@@ -45,26 +46,25 @@ export function LessonCardRanked({ lesson }: Props) {
       </span>
 
       {/* Card poster 2:3 */}
-      <div
-        className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241, 187, 65,0.18)] relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 md:ml-20"
-        style={{
-          backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
-        }}
-      >
-        {/* Camada radial pra dar profundidade ao gradient */}
+      <div className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241,187,65,0.18)] relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 md:ml-20">
+        <LessonMediaCover
+          cover={lesson.cover}
+          posterSrc={lesson.posterSrc}
+          videoSrc={lesson.videoSrc}
+          alt={lesson.title}
+          className="absolute inset-0"
+        />
         <div
           aria-hidden
-          className="absolute inset-0"
+          className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(ellipse at top right, rgba(241, 187, 65,0.12), transparent 60%)",
+              "radial-gradient(ellipse at top right, rgba(241,187,65,0.12), transparent 60%)",
           }}
         />
-
-        {/* Vinheta para legibilidade do título */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent"
         />
 
         {/* ✓ amber se concluída */}

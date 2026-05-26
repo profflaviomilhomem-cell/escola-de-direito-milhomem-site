@@ -16,7 +16,7 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 export const metadata: Metadata = {
   title: "Blog — Escola Flávio Milhomem",
   description:
-    "Análise de decisões do STJ/STF, dogmática aplicada e comentários atuais sobre Direito Penal e Processo Penal pelo ângulo da acusação.",
+    "Análise de decisões do STJ/STF, dogmática aplicada e comentários atuais em direito criminal — direito penal e processo penal pelo ângulo da acusação.",
   alternates: { canonical: "/blog" },
 };
 
