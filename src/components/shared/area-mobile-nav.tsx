@@ -62,7 +62,7 @@ export function AreaMobileNav({
           <nav
             id="area-mobile-nav-panel"
             aria-label={ariaLabel}
-            className="fixed inset-0 z-[200] flex flex-col pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
+            className="fixed inset-0 z-[999] flex flex-col pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
             style={PANEL_STYLE}
           >
             <div
@@ -92,7 +92,7 @@ export function AreaMobileNav({
                       <Link
                         href={item.href}
                         onClick={close}
-                        className="text-paper hover:bg-paper/8 hover:text-amber block rounded-lg px-3 py-3.5 font-mono text-[15px] uppercase tracking-[0.2em] transition-colors"
+                        className="text-paper hover:bg-paper/8 hover:text-amber block rounded-lg px-3 py-3.5 font-mono text-[14px] uppercase tracking-[0.16em] leading-[1.2] transition-colors"
                       >
                         {item.label}
                       </Link>
