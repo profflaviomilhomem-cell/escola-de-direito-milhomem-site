@@ -33,6 +33,8 @@
     "generate:lesson-posters": "node scripts/generate-lesson-posters.mjs",
     "seed:demo-users": "node scripts/seed-demo-users.mjs",
     "seed:demo-orders": "node scripts/seed-demo-orders.mjs",
+    "seed:aluno-demonstracao": "node scripts/create-aluno-demonstracao.mjs",
+    "bootstrap:demo": "node scripts/bootstrap-demo-environment.mjs",
     "prisma:baseline": "node scripts/baseline-prisma.mjs"
   },
   "engines": {
