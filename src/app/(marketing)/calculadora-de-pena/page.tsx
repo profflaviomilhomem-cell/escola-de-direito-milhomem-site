@@ -15,10 +15,8 @@ export const metadata: Metadata = {
  * Calculadora de pena hipotética — Apêndice I do guia.
  *
  * Wizard de 3 etapas espelhando as fases da dosimetria.
- * Lógica DETERMINÍSTICA no backend (API Route).
+ * Lógica determinística em `lib/business/dosimetria.ts` (cliente).
  * Disclaimer institucional não-removível, renderizado no servidor.
- *
- * Esta página é placeholder — implementação completa em S3-S6 do roadmap.
  */
 export default function CalculadoraPage() {
   const webAppLd = {

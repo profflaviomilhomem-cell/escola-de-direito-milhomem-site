@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { UpdatePasswordForm } from "@/components/aluno/update-password-form";
+import { UpdateProfileForm } from "@/components/aluno/update-profile-form";
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { initialsFromName } from "@/lib/course/format";
 import { getSessionFromCookies } from "@/lib/auth/session";
@@ -30,6 +32,25 @@ export default async function MinhaContaPage() {
           <p className="text-paper font-semibold">{name}</p>
           <p className="text-paper-600 mt-1 text-sm">{email}</p>
         </div>
+      </div>
+
+      <div className="mt-14 grid gap-12 lg:grid-cols-2">
+        <section>
+          <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+            Dados pessoais
+          </h2>
+          <div className="border-paper-100 bg-carbon-elevated mt-6 border p-6">
+            <UpdateProfileForm initialName={session?.name ?? ""} initialEmail={email} />
+          </div>
+        </section>
+        <section>
+          <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+            Segurança
+          </h2>
+          <div className="border-paper-100 bg-carbon-elevated mt-6 border p-6">
+            <UpdatePasswordForm />
+          </div>
+        </section>
       </div>
 
       <h2 className="text-paper fm-mono mt-14 text-[11px] uppercase tracking-[0.2em]">

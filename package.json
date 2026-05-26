@@ -30,7 +30,9 @@
     "seed:prova-digital": "node scripts/seed-prova-digital.mjs",
     "import:provas-digitais": "node scripts/import-provas-digitais.mjs",
     "trace:bridge": "node scripts/trace-bridge-art.mjs",
-    "generate:lesson-posters": "node scripts/generate-lesson-posters.mjs"
+    "generate:lesson-posters": "node scripts/generate-lesson-posters.mjs",
+    "seed:demo-users": "node scripts/seed-demo-users.mjs",
+    "prisma:baseline": "node scripts/baseline-prisma.mjs"
   },
   "engines": {
     "node": ">=20.0.0",

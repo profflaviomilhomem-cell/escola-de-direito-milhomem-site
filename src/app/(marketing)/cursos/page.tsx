@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { CursoVitrineCard } from "@/components/marketing/curso-vitrine-card";
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
-import { produtosEscola } from "@/data/produtos-escola";
+import { getCatalogWithFallback } from "@/lib/marketing/catalog";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
@@ -15,9 +15,8 @@ export const metadata: Metadata = {
 /**
  * Vitrine de cursos (Livro-Guia 5.8).
  */
-export default function CursosPage() {
-  const principal = produtosEscola.filter((p) => p.tipo === "cohort");
-  const legados = produtosEscola.filter((p) => p.tipo === "legado");
+export default async function CursosPage() {
+  const { principal, legados, fromDatabase } = await getCatalogWithFallback();
 
   return (
     <section className="fm-site-page py-page">
@@ -31,6 +30,11 @@ export default function CursosPage() {
       <p className="text-paper-700 mt-5 max-w-2xl text-lg leading-relaxed">
         No lançamento, a Edição Lançamento concentra o cohort inaugural. Os produtos na
         Eduzz permanecem disponíveis durante a transição para a plataforma própria.
+        {fromDatabase ? (
+          <span className="text-paper-600 block mt-2 text-sm">
+            Catálogo sincronizado com os cursos publicados no painel do professor.
+          </span>
+        ) : null}
       </p>
 
       <div className="mt-12 space-y-6">

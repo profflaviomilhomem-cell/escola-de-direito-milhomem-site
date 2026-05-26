@@ -37,34 +37,36 @@ flowchart TD
 
 ### 0.1 Infra e ambiente
 
-- [ ] Projeto Vercel linkado ao repositório Git
-- [ ] `DATABASE_URL` (Neon) em Production + Preview
+- [x] Projeto Vercel linkado ao repositório Git
+- [x] `DATABASE_URL` (Neon) em Production
+- [ ] `DATABASE_URL` em Preview (recomendado)
 - [ ] `RESEND_API_KEY` + domínio de envio verificado
-- [ ] `JWT_SECRET` / cookies seguros em produção
+- [x] `AUTH_SECRET` em produção (Vercel)
 - [ ] Upstash Redis (rate limit de leads) — opcional mas recomendado
-- [ ] `npm run build` verde no CI/Vercel
-- [ ] Migrations Prisma aplicadas em produção (`prisma migrate deploy`)
+- [x] `npm run build` verde no CI/Vercel
+- [x] Migrations Prisma aplicadas em produção (`prisma migrate deploy` + baseline)
 
 ### 0.2 Conta do aluno (APIs já existem)
 
-- [ ] Conectar `UpdateProfileForm` em `/aluno/minha-conta`
-- [ ] Conectar `UpdatePasswordForm` em `/aluno/minha-conta`
-- [ ] Feedback de sucesso/erro (toast) nos forms
+- [x] Conectar `UpdateProfileForm` em `/aluno/minha-conta`
+- [x] Conectar `UpdatePasswordForm` em `/aluno/minha-conta`
+- [x] Feedback de sucesso/erro (toast) nos forms
 
 **Pronto quando:** aluno altera nome e senha sem suporte manual.
 
 ### 0.3 Vitrine marketing alinhada ao DB
 
-- [ ] `/cursos/[slug]` buscar `Product` no Prisma (remover TODO)
-- [ ] Fallback elegante se produto `DRAFT` ou inexistente
-- [ ] Catálogo `/cursos` listar produtos `PUBLISHED` (com fallback estático temporário se vazio)
+- [x] `/cursos/[slug]` buscar `Product` no Prisma (remover TODO)
+- [x] Fallback elegante se produto `DRAFT` ou inexistente
+- [x] Catálogo `/cursos` listar produtos `PUBLISHED` (com fallback estático temporário se vazio)
 
 **Pronto quando:** publicar curso no painel professor reflete na vitrine pública.
 
 ### 0.4 Higiene de código / docs
 
-- [ ] Atualizar comentário “placeholder” em `calculadora-de-pena/page.tsx`
-- [ ] Remover ou arquivar `mock-blog.ts` / `mock-professor.ts` se confirmado mortos
+- [x] Atualizar comentário “placeholder” em `calculadora-de-pena/page.tsx`
+- [x] Remover `mock-blog.ts` / `mock-professor.ts` (mortos)
+- [x] Script `npm run seed:demo-users` (login aluno + professor na Vercel)
 
 **Estimativa:** 1–3 dias · **Bloqueia:** nada · **Desbloqueia:** deploy real e testes de Fase 1
 
@@ -289,7 +291,7 @@ Depois: Fase 2 em paralelo com início da 3 (upload produção).
 
 | Fase | Itens | Concluídos | % |
 |------|-------|------------|---|
-| 0 | 14 | 0 | 0% |
+| 0 | 17 | 13 | 76% |
 | 1 | 18 | 0 | 0% |
 | 2 | 11 | 0 | 0% |
 | 3 | 14 | 0 | 0% |

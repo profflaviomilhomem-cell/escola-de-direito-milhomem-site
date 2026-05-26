@@ -51,7 +51,7 @@ export function HeaderMobileNav() {
           <nav
             id="mobile-nav-panel"
             aria-label="Navegação mobile"
-            className="fixed inset-0 z-[200] flex flex-col fm-site-section pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
+            className="fixed inset-0 z-[200] flex flex-col pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
             style={PANEL_STYLE}
           >
             {/* Camada extra de opacidade — garante leitura se blur falhar no browser */}

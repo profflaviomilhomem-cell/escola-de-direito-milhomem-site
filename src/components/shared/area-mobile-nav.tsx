@@ -62,7 +62,7 @@ export function AreaMobileNav({
           <nav
             id="area-mobile-nav-panel"
             aria-label={ariaLabel}
-            className="fixed inset-0 z-[200] flex flex-col fm-site-section pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
+            className="fixed inset-0 z-[200] flex flex-col pb-8 pt-[max(1.25rem,env(safe-area-inset-top))]"
             style={PANEL_STYLE}
           >
             <div
