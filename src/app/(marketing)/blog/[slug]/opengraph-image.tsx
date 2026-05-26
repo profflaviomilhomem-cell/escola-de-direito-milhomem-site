@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 import { getBlogPostMeta } from "@/lib/blog/content";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "Escola Flávio Milhomem — Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

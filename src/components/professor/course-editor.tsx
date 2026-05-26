@@ -12,7 +12,7 @@ import {
   PRODUCT_TYPE_LABEL,
   slugifyCourseName,
   type ProfessorCourse,
-} from "@/lib/professor/products";
+} from "@/lib/professor/product-types";
 
 type Props = {
   course?: ProfessorCourse;
