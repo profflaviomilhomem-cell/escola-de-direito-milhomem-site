@@ -13,6 +13,7 @@ export default async function AlunoLayout({
 }: Readonly<{ children: ReactNode }>) {
   const session = await getSessionFromCookies();
   if (!session) redirect("/entrar?unauthorized=1");
+  if (session.role === "admin") redirect("/professor/dashboard");
 
   const displayName = session.name ?? session.email;
   const initials = initialsFromName(displayName);

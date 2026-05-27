@@ -14,6 +14,7 @@ export default async function ProfessorLayout({
 }: Readonly<{ children: ReactNode }>) {
   const session = await getSessionFromCookies();
   if (!session) redirect("/entrar?unauthorized=1");
+  if (session.role !== "admin") redirect("/aluno/dashboard");
 
   const displayName = session.name ?? professorUi.defaultName;
 

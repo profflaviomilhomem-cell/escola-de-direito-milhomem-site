@@ -7,6 +7,32 @@
 
 ---
 
+## Encerramento do dia — 26/05/2026
+
+> Registro rápido do que foi fechado hoje para retomada amanhã.
+
+### Concluído hoje
+
+- [x] Monograma substituído pelo asset final do design em `public/images/brand/logo-monogram-2026-05.png`
+- [x] Header e footer unificados no mesmo monograma (ajuste de cache-bust do `next/image` + sizing)
+- [x] `src/config/brand.ts` atualizado para versão de logo atual (`brandLogoVersion`) e proporção nativa
+- [x] Fluxo comercial Fase 1 ativo em produção: checkout, resultado de pedido, webhook e matrícula manual
+- [x] Deploy em produção realizado e validado em `https://escola-de-direito-milhomem-site.vercel.app`
+- [x] Bootstrap de ambiente demo em produção concluído:
+  - [x] Curso `prova-digital-no-processo-penal` publicado
+  - [x] 10 aulas sincronizadas
+  - [x] Usuário `aluno@escolaflaviomilhomem.com.br` criado/atualizado (nome: **Aluno Demonstração**)
+  - [x] Usuário `professor@escolaflaviomilhomem.com.br` criado/atualizado (nome: **Professor Demonstração**)
+  - [x] Pedido `PAID` para o aluno demo, liberando curso ativo na área do aluno
+
+### Para retomar amanhã (contexto já pronto)
+
+- [ ] Revisão final de UX textual das áreas `/aluno` e `/professor` (mensagens e labels)
+- [ ] Validação ponta a ponta com os dois logins demo após hard refresh
+- [ ] Decidir se endpoint de bootstrap demo permanece habilitado em produção ou ficará restrito a uso interno
+
+---
+
 ## Visão das fases
 
 | Fase | Nome | Objetivo | Entrega principal |
