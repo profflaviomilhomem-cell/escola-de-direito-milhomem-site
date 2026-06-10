@@ -9,6 +9,8 @@ import { siteConfig } from "@/config/site";
 import { CAREER_JOURNEY_SPAN } from "@/data/career-journey";
 import { obrasMilhomemCatalogo } from "@/data/obras-milhomem";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { JsonLd } from "@/components/shared/json-ld";
+import { breadcrumbLd, organizationLd, personLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: "Sobre Flávio Milhomem",
@@ -60,6 +62,16 @@ const sidebarLinks = [
 export default function SobrePage() {
   return (
     <article id="sobre-conteudo" className="fm-site-section py-page">
+      <JsonLd
+        data={[
+          personLd(),
+          organizationLd(),
+          breadcrumbLd([
+            { name: "Início", url: "/" },
+            { name: "Sobre", url: "/sobre" },
+          ]),
+        ]}
+      />
       <div className="fm-site-container">
         <header className="mb-10 lg:mb-16 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-10 xl:gap-16">
           <div className="min-w-0">

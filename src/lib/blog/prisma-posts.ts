@@ -31,6 +31,8 @@ export type BlogListPost = {
 export type BlogArticlePost = BlogListPost & {
   body: string;
   tags: string[];
+  /** ISO — última edição (schema.org `dateModified`, sinal de frescor). */
+  modifiedAt?: string;
 };
 
 export type BlogRelatedPost = {
@@ -80,6 +82,7 @@ export function mapPrismaPostToArticle(p: PostWithAuthor): BlogArticlePost {
       avatarSrc: DEFAULT_AUTHOR.avatarSrc,
     },
     tags: ["Geral"],
+    modifiedAt: p.updatedAt?.toISOString(),
   };
 }
 

@@ -4,12 +4,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BlogArticleBody } from "@/components/marketing/blog-article-body";
+import { JsonLd } from "@/components/shared/json-ld";
+import { siteConfig } from "@/config/site";
 import {
   getBlogArticleBySlug,
   getRelatedBlogPosts,
 } from "@/lib/blog/content";
 import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
+import { articleLd, breadcrumbLd } from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Params = Promise<{ slug: string }>;
@@ -53,21 +56,19 @@ export default async function BlogArtigoPage({
   const bodyIsHtml = bodyLooksLikeHtml(post.body);
   const hasLeadVideo = bodyIsHtml && hasBlogLeadVideo(post.body);
 
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.publishedAt,
-    author: { "@type": "Person", name: post.author.name },
-    keywords: post.tags?.join(", ") || "",
-  };
+  const canonicalUrl = `${siteConfig.url}/blog/${slug}`;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      <JsonLd
+        data={[
+          articleLd(post, canonicalUrl),
+          breadcrumbLd([
+            { name: "Início", url: "/" },
+            { name: "Blog", url: "/blog" },
+            { name: post.title, url: `/blog/${slug}` },
+          ]),
+        ]}
       />
 
       {/* Cover hero */}

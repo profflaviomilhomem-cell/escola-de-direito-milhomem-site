@@ -11,6 +11,8 @@ import { TestimonialsSection } from "@/components/marketing/testimonials-section
 import { HomeStatsSection } from "@/components/marketing/home-stats-section";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { provaDigitalModuloCards } from "@/data/curso-prova-digital-publico";
+import { JsonLd } from "@/components/shared/json-ld";
+import { organizationLd, personLd } from "@/lib/seo/jsonld";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -28,41 +30,9 @@ export default function HomePage() {
     cohort,
   } = copy.home;
 
-  const personLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: siteConfig.professor.fullName,
-    jobTitle: copy.professor.schemaJobTitle,
-    alumniOf: siteConfig.professor.education.map((e) => ({
-      "@type": "CollegeOrUniversity",
-      name: e.institution,
-    })),
-    sameAs: [
-      siteConfig.social.linkedin,
-      siteConfig.social.instagram,
-      siteConfig.social.youtube,
-    ],
-  };
-
-  const organizationLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    description: siteConfig.description,
-    founder: { "@type": "Person", name: siteConfig.professor.fullName },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
-      />
+      <JsonLd data={[personLd(), organizationLd()]} />
 
       <section className="fm-site-section fm-hero-under-header relative overflow-x-clip pb-10 md:pb-14 lg:flex lg:min-h-screen lg:items-center lg:overflow-visible lg:pb-0">
         <div className="fm-site-container grid w-full grid-cols-1 gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12 xl:gap-16">

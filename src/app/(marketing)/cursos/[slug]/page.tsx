@@ -3,6 +3,13 @@ import Link from "next/link";
 
 import { EdicaoLancamentoLanding } from "@/components/marketing/edicao-lancamento-landing";
 import { CursoProdutoPublico } from "@/components/marketing/curso-produto-publico";
+import { JsonLd } from "@/components/shared/json-ld";
+import { copy } from "@/config/copy";
+import {
+  breadcrumbLd,
+  edicaoLancamentoCourseLd,
+  faqPageLd,
+} from "@/lib/seo/jsonld";
 import {
   getCatalogProductBySlug,
   getPublishedProductBySlug,
@@ -47,7 +54,25 @@ export default async function CursoSlugPage({ params }: Props) {
   const { slug } = await params;
 
   if (slug === EDICAO_SLUG) {
-    return <EdicaoLancamentoLanding />;
+    return (
+      <>
+        <JsonLd
+          data={[
+            edicaoLancamentoCourseLd(),
+            faqPageLd([
+              ...copy.edicaoLancamento.faq,
+              ...copy.edicaoLancamento.faqExtra,
+            ]),
+            breadcrumbLd([
+              { name: "Início", url: "/" },
+              { name: "Cursos", url: "/cursos" },
+              { name: "Edição Lançamento", url: `/cursos/${EDICAO_SLUG}` },
+            ]),
+          ]}
+        />
+        <EdicaoLancamentoLanding />
+      </>
+    );
   }
 
   const published = await getPublishedProductBySlug(slug);

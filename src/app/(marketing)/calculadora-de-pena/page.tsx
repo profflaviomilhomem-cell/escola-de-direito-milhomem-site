@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 
 import { CalculadoraCaseFile } from "@/components/marketing/calculadora/case-file";
+import { JsonLd } from "@/components/shared/json-ld";
 import { siteConfig } from "@/config/site";
+import {
+  breadcrumbLd,
+  PROFESSOR_ID,
+  PROFESSOR_SAME_AS,
+} from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
@@ -31,9 +37,11 @@ export default function CalculadoraPage() {
     offers: { "@type": "Offer", price: "0", priceCurrency: "BRL" },
     creator: {
       "@type": "Person",
+      "@id": PROFESSOR_ID,
       name: siteConfig.professor.fullName,
       jobTitle: siteConfig.professor.role,
-      sameAs: [siteConfig.social.mpdft, siteConfig.social.linkedin],
+      url: `${siteConfig.url}/sobre`,
+      sameAs: PROFESSOR_SAME_AS,
     },
     publisher: { "@type": "Organization", name: siteConfig.name },
     isAccessibleForFree: true,
@@ -42,9 +50,14 @@ export default function CalculadoraPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppLd) }}
+      <JsonLd
+        data={[
+          webAppLd,
+          breadcrumbLd([
+            { name: "Início", url: "/" },
+            { name: "Calculadora de Pena", url: "/calculadora-de-pena" },
+          ]),
+        ]}
       />
       <section className="relative z-10 fm-site-page px-3 pt-8 pb-8 sm:px-4 md:pt-10 lg:pb-16 lg:pt-12">
         <h1 className="sr-only">Calculadora de Pena Hipotética</h1>
