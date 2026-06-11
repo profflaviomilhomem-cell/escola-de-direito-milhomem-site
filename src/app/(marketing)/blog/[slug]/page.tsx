@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { BlogArticleBody } from "@/components/marketing/blog-article-body";
+import { BlogAnswerFirst, BlogToc } from "@/components/marketing/blog-toc";
 import { JsonLd } from "@/components/shared/json-ld";
 import { siteConfig } from "@/config/site";
 import {
@@ -11,6 +12,11 @@ import {
   getRelatedBlogPosts,
 } from "@/lib/blog/content";
 import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
+import {
+  anchorHeadingsAndExtractToc,
+  isQuestionTitle,
+  TOC_MIN_ITEMS,
+} from "@/lib/blog/toc";
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { articleLd, breadcrumbLd } from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
@@ -55,6 +61,14 @@ export default async function BlogArtigoPage({
 
   const bodyIsHtml = bodyLooksLikeHtml(post.body);
   const hasLeadVideo = bodyIsHtml && hasBlogLeadVideo(post.body);
+
+  // AEO (guia 6.7): âncoras nos H2/H3 + índice; resposta direta no topo
+  // quando o título é pergunta (o excerpt migra do hero para o corpo).
+  const { html: anchoredBody, toc } = bodyIsHtml
+    ? anchorHeadingsAndExtractToc(post.body)
+    : { html: post.body, toc: [] };
+  const showToc = toc.length >= TOC_MIN_ITEMS;
+  const answerFirst = isQuestionTitle(post.title) && post.excerpt.length > 0;
 
   const canonicalUrl = `${siteConfig.url}/blog/${slug}`;
 
@@ -112,9 +126,11 @@ export default async function BlogArtigoPage({
           >
             {post.title}
           </h1>
-          <p className="text-paper-800 mt-5 max-w-3xl text-lg leading-relaxed md:text-xl">
-            {post.excerpt}
-          </p>
+          {!answerFirst && (
+            <p className="text-paper-800 mt-5 max-w-3xl text-lg leading-relaxed md:text-xl">
+              {post.excerpt}
+            </p>
+          )}
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             {post.author.avatarSrc && (
@@ -151,7 +167,9 @@ export default async function BlogArtigoPage({
       <article
         className={`blog-article fm-site-page max-w-prose-wide pb-page ${hasLeadVideo ? "pt-0" : "py-page"}`}
       >
-        <BlogArticleBody body={post.body} isHtml={bodyIsHtml} />
+        {answerFirst && <BlogAnswerFirst text={post.excerpt} />}
+        {showToc && <BlogToc items={toc} />}
+        <BlogArticleBody body={anchoredBody} isHtml={bodyIsHtml} />
 
         {/* Tags */}
         <div className="border-paper-100 mt-12 flex flex-wrap items-center gap-2 border-t pt-8">
