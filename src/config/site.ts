@@ -58,6 +58,11 @@ export const siteConfig = {
     /** Linha secundária no chip do footer (LinkedIn) */
     linkedinFooterLabel: "/in/professorflaviomilhomem",
     mpdft: "https://www.mpdft.mp.br/",
+    /** Site legado — equity branded preservado (guia 7.2, auditoria de domínio). */
+    legacySite: "https://professorflaviomilhomem.com.br/",
+    /** Página de professor no Gran Cursos — credencial de docência verificável. */
+    granCursos:
+      "https://www.grancursosonline.com.br/cursos/professor/flavio-milhomem",
   },
 
   // IDs de tracking — preencher via .env quando criar conta.

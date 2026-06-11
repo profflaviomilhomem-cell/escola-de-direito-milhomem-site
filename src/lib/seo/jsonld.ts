@@ -27,12 +27,19 @@ function absUrl(path: string): string {
 /**
  * Credenciais externas verificáveis do professor (guia 7.2 — "combustível"
  * de E-E-A-T). Inclui as fichas de catálogo das obras como prova de autoria.
+ *
+ * ⚖️ Desvio do guia: o Google Scholar pedido em 7.2 NÃO entra porque o
+ * professor não tem perfil lá (verificado em jun/2026 — criar o perfil é
+ * tarefa operacional, fase 2). No lugar, entram o site legado (equity
+ * branded) e a página de docente no Gran Cursos — ambas verificáveis.
  */
 export const PROFESSOR_SAME_AS: string[] = [
   siteConfig.social.linkedin,
   siteConfig.social.instagram,
   siteConfig.social.youtube,
   siteConfig.social.mpdft,
+  siteConfig.social.legacySite,
+  siteConfig.social.granCursos,
   ...obrasMilhomemCatalogo.map((o) => o.fichaUrl),
 ];
 
@@ -114,7 +121,8 @@ export function edicaoLancamentoCourseLd() {
     hasCourseInstance: [
       {
         "@type": "CourseInstance",
-        courseMode: "online",
+        // Predominantemente online + marco presencial opcional (11/ago, Brasília)
+        courseMode: "blended",
         name: "Edição Lançamento — turma fundadora",
         courseWorkload: "PT70H",
         startDate: "2026-09-01",
