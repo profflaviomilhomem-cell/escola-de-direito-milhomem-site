@@ -23,6 +23,8 @@ export type BlogListPost = {
   category: string;
   coverImage?: string;
   publishedAt?: string;
+  /** ISO — última edição (sitemap `lastModified`, sinal de frescor). */
+  modifiedAt?: string;
   author: { name: string; avatarSrc?: string; role?: string };
   cover: { from: string; to: string };
   readingMin: number;
@@ -63,6 +65,7 @@ export function mapPrismaPostToList(p: PostWithAuthor): BlogListPost {
     category: p.category,
     coverImage: p.coverImage ?? undefined,
     publishedAt: p.publishedAt?.toISOString(),
+    modifiedAt: p.updatedAt?.toISOString(),
     author: {
       name: p.author.name ?? DEFAULT_AUTHOR.name,
       avatarSrc: DEFAULT_AUTHOR.avatarSrc,
