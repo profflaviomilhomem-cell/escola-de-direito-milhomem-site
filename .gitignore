@@ -65,3 +65,6 @@ next-env.d.ts
 .env*.local
 .pydeps/
 .tmp_*.png
+
+# Material estratégico interno — não subir (repo público)
+calendario-editorial-*.html
