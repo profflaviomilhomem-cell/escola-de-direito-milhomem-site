@@ -262,6 +262,18 @@ export const copy = {
         q: "Há encontro presencial obrigatório?",
         a: "Não. O marco de 11 de agosto em Brasília é opcional e aberto a inscritos no evento; o cohort é predominantemente online.",
       },
+      {
+        q: "Qual é o investimento?",
+        a: "R$ 297,00 em valor único da turma fundadora, com pagamento via PIX ou boleto (Pagar.me) e garantia incondicional de 15 dias, conforme a política publicada em /reembolso.",
+      },
+      {
+        q: "Por quanto tempo terei acesso ao conteúdo?",
+        a: "O acesso à plataforma permanece por 12 meses após o encerramento da turma — você pode rever aulas, materiais e o histórico do fórum nesse período.",
+      },
+      {
+        q: "Para quem é a Edição Lançamento?",
+        a: "Para concurseiros da área criminal e advogados em formação que buscam método aplicável e turma com acesso ao professor. Não é indicada para quem espera videoteca passiva ou promessa de aprovação em concurso.",
+      },
     ] as const,
   },
 
@@ -272,6 +284,61 @@ export const copy = {
     responseNote: "Prazo de resposta: até 3 dias úteis.",
     formTitle: "Enviar mensagem",
     formSuccess: "Mensagem recebida. Retornaremos em breve no e-mail informado.",
+  },
+
+  /**
+   * FAQ institucional — /faq (guia Apêndice F.1: "perguntas frequentes sobre
+   * a Escola, sobre o Flávio, sobre os cursos, sobre o regime de magistério").
+   * Tom compliance-safe: transparência factual sem usar o cargo como isca.
+   * Respostas em 2-4 frases diretas (AEO, guia 6.7).
+   */
+  faqInstitucional: {
+    eyebrow: "Perguntas frequentes",
+    title: "FAQ",
+    titleEmphasis: "institucional",
+    lead: "Respostas diretas sobre a Escola, o professor, os cursos e o regime de magistério. Dúvidas sobre a Edição Lançamento têm seção própria na página do programa.",
+    items: [
+      {
+        q: "O que é a Escola Flávio Milhomem?",
+        a: "É uma escola digital de Direito Penal e Processo Penal que ensina pela perspectiva da acusação — como a denúncia se forma, como a prova é produzida e como a tese se sustenta nos tribunais. Os programas funcionam em formato de cohort: turmas com início e fim definidos, fórum por aula e encontros ao vivo.",
+      },
+      {
+        q: "Quem é Flávio Milhomem?",
+        a: "Professor de Direito Penal e Processo Penal com 30 anos de docência superior e 30 anos de prática jurídica, autor de obras adotadas em graduação e concursos. Formou-se academicamente na Universidade Católica Portuguesa (mestrado) e na École Nationale de la Magistrature, na França. A trajetória completa, com credenciais verificáveis, está na página Sobre.",
+      },
+      {
+        q: "O que significa ensinar pela “perspectiva da acusação”?",
+        a: "Significa partir do raciocínio de quem constrói a acusação: por que cada linha da denúncia é escrita daquela forma, quais precedentes a sustentam e como a prova é estruturada. Esse recorte raramente aparece com densidade nos cursos generalistas, voltados à teoria ou ao ângulo da defesa.",
+      },
+      {
+        q: "Membro do Ministério Público pode lecionar?",
+        a: "Sim. O exercício do magistério é prerrogativa constitucional do membro do Ministério Público (art. 128, §5º, II, “a”, da Constituição Federal), exercido sem prejuízo da função institucional. A Escola opera em estrita observância das normas aplicáveis, com separação rigorosa entre a atividade docente e a função pública.",
+      },
+      {
+        q: "A Escola presta consultoria ou atua em casos concretos?",
+        a: "Não. A Escola é exclusivamente educacional: não presta consultoria individual sobre caso concreto, não atua em representação de partes e não emite parecer em litígio específico. Também não mantém patrocínio ou parceria comercial com escritórios de advocacia.",
+      },
+      {
+        q: "Quais cursos a Escola oferece?",
+        a: "O programa principal é a Edição Lançamento — cohort inaugural de 12 semanas sobre cadeia de custódia e prova digital no processo penal, com início previsto para setembro de 2026. O catálogo completo, com ementas, está na página de cursos.",
+      },
+      {
+        q: "Os cursos emitem certificado?",
+        a: "Sim. Ao concluir os requisitos da trilha (percentual mínimo de aulas e participação previstos no regulamento da turma), o aluno recebe certificado de carga horária da Escola, com autenticação verificável por código.",
+      },
+      {
+        q: "Qual é a política de reembolso?",
+        a: "Garantia incondicional de 15 dias a partir da compra, com reembolso integral — prazo superior ao mínimo legal de 7 dias do Código de Defesa do Consumidor. A política completa está publicada na página de reembolso.",
+      },
+      {
+        q: "Que conteúdo gratuito a Escola mantém?",
+        a: "Um blog editorial com análises de decisões do STJ e do STF em matéria penal, um boletim quinzenal por e-mail (Bastidor da Acusação), a Calculadora de Pena Hipotética — ferramenta didática gratuita — e aulas abertas no canal do YouTube.",
+      },
+      {
+        q: "Como entrar em contato com a Escola?",
+        a: "Pelo formulário da página de contato ou pelo e-mail contato@escolaflaviomilhomem.com.br. O prazo de resposta é de até 3 dias úteis.",
+      },
+    ] as const,
   },
 
   evento: {
