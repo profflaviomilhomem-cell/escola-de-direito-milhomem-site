@@ -85,4 +85,4 @@ Disallow: /webhook/
 Disallow: /*?utm_
 
 # === Sitemap ===
-Sitemap: https://escolaflaviomilhomem.com.br/sitemap.xml
+Sitemap: https://professorflaviomilhomem.com.br/sitemap.xml

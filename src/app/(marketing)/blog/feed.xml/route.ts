@@ -5,7 +5,8 @@ import { getBlogFeedItems } from "@/lib/blog/content";
  */
 export async function GET() {
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://escolaflaviomilhomem.com.br";
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://professorflaviomilhomem.com.br";
 
   const posts = await getBlogFeedItems(20);
 

@@ -93,7 +93,7 @@ export default async function OGImage() {
           }}
         >
           <span>Edição Lançamento · 2026</span>
-          <span style={{ color: mostarda }}>escolaflaviomilhomem.com.br</span>
+          <span style={{ color: mostarda }}>professorflaviomilhomem.com.br</span>
         </div>
       </div>
     ),

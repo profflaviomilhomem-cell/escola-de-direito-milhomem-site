@@ -18,8 +18,10 @@ export const siteConfig = {
   taglineInstitucional: copy.guia.taglineInstitucional,
   pvuShort: copy.site.pvuShort,
   description: copy.site.description,
+  // Domínio definitivo (decisão 12/jun/2026): mantém o registrado com equity.
   url:
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://escolaflaviomilhomem.com.br",
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://professorflaviomilhomem.com.br",
   locale: "pt-BR",
   // OG image gerada por `app/opengraph-image.tsx` (file-based).
 
