@@ -7,11 +7,20 @@ import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 import { provaDigitalModulosPublicos } from "@/data/curso-prova-digital-publico";
 import { CURSO_PRINCIPAL_SLUG } from "@/data/produtos-escola";
+import type { FaqItem } from "@/lib/marketing/curso-faq";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+
+type Props = {
+  /** Preço real do produto (banco) — fallback estático quando offline. */
+  priceLabel: string;
+  /** FAQ com o preço interpolado (mesma lista do JSON-LD FAQPage). */
+  faqItems: FaqItem[];
+};
+
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
  */
-export function EdicaoLancamentoLanding() {
+export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
   const ed = copy.edicaoLancamento;
 
   return (
@@ -167,7 +176,7 @@ export function EdicaoLancamentoLanding() {
           {ed.investimentoTitle}
         </h2>
         <p className="text-paper-700 mt-4 text-lg">
-          <span className="text-paper font-serif text-4xl">{ed.investimentoPriceMain}</span>
+          <span className="text-paper font-serif text-4xl">{priceLabel}</span>
           {ed.investimentoPriceLead || ed.investimentoPriceInstallments ? (
             <>
               {" "}
@@ -197,7 +206,7 @@ export function EdicaoLancamentoLanding() {
           {ed.faqTitle}
         </h2>
         <dl className="mt-8 space-y-6">
-          {[...ed.faq, ...ed.faqExtra].map((item) => (
+          {faqItems.map((item) => (
             <div key={item.q}>
               <dt className="text-paper font-medium">{item.q}</dt>
               <dd className="text-paper-600 mt-2 text-sm leading-relaxed">{item.a}</dd>

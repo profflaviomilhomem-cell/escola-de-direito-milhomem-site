@@ -11,9 +11,12 @@ import {
   faqPageLd,
 } from "@/lib/seo/jsonld";
 import {
+  formatPriceBrl,
   getCatalogProductBySlug,
+  getCursoPrincipal,
   getPublishedProductBySlug,
 } from "@/lib/marketing/catalog";
+import { cursoFaqItems } from "@/lib/marketing/curso-faq";
 import {
   CURSO_PRINCIPAL_PATH,
   CURSO_PRINCIPAL_SLUG,
@@ -25,12 +28,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
   if (slug === CURSO_PRINCIPAL_SLUG) {
-    return {
-      title: "Prova Digital no Processo Penal — Edição Lançamento",
-      description:
-        "Curso de prova digital e cadeia de custódia pela perspectiva da acusação. Cohort inaugural de 12 semanas com Flávio Milhomem — turma fundadora, trilha certificada e acesso ao professor no fórum.",
-      alternates: { canonical: CURSO_PRINCIPAL_PATH },
-    };
+    const { product, dbDown } = await getCursoPrincipal();
+    // Curso despublicado no painel (com banco ok) cai no fluxo genérico.
+    if (product || dbDown) {
+      return {
+        title: "Prova Digital no Processo Penal — Edição Lançamento",
+        description:
+          "Curso de prova digital e cadeia de custódia pela perspectiva da acusação. Cohort inaugural de 12 semanas com Flávio Milhomem — turma fundadora, trilha certificada e acesso ao professor no fórum.",
+        alternates: { canonical: CURSO_PRINCIPAL_PATH },
+      };
+    }
   }
 
   const product =
@@ -56,28 +63,36 @@ export default async function CursoSlugPage({ params }: Props) {
   const { slug } = await params;
 
   if (slug === CURSO_PRINCIPAL_SLUG) {
-    return (
-      <>
-        <JsonLd
-          data={[
-            edicaoLancamentoCourseLd(),
-            faqPageLd([
-              ...copy.edicaoLancamento.faq,
-              ...copy.edicaoLancamento.faqExtra,
-            ]),
-            breadcrumbLd([
-              { name: "Início", url: "/" },
-              { name: "Cursos", url: "/cursos" },
-              {
-                name: "Prova Digital no Processo Penal",
-                url: CURSO_PRINCIPAL_PATH,
-              },
-            ]),
-          ]}
-        />
-        <EdicaoLancamentoLanding />
-      </>
-    );
+    const { product, dbDown } = await getCursoPrincipal();
+
+    // Publicado (ou banco indisponível → fallback estático): landing de venda.
+    // Despublicado no painel: cai no fluxo genérico ("não publicado").
+    if (product || dbDown) {
+      const priceLabel = product
+        ? formatPriceBrl(product.priceCents)
+        : copy.edicaoLancamento.investimentoPriceMain;
+      const faqItems = cursoFaqItems(priceLabel);
+
+      return (
+        <>
+          <JsonLd
+            data={[
+              edicaoLancamentoCourseLd({ priceCents: product?.priceCents }),
+              faqPageLd(faqItems),
+              breadcrumbLd([
+                { name: "Início", url: "/" },
+                { name: "Cursos", url: "/cursos" },
+                {
+                  name: "Prova Digital no Processo Penal",
+                  url: CURSO_PRINCIPAL_PATH,
+                },
+              ]),
+            ]}
+          />
+          <EdicaoLancamentoLanding priceLabel={priceLabel} faqItems={faqItems} />
+        </>
+      );
+    }
   }
 
   const published = await getPublishedProductBySlug(slug);

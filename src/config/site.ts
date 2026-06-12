@@ -10,7 +10,6 @@
  */
 
 import { copy } from "./copy";
-import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 
 export const siteConfig = {
   name: "Escola Flávio Milhomem",
@@ -87,7 +86,7 @@ export const siteConfig = {
     { label: "Cursos", href: "/cursos" },
     { label: "Blog", href: "/blog" },
     { label: "Calculadora", href: "/calculadora-de-pena" },
-    { label: "FAQ", href: `${CURSO_PRINCIPAL_PATH}#faq` },
+    { label: "FAQ", href: "/faq" },
   ],
   /** Links secundários (footer e menu mobile “Mais”) */
   secondaryNav: [

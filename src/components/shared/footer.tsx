@@ -3,7 +3,6 @@ import Link from "next/link";
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { BrandLogo } from "@/components/shared/brand-logo";
 import { siteConfig } from "@/config/site";
-import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 
 function IconInstagram({ className }: { className?: string }) {
   return (
@@ -89,7 +88,7 @@ export function Footer() {
           Calculadora
         </Link>
         <Link
-          href={`${CURSO_PRINCIPAL_PATH}#faq`}
+          href="/faq"
           className="text-paper-700 hover:text-amber transition-colors"
         >
           FAQ

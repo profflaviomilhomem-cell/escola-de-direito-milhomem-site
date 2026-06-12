@@ -263,7 +263,7 @@ export const copy = {
       },
       {
         q: "Qual é o investimento?",
-        a: "R$ 297,00 em valor único da turma fundadora, com pagamento via PIX ou boleto (Pagar.me) e garantia incondicional de 15 dias, conforme a política publicada em /reembolso.",
+        a: "{preco} em valor único da turma fundadora, com pagamento via PIX ou boleto (Pagar.me) e garantia incondicional de 15 dias, conforme a política publicada em /reembolso.",
       },
       {
         q: "Por quanto tempo terei acesso ao conteúdo?",

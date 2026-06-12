@@ -12,6 +12,7 @@ import { HomeStatsSection } from "@/components/marketing/home-stats-section";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { provaDigitalModuloCards } from "@/data/curso-prova-digital-publico";
 import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
+import { getCursoPrincipal } from "@/lib/marketing/catalog";
 import { JsonLd } from "@/components/shared/json-ld";
 import { organizationLd, personLd } from "@/lib/seo/jsonld";
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
   const {
     hero,
     stats,
@@ -30,6 +31,15 @@ export default function HomePage() {
     professorSection,
     cohort,
   } = copy.home;
+
+  // Preço real do produto (banco); fallback estático quando offline.
+  const { product } = await getCursoPrincipal();
+  const priceDisplay = product
+    ? String(Math.floor(product.priceCents / 100))
+    : cohort.priceDisplay;
+  const priceSuffix = product
+    ? `,${String(product.priceCents % 100).padStart(2, "0")}`
+    : cohort.priceSuffix;
 
   return (
     <>
@@ -262,8 +272,8 @@ export default function HomePage() {
               <em className="text-amber italic">{cohort.titleEmphasis}</em>
             </h2>
             <div className="font-serif text-7xl my-8">
-              <span className="text-paper">R$ {cohort.priceDisplay}</span>
-              <small className="text-amber text-2xl">{cohort.priceSuffix}</small>
+              <span className="text-paper">R$ {priceDisplay}</span>
+              <small className="text-amber text-2xl">{priceSuffix}</small>
             </div>
             <p className="text-paper-600 mb-10 text-base">
               {cohort.note}

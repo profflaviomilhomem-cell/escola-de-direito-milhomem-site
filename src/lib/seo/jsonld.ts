@@ -93,9 +93,11 @@ export function organizationLd() {
 
 /**
  * Course schema do curso da Edição Lançamento (Prova Digital no Processo Penal).
- * Preço e formato espelham `src/data/produtos-escola.ts` (turma fundadora).
+ * Preço vem do produto no banco quando disponível (fallback: turma fundadora).
  */
-export function edicaoLancamentoCourseLd() {
+export function edicaoLancamentoCourseLd(
+  { priceCents }: { priceCents?: number } = {},
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -114,7 +116,7 @@ export function edicaoLancamentoCourseLd() {
     offers: {
       "@type": "Offer",
       category: "Turma fundadora",
-      price: "297.00",
+      price: ((priceCents ?? 29700) / 100).toFixed(2),
       priceCurrency: "BRL",
       availability: "https://schema.org/PreOrder",
       url: `${siteConfig.url}${CURSO_PRINCIPAL_PATH}`,

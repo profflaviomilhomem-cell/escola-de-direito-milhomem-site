@@ -3,10 +3,10 @@ import { cache } from "react";
 import type { Product, ProductType } from "@prisma/client";
 
 import type { ProdutoEscola } from "@/data/produtos-escola";
-import { produtosEscola } from "@/data/produtos-escola";
+import { CURSO_PRINCIPAL_SLUG, produtosEscola } from "@/data/produtos-escola";
 import { prisma } from "@/lib/prisma";
 
-function formatPriceBrl(cents: number): string {
+export function formatPriceBrl(cents: number): string {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
@@ -56,6 +56,27 @@ export const getPublishedProductBySlug = cache(
       });
     } catch {
       return null;
+    }
+  },
+);
+
+/**
+ * Produto do curso principal, distinguindo "despublicado" de "banco fora
+ * do ar": com `dbDown` a landing usa o fallback estático em vez de sumir.
+ */
+export const getCursoPrincipal = cache(
+  async (): Promise<{ product: Product | null; dbDown: boolean }> => {
+    try {
+      const product = await prisma.product.findFirst({
+        where: {
+          slug: CURSO_PRINCIPAL_SLUG,
+          publishStatus: "PUBLISHED",
+          active: true,
+        },
+      });
+      return { product, dbDown: false };
+    } catch {
+      return { product: null, dbDown: true };
     }
   },
 );
