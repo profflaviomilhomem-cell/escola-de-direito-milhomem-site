@@ -22,11 +22,12 @@ formação e cargos institucionais estão na página /sobre.
 
 ## Cursos e produtos
 
-- [Edição Lançamento — Cohort de 12 semanas](/cursos/edicao-lancamento):
-  primeiro cohort da Escola, formato sincronizado, fórum por aula e encontros ao
-  vivo. Início previsto para setembro de 2026.
-- Produtos legados na plataforma Eduzz (transição): exercícios e temas
-  específicos de Direito Penal.
+- [Prova Digital no Processo Penal](/cursos/prova-digital-no-processo-penal):
+  único curso da Edição Lançamento, voltado ao público profissional. Cohort de
+  12 semanas, formato sincronizado, fórum por aula e encontros ao vivo. Início
+  previsto para setembro de 2026.
+- Direito Penal em Questões (plataforma Eduzz): questões comentadas e revisão
+  objetiva de Direito Penal, voltado a concurseiros.
 
 ## Conteúdo educacional gratuito
 

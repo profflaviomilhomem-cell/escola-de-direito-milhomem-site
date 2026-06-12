@@ -147,7 +147,7 @@ export default function HomePage() {
           </div>
           <div data-reveal className="mt-16 text-center">
             <Link
-              href="/cursos/edicao-lancamento#ementa-title"
+              href="/cursos/prova-digital-no-processo-penal#ementa-title"
               className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
             >
               {programa.ctaLabel}

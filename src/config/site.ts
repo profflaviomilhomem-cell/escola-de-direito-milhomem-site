@@ -86,7 +86,7 @@ export const siteConfig = {
     { label: "Cursos", href: "/cursos" },
     { label: "Blog", href: "/blog" },
     { label: "Calculadora", href: "/calculadora-de-pena" },
-    { label: "FAQ", href: "/cursos/edicao-lancamento#faq" },
+    { label: "FAQ", href: "/cursos/prova-digital-no-processo-penal#faq" },
   ],
   /** Links secundários (footer e menu mobile “Mais”) */
   secondaryNav: [

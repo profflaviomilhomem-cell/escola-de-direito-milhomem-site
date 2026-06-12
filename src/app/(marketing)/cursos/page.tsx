@@ -8,7 +8,7 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 export const metadata: Metadata = {
   title: "Cursos",
   description:
-    "Vitrine dos cursos da Escola Flávio Milhomem — Edição Lançamento em cohort e produtos legados na Eduzz.",
+    "Cursos da Escola Flávio Milhomem — Prova Digital no Processo Penal (cohort da Edição Lançamento) e Direito Penal em Questões para concurseiros, na Eduzz.",
   alternates: { canonical: "/cursos" },
 };
 
@@ -28,8 +28,10 @@ export default async function CursosPage() {
         Cursos da <em className="text-amber italic">Escola</em>
       </h1>
       <p className="text-paper-700 mt-5 max-w-2xl text-lg leading-relaxed">
-        No lançamento, a Edição Lançamento concentra o cohort inaugural. Os produtos na
-        Eduzz permanecem disponíveis durante a transição para a plataforma própria.
+        A Escola oferece um único curso nesta edição: Prova Digital no Processo
+        Penal, voltado ao público profissional, no cohort inaugural da Edição
+        Lançamento. Para quem estuda para concursos, o Direito Penal em Questões
+        está disponível na Eduzz.
         {fromDatabase ? (
           <span className="text-paper-600 block mt-2 text-sm">
             Catálogo sincronizado com os cursos publicados no painel do professor.
@@ -44,7 +46,7 @@ export default async function CursosPage() {
       </div>
 
       <h2 className="text-paper fm-mono mt-16 text-[11px] uppercase tracking-[0.22em]">
-        Catálogo em transição
+        Para concurseiros
       </h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {legados.map((p) => (

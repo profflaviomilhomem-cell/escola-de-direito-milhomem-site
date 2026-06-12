@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/sobre`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/cursos`, changeFrequency: "weekly", priority: 0.9 },
     {
-      url: `${base}/cursos/edicao-lancamento`,
+      url: `${base}/cursos/prova-digital-no-processo-penal`,
       changeFrequency: "weekly",
       priority: 1,
     },

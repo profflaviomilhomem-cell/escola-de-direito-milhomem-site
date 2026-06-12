@@ -88,7 +88,7 @@ export function Footer() {
           Calculadora
         </Link>
         <Link
-          href="/cursos/edicao-lancamento#faq"
+          href="/cursos/prova-digital-no-processo-penal#faq"
           className="text-paper-700 hover:text-amber transition-colors"
         >
           FAQ

@@ -183,7 +183,7 @@ export function EdicaoLancamentoLanding() {
         </p>
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
         <Link
-          href="/checkout/edicao-lancamento"
+          href="/checkout/prova-digital-no-processo-penal"
           className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
         >
           {ed.investimentoCta}

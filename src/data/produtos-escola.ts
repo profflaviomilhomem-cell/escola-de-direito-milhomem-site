@@ -16,29 +16,24 @@ export type ProdutoEscola = {
 
 export const produtosEscola: readonly ProdutoEscola[] = [
   {
-    slug: "edicao-lancamento",
-    titulo: "Edição Lançamento",
+    slug: "prova-digital-no-processo-penal",
+    titulo: "Prova Digital no Processo Penal",
     subtitulo:
-      "Direito criminal pela perspectiva da acusação · cohort de 12 semanas com acesso ao professor",
+      "Para quem atua no processo penal — cohort de 12 semanas com acesso ao professor, na Edição Lançamento",
     tipo: "cohort",
     destaque: true,
     cargaHoraria: "60–80 h",
     ticketLabel: "R$ 297,00 (turma fundadora)",
-    href: "/cursos/edicao-lancamento",
+    href: "/cursos/prova-digital-no-processo-penal",
   },
   {
     slug: "direito-penal-questoes",
     titulo: "Direito Penal em Questões",
-    subtitulo: "Produto legado na Eduzz — exercícios e revisão objetiva",
+    subtitulo:
+      "Para concurseiros — questões comentadas e revisão objetiva, disponível na Eduzz",
     tipo: "legado",
+    // TODO: trocar pelo link real do produto na Eduzz (aguardando o professor)
     href: "https://eduzz.com",
     externo: true,
-  },
-  {
-    slug: "prova-digital-no-processo-penal",
-    titulo: "Prova Digital no Processo Penal",
-    subtitulo: "10 aulas gravadas · vídeo editado e slides (acervo importado)",
-    tipo: "legado",
-    href: "/cursos/edicao-lancamento#ementa-title",
   },
 ] as const;

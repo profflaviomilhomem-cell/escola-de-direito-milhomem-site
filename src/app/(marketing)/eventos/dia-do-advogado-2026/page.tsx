@@ -63,12 +63,12 @@ export default function EventoDiaAdvogadoPage() {
 
       <p className="text-paper-600 mt-12 text-sm">
         <Link
-          href="/cursos/edicao-lancamento"
+          href="/cursos/prova-digital-no-processo-penal"
           className="text-amber underline-offset-2 hover:underline"
         >
-          Conheça a Edição Lançamento
+          Conheça o curso Prova Digital no Processo Penal
         </Link>{" "}
-        que será aberta no evento.
+        — a Edição Lançamento será aberta no evento.
       </p>
     </article>
   );

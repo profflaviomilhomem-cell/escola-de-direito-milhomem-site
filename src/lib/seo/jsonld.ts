@@ -91,17 +91,17 @@ export function organizationLd() {
 }
 
 /**
- * Course schema da Edição Lançamento.
+ * Course schema do curso da Edição Lançamento (Prova Digital no Processo Penal).
  * Preço e formato espelham `src/data/produtos-escola.ts` (turma fundadora).
  */
 export function edicaoLancamentoCourseLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: "Edição Lançamento — Direito Penal pela perspectiva da acusação",
+    name: "Prova Digital no Processo Penal — pela perspectiva da acusação",
     description:
-      "Cohort inaugural de 12 semanas com Flávio Milhomem. Direito penal e processo penal pela perspectiva da acusação, com fórum por aula, encontros ao vivo e acesso ao professor.",
-    url: `${siteConfig.url}/cursos/edicao-lancamento`,
+      "Curso de prova digital e cadeia de custódia no processo penal, pela perspectiva da acusação. Cohort inaugural de 12 semanas com Flávio Milhomem, com fórum por aula, encontros ao vivo e acesso ao professor.",
+    url: `${siteConfig.url}/cursos/prova-digital-no-processo-penal`,
     inLanguage: "pt-BR",
     provider: {
       "@type": "EducationalOrganization",
@@ -116,7 +116,7 @@ export function edicaoLancamentoCourseLd() {
       price: "297.00",
       priceCurrency: "BRL",
       availability: "https://schema.org/PreOrder",
-      url: `${siteConfig.url}/cursos/edicao-lancamento`,
+      url: `${siteConfig.url}/cursos/prova-digital-no-processo-penal`,
     },
     hasCourseInstance: [
       {

@@ -9,6 +9,17 @@ const nextConfig: NextConfig = {
   /** Declaração vazia: o projeto usa `webpack()` para dev; o build precisa
    *  deste campo para o Next 16 (Turbopack por defeito) não abortar. */
   turbopack: {},
+  /** O curso único da Edição Lançamento vive no slug do produto;
+   *  308 no nível de config para preservar o SEO do endereço antigo. */
+  async redirects() {
+    return [
+      {
+        source: "/cursos/edicao-lancamento",
+        destination: "/cursos/prova-digital-no-processo-penal",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       // Foto institucional placeholder do mockup — substituir por

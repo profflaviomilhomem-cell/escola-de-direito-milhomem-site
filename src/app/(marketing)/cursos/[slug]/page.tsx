@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { permanentRedirect } from "next/navigation";
 
 import { EdicaoLancamentoLanding } from "@/components/marketing/edicao-lancamento-landing";
 import { CursoProdutoPublico } from "@/components/marketing/curso-produto-publico";
@@ -17,17 +18,20 @@ import {
 
 type Props = { params: Promise<{ slug: string }> };
 
-const EDICAO_SLUG = "edicao-lancamento";
+const CURSO_SLUG = "prova-digital-no-processo-penal";
+/** Slug antigo da landing — redireciona para o slug do curso. */
+const EDICAO_SLUG_LEGADO = "edicao-lancamento";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  if (slug === EDICAO_SLUG) {
+  if (slug === CURSO_SLUG) {
     return {
-      title: "Edição Lançamento — direito criminal pela perspectiva da acusação",
+      title:
+        "Prova Digital no Processo Penal — Edição Lançamento da Escola Flávio Milhomem",
       description:
-        "Cohort inaugural de 12 semanas com Flávio Milhomem. Turma fundadora, trilha certificada e acesso ao professor no fórum.",
-      alternates: { canonical: `/cursos/${EDICAO_SLUG}` },
+        "Curso de prova digital e cadeia de custódia pela perspectiva da acusação. Cohort inaugural de 12 semanas com Flávio Milhomem — turma fundadora, trilha certificada e acesso ao professor no fórum.",
+      alternates: { canonical: `/cursos/${CURSO_SLUG}` },
     };
   }
 
@@ -53,7 +57,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function CursoSlugPage({ params }: Props) {
   const { slug } = await params;
 
-  if (slug === EDICAO_SLUG) {
+  if (slug === EDICAO_SLUG_LEGADO) {
+    permanentRedirect(`/cursos/${CURSO_SLUG}`);
+  }
+
+  if (slug === CURSO_SLUG) {
     return (
       <>
         <JsonLd
@@ -66,7 +74,10 @@ export default async function CursoSlugPage({ params }: Props) {
             breadcrumbLd([
               { name: "Início", url: "/" },
               { name: "Cursos", url: "/cursos" },
-              { name: "Edição Lançamento", url: `/cursos/${EDICAO_SLUG}` },
+              {
+                name: "Prova Digital no Processo Penal",
+                url: `/cursos/${CURSO_SLUG}`,
+              },
             ]),
           ]}
         />

@@ -69,9 +69,9 @@ export const copy = {
       titleLine2: "de direito",
       titleEmphasis2: "criminal",
       tagline:
-        "Direito criminal pela perspectiva da acusação — com o rigor de quem ensina em sala e em tribunal, com método e leitura de fontes.",
+        "Direito criminal pela perspectiva da acusação — com o rigor de quem ensina em sala e aplica no tribunal, com método e leitura de fontes.",
       bio: "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.",
-      ctaPrimary: "Conhecer a edição",
+      ctaPrimary: "Conhecer o curso",
       ctaSecondary: "Receber o boletim",
       ctaCalculadora: "Calculadora de pena",
     },
@@ -124,9 +124,9 @@ export const copy = {
       ctaLabel: "Biografia e credenciais",
     },
     cohort: {
-      eyebrow: "Edição Lançamento",
-      title: "Cohort inaugural",
-      titleEmphasis: "2026",
+      eyebrow: "Edição Lançamento · turma fundadora",
+      title: "Prova Digital no",
+      titleEmphasis: "Processo Penal",
       priceDisplay: "297",
       priceSuffix: ",00",
       note: "Turma com acompanhamento no fórum e em encontros ao vivo — vagas limitadas para manter escala humana e resposta em até 72 horas.",
@@ -156,11 +156,11 @@ export const copy = {
   },
 
   edicaoLancamento: {
-    eyebrow: "Cohort inaugural · turma fundadora",
-    title: "Edição Lançamento — direito criminal pela",
-    titleEmphasis: "perspectiva da acusação",
+    eyebrow: "Edição Lançamento · cohort inaugural · turma fundadora",
+    title: "Prova Digital no",
+    titleEmphasis: "Processo Penal",
     lead:
-      "Doze semanas em cohort, com trilha semanal, fórum por aula e encontros ao vivo. A Escola é conduzida por Flávio Milhomem — professor, autor e docente com 30 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
+      "O curso da Edição Lançamento da Escola: prova digital e cadeia de custódia pela perspectiva da acusação, em doze semanas de cohort com trilha semanal, fórum por aula e encontros ao vivo. Conduzido por Flávio Milhomem — professor, autor e docente com 30 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
     leadLinkLabel: "página Sobre",
     ctaInvestimento: "Ver investimento",
     ctaLista: "Entrar na lista de espera",
@@ -185,11 +185,11 @@ export const copy = {
     ] as const,
     paraQuemTitle: "Para quem é",
     paraQuemLead:
-      "Concurseiros da área criminal e advogados em formação que querem dominar a construção da acusação, a prova e a sustentação em tribunal — com rigor e linguagem de banca.",
+      "Público profissional: advogados criminalistas, delegados, membros do Ministério Público e magistrados que lidam com prova digital no processo penal — e quem quer dominar a construção da acusação, a prova e a sustentação em tribunal.",
     paraQuemSim:
-      "É para você se busca método aplicável, aceita dedicação semanal consistente e valoriza turma com acesso ao professor.",
+      "É para você se atua (ou quer atuar) no processo penal, busca método aplicável e valoriza turma com acesso ao professor.",
     paraQuemNao:
-      "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso.",
+      "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso — para preparação de concursos, veja o Direito Penal em Questões, na Eduzz.",
     ementaTitle: "Ementa do curso (10 aulas)",
     cronogramaTitle: "Cronograma",
     cronogramaItems: [
