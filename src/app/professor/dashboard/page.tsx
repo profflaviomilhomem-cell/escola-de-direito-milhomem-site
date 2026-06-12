@@ -7,7 +7,7 @@ import { getProfessorCourses } from "@/lib/professor/products";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
-  title: "Painel do professor — Escola Flávio Milhomem",
+  title: "Painel do professor",
   robots: { index: false, follow: false },
 };
 

@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/config/site";
 import { copy } from "@/config/copy";
+import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 import { getPublishedBlogListPosts } from "@/lib/blog/content";
 
 /**
@@ -19,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/sobre`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/cursos`, changeFrequency: "weekly", priority: 0.9 },
     {
-      url: `${base}/cursos/prova-digital-no-processo-penal`,
+      url: `${base}${CURSO_PRINCIPAL_PATH}`,
       changeFrequency: "weekly",
       priority: 1,
     },

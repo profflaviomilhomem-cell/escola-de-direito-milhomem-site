@@ -9,7 +9,7 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { getEnrolledCourses } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
-  title: "Meus cursos — Escola Flávio Milhomem",
+  title: "Meus cursos",
   robots: { index: false, follow: false },
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { copy } from "@/config/copy";
+import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
@@ -63,7 +64,7 @@ export default function EventoDiaAdvogadoPage() {
 
       <p className="text-paper-600 mt-12 text-sm">
         <Link
-          href="/cursos/prova-digital-no-processo-penal"
+          href={CURSO_PRINCIPAL_PATH}
           className="text-amber underline-offset-2 hover:underline"
         >
           Conheça o curso Prova Digital no Processo Penal

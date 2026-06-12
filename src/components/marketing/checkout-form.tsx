@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { track } from "@/lib/analytics/track";
 import { UTM_STORAGE_KEY, type UtmFields } from "@/lib/orders/utm";
@@ -47,11 +47,9 @@ export function CheckoutForm({
   const [billingZipCode, setBillingZipCode] = useState("");
   const [billingCity, setBillingCity] = useState("");
   const [billingState, setBillingState] = useState("");
-  const [utm, setUtm] = useState<UtmFields>({});
-
-  useEffect(() => {
-    setUtm(readStoredUtm());
-  }, []);
+  // Lazy: SSR-safe (readStoredUtm devolve {} sem window) e o valor não é
+  // renderizado — só entra no corpo do POST.
+  const [utm] = useState<UtmFields>(readStoredUtm);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();

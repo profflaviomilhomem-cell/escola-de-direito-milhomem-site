@@ -1,7 +1,14 @@
 "use client";
 
 import { Accessibility, Glasses, Minus, Plus, Sun, Moon } from "lucide-react";
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "@/components/ui/button";
@@ -39,6 +46,9 @@ function stopMenuClose(e: React.SyntheticEvent) {
   e.stopPropagation();
 }
 
+/** Snapshot constante: false no servidor, true após hidratar no cliente. */
+const subscribeNoop = () => () => {};
+
 /**
  * Menu de acessibilidade — tema, escala de texto e modos de visão.
  * Painel em portal; não fecha ao ajustar (só Esc, toggle ou clique fora).
@@ -55,24 +65,23 @@ export function HeaderAccessibilityMenu() {
     left: number;
     width: number;
   }>();
-  const [theme, setTheme] = useState<ThemePref>("dark");
-  const [textStep, setTextStep] = useState<TextStep>(2);
-  const [vision, setVision] = useState<VisionPref>("none");
-  const [ready, setReady] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  const syncFromDom = useCallback(() => {
-    const d = readDomPreferences();
-    setTheme(d.theme);
-    setTextStep(d.textStep);
-    setVision(d.vision);
-  }, []);
-
-  useEffect(() => {
-    setMounted(true);
-    syncFromDom();
-    setReady(true);
-  }, [syncFromDom]);
+  // Lazy: readDomPreferences é SSR-safe e os valores só aparecem dentro do
+  // painel (fechado na hidratação) — sem effect de sincronização no mount.
+  const [theme, setTheme] = useState<ThemePref>(
+    () => readDomPreferences().theme,
+  );
+  const [textStep, setTextStep] = useState<TextStep>(
+    () => readDomPreferences().textStep,
+  );
+  const [vision, setVision] = useState<VisionPref>(
+    () => readDomPreferences().vision,
+  );
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  );
+  const ready = mounted;
 
   const positionPanel = useCallback(() => {
     const trigger = triggerRef.current;

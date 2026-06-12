@@ -7,7 +7,7 @@ import { getSessionFromCookies } from "@/lib/auth/session";
 import { getEnrolledCourses } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
-  title: "Certificados — Escola Flávio Milhomem",
+  title: "Certificados",
   robots: { index: false, follow: false },
 };
 

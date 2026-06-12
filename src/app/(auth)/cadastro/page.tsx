@@ -4,7 +4,7 @@ import Link from "next/link";
 import { RegisterForm } from "@/components/auth/register-form";
 
 export const metadata: Metadata = {
-  title: "Criar conta — Escola Flávio Milhomem",
+  title: "Criar conta",
   description:
     "Cadastro na Escola Flávio Milhomem — escola de direito criminal, perspectiva da acusação.",
   alternates: { canonical: "/cadastro" },

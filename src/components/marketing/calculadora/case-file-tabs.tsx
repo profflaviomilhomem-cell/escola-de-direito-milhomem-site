@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  useEffect,
-  useMemo,
   useState,
   type Dispatch,
   type ReactNode,
@@ -1545,9 +1543,17 @@ export function TabSentenca({
 
   const [closeupOpen, setCloseupOpen] = useState(embedded);
 
-  useEffect(() => {
-    if (embedded) setCloseupOpen(true);
-  }, [embedded, crime.slug, result.formatado.penaFinal]);
+  // Reabre o closeup quando o resultado muda no modo embedded — ajuste de
+  // estado durante o render (sem effect, evita render em cascata).
+  const closeupResetKey = embedded
+    ? `${crime.slug}|${result.formatado.penaFinal}`
+    : null;
+  const [prevCloseupResetKey, setPrevCloseupResetKey] =
+    useState(closeupResetKey);
+  if (prevCloseupResetKey !== closeupResetKey) {
+    setPrevCloseupResetKey(closeupResetKey);
+    if (closeupResetKey !== null) setCloseupOpen(true);
+  }
 
   if (embedded) {
     return (

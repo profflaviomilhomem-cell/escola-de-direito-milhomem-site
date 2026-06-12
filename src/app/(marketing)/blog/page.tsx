@@ -14,7 +14,7 @@ import { BlogDateFilter } from "@/components/marketing/blog-date-filter";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
-  title: "Blog — Escola Flávio Milhomem",
+  title: "Blog",
   description:
     "Análise de decisões do STJ/STF, dogmática aplicada e comentários atuais em direito criminal — direito penal e processo penal pelo ângulo da acusação.",
   alternates: { canonical: "/blog" },

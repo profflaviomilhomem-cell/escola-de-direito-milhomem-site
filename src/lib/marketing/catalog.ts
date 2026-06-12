@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import type { Product, ProductType } from "@prisma/client";
 
 import type { ProdutoEscola } from "@/data/produtos-escola";
@@ -40,35 +42,37 @@ export async function getPublishedCatalogProducts(): Promise<ProdutoEscola[]> {
   }
 }
 
-/** Produto publicado por slug (somente vitrine pública). */
-export async function getPublishedProductBySlug(
-  slug: string,
-): Promise<Product | null> {
-  try {
-    return await prisma.product.findFirst({
-      where: {
-        slug,
-        publishStatus: "PUBLISHED",
-        active: true,
-      },
-    });
-  } catch {
-    return null;
-  }
-}
+/** Produto publicado por slug (somente vitrine pública).
+ *  `cache()` deduplica a consulta entre generateMetadata e a página. */
+export const getPublishedProductBySlug = cache(
+  async (slug: string): Promise<Product | null> => {
+    try {
+      return await prisma.product.findFirst({
+        where: {
+          slug,
+          publishStatus: "PUBLISHED",
+          active: true,
+        },
+      });
+    } catch {
+      return null;
+    }
+  },
+);
 
 /** Verifica se o slug existe no catálogo (qualquer status). */
-export async function getCatalogProductBySlug(
-  slug: string,
-): Promise<Product | null> {
-  try {
-    return await prisma.product.findUnique({ where: { slug } });
-  } catch {
-    return null;
-  }
-}
+export const getCatalogProductBySlug = cache(
+  async (slug: string): Promise<Product | null> => {
+    try {
+      return await prisma.product.findUnique({ where: { slug } });
+    } catch {
+      return null;
+    }
+  },
+);
 
-/** Mescla DB + fallback estático (slugs únicos, DB tem prioridade). */
+/** Mescla DB + fallback estático (slugs únicos; campos do DB têm prioridade,
+ *  mas campos curados que o DB não fornece — ex.: cargaHoraria — persistem). */
 export async function getCatalogWithFallback(): Promise<{
   principal: ProdutoEscola[];
   legados: ProdutoEscola[];
@@ -78,7 +82,10 @@ export async function getCatalogWithFallback(): Promise<{
   const merged = new Map<string, ProdutoEscola>();
 
   for (const p of produtosEscola) merged.set(p.slug, p);
-  for (const p of fromDb) merged.set(p.slug, p);
+  for (const p of fromDb) {
+    const curated = merged.get(p.slug);
+    merged.set(p.slug, curated ? { ...curated, ...p } : p);
+  }
 
   const all = [...merged.values()];
   return {

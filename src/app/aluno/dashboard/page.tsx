@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/card";
 
 export const metadata: Metadata = {
-  title: "Painel do aluno — Escola Flávio Milhomem",
+  title: "Painel do aluno",
   robots: { index: false, follow: false },
 };
 

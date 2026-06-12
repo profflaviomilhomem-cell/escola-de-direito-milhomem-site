@@ -211,7 +211,6 @@ export const copy = {
     investimentoPriceLead: "",
     investimentoCheckoutNote:
       "Valor único da turma fundadora. Pagamento via PIX ou boleto (Pagar.me).",
-    investimentoPix: "",
     investimentoSelo: "Turma fundadora · até 50 alunos",
     investimentoGarantia:
       "Garantia de 15 dias incondicionais, conforme política publicada em /reembolso.",
@@ -272,7 +271,7 @@ export const copy = {
       },
       {
         q: "Para quem é a Edição Lançamento?",
-        a: "Para concurseiros da área criminal e advogados em formação que buscam método aplicável e turma com acesso ao professor. Não é indicada para quem espera videoteca passiva ou promessa de aprovação em concurso.",
+        a: "Para o público profissional do processo penal — advogados criminalistas, delegados, membros do Ministério Público e magistrados — que busca método aplicável e turma com acesso ao professor. Para preparação de concursos, o indicado é o Direito Penal em Questões, na Eduzz. Não é indicada para quem espera videoteca passiva.",
       },
     ] as const,
   },

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
 
 export const metadata: Metadata = {
-  title: "Recuperar acesso — Escola Flávio Milhomem",
+  title: "Recuperar acesso",
   description: "Peça um link de recuperação para sua conta de aluno.",
   robots: { index: false, follow: false },
 };

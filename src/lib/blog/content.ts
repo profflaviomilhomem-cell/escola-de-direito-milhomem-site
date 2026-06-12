@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import {
   mapPrismaPostToArticle,
   mapPrismaPostToList,
@@ -17,29 +19,34 @@ async function fetchPublishedFromDb(): Promise<BlogListPost[]> {
   return rows.map(mapPrismaPostToList);
 }
 
-/** Posts publicados (Prisma). Sem fallback mock. */
-export async function getPublishedBlogListPosts(): Promise<BlogListPost[]> {
-  try {
-    return await fetchPublishedFromDb();
-  } catch {
-    return [];
-  }
-}
+/** Posts publicados (Prisma). Sem fallback mock.
+ *  `cache()` deduplica a consulta dentro do mesmo request
+ *  (lista + relacionados + feed compartilham o resultado). */
+export const getPublishedBlogListPosts = cache(
+  async (): Promise<BlogListPost[]> => {
+    try {
+      return await fetchPublishedFromDb();
+    } catch {
+      return [];
+    }
+  },
+);
 
-export async function getBlogArticleBySlug(
-  slug: string,
-): Promise<BlogArticlePost | undefined> {
-  try {
-    const row = await prisma.blogPost.findUnique({
-      where: { slug },
-      include: { author: true },
-    });
-    if (row?.status === "PUBLISHED") return mapPrismaPostToArticle(row);
-  } catch {
-    /* offline */
-  }
-  return undefined;
-}
+/** `cache()` deduplica entre generateMetadata e a página do artigo. */
+export const getBlogArticleBySlug = cache(
+  async (slug: string): Promise<BlogArticlePost | undefined> => {
+    try {
+      const row = await prisma.blogPost.findUnique({
+        where: { slug },
+        include: { author: true },
+      });
+      if (row?.status === "PUBLISHED") return mapPrismaPostToArticle(row);
+    } catch {
+      /* offline */
+    }
+    return undefined;
+  },
+);
 
 export async function getBlogPostMeta(
   slug: string,

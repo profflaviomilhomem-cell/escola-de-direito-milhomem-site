@@ -11,6 +11,7 @@ import { TestimonialsSection } from "@/components/marketing/testimonials-section
 import { HomeStatsSection } from "@/components/marketing/home-stats-section";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { provaDigitalModuloCards } from "@/data/curso-prova-digital-publico";
+import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 import { JsonLd } from "@/components/shared/json-ld";
 import { organizationLd, personLd } from "@/lib/seo/jsonld";
 
@@ -147,7 +148,7 @@ export default function HomePage() {
           </div>
           <div data-reveal className="mt-16 text-center">
             <Link
-              href="/cursos/prova-digital-no-processo-penal#ementa-title"
+              href={`${CURSO_PRINCIPAL_PATH}#ementa-title`}
               className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
             >
               {programa.ctaLabel}

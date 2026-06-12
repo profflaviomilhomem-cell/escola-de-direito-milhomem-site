@@ -10,6 +10,7 @@
 import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 import { obrasMilhomemCatalogo } from "@/data/obras-milhomem";
+import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 
 /** IDs estáveis para consolidação de entidade no Knowledge Graph. */
 export const PROFESSOR_ID = `${siteConfig.url}/sobre#flavio-milhomem`;
@@ -101,7 +102,7 @@ export function edicaoLancamentoCourseLd() {
     name: "Prova Digital no Processo Penal — pela perspectiva da acusação",
     description:
       "Curso de prova digital e cadeia de custódia no processo penal, pela perspectiva da acusação. Cohort inaugural de 12 semanas com Flávio Milhomem, com fórum por aula, encontros ao vivo e acesso ao professor.",
-    url: `${siteConfig.url}/cursos/prova-digital-no-processo-penal`,
+    url: `${siteConfig.url}${CURSO_PRINCIPAL_PATH}`,
     inLanguage: "pt-BR",
     provider: {
       "@type": "EducationalOrganization",
@@ -116,13 +117,24 @@ export function edicaoLancamentoCourseLd() {
       price: "297.00",
       priceCurrency: "BRL",
       availability: "https://schema.org/PreOrder",
-      url: `${siteConfig.url}/cursos/prova-digital-no-processo-penal`,
+      url: `${siteConfig.url}${CURSO_PRINCIPAL_PATH}`,
     },
     hasCourseInstance: [
       {
         "@type": "CourseInstance",
-        // Predominantemente online + marco presencial opcional (11/ago, Brasília)
+        // Predominantemente online + marco presencial opcional (11/ago, Brasília).
+        // Google exige `location` quando courseMode é blended/onsite.
         courseMode: "blended",
+        location: {
+          "@type": "Place",
+          name: "Brasília, DF (marco presencial opcional)",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Brasília",
+            addressRegion: "DF",
+            addressCountry: "BR",
+          },
+        },
         name: "Edição Lançamento — turma fundadora",
         courseWorkload: "PT70H",
         startDate: "2026-09-01",

@@ -9,7 +9,7 @@ import { bibliografiaLd, breadcrumbLd, personLd } from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
-  title: "Livros e publicações — Flávio Milhomem",
+  title: "Livros e publicações de Flávio Milhomem",
   description:
     "Bibliografia de Flávio Milhomem: obras de Direito Penal e Processo Penal com ficha verificável em catálogo — ISBN, editora e sinopse de cada título.",
   alternates: { canonical: "/livros" },

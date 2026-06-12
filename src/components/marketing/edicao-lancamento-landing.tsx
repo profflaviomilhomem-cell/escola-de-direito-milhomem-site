@@ -6,6 +6,7 @@ import { YoutubeEmbed } from "@/components/marketing/youtube-embed";
 import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 import { provaDigitalModulosPublicos } from "@/data/curso-prova-digital-publico";
+import { CURSO_PRINCIPAL_SLUG } from "@/data/produtos-escola";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 /**
  * Landing Edição Lançamento — estrutura dos 14 blocos do Livro-Guia 6.5.
@@ -86,7 +87,7 @@ export function EdicaoLancamentoLanding() {
       </section>
 
       <section className="mt-16" aria-labelledby="ementa-title">
-        <h2 id="ementa-title" className="font-serif text-3xl">
+        <h2 id="ementa-title" className="scroll-mt-28 font-serif text-3xl">
           {ed.ementaTitle}
         </h2>
         <ol className="mt-8 space-y-6">
@@ -183,7 +184,7 @@ export function EdicaoLancamentoLanding() {
         </p>
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
         <Link
-          href="/checkout/prova-digital-no-processo-penal"
+          href={`/checkout/${CURSO_PRINCIPAL_SLUG}`}
           className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
         >
           {ed.investimentoCta}

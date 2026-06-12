@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LoginForm } from "@/components/auth/login-form";
 
 export const metadata: Metadata = {
-  title: "Entrar — Escola Flávio Milhomem",
+  title: "Entrar",
   description: "Acesso à área do aluno da Escola Flávio Milhomem.",
   alternates: { canonical: "/entrar" },
   robots: { index: false, follow: false },

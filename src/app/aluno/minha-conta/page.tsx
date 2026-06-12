@@ -8,7 +8,7 @@ import { getSessionFromCookies } from "@/lib/auth/session";
 import { getUserOrders } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
-  title: "Minha conta — Escola Flávio Milhomem",
+  title: "Minha conta",
   robots: { index: false, follow: false },
 };
 

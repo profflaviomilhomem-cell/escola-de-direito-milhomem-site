@@ -7,7 +7,7 @@ import { breadcrumbLd, faqPageLd, organizationLd } from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
-  title: "FAQ institucional — Escola Flávio Milhomem",
+  title: "FAQ institucional",
   description:
     "Perguntas frequentes sobre a Escola Flávio Milhomem: o que é, quem é o professor, regime de magistério, cursos, certificado, reembolso e contato.",
   alternates: { canonical: "/faq" },

@@ -14,7 +14,7 @@ export type TocItem = {
 };
 
 const HEADING_RE = /<h([23])([^>]*)>([\s\S]*?)<\/h\1>/gi;
-const EXISTING_ID_RE = /\bid=["']([^"']+)["']/;
+const EXISTING_ID_RE = /\bid=["']([^"']+)["']/i;
 
 /** Mínimo de seções para o índice valer a pena visualmente. */
 export const TOC_MIN_ITEMS = 3;
@@ -60,14 +60,20 @@ export function anchorHeadingsAndExtractToc(html: string): {
     if (!text) return match;
 
     const existing = String(attrs).match(EXISTING_ID_RE);
-    let id = existing ? existing[1] : slugify(text);
+    const base = existing ? existing[1] : slugify(text);
+    let id = base;
     let suffix = 2;
-    while (used.has(id)) id = `${existing ? existing[1] : slugify(text)}-${suffix++}`;
+    while (used.has(id)) id = `${base}-${suffix++}`;
     used.add(id);
 
     toc.push({ id, text, level: Number(lvl) as 2 | 3 });
 
-    if (existing) return match;
+    if (existing) {
+      // Id duplicado no HTML de origem: reescreve para o id único do índice.
+      if (id === existing[1]) return match;
+      const dedupedAttrs = String(attrs).replace(EXISTING_ID_RE, `id="${id}"`);
+      return `<h${lvl}${dedupedAttrs}>${inner}</h${lvl}>`;
+    }
     return `<h${lvl}${attrs} id="${id}">${inner}</h${lvl}>`;
   });
 

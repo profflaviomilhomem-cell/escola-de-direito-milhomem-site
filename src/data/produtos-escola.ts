@@ -14,9 +14,13 @@ export type ProdutoEscola = {
   externo?: boolean;
 };
 
+/** Slug do curso principal — mesma chave do produto publicado no banco. */
+export const CURSO_PRINCIPAL_SLUG = "prova-digital-no-processo-penal";
+export const CURSO_PRINCIPAL_PATH = `/cursos/${CURSO_PRINCIPAL_SLUG}`;
+
 export const produtosEscola: readonly ProdutoEscola[] = [
   {
-    slug: "prova-digital-no-processo-penal",
+    slug: CURSO_PRINCIPAL_SLUG,
     titulo: "Prova Digital no Processo Penal",
     subtitulo:
       "Para quem atua no processo penal — cohort de 12 semanas com acesso ao professor, na Edição Lançamento",
@@ -24,7 +28,7 @@ export const produtosEscola: readonly ProdutoEscola[] = [
     destaque: true,
     cargaHoraria: "60–80 h",
     ticketLabel: "R$ 297,00 (turma fundadora)",
-    href: "/cursos/prova-digital-no-processo-penal",
+    href: CURSO_PRINCIPAL_PATH,
   },
   {
     slug: "direito-penal-questoes",

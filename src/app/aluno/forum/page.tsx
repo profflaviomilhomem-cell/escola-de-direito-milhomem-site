@@ -4,7 +4,7 @@ import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { primaryCourse } from "@/lib/course/aluno-courses";
 
 export const metadata: Metadata = {
-  title: "Fórum — Escola Flávio Milhomem",
+  title: "Fórum",
   robots: { index: false, follow: false },
 };
 

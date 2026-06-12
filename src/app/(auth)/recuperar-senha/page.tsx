@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ResetPasswordForm } from "@/components/auth/reset-password-form";
 
 export const metadata: Metadata = {
-  title: "Nova senha — Escola Flávio Milhomem",
+  title: "Nova senha",
   robots: { index: false, follow: false },
 };
 

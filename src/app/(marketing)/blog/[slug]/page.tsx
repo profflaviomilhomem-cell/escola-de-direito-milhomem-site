@@ -69,6 +69,9 @@ export default async function BlogArtigoPage({
     : { html: post.body, toc: [] };
   const showToc = toc.length >= TOC_MIN_ITEMS;
   const answerFirst = isQuestionTitle(post.title) && post.excerpt.length > 0;
+  // O layout "vídeo colado no hero" (pb-6/pt-0) só vale quando o vídeo é de
+  // fato o primeiro elemento do corpo — resposta direta e índice vêm antes.
+  const flushLeadVideo = hasLeadVideo && !answerFirst && !showToc;
 
   const canonicalUrl = `${siteConfig.url}/blog/${slug}`;
 
@@ -109,7 +112,7 @@ export default async function BlogArtigoPage({
         <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
 
         <div
-          className={`relative z-10 fm-site-page pt-10 ${hasLeadVideo ? "pb-6" : "pb-20"}`}
+          className={`relative z-10 fm-site-page pt-10 ${flushLeadVideo ? "pb-6" : "pb-20"}`}
         >
           <Link
             href="/blog"
@@ -165,7 +168,7 @@ export default async function BlogArtigoPage({
 
       {/* Corpo do artigo */}
       <article
-        className={`blog-article fm-site-page max-w-prose-wide pb-page ${hasLeadVideo ? "pt-0" : "py-page"}`}
+        className={`blog-article fm-site-page max-w-prose-wide pb-page ${flushLeadVideo ? "pt-0" : "py-page"}`}
       >
         {answerFirst && <BlogAnswerFirst text={post.excerpt} />}
         {showToc && <BlogToc items={toc} />}
