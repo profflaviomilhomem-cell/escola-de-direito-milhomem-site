@@ -110,12 +110,12 @@ flowchart TD
 
 ### 1.2 Checkout (Pagar.me)
 
-- [ ] Página `/checkout/[productSlug]` ou modal na landing
-- [ ] Criar `Order` `PENDING` antes do redirect/API Pagar.me
-- [ ] Integração API Pagar.me (charge/order) com `amountCents` do `Product`
-- [ ] Captura de UTM na criação do pedido (`utmSource`, etc.)
-- [ ] Páginas de retorno: sucesso, pendente (PIX/boleto), recusado
-- [ ] Copy “checkout em implementação” removida das landings
+- [x] Página `/checkout/[productSlug]` ou modal na landing
+- [x] Criar `Order` `PENDING` antes do redirect/API Pagar.me
+- [x] Integração API Pagar.me (charge/order) com `amountCents` do `Product`
+- [x] Captura de UTM na criação do pedido (`utmSource`, etc.)
+- [x] Páginas de retorno: sucesso, pendente (PIX/boleto), recusado
+- [x] Copy “checkout em implementação” removida das landings
 
 **Arquivos-alvo:** nova rota checkout, `lib/payments/pagarme.ts`, `copy.ts`, `edicao-lancamento-landing.tsx`
 
@@ -317,12 +317,12 @@ Depois: Fase 2 em paralelo com início da 3 (upload produção).
 
 | Fase | Itens | Concluídos | % |
 |------|-------|------------|---|
-| 0 | 17 | 13 | 76% |
-| 1 | 18 | 0 | 0% |
+| 0 | 17 | 14 | 82% |
+| 1 | 19 | 19 | 100% |
 | 2 | 11 | 0 | 0% |
-| 3 | 14 | 0 | 0% |
-| 4 | 9 | 0 | 0% |
-| 5 | 8 | 0 | 0% |
+| 3 | 15 | 0 | 0% |
+| 4 | 8 | 0 | 0% |
+| 5 | 7 | 0 | 0% |
 | 6 | 10 | 0 | 0% |
 
 _Atualizar a tabela ao marcar `[x]` nos itens acima._

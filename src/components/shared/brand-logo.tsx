@@ -34,17 +34,18 @@ export function BrandLogo({
   const imageKey = `${brandLogoVersion}-${variant}`;
 
   if (variant === "header") {
+    const horizontal = brandLogoDimensions.horizontal;
     return (
       <span
         className={cn("fm-header-logo-wordmark relative inline-block", className)}
       >
         <Image
           key={imageKey}
-          src={src}
+          src={brandAssets.horizontal}
           alt={ALT}
-          width={width}
-          height={height}
-          sizes="(max-width: 640px) 48vw, 280px"
+          width={horizontal.width}
+          height={horizontal.height}
+          sizes="(max-width: 640px) 56vw, 320px"
           priority={priority}
           unoptimized
           className="fm-header-logo-wordmark__img"
@@ -71,14 +72,15 @@ export function BrandLogo({
   }
 
   if (variant === "horizontal") {
+    const horizontal = brandLogoDimensions.horizontal;
     return (
       <span className={cn("fm-header-logo-wordmark relative inline-block", className)}>
         <Image
           key={imageKey}
-          src={src}
+          src={brandAssets.horizontal}
           alt={ALT}
-          width={width}
-          height={height}
+          width={horizontal.width}
+          height={horizontal.height}
           priority={priority}
           unoptimized
           className="fm-header-logo-wordmark__img"

@@ -913,14 +913,14 @@ html[data-fm-text-step="4"] {
   line-height: 0;
 }
 
-/* Logo no header — monograma PNG transparente; mesmos tamanhos de container */
+/* Logo no header — wordmark horizontal (branco/amarelo) PNG transparente */
 .fm-header-logo-wordmark {
   display: block;
   position: relative;
   overflow: visible;
   height: clamp(3.5rem, 11vw, 4.5rem);
   width: auto;
-  max-width: min(14rem, 52vw);
+  max-width: min(17rem, 60vw);
   line-height: 0;
 }
 
@@ -928,7 +928,7 @@ html[data-fm-text-step="4"] {
   display: block;
   height: 100%;
   width: auto;
-  max-width: min(14rem, 52vw);
+  max-width: min(17rem, 60vw);
   object-fit: contain;
   object-position: left center;
 }

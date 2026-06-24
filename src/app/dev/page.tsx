@@ -59,6 +59,18 @@ export default function DevLauncherPage() {
               <span className="text-paper-600 text-xs">/professor/dashboard</span>
             </Link>
           </li>
+          <li>
+            <Link
+              href="/dev/organograma"
+              className="border-amber/40 hover:bg-amber/10 block rounded-lg border px-5 py-4 transition-colors"
+            >
+              <span className="text-amber fm-mono text-[10px] uppercase tracking-widest">
+                4 · Organograma &amp; Checklist
+              </span>
+              <span className="mt-1 block text-lg">Acompanhamento Visual do Status</span>
+              <span className="text-paper-600 text-xs">/dev/organograma</span>
+            </Link>
+          </li>
         </ul>
 
         <p className="text-paper-600 mt-10 text-xs">
