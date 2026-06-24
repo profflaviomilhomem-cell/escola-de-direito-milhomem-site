@@ -36,6 +36,52 @@ export function BlogEditor({ post }: Props) {
       ? post.publishedAt.slice(0, 10)
       : new Date().toISOString().slice(0, 10),
   );
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const isEdit = Boolean(post);
+
+  async function save(overrideStatus?: BlogStatus) {
+    const nextStatus = overrideStatus ?? status;
+    if (!title.trim() || !slug.trim() || !body.trim()) {
+      setError("Título, slug e corpo são obrigatórios.");
+      return;
+    }
+    setSaving(true);
+    setError(null);
+    const payload = {
+      slug: slug.trim(),
+      title: title.trim(),
+      excerpt,
+      body,
+      category,
+      status: nextStatus,
+      publishedAt,
+      coverImage: post?.coverImage ?? null,
+    };
+    const url = isEdit
+      ? `/api/professor/blog/${encodeURIComponent(post!.slug)}`
+      : "/api/professor/blog";
+    try {
+      const res = await fetch(url, {
+        method: isEdit ? "PATCH" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+      };
+      if (!res.ok) {
+        setError(data.error ?? "Não foi possível salvar.");
+        return;
+      }
+      window.location.href = "/professor/blog";
+    } catch {
+      setError("Falha de rede ao salvar.");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   const bodyHtml = body
     .split(/\n\n+/)
@@ -169,18 +215,27 @@ export function BlogEditor({ post }: Props) {
             Ações
           </h3>
           <div className="space-y-3">
+            {error && (
+              <p className="border-alerta-400/50 text-alerta-400 bg-alerta-400/10 border px-3 py-2 text-[12px] leading-relaxed">
+                {error}
+              </p>
+            )}
             <button
               type="button"
-              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
-              onClick={() =>
-                alert("Salvar em breve — API de persistência no Prisma.")
-              }
+              disabled={saving}
+              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
+              onClick={() => save()}
             >
-              {status === "PUBLISHED" ? "Atualizar publicação" : "Salvar rascunho"}
+              {saving
+                ? "Salvando…"
+                : status === "PUBLISHED"
+                  ? "Atualizar publicação"
+                  : "Salvar rascunho"}
             </button>
             <button
               type="button"
-              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+              disabled={saving}
+              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
               onClick={() => window.history.back()}
             >
               Cancelar
@@ -188,7 +243,9 @@ export function BlogEditor({ post }: Props) {
             {post?.status === "PUBLISHED" && (
               <button
                 type="button"
-                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+                disabled={saving}
+                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
+                onClick={() => save("DRAFT")}
               >
                 Despublicar
               </button>

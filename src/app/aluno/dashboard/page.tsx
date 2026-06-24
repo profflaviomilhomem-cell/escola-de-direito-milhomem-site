@@ -14,7 +14,7 @@ import {
   flattenCourseLessons,
   nextLessonAcrossCourses,
 } from "@/lib/course/aluno-courses";
-import { getEnrolledCourses } from "@/lib/enrollment";
+import { getEnrolledCoursesWithProgress } from "@/lib/enrollment";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -36,7 +36,7 @@ export default async function DashboardPage() {
   if (!userId) redirect("/entrar");
 
   const studentName = session.name ?? session.email ?? "Aluno";
-  const enrolled = await getEnrolledCourses(userId);
+  const enrolled = await getEnrolledCoursesWithProgress(userId);
 
   if (enrolled.length === 0) {
     return (

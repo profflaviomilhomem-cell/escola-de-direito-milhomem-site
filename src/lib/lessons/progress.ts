@@ -98,6 +98,37 @@ export async function upsertLessonProgress(
   return { ok: true as const, progress: row };
 }
 
+/**
+ * Carrega todo o progresso do usuário de uma vez (SSR de dashboard/listagens).
+ * Chave do mapa: `${productSlug}::${lessonSlug}`.
+ */
+export async function getUserProgressMap(
+  userId: string,
+): Promise<Map<string, LessonProgressRow>> {
+  const map = new Map<string, LessonProgressRow>();
+  try {
+    const rows = await prisma.userLessonProgress.findMany({
+      where: { userId },
+      select: {
+        watchedSec: true,
+        completedAt: true,
+        lesson: {
+          select: { slug: true, product: { select: { slug: true } } },
+        },
+      },
+    });
+    for (const r of rows) {
+      map.set(`${r.lesson.product.slug}::${r.lesson.slug}`, {
+        watchedSec: r.watchedSec,
+        completedAt: r.completedAt,
+      });
+    }
+  } catch {
+    // Banco indisponível: mapa vazio mantém o status base do manifest.
+  }
+  return map;
+}
+
 /** Aplica progresso do banco sobre o mock (SSR). */
 export function mergeMockLessonProgress(
   lesson: MockLesson,

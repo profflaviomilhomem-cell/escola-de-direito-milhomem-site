@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { TrackEvent } from "@/components/shared/track-event";
 
 export const metadata: Metadata = {
   title: "Inscrição confirmada — Bastidor da Acusação",
@@ -64,6 +65,13 @@ export default async function ConfirmadoPage({
 
   return (
     <section className="fm-site-page max-w-prose py-page">
+      {status === "ok" && (
+        <TrackEvent
+          event="lead_confirm"
+          once="lead_confirm:newsletter"
+          props={{ source: "newsletter" }}
+        />
+      )}
       <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
         {copy.eyebrow}
       </p>

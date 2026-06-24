@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { userHasAccess } from "@/lib/enrollment";
 import {
   getLessonProgress,
   upsertLessonProgress,
@@ -77,6 +78,15 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json(
       { ok: false, errors: z.flattenError(parsed.error) },
       { status: 422 },
+    );
+  }
+
+  // Gate de acesso: só grava progresso de quem realmente tem o curso.
+  const hasAccess = await userHasAccess(session.sub, parsed.data.productSlug);
+  if (!hasAccess) {
+    return NextResponse.json(
+      { ok: false, error: "Você não tem acesso a este curso." },
+      { status: 403 },
     );
   }
 

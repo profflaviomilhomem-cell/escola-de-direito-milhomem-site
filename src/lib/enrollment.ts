@@ -9,6 +9,10 @@ import {
   enrolledCourses,
   findCourseBySlug,
 } from "@/lib/course/aluno-courses";
+import {
+  getUserProgressMap,
+  mergeMockLessonProgress,
+} from "@/lib/lessons/progress";
 import { prisma } from "@/lib/prisma";
 
 function isDevFakeSession(userId: string) {
@@ -116,6 +120,33 @@ export async function getEnrolledCourses(userId: string) {
     .filter((c): c is NonNullable<typeof c> => c != null);
 
   return courses;
+}
+
+/**
+ * Cursos matriculados com o progresso real do aluno (UserLessonProgress)
+ * aplicado sobre cada aula. Recalcula `completedLessonCount` a partir do DB.
+ * Em sessão dev fake, mantém o estado de demonstração do manifest.
+ */
+export async function getEnrolledCoursesWithProgress(userId: string) {
+  const courses = await getEnrolledCourses(userId);
+  if (courses.length === 0 || isDevFakeSession(userId)) return courses;
+
+  const map = await getUserProgressMap(userId);
+  if (map.size === 0) return courses;
+
+  return courses.map((course) => {
+    let completedLessonCount = 0;
+    const modules = course.modules.map((mod) => ({
+      ...mod,
+      lessons: mod.lessons.map((lesson) => {
+        const row = map.get(`${course.slug}::${lesson.slug}`) ?? null;
+        const merged = mergeMockLessonProgress(lesson, row);
+        if (merged.status === "concluida") completedLessonCount += 1;
+        return merged;
+      }),
+    }));
+    return { ...course, modules, completedLessonCount };
+  });
 }
 
 export async function getUserOrders(userId: string) {

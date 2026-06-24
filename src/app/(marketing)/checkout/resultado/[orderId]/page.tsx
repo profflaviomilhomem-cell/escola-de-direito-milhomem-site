@@ -6,6 +6,7 @@ import type { CheckoutPaymentPayload } from "@/lib/pagarme/map-status";
 import { getSubscriptionForUser } from "@/lib/pagarme/subscription-sync";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { getOrderForUser } from "@/lib/orders/create-checkout";
+import { TrackEvent } from "@/components/shared/track-event";
 
 type Props = {
   params: Promise<{ orderId: string }>;
@@ -107,6 +108,16 @@ export default async function CheckoutResultadoPage({
           </>
         ) : (
           <>
+            <TrackEvent
+              event="purchase_completed"
+              once={`subscription:${subscription.id}`}
+              props={{
+                subscription_id: subscription.id,
+                product_slug: subscription.product.slug,
+                kind: "subscription",
+                currency: "BRL",
+              }}
+            />
             <h1 className="text-paper mt-3 font-serif text-3xl">
               Assinatura registrada
             </h1>
@@ -143,6 +154,17 @@ export default async function CheckoutResultadoPage({
 
       {isSuccess ? (
         <>
+          <TrackEvent
+            event="purchase_completed"
+            once={`purchase:${order.id}`}
+            props={{
+              order_id: order.id,
+              product_slug: order.product.slug,
+              value: order.amountCents / 100,
+              currency: "BRL",
+              payment_method: order.paymentMethod,
+            }}
+          />
           <h1 className="text-paper mt-3 font-serif text-3xl">
             Pagamento confirmado
           </h1>
