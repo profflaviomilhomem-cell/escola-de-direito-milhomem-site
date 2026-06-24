@@ -17,6 +17,8 @@ export type CourseLesson = {
   keyPoints: string[];
   materials: { title: string; pages: number; sizeKb: number }[];
   videoSrc?: string;
+  /** Cloudflare Stream UID (preferido sobre videoSrc quando presente). */
+  videoId?: string;
   posterSrc?: string;
   slidesSrc?: string;
 };

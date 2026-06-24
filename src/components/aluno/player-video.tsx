@@ -21,10 +21,82 @@ type Props = {
  * fallback para UI mock com gradiente.
  */
 export function PlayerVideo({ lesson, course = primaryCourse }: Props) {
+  if (lesson.videoId) {
+    return <PlayerVideoStream lesson={lesson} course={course} />;
+  }
   if (lesson.videoSrc) {
     return <PlayerVideoNative lesson={lesson} course={course} />;
   }
   return <PlayerVideoMockFallback lesson={lesson} course={course} />;
+}
+
+/** Player Cloudflare Stream — embed por `videoId` (Stream UID). */
+function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
+  const [markedComplete, setMarkedComplete] = useState(
+    lesson.status === "concluida",
+  );
+  const completedTracked = useRef(lesson.status === "concluida");
+  const startedTracked = useRef(lesson.status === "concluida");
+
+  const lessonProps = {
+    lesson_slug: lesson.slug,
+    lesson_id: lesson.id,
+    course_slug: course.slug,
+    module_title: lesson.moduleTitle,
+    player: "cloudflare-stream" as const,
+  };
+
+  const handleMarkComplete = () => {
+    if (completedTracked.current) return;
+    completedTracked.current = true;
+    setMarkedComplete(true);
+    track("lesson_completed", {
+      ...lessonProps,
+      completion_source: "manual",
+    });
+    void patchLessonProgress({
+      productSlug: course.slug,
+      lessonSlug: lesson.slug,
+      watchedSec: lesson.durationSec,
+      completed: true,
+    });
+  };
+
+  const domain =
+    process.env.NEXT_PUBLIC_CLOUDFLARE_STREAM_DOMAIN ??
+    "iframe.cloudflarestream.com";
+  const src = `https://${domain}/${lesson.videoId}`;
+
+  return (
+    <div
+      data-fm-media-surface
+      className="border-paper-100 bg-carbon relative aspect-video w-full overflow-hidden border"
+    >
+      <iframe
+        src={src}
+        title={lesson.title}
+        className="h-full w-full"
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        allowFullScreen
+        onLoad={() => {
+          if (startedTracked.current) return;
+          startedTracked.current = true;
+          track("lesson_started", lessonProps);
+        }}
+      />
+      {!markedComplete && (
+        <div className="absolute bottom-3 right-3 left-3 sm:left-auto">
+          <button
+            type="button"
+            onClick={handleMarkComplete}
+            className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors sm:w-auto"
+          >
+            Marcar aula como concluída
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {

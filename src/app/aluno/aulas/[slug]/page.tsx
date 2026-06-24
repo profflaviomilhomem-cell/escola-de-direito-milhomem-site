@@ -14,6 +14,7 @@ import {
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { userHasAccess } from "@/lib/enrollment";
 import { listLessonComments, type ForumCommentNode } from "@/lib/forum/comments";
+import { getLessonVideoId } from "@/lib/lessons/media";
 import {
   getLessonProgress,
   mergeMockLessonProgress,
@@ -61,6 +62,9 @@ export default async function AulaPage({ params }: { params: Params }) {
     } catch {
       /* mock puro se o banco não estiver acessível */
     }
+    // Ponte do vídeo real (Cloudflare Stream) cadastrado pelo professor.
+    const videoId = await getLessonVideoId(course.slug, lesson.slug);
+    if (videoId) lesson = { ...lesson, videoId };
   }
 
   let initialComments: ForumCommentNode[] = [];
