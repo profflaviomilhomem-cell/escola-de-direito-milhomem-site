@@ -30,6 +30,7 @@ model User {
   utmEvents         UTMEvent[]
   posts             BlogPost[]
   lessonProgress    UserLessonProgress[]
+  certificates      Certificate[]
 
   @@index([email])
 }
@@ -62,6 +63,7 @@ model Product {
   orders        Order[]
   subscriptions Subscription[]
   lessons       Lesson[]
+  certificates  Certificate[]
 
   @@index([slug])
   @@index([publishStatus])
@@ -329,4 +331,22 @@ enum BlogCategory {
   DOGMATICA
   COMENTARIO
   GERAL
+}
+
+// ============================================================
+// CERTIFICADOS
+// ============================================================
+
+model Certificate {
+  id        String   @id @default(cuid())
+  hash      String   @unique // código público de validação (/certificado/[hash])
+  userId    String
+  productId String
+  issuedAt  DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([hash])
 }

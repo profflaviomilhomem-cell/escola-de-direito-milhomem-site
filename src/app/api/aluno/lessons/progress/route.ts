@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { issueCertificateIfEligible } from "@/lib/certificates";
 import { userHasAccess } from "@/lib/enrollment";
 import {
   getLessonProgress,
@@ -102,6 +103,11 @@ export async function PATCH(req: NextRequest) {
         },
         { status: 404 },
       );
+    }
+
+    // Ao concluir uma aula, tenta emitir o certificado se a trilha acabou.
+    if (result.progress.completedAt) {
+      void issueCertificateIfEligible(session.sub, parsed.data.productSlug);
     }
 
     return NextResponse.json({

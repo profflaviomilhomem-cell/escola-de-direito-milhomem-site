@@ -4,19 +4,37 @@ import { redirect } from "next/navigation";
 
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { getSessionFromCookies } from "@/lib/auth/session";
-import { getEnrolledCourses } from "@/lib/enrollment";
+import {
+  getUserCertificates,
+  issueCertificateIfEligible,
+} from "@/lib/certificates";
+import { getEnrolledCoursesWithProgress } from "@/lib/enrollment";
 
 export const metadata: Metadata = {
   title: "Certificados",
   robots: { index: false, follow: false },
 };
 
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
 export default async function CertificadosPage() {
   const session = await getSessionFromCookies();
   const userId = session?.sub;
   if (!userId) redirect("/entrar");
 
-  const enrolled = await getEnrolledCourses(userId);
+  const enrolled = await getEnrolledCoursesWithProgress(userId);
+
+  // Materializa certificados de quem já concluiu (idempotente, best-effort).
+  await Promise.all(
+    enrolled.map((c) => issueCertificateIfEligible(userId, c.slug)),
+  );
+  const certificates = await getUserCertificates(userId);
 
   if (enrolled.length === 0) {
     return (
@@ -54,14 +72,44 @@ export default async function CertificadosPage() {
         {enrolled.length === 1
           ? "1 curso matriculado"
           : `${enrolled.length} cursos matriculados`}
-        . Os certificados emitidos aparecerão aqui após a conclusão da trilha
-        exigida em cada programa.
+        . O certificado é emitido automaticamente ao concluir 100% da trilha.
       </p>
+
       <div className="mt-12">
-        <AreaEmptyState
-          title="Nenhum certificado emitido"
-          description="Conclua a carga horária e os requisitos do curso para solicitar o certificado da Escola."
-        />
+        {certificates.length === 0 ? (
+          <AreaEmptyState
+            title="Nenhum certificado emitido"
+            description="Conclua todas as aulas do curso para receber o certificado da Escola, com código de validação pública."
+          />
+        ) : (
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {certificates.map((c) => (
+              <li
+                key={c.hash}
+                className="border-paper-100 bg-carbon-elevated border p-6"
+              >
+                <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+                  Certificado de conclusão
+                </p>
+                <h2 className="text-paper mt-3 font-serif text-xl leading-tight">
+                  {c.productName}
+                </h2>
+                <p className="text-paper-700 mt-2 text-sm">
+                  Emitido em {formatDate(c.issuedAt)}
+                </p>
+                <p className="text-paper-600 mt-1 font-mono text-xs break-all">
+                  Código: {c.hash}
+                </p>
+                <Link
+                  href={`/certificado/${c.hash}`}
+                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono mt-5 inline-block border px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors"
+                >
+                  Ver / validar
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );
