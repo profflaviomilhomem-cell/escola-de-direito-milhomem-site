@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { signConfirmToken } from "@/lib/auth/confirm-token";
+import { recordUtmEvent } from "@/lib/analytics/utm-event";
 import { prisma } from "@/lib/prisma";
 import { sendEmail } from "@/lib/resend/client";
 import { renderConfirmNewsletterEmail } from "@/lib/resend/templates/confirm-newsletter";
@@ -111,6 +112,16 @@ export async function POST(req: NextRequest) {
       );
     }
   }
+
+  // Funil por campanha: registra o evento de conversão (best-effort).
+  void recordUtmEvent({
+    destination: `/api/leads:${data.source ?? "newsletter"}`,
+    utmSource: data.utmSource,
+    utmMedium: data.utmMedium,
+    utmCampaign: data.utmCampaign,
+    ip,
+    userAgent: req.headers.get("user-agent"),
+  });
 
   // Duplo opt-in — disparado em paralelo, sem bloquear a resposta da API.
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(req.url).origin;

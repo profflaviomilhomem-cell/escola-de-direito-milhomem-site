@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { AreaEmptyState } from "@/components/shared/area-empty-state";
+import { ModerationQueue } from "@/components/professor/moderation-queue";
+import { getModerationQueue } from "@/lib/forum/comments";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
@@ -8,7 +9,9 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ProfessorForumPage() {
+export default async function ProfessorForumPage() {
+  const items = await getModerationQueue();
+
   return (
     <section className="fm-site-page py-12">
       <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
@@ -20,11 +23,12 @@ export default function ProfessorForumPage() {
       >
         Fórum <em className="text-amber italic">do cohort</em>
       </h1>
-      <div className="mt-12">
-        <AreaEmptyState
-          title="Nenhuma pergunta pendente"
-          description="As discussões dos alunos aparecerão aqui quando o fórum estiver conectado ao banco de dados."
-        />
+      <p className="text-paper-700 mt-4 max-w-2xl leading-relaxed">
+        Comentários mais recentes de todas as aulas. Rejeitar oculta o
+        comentário do fórum do aluno; aprovar o reexibe.
+      </p>
+      <div className="mt-10">
+        <ModerationQueue items={items} />
       </div>
     </section>
   );

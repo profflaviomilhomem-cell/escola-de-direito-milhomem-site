@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
+import { LessonComments } from "@/components/aluno/lesson-comments";
 import { LessonTabs } from "@/components/aluno/lesson-tabs";
 import { PlayerVideo } from "@/components/aluno/player-video";
 import { formatDuration } from "@/lib/course/format";
@@ -12,6 +13,7 @@ import {
 } from "@/lib/course/aluno-courses";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { userHasAccess } from "@/lib/enrollment";
+import { listLessonComments, type ForumCommentNode } from "@/lib/forum/comments";
 import {
   getLessonProgress,
   mergeMockLessonProgress,
@@ -59,6 +61,17 @@ export default async function AulaPage({ params }: { params: Params }) {
     } catch {
       /* mock puro se o banco não estiver acessível */
     }
+  }
+
+  let initialComments: ForumCommentNode[] = [];
+  try {
+    initialComments = await listLessonComments(
+      course.slug,
+      lesson.slug,
+      session.sub,
+    );
+  } catch {
+    /* banco indisponível: fórum carrega vazio e recarrega no client */
   }
 
   const flat: CourseLesson[] = course.modules.flatMap((m) => m.lessons);
@@ -198,10 +211,11 @@ export default async function AulaPage({ params }: { params: Params }) {
                   id: "forum",
                   label: "Fórum desta aula",
                   content: (
-                    <p className="text-paper-600 italic">
-                      O fórum por aula será habilitado em breve. Enquanto isso,
-                      use a página geral do fórum quando estiver disponível.
-                    </p>
+                    <LessonComments
+                      productSlug={course.slug}
+                      lessonSlug={lesson.slug}
+                      initialComments={initialComments}
+                    />
                   ),
                 },
               ]}
