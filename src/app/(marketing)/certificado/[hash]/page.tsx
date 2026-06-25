@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { CertificateDiploma } from "@/components/certificate/certificate-diploma";
+import { CertificatePrintButton } from "@/components/certificate/certificate-print-button";
+import { siteConfig } from "@/config/site";
 import { getCertificateByHash } from "@/lib/certificates";
 
 type Props = { params: Promise<{ hash: string }> };
@@ -49,31 +52,44 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
     );
   }
 
+  const validateUrl = `${siteConfig.url.replace(/^https?:\/\//, "")}/certificado/${certificate.hash}`;
+
   return (
-    <article className="fm-site-page max-w-prose py-page text-center">
-      <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
-        Escola Flávio Milhomem · Certificado autêntico
-      </p>
-      <h1 className="mt-4 font-serif text-3xl">Certificado validado</h1>
-      <p className="text-paper-700 mt-8 leading-relaxed">
-        Certificamos que
-      </p>
-      <p className="text-paper mt-2 font-serif text-2xl">
-        {certificate.userName}
-      </p>
-      <p className="text-paper-700 mt-2 leading-relaxed">
-        concluiu o curso
-      </p>
-      <p className="text-amber mt-2 font-serif text-xl">
-        {certificate.productName}
-      </p>
-      <p className="text-paper-700 mt-6 text-sm">
-        Emitido em {formatDate(certificate.issuedAt)}
-      </p>
-      <p className="text-paper-500 mt-2 font-mono text-xs break-all">
-        Código de validação: {certificate.hash}
-      </p>
-      <p className="text-paper-600 mt-10 text-sm">
+    <section className="fm-cert-page fm-site-page py-12">
+      <div
+        data-fm-print-hide
+        className="mx-auto flex max-w-[1040px] flex-wrap items-end justify-between gap-4"
+      >
+        <div>
+          <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+            Certificado autêntico
+          </p>
+          <h1 className="text-paper mt-2 font-serif text-2xl md:text-3xl">
+            Certificado validado
+          </h1>
+          <p className="text-paper-700 mt-2 max-w-prose text-sm leading-relaxed">
+            Documento verificado no banco de dados da Escola pelo código de
+            validação abaixo.
+          </p>
+        </div>
+        <CertificatePrintButton />
+      </div>
+
+      <div className="fm-cert-stage mt-8">
+        <CertificateDiploma
+          userName={certificate.userName}
+          productName={certificate.productName}
+          issuedAtLabel={formatDate(certificate.issuedAt)}
+          hash={certificate.hash}
+          validateUrl={validateUrl}
+          professorName={siteConfig.professor.fullName}
+        />
+      </div>
+
+      <p
+        data-fm-print-hide
+        className="text-paper-600 mt-10 text-center text-sm"
+      >
         <Link
           href="/cursos"
           className="text-amber underline-offset-2 hover:underline"
@@ -81,6 +97,6 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
           Conhecer os cursos da Escola →
         </Link>
       </p>
-    </article>
+    </section>
   );
 }

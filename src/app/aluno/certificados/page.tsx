@@ -104,7 +104,7 @@ export default async function CertificadosPage() {
                   href={`/certificado/${c.hash}`}
                   className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono mt-5 inline-block border px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors"
                 >
-                  Ver / validar
+                  Ver / baixar
                 </Link>
               </li>
             ))}
