@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import QRCode from "qrcode";
 
 import { CertificateDiploma } from "@/components/certificate/certificate-diploma";
 import { CertificatePrintButton } from "@/components/certificate/certificate-print-button";
@@ -52,7 +53,15 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
     );
   }
 
-  const validateUrl = `${siteConfig.url.replace(/^https?:\/\//, "")}/certificado/${certificate.hash}`;
+  const absoluteUrl = `${siteConfig.url}/certificado/${certificate.hash}`;
+  const validateUrl = absoluteUrl.replace(/^https?:\/\//, "");
+  // QR aponta para a URL absoluta de validação. Tinta navy, fundo
+  // transparente (a quiet-zone fica por conta do papel do diploma).
+  const qrSvg = await QRCode.toString(absoluteUrl, {
+    type: "svg",
+    margin: 1,
+    color: { dark: "#0a0a23ff", light: "#00000000" },
+  });
 
   return (
     <section className="fm-cert-page fm-site-page py-12">
@@ -83,6 +92,7 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
           hash={certificate.hash}
           validateUrl={validateUrl}
           professorName={siteConfig.professor.fullName}
+          qrSvg={qrSvg}
         />
       </div>
 

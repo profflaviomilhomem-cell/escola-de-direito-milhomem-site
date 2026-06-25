@@ -22,6 +22,8 @@ type CertificateDiplomaProps = {
   validateUrl: string;
   /** Assinante institucional (professor/direção). */
   professorName: string;
+  /** SVG (markup) do QR code da URL de validação. Opcional. */
+  qrSvg?: string;
 };
 
 export function CertificateDiploma({
@@ -31,6 +33,7 @@ export function CertificateDiploma({
   hash,
   validateUrl,
   professorName,
+  qrSvg,
 }: CertificateDiplomaProps) {
   return (
     <div
@@ -67,9 +70,19 @@ export function CertificateDiploma({
               </span>
             </div>
             <div className="fm-cert__valid">
-              <span className="fm-cert__valid-label">Validação pública</span>
-              <span className="fm-cert__valid-code">{hash}</span>
-              <span className="fm-cert__valid-url">{validateUrl}</span>
+              {qrSvg ? (
+                <span
+                  className="fm-cert__qr"
+                  aria-hidden="true"
+                  // SVG gerado no servidor a partir da URL de validação.
+                  dangerouslySetInnerHTML={{ __html: qrSvg }}
+                />
+              ) : null}
+              <span className="fm-cert__valid-text">
+                <span className="fm-cert__valid-label">Validação pública</span>
+                <span className="fm-cert__valid-code">{hash}</span>
+                <span className="fm-cert__valid-url">{validateUrl}</span>
+              </span>
             </div>
           </div>
         </div>

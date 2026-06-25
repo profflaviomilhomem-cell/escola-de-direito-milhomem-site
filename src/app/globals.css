@@ -2881,7 +2881,7 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 }
 
 .fm-cert__logo {
-  width: 18cqw;
+  width: 16cqw;
   height: auto;
   margin-bottom: 0.6cqw;
 }
@@ -2979,10 +2979,30 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 
 .fm-cert__valid {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.4cqw;
+  max-width: 42cqw;
+}
+
+.fm-cert__qr {
+  display: block;
+  flex-shrink: 0;
+  width: 9cqw;
+  height: 9cqw;
+}
+
+.fm-cert__qr svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fm-cert__valid-text {
+  display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  max-width: 38cqw;
 }
 
 .fm-cert__valid-label {
