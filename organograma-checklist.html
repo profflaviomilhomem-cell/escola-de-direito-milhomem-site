@@ -1712,14 +1712,14 @@
     "sub": "#3 Auditoria técnica",
     "theme": "var(--color-2)",
     "ref": "Cap 2.3.1",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 20,
     "dependsOn": [
       "mkt-auditoria-stack-wordpress"
     ],
     "desc": "Next.js 16 + Cache Components + Tailwind 4 + shadcn/ui + WeasyPrint como diferencial real.",
-    "rich": "[status?] Site já em Next.js no repo — implementação em andamento, validar cobertura completa da stack prescrita.",
+    "rich": "[status?] Site já em Next.js no repo — implementação em andamento, validar cobertura completa da stack prescrita. [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. Next 16 App Router + Prisma/Neon em produção.]",
     "code": ""
   },
   {
@@ -1729,14 +1729,14 @@
     "sub": "#3 Auditoria técnica",
     "theme": "var(--color-2)",
     "ref": "Cap 2.3.1",
-    "status": "ROADMAP",
+    "status": "EM PROGRESSO",
     "phase": 1,
     "order": 21,
     "dependsOn": [
       "mkt-auditoria-tracking-raro"
     ],
     "desc": "GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + UTM Builder + GTM único; SS-GTM no mês 3-6.",
-    "rich": "[status?] Não confirmado em produção; operacionalização pendente.",
+    "rich": "[status?] Não confirmado em produção; operacionalização pendente. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. eventos PostHog/GTM no código, gated por chave.]",
     "code": ""
   },
   {
@@ -1746,12 +1746,12 @@
     "sub": "#3 Auditoria técnica",
     "theme": "var(--color-2)",
     "ref": "Cap 2.3.1",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 22,
     "dependsOn": [],
     "desc": "Person (sameAs MPDFT/LinkedIn/Scholar/Amazon), Course, Organization, VideoObject, FAQPage, Credential.",
-    "rich": "[status?] Verificar implementação real do schema no site.",
+    "rich": "[status?] Verificar implementação real do schema no site. [Reconciliado 25/06 vs código: ROADMAP→CONCLUÍDO. JSON-LD central em lib/seo/jsonld.ts em produção.]",
     "code": ""
   },
   {
@@ -1761,14 +1761,14 @@
     "sub": "#3 Auditoria técnica",
     "theme": "var(--color-2)",
     "ref": "Cap 2.3.1",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 2,
     "order": 23,
     "dependsOn": [
       "mkt-auditoria-marketplaces"
     ],
     "desc": "Pagar.me como checkout próprio; Eduzz como ponte transitória 3-6 meses, depois encerramento.",
-    "rich": "Risco 1 do Cap 8: integração Pagar.me é primeira da equipe.",
+    "rich": "Risco 1 do Cap 8: integração Pagar.me é primeira da equipe. [Reconciliado 25/06 vs código: ROADMAP→CONCLUÍDO. checkout próprio Pagar.me implementado.]",
     "code": ""
   },
   {
@@ -1793,12 +1793,12 @@
     "sub": "#3 Auditoria técnica",
     "theme": "var(--color-2)",
     "ref": "Cap 2.3.1",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 25,
     "dependsOn": [],
     "desc": "Registro tripartite: escolaflaviomilhomem, flaviomilhomem, escoladopromotor .com.br; canonical único.",
-    "rich": "[status?] Commit recente fixou canônico em professorflaviomilhomem.com.br — divergente do prescrito; validar decisão final de domínio.",
+    "rich": "[status?] Commit recente fixou canônico em professorflaviomilhomem.com.br — divergente do prescrito; validar decisão final de domínio. [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. canonical professorflaviomilhomem.com.br (commit a1bcbd7).]",
     "code": ""
   },
   {
@@ -2372,12 +2372,12 @@
     "sub": "#12 SEO nacional",
     "theme": "var(--color-2)",
     "ref": "Cap 7.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 61,
     "dependsOn": [],
     "desc": "SSR+ISR, CWV (LCP<2s, CLS<0.1, INP<200ms), sitemap dinâmico, robots, breadcrumbs+schema, Article/Person/FAQPage.",
-    "rich": "[status?] Next.js já entrega SSR/ISR; validar sitemap, robots, breadcrumbs e schema por página. pt-BR no 1º ano.",
+    "rich": "[status?] Next.js já entrega SSR/ISR; validar sitemap, robots, breadcrumbs e schema por página. pt-BR no 1º ano. [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. sitemap dinâmico + JSON-LD + metadata (P0/P1 em produção); CWV instrumentado.]",
     "code": ""
   },
   {
@@ -3569,14 +3569,14 @@
     "sub": "#4 LMS",
     "theme": "var(--color-3)",
     "ref": "Cap 4.3 / Fase 2.2",
-    "status": "ROADMAP",
+    "status": "EM PROGRESSO",
     "phase": 2,
     "order": 7,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "PlayerVideo custom sobre Cloudflare Stream: legenda, velocidade, voltar 15s, progresso.",
-    "rich": "GAP: videoSrc/videoId (Stream) ainda não resolvido a partir de Lesson; integração Stream/R2 pendente. ROADMAP.",
+    "rich": "GAP: videoSrc/videoId (Stream) ainda não resolvido a partir de Lesson; integração Stream/R2 pendente. ROADMAP. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. ponte getLessonVideoId (Cloudflare) + player gated existem; mock ainda default.]",
     "code": "Cloudflare Stream + R2 (URL assinada)"
   },
   {
@@ -3603,14 +3603,14 @@
     "sub": "#5 Painel professor",
     "theme": "var(--color-3)",
     "ref": "Fase 3.1",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 2,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "Vercel Blob/S3 para capa/banner/aula; habilitar POST upload em produção, validar MIME/tamanho.",
-    "rich": "GAP/PENDENTE: rota api/professor/upload existe mas bloqueada (403) em produção; falta BLOB_READ_WRITE_TOKEN (Fase 3.1 = 0%).",
+    "rich": "GAP/PENDENTE: rota api/professor/upload existe mas bloqueada (403) em produção; falta BLOB_READ_WRITE_TOKEN (Fase 3.1 = 0%). [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. código pronto (Vercel Blob, auth, MIME) — gated por BLOB_READ_WRITE_TOKEN.]",
     "code": "api/professor/upload · BLOB_READ_WRITE_TOKEN"
   },
   {
@@ -3620,14 +3620,14 @@
     "sub": "#5 Painel professor",
     "theme": "var(--color-3)",
     "ref": "Fase 3.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 3,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "API products/[slug]/lessons (GET/POST/PATCH/DELETE), UI em editar (aba Módulos/Aulas), reordenar, publicar.",
-    "rich": "Rotas /professor/cursos/[slug]/editar e api/professor/products existem como scaffold. GAP: CRUD de Lesson completo (Fase 3.2 = 0%).",
+    "rich": "Rotas /professor/cursos/[slug]/editar e api/professor/products existem como scaffold. GAP: CRUD de Lesson completo (Fase 3.2 = 0%). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. API lessons GET/POST/PATCH/DELETE + LessonManager + reordenar/publicar.]",
     "code": "src/app/professor/cursos/[slug]/editar · api/professor/products/[slug]"
   },
   {
@@ -3637,14 +3637,14 @@
     "sub": "#5 Painel professor",
     "theme": "var(--color-3)",
     "ref": "Fase 3.3",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 4,
     "dependsOn": [
       "prod-arquitetura-3-camadas"
     ],
     "desc": "POST/PATCH blog persistindo BlogPost; status DRAFT/PUBLISHED/SCHEDULED; remover alert do editor.",
-    "rich": "Model BlogPost + rotas /professor/blog/{novo,[slug]/editar} + /blog público + feed.xml existem. GAP: persistência real do editor (Fase 3.3 = 0%, ainda com alert).",
+    "rich": "Model BlogPost + rotas /professor/blog/{novo,[slug]/editar} + /blog público + feed.xml existem. GAP: persistência real do editor (Fase 3.3 = 0%, ainda com alert). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. createBlogPost/updateBlogPost + editor (alert removido, DRAFT/PUBLISHED/SCHEDULED).]",
     "code": "model BlogPost · src/app/professor/blog/* · (marketing)/blog/feed.xml"
   },
   {
@@ -3671,14 +3671,14 @@
     "sub": "#6 Comunidade",
     "theme": "var(--color-3)",
     "ref": "Cap 4.4 / Fase 4.1",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 6,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "GET/POST comments por aula, threads (parentId), moderação PENDING→APPROVED, feed agregado.",
-    "rich": "Model Comment existe (id, userId, lessonId, parentId, moderationStatus). GAP/PENDENTE: endpoints de comentários/moderação não implementados (Fase 4.1 = 0%).",
+    "rich": "Model Comment existe (id, userId, lessonId, parentId, moderationStatus). GAP/PENDENTE: endpoints de comentários/moderação não implementados (Fase 4.1 = 0%). [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. /api/forum/comments + threads + moderação.]",
     "code": "model Comment (parentId, moderationStatus)"
   },
   {
@@ -3688,14 +3688,14 @@
     "sub": "#6 Comunidade",
     "theme": "var(--color-3)",
     "ref": "Fase 4.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 7,
     "dependsOn": [
       "prod-forum-api"
     ],
     "desc": "Substituir empty state de /aluno/forum por feed real; aba Comunidade na aula; CommentTree.",
-    "rich": "Rota /aluno/forum existe como empty state; componente comment-tree previsto. GAP: dados reais (Fase 4.2 = 0%).",
+    "rich": "Rota /aluno/forum existe como empty state; componente comment-tree previsto. GAP: dados reais (Fase 4.2 = 0%). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. /aluno/forum feed real + aba na aula.]",
     "code": "src/app/aluno/forum · comment-tree.tsx"
   },
   {
@@ -3705,14 +3705,14 @@
     "sub": "#6 Comunidade",
     "theme": "var(--color-3)",
     "ref": "Fase 4.3",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 8,
     "dependsOn": [
       "prod-forum-api"
     ],
     "desc": "/professor/forum como fila de moderação (aprovar/rejeitar comentário).",
-    "rich": "Rota /professor/forum existe como scaffold. GAP/PENDENTE: fila de moderação (Fase 4.3 = 0%).",
+    "rich": "Rota /professor/forum existe como scaffold. GAP/PENDENTE: fila de moderação (Fase 4.3 = 0%). [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. /professor/forum fila de moderação.]",
     "code": "src/app/professor/forum"
   },
   {
@@ -3722,14 +3722,14 @@
     "sub": "#7 Certificados",
     "theme": "var(--color-3)",
     "ref": "Fase 5.1",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 9,
     "dependsOn": [
       "prod-progresso"
     ],
     "desc": "Model Certificate (hash, issuedAt, userId, productId); regra de elegibilidade (100% aulas).",
-    "rich": "GAP/PENDENTE: o schema atual tem 13 models e NENHUM Certificate; precisa ser criado (Fase 5.1 = 0%).",
+    "rich": "GAP/PENDENTE: o schema atual tem 13 models e NENHUM Certificate; precisa ser criado (Fase 5.1 = 0%). [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. model Certificate + migração aplicada (neondb).]",
     "code": "// model Certificate { hash, issuedAt, userId, productId } — A CRIAR"
   },
   {
@@ -3739,14 +3739,14 @@
     "sub": "#7 Certificados",
     "theme": "var(--color-3)",
     "ref": "Fase 5.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 10,
     "dependsOn": [
       "prod-certificado-modelo"
     ],
     "desc": "Trigger ao concluir última aula; página imprimível; /aluno/certificados lista do usuário.",
-    "rich": "Rota /aluno/certificados existe como scaffold. GAP: emissão real depende do model Certificate (Fase 5.2 = 0%).",
+    "rich": "Rota /aluno/certificados existe como scaffold. GAP: emissão real depende do model Certificate (Fase 5.2 = 0%). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. issueCertificateIfEligible + /aluno/certificados.]",
     "code": "src/app/aluno/certificados"
   },
   {
@@ -3756,14 +3756,14 @@
     "sub": "#7 Certificados",
     "theme": "var(--color-3)",
     "ref": "Fase 5.3",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 11,
     "dependsOn": [
       "prod-certificado-modelo"
     ],
     "desc": "/certificado/[hash] consulta DB e exibe nome, curso, data; trata inválido/expirado.",
-    "rich": "Rota pública /certificado/[hash] existe como scaffold. GAP: consulta real ao DB (Fase 5.3 = 0%).",
+    "rich": "Rota pública /certificado/[hash] existe como scaffold. GAP: consulta real ao DB (Fase 5.3 = 0%). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. /certificado/[hash] + diploma + QR code.]",
     "code": "src/app/(marketing)/certificado/[hash]"
   },
   {
@@ -3806,14 +3806,14 @@
     "sub": "#1 Design System",
     "theme": "var(--color-3)",
     "ref": "Cap 5.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 2,
     "dependsOn": [
       "infra-design-system"
     ],
     "desc": "primary #0F2A44 (azul-tinta), accent #B08A3E (dourado fosco), neutros quentes, estados sóbrios.",
-    "rich": "Paleta definida no livro e refletida na marca. GAP: confirmar calibração final dos tokens em globals.css/brand.ts.",
+    "rich": "Paleta definida no livro e refletida na marca. GAP: confirmar calibração final dos tokens em globals.css/brand.ts. [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. paleta navy/dourado/paper em @theme (globals.css).]",
     "code": "primary #0F2A44 · accent #B08A3E"
   },
   {
@@ -3856,14 +3856,14 @@
     "sub": "#2 Componentes",
     "theme": "var(--color-3)",
     "ref": "Cap 5.5",
-    "status": "ROADMAP",
+    "status": "EM PROGRESSO",
     "phase": 2,
     "order": 5,
     "dependsOn": [
       "infra-componentes-shadcn"
     ],
     "desc": "PlayerVideo, CommentTree, LeadForm, Pricing, Testimonial — componentes próprios.",
-    "rich": "GAP: Player e CommentTree dependem de LMS/fórum (ROADMAP); LeadForm/Pricing parcialmente presentes nas landings."
+    "rich": "GAP: Player e CommentTree dependem de LMS/fórum (ROADMAP); LeadForm/Pricing parcialmente presentes nas landings. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. CommentTree, contact-form(LeadForm), PlayerVideo existem.]"
   },
   {
     "id": "infra-acessibilidade",
@@ -3872,14 +3872,14 @@
     "sub": "#2 Componentes",
     "theme": "var(--color-3)",
     "ref": "Cap 5.6",
-    "status": "ROADMAP",
+    "status": "EM PROGRESSO",
     "phase": 1,
     "order": 6,
     "dependsOn": [
       "infra-componentes-shadcn"
     ],
     "desc": "Contraste ≥7:1, focus visível, alt, legenda em vídeo, labels, hierarquia semântica, teste com leitor de tela.",
-    "rich": "GAP: diretrizes definidas; auditoria de acessibilidade com VoiceOver/NVDA ainda não executada."
+    "rich": "GAP: diretrizes definidas; auditoria de acessibilidade com VoiceOver/NVDA ainda não executada. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. menu a11y, focus-visible, reduced-motion, modos de visão.]"
   },
   {
     "id": "infra-deploy-vercel",
@@ -4021,14 +4021,14 @@
     "sub": "#4 Segurança",
     "theme": "var(--color-3)",
     "ref": "Cap 4.9",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 15,
     "dependsOn": [
       "infra-deploy-vercel"
     ],
     "desc": "Opt-in explícito para analytics/marketing; essenciais dispensam consentimento (Art. 7º LGPD).",
-    "rich": "GAP/PENDENTE: banner de cookie consent não confirmado no produto."
+    "rich": "GAP/PENDENTE: banner de cookie consent não confirmado no produto. [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. CookieConsentBanner montado em client-providers.]"
   },
   {
     "id": "infra-analytics-posthog",
@@ -4087,14 +4087,14 @@
     "sub": "#5 Tracking",
     "theme": "var(--color-3)",
     "ref": "Cap 4.9",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 19,
     "dependsOn": [
       "infra-deploy-vercel"
     ],
     "desc": "Vercel Analytics/Speed Insights para Core Web Vitals.",
-    "rich": "Dependência web-vitals presente. GAP: confirmar Vercel Speed Insights ativo em produção.",
+    "rich": "Dependência web-vitals presente. GAP: confirmar Vercel Speed Insights ativo em produção. [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. WebVitalsReporter + /api/metrics.]",
     "code": "web-vitals"
   },
   {
@@ -4216,12 +4216,12 @@
     "sub": "#1 Engenharia editorial",
     "theme": "var(--color-4)",
     "ref": "Cap 6.1",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 1,
     "dependsOn": [],
     "desc": "App Router com (marketing)/(aluno)/api, components/ui|marketing|aluno, lib, hooks, prisma, tests.",
-    "rich": "App Router já organizado em route groups; components/lib/hooks/prisma presentes. GAP: pasta tests (Vitest/Playwright) ainda não montada. [status?]"
+    "rich": "App Router já organizado em route groups; components/lib/hooks/prisma presentes. GAP: pasta tests (Vitest/Playwright) ainda não montada. [status?] [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. estrutura src/app madura (App Router).]"
   },
   {
     "id": "eng-git-flow-ci",
@@ -4230,12 +4230,12 @@
     "sub": "#1 Engenharia editorial",
     "theme": "var(--color-4)",
     "ref": "Cap 6.1",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 2,
     "dependsOn": [],
     "desc": "main protegido, branches feature/fix, PR com review, CI verde, preview deploy, merge squash.",
-    "rich": "Projeto usa Git + Vercel (CI build verde). GAP: proteção de branch e CI de testes a confirmar. [status?]"
+    "rich": "Projeto usa Git + Vercel (CI build verde). GAP: proteção de branch e CI de testes a confirmar. [status?] [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. branch→preview Vercel + CI build verde.]"
   },
   {
     "id": "eng-conventional-commits",
@@ -4258,12 +4258,12 @@
     "sub": "#2 TDD adaptado",
     "theme": "var(--color-4)",
     "ref": "Cap 6.2",
-    "status": "PENDENTE",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 4,
     "dependsOn": [],
     "desc": "Lógica crítica: preço/desconto/cupom, regras de acesso, validação webhook Pagar.me. Alvo 80%+ em lib/business.",
-    "rich": "GAP/PENDENTE: nenhuma suíte de teste no package.json (sem vitest). Fase 6.4 também pede e2e."
+    "rich": "GAP/PENDENTE: nenhuma suíte de teste no package.json (sem vitest). Fase 6.4 também pede e2e. [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. testes unitários via Jest (78 verdes) — Jest, não Vitest.]"
   },
   {
     "id": "tdd-integration",
@@ -4288,14 +4288,14 @@
     "sub": "#2 TDD adaptado",
     "theme": "var(--color-4)",
     "ref": "Cap 6.2 / Fase 6.4",
-    "status": "PENDENTE",
+    "status": "EM PROGRESSO",
     "phase": 1,
     "order": 6,
     "dependsOn": [
       "tdd-integration"
     ],
     "desc": "Cenários: cadastro, login, compra sandbox Pagar.me, assistir aula, comentar fórum.",
-    "rich": "GAP/PENDENTE: e2e listado também na Fase 6.4 do CHECKLIST-FASES (0%)."
+    "rich": "GAP/PENDENTE: e2e listado também na Fase 6.4 do CHECKLIST-FASES (0%). [Reconciliado 25/06 vs código: PENDENTE→EM PROGRESSO. Playwright e2e auth+newsletter; faltam checkout/player.]"
   },
   {
     "id": "eng-lint-format-husky",
