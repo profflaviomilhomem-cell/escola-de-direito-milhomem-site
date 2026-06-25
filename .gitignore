@@ -68,3 +68,6 @@ next-env.d.ts
 
 # Material estratégico interno — não subir (repo público)
 calendario-editorial-*.html
+
+# Gerador legado do checklist (101 nós) — NÃO é o mestre de 308
+.organograma-autogen.html

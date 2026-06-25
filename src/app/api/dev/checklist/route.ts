@@ -5,7 +5,11 @@ import path from "path";
 // Define paths
 const WORKSPACE_DIR = "/Users/carlos/BettoOrbee/clientes /Flavio Milhomem/escola_de_direito_milhomem_site";
 const CHECKLIST_PATH = path.join(WORKSPACE_DIR, "docs/CHECKLIST-FASES.md");
-const STATIC_HTML_PATH = path.join(WORKSPACE_DIR, "organograma-checklist.html");
+// NÃO apontar para `organograma-checklist.html` (o MESTRE de 308 nós, gerado
+// do livro-guia em 24/jun). Este gerador legado produz só os ~101 itens do
+// markdown de fases e sobrescreveria o mestre a cada GET/POST. Escreve num
+// arquivo separado (gitignored) para preservar o mestre.
+const STATIC_HTML_PATH = path.join(WORKSPACE_DIR, ".organograma-autogen.html");
 
 interface ChecklistItem {
   id: string;
