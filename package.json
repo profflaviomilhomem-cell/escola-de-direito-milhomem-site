@@ -28,6 +28,7 @@
     "mirror:blog-images": "node scripts/mirror-blog-images.mjs",
     "seed:mock-course": "node scripts/seed-mock-course.mjs",
     "seed:prova-digital": "node scripts/seed-prova-digital.mjs",
+    "sync:manifest": "node scripts/seed-prova-digital.mjs",
     "import:provas-digitais": "node scripts/import-provas-digitais.mjs",
     "trace:bridge": "node scripts/trace-bridge-art.mjs",
     "generate:lesson-posters": "node scripts/generate-lesson-posters.mjs",
@@ -35,11 +36,21 @@
     "seed:demo-orders": "node scripts/seed-demo-orders.mjs",
     "seed:aluno-demonstracao": "node scripts/create-aluno-demonstracao.mjs",
     "bootstrap:demo": "node scripts/bootstrap-demo-environment.mjs",
-    "prisma:baseline": "node scripts/baseline-prisma.mjs"
+    "prisma:baseline": "node scripts/baseline-prisma.mjs",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=10.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -88,9 +99,11 @@
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.5",
+    "husky": "^9.1.7",
     "imagetracerjs": "^1.2.6",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "lint-staged": "^17.0.8",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sharp": "^0.34.5",
