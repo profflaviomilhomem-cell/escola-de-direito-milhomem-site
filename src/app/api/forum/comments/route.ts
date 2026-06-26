@@ -112,8 +112,11 @@ export async function POST(req: NextRequest) {
       const msg =
         result.error === "LESSON_NOT_FOUND"
           ? "Aula não encontrada."
-          : "Comentário-pai inválido.";
-      return NextResponse.json({ ok: false, error: msg }, { status: 400 });
+          : result.error === "CONTENT_EMPTY"
+            ? "Comentário vazio após remoção de formatação."
+            : "Comentário-pai inválido.";
+      const status = result.error === "CONTENT_EMPTY" ? 422 : 400;
+      return NextResponse.json({ ok: false, error: msg }, { status });
     }
     return NextResponse.json(
       { ok: true, comment: result.comment },

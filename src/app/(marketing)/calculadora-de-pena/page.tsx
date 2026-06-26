@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { CalculadoraCaseFile } from "@/components/marketing/calculadora/case-file";
+import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { JsonLd } from "@/components/shared/json-ld";
 import { siteConfig } from "@/config/site";
 import {
@@ -92,6 +93,26 @@ export default function CalculadoraPage() {
         </aside>
 
         <CalculadoraCaseFile />
+
+        {/* Opt-in (LGPD, duplo opt-in via /api/leads · source=calculadora).
+            Reusa o NewsletterForm; o lead é gravado com a origem da ferramenta. */}
+        <aside className="border-paper-100 mx-auto mt-12 max-w-2xl border-t pt-10 sm:mt-16 sm:pt-12">
+          <p className="text-amber font-mono text-[9px] tracking-[0.18em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
+            Vai além da calculadora
+          </p>
+          <h2
+            className="text-paper mt-3 font-serif leading-[1.1]"
+            style={fmTitleClamp("22px", "5vw", "34px")}
+          >
+            Receba análises de dosimetria{" "}
+            <em className="text-amber italic">na perspectiva da acusação</em>
+          </h2>
+          <p className="text-paper-700 mt-3 text-[14px] leading-relaxed sm:text-[15px]">
+            Casos comentados, leitura de precedentes e material de estudo direto
+            no seu e-mail. Sem spam — confirmação dupla por LGPD.
+          </p>
+          <NewsletterForm source="calculadora" />
+        </aside>
       </section>
     </>
   );

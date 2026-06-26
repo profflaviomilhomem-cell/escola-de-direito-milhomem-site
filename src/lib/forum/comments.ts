@@ -1,6 +1,7 @@
 import type { ModerationStatus } from "@prisma/client";
 
 import { prisma } from "@/lib/prisma";
+import { sanitizePlainText } from "@/lib/sanitize";
 
 /** Nó de comentário no formato consumido pelo CommentTree (compatível com ForumComment). */
 export type ForumCommentNode = {
@@ -100,10 +101,17 @@ export async function createLessonComment(input: {
   parentId?: string | null;
 }): Promise<
   | { ok: true; comment: ForumCommentNode }
-  | { ok: false; error: "LESSON_NOT_FOUND" | "PARENT_INVALID" }
+  | {
+      ok: false;
+      error: "LESSON_NOT_FOUND" | "PARENT_INVALID" | "CONTENT_EMPTY";
+    }
 > {
   const lessonId = await resolveLessonId(input.productSlug, input.lessonSlug);
   if (!lessonId) return { ok: false, error: "LESSON_NOT_FOUND" };
+
+  // Defesa de profundidade: o conteúdo persiste já sanitizado (texto puro).
+  const content = sanitizePlainText(input.content);
+  if (content.length < 2) return { ok: false, error: "CONTENT_EMPTY" };
 
   if (input.parentId) {
     const parent = await prisma.comment.findFirst({
@@ -118,7 +126,7 @@ export async function createLessonComment(input: {
       lessonId,
       userId: input.userId,
       parentId: input.parentId ?? null,
-      content: input.content,
+      content,
       moderationStatus: "APPROVED",
     },
     select: {

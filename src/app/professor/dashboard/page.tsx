@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { professorUi } from "@/config/professor-ui";
+import { getModerationQueue } from "@/lib/forum/comments";
+import { getProfessorMetrics, formatBRL } from "@/lib/professor/metrics";
 import { getProfessorCourses } from "@/lib/professor/products";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
@@ -12,7 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorDashboardPage() {
-  const courses = await getProfessorCourses();
+  const [courses, metrics, moderation] = await Promise.all([
+    getProfessorCourses(),
+    getProfessorMetrics(),
+    getModerationQueue(5),
+  ]);
+  const pendentes = moderation.filter((c) => c.status === "PENDING");
   const firstName = professorUi.defaultName.split(/\s+/)[0];
 
   return (
@@ -27,8 +33,7 @@ export default async function ProfessorDashboardPage() {
         Bom dia, <em className="text-amber italic">{firstName}</em>.
       </h1>
       <p className="text-paper-700 mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
-        Painel administrativo da Escola. Métricas, fórum e atividade recente
-        serão exibidos quando conectados ao banco de dados.
+        Painel administrativo da Escola, com números reais da plataforma.
       </p>
 
       <div className="mt-8 flex flex-wrap gap-3">
@@ -47,14 +52,93 @@ export default async function ProfessorDashboardPage() {
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        <AreaEmptyState
-          title="Métricas em breve"
-          description="Alunos ativos, conclusão e NPS aparecerão aqui com dados reais da plataforma."
-        />
-        <AreaEmptyState
-          title="Fórum em breve"
-          description="Perguntas aguardando sua resposta serão listadas quando o fórum estiver ativo."
-        />
+        <div className="border-paper-100 border p-6">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-paper font-mono text-[11px] tracking-[0.2em] uppercase">
+              Métricas
+            </h2>
+            <Link
+              href="/professor/metricas"
+              className="text-amber font-mono text-[10px] tracking-widest uppercase hover:underline"
+            >
+              Ver tudo
+            </Link>
+          </div>
+          <dl className="mt-5 grid grid-cols-2 gap-5">
+            <div>
+              <dt className="text-paper-600 font-mono text-[10px] tracking-[0.16em] uppercase">
+                Alunos
+              </dt>
+              <dd className="text-paper mt-1 font-serif text-3xl leading-none">
+                {metrics.alunos}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-paper-600 font-mono text-[10px] tracking-[0.16em] uppercase">
+                Conclusão
+              </dt>
+              <dd className="text-paper mt-1 font-serif text-3xl leading-none">
+                {metrics.conclusaoMediaPct}%
+              </dd>
+            </div>
+            <div>
+              <dt className="text-paper-600 font-mono text-[10px] tracking-[0.16em] uppercase">
+                Receita
+              </dt>
+              <dd className="text-paper mt-1 font-serif text-2xl leading-none">
+                {formatBRL(metrics.receitaCents)}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-paper-600 font-mono text-[10px] tracking-[0.16em] uppercase">
+                Certificados
+              </dt>
+              <dd className="text-paper mt-1 font-serif text-3xl leading-none">
+                {metrics.certificados}
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div className="border-paper-100 border p-6">
+          <div className="flex items-baseline justify-between">
+            <h2 className="text-paper font-mono text-[11px] tracking-[0.2em] uppercase">
+              Fórum
+            </h2>
+            <Link
+              href="/professor/forum"
+              className="text-amber font-mono text-[10px] tracking-widest uppercase hover:underline"
+            >
+              Moderar
+            </Link>
+          </div>
+          <p className="text-paper mt-5 font-serif text-3xl leading-none">
+            {pendentes.length}{" "}
+            <span className="text-paper-600 font-sans text-base">
+              {pendentes.length === 1
+                ? "comentário aguardando"
+                : "comentários aguardando"}
+            </span>
+          </p>
+          {pendentes.length > 0 ? (
+            <ul className="mt-5 space-y-3">
+              {pendentes.map((c) => (
+                <li key={c.id} className="border-paper-100 border-l-2 pl-3">
+                  <p className="text-paper-800 line-clamp-2 text-[13px] leading-relaxed">
+                    {c.content}
+                  </p>
+                  <p className="text-paper-600 fm-mono mt-1 text-[10px]">
+                    {c.author.name} · {c.lesson.title}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-paper-600 mt-3 text-[13px]">
+              Nada na fila de moderação.
+            </p>
+          )}
+        </div>
       </div>
 
       {courses.length > 0 ? (
