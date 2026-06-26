@@ -18,6 +18,8 @@ export function buildManualAccessPayload(
   };
 }
 
-export function isManualPagarmeSubId(value: string | null | undefined): boolean {
+export function isManualPagarmeSubId(
+  value: string | null | undefined,
+): boolean {
   return typeof value === "string" && value.startsWith("manual_");
 }

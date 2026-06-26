@@ -5,10 +5,7 @@ import {
   productUsesSubscriptionAccess,
   SUBSCRIPTION_STATUS_WITH_ACCESS,
 } from "@/lib/business/commercial-rules";
-import {
-  enrolledCourses,
-  findCourseBySlug,
-} from "@/lib/course/aluno-courses";
+import { enrolledCourses, findCourseBySlug } from "@/lib/course/aluno-courses";
 import {
   getUserProgressMap,
   mergeMockLessonProgress,
@@ -162,4 +159,3 @@ export async function getUserOrders(userId: string) {
     return [];
   }
 }
-
