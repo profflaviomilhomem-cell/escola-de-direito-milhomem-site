@@ -198,6 +198,10 @@
     .l4-item-wrapper.status-pendente .l4-circle-checkbox svg.empty-icon { display: block; color: var(--text-muted); opacity: 0.25; }
     .l4-item-wrapper.status-roadmap .l4-circle-checkbox { background: var(--color-roadmap); border-color: var(--color-roadmap); box-shadow: 0 0 10px rgba(99,102,241,0.4); }
     .l4-item-wrapper.status-roadmap .l4-circle-checkbox svg.roadmap-icon { display: block; }
+    .l4-key-badge { display: inline-flex; align-items: center; gap: 3px; margin-top: 5px; font-size: 0.56rem; font-weight: 700; color: #b45309; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.55); border-radius: 99px; padding: 1px 7px; letter-spacing: 0.3px; white-space: nowrap; }
+    .lg-key { color: #b45309; }
+    .lg-key i { background: repeating-linear-gradient(45deg, #f59e0b, #f59e0b 3px, #fff 3px, #fff 6px) !important; border: 1px solid rgba(245,158,11,0.6); }
+    .drawer-key-pill { font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(245,158,11,0.12); color: #b45309; border: 1px solid rgba(245,158,11,0.55); }
     .l4-item-wrapper::before { content: ''; position: absolute; top: -25px; left: 50%; border-left: 2px solid #cbd5e1; width: 0; height: 25px; z-index: 1; }
     .l4-text-area { margin-top: 8px; text-align: center; max-width: 104px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
     .l4-phase-badge { font-size: 0.48rem; font-weight: 800; letter-spacing: 0.3px; border: 1px solid; border-radius: 99px; padding: 0 5px; line-height: 1.35; text-transform: uppercase; }
@@ -250,6 +254,7 @@
         <span class="lg"><i style="background:var(--color-progresso)"></i>Em progresso</span>
         <span class="lg"><i style="background:var(--color-roadmap)"></i>Roadmap (especificado · build futuro)</span>
         <span class="lg"><i style="background:var(--color-pendente)"></i>Pendente (não iniciado / externo)</span>
+        <span class="lg lg-key"><i></i>🔑 Aguarda chave (código pronto · falta credencial)</span>
       </div>
       <div class="legend-row" id="phase-legend"><!-- fases injetadas via JS --></div>
     </div>
@@ -400,6 +405,7 @@
         <h2 class="drawer-title" id="drawer-node-title">Título</h2>
         <div class="drawer-badges">
           <span class="status-badge" id="drawer-node-status">Status</span>
+          <span class="drawer-key-pill" id="drawer-node-key" style="display:none">🔑 Aguarda chave</span>
           <span class="phase-pill" id="drawer-node-phase" style="display:none">Fase</span>
           <span class="status-badge" id="drawer-node-ref" style="background:#f1f5f9;color:var(--text-muted);border-color:var(--border-color)">Ref</span>
         </div>
@@ -439,7 +445,7 @@
   </div>
 
   <script>
-    const STORAGE_KEY = 'flm_checklist_status_v1';
+    const STORAGE_KEY = 'flm_checklist_status_v2';
     const statusMap = { 'CONCLUÍDO':'concluido', 'EM PROGRESSO':'progresso', 'PENDENTE':'pendente', 'ROADMAP':'roadmap' };
     const phases = [{"n":0,"label":"F0 · Fundação & Estratégia","color":"#0F2A44"},{"n":1,"label":"F1 · Arquitetura & Setup","color":"#2D6A8E"},{"n":2,"label":"F2 · Comercial & Core","color":"#B08A3E"},{"n":3,"label":"F3 · Conteúdo & Go-live","color":"#7C4D6B"},{"n":4,"label":"F4 · Pós-lançamento & Ops","color":"#475569"}];
     const dataItems = [
@@ -676,14 +682,14 @@
     "sub": "#5 PVU",
     "theme": "var(--color-1)",
     "ref": "Cap 1.5",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 0,
     "order": 14,
     "dependsOn": [
       "marca-pvu-longa"
     ],
     "desc": "'Direito Penal ensinado por quem está no MP — o lado que decide o que vira denúncia.'",
-    "rich": "Variação curta aprovada para home abaixo do nome e acima do botão. GAP: confirmar se está aplicada no above-the-fold do site em produção. [status?]"
+    "rich": "Variação curta aplicada no hero above-the-fold (copy.home.hero + page.tsx). [Auditoria C 26/jun vs código: EM PROGRESSO→CONCLUÍDO. hero renderiza eyebrow/titleLine no above-the-fold.]"
   },
   {
     "id": "marca-pvu-bio-instagram",
@@ -708,14 +714,14 @@
     "sub": "#5 PVU",
     "theme": "var(--color-1)",
     "ref": "Cap 1.5",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 0,
     "order": 16,
     "dependsOn": [
       "marca-pvu-longa"
     ],
     "desc": "Tagline oficial para footer, assinatura de e-mail e rodapé de material didático.",
-    "rich": "Tagline alternativa: 'Direito Penal pela perspectiva da acusação.' GAP: verificar aplicação no footer/assinaturas. [status?]"
+    "rich": "Tagline aplicada no footer via siteConfig.taglineInstitucional. [Auditoria C 26/jun vs código: EM PROGRESSO→CONCLUÍDO. copy.ts taglineInstitucional='A Escola do Promotor.' usada em footer.tsx.]"
   },
   {
     "id": "marca-dif-autores-individuais",
@@ -869,7 +875,7 @@
       "marca-arquetipo-sabio-cuidador"
     ],
     "desc": "Diretrizes que precedem o Design System (Cap 5): sobriedade, institucionalidade, contemporaneidade.",
-    "rich": "GAP: diretriz fundamental escrita, mas tokens específicos e aplicação plena no produto pertencem ao Design System (Cap 5). [status?]"
+    "rich": "Diretriz aplicada via Design System (globals.css + brand.ts presentes). [Auditoria C 26/jun vs código: mantém EM PROGRESSO. base de DS no código.]"
   },
   {
     "id": "marca-paleta-restrita",
@@ -885,7 +891,7 @@
       "marca-identidade-sobria"
     ],
     "desc": "Base navy/grafite, texto de alta legibilidade, 2 destaques em baixa frequência, muito espaço.",
-    "rich": "GAP: tokens de cor a fechar no Design System; confirmar paleta efetiva em globals.css/brand.ts. [status?]"
+    "rich": "Tokens de cor definidos em globals.css + config/brand.ts. [Auditoria C 26/jun vs código: mantém EM PROGRESSO. tokens existem no código; conferir aplicação plena.]"
   },
   {
     "id": "marca-tipografia-marca",
@@ -894,14 +900,14 @@
     "sub": "#10 Identidade visual",
     "theme": "var(--color-1)",
     "ref": "Cap 1.10",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 3,
     "dependsOn": [
       "marca-identidade-sobria"
     ],
-    "desc": "Serifa (Newsreader/Source Serif) p/ títulos; sans (Inter) p/ corpo.",
-    "rich": "GAP: escolha final de fontes e implementação a confirmar no produto. [status?]"
+    "desc": "Famílias contemporâneas carregadas via next/font; o par original (serifa+sans) evoluiu no Design System.",
+    "rich": "Fontes EFETIVAS no produto: ClashDisplay (display) + Hiragino + JetBrains Mono (mono). [Auditoria C 26/jun vs código: EM PROGRESSO→CONCLUÍDO. layout.tsx carrega as fontes; o plano Newsreader+Inter foi SUBSTITUÍDO.]"
   },
   {
     "id": "marca-fotografia-diretriz",
@@ -1304,12 +1310,12 @@
     "sub": "#8 LGPD",
     "theme": "var(--color-1)",
     "ref": "Cap 9.9",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 3,
     "dependsOn": [],
     "desc": "Política em /privacidade com linguagem clara e enumeração de direitos do titular.",
-    "rich": "Rota /privacidade existe no site. GAP: verificar se o conteúdo está completo e atualizado. [status?]"
+    "rich": "Página /privacidade publicada com conteúdo substancial (253 linhas). [Auditoria C 26/jun vs código: EM PROGRESSO→CONCLUÍDO. src/app/(marketing)/privacidade/page.tsx.]"
   },
   {
     "id": "comp-lgpd-dpo",
@@ -3076,7 +3082,7 @@
       "met-taxonomia-eventos"
     ],
     "desc": "/admin/dashboard com 3 visões: semanal (Carlos/Diana), quinzenal (Flávio PDF), mensal agregada. Revisão estratégica trimestral.",
-    "rich": "[status?] Verificar se a rota /admin/dashboard existe. Reunião Orbee Labs sexta, Flávio+Diana quinzenal.",
+    "rich": "VERIFICADO: rota /admin/dashboard NÃO existe no código. [Auditoria C 26/jun vs código: mantém ROADMAP; nenhum dashboard interno encontrado.]",
     "code": ""
   },
   {
@@ -3417,14 +3423,14 @@
     "sub": "#1 Stack",
     "theme": "var(--color-3)",
     "ref": "Cap 4.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 2,
     "dependsOn": [
       "prod-stack"
     ],
     "desc": "Site institucional (marketing), área do aluno autenticada e backend/CRM em rotas API.",
-    "rich": "Route groups (marketing), /aluno e /api existem. GAP: camada do aluno é, em parte, scaffold; subdomínio aluno.* do livro foi simplificado para route group /aluno no mesmo domínio."
+    "rich": "3 camadas no codigo: route group (marketing) institucional, /aluno autenticado, /api backend/CRM. DECISAO registrada: subdominio aluno.* do livro foi simplificado p/ route group /aluno no mesmo dominio (escolha de arquitetura). [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. feito-como-adaptado, sem gap de codigo.]"
   },
   {
     "id": "prod-auth",
@@ -3450,14 +3456,14 @@
     "sub": "#3 Comercial",
     "theme": "var(--color-3)",
     "ref": "Cap 4.7 / Fase 1.2",
-    "status": "CONCLUÍDO",
+    "status": "EM PROGRESSO",
     "phase": 2,
     "order": 1,
     "dependsOn": [
       "prod-auth"
     ],
     "desc": "Cria Order PENDING, integra API Pagar.me com amountCents, captura UTM, páginas de retorno.",
-    "rich": "RESOLVIDO: Fase 1 Comercial 100% no CHECKLIST-FASES; rotas /checkout/[slug], /checkout/resultado/[orderId], api/orders/create + api/orders/[orderId]. Em produção (memória: P0/P1).",
+    "rich": "Código pronto: rotas /checkout/[slug], /checkout/resultado/[orderId], api/orders/create + [orderId], captura UTM, cria Order PENDING. AGUARDA CHAVE: PAGARME_SECRET_KEY nao esta no .env.local -> nao processa pagamento real. [Regra dado-preenchido 26/jun: CONCLUÍDO->EM PROGRESSO. so conclui com PAGARME_SECRET_KEY preenchida e checkout validado ponta-a-ponta.]",
     "code": "src/app/(marketing)/checkout/[slug] · api/orders/create · lib/payments/pagarme"
   },
   {
@@ -3467,14 +3473,14 @@
     "sub": "#3 Comercial",
     "theme": "var(--color-3)",
     "ref": "Cap 4.7 / Fase 1.3",
-    "status": "CONCLUÍDO",
+    "status": "EM PROGRESSO",
     "phase": 2,
     "order": 2,
     "dependsOn": [
       "prod-checkout-pagarme"
     ],
     "desc": "Valida HMAC, idempotência por eventId, mapeia eventos→Order.status, cria Subscription, auditoria.",
-    "rich": "RESOLVIDO: Fase 1.3 100%; rota api/webhooks/pagarme + model PagarmeWebhookEvent no schema. ",
+    "rich": "Código pronto: rota api/webhooks/pagarme (valida HMAC, idempotencia via PagarmeWebhookEvent, mapeia eventos->Order.status). AGUARDA CHAVE: PAGARME_SECRET_KEY + segredo de webhook ausentes -> nao recebe/valida evento real. [Regra dado-preenchido 26/jun: CONCLUÍDO->EM PROGRESSO. so conclui com as chaves Pagar.me preenchidas.]",
     "code": "src/app/api/webhooks/pagarme/route.ts · model PagarmeWebhookEvent · PAGARME_WEBHOOK_SECRET"
   },
   {
@@ -3508,7 +3514,7 @@
       "prod-checkout-pagarme"
     ],
     "desc": "Política 7 dias CDC + garantia estendida; solicitação na área logada → API Pagar.me /refunds.",
-    "rich": "Página pública /reembolso existe. GAP: fluxo integrado de solicitação→aprovação→API /refunds ainda não confirmado no código. [status?]",
+    "rich": "Página /reembolso (política 15d + proporcional). SCAFFOLD da execução pronto e testado: lib/pagarme/refund.ts (refundPagarmeCharge via DELETE /charges/:id + refundableAmountCents puro) + rota admin-gated POST /api/admin/refunds (role=admin, 503 sem PAGARME_SECRET_KEY, estorno parcial/integral, seta Order→REFUNDED). 7 testes em tests/unit/pagarme/refund.test.ts. [Scaffold gated 26/jun: execução pronta; ATIVA com PAGARME_SECRET_KEY. FALTA ainda: modelo RefundRequest + UI de solicitação do aluno (hoje por e-mail) — precisa de migration/DB.]",
     "code": "src/app/(marketing)/reembolso/page.tsx"
   },
   {
@@ -3535,14 +3541,14 @@
     "sub": "#4 LMS",
     "theme": "var(--color-3)",
     "ref": "Fase 2.1",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 2,
     "order": 5,
     "dependsOn": [
       "prod-matricula-acesso"
     ],
     "desc": "Product + Lesson no DB espelham o manifest do curso; job idempotente para reimportação.",
-    "rich": "Bootstrap demo importou o curso prova-digital + 10 aulas; landing já lê Product do banco (commit recente). GAP: script idempotente manifest→DB documentado (Fase 2.1 aberta).",
+    "rich": "Sync idempotente manifest->DB: scripts/seed-prova-digital.mjs le provas-digitais-manifest.json e faz upsert de Product + 10 Lessons (re-executavel). Alias npm sync:manifest adicionado. [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. Fase 2.1: script idempotente confirmado.]",
     "code": "models Product, Lesson · api/admin/bootstrap-demo · seed:prova-digital"
   },
   {
@@ -3559,7 +3565,7 @@
       "prod-lms-sync"
     ],
     "desc": "/aluno/cursos/[slug] e /aluno/aulas/[slug] leem módulos/aulas do banco.",
-    "rich": "Rotas existem como scaffold lendo manifest. GAP: getEnrolledCourses(userId) com join Order+Product+Lesson (Fase 2.2 = 0%).",
+    "rich": "Runtime real: getEnrolledCourseSlugs/getEnrolledCourses implementados (query decide o que o aluno vê; conteúdo ainda do manifest/mock no MVP). [Auditoria C 26/jun vs código: Fase 2.2 NÃO é 0% — funções em src/lib/enrollment/index.ts. GAP restante: trocar conteúdo mock por DB.]",
     "code": "src/app/aluno/cursos/[slug] · src/app/aluno/aulas/[slug]"
   },
   {
@@ -3586,14 +3592,14 @@
     "sub": "#4 LMS",
     "theme": "var(--color-3)",
     "ref": "Fase 2.3",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 2,
     "order": 8,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "PATCH progresso valida acesso ao produto; % de conclusão calculado do DB; continuar assistindo.",
-    "rich": "Model UserLessonProgress + rota api/aluno/lessons/progress existem. GAP: cálculo de % e 'continuar assistindo' a partir do DB (Fase 2.3 = 0%).",
+    "rich": "Progresso real do DB: progress.ts (watchedSec/completedAt) + getEnrolledCoursesWithProgress recalcula completedLessonCount; UI Continuar aula + % no hero-billboard.tsx (completedLessonCount/lessonCount); api/aluno/lessons/progress. [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. Fase 2.3: % e continuar assistindo presentes.]",
     "code": "model UserLessonProgress · api/aluno/lessons/progress"
   },
   {
@@ -3603,14 +3609,14 @@
     "sub": "#5 Painel professor",
     "theme": "var(--color-3)",
     "ref": "Fase 3.1",
-    "status": "CONCLUÍDO",
+    "status": "EM PROGRESSO",
     "phase": 4,
     "order": 2,
     "dependsOn": [
       "prod-lms-runtime"
     ],
     "desc": "Vercel Blob/S3 para capa/banner/aula; habilitar POST upload em produção, validar MIME/tamanho.",
-    "rich": "GAP/PENDENTE: rota api/professor/upload existe mas bloqueada (403) em produção; falta BLOB_READ_WRITE_TOKEN (Fase 3.1 = 0%). [Reconciliado 25/06 vs código: PENDENTE→CONCLUÍDO. código pronto (Vercel Blob, auth, MIME) — gated por BLOB_READ_WRITE_TOKEN.]",
+    "rich": "Código pronto: rota api/professor/upload (Vercel Blob, auth, validação MIME/tamanho). AGUARDA CHAVE: BLOB_READ_WRITE_TOKEN ausente -> upload retorna 403 em produção. [Regra dado-preenchido 26/jun: CONCLUÍDO->EM PROGRESSO. so conclui quando BLOB_READ_WRITE_TOKEN estiver preenchida.]",
     "code": "api/professor/upload · BLOB_READ_WRITE_TOKEN"
   },
   {
@@ -3654,14 +3660,14 @@
     "sub": "#5 Painel professor",
     "theme": "var(--color-3)",
     "ref": "Fase 3.4",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 5,
     "dependsOn": [
       "prod-matricula-acesso"
     ],
     "desc": "/professor/alunos (Order PAID por produto), dashboard com KPIs reais, métricas, anúncios.",
-    "rich": "Rotas /professor/{alunos,dashboard,metricas,anuncios,aulas,inventario} existem como scaffold. GAP: KPIs e listas reais (Fase 3.4 = 0%).",
+    "rich": "Painel com dados REAIS: src/lib/professor/metrics.ts (alunos pagantes, matriculas, receita, conclusao media, certificados, forum) + /professor/metricas (grid de KPIs) + /professor/dashboard (cards Metricas + fila de moderacao real via getModerationQueue). /professor/alunos ja usava Order PAID. 4 testes em tests/unit/professor/metrics.test.ts. [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. Fase 3.4 fechada; empty states viraram dados reais.]",
     "code": "src/app/professor/{alunos,dashboard,metricas,anuncios}"
   },
   {
@@ -3823,14 +3829,14 @@
     "sub": "#1 Design System",
     "theme": "var(--color-3)",
     "ref": "Cap 5.3",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 3,
     "dependsOn": [
       "infra-design-system"
     ],
-    "desc": "Newsreader (títulos e corpo editorial) + Inter (UI/corpo); escala modular 1.25; coluna 68ch.",
-    "rich": "GAP: confirmar fontes efetivamente carregadas no produto."
+    "desc": "Fontes implementadas e carregadas via next/font no layout raiz.",
+    "rich": "CORREÇÃO: o produto usa ClashDisplay+Hiragino+JetBrains Mono, NÃO Newsreader+Inter. [Auditoria C 26/jun vs código: EM PROGRESSO→CONCLUÍDO. confirmado em src/app/layout.tsx (localFont + JetBrains_Mono).]"
   },
   {
     "id": "infra-componentes-shadcn",
@@ -3973,14 +3979,14 @@
     "sub": "#4 Segurança",
     "theme": "var(--color-3)",
     "ref": "Cap 4.10",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 12,
     "dependsOn": [
       "prod-auth"
     ],
     "desc": "Cookie HttpOnly+SameSite, rate limit em auth, CSRF do Next, sanitização de input do fórum.",
-    "rich": "Sessão JWT (jose) + Upstash rate limit presentes; Prisma evita SQL injection. GAP: sanitização do fórum depende do fórum (pendente)."
+    "rich": "Sessao JWT (jose, AUTH_SECRET presente) + CSRF + Prisma (anti-SQLi) + SANITIZACAO do forum (lib/sanitize.ts no chokepoint createLessonComment; 8 testes). Rate-limit Upstash e OPCIONAL e ja faz no-op gracioso sem UPSTASH_* (nao bloqueia o nucleo de seguranca, que funciona sem chave). [Regra dado-preenchido 26/jun: mantem CONCLUÍDO: entregaveis do titulo (sessao/CSRF/sanitizacao) nao dependem de chave; rate-limit e enhancement no-op.]"
   },
   {
     "id": "infra-seguranca-dados",
@@ -4111,7 +4117,7 @@
       "infra-deploy-vercel"
     ],
     "desc": "Sentry em error.tsx para erro em produção (Next + API).",
-    "rich": "GAP/PENDENTE: Sentry não está nas dependências (Fase 6.4 = 0%)."
+    "rich": "GAP/PENDENTE confirmado: Sentry não está nas dependências (package.json). Requer DSN (externo) para ativar. [Auditoria C 26/jun vs código: confirmado ausente.]"
   },
   {
     "id": "infra-utm-builder",
@@ -4127,7 +4133,7 @@
       "prod-checkout-pagarme"
     ],
     "desc": "Gerar URLs UTM padronizadas, slug encurtado, cada clique vira UTMEvent; associar UTM ao Order.",
-    "rich": "Model UTMEvent existe e o checkout captura UTM. GAP: builder interno e persistência de UTMEvent no primeiro hit (Fase 6.1 = 0%).",
+    "rich": "Persistência real: prisma.uTMEvent.create (utm-event.ts) + utm-capture.tsx (sessionStorage no 1º hit) + rota api/utm. [Auditoria C 26/jun vs código: Fase 6.1 NÃO é 0% — captura/persistência existem. GAP restante: UI builder de links UTM.]",
     "code": "model UTMEvent"
   },
   {
@@ -4304,12 +4310,12 @@
     "sub": "#2 TDD adaptado",
     "theme": "var(--color-4)",
     "ref": "Cap 6.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 1,
     "order": 7,
     "dependsOn": [],
     "desc": "ESLint Next+TS, Prettier, Tailwind class sorting, Husky+lint-staged.",
-    "rich": "Preset ESLint/Prettier provável no scaffold. GAP: Husky/lint-staged a confirmar. [status?]"
+    "rich": "Husky v9 + lint-staged instalados; .husky/pre-commit roda 'npx lint-staged' (eslint --fix + prettier --write nos arquivos staged); script 'prepare':'husky' no package.json. [Gap fechado 26/jun: EM PROGRESSO→CONCLUÍDO. pipeline validado rodando lint-staged sobre arquivos staged.]"
   },
   {
     "id": "edit-estrategia-cadencia",
@@ -4401,7 +4407,7 @@
     "order": 13,
     "dependsOn": [],
     "desc": "Breadcrumb, título Newsreader, autor/data/tempo leitura, imagem, coluna 68ch serif.",
-    "rich": "Estrutura de blog existe (/blog, /blog/[slug], feed.xml). GAP: refino do layout editorial conforme blueprint. [status?]"
+    "rich": "Blog real: /blog, /blog/[slug], feed.xml + JsonLd de artigo. GAP: refino do layout editorial conforme blueprint. [Auditoria C 26/jun vs código: estrutura confirmada; refino pendente.]"
   },
   {
     "id": "edit-artigo-elementos-internos",
@@ -4639,7 +4645,7 @@
       "land-bloco1-hero"
     ],
     "desc": "10 perguntas em accordion: acesso, prazo, reembolso, certificação, NF, dedicação, suporte, parcelamento.",
-    "rich": "FAQ do menu já roteado para /faq (commit recente) e rota /faq existe. GAP: FAQ específico da landing do cohort. [status?]"
+    "rich": "/faq existe com markup FAQPage espelhando a UI (copy.faqInstitucional). GAP: FAQ específico da landing do cohort ainda não montado. [Auditoria C 26/jun vs código: FAQ institucional pronto; falta o do cohort.]"
   },
   {
     "id": "land-bloco13-garantia",
@@ -4680,12 +4686,12 @@
     "sub": "#6 Ferramentas interativas",
     "theme": "var(--color-4)",
     "ref": "Cap 6.6",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 31,
     "dependsOn": [],
     "desc": "Input art./circunstâncias/regime; output estimativa com passo a passo. Captura e-mail opt-in.",
-    "rich": "Rota /calculadora-de-pena + api/calculadora já existem (era placeholder na Fase 0.4). GAP: motor completo e captura de lead opt-in.",
+    "rich": "Motor de dosimetria completo (lib/business/dosimetria + case-file) + OPT-IN de lead: NewsletterForm source='calculadora' na página, grava via /api/leads com duplo opt-in LGPD. [Gap fechado 26/jun: EM PROGRESSO→CONCLUÍDO. opt-in adicionado e tipado/lintado.]",
     "code": "src/app/(marketing)/calculadora-de-pena · api/calculadora"
   },
   {
@@ -4737,14 +4743,14 @@
     "sub": "#7 AEO/GEO",
     "theme": "var(--color-4)",
     "ref": "Cap 6.7",
-    "status": "ROADMAP",
+    "status": "EM PROGRESSO",
     "phase": 3,
     "order": 35,
     "dependsOn": [
       "edit-blueprint-artigo-layout"
     ],
     "desc": "Parágrafo de resposta sintética (2-4 frases), índice semântico H2/H3, FAQ schema, linguagem clara.",
-    "rich": "Para citação por ChatGPT/Perplexity/Gemini/Copilot. Há base de SEO/AEO/GEO em produção (P0/P1). [status?]"
+    "rich": "Base AEO presente: JsonLd/FAQPage em faq, home, cursos, blog, calculadora, sobre, livros (lib/seo/jsonld.ts). [Auditoria C 26/jun vs código: ROADMAP→EM PROGRESSO. structured data já no produto; ampliar respostas diretas.]"
   },
   {
     "id": "geo-autoridade-schema",
@@ -5438,7 +5444,17 @@
     let panX = 0, panY = 0, isDragging = false, startX, startY, selectedItem = null;
     let activePhaseFilter = null;
 
+    // Impressão digital dos status TAL COMO ESCRITOS NO ARQUIVO. Capturada antes
+    // de o localStorage sobrescrever qualquer coisa. Se o arquivo for editado, a
+    // impressão muda e o snapshot salvo é descartado — o organograma volta a
+    // refletir a realidade do arquivo automaticamente. É a fonte de verdade.
+    let DATA_FINGERPRINT = '';
+    function computeFingerprint() {
+      return dataItems.map(i => i.id + ':' + i.status).join('|');
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      DATA_FINGERPRINT = computeFingerprint(); // captura o estado do arquivo primeiro
       loadSavedStatus();
       renderPhaseLegend();
       renderLevel4Nodes();
@@ -5472,6 +5488,16 @@
       });
     }
 
+    // Nó "aguardando chave": código pronto, mas travado por credencial/dado
+    // externo ainda não preenchido. Detectado pela marca "AGUARDA CHAVE" na nota.
+    function awaitsKey(item) {
+      return /AGUARDA CHAVE/i.test((item && item.rich) || '');
+    }
+    function awaitedKeyLabel(item) {
+      const m = ((item && item.rich) || '').match(/AGUARDA CHAVE:?\s*([A-Z0-9_]+)/i);
+      return m ? ('Aguarda ' + m[1]) : 'Código pronto · falta credencial';
+    }
+
     function renderLevel4Nodes() {
       subAreas.forEach(subId => {
         const items = dataItems
@@ -5501,6 +5527,7 @@
               '<span class="l4-phase-badge" style="color:' + ph.color + ';border-color:' + ph.color + '">F' + item.phase + '</span>' +
               '<span class="l4-title">' + item.title + '</span>' +
               '<span class="l4-subtitle">' + item.sub + '</span>' +
+              (awaitsKey(item) ? '<span class="l4-key-badge" title="' + awaitedKeyLabel(item) + '">🔑 Aguarda chave</span>' : '') +
             '</div>';
           container.appendChild(wrapper);
         });
@@ -5535,12 +5562,27 @@
     }
 
     function saveStatusToStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(dataItems.map(i => ({ id: i.id, status: i.status }))));
+      // Guarda os status do usuário junto da impressão digital do arquivo no
+      // momento em que foram salvos. Vincula o snapshot a esta versão do arquivo.
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        fingerprint: DATA_FINGERPRINT,
+        items: dataItems.map(i => ({ id: i.id, status: i.status }))
+      }));
     }
     function loadSavedStatus() {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) return;
-      try { JSON.parse(saved).forEach(s => { const it = dataItems.find(i => i.id === s.id); if (it) it.status = s.status; }); } catch (e) {}
+      try {
+        const parsed = JSON.parse(saved);
+        // Snapshot só vale se foi salvo SOBRE esta mesma versão do arquivo.
+        // Se o arquivo mudou (impressão diferente) ou o formato é antigo,
+        // descarta e segue com a verdade do arquivo.
+        if (!parsed || parsed.fingerprint !== DATA_FINGERPRINT || !Array.isArray(parsed.items)) {
+          localStorage.removeItem(STORAGE_KEY);
+          return;
+        }
+        parsed.items.forEach(s => { const it = dataItems.find(i => i.id === s.id); if (it) it.status = s.status; });
+      } catch (e) { localStorage.removeItem(STORAGE_KEY); }
     }
     function resetChecklist() {
       if (confirm('Resetar o checklist ao estado original mapeado no livro-guia?')) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
@@ -5625,6 +5667,11 @@
     }
     function updateDrawerBadge(node) {
       const badge = document.getElementById('drawer-node-status');
+      const keyPill = document.getElementById('drawer-node-key');
+      if (keyPill) {
+        if (awaitsKey(node)) { keyPill.style.display = 'inline-block'; keyPill.innerText = '🔑 ' + awaitedKeyLabel(node); }
+        else keyPill.style.display = 'none';
+      }
       if (!node.status) { badge.style.display = 'none'; return; }
       badge.style.display = 'inline-block';
       badge.innerText = node.status;
