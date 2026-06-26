@@ -11,7 +11,10 @@ type Params = { params: Promise<{ orderId: string }> };
 export async function GET(_req: NextRequest, { params }: Params) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   const { orderId } = await params;

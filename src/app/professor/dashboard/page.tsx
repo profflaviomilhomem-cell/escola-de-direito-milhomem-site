@@ -17,7 +17,7 @@ export default async function ProfessorDashboardPage() {
 
   return (
     <section className="fm-site-page py-12">
-      <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
         {professorUi.title}
       </p>
       <h1
@@ -34,13 +34,13 @@ export default async function ProfessorDashboardPage() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/professor/cursos"
-          className="bg-amber text-carbon hover:bg-amber-soft inline-flex px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft inline-flex px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           Gerenciar cursos
         </Link>
         <Link
           href="/professor/aulas"
-          className="border-paper-200 text-paper hover:border-amber inline-flex border px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="border-paper-200 text-paper hover:border-amber inline-flex border px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           Ver aulas importadas
         </Link>
@@ -59,7 +59,7 @@ export default async function ProfessorDashboardPage() {
 
       {courses.length > 0 ? (
         <div className="mt-12">
-          <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+          <h2 className="text-paper fm-mono text-[11px] tracking-[0.2em] uppercase">
             Cursos no catálogo
           </h2>
           <ul className="border-paper-100 mt-4 divide-y border">
@@ -67,11 +67,13 @@ export default async function ProfessorDashboardPage() {
               <li key={c.id} className="flex items-center justify-between py-4">
                 <div>
                   <p className="text-paper font-serif">{c.name}</p>
-                  <p className="text-paper-600 fm-mono text-[11px]">/{c.slug}</p>
+                  <p className="text-paper-600 fm-mono text-[11px]">
+                    /{c.slug}
+                  </p>
                 </div>
                 <Link
                   href={`/professor/cursos/${c.slug}/editar`}
-                  className="text-amber hover:underline font-mono text-[10px] uppercase tracking-widest"
+                  className="text-amber font-mono text-[10px] tracking-widest uppercase hover:underline"
                 >
                   Editar
                 </Link>

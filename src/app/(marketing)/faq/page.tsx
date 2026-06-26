@@ -41,7 +41,7 @@ export default function FaqPage() {
       />
 
       <header className="mb-10 max-w-3xl md:mb-14">
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           {faq.eyebrow}
         </p>
         <h1
@@ -76,7 +76,7 @@ export default function FaqPage() {
         aria-label="Páginas relacionadas"
         className="border-paper-100 mt-14 max-w-3xl border-t pt-8"
       >
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           Ver também
         </p>
         <ul className="mt-4 flex flex-wrap gap-3">
@@ -84,7 +84,7 @@ export default function FaqPage() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber fm-mono inline-block border px-4 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors"
+                className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber fm-mono inline-block border px-4 py-2 text-[11px] tracking-[0.16em] uppercase transition-colors"
               >
                 {link.label}
               </Link>

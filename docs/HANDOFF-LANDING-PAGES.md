@@ -3,7 +3,7 @@
 **Para:** equipe de conteúdo / design (continuidade das landings)  
 **De:** desenvolvimento (repositório `escola_de_direito_milhomem_site`)  
 **Data:** 27/05/2026  
-**Produção:** https://escola-de-direito-milhomem-site.vercel.app  
+**Produção:** https://escola-de-direito-milhomem-site.vercel.app
 
 ---
 
@@ -15,11 +15,11 @@ Site institucional + vitrine + checkout do cohort inaugural **Edição Lançamen
 
 **Taglines de referência**
 
-| Uso | Texto |
-|-----|--------|
-| Site / SEO | Direito criminal pela perspectiva da acusação |
-| Institucional (redes) | A Escola do Promotor. |
-| Manifesto (home) | A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática. |
+| Uso                   | Texto                                                                                             |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| Site / SEO            | Direito criminal pela perspectiva da acusação                                                     |
+| Institucional (redes) | A Escola do Promotor.                                                                             |
+| Manifesto (home)      | A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática. |
 
 **Aviso legal** (obrigatório em landings de venda): ver `copy.legal.marketingFootnote` — componente `InstitutionalNotice`.
 
@@ -29,10 +29,10 @@ Site institucional + vitrine + checkout do cohort inaugural **Edição Lançamen
 
 Abra no navegador (com o site rodando localmente ou em produção):
 
-| Ambiente | URL |
-|----------|-----|
-| Local (`npm run dev`) | http://localhost:3000/design-system/index.html |
-| Produção | https://escola-de-direito-milhomem-site.vercel.app/design-system/index.html |
+| Ambiente              | URL                                                                         |
+| --------------------- | --------------------------------------------------------------------------- |
+| Local (`npm run dev`) | http://localhost:3000/design-system/index.html                              |
+| Produção              | https://escola-de-direito-milhomem-site.vercel.app/design-system/index.html |
 
 O HTML em `public/design-system/index.html` documenta:
 
@@ -48,17 +48,17 @@ O HTML em `public/design-system/index.html` documenta:
 
 ## 3. Onde editar cada coisa
 
-| O quê | Arquivo |
-|-------|---------|
-| Textos de todas as páginas | `src/config/copy.ts` |
-| URLs, e-mail, redes, ID vídeo YouTube | `src/config/site.ts` |
-| Logo / versão cache | `src/config/brand.ts` + `public/images/brand/` |
-| Landing **Edição Lançamento** | `src/components/marketing/edicao-lancamento-landing.tsx` |
-| Rota da landing | `src/app/(marketing)/cursos/edicao-lancamento/page.tsx` (ou alias em `cursos/[slug]`) |
-| Ementa pública (módulos/aulas) | `src/data/curso-prova-digital-publico.ts` |
-| Home institucional | `src/app/(marketing)/page.tsx` |
-| Depoimentos turma fundadora | `src/data/turma-fundadora-avaliacoes.ts` |
-| Estratégia / blueprint 14 blocos | `docs/adr/livro-guia-flavio.md` § 6.5 |
+| O quê                                 | Arquivo                                                                               |
+| ------------------------------------- | ------------------------------------------------------------------------------------- |
+| Textos de todas as páginas            | `src/config/copy.ts`                                                                  |
+| URLs, e-mail, redes, ID vídeo YouTube | `src/config/site.ts`                                                                  |
+| Logo / versão cache                   | `src/config/brand.ts` + `public/images/brand/`                                        |
+| Landing **Edição Lançamento**         | `src/components/marketing/edicao-lancamento-landing.tsx`                              |
+| Rota da landing                       | `src/app/(marketing)/cursos/edicao-lancamento/page.tsx` (ou alias em `cursos/[slug]`) |
+| Ementa pública (módulos/aulas)        | `src/data/curso-prova-digital-publico.ts`                                             |
+| Home institucional                    | `src/app/(marketing)/page.tsx`                                                        |
+| Depoimentos turma fundadora           | `src/data/turma-fundadora-avaliacoes.ts`                                              |
+| Estratégia / blueprint 14 blocos      | `docs/adr/livro-guia-flavio.md` § 6.5                                                 |
 
 **Regra de ouro:** não duplicar strings em JSX — sempre adicionar chaves em `copy.ts` e importar.
 
@@ -80,22 +80,22 @@ CTA lista: `/newsletter?source=edicao-lancamento`
 
 ### Mapa dos 14 blocos (Livro-Guia 6.5)
 
-| # | Bloco | Status | Observação para design/copy |
-|---|--------|--------|------------------------------|
-| 1 | Acima da dobra | ✅ | Falta CTA “Baixar ementa PDF” se for requisito do guia |
-| 2 | Três pilares | ✅ | Textos em `copy.edicaoLancamento.pilares` |
-| 3 | Sobre Flávio | 🟡 | Hoje só link no lead; guia pede mini-bio + foto + credenciais |
-| 4 | Para quem é | ✅ | Incluir personas Mariana/Rafael se quiser aderência total ao guia |
-| 5 | Ementa | ✅ | 2 módulos, 10 aulas (dados reais do curso) |
-| 6 | Cronograma | ✅ | Início 01/09/2026, marco 11/08 Brasília |
-| 7 | Como funciona | ✅ | |
-| 8 | Convidados | ➖ | Omitir no lançamento (OK pelo guia) |
-| 9 | Materiais inclusos | ✅ | |
-| 10 | Depoimentos | ✅ | `TestimonialsSection variant="edicao"` |
-| 11 | Investimento | ✅ | Card âmbar; link checkout ativo |
-| 12 | FAQ | 🟡 | 7 perguntas; guia sugere 10 + accordion |
-| 13 | Garantia dedicada | 🟡 | Texto existe no bloco 11; pode virar seção própria |
-| 14 | CTA final | 🟡 | Hoje leva à newsletter; guia pede CTA compra + contador vagas real |
+| #   | Bloco              | Status | Observação para design/copy                                        |
+| --- | ------------------ | ------ | ------------------------------------------------------------------ |
+| 1   | Acima da dobra     | ✅     | Falta CTA “Baixar ementa PDF” se for requisito do guia             |
+| 2   | Três pilares       | ✅     | Textos em `copy.edicaoLancamento.pilares`                          |
+| 3   | Sobre Flávio       | 🟡     | Hoje só link no lead; guia pede mini-bio + foto + credenciais      |
+| 4   | Para quem é        | ✅     | Incluir personas Mariana/Rafael se quiser aderência total ao guia  |
+| 5   | Ementa             | ✅     | 2 módulos, 10 aulas (dados reais do curso)                         |
+| 6   | Cronograma         | ✅     | Início 01/09/2026, marco 11/08 Brasília                            |
+| 7   | Como funciona      | ✅     |                                                                    |
+| 8   | Convidados         | ➖     | Omitir no lançamento (OK pelo guia)                                |
+| 9   | Materiais inclusos | ✅     |                                                                    |
+| 10  | Depoimentos        | ✅     | `TestimonialsSection variant="edicao"`                             |
+| 11  | Investimento       | ✅     | Card âmbar; link checkout ativo                                    |
+| 12  | FAQ                | 🟡     | 7 perguntas; guia sugere 10 + accordion                            |
+| 13  | Garantia dedicada  | 🟡     | Texto existe no bloco 11; pode virar seção própria                 |
+| 14  | CTA final          | 🟡     | Hoje leva à newsletter; guia pede CTA compra + contador vagas real |
 
 ### Padrões visuais (copiar da home / landing)
 
@@ -126,14 +126,14 @@ CTA lista: `/newsletter?source=edicao-lancamento`
 
 ## 5. Outras landings previstas
 
-| Rota | Objetivo | Estado |
-|------|----------|--------|
-| `/` | Institucional + cohort + calculadora | ✅ estrutura rica |
-| `/cursos` | Vitrine Prisma | ✅ |
-| `/eventos/dia-do-advogado-2026` | RSVP evento 11/08 | 🟡 ver `copy.evento` |
-| `/newsletter` | Captura lead | ✅ |
-| `/checkout/[slug]` | Pagamento Pagar.me | ✅ técnico; validar copy pós-compra |
-| Isças `/materiais/[slug]` | Lead magnets | Parcial |
+| Rota                            | Objetivo                             | Estado                              |
+| ------------------------------- | ------------------------------------ | ----------------------------------- |
+| `/`                             | Institucional + cohort + calculadora | ✅ estrutura rica                   |
+| `/cursos`                       | Vitrine Prisma                       | ✅                                  |
+| `/eventos/dia-do-advogado-2026` | RSVP evento 11/08                    | 🟡 ver `copy.evento`                |
+| `/newsletter`                   | Captura lead                         | ✅                                  |
+| `/checkout/[slug]`              | Pagamento Pagar.me                   | ✅ técnico; validar copy pós-compra |
+| Isças `/materiais/[slug]`       | Lead magnets                         | Parcial                             |
 
 Checklist geral do projeto: `docs/CHECKLIST-FASES.md` e `docs/checklist-cronologico.md` (Fase 7 — pré-lançamento).
 
@@ -164,12 +164,12 @@ Eventos: configurar via GTM quando banner de cookies estiver ativo (`docs/checkl
 
 ## 8. Contatos técnicos
 
-| Item | Valor |
-|------|--------|
-| Repositório | GitHub — branch ativa `feature/aluno-area` (pode divergir de `main`) |
-| Deploy | Vercel — projeto `escola-de-direito-milhomem-site` |
-| E-mail institucional | contato@escolaflaviomilhomem.com.br |
-| Domínio canônico (env) | `NEXT_PUBLIC_SITE_URL` → escolaflaviomilhomem.com.br |
+| Item                   | Valor                                                                |
+| ---------------------- | -------------------------------------------------------------------- |
+| Repositório            | GitHub — branch ativa `feature/aluno-area` (pode divergir de `main`) |
+| Deploy                 | Vercel — projeto `escola-de-direito-milhomem-site`                   |
+| E-mail institucional   | contato@escolaflaviomilhomem.com.br                                  |
+| Domínio canônico (env) | `NEXT_PUBLIC_SITE_URL` → escolaflaviomilhomem.com.br                 |
 
 ---
 
@@ -185,4 +185,4 @@ Eventos: configurar via GTM quando banner de cookies estiver ativo (`docs/checkl
 
 ---
 
-*Documento gerado para handoff interno. Dúvidas de implementação: ver também `docs/auditoria-tecnica-livro-guia.md` (tabela landing 6.5).*
+_Documento gerado para handoff interno. Dúvidas de implementação: ver também `docs/auditoria-tecnica-livro-guia.md` (tabela landing 6.5)._

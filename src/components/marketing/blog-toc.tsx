@@ -11,15 +11,12 @@ export function BlogToc({ items }: { items: TocItem[] }) {
       aria-label="Índice do artigo"
       className="border-paper-100 bg-carbon-elevated mb-10 border p-6 md:p-8"
     >
-      <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
         Neste artigo
       </p>
       <ol className="mt-4 space-y-2">
         {items.map((item) => (
-          <li
-            key={item.id}
-            className={item.level === 3 ? "pl-5" : undefined}
-          >
+          <li key={item.id} className={item.level === 3 ? "pl-5" : undefined}>
             <a
               href={`#${item.id}`}
               className="text-paper-700 hover:text-amber text-sm leading-snug transition-colors"
@@ -41,7 +38,7 @@ export function BlogToc({ items }: { items: TocItem[] }) {
 export function BlogAnswerFirst({ text }: { text: string }) {
   return (
     <aside className="border-amber/40 bg-amber/5 mb-10 border-l-2 px-6 py-6 md:px-8">
-      <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
         Resposta direta
       </p>
       <p className="text-paper mt-3 text-lg leading-relaxed md:text-xl">

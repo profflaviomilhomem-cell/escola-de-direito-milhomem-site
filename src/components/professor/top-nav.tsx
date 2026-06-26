@@ -45,7 +45,7 @@ export function ProfessorTopNav({ userName, userEmail, avatarSrc }: Props) {
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             onBlur={() => setTimeout(() => setMenuOpen(false), 120)}
-            className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition-colors"
+            className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 transition-colors"
             aria-haspopup="menu"
             aria-expanded={menuOpen}
             aria-label="Menu da conta"
@@ -81,8 +81,10 @@ export function ProfessorTopNav({ userName, userEmail, avatarSrc }: Props) {
             >
               <div className="border-paper-100 border-b px-4 py-3">
                 <p className="text-paper text-sm font-semibold">{userName}</p>
-                <p className="text-paper-600 mt-1 truncate text-xs">{userEmail}</p>
-                <p className="text-amber mt-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+                <p className="text-paper-600 mt-1 truncate text-xs">
+                  {userEmail}
+                </p>
+                <p className="text-amber mt-2 font-mono text-[10px] tracking-[0.2em] uppercase">
                   Sessão de admin
                 </p>
               </div>

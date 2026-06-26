@@ -49,7 +49,10 @@ export function BlogArticleBody({ body, isHtml }: BlogArticleBodyProps) {
         </div>
       ) : null}
 
-      <div className={HTML_PROSE} dangerouslySetInnerHTML={{ __html: bodyHtml }} />
+      <div
+        className={HTML_PROSE}
+        dangerouslySetInnerHTML={{ __html: bodyHtml }}
+      />
     </>
   );
 }

@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// Define paths
-const WORKSPACE_DIR = "/Users/carlos/BettoOrbee/clientes /Flavio Milhomem/escola_de_direito_milhomem_site";
+// Define paths — raiz do projeto em runtime (rota só de dev)
+const WORKSPACE_DIR = process.cwd();
 const CHECKLIST_PATH = path.join(WORKSPACE_DIR, "docs/CHECKLIST-FASES.md");
 // NÃO apontar para `organograma-checklist.html` (o MESTRE de 308 nós, gerado
 // do livro-guia em 24/jun). Este gerador legado produz só os ~101 itens do
@@ -45,18 +45,18 @@ function slugify(text: string): string {
 function parseChecklistMarkdown(content: string) {
   const lines = content.split("\n");
   const phases: Phase[] = [];
-  
+
   let currentPhase: Phase | null = null;
   let currentSub: Subsection | null = null;
-  
+
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
-    
+
     // Check if we hit "Controle de progresso" or anything after the main phases
     if (line.startsWith("## Controle de progresso")) {
       break;
     }
-    
+
     // Match Phase (e.g. ## Fase 0 — Fundação produção)
     const phaseMatch = line.match(/^##\s+Fase\s+(\d+)\s*[—-]\s*(.+)$/i);
     if (phaseMatch) {
@@ -72,13 +72,13 @@ function parseChecklistMarkdown(content: string) {
       currentSub = null;
       continue;
     }
-    
+
     // Match Description for Phase (any line immediately after ## Phase that is meta/description)
     if (currentPhase && !currentSub && line.startsWith("**Meta:**")) {
       currentPhase.description = line.replace(/^\*\*Meta:\*\*/i, "").trim();
       continue;
     }
-    
+
     // Match Subsection (e.g. ### 0.1 Infra e ambiente)
     const subMatch = line.match(/^###\s+(\d+\.\d+)\s*(.+)$/i);
     if (subMatch) {
@@ -93,22 +93,22 @@ function parseChecklistMarkdown(content: string) {
       currentPhase.subsections.push(currentSub);
       continue;
     }
-    
+
     // Match Checklist Item (e.g. - [ ] Upstash Redis...)
     const itemMatch = line.match(/^-\s*\[([ x~])\]\s*(.+)$/i);
     if (itemMatch && currentSub && currentPhase) {
       const statusChar = itemMatch[1].toLowerCase();
       const text = itemMatch[2].trim();
-      
+
       let status: "CONCLUÍDO" | "EM PROGRESSO" | "PENDENTE" = "PENDENTE";
       if (statusChar === "x") status = "CONCLUÍDO";
       else if (statusChar === "~") status = "EM PROGRESSO";
-      
+
       const cleanText = text.replace(/—\s*[^*]+$/, "").trim(); // strip tail refs if any
       const id = `item-${currentPhase.index}-${currentSub.no.replace(".", "-")}-${slugify(cleanText)}`;
-      
-      let ref = `Fase ${currentPhase.index} · ${currentSub.no}`;
-      
+
+      const ref = `Fase ${currentPhase.index} · ${currentSub.no}`;
+
       currentSub.items.push({
         id,
         text,
@@ -117,29 +117,41 @@ function parseChecklistMarkdown(content: string) {
       });
     }
   }
-  
+
   return phases;
+}
+
+interface OrganogramaDataItem {
+  id: string;
+  parent: string;
+  title: string;
+  sub: string;
+  theme: string;
+  ref: string;
+  status: string;
+  desc: string;
+  rich: string;
 }
 
 // Generate static organograma HTML file
 function updateStaticHtmlFile(phases: Phase[]) {
   // Let's create the JSON representation of items
-  const dataItems: any[] = [];
-  
+  const dataItems: OrganogramaDataItem[] = [];
+
   const colors = [
     "var(--color-yellow)", // Fase 0
-    "var(--color-blue)",   // Fase 1
-    "var(--color-cyan)",   // Fase 2
+    "var(--color-blue)", // Fase 1
+    "var(--color-cyan)", // Fase 2
     "var(--color-purple)", // Fase 3
-    "var(--color-coral)",  // Fase 4
-    "var(--color-green)",  // Fase 5
+    "var(--color-coral)", // Fase 4
+    "var(--color-green)", // Fase 5
     "var(--color-orange)", // Fase 6
   ];
-  
-  phases.forEach(phase => {
+
+  phases.forEach((phase) => {
     const themeColor = colors[phase.index % colors.length];
-    phase.subsections.forEach(sub => {
-      sub.items.forEach(item => {
+    phase.subsections.forEach((sub) => {
+      sub.items.forEach((item) => {
         dataItems.push({
           id: item.id,
           parent: `sub-${sub.no.replace(".", "-")}`,
@@ -1688,15 +1700,21 @@ function updateStaticHtmlFile(phases: Phase[]) {
 export async function GET() {
   try {
     if (!fs.existsSync(CHECKLIST_PATH)) {
-      return NextResponse.json({ error: "Checklist file not found at " + CHECKLIST_PATH }, { status: 404 });
+      return NextResponse.json(
+        { error: "Checklist file not found at " + CHECKLIST_PATH },
+        { status: 404 },
+      );
     }
     const content = fs.readFileSync(CHECKLIST_PATH, "utf-8");
     const phases = parseChecklistMarkdown(content);
     // Automatically generate/sync the static HTML file on load
     updateStaticHtmlFile(phases);
     return NextResponse.json({ phases });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 },
+    );
   }
 }
 
@@ -1704,17 +1722,23 @@ export async function POST(req: Request) {
   try {
     const { itemId, status } = await req.json();
     if (!itemId || !status) {
-      return NextResponse.json({ error: "Missing itemId or status" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing itemId or status" },
+        { status: 400 },
+      );
     }
 
     if (!fs.existsSync(CHECKLIST_PATH)) {
-      return NextResponse.json({ error: "Checklist file not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Checklist file not found" },
+        { status: 404 },
+      );
     }
 
-    let content = fs.readFileSync(CHECKLIST_PATH, "utf-8");
-    let lines = content.split("\n");
+    const content = fs.readFileSync(CHECKLIST_PATH, "utf-8");
+    const lines = content.split("\n");
     const phases = parseChecklistMarkdown(content);
-    
+
     // Find the item matching this ID
     let targetItem: ChecklistItem | null = null;
     let targetSubNo = "";
@@ -1736,7 +1760,10 @@ export async function POST(req: Request) {
     }
 
     if (!targetItem) {
-      return NextResponse.json({ error: `Item with id ${itemId} not found in parsed structure` }, { status: 404 });
+      return NextResponse.json(
+        { error: `Item with id ${itemId} not found in parsed structure` },
+        { status: 404 },
+      );
     }
 
     // Now update the line in the markdown file
@@ -1744,11 +1771,12 @@ export async function POST(req: Request) {
     let currentSubNo = "";
     let updated = false;
 
-    const newStatusChar = status === "CONCLUÍDO" ? "x" : status === "EM PROGRESSO" ? "~" : " ";
+    const newStatusChar =
+      status === "CONCLUÍDO" ? "x" : status === "EM PROGRESSO" ? "~" : " ";
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
+
       const phaseMatch = line.match(/^##\s+Fase\s+(\d+)/i);
       if (phaseMatch) {
         currentPhaseIdx = parseInt(phaseMatch[1], 10);
@@ -1762,11 +1790,17 @@ export async function POST(req: Request) {
       }
 
       const itemMatch = line.match(/^-\s*\[([ x~])\]\s*(.+)$/i);
-      if (itemMatch && currentPhaseIdx === targetPhaseIdx && currentSubNo === targetSubNo) {
+      if (
+        itemMatch &&
+        currentPhaseIdx === targetPhaseIdx &&
+        currentSubNo === targetSubNo
+      ) {
         const text = itemMatch[2].trim();
         const cleanText = text.replace(/—\s*[^*]+$/, "").trim();
         const slug = slugify(cleanText);
-        const itemSlug = slugify(targetItem.text.replace(/—\s*[^*]+$/, "").trim());
+        const itemSlug = slugify(
+          targetItem.text.replace(/—\s*[^*]+$/, "").trim(),
+        );
 
         if (slug === itemSlug) {
           // Replace checkbox
@@ -1779,7 +1813,10 @@ export async function POST(req: Request) {
     }
 
     if (!updated) {
-      return NextResponse.json({ error: "Failed to locate and update item in raw text lines" }, { status: 500 });
+      return NextResponse.json(
+        { error: "Failed to locate and update item in raw text lines" },
+        { status: 500 },
+      );
     }
 
     // Reconstruct content to parse updated counts for progress table
@@ -1796,7 +1833,10 @@ export async function POST(req: Request) {
         tableStartIdx = i;
         // Search for table boundary
         for (let j = i + 1; j < linesForTable.length; j++) {
-          if (linesForTable[j].trim().startsWith("---") || linesForTable[j].trim().startsWith("*Última atualização")) {
+          if (
+            linesForTable[j].trim().startsWith("---") ||
+            linesForTable[j].trim().startsWith("*Última atualização")
+          ) {
             tableEndIdx = j;
             break;
           }
@@ -1814,12 +1854,12 @@ export async function POST(req: Request) {
         "|------|-------|------------|---|",
       ];
 
-      updatedPhases.forEach(phase => {
+      updatedPhases.forEach((phase) => {
         let totalItems = 0;
         let completedItems = 0;
 
-        phase.subsections.forEach(sub => {
-          sub.items.forEach(item => {
+        phase.subsections.forEach((sub) => {
+          sub.items.forEach((item) => {
             totalItems++;
             if (item.status === "CONCLUÍDO") {
               completedItems++;
@@ -1827,8 +1867,11 @@ export async function POST(req: Request) {
           });
         });
 
-        const percent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-        tableRows.push(`| ${phase.index} | ${totalItems} | ${completedItems} | ${percent}% |`);
+        const percent =
+          totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+        tableRows.push(
+          `| ${phase.index} | ${totalItems} | ${completedItems} | ${percent}% |`,
+        );
       });
 
       tableRows.push("");
@@ -1836,7 +1879,11 @@ export async function POST(req: Request) {
       tableRows.push("");
 
       // Replace everything between tableStartIdx and tableEndIdx with tableRows
-      linesForTable.splice(tableStartIdx, tableEndIdx - tableStartIdx, ...tableRows);
+      linesForTable.splice(
+        tableStartIdx,
+        tableEndIdx - tableStartIdx,
+        ...tableRows,
+      );
       updatedContent = linesForTable.join("\n");
     }
 
@@ -1848,7 +1895,10 @@ export async function POST(req: Request) {
     updateStaticHtmlFile(finalPhases);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  } catch (error: unknown) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : String(error) },
+      { status: 500 },
+    );
   }
 }

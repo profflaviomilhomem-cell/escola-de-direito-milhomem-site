@@ -11,8 +11,7 @@ export const turmaFundadoraAvaliacoes = {
   eyebrow: "Turma fundadora",
   title: "Avaliações da",
   titleEmphasis: "turma fundadora",
-  lead:
-    "Relatos de alunos da edição inaugural — publicados com autorização e em caráter informativo sobre a experiência no cohort.",
+  lead: "Relatos de alunos da edição inaugural — publicados com autorização e em caráter informativo sobre a experiência no cohort.",
   items: [
     {
       quote:

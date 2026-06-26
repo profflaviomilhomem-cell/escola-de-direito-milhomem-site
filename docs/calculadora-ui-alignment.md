@@ -10,14 +10,14 @@ Referência aprovada em maio/2026. Ao evoluir o **desktop** (versão mais robust
 
 ## Navegação mobile (`CalculadoraDeviceMobile`)
 
-| Tecla | Aba |
-|-------|-----|
-| TIPO | Crime + filtros |
-| FATO | Narrativa |
-| PENA | Dosimetria (fases I–III no teclado) |
-| TXT | Sentença |
-| OUT | Exportar |
-| CLR / PRINT | Zerar / impressão completa |
+| Tecla       | Aba                                 |
+| ----------- | ----------------------------------- |
+| TIPO        | Crime + filtros                     |
+| FATO        | Narrativa                           |
+| PENA        | Dosimetria (fases I–III no teclado) |
+| TXT         | Sentença                            |
+| OUT         | Exportar                            |
+| CLR / PRINT | Zerar / impressão completa          |
 
 Arquivos principais: `calculadora-device-mobile.tsx`, `case-file.tsx`, `globals.css` (`.fm-calc-*`).
 

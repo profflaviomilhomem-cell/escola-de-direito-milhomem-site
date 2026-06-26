@@ -5,12 +5,12 @@
 
 ## Tipos de produto (`Product.type`)
 
-| Tipo | Modelo | Acesso liberado quando | Tabela |
-|------|--------|------------------------|--------|
-| `COHORT` | Compra única (turma / curso gravado) | `Order.status` ∈ `PAID`, `AUTHORIZED` | `Order` |
-| `TRIPWIRE` | Compra pontual (masterclass) | Mesmo que `COHORT` | `Order` |
-| `COMUNIDADE` | Assinatura recorrente | `Subscription.status` = `ACTIVE` | `Subscription` |
-| `EBOOK` | Legado Eduzz | **Sem acesso automático no MVP** — tratar manualmente ou integração futura | — |
+| Tipo         | Modelo                               | Acesso liberado quando                                                     | Tabela         |
+| ------------ | ------------------------------------ | -------------------------------------------------------------------------- | -------------- |
+| `COHORT`     | Compra única (turma / curso gravado) | `Order.status` ∈ `PAID`, `AUTHORIZED`                                      | `Order`        |
+| `TRIPWIRE`   | Compra pontual (masterclass)         | Mesmo que `COHORT`                                                         | `Order`        |
+| `COMUNIDADE` | Assinatura recorrente                | `Subscription.status` = `ACTIVE`                                           | `Subscription` |
+| `EBOOK`      | Legado Eduzz                         | **Sem acesso automático no MVP** — tratar manualmente ou integração futura | —              |
 
 ## Validade do acesso (“acesso até”)
 
@@ -21,11 +21,11 @@
 
 ## Meios de pagamento no MVP
 
-| Meio | Checkout | Webhook | Status |
-|------|----------|---------|--------|
-| **PIX** | Sim (`/checkout/[slug]`) | `order.paid` / `charge.paid` | Ativo |
-| **Boleto** | Sim (exige endereço) | idem | Ativo |
-| **Cartão** | Próximo passo (token JS Pagar.me) | idem | Pendente |
+| Meio       | Checkout                          | Webhook                      | Status   |
+| ---------- | --------------------------------- | ---------------------------- | -------- |
+| **PIX**    | Sim (`/checkout/[slug]`)          | `order.paid` / `charge.paid` | Ativo    |
+| **Boleto** | Sim (exige endereço)              | idem                         | Ativo    |
+| **Cartão** | Próximo passo (token JS Pagar.me) | idem                         | Pendente |
 
 Fluxo comum:
 
@@ -41,11 +41,11 @@ Fluxo comum:
 
 ## Variáveis de ambiente
 
-| Variável | Uso |
-|----------|-----|
-| `PAGARME_SECRET_KEY` | API REST (criar pedido) |
-| `PAGARME_WEBHOOK_SECRET` | Validar HMAC do webhook |
-| `PAGARME_PUBLIC_KEY` | Tokenização de cartão (passo futuro) |
+| Variável                 | Uso                                  |
+| ------------------------ | ------------------------------------ |
+| `PAGARME_SECRET_KEY`     | API REST (criar pedido)              |
+| `PAGARME_WEBHOOK_SECRET` | Validar HMAC do webhook              |
+| `PAGARME_PUBLIC_KEY`     | Tokenização de cartão (passo futuro) |
 
 Webhook de produção: `POST https://<domínio>/api/webhooks/pagarme`
 
@@ -66,12 +66,12 @@ Dashboard, certificados e biblioteca de cursos usam `getEnrolledCourses(userId)`
 
 Eventos tratados:
 
-| Evento | Ação |
-|--------|------|
+| Evento                                          | Ação                                                   |
+| ----------------------------------------------- | ------------------------------------------------------ |
 | `subscription.created` / `subscription.updated` | Upsert `Subscription` (metadata `userId`, `productId`) |
-| `subscription.canceled` | `CANCELED` + `canceledAt` |
-| `charge.paid` (com `subscription_id`) | `ACTIVE` |
-| `invoice.paid` / `invoice.payment_failed` | Ativa ou `PAST_DUE` |
+| `subscription.canceled`                         | `CANCELED` + `canceledAt`                              |
+| `charge.paid` (com `subscription_id`)           | `ACTIVE`                                               |
+| `invoice.paid` / `invoice.payment_failed`       | Ativa ou `PAST_DUE`                                    |
 
 Checkout `COMUNIDADE`: API `/subscriptions` (boleto ou cartão; **sem PIX**). Registro local `Subscription` com `code` = id interno.
 

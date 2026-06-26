@@ -41,10 +41,6 @@ function mapCategory(label: string): BlogCategory {
   return "GERAL";
 }
 
-function readingMinutes(body: string) {
-  return Math.ceil(body.length / 1000) || 5;
-}
-
 async function migrate() {
   const jsonPath = join(process.cwd(), "src/data/migrated-posts.json");
   const posts = JSON.parse(readFileSync(jsonPath, "utf8")) as MigratedRow[];

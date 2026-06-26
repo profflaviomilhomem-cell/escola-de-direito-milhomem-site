@@ -26,8 +26,9 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return false;
     }
-    const isTouch =
-      window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const isTouch = window.matchMedia(
+      "(hover: none), (pointer: coarse)",
+    ).matches;
     const DOE = DeviceOrientationEvent as typeof DeviceOrientationEvent & {
       requestPermission?: () => Promise<PermissionState>;
     };
@@ -45,8 +46,9 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
     const stage = stageRef.current;
     if (!container || !stage) return;
 
-    const isTouch =
-      window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    const isTouch = window.matchMedia(
+      "(hover: none), (pointer: coarse)",
+    ).matches;
 
     const clamp = (v: number, min: number, max: number) =>
       Math.min(max, Math.max(min, v));
@@ -112,7 +114,11 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
           swayTween = null;
 
           const rotY = clamp((e.gamma - baseGamma) * 0.95, -maxTilt, maxTilt);
-          const rotX = clamp(-(e.beta - baseBeta) * 0.72, -maxTilt * 0.75, maxTilt * 0.75);
+          const rotX = clamp(
+            -(e.beta - baseBeta) * 0.72,
+            -maxTilt * 0.75,
+            maxTilt * 0.75,
+          );
 
           gsap.to(stage, {
             rotateY: rotY,
@@ -136,9 +142,10 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
         };
 
         const requestGyroAccess = async () => {
-          const DOE = DeviceOrientationEvent as typeof DeviceOrientationEvent & {
-            requestPermission?: () => Promise<PermissionState>;
-          };
+          const DOE =
+            DeviceOrientationEvent as typeof DeviceOrientationEvent & {
+              requestPermission?: () => Promise<PermissionState>;
+            };
 
           if (typeof DOE.requestPermission === "function") {
             setGyroHint(false);
@@ -335,7 +342,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
               {isTexturePaper ? null : i === 0 ? (
                 <div className="relative h-full w-full">
                   <div
-                    className={`absolute -right-2 top-0 border border-black/20 bg-white p-1 shadow-sm grayscale contrast-125 ${compact ? "h-12 w-9" : "h-16 w-12"}`}
+                    className={`absolute top-0 -right-2 border border-black/20 bg-white p-1 shadow-sm contrast-125 grayscale ${compact ? "h-12 w-9" : "h-16 w-12"}`}
                   >
                     <img
                       src="/images/professor/flavio-avatar-64.jpg"
@@ -357,8 +364,8 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
         <div
           className={`absolute overflow-hidden border border-black/10 bg-[#EDE6D8] shadow-[0_22px_40px_rgba(0,0,0,0.55)] ${
             compact
-              ? "-left-[6%] top-[70%] h-[30%] w-[72%]"
-              : "-left-[10%] top-[74%] h-[34%] w-[78%]"
+              ? "top-[70%] -left-[6%] h-[30%] w-[72%]"
+              : "top-[74%] -left-[10%] h-[34%] w-[78%]"
           }`}
           style={{ transform: "translateZ(30px) rotate(-7deg)" }}
           aria-hidden="true"
@@ -369,7 +376,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
           {compact ? (
             <div className="absolute inset-0 flex items-center justify-center p-2">
               <div
-                className="border-alerta-600 text-alerta-600 max-w-full border-[2px] px-1.5 py-0.5 text-center font-mono text-[8px] font-black uppercase leading-tight tracking-[0.04em] rotate-[-6deg]"
+                className="border-alerta-600 text-alerta-600 max-w-full rotate-[-6deg] border-[2px] px-1.5 py-0.5 text-center font-mono text-[8px] leading-tight font-black tracking-[0.04em] uppercase"
                 style={{ WebkitTextStroke: "0.4px currentColor" }}
               >
                 CONFIDENCIAL
@@ -381,8 +388,8 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
         <div
           className={`absolute overflow-hidden border border-black/10 bg-[#EDE6D8] shadow-[0_22px_40px_rgba(0,0,0,0.55)] ${
             compact
-              ? "-right-[4%] top-[72%] h-[34%] w-[74%]"
-              : "-right-[8%] top-[80%] h-[30%] w-[68%]"
+              ? "top-[72%] -right-[4%] h-[34%] w-[74%]"
+              : "top-[80%] -right-[8%] h-[30%] w-[68%]"
           }`}
           style={{ transform: "translateZ(35px) rotate(6deg)" }}
           aria-hidden="true"
@@ -393,8 +400,10 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
           {compact ? (
             <>
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-0.5 px-2 pb-5 text-center font-mono font-bold text-[#1a0f05]">
-                <span className="text-[8px] leading-none tracking-[0.12em]">INÍCIO</span>
-                <span className="text-[10px] font-extrabold leading-none tracking-[0.08em]">
+                <span className="text-[8px] leading-none tracking-[0.12em]">
+                  INÍCIO
+                </span>
+                <span className="text-[10px] leading-none font-extrabold tracking-[0.08em]">
                   11 AGOSTO
                 </span>
               </div>
@@ -428,7 +437,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             className={`mx-auto w-full max-w-full px-1 text-center ${compact ? "my-3" : "my-6"}`}
           >
             <h2
-              className={`font-serif mx-auto max-w-full italic leading-[1.02] text-[#1a0f05] ${compact ? "text-[1.65rem]" : "text-[clamp(1.75rem,5.2vw,3.35rem)]"}`}
+              className={`mx-auto max-w-full font-serif leading-[1.02] text-[#1a0f05] italic ${compact ? "text-[1.65rem]" : "text-[clamp(1.75rem,5.2vw,3.35rem)]"}`}
               style={{ WebkitTextStroke: "0.7px #1a0f05" }}
             >
               {copy.dossie.coverTitle1}
@@ -440,9 +449,11 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                 {copy.dossie.coverTitleEmphasis}
               </em>
             </h2>
-            <div className={`bg-amber mx-auto h-px w-10 ${compact ? "my-3" : "my-6"}`} />
+            <div
+              className={`bg-amber mx-auto h-px w-10 ${compact ? "my-3" : "my-6"}`}
+            />
             <p
-              className={`italic text-[#1a0f05]/85 ${compact ? "text-xs" : "text-lg"}`}
+              className={`text-[#1a0f05]/85 italic ${compact ? "text-xs" : "text-lg"}`}
               style={{ WebkitTextStroke: "0.35px #1a0f05" }}
             >
               {copy.dossie.coverSubtitle}
@@ -465,11 +476,11 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
         {!compact ? (
           <>
             <div
-              className="text-alerta-600 absolute left-[5%] top-[74%] flex h-[34%] w-[42%] items-center justify-center"
+              className="text-alerta-600 absolute top-[74%] left-[5%] flex h-[34%] w-[42%] items-center justify-center"
               style={{ transform: "translateZ(45px) rotate(-7deg)" }}
             >
               <div
-                className="border-[2.5px] border-alerta-600 px-2 py-0.5 font-mono text-[15px] font-black uppercase tracking-[0.05em] rotate-[-3deg] shadow-[0_0_10px_rgba(184,50,58,0.15)]"
+                className="border-alerta-600 rotate-[-3deg] border-[2.5px] px-2 py-0.5 font-mono text-[15px] font-black tracking-[0.05em] uppercase shadow-[0_0_10px_rgba(184,50,58,0.15)]"
                 style={{ WebkitTextStroke: "0.5px currentColor" }}
               >
                 CONFIDENCIAL
@@ -477,7 +488,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             </div>
 
             <div
-              className="absolute -right-[8%] top-[80%] flex h-[30%] w-[68%] items-center justify-center font-mono text-[14px] font-bold tracking-[0.2em] text-[#1a0f05]"
+              className="absolute top-[80%] -right-[8%] flex h-[30%] w-[68%] items-center justify-center font-mono text-[14px] font-bold tracking-[0.2em] text-[#1a0f05]"
               style={{
                 transform: "translateZ(45px) rotate(6deg)",
                 WebkitTextStroke: "0.5px #1a0f05",
@@ -489,7 +500,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             </div>
 
             <div
-              className="bg-amber text-paper absolute -bottom-4 -right-4 flex h-16 w-16 items-center justify-center rounded-full font-serif text-xs italic shadow-xl"
+              className="bg-amber text-paper absolute -right-4 -bottom-4 flex h-16 w-16 items-center justify-center rounded-full font-serif text-xs italic shadow-xl"
               style={{ transform: "translateZ(50px)" }}
             >
               {copy.dossie.sealLabel}

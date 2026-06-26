@@ -30,9 +30,9 @@ export default function TermosPage() {
           title: "Aceitação dos termos",
           body: (
             <p>
-              Ao se cadastrar, contratar curso, baixar material ou interagir
-              com qualquer recurso da {siteConfig.name}, você declara ter lido
-              e concordar com estes Termos. Se não concordar, encerre o uso
+              Ao se cadastrar, contratar curso, baixar material ou interagir com
+              qualquer recurso da {siteConfig.name}, você declara ter lido e
+              concordar com estes Termos. Se não concordar, encerre o uso
               imediatamente — não há prejuízo decorrente da não aceitação.
             </p>
           ),
@@ -44,8 +44,8 @@ export default function TermosPage() {
           body: (
             <p>
               Você é responsável por manter seus dados de acesso atualizados e
-              em sigilo. O compartilhamento de credenciais é vedado e pode
-              gerar bloqueio da conta sem reembolso. A conta é pessoal e
+              em sigilo. O compartilhamento de credenciais é vedado e pode gerar
+              bloqueio da conta sem reembolso. A conta é pessoal e
               intransferível.
             </p>
           ),
@@ -70,8 +70,8 @@ export default function TermosPage() {
           title: "Pagamentos e assinaturas",
           body: (
             <p>
-              Os pagamentos são processados pela Pagar.me e podem ser feitos
-              em cartão de crédito, PIX ou boleto. Assinaturas mensais são
+              Os pagamentos são processados pela Pagar.me e podem ser feitos em
+              cartão de crédito, PIX ou boleto. Assinaturas mensais são
               renovadas automaticamente até cancelamento; o aluno pode cancelar
               a qualquer momento na página{" "}
               <Link
@@ -80,8 +80,8 @@ export default function TermosPage() {
               >
                 Minha Conta
               </Link>
-              . Falhas de pagamento geram retentativas em 3 ciclos com 3 dias
-              de intervalo antes da suspensão.
+              . Falhas de pagamento geram retentativas em 3 ciclos com 3 dias de
+              intervalo antes da suspensão.
             </p>
           ),
         },
@@ -91,8 +91,8 @@ export default function TermosPage() {
           title: "Cancelamento e reembolso",
           body: (
             <p>
-              Reembolso integral é garantido em até 15 dias da matrícula
-              (CDC, art. 49 e prática institucional). Após esse prazo, regras
+              Reembolso integral é garantido em até 15 dias da matrícula (CDC,
+              art. 49 e prática institucional). Após esse prazo, regras
               específicas se aplicam — leia a{" "}
               <Link
                 href="/reembolso"
@@ -119,8 +119,8 @@ export default function TermosPage() {
               <p className="mt-4">
                 É vedado: gravar, redistribuir, retransmitir, publicar trechos,
                 treinar modelos com o conteúdo, ou usar o material em curso
-                concorrente. Violação caracteriza ilícito civil (Lei 9.610/98)
-                e penal (CP, art. 184).
+                concorrente. Violação caracteriza ilícito civil (Lei 9.610/98) e
+                penal (CP, art. 184).
               </p>
             </>
           ),
@@ -132,9 +132,9 @@ export default function TermosPage() {
           body: (
             <p>
               Esperamos diálogo técnico e respeito entre alunos. Não toleramos
-              ofensa pessoal, discurso de ódio, divulgação de dados de
-              terceiros ou conteúdo ilegal. Mensagens fora do escopo são
-              moderadas; reincidência leva a suspensão sem reembolso.
+              ofensa pessoal, discurso de ódio, divulgação de dados de terceiros
+              ou conteúdo ilegal. Mensagens fora do escopo são moderadas;
+              reincidência leva a suspensão sem reembolso.
             </p>
           ),
         },
@@ -159,10 +159,10 @@ export default function TermosPage() {
           title: "Foro e legislação aplicável",
           body: (
             <p>
-              Estes Termos são regidos pela legislação brasileira. Fica eleito
-              o foro da comarca de Brasília · DF para dirimir controvérsias,
-              salvo direito do consumidor de ajuizar no foro de seu domicílio
-              (CDC, art. 101).
+              Estes Termos são regidos pela legislação brasileira. Fica eleito o
+              foro da comarca de Brasília · DF para dirimir controvérsias, salvo
+              direito do consumidor de ajuizar no foro de seu domicílio (CDC,
+              art. 101).
             </p>
           ),
         },

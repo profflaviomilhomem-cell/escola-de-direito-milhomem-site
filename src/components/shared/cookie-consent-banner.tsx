@@ -81,7 +81,7 @@ export function CookieConsentBanner() {
               <button
                 type="button"
                 onClick={decline}
-                className="text-paper-600 hover:text-paper px-1 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] transition-colors"
+                className="text-paper-600 hover:text-paper px-1 py-0.5 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
               >
                 Recusar
               </button>
@@ -89,7 +89,7 @@ export function CookieConsentBanner() {
               <button
                 type="button"
                 onClick={accept}
-                className="bg-amber/90 text-carbon hover:bg-amber rounded px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.14em] transition-colors"
+                className="bg-amber/90 text-carbon hover:bg-amber rounded px-2.5 py-1 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
               >
                 Aceitar
               </button>

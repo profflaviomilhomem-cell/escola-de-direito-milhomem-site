@@ -100,15 +100,15 @@
     Arial, sans-serif;
   --font-body:
     var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
-    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
+    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   --font-serif:
     var(--font-clash-display), "Clash Display", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   --font-sans:
     var(--font-hiragino), "Hiragino Maru Gothic ProN", "Hiragino Sans",
-    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, sans-serif;
+    "Hiragino Kaku Gothic ProN", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   --font-mono:
     var(--font-jetbrains-mono), "JetBrains Mono", Menlo, Consolas, monospace;
 
@@ -339,7 +339,9 @@ h6,
       rgba(40, 25, 10, 0.2) 100%
     ),
     url("/images/kraft.jpg");
-  background-size: 100% 100%, cover;
+  background-size:
+    100% 100%,
+    cover;
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
 }
@@ -414,7 +416,11 @@ h6,
 .fm-home-stats {
   background:
     linear-gradient(165deg, rgba(255, 255, 255, 0.045) 0%, transparent 42%),
-    linear-gradient(180deg, rgba(12, 16, 24, 0.92) 0%, rgba(8, 10, 16, 0.98) 100%);
+    linear-gradient(
+      180deg,
+      rgba(12, 16, 24, 0.92) 0%,
+      rgba(8, 10, 16, 0.98) 100%
+    );
   backdrop-filter: blur(10px);
 }
 
@@ -1227,8 +1233,7 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 }
 
 .fm-calc-device-body {
-  background:
-    linear-gradient(165deg, #2a2f38 0%, #1a1e26 42%, #12151c 100%);
+  background: linear-gradient(165deg, #2a2f38 0%, #1a1e26 42%, #12151c 100%);
   border: 1px solid rgba(241, 187, 65, 0.22);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.55),
@@ -1396,15 +1401,14 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   top: -0.15rem;
   width: 5.25rem;
   height: 5.25rem;
-  background:
-    radial-gradient(
-      circle at 38% 28%,
-      #fffef8 0%,
-      #f5f0e6 18%,
-      #e6dfd2 38%,
-      #cfc6b6 62%,
-      #a39a8c 100%
-    );
+  background: radial-gradient(
+    circle at 38% 28%,
+    #fffef8 0%,
+    #f5f0e6 18%,
+    #e6dfd2 38%,
+    #cfc6b6 62%,
+    #a39a8c 100%
+  );
   box-shadow:
     inset 0 -8px 16px rgba(0, 0, 0, 0.18),
     inset 0 4px 8px rgba(255, 255, 255, 0.35),
@@ -1767,14 +1771,13 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 999px;
-  background:
-    radial-gradient(
-      circle at 35% 30%,
-      #f8f6f0 0%,
-      #e8e2d6 28%,
-      #c9c2b4 55%,
-      #8a8478 100%
-    );
+  background: radial-gradient(
+    circle at 35% 30%,
+    #f8f6f0 0%,
+    #e8e2d6 28%,
+    #c9c2b4 55%,
+    #8a8478 100%
+  );
   box-shadow:
     inset 0 -6px 12px rgba(0, 0, 0, 0.22),
     0 4px 10px rgba(0, 0, 0, 0.35);
@@ -1955,7 +1958,12 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 }
 
 .fm-calc-key--clear {
-  background: linear-gradient(180deg, #7a5cad 0%, #5c4388 55%, #4a356e 100%) !important;
+  background: linear-gradient(
+    180deg,
+    #7a5cad 0%,
+    #5c4388 55%,
+    #4a356e 100%
+  ) !important;
   border-color: #3d2d5c !important;
   color: #f4efff !important;
   box-shadow:
@@ -2280,8 +2288,11 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 }
 
 .fm-calc-lcd {
-  background:
-    linear-gradient(180deg, rgba(20, 55, 38, 0.95) 0%, rgba(12, 38, 28, 0.98) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 55, 38, 0.95) 0%,
+    rgba(12, 38, 28, 0.98) 100%
+  );
   border: 2px solid #0a1f14;
   box-shadow:
     inset 0 2px 12px rgba(0, 0, 0, 0.45),
@@ -2683,8 +2694,8 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 }
 
 .fm-calc-paper-watermark__text {
-  font-family: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
-    serif;
+  font-family:
+    ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   font-size: 3rem;
   font-weight: 800;
   line-height: 1.05;
@@ -2717,10 +2728,7 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
 .fm-calc-paper-closeup__sheet.fm-paper-kraft {
   background-color: #c2a572;
   background-image:
-    linear-gradient(
-      rgba(255, 245, 228, 0.2),
-      rgba(255, 245, 228, 0.2)
-    ),
+    linear-gradient(rgba(255, 245, 228, 0.2), rgba(255, 245, 228, 0.2)),
     radial-gradient(
       ellipse at center,
       rgba(255, 230, 180, 0) 35%,

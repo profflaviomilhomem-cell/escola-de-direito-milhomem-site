@@ -3,16 +3,16 @@ import { z } from "zod";
 
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { userHasAccess } from "@/lib/enrollment";
-import {
-  createLessonComment,
-  listLessonComments,
-} from "@/lib/forum/comments";
+import { createLessonComment, listLessonComments } from "@/lib/forum/comments";
 import { rateLimit } from "@/lib/upstash/rate-limit";
 
 export async function GET(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   const productSlug = req.nextUrl.searchParams.get("productSlug")?.trim();
@@ -56,7 +56,10 @@ const createSchema = z.object({
 export async function POST(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   const rl = await rateLimit({
@@ -76,7 +79,10 @@ export async function POST(req: NextRequest) {
   try {
     raw = await req.json();
   } catch {
-    return NextResponse.json({ ok: false, error: "Payload inválido." }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "Payload inválido." },
+      { status: 400 },
+    );
   }
 
   const parsed = createSchema.safeParse(raw);
@@ -109,7 +115,10 @@ export async function POST(req: NextRequest) {
           : "Comentário-pai inválido.";
       return NextResponse.json({ ok: false, error: msg }, { status: 400 });
     }
-    return NextResponse.json({ ok: true, comment: result.comment }, { status: 201 });
+    return NextResponse.json(
+      { ok: true, comment: result.comment },
+      { status: 201 },
+    );
   } catch {
     return NextResponse.json(
       { ok: false, error: "Banco indisponível." },

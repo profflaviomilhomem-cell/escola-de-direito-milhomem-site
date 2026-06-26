@@ -124,13 +124,17 @@ export function CalculadoraCaseFile() {
     if (at.length)
       partes.push(
         `${at.length} atenuante${at.length > 1 ? "s" : ""} (${at
-          .map((s) => ATENUANTES_LABEL.find((x) => x.slug === s)?.label.toLowerCase())
+          .map((s) =>
+            ATENUANTES_LABEL.find((x) => x.slug === s)?.label.toLowerCase(),
+          )
           .join(", ")})`,
       );
     if (ag.length)
       partes.push(
         `${ag.length} agravante${ag.length > 1 ? "s" : ""} (${ag
-          .map((s) => AGRAVANTES_LABEL.find((x) => x.slug === s)?.label.toLowerCase())
+          .map((s) =>
+            AGRAVANTES_LABEL.find((x) => x.slug === s)?.label.toLowerCase(),
+          )
           .join(", ")})`,
       );
     return `consideradas ${partes.join(" e ")}`;
@@ -142,8 +146,12 @@ export function CalculadoraCaseFile() {
     if (aum.length === 0 && dim.length === 0)
       return "não incidem causas de aumento ou diminuição";
     const partes: string[] = [];
-    if (aum.length) partes.push(`${aum.length} causa${aum.length > 1 ? "s" : ""} de aumento`);
-    if (dim.length) partes.push(`${dim.length} causa${dim.length > 1 ? "s" : ""} de diminuição`);
+    if (aum.length)
+      partes.push(`${aum.length} causa${aum.length > 1 ? "s" : ""} de aumento`);
+    if (dim.length)
+      partes.push(
+        `${dim.length} causa${dim.length > 1 ? "s" : ""} de diminuição`,
+      );
     return `incidente${aum.length + dim.length > 1 ? "s" : ""} ${partes.join(" e ")}`;
   }, [aumentosSet, diminuicoesSet]);
 
@@ -325,9 +333,7 @@ export function CalculadoraCaseFile() {
           }}
         />
       )}
-      {tab === "calculo" && !selectedCrime && (
-        <TabEmptyCrime embedded />
-      )}
+      {tab === "calculo" && !selectedCrime && <TabEmptyCrime embedded />}
       {tab === "sentenca" && selectedCrime && (
         <TabSentenca
           {...{
@@ -349,7 +355,7 @@ export function CalculadoraCaseFile() {
   const referenceSidebar = (
     <aside className="hidden space-y-6 lg:sticky lg:top-28 lg:block lg:self-start">
       <div>
-        <h3 className="text-amber mb-4 font-mono text-[11px] uppercase tracking-[0.2em]">
+        <h3 className="text-amber mb-4 font-mono text-[11px] tracking-[0.2em] uppercase">
           Jurisprudência relacionada
         </h3>
         {jurisprudencia.length === 0 ? (
@@ -363,7 +369,7 @@ export function CalculadoraCaseFile() {
                 key={i}
                 className="bg-paper-50 hover:border-amber border-amber/60 border-l-2 py-2 pl-3 transition-colors"
               >
-                <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+                <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
                   {j.tribunal} · {j.code}
                 </p>
                 <p className="text-paper-800 mt-1 text-[13px] leading-relaxed">
@@ -375,7 +381,7 @@ export function CalculadoraCaseFile() {
         )}
       </div>
       <div className="border-paper-100 border-t pt-4">
-        <h3 className="text-amber mb-3 font-mono text-[11px] uppercase tracking-[0.2em]">
+        <h3 className="text-amber mb-3 font-mono text-[11px] tracking-[0.2em] uppercase">
           Doutrina sugerida
         </h3>
         <ul className="space-y-2 text-[13px]">

@@ -63,8 +63,7 @@ function initials(name: string): string {
 
 function sortRepliesChronological(list: MockComment[]): MockComment[] {
   return [...list].sort(
-    (a, b) =>
-      new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
   );
 }
 
@@ -146,7 +145,7 @@ function CommentNode({
                 setOpenReplyId(comment.id);
                 setDraft("");
               }}
-              className="text-amber hover:text-amber-soft fm-mono border border-transparent text-[10px] uppercase tracking-[0.16em] underline-offset-4 transition-colors hover:underline"
+              className="text-amber hover:text-amber-soft fm-mono border border-transparent text-[10px] tracking-[0.16em] uppercase underline-offset-4 transition-colors hover:underline"
             >
               Responder a {comment.author.name.split(/\s+/)[0]}
             </button>
@@ -170,7 +169,7 @@ function CommentNode({
               <div className="mt-2 flex flex-wrap gap-2">
                 <button
                   type="submit"
-                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1.5 text-[10px] uppercase tracking-[0.14em]"
+                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1.5 text-[10px] tracking-[0.14em] uppercase"
                 >
                   Publicar neste fio
                 </button>
@@ -180,7 +179,7 @@ function CommentNode({
                     setOpenReplyId(null);
                     setDraft("");
                   }}
-                  className="text-paper-600 hover:text-paper fm-mono text-[10px] uppercase tracking-[0.14em]"
+                  className="text-paper-600 hover:text-paper fm-mono text-[10px] tracking-[0.14em] uppercase"
                 >
                   Cancelar
                 </button>

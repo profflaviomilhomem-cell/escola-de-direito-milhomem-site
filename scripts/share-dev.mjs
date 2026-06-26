@@ -12,10 +12,13 @@ const localUrl = `http://127.0.0.1:${port}`;
 
 function portOpen() {
   return new Promise((resolve) => {
-    const socket = net.connect({ port: Number(port), host: "127.0.0.1" }, () => {
-      socket.end();
-      resolve(true);
-    });
+    const socket = net.connect(
+      { port: Number(port), host: "127.0.0.1" },
+      () => {
+        socket.end();
+        resolve(true);
+      },
+    );
     socket.on("error", () => resolve(false));
     socket.setTimeout(800, () => {
       socket.destroy();
@@ -46,7 +49,6 @@ function localIp() {
 }
 
 let printed = false;
-let tunnelUrl = null;
 
 const AREA_PATHS = [
   { label: "Home (institucional)", path: "/" },
@@ -63,13 +65,14 @@ const AREA_PATHS = [
 function announce(url) {
   if (printed) return;
   printed = true;
-  tunnelUrl = url;
   const base = url.replace(/\/$/, "");
 
   console.log("\n╔══════════════════════════════════════════════════════════╗");
   console.log("║  CELULAR (Chrome / Android)                               ║");
   console.log("║  1. Escaneie o QR abaixo  OU  copie o link                ║");
-  console.log("║  2. NÃO FECHE este terminal enquanto testar                 ║");
+  console.log(
+    "║  2. NÃO FECHE este terminal enquanto testar                 ║",
+  );
   console.log("╚══════════════════════════════════════════════════════════╝\n");
   console.log(`  Base: ${base}\n`);
   console.log("  Rotas:\n");
@@ -117,7 +120,9 @@ if (!ready) {
   process.exit(1);
 }
 
-console.log(`\n🔗 Gerando link para ${localUrl} … (pode levar ~15s na 1ª vez)\n`);
+console.log(
+  `\n🔗 Gerando link para ${localUrl} … (pode levar ~15s na 1ª vez)\n`,
+);
 
 const child = spawn(
   "npx",

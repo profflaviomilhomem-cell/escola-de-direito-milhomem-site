@@ -246,7 +246,6 @@ export function CalculadoraDeviceDesktopShell({
             </div>
           </div>
         </div>
-
       </div>
 
       <p className="fm-calc-device-footnote">

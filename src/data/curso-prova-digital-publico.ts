@@ -9,31 +9,35 @@ export type ModuloProvaDigitalPublico = {
   readonly id: string;
   readonly title: string;
   readonly desc: string;
-  readonly lessons: readonly { readonly number: number; readonly title: string }[];
+  readonly lessons: readonly {
+    readonly number: number;
+    readonly title: string;
+  }[];
 };
 
 /**
  * Ementa real do curso gravado — fonte: `provas-digitais-manifest.json`
  * (gerado por `npm run import:provas-digitais`).
  */
-export const provaDigitalModulosPublicos: readonly ModuloProvaDigitalPublico[] = [
-  {
-    id: "01",
-    title: "Cadeia de custódia",
-    desc: "Fundamentos da prova digital e da cadeia de custódia: reconhecimento, isolamento e fixação da prova material.",
-    lessons: lessons
-      .filter((l) => l.number <= 2)
-      .map((l) => ({ number: l.number, title: l.title })),
-  },
-  {
-    id: "02",
-    title: "Prova digital no processo",
-    desc: "Da coleta e laudo pericial à interceptação e valoração — o CPP após a Lei 13.964/2019 e a prática forense.",
-    lessons: lessons
-      .filter((l) => l.number >= 3)
-      .map((l) => ({ number: l.number, title: l.title })),
-  },
-] as const;
+export const provaDigitalModulosPublicos: readonly ModuloProvaDigitalPublico[] =
+  [
+    {
+      id: "01",
+      title: "Cadeia de custódia",
+      desc: "Fundamentos da prova digital e da cadeia de custódia: reconhecimento, isolamento e fixação da prova material.",
+      lessons: lessons
+        .filter((l) => l.number <= 2)
+        .map((l) => ({ number: l.number, title: l.title })),
+    },
+    {
+      id: "02",
+      title: "Prova digital no processo",
+      desc: "Da coleta e laudo pericial à interceptação e valoração — o CPP após a Lei 13.964/2019 e a prática forense.",
+      lessons: lessons
+        .filter((l) => l.number >= 3)
+        .map((l) => ({ number: l.number, title: l.title })),
+    },
+  ] as const;
 
 /** Cards da grade na home (título + resumo por módulo). */
 export const provaDigitalModuloCards = provaDigitalModulosPublicos.map((m) => ({

@@ -41,7 +41,8 @@ function billingFromInput(input: CreateOrderInput) {
 
 function resultPath(orderId: string, status: string): string {
   if (status === "PAID") return `/checkout/resultado/${orderId}?status=sucesso`;
-  if (status === "REFUSED") return `/checkout/resultado/${orderId}?status=recusado`;
+  if (status === "REFUSED")
+    return `/checkout/resultado/${orderId}?status=recusado`;
   return `/checkout/resultado/${orderId}?status=pendente`;
 }
 

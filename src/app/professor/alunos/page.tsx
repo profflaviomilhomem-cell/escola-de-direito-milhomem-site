@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
 import { ManualEnrollmentPanel } from "@/components/professor/manual-enrollment-panel";
-import {
-  productGrantsAccessInMvp,
-} from "@/lib/business/commercial-rules";
+import { productGrantsAccessInMvp } from "@/lib/business/commercial-rules";
 import { listManualEnrollments } from "@/lib/enrollment/list-manual-enrollments";
 import { getProfessorCourses } from "@/lib/professor/products";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
@@ -14,8 +12,11 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorAlunosPage() {
-  let products: { slug: string; name: string; type: import("@prisma/client").ProductType }[] =
-    [];
+  let products: {
+    slug: string;
+    name: string;
+    type: import("@prisma/client").ProductType;
+  }[] = [];
   let initialEnrollments: Awaited<ReturnType<typeof listManualEnrollments>> =
     [];
 
@@ -34,7 +35,7 @@ export default async function ProfessorAlunosPage() {
 
   return (
     <section className="fm-site-page py-12">
-      <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
         Matrículas
       </p>
       <h1

@@ -50,15 +50,14 @@ export function RegisterForm({ redirectTo = "/aluno/dashboard" }: Props) {
       if (res.status === 409) {
         setStatus({
           state: "error",
-          message:
-            "Este e-mail já está cadastrado. Use a página de entrar.",
+          message: "Este e-mail já está cadastrado. Use a página de entrar.",
         });
         return;
       }
       if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as
-          | { error?: string }
-          | null;
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
         setStatus({
           state: "error",
           message: body?.error ?? "Falha ao cadastrar. Tente novamente.",
@@ -114,7 +113,7 @@ export function RegisterForm({ redirectTo = "/aluno/dashboard" }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Cadastrando…" : "Criar conta"}
       </button>

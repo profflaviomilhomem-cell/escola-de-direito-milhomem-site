@@ -10,10 +10,9 @@ import {
 import { CalculadoraPaperCloseup } from "./calculadora-paper-closeup";
 import { DocumentoDidaticoWatermark } from "./documento-didatico-watermark";
 
-import { crimes, type CrimePreset } from "@/lib/business/crimes";
+import { type CrimePreset } from "@/lib/business/crimes";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import {
-  calcular,
   labelsArt59,
   type CircunstanciaArt59,
   type DosimetriaResult,
@@ -24,7 +23,6 @@ import {
   AGRAVANTES_LABEL,
   CAUSAS_AUMENTO,
   CAUSAS_DIMINUICAO,
-  categoryOf,
   formatRange,
   type Tab,
 } from "./case-file-constants";
@@ -33,29 +31,77 @@ export function CalcTabIcon({ tab, active }: { tab: Tab; active: boolean }) {
   const stroke = active ? "currentColor" : "currentColor";
   const icons: Record<Tab, ReactNode> = {
     dados: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.75" aria-hidden>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={stroke}
+        strokeWidth="1.75"
+        aria-hidden
+      >
         <path d="M4 6h16M4 12h16M4 18h10" strokeLinecap="round" />
       </svg>
     ),
     fato: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.75" aria-hidden>
-        <path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={stroke}
+        strokeWidth="1.75"
+        aria-hidden
+      >
+        <path
+          d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
     calculo: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.75" aria-hidden>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={stroke}
+        strokeWidth="1.75"
+        aria-hidden
+      >
         <path d="M12 3v18M5 8h14M7 16h10" strokeLinecap="round" />
       </svg>
     ),
     sentenca: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.75" aria-hidden>
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={stroke}
+        strokeWidth="1.75"
+        aria-hidden
+      >
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
         <path d="M14 2v6h6M8 13h8M8 17h5" strokeLinecap="round" />
       </svg>
     ),
     exportar: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="1.75" aria-hidden>
-        <path d="M12 3v12M7 10l5 5 5-5M5 21h14" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={stroke}
+        strokeWidth="1.75"
+        aria-hidden
+      >
+        <path
+          d="M12 3v12M7 10l5 5 5-5M5 21h14"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   };
@@ -71,7 +117,7 @@ export function TabEmptyCrime({ embedded }: { embedded?: boolean }) {
     <p
       className={
         embedded
-          ? "text-[#5c4a32] py-6 text-center font-mono text-[10px] uppercase tracking-[0.12em]"
+          ? "py-6 text-center font-mono text-[10px] tracking-[0.12em] text-[#5c4a32] uppercase"
           : "text-paper-600 py-12 text-center text-sm"
       }
     >
@@ -147,7 +193,7 @@ export function TabDados(props: TabDadosProps) {
           className={
             layout === "toolbar"
               ? `fm-calc-dados-cat ${active ? "fm-calc-dados-cat--on" : ""}`
-              : `shrink-0 border px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-[0.14em] transition-colors sm:px-3 sm:text-[10px] sm:tracking-[0.2em] ${
+              : `shrink-0 border px-2.5 py-1.5 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors sm:px-3 sm:text-[10px] sm:tracking-[0.2em] ${
                   active
                     ? "bg-amber/10 border-amber text-amber"
                     : "border-paper-200 text-paper-700 hover:text-paper"
@@ -171,9 +217,7 @@ export function TabDados(props: TabDadosProps) {
       {props.filteredCrimes.length === 0 && (
         <li
           className={
-            props.embedded
-              ? "text-[#5c4a32] italic"
-              : "text-paper-600 italic"
+            props.embedded ? "text-[#5c4a32] italic" : "text-paper-600 italic"
           }
         >
           Nenhum crime corresponde ao filtro.
@@ -217,7 +261,7 @@ export function TabDados(props: TabDadosProps) {
                   className={`block font-serif text-[15px] leading-tight sm:text-base ${
                     selected
                       ? props.embedded
-                        ? "text-[#1a0f04] font-semibold"
+                        ? "font-semibold text-[#1a0f04]"
                         : "text-amber"
                       : props.embedded
                         ? "text-[#2a1f10]"
@@ -226,7 +270,7 @@ export function TabDados(props: TabDadosProps) {
                 >
                   {c.nome}
                 </span>
-                <span className="text-paper-600 mt-0.5 block font-mono text-[9px] uppercase tracking-[0.12em] sm:text-[10px] sm:tracking-[0.15em]">
+                <span className="text-paper-600 mt-0.5 block font-mono text-[9px] tracking-[0.12em] uppercase sm:text-[10px] sm:tracking-[0.15em]">
                   {c.artigo}
                   <span className="text-paper-700 sm:hidden">
                     {" "}
@@ -234,7 +278,7 @@ export function TabDados(props: TabDadosProps) {
                   </span>
                 </span>
               </span>
-              <span className="text-paper-700 hidden shrink-0 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.15em] sm:block">
+              <span className="text-paper-700 hidden shrink-0 font-mono text-[10px] tracking-[0.15em] whitespace-nowrap uppercase sm:block">
                 {formatRange(c)}
               </span>
             </button>
@@ -260,7 +304,7 @@ export function TabDados(props: TabDadosProps) {
         {props.selectedCrime.nome}
       </p>
       <p
-        className={`mt-1 font-mono uppercase tracking-[0.12em] ${
+        className={`mt-1 font-mono tracking-[0.12em] uppercase ${
           props.embedded
             ? "text-[9px] text-[#5c4a32]"
             : "text-paper-600 text-[10px]"
@@ -269,7 +313,7 @@ export function TabDados(props: TabDadosProps) {
         {props.selectedCrime.artigo} · {formatRange(props.selectedCrime)}
       </p>
       <p
-        className={`mt-2 font-mono uppercase tracking-[0.1em] ${
+        className={`mt-2 font-mono tracking-[0.1em] uppercase ${
           props.embedded
             ? "text-[7px] text-[#5c4a32]/80"
             : "text-paper-600 text-[9px]"
@@ -301,13 +345,13 @@ export function TabDados(props: TabDadosProps) {
               : "border-paper-100 bg-carbon mb-4 border"
           }
         >
-          <summary className="text-amber cursor-pointer px-4 py-3 font-mono text-[10px] uppercase tracking-[0.16em]">
+          <summary className="text-amber cursor-pointer px-4 py-3 font-mono text-[10px] tracking-[0.16em] uppercase">
             Jurisprudência ({props.jurisprudencia.length})
           </summary>
           <ul className="border-paper-100 space-y-2 border-t px-4 py-3">
             {props.jurisprudencia.map((j, i) => (
               <li key={i} className="border-amber/50 border-l-2 py-1 pl-2">
-                <p className="text-amber font-mono text-[9px] uppercase tracking-[0.14em]">
+                <p className="text-amber font-mono text-[9px] tracking-[0.14em] uppercase">
                   {j.tribunal} · {j.code}
                 </p>
                 <p className="text-paper-800 mt-0.5 text-[12px] leading-snug">
@@ -366,12 +410,15 @@ export function TabDados(props: TabDadosProps) {
               role="tablist"
               aria-label="Categorias de crime"
             >
-              {renderCategoryFilters(EMBEDDED_CRIME_CATEGORY_FILTERS, "toolbar")}
+              {renderCategoryFilters(
+                EMBEDDED_CRIME_CATEGORY_FILTERS,
+                "toolbar",
+              )}
             </div>
           </div>
 
           {!props.crimeSlug && listExpanded ? (
-            <p className="text-[#5c4a32]/90 shrink-0 font-mono text-[8px] uppercase tracking-[0.1em]">
+            <p className="shrink-0 font-mono text-[8px] tracking-[0.1em] text-[#5c4a32]/90 uppercase">
               Escolha um crime na lista abaixo.
             </p>
           ) : null}
@@ -380,7 +427,9 @@ export function TabDados(props: TabDadosProps) {
 
           <div className="fm-calc-dados-meta grid shrink-0 grid-cols-2 gap-1.5">
             <div>
-              <span className="fm-calc-dados-toolbar__label">Réu primário?</span>
+              <span className="fm-calc-dados-toolbar__label">
+                Réu primário?
+              </span>
               <div className="mt-0.5 flex gap-1">
                 {(["sim", "nao"] as const).map((p) => {
                   const active = props.primario === p;
@@ -463,7 +512,7 @@ export function TabDados(props: TabDadosProps) {
 
           <div className="space-y-4 sm:space-y-5">
             <div>
-              <label className="text-paper-600 mb-2 block font-mono text-[10px] uppercase tracking-[0.2em]">
+              <label className="text-paper-600 mb-2 block font-mono text-[10px] tracking-[0.2em] uppercase">
                 Status processual
               </label>
               <select
@@ -483,7 +532,7 @@ export function TabDados(props: TabDadosProps) {
             </div>
 
             <div>
-              <label className="text-paper-600 mb-2 block font-mono text-[10px] uppercase tracking-[0.2em]">
+              <label className="text-paper-600 mb-2 block font-mono text-[10px] tracking-[0.2em] uppercase">
                 Réu primário?
               </label>
               <div className="flex gap-2">
@@ -515,7 +564,7 @@ export function TabDados(props: TabDadosProps) {
             </div>
 
             <div>
-              <label className="text-paper-600 mb-2 block font-mono text-[10px] uppercase tracking-[0.2em]">
+              <label className="text-paper-600 mb-2 block font-mono text-[10px] tracking-[0.2em] uppercase">
                 Antecedentes
               </label>
               <select
@@ -528,14 +577,17 @@ export function TabDados(props: TabDadosProps) {
                 className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
               >
                 <option value="limpos">Sem antecedentes criminais</option>
-                <option value="1-condenacao">1 condenação anterior trânsita</option>
-                <option value="multiplas">Múltiplas condenações anteriores</option>
+                <option value="1-condenacao">
+                  1 condenação anterior trânsita
+                </option>
+                <option value="multiplas">
+                  Múltiplas condenações anteriores
+                </option>
               </select>
             </div>
           </div>
         </div>
       )}
-
     </div>
   );
 }
@@ -577,7 +629,7 @@ export function TabFato({
         }
       />
       <p
-        className={`mt-2 flex justify-end font-mono text-[9px] uppercase tracking-[0.1em] ${
+        className={`mt-2 flex justify-end font-mono text-[9px] tracking-[0.1em] uppercase ${
           embedded ? "text-[#5c4a32]" : "text-paper-600 text-xs"
         }`}
       >
@@ -595,7 +647,9 @@ type TabCalculoProps = {
   crime: CrimePreset;
   result: DosimetriaResult;
   desfavoraveis: Set<CircunstanciaArt59>;
-  setDesfavoraveis: React.Dispatch<React.SetStateAction<Set<CircunstanciaArt59>>>;
+  setDesfavoraveis: React.Dispatch<
+    React.SetStateAction<Set<CircunstanciaArt59>>
+  >;
   atenuantesSet: Set<string>;
   setAtenuantesSet: React.Dispatch<React.SetStateAction<Set<string>>>;
   agravantesSet: Set<string>;
@@ -604,7 +658,7 @@ type TabCalculoProps = {
   setAumentosSet: React.Dispatch<React.SetStateAction<Set<string>>>;
   diminuicoesSet: Set<string>;
   setDiminuicoesSet: React.Dispatch<React.SetStateAction<Set<string>>>;
-  toggleSet: <T,>(s: Set<T>, v: T) => Set<T>;
+  toggleSet: <T>(s: Set<T>, v: T) => Set<T>;
   rangeMarkerPct: number;
   balanceAngle: number;
   isMobile: boolean;
@@ -630,17 +684,21 @@ function PenaSummaryCard({
     <div
       className={`border-paper-100 bg-carbon border text-center ${compact ? "p-4" : "p-6"}`}
     >
-      <p className="text-paper-600 mb-1 font-mono text-[9px] uppercase tracking-[0.14em] sm:text-[10px]">
+      <p className="text-paper-600 mb-1 font-mono text-[9px] tracking-[0.14em] uppercase sm:text-[10px]">
         Pena definitiva
       </p>
       <p
         className="fm-title-fluid text-amber font-serif leading-none"
-        style={fmTitleClamp(compact ? "28px" : "36px", compact ? "8vw" : "4vw", compact ? "40px" : "56px")}
+        style={fmTitleClamp(
+          compact ? "28px" : "36px",
+          compact ? "8vw" : "4vw",
+          compact ? "40px" : "56px",
+        )}
       >
         {result.formatado.penaFinal}
       </p>
       <div className="mt-3 sm:mt-5">
-        <div className="text-paper-600 mb-1.5 flex justify-between font-mono text-[9px] uppercase tracking-[0.12em] sm:text-[10px]">
+        <div className="text-paper-600 mb-1.5 flex justify-between font-mono text-[9px] tracking-[0.12em] uppercase sm:text-[10px]">
           <span>{formatRange(crime).split(" a ")[0]}</span>
           <span>{formatRange(crime).split(" a ")[1]}</span>
         </div>
@@ -655,7 +713,7 @@ function PenaSummaryCard({
         </div>
       </div>
       {balanceLabel ? (
-        <p className="text-paper-600 mt-2 font-mono text-[9px] uppercase tracking-[0.12em]">
+        <p className="text-paper-600 mt-2 font-mono text-[9px] tracking-[0.12em] uppercase">
           {balanceLabel}
         </p>
       ) : null}
@@ -718,18 +776,20 @@ function DosimetriaPhaseNav({
             <span
               className={
                 embedded
-                  ? "block font-serif text-sm italic leading-none"
-                  : "block font-serif text-lg italic leading-none"
+                  ? "block font-serif text-sm leading-none italic"
+                  : "block font-serif text-lg leading-none italic"
               }
             >
               {n}
             </span>
             {embedded ? (
               <>
-                <span className="mt-0.5 block text-[7px] font-bold uppercase tracking-[0.06em]">
+                <span className="mt-0.5 block text-[7px] font-bold tracking-[0.06em] uppercase">
                   {label}
                 </span>
-                <span className="block text-[6px] uppercase opacity-55">{sub}</span>
+                <span className="block text-[6px] uppercase opacity-55">
+                  {sub}
+                </span>
               </>
             ) : null}
           </button>
@@ -772,9 +832,13 @@ function renderFactorList(
                 checked={active}
                 onChange={() => setter((s) => toggleSet(s, item.slug))}
               />
-              <span className="min-w-0 flex-1 text-[11px] leading-snug">{item.label}</span>
+              <span className="min-w-0 flex-1 text-[11px] leading-snug">
+                {item.label}
+              </span>
               {mult ? (
-                <span className="shrink-0 font-mono text-[8px] text-[#5c4a32]">×{mult}</span>
+                <span className="shrink-0 font-mono text-[8px] text-[#5c4a32]">
+                  ×{mult}
+                </span>
               ) : null}
             </label>
           </li>
@@ -808,8 +872,8 @@ export function TabCalculoMobile(p: TabCalculoProps) {
             {p.result.formatado.penaFinal}
           </span>
           <span className="fm-calc-pena-strip__meta">
-            B {p.result.formatado.penaBase} · I {p.result.formatado.penaIntermediaria}
-            · {balanceLabel}
+            B {p.result.formatado.penaBase} · I{" "}
+            {p.result.formatado.penaIntermediaria}· {balanceLabel}
           </span>
         </div>
       ) : (
@@ -836,27 +900,27 @@ export function TabCalculoMobile(p: TabCalculoProps) {
             </p>
           ) : null}
           <div className="grid gap-1.5">
-            {(Object.entries(labelsArt59) as [CircunstanciaArt59, string][]).map(
-              ([key, label]) => {
-                const active = p.desfavoraveis.has(key);
-                return (
-                  <label
-                    key={key}
-                    className={`fm-calc-screen-chip flex cursor-pointer items-center gap-2 border px-2 py-2 ${
-                      active ? "fm-calc-screen-chip--on" : ""
-                    }`}
-                  >
-                    <FmCheck
-                      checked={active}
-                      onChange={() =>
-                        p.setDesfavoraveis((s) => p.toggleSet(s, key))
-                      }
-                    />
-                    <span className="text-[12px] leading-snug">{label}</span>
-                  </label>
-                );
-              },
-            )}
+            {(
+              Object.entries(labelsArt59) as [CircunstanciaArt59, string][]
+            ).map(([key, label]) => {
+              const active = p.desfavoraveis.has(key);
+              return (
+                <label
+                  key={key}
+                  className={`fm-calc-screen-chip flex cursor-pointer items-center gap-2 border px-2 py-2 ${
+                    active ? "fm-calc-screen-chip--on" : ""
+                  }`}
+                >
+                  <FmCheck
+                    checked={active}
+                    onChange={() =>
+                      p.setDesfavoraveis((s) => p.toggleSet(s, key))
+                    }
+                  />
+                  <span className="text-[12px] leading-snug">{label}</span>
+                </label>
+              );
+            })}
           </div>
         </section>
       )}
@@ -903,7 +967,7 @@ export function TabCalculoMobile(p: TabCalculoProps) {
                     key={side}
                     type="button"
                     onClick={() => setFase2Side(side)}
-                    className={`py-2 font-mono text-[9px] uppercase tracking-[0.1em] ${
+                    className={`py-2 font-mono text-[9px] tracking-[0.1em] uppercase ${
                       fase2Side === side ? "fm-calc-screen-seg--on" : ""
                     }`}
                   >
@@ -965,7 +1029,7 @@ export function TabCalculoMobile(p: TabCalculoProps) {
                     key={side}
                     type="button"
                     onClick={() => setFase3Side(side)}
-                    className={`py-2 font-mono text-[9px] uppercase tracking-[0.1em] ${
+                    className={`py-2 font-mono text-[9px] tracking-[0.1em] uppercase ${
                       fase3Side === side ? "fm-calc-screen-seg--on" : ""
                     }`}
                   >
@@ -988,7 +1052,6 @@ export function TabCalculoMobile(p: TabCalculoProps) {
     </div>
   );
 }
-
 
 export function TabCalculo(p: TabCalculoProps) {
   if (p.isMobile || p.embedded) return <TabCalculoMobile {...p} />;
@@ -1019,7 +1082,7 @@ export function TabCalculo(p: TabCalculoProps) {
                   1
                 </span>
                 <div>
-                  <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+                  <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
                     Fase 1
                   </p>
                   <h3 className="font-serif text-xl leading-tight">
@@ -1027,7 +1090,7 @@ export function TabCalculo(p: TabCalculoProps) {
                   </h3>
                 </div>
               </div>
-              <span className="text-paper-700 font-mono text-[11px] uppercase tracking-[0.2em]">
+              <span className="text-paper-700 font-mono text-[11px] tracking-[0.2em] uppercase">
                 {p.desfavoraveis.size} de 8
               </span>
             </summary>
@@ -1036,10 +1099,9 @@ export function TabCalculo(p: TabCalculoProps) {
                 Marque os vetores desfavoráveis ao acusado.
               </p>
               <div className="grid gap-2 sm:grid-cols-2">
-                {(Object.entries(labelsArt59) as [
-                  CircunstanciaArt59,
-                  string,
-                ][]).map(([key, label]) => {
+                {(
+                  Object.entries(labelsArt59) as [CircunstanciaArt59, string][]
+                ).map(([key, label]) => {
                   const active = p.desfavoraveis.has(key);
                   return (
                     <label
@@ -1072,7 +1134,7 @@ export function TabCalculo(p: TabCalculoProps) {
                   2
                 </span>
                 <div>
-                  <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+                  <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
                     Fase 2
                   </p>
                   <h3 className="font-serif text-xl leading-tight">
@@ -1080,13 +1142,13 @@ export function TabCalculo(p: TabCalculoProps) {
                   </h3>
                 </div>
               </div>
-              <span className="text-paper-700 font-mono text-[11px] uppercase tracking-[0.2em]">
+              <span className="text-paper-700 font-mono text-[11px] tracking-[0.2em] uppercase">
                 {p.atenuantesSet.size}A · {p.agravantesSet.size}G
               </span>
             </summary>
             <div className="border-paper-100 grid gap-4 border-t p-5 md:grid-cols-2">
               <div>
-                <h4 className="text-amber mb-2 font-mono text-[11px] uppercase tracking-[0.2em]">
+                <h4 className="text-amber mb-2 font-mono text-[11px] tracking-[0.2em] uppercase">
                   Atenuantes (−1/6 cada)
                 </h4>
                 <ul className="space-y-1.5">
@@ -1115,7 +1177,7 @@ export function TabCalculo(p: TabCalculoProps) {
                 </ul>
               </div>
               <div>
-                <h4 className="text-alerta-400 mb-2 font-mono text-[11px] uppercase tracking-[0.2em]">
+                <h4 className="text-alerta-400 mb-2 font-mono text-[11px] tracking-[0.2em] uppercase">
                   Agravantes (+1/6 cada)
                 </h4>
                 <ul className="space-y-1.5">
@@ -1154,7 +1216,7 @@ export function TabCalculo(p: TabCalculoProps) {
                   3
                 </span>
                 <div>
-                  <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+                  <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
                     Fase 3
                   </p>
                   <h3 className="font-serif text-xl leading-tight">
@@ -1162,13 +1224,13 @@ export function TabCalculo(p: TabCalculoProps) {
                   </h3>
                 </div>
               </div>
-              <span className="text-paper-700 font-mono text-[11px] uppercase tracking-[0.2em]">
+              <span className="text-paper-700 font-mono text-[11px] tracking-[0.2em] uppercase">
                 {p.aumentosSet.size}+ · {p.diminuicoesSet.size}−
               </span>
             </summary>
             <div className="border-paper-100 grid gap-4 border-t p-5 md:grid-cols-2">
               <div>
-                <h4 className="text-amber mb-2 font-mono text-[11px] uppercase tracking-[0.2em]">
+                <h4 className="text-amber mb-2 font-mono text-[11px] tracking-[0.2em] uppercase">
                   Diminuições (×)
                 </h4>
                 <ul className="space-y-1.5">
@@ -1190,7 +1252,7 @@ export function TabCalculo(p: TabCalculoProps) {
                             }
                           />
                           <span className="text-sm">{d.label}</span>
-                          <span className="text-paper-600 ml-auto whitespace-nowrap font-mono text-[10px]">
+                          <span className="text-paper-600 ml-auto font-mono text-[10px] whitespace-nowrap">
                             ×{(1 - d.fracao).toFixed(2)}
                           </span>
                         </label>
@@ -1200,7 +1262,7 @@ export function TabCalculo(p: TabCalculoProps) {
                 </ul>
               </div>
               <div>
-                <h4 className="text-alerta-400 mb-2 font-mono text-[11px] uppercase tracking-[0.2em]">
+                <h4 className="text-alerta-400 mb-2 font-mono text-[11px] tracking-[0.2em] uppercase">
                   Aumentos (×)
                 </h4>
                 <ul className="space-y-1.5">
@@ -1222,7 +1284,7 @@ export function TabCalculo(p: TabCalculoProps) {
                             }
                           />
                           <span className="text-sm">{a.label}</span>
-                          <span className="text-paper-600 ml-auto whitespace-nowrap font-mono text-[10px]">
+                          <span className="text-paper-600 ml-auto font-mono text-[10px] whitespace-nowrap">
                             ×{(1 + a.fracao).toFixed(2)}
                           </span>
                         </label>
@@ -1239,7 +1301,7 @@ export function TabCalculo(p: TabCalculoProps) {
         <div className="space-y-6 lg:sticky lg:top-24 lg:self-start">
           {/* Pena definitiva */}
           <div className="border-paper-100 bg-carbon border p-6 text-center">
-            <p className="text-paper-600 mb-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-paper-600 mb-2 font-mono text-[10px] tracking-[0.2em] uppercase">
               Pena definitiva (parcial)
             </p>
             <p
@@ -1249,7 +1311,7 @@ export function TabCalculo(p: TabCalculoProps) {
               {p.result.formatado.penaFinal}
             </p>
             <div className="mt-5">
-              <div className="text-paper-600 mb-2 flex justify-between font-mono text-[10px] uppercase tracking-[0.15em]">
+              <div className="text-paper-600 mb-2 flex justify-between font-mono text-[10px] tracking-[0.15em] uppercase">
                 <span>{formatRange(p.crime).split(" a ")[0]}</span>
                 <span>{formatRange(p.crime).split(" a ")[1]}</span>
               </div>
@@ -1267,12 +1329,26 @@ export function TabCalculo(p: TabCalculoProps) {
 
           {/* Balança SVG */}
           <div className="border-paper-100 bg-carbon flex flex-col items-center border p-6">
-            <p className="text-paper-600 mb-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-paper-600 mb-3 font-mono text-[10px] tracking-[0.2em] uppercase">
               Balança da justiça
             </p>
             <svg viewBox="0 0 220 200" className="w-full max-w-[220px]">
-              <line x1="110" y1="190" x2="110" y2="60" stroke="#f1bb41" strokeWidth="2" />
-              <line x1="80" y1="190" x2="140" y2="190" stroke="#f1bb41" strokeWidth="2" />
+              <line
+                x1="110"
+                y1="190"
+                x2="110"
+                y2="60"
+                stroke="#f1bb41"
+                strokeWidth="2"
+              />
+              <line
+                x1="80"
+                y1="190"
+                x2="140"
+                y2="190"
+                stroke="#f1bb41"
+                strokeWidth="2"
+              />
               <g
                 style={{
                   transform: `rotate(${p.balanceAngle}deg)`,
@@ -1280,17 +1356,72 @@ export function TabCalculo(p: TabCalculoProps) {
                   transition: "transform .5s cubic-bezier(0.34, 1.3, 0.64, 1)",
                 }}
               >
-                <line x1="20" y1="60" x2="200" y2="60" stroke="#f1bb41" strokeWidth="2" />
-                <line x1="20" y1="60" x2="20" y2="80" stroke="#f1bb41" strokeWidth="1.5" />
-                <ellipse cx="20" cy="84" rx="22" ry="4" fill="#f1bb41" opacity="0.85" />
-                <text x="20" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#e0e0e0" letterSpacing="1">−</text>
-                <line x1="200" y1="60" x2="200" y2="80" stroke="#f1bb41" strokeWidth="1.5" />
-                <ellipse cx="200" cy="84" rx="22" ry="4" fill="#f1bb41" opacity="0.85" />
-                <text x="200" y="106" textAnchor="middle" fontFamily="JetBrains Mono" fontSize="10" fill="#e0e0e0" letterSpacing="1">+</text>
+                <line
+                  x1="20"
+                  y1="60"
+                  x2="200"
+                  y2="60"
+                  stroke="#f1bb41"
+                  strokeWidth="2"
+                />
+                <line
+                  x1="20"
+                  y1="60"
+                  x2="20"
+                  y2="80"
+                  stroke="#f1bb41"
+                  strokeWidth="1.5"
+                />
+                <ellipse
+                  cx="20"
+                  cy="84"
+                  rx="22"
+                  ry="4"
+                  fill="#f1bb41"
+                  opacity="0.85"
+                />
+                <text
+                  x="20"
+                  y="106"
+                  textAnchor="middle"
+                  fontFamily="JetBrains Mono"
+                  fontSize="10"
+                  fill="#e0e0e0"
+                  letterSpacing="1"
+                >
+                  −
+                </text>
+                <line
+                  x1="200"
+                  y1="60"
+                  x2="200"
+                  y2="80"
+                  stroke="#f1bb41"
+                  strokeWidth="1.5"
+                />
+                <ellipse
+                  cx="200"
+                  cy="84"
+                  rx="22"
+                  ry="4"
+                  fill="#f1bb41"
+                  opacity="0.85"
+                />
+                <text
+                  x="200"
+                  y="106"
+                  textAnchor="middle"
+                  fontFamily="JetBrains Mono"
+                  fontSize="10"
+                  fill="#e0e0e0"
+                  letterSpacing="1"
+                >
+                  +
+                </text>
                 <circle cx="110" cy="60" r="4" fill="#f1bb41" />
               </g>
             </svg>
-            <p className="text-paper-700 mt-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-paper-700 mt-2 font-mono text-[10px] tracking-[0.2em] uppercase">
               {balanceLabel}
             </p>
           </div>
@@ -1334,9 +1465,7 @@ function BreakdownRow({
     <div
       className={`flex items-center justify-between gap-4 py-2 ${bordered ? "border-paper-100 border-t" : ""}`}
     >
-      <span className={accent ? "text-amber" : "text-paper-600"}>
-        {label}
-      </span>
+      <span className={accent ? "text-amber" : "text-paper-600"}>{label}</span>
       <span className={accent ? "text-amber font-semibold" : "text-paper"}>
         {value}
       </span>
@@ -1354,9 +1483,7 @@ function FmCheck({
   return (
     <span
       className={`relative inline-grid h-[1.15rem] w-[1.15rem] flex-shrink-0 cursor-pointer place-items-center border ${
-        checked
-          ? "border-amber bg-amber"
-          : "border-paper-400 bg-transparent"
+        checked ? "border-amber bg-amber" : "border-paper-400 bg-transparent"
       }`}
       role="checkbox"
       aria-checked={checked}
@@ -1375,7 +1502,7 @@ function FmCheck({
         className="absolute inset-0 cursor-pointer opacity-0"
       />
       {checked && (
-        <span className="text-carbon text-xs font-bold leading-none">✓</span>
+        <span className="text-carbon text-xs leading-none font-bold">✓</span>
       )}
     </span>
   );
@@ -1591,9 +1718,9 @@ export function TabSentenca({
   return (
     <div className="fm-paper-kraft relative shadow-2xl">
       <DocumentoDidaticoWatermark />
-      <div className="relative z-[1] border-amber/40 border-b px-4 py-4 sm:px-8 sm:py-6">
+      <div className="border-amber/40 relative z-[1] border-b px-4 py-4 sm:px-8 sm:py-6">
         <div
-          className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.25em]"
+          className="flex items-center justify-between font-mono text-[10px] tracking-[0.25em] uppercase"
           style={{ color: "#1a0f04" }}
         >
           <span>República Federativa do Brasil</span>
@@ -1665,7 +1792,7 @@ export function TabExportar({ embedded = false }: { embedded?: boolean }) {
                 : "border-paper-200 hover:border-amber bg-carbon-elevated group border p-4 text-left transition-colors sm:p-6"
             }
           >
-            <p className="text-amber mb-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-amber mb-3 font-mono text-[10px] tracking-[0.2em] uppercase">
               {f.eyebrow}
             </p>
             <h3 className="group-hover:text-amber mb-2 font-serif text-xl">

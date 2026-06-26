@@ -28,7 +28,10 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
       className="group border-paper-100 hover:border-amber bg-carbon-elevated relative grid grid-cols-[120px_1fr] gap-4 overflow-hidden border no-underline transition-colors md:grid-cols-[180px_1fr] md:gap-5"
     >
       {/* Thumbnail */}
-      <div data-fm-media-surface className="relative aspect-video overflow-hidden">
+      <div
+        data-fm-media-surface
+        className="relative aspect-video overflow-hidden"
+      >
         <LessonMediaCover
           cover={lesson.cover}
           posterSrc={lesson.posterSrc}
@@ -36,12 +39,12 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
           alt={lesson.title}
           className="absolute inset-0"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-carbon/60 via-transparent to-transparent" />
+        <div className="from-carbon/60 pointer-events-none absolute inset-0 bg-gradient-to-tr via-transparent to-transparent" />
 
         {/* Status badge */}
         {isDone && (
           <span
-            className="bg-amber text-carbon absolute right-1.5 top-1.5 grid h-6 w-6 place-items-center rounded-full"
+            className="bg-amber text-carbon absolute top-1.5 right-1.5 grid h-6 w-6 place-items-center rounded-full"
             aria-label="Aula concluída"
           >
             <svg
@@ -59,7 +62,6 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
             </svg>
           </span>
         )}
-
       </div>
 
       {/* Conteúdo textual */}
@@ -80,7 +82,7 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
           <div className="mt-2 max-w-[200px]">
             <Progress
               value={progressPercentFromRatio(progress)}
-              className="h-[3px] bg-paper-200"
+              className="bg-paper-200 h-[3px]"
             />
           </div>
         )}
@@ -89,7 +91,7 @@ export function LessonCardCompact({ lesson, eyebrow }: Props) {
       {/* Seta indicativa */}
       <span
         aria-hidden
-        className="text-paper-600 group-hover:text-amber pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 transition-colors md:block"
+        className="text-paper-600 group-hover:text-amber pointer-events-none absolute top-1/2 right-3 hidden -translate-y-1/2 transition-colors md:block"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

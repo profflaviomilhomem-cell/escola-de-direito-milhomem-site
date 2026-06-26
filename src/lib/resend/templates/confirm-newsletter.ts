@@ -10,9 +10,11 @@ export type ConfirmNewsletterEmail = {
   name?: string;
 };
 
-export function renderConfirmNewsletterEmail(
-  opts: ConfirmNewsletterEmail,
-): { subject: string; html: string; text: string } {
+export function renderConfirmNewsletterEmail(opts: ConfirmNewsletterEmail): {
+  subject: string;
+  html: string;
+  text: string;
+} {
   const safeName = opts.name?.trim() || "Olá";
   const subject = "Confirme sua inscrição — Bastidor da Acusação";
 

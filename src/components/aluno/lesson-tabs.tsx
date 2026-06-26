@@ -41,9 +41,7 @@ export function LessonTabs({ tabs, initial }: Props) {
               id={`tab-trigger-${t.id}`}
               onClick={() => setActive(t.id)}
               className={`fm-mono relative -mb-px py-3 transition-colors ${
-                isActive
-                  ? "text-amber"
-                  : "text-paper-600 hover:text-paper"
+                isActive ? "text-amber" : "text-paper-600 hover:text-paper"
               }`}
             >
               {t.label}

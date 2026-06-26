@@ -8,7 +8,10 @@ export type LessonProgressRow = {
   completedAt: Date | null;
 };
 
-export async function findLessonBySlugs(productSlug: string, lessonSlug: string) {
+export async function findLessonBySlugs(
+  productSlug: string,
+  lessonSlug: string,
+) {
   return prisma.lesson.findFirst({
     where: {
       slug: lessonSlug,

@@ -95,9 +95,9 @@ export function organizationLd() {
  * Course schema do curso da Edição Lançamento (Prova Digital no Processo Penal).
  * Preço vem do produto no banco quando disponível (fallback: turma fundadora).
  */
-export function edicaoLancamentoCourseLd(
-  { priceCents }: { priceCents?: number } = {},
-) {
+export function edicaoLancamentoCourseLd({
+  priceCents,
+}: { priceCents?: number } = {}) {
   return {
     "@context": "https://schema.org",
     "@type": "Course",
@@ -201,7 +201,9 @@ export function faqPageLd(items: ReadonlyArray<{ q: string; a: string }>) {
   };
 }
 
-export function breadcrumbLd(items: ReadonlyArray<{ name: string; url: string }>) {
+export function breadcrumbLd(
+  items: ReadonlyArray<{ name: string; url: string }>,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

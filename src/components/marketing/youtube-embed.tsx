@@ -5,10 +5,14 @@ type YoutubeEmbedProps = {
 };
 
 /** Player YouTube (nocookie) para landings de marketing. */
-export function YoutubeEmbed({ videoId, title, className = "" }: YoutubeEmbedProps) {
+export function YoutubeEmbed({
+  videoId,
+  title,
+  className = "",
+}: YoutubeEmbedProps) {
   return (
     <div
-      className={`border-paper-100 aspect-video overflow-hidden rounded-lg border bg-carbon-elevated/40 ${className}`.trim()}
+      className={`border-paper-100 bg-carbon-elevated/40 aspect-video overflow-hidden rounded-lg border ${className}`.trim()}
     >
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}

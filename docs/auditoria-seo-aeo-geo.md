@@ -7,23 +7,23 @@
 
 ## Legenda
 
-| Símbolo | Significado |
-|--------|-------------|
-| ✅ | Implementado e alinhado ao guia |
-| 🟡 | Parcial — existe mas incompleto |
-| 🔴 | Ausente / bloqueador para o lançamento |
-| ⚪ | Previsto para fase posterior (não bloqueia) |
-| ⚖️ | Desvio intencional documentado |
+| Símbolo | Significado                                 |
+| ------- | ------------------------------------------- |
+| ✅      | Implementado e alinhado ao guia             |
+| 🟡      | Parcial — existe mas incompleto             |
+| 🔴      | Ausente / bloqueador para o lançamento      |
+| ⚪      | Previsto para fase posterior (não bloqueia) |
+| ⚖️      | Desvio intencional documentado              |
 
 ---
 
 ## Placar
 
-| Frente | ✅ | 🟡 | 🔴 |
-|--------|----|----|----|
-| **SEO técnico** | 6 | 4 | 3 |
-| **AEO** (resposta direta) | 1 | 2 | 3 |
-| **GEO** (citabilidade IA) | 3 | 3 | 2 |
+| Frente                    | ✅  | 🟡  | 🔴  |
+| ------------------------- | --- | --- | --- |
+| **SEO técnico**           | 6   | 4   | 3   |
+| **AEO** (resposta direta) | 1   | 2   | 3   |
+| **GEO** (citabilidade IA) | 3   | 3   | 2   |
 
 **Veredicto:** a base técnica de SEO está **boa** (canonical, sitemap dinâmico, robots e llms.txt prontos). As maiores lacunas estão em **dados estruturados das páginas de conversão e autoridade** (`/sobre`, landing do cohort, FAQ) e em **AEO de artigo** (answer-first + FAQPage + índice). São lacunas de alto impacto e baixo esforço — recomendadas como P0 antes da abertura da lista de espera (08/jul).
 
@@ -33,15 +33,15 @@
 
 ### 1.1 Metadados e indexação — ✅ sólido
 
-| Item (guia 7.2) | Estado | Evidência |
-|---|---|---|
-| `metadataBase`, title template, description | ✅ | `src/app/layout.tsx:99-150` |
-| `robots: index/follow` + `max-image-preview:large` + `max-snippet:-1` | ✅ | `layout.tsx:140-149` |
-| OpenGraph + Twitter card `summary_large_image` | ✅ | `layout.tsx:123-139` + `app/opengraph-image.tsx` |
-| OG image dinâmica (home + blog) | ✅ | `app/opengraph-image.tsx`, `blog/[slug]/opengraph-image.tsx` |
-| `alternates.canonical` por página | ✅ | home, sobre*, cursos, blog, calculadora, termos, etc. |
-| Keywords nacionais | 🟡 | 10 termos em `layout.tsx:110`; faltam clusters long-tail (ver 1.4) |
-| `themeColor` / viewport | ✅ | `layout.tsx:92-97` |
+| Item (guia 7.2)                                                       | Estado | Evidência                                                          |
+| --------------------------------------------------------------------- | ------ | ------------------------------------------------------------------ |
+| `metadataBase`, title template, description                           | ✅     | `src/app/layout.tsx:99-150`                                        |
+| `robots: index/follow` + `max-image-preview:large` + `max-snippet:-1` | ✅     | `layout.tsx:140-149`                                               |
+| OpenGraph + Twitter card `summary_large_image`                        | ✅     | `layout.tsx:123-139` + `app/opengraph-image.tsx`                   |
+| OG image dinâmica (home + blog)                                       | ✅     | `app/opengraph-image.tsx`, `blog/[slug]/opengraph-image.tsx`       |
+| `alternates.canonical` por página                                     | ✅     | home, sobre\*, cursos, blog, calculadora, termos, etc.             |
+| Keywords nacionais                                                    | 🟡     | 10 termos em `layout.tsx:110`; faltam clusters long-tail (ver 1.4) |
+| `themeColor` / viewport                                               | ✅     | `layout.tsx:92-97`                                                 |
 
 > \* **Atenção:** `/sobre` tem `canonical` mas **não tem JSON-LD** — ver 1.3.
 
@@ -57,14 +57,14 @@
 
 Tipos hoje presentes: `Person` (home, calculadora), `Organization` (home), `WebApplication`+`Offer` (calculadora), `Article` (blog). **Faltam** os schemas das páginas de maior valor:
 
-| Schema (guia App. D) | Onde o guia manda | Estado |
-|---|---|---|
-| `Person` completo na **/sobre** | App. D + 7.2 (E-E-A-T) | 🔴 **ausente** — está na home e na calculadora, mas **não na página de autoridade** |
-| `Course` na **landing do cohort** | App. D ("Course — página do cohort") | 🔴 **ausente** em `/cursos/edicao-lancamento` (sem nenhum JSON-LD) |
-| `FAQPage` | 6.7 + 7.2 | 🔴 **ausente** (FAQ existe como UI, sem markup) — ver 2.2 |
-| `BreadcrumbList` | 7.2 ("Breadcrumbs com schema") | 🔴 **ausente** em todo o site |
-| `EducationalOrganization` (+logo, contactPoint, sameAs) | 7.2 | 🟡 hoje é `Organization` genérico, sem `logo`, `sameAs` nem `contactPoint` |
-| `Person.sameAs` completo | 7.2 (MPDFT, Scholar, Amazon/livro, LinkedIn) | 🟡 **incompleto e inconsistente** — ver 1.4 |
+| Schema (guia App. D)                                    | Onde o guia manda                            | Estado                                                                              |
+| ------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Person` completo na **/sobre**                         | App. D + 7.2 (E-E-A-T)                       | 🔴 **ausente** — está na home e na calculadora, mas **não na página de autoridade** |
+| `Course` na **landing do cohort**                       | App. D ("Course — página do cohort")         | 🔴 **ausente** em `/cursos/edicao-lancamento` (sem nenhum JSON-LD)                  |
+| `FAQPage`                                               | 6.7 + 7.2                                    | 🔴 **ausente** (FAQ existe como UI, sem markup) — ver 2.2                           |
+| `BreadcrumbList`                                        | 7.2 ("Breadcrumbs com schema")               | 🔴 **ausente** em todo o site                                                       |
+| `EducationalOrganization` (+logo, contactPoint, sameAs) | 7.2                                          | 🟡 hoje é `Organization` genérico, sem `logo`, `sameAs` nem `contactPoint`          |
+| `Person.sameAs` completo                                | 7.2 (MPDFT, Scholar, Amazon/livro, LinkedIn) | 🟡 **incompleto e inconsistente** — ver 1.4                                         |
 
 ### 1.4 `sameAs` e autoridade do autor — 🟡
 
@@ -86,7 +86,7 @@ Tipos hoje presentes: `Person` (home, calculadora), `Organization` (home), `WebA
 
 ## 2. AEO — Answer Engine Optimization
 
-> Guia 6.7: *"Cada artigo inicia com parágrafo de resposta sintética (2-4 frases respondendo à pergunta-título), seguido por desenvolvimento. Tabela de conteúdo semântica (H2/H3). FAQ schema em páginas com perguntas frequentes."*
+> Guia 6.7: _"Cada artigo inicia com parágrafo de resposta sintética (2-4 frases respondendo à pergunta-título), seguido por desenvolvimento. Tabela de conteúdo semântica (H2/H3). FAQ schema em páginas com perguntas frequentes."_
 
 ### 2.1 Resposta sintética (answer-first) — 🔴
 
@@ -106,13 +106,13 @@ Tipos hoje presentes: `Person` (home, calculadora), `Organization` (home), `WebA
 
 `articleLd` em `blog/[slug]/page.tsx:56-64` tem `headline`, `description`, `datePublished`, `author.name`, `keywords`. **Faltam:**
 
-| Campo ausente | Por que importa (AEO/GEO) |
-|---|---|
-| `dateModified` | Sinal de **frescor** — answer engines priorizam conteúdo atualizado (App. D exige) |
-| `publisher` (Organization + logo) | Exigido no App. D; necessário para rich result de Article |
-| `author.url` + `author.sameAs` | 6.7 GEO exige **autor completo**, não só nome |
-| `image` | Rich result de artigo / preview em IA |
-| `mainEntityOfPage`, `inLanguage` (`pt-BR`) | Desambiguação de entidade e idioma |
+| Campo ausente                              | Por que importa (AEO/GEO)                                                          |
+| ------------------------------------------ | ---------------------------------------------------------------------------------- |
+| `dateModified`                             | Sinal de **frescor** — answer engines priorizam conteúdo atualizado (App. D exige) |
+| `publisher` (Organization + logo)          | Exigido no App. D; necessário para rich result de Article                          |
+| `author.url` + `author.sameAs`             | 6.7 GEO exige **autor completo**, não só nome                                      |
+| `image`                                    | Rich result de artigo / preview em IA                                              |
+| `mainEntityOfPage`, `inLanguage` (`pt-BR`) | Desambiguação de entidade e idioma                                                 |
 
 ---
 
@@ -134,11 +134,11 @@ Tipos hoje presentes: `Person` (home, calculadora), `Organization` (home), `WebA
 
 ### 3.3 Páginas de citabilidade — 🔴 / 🟡
 
-| Recurso GEO (guia) | Estado |
-|---|---|
-| `/sobre` (biografia + credenciais) | 🟡 existe, mas **sem `Person` schema** (1.3) |
-| `/faq` institucional | 🔴 **não existe** como rota |
-| `/livros` (bibliografia) | 🔴 **não existe** — dados já prontos em `obras-milhomem.ts`, faltam página + `Book`/`ItemList` schema |
+| Recurso GEO (guia)                 | Estado                                                                                                |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `/sobre` (biografia + credenciais) | 🟡 existe, mas **sem `Person` schema** (1.3)                                                          |
+| `/faq` institucional               | 🔴 **não existe** como rota                                                                           |
+| `/livros` (bibliografia)           | 🔴 **não existe** — dados já prontos em `obras-milhomem.ts`, faltam página + `Book`/`ItemList` schema |
 
 ### 3.4 Fontes primárias linkadas — 🟡
 

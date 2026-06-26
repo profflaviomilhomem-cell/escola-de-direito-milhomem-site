@@ -14,12 +14,12 @@ export default function NovoArtigoPage() {
     <section className="fm-site-page py-12">
       <Link
         href="/professor/blog"
-        className="text-paper-700 hover:text-amber font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+        className="text-paper-700 hover:text-amber font-mono text-[10px] tracking-[0.2em] uppercase transition-colors"
       >
         ← Pipeline editorial
       </Link>
       <header className="mt-6 mb-10">
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           Novo artigo
         </p>
         <h1

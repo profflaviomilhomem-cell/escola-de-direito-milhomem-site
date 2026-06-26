@@ -1,5 +1,6 @@
 #
- Checklist cronológico de execução — Escola Flávio Milhomem
+
+Checklist cronológico de execução — Escola Flávio Milhomem
 
 **Documento operacional · ordem de execução fase por fase**
 
@@ -8,7 +9,7 @@ Alinhado ao roadmap em 24 sprints do **Livro-Guia v1.2** (Cap 8.8) e ao
 TDD, code review, CI antes de feature, deploy progressivo,
 defesa em profundidade, separação de ambientes, observabilidade.
 
-> Cada item é um *checkbox*. Marque conforme avança.
+> Cada item é um _checkbox_. Marque conforme avança.
 > Itens em **negrito** são bloqueadores das fases seguintes.
 > A coluna entre colchetes `[S?]` indica a sprint do roadmap.
 
@@ -660,17 +661,17 @@ Pacote completo no ar, lista crescendo, evento aprovado.
 
 ## Panorama rápido (o que falta de verdade)
 
-| Fase | Status | Bloqueadores principais |
-|------|--------|-------------------------|
-| **0** Pré-requisitos | 🔴 Não iniciada no checklist | Contas externas (Neon, Pagar.me, Resend, GTM…), compliance CSMPDFT/LGPD |
-| **1** Fundação | 🟡 ~90% código | Domínio; marca residual (5 variantes do logo aplicadas + 3 sessões foto); home aprovada; CRM admin; IDs reais; auditoria a11y residual |
-| **2** Auth / aluno esqueleto | 🟡 ~95% | Magic link Resend |
-| **3** Pagar.me | 🟡 núcleo no código | Feito: `/api/orders/create`, webhook HMAC, idempotência, mapping de status. Falta: SDK oficial, `/api/orders/refund`, 3DS, Meta CAPI no webhook, reconciliação cron, KYC (externo) |
-| **4** LMS MVP | 🟡 ~40% | Stream real, CRUD aulas, fórum persistido, certificado PDF |
-| **5** UTM + CAPI | 🔴 | UTM builder, Meta CAPI server-side |
-| **6** Conteúdo / calculadora | 🟡 ~75% | PDF calculadora; iscas PDF; tripwire checkout |
-| **7** Pré-lançamento | 🟡 landing ~70% | Landing cohort: 10/14 blocos feitos + Schema Course (faltam blocos 3/8/10/13); cookie consent ✅. Falta: sequências de e-mail, schema Event, logística do evento 11/08 |
-| **8** Lançamento | 🔴 | Operação cohort + carrinho ago/2026 |
+| Fase                         | Status                       | Bloqueadores principais                                                                                                                                                            |
+| ---------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **0** Pré-requisitos         | 🔴 Não iniciada no checklist | Contas externas (Neon, Pagar.me, Resend, GTM…), compliance CSMPDFT/LGPD                                                                                                            |
+| **1** Fundação               | 🟡 ~90% código               | Domínio; marca residual (5 variantes do logo aplicadas + 3 sessões foto); home aprovada; CRM admin; IDs reais; auditoria a11y residual                                             |
+| **2** Auth / aluno esqueleto | 🟡 ~95%                      | Magic link Resend                                                                                                                                                                  |
+| **3** Pagar.me               | 🟡 núcleo no código          | Feito: `/api/orders/create`, webhook HMAC, idempotência, mapping de status. Falta: SDK oficial, `/api/orders/refund`, 3DS, Meta CAPI no webhook, reconciliação cron, KYC (externo) |
+| **4** LMS MVP                | 🟡 ~40%                      | Stream real, CRUD aulas, fórum persistido, certificado PDF                                                                                                                         |
+| **5** UTM + CAPI             | 🔴                           | UTM builder, Meta CAPI server-side                                                                                                                                                 |
+| **6** Conteúdo / calculadora | 🟡 ~75%                      | PDF calculadora; iscas PDF; tripwire checkout                                                                                                                                      |
+| **7** Pré-lançamento         | 🟡 landing ~70%              | Landing cohort: 10/14 blocos feitos + Schema Course (faltam blocos 3/8/10/13); cookie consent ✅. Falta: sequências de e-mail, schema Event, logística do evento 11/08             |
+| **8** Lançamento             | 🔴                           | Operação cohort + carrinho ago/2026                                                                                                                                                |
 
 **Próximas ações sugeridas (ordem):**
 

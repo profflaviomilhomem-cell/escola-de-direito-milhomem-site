@@ -18,8 +18,18 @@ const circunstanciaArt59 = z.enum([
 export const calculadoraSchema = z
   .object({
     crimeSlug: z.string().min(1).max(60).optional(),
-    minDias: z.number().int().positive().max(365 * 50).optional(),
-    maxDias: z.number().int().positive().max(365 * 50).optional(),
+    minDias: z
+      .number()
+      .int()
+      .positive()
+      .max(365 * 50)
+      .optional(),
+    maxDias: z
+      .number()
+      .int()
+      .positive()
+      .max(365 * 50)
+      .optional(),
     desfavoraveis: z.array(circunstanciaArt59).max(8).default([]),
     agravantes: z.number().int().min(0).max(20).default(0),
     atenuantes: z.number().int().min(0).max(20).default(0),
@@ -30,8 +40,7 @@ export const calculadoraSchema = z
     message: "Informe um crime preset ou os limites mínimo e máximo.",
   })
   .refine(
-    (data) =>
-      !data.minDias || !data.maxDias || data.maxDias >= data.minDias,
+    (data) => !data.minDias || !data.maxDias || data.maxDias >= data.minDias,
     { message: "O máximo legal não pode ser menor que o mínimo." },
   );
 

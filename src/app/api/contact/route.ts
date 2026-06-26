@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
   });
   if (!rl.success) {
     return NextResponse.json(
-      { ok: false, error: "Muitas tentativas. Tente novamente em alguns minutos." },
+      {
+        ok: false,
+        error: "Muitas tentativas. Tente novamente em alguns minutos.",
+      },
       { status: 429 },
     );
   }
@@ -68,7 +71,10 @@ export async function POST(req: NextRequest) {
 
   if (!result.ok) {
     return NextResponse.json(
-      { ok: false, error: "Não foi possível enviar agora. Tente por e-mail direto." },
+      {
+        ok: false,
+        error: "Não foi possível enviar agora. Tente por e-mail direto.",
+      },
       { status: 503 },
     );
   }

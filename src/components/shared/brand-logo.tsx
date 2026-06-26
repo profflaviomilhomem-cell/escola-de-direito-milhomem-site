@@ -6,11 +6,7 @@ import {
   brandLogoVersion,
 } from "@/config/brand";
 
-export type BrandLogoVariant =
-  | "mark"
-  | "stacked"
-  | "horizontal"
-  | "header";
+export type BrandLogoVariant = "mark" | "stacked" | "horizontal" | "header";
 
 type Props = {
   variant?: BrandLogoVariant;
@@ -37,7 +33,10 @@ export function BrandLogo({
     const horizontal = brandLogoDimensions.horizontal;
     return (
       <span
-        className={cn("fm-header-logo-wordmark relative inline-block", className)}
+        className={cn(
+          "fm-header-logo-wordmark relative inline-block",
+          className,
+        )}
       >
         <Image
           key={imageKey}
@@ -74,7 +73,12 @@ export function BrandLogo({
   if (variant === "horizontal") {
     const horizontal = brandLogoDimensions.horizontal;
     return (
-      <span className={cn("fm-header-logo-wordmark relative inline-block", className)}>
+      <span
+        className={cn(
+          "fm-header-logo-wordmark relative inline-block",
+          className,
+        )}
+      >
         <Image
           key={imageKey}
           src={brandAssets.horizontal}

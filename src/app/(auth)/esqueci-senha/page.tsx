@@ -21,7 +21,7 @@ export default function EsqueciSenhaPage() {
         </h1>
       </header>
 
-      <div className="bg-carbon-elevated/40 border-paper-100/10 backdrop-blur-xl border p-8 md:p-10">
+      <div className="bg-carbon-elevated/40 border-paper-100/10 border p-8 backdrop-blur-xl md:p-10">
         <ForgotPasswordForm />
       </div>
     </div>

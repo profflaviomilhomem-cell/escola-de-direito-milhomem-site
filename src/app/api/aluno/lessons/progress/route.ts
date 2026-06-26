@@ -18,7 +18,10 @@ import { lessonProgressUpsertSchema } from "@/schemas/lesson-progress";
 export async function GET(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   const productSlug = req.nextUrl.searchParams.get("productSlug")?.trim();
@@ -48,7 +51,10 @@ export async function GET(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   const rl = await rateLimit({

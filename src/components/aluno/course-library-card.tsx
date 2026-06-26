@@ -32,10 +32,10 @@ export function CourseLibraryCard({ course }: Props) {
           alt={course.title}
           className="absolute inset-0"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
+        <div className="from-carbon via-carbon/40 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent" />
         <div
           aria-hidden
-          className="absolute -right-12 top-1/3 h-48 w-48 rounded-full opacity-25 blur-3xl"
+          className="absolute top-1/3 -right-12 h-48 w-48 rounded-full opacity-25 blur-3xl"
           style={{ background: "var(--color-amber)" }}
         />
         <div className="absolute inset-x-0 bottom-0 p-5">
@@ -44,7 +44,7 @@ export function CourseLibraryCard({ course }: Props) {
             {course.title}
           </h2>
           {hasVideo ? (
-            <p className="text-paper-600 fm-mono mt-2 text-[10px] uppercase tracking-widest">
+            <p className="text-paper-600 fm-mono mt-2 text-[10px] tracking-widest uppercase">
               Vídeos e slides disponíveis
             </p>
           ) : null}

@@ -55,7 +55,5 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  return NextResponse.redirect(
-    `${baseUrl}/newsletter/confirmado?status=ok`,
-  );
+  return NextResponse.redirect(`${baseUrl}/newsletter/confirmado?status=ok`);
 }

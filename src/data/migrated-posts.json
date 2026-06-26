@@ -42,11 +42,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2026/04/policia-civil-ascom-sspds-ce.jpg",
     "readingMin": 7,
-    "tags": [
-      "advocaciacriminal",
-      "PROCESSOPENAL",
-      "STJ"
-    ]
+    "tags": ["advocaciacriminal", "PROCESSOPENAL", "STJ"]
   },
   {
     "slug": "o-anpp-nas-acoes-penais-privadas-quando-o-mp-pode-intervir",
@@ -66,11 +62,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/03/acordo20ajuste20nC3A3o20persecuC3A7C3A3o.jpeg",
     "readingMin": 5,
-    "tags": [
-      "advocaciacriminal",
-      "PROCESSOPENAL",
-      "STJ"
-    ]
+    "tags": ["advocaciacriminal", "PROCESSOPENAL", "STJ"]
   },
   {
     "slug": "quando-um-cabo-de-vassoura-vira-arma-branca-o-que-diz-o-stj",
@@ -90,12 +82,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/12/149430-22-07-2025093132-3178-anuncio-20cabo-20de-20madeira-201-50mts-201-87894.png",
     "readingMin": 4,
-    "tags": [
-      "advocaciacriminal",
-      "direitopenal",
-      "jurisprudencia",
-      "STJ"
-    ]
+    "tags": ["advocaciacriminal", "direitopenal", "jurisprudencia", "STJ"]
   },
   {
     "slug": "piada-no-aeroporto-pode-dar-cadeia-entenda-o-crime-do-artigo-261-do-codigo-penal",
@@ -115,10 +102,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/11/Foto-Paulo-H-Carvalho-1-2.jpg",
     "readingMin": 4,
-    "tags": [
-      "advocaciacriminal",
-      "direitopenal"
-    ]
+    "tags": ["advocaciacriminal", "direitopenal"]
   },
   {
     "slug": "adpf-das-favelas-a-constituicao-chega-ao-morro",
@@ -138,12 +122,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/10/Captura-de-Tela-2025-10-31-as-13.10.31.png",
     "readingMin": 5,
-    "tags": [
-      "adpf635",
-      "adpfdasfavelas",
-      "advocaciacriminal",
-      "stf"
-    ]
+    "tags": ["adpf635", "adpfdasfavelas", "advocaciacriminal", "stf"]
   },
   {
     "slug": "stf-reafirma-o-poder-investigativo-do-ministerio-publico-e-estabelece-regras-claras",
@@ -163,9 +142,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/10/B900420F-28F4-436F-B0D2-F4F58D9F500C-1280x720-1.jpeg",
     "readingMin": 4,
-    "tags": [
-      "Blog"
-    ]
+    "tags": ["Blog"]
   },
   {
     "slug": "a-suspensao-do-prazo-prescricional-no-art-366-do-cpp-decisao-judicial-e-exigencia-essencial",
@@ -185,10 +162,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/10/STJ8631.jpg",
     "readingMin": 4,
-    "tags": [
-      "PROCESSOPENAL",
-      "STJ"
-    ]
+    "tags": ["PROCESSOPENAL", "STJ"]
   },
   {
     "slug": "colaboracao-premiada-multa-nao-paga-e-progressao-de-regime-quando-a-hipossuficiencia-financeira-fala-mais-alto",
@@ -208,12 +182,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2025/03/acordo20ajuste20nC3A3o20persecuC3A7C3A3o.jpeg",
     "readingMin": 4,
-    "tags": [
-      "advocaciacriminal",
-      "colaboraçãopremiada",
-      "PROCESSOPENAL",
-      "STJ"
-    ]
+    "tags": ["advocaciacriminal", "colaboraçãopremiada", "PROCESSOPENAL", "STJ"]
   },
   {
     "slug": "provas-digitais-no-processo-penal-quando-a-corrupcao-de-arquivos-e-a-quebra-da-cadeia-de-custodia-anulam-a-acusacao",
@@ -1085,11 +1054,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/12/Racionais-MCs.jpg",
     "readingMin": 7,
-    "tags": [
-      "direitoconstitucional",
-      "direitoshumanos",
-      "stf"
-    ]
+    "tags": ["direitoconstitucional", "direitoshumanos", "stf"]
   },
   {
     "slug": "brasil-avanca-na-luta-contra-abusos-digitais-camara-aprova-lei-sobre-imagens-intimas-geradas-por-ia",
@@ -1387,11 +1352,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/10/Roubo-celulares-site-750x430-1.jpg",
     "readingMin": 3,
-    "tags": [
-      "concursopublico",
-      "direitopenal",
-      "stf"
-    ]
+    "tags": ["concursopublico", "direitopenal", "stf"]
   },
   {
     "slug": "comissao-da-camara-aprova-projeto-de-lei-para-criminalizar-o-stealthing",
@@ -1550,11 +1511,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/05/Fachada-STF_Dorivan-Marinho_Camara-dos-Deputados.jpg",
     "readingMin": 4,
-    "tags": [
-      "direitoconstitucional",
-      "PROCESSOPENAL",
-      "stf"
-    ]
+    "tags": ["direitoconstitucional", "PROCESSOPENAL", "stf"]
   },
   {
     "slug": "a-recusa-de-um-militar-em-cumprir-uma-ordem-ilegal-entendendo-a-hierarquia-e-disciplina-no-meio-militar",
@@ -1574,9 +1531,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/08/exercito.jpg",
     "readingMin": 3,
-    "tags": [
-      "direitopenalmilitar"
-    ]
+    "tags": ["direitopenalmilitar"]
   },
   {
     "slug": "responsabilidade-penal-militar-na-antartida-um-olhar-sobre-o-caso-de-crimes-sexuais-na-estacao-comandante-ferraz",
@@ -1624,11 +1579,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/07/ciso_blog-cybercrime_today-and-the-future.jpg",
     "readingMin": 2,
-    "tags": [
-      "concursopublico",
-      "cybercrimes",
-      "direitopenal"
-    ]
+    "tags": ["concursopublico", "cybercrimes", "direitopenal"]
   },
   {
     "slug": "a-importancia-do-estudo-do-erro-no-direito-penal-para-os-concursos-das-carreiras-juridicas-e-como-o-tema-foi-cobrado-no-concurso-para-promotor-de-justica-do-mpsp-2023",
@@ -1677,12 +1628,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/07/arquivos_noticias_2016_jul_armas_de_fogo.jpg",
     "readingMin": 2,
-    "tags": [
-      "direitopenal",
-      "estatutododesarmamento",
-      "jurisprudencia",
-      "stf"
-    ]
+    "tags": ["direitopenal", "estatutododesarmamento", "jurisprudencia", "stf"]
   },
   {
     "slug": "machismo-estrutural-e-a-legitima-defesa-da-honra",
@@ -1728,10 +1674,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/06/NEGRO-NA-PRISAO-1.png",
     "readingMin": 4,
-    "tags": [
-      "PROCESSOPENAL",
-      "racismo"
-    ]
+    "tags": ["PROCESSOPENAL", "racismo"]
   },
   {
     "slug": "a-legalizacao-da-maconha-no-brasil-potenciais-impactos-e-implicacoes-juridicas",
@@ -1751,11 +1694,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/06/STF-VERDE.png",
     "readingMin": 3,
-    "tags": [
-      "direitopenal",
-      "leidedrogas",
-      "stf"
-    ]
+    "tags": ["direitopenal", "leidedrogas", "stf"]
   },
   {
     "slug": "e-o-juiz-de-garantias-agora-vinga",
@@ -1775,10 +1714,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/05/Fachada-STF_Dorivan-Marinho_Camara-dos-Deputados.jpg",
     "readingMin": 4,
-    "tags": [
-      "juizdegarantias",
-      "PROCESSOPENAL"
-    ]
+    "tags": ["juizdegarantias", "PROCESSOPENAL"]
   },
   {
     "slug": "concurso-oficial-pmsc-2023",
@@ -1798,9 +1734,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/05/Curso-online-direito-penal-militar-1.png",
     "readingMin": 3,
-    "tags": [
-      "direitopenalmilitar"
-    ]
+    "tags": ["direitopenalmilitar"]
   },
   {
     "slug": "stj-manda-soltar-porteiro-reconhecido-apenas-por-foto-em-62-processos",
@@ -1820,11 +1754,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/05/Black-man.png",
     "readingMin": 4,
-    "tags": [
-      "direitoshumanos",
-      "PROCESSOPENAL",
-      "racismo"
-    ]
+    "tags": ["direitoshumanos", "PROCESSOPENAL", "racismo"]
   },
   {
     "slug": "condenacao-do-acusado-a-pena-de-multa-a-sobrepunicao-da-pobreza-continua",
@@ -1844,10 +1774,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/05/promaster-1.jpg",
     "readingMin": 6,
-    "tags": [
-      "direitoshumanos",
-      "PROCESSOPENAL"
-    ]
+    "tags": ["direitoshumanos", "PROCESSOPENAL"]
   },
   {
     "slug": "lei-no-14-550-23-a-busca-pela-efetividade-na-protecao-da-mulher-vitima-de-violencia-domestica",
@@ -1918,11 +1845,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/04/grupo-de-melhores-amigos-de-maos-dadas-scaled.jpg",
     "readingMin": 4,
-    "tags": [
-      "direitoshumanos",
-      "violenciacontraamulher",
-      "violenciadomestica"
-    ]
+    "tags": ["direitoshumanos", "violenciacontraamulher", "violenciadomestica"]
   },
   {
     "slug": "atuacao-do-ministerio-publico-brasileiro-com-perspectiva-de-genero",
@@ -1992,10 +1915,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/03/mw-694.webp",
     "readingMin": 2,
-    "tags": [
-      "direitointernacionalpenal",
-      "direitoshumanos"
-    ]
+    "tags": ["direitointernacionalpenal", "direitoshumanos"]
   },
   {
     "slug": "a-validade-do-reconhecimento-fotografico-como-meio-de-prova-interpretacao-jurisprudencial",
@@ -2015,12 +1935,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/03/1_m4_a-23987318.jpg",
     "readingMin": 4,
-    "tags": [
-      "JURISPRUDÊNCIA",
-      "PROCESSOPENAL",
-      "stf",
-      "STJ"
-    ]
+    "tags": ["JURISPRUDÊNCIA", "PROCESSOPENAL", "stf", "STJ"]
   },
   {
     "slug": "transfobia-no-dia-internacional-da-mulher",
@@ -2067,11 +1982,7 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/03/4542320_537cdfbb827d007.jpg",
     "readingMin": 8,
-    "tags": [
-      "direitopenal",
-      "direitoshumanos",
-      "racismo"
-    ]
+    "tags": ["direitopenal", "direitoshumanos", "racismo"]
   },
   {
     "slug": "stf-julgara-militares-por-atos-antidemocraticos",
@@ -2091,10 +2002,6 @@
     },
     "coverImage": "/blog-migrated/wp-content/uploads/2023/02/Invasao-4-4-600x400.jpeg.webp",
     "readingMin": 3,
-    "tags": [
-      "direitoconstitucional",
-      "direitopenalmilitar",
-      "stf"
-    ]
+    "tags": ["direitoconstitucional", "direitopenalmilitar", "stf"]
   }
 ]

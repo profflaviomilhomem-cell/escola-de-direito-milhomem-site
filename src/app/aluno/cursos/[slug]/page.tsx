@@ -64,7 +64,7 @@ export default async function CursoMatriculadoPage({
   return (
     <>
       <section
-        className="relative fm-hero-under-header overflow-hidden"
+        className="fm-hero-under-header relative overflow-hidden"
         aria-label={course.title}
       >
         <div
@@ -75,11 +75,11 @@ export default async function CursoMatriculadoPage({
         >
           <div
             aria-hidden
-            className="absolute -left-32 top-1/3 h-[480px] w-[480px] rounded-full opacity-15 blur-3xl"
+            className="absolute top-1/3 -left-32 h-[480px] w-[480px] rounded-full opacity-15 blur-3xl"
             style={{ background: "var(--color-amber)" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-carbon/85 via-carbon/40 to-transparent" />
+          <div className="from-carbon via-carbon/70 absolute inset-0 bg-gradient-to-t to-transparent" />
+          <div className="from-carbon/85 via-carbon/40 absolute inset-0 bg-gradient-to-r to-transparent" />
 
           <div className="relative z-10 flex h-full items-end pb-16">
             <div className="fm-site-container w-full">
@@ -98,7 +98,7 @@ export default async function CursoMatriculadoPage({
                 {next && (
                   <Link
                     href={`/aluno/aulas/${next.slug}`}
-                    className="bg-paper text-carbon hover:bg-amber inline-flex items-center gap-3 px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] no-underline transition-colors"
+                    className="bg-paper text-carbon hover:bg-amber inline-flex items-center gap-3 px-6 py-3 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase no-underline transition-colors"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ export default async function CursoMatriculadoPage({
         <div className="relative">
           <div
             aria-hidden
-            className="bg-amber/30 absolute left-[27px] top-7 bottom-7 w-px md:left-[31px]"
+            className="bg-amber/30 absolute top-7 bottom-7 left-[27px] w-px md:left-[31px]"
           />
 
           <ol className="space-y-12">
@@ -190,7 +190,7 @@ export default async function CursoMatriculadoPage({
                 <li key={mod.slug} className="relative pl-16 md:pl-20">
                   <span
                     aria-hidden
-                    className="bg-amber text-carbon border-amber absolute left-0 top-0 grid h-14 w-14 place-items-center rounded-full border-2 font-serif text-xl italic md:h-16 md:w-16 md:text-2xl"
+                    className="bg-amber text-carbon border-amber absolute top-0 left-0 grid h-14 w-14 place-items-center rounded-full border-2 font-serif text-xl italic md:h-16 md:w-16 md:text-2xl"
                   >
                     {i + 1}
                   </span>
@@ -200,7 +200,9 @@ export default async function CursoMatriculadoPage({
                     <h3 className="text-paper mt-1 font-serif text-2xl leading-tight">
                       {mod.title}
                     </h3>
-                    <p className="text-paper-700 mt-2 text-sm">{mod.subtitle}</p>
+                    <p className="text-paper-700 mt-2 text-sm">
+                      {mod.subtitle}
+                    </p>
                     <p className="text-paper-600 fm-mono mt-2 text-[11px]">
                       {moduleDone}/{mod.lessons.length} aulas ·{" "}
                       {formatDuration(moduleSec)}

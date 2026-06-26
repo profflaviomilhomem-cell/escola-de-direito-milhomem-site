@@ -1,8 +1,4 @@
-import {
-  forwardRef,
-  useId,
-  type ComponentPropsWithoutRef,
-} from "react";
+import { forwardRef, useId, type ComponentPropsWithoutRef } from "react";
 
 type Props = Omit<ComponentPropsWithoutRef<"input">, "id" | "placeholder"> & {
   label: string;
@@ -36,22 +32,18 @@ export const FloatingInput = forwardRef<HTMLInputElement, Props>(
           placeholder=" "
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={errorId}
-          className={`peer border-paper-200 focus:border-amber bg-carbon-elevated/80 text-paper w-full border px-4 pb-2 pt-6 text-sm outline-none transition-colors ${
+          className={`peer border-paper-200 focus:border-amber bg-carbon-elevated/80 text-paper w-full border px-4 pt-6 pb-2 text-sm transition-colors outline-none ${
             error ? "border-alerta-400" : ""
           } ${className ?? ""}`}
         />
         <label
           htmlFor={id}
-          className="text-paper-600 peer-focus:text-amber peer-focus:top-2 peer-focus:text-[10px] peer-focus:tracking-[0.2em] peer-focus:uppercase peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:tracking-[0.2em] peer-[:not(:placeholder-shown)]:uppercase pointer-events-none absolute left-4 top-4 text-sm transition-all duration-150"
+          className="text-paper-600 peer-focus:text-amber pointer-events-none absolute top-4 left-4 text-sm transition-all duration-150 peer-focus:top-2 peer-focus:text-[10px] peer-focus:tracking-[0.2em] peer-focus:uppercase peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:tracking-[0.2em] peer-[:not(:placeholder-shown)]:uppercase"
         >
           {label}
         </label>
         {error && (
-          <p
-            id={errorId}
-            role="alert"
-            className="text-alerta-400 mt-1 text-xs"
-          >
+          <p id={errorId} role="alert" className="text-alerta-400 mt-1 text-xs">
             {error}
           </p>
         )}

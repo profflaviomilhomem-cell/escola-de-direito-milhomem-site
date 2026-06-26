@@ -35,10 +35,9 @@ function lessonFromManifest(
       to: entry.number <= 2 ? "#5D3B0D" : NAVY,
       angle: 135,
     },
-    summary:
-      entry.video
-        ? `Aula ${entry.number} do curso Prova Digital no Processo Penal — vídeo editado e slides de apoio.`
-        : `Aula ${entry.number} — slides disponíveis; vídeo editado pendente de entrega.`,
+    summary: entry.video
+      ? `Aula ${entry.number} do curso Prova Digital no Processo Penal — vídeo editado e slides de apoio.`
+      : `Aula ${entry.number} — slides disponíveis; vídeo editado pendente de entrega.`,
     keyPoints: [
       entry.slides
         ? "Baixe os slides em Materiais antes ou depois do vídeo."

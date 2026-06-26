@@ -13,7 +13,7 @@ export default function DevLauncherPage() {
   return (
     <main className="bg-carbon text-paper min-h-screen px-6 py-16">
       <div className="mx-auto max-w-lg">
-        <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber fm-mono text-[10px] tracking-[0.2em] uppercase">
           Desenvolvimento
         </p>
         <h1 className="mt-3 font-serif text-3xl">Abrir as três áreas</h1>
@@ -28,7 +28,7 @@ export default function DevLauncherPage() {
               href="/"
               className="border-amber/40 hover:bg-amber/10 block rounded-lg border px-5 py-4 transition-colors"
             >
-              <span className="text-amber fm-mono text-[10px] uppercase tracking-widest">
+              <span className="text-amber fm-mono text-[10px] tracking-widest uppercase">
                 1 · Institucional
               </span>
               <span className="mt-1 block text-lg">Home e marketing</span>
@@ -40,7 +40,7 @@ export default function DevLauncherPage() {
               href={`${base}/dev/sessao?role=aluno&redirect=/aluno/dashboard`}
               className="border-amber/40 hover:bg-amber/10 block rounded-lg border px-5 py-4 transition-colors"
             >
-              <span className="text-amber fm-mono text-[10px] uppercase tracking-widest">
+              <span className="text-amber fm-mono text-[10px] tracking-widest uppercase">
                 2 · Aluno
               </span>
               <span className="mt-1 block text-lg">Dashboard do aluno</span>
@@ -52,11 +52,13 @@ export default function DevLauncherPage() {
               href={`${base}/dev/sessao?role=professor&redirect=/professor/dashboard`}
               className="border-amber/40 hover:bg-amber/10 block rounded-lg border px-5 py-4 transition-colors"
             >
-              <span className="text-amber fm-mono text-[10px] uppercase tracking-widest">
+              <span className="text-amber fm-mono text-[10px] tracking-widest uppercase">
                 3 · Professor
               </span>
               <span className="mt-1 block text-lg">Painel do professor</span>
-              <span className="text-paper-600 text-xs">/professor/dashboard</span>
+              <span className="text-paper-600 text-xs">
+                /professor/dashboard
+              </span>
             </Link>
           </li>
           <li>
@@ -64,17 +66,20 @@ export default function DevLauncherPage() {
               href="/dev/organograma"
               className="border-amber/40 hover:bg-amber/10 block rounded-lg border px-5 py-4 transition-colors"
             >
-              <span className="text-amber fm-mono text-[10px] uppercase tracking-widest">
+              <span className="text-amber fm-mono text-[10px] tracking-widest uppercase">
                 4 · Organograma &amp; Checklist
               </span>
-              <span className="mt-1 block text-lg">Acompanhamento Visual do Status</span>
+              <span className="mt-1 block text-lg">
+                Acompanhamento Visual do Status
+              </span>
               <span className="text-paper-600 text-xs">/dev/organograma</span>
             </Link>
           </li>
         </ul>
 
         <p className="text-paper-600 mt-10 text-xs">
-          Alternativa: <code className="text-paper">NEXT_PUBLIC_DEV_FAKE_SESSION</code> no
+          Alternativa:{" "}
+          <code className="text-paper">NEXT_PUBLIC_DEV_FAKE_SESSION</code> no
           .env.local (uma role por vez, sem cookie).
         </p>
       </div>

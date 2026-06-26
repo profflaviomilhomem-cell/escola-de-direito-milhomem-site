@@ -5,7 +5,10 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { ProductPublishStatus, ProductType } from "@prisma/client";
 
-import { EditorField, editorInputClass } from "@/components/professor/editor-field";
+import {
+  EditorField,
+  editorInputClass,
+} from "@/components/professor/editor-field";
 import { ImageMediaField } from "@/components/professor/image-media-field";
 import {
   PRODUCT_PUBLISH_LABEL,
@@ -25,12 +28,12 @@ const PUBLISH_OPTIONS = (
   label: PRODUCT_PUBLISH_LABEL[value].label,
 }));
 
-const TYPE_OPTIONS = (
-  Object.keys(PRODUCT_TYPE_LABEL) as ProductType[]
-).map((value) => ({
-  value,
-  label: PRODUCT_TYPE_LABEL[value],
-}));
+const TYPE_OPTIONS = (Object.keys(PRODUCT_TYPE_LABEL) as ProductType[]).map(
+  (value) => ({
+    value,
+    label: PRODUCT_TYPE_LABEL[value],
+  }),
+);
 
 type Tab = "geral" | "imagens" | "publicacao";
 
@@ -60,9 +63,10 @@ export function CourseEditor({ course }: Props) {
   );
   const [active, setActive] = useState(course?.active ?? true);
 
-  const priceCents = Math.round(
-    parseFloat(priceReais.replace(/\./g, "").replace(",", ".")) * 100,
-  ) || 0;
+  const priceCents =
+    Math.round(
+      parseFloat(priceReais.replace(/\./g, "").replace(",", ".")) * 100,
+    ) || 0;
 
   async function save() {
     setSaving(true);
@@ -133,7 +137,7 @@ export function CourseEditor({ course }: Props) {
               key={id}
               type="button"
               onClick={() => setTab(id)}
-              className={`px-4 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors ${
+              className={`px-4 py-2 font-mono text-[10px] tracking-[0.16em] uppercase transition-colors ${
                 tab === id
                   ? "bg-amber text-carbon"
                   : "text-paper-600 hover:text-paper border-paper-200 border"
@@ -171,7 +175,10 @@ export function CourseEditor({ course }: Props) {
                 className={`${editorInputClass} font-mono`}
               />
             </EditorField>
-            <EditorField label="Tagline" hint="Uma linha no card e no hero do aluno">
+            <EditorField
+              label="Tagline"
+              hint="Uma linha no card e no hero do aluno"
+            >
               <input
                 type="text"
                 value={tagline}
@@ -283,7 +290,7 @@ export function CourseEditor({ course }: Props) {
 
       <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
         <div className="border-paper-100 bg-carbon-elevated overflow-hidden border">
-          <div className="relative aspect-[21/9] bg-carbon">
+          <div className="bg-carbon relative aspect-[21/9]">
             {bannerImage ? (
               <Image
                 src={bannerImage}
@@ -294,7 +301,7 @@ export function CourseEditor({ course }: Props) {
                 unoptimized={bannerImage.startsWith("/")}
               />
             ) : (
-              <div className="from-amber/20 to-carbon flex h-full items-center justify-center bg-gradient-to-br text-xs text-paper-600">
+              <div className="from-amber/20 to-carbon text-paper-600 flex h-full items-center justify-center bg-gradient-to-br text-xs">
                 Banner
               </div>
             )}
@@ -315,7 +322,7 @@ export function CourseEditor({ course }: Props) {
               )}
             </div>
             <div className="min-w-0">
-              <p className="text-amber font-mono text-[9px] uppercase tracking-widest">
+              <p className="text-amber font-mono text-[9px] tracking-widest uppercase">
                 {PRODUCT_TYPE_LABEL[type]}
               </p>
               <h2 className="text-paper font-serif text-lg leading-tight">
@@ -329,14 +336,14 @@ export function CourseEditor({ course }: Props) {
         </div>
 
         <div className="border-paper-100 bg-carbon-elevated border p-6">
-          <h3 className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-4">
+          <h3 className="text-amber mb-4 font-mono text-[10px] tracking-[0.2em] uppercase">
             Ações
           </h3>
           <div className="space-y-3">
             <button
               type="submit"
               disabled={saving}
-              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-60"
+              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors disabled:opacity-60"
             >
               {saving
                 ? "Salvando…"
@@ -347,14 +354,14 @@ export function CourseEditor({ course }: Props) {
             {course ? (
               <a
                 href={`/professor/aulas?curso=${course.slug}`}
-                className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber block w-full border px-4 py-3 text-center font-mono text-[11px] uppercase tracking-[0.2em]"
+                className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber block w-full border px-4 py-3 text-center font-mono text-[11px] tracking-[0.2em] uppercase"
               >
                 Gerenciar aulas ({course.lessonCount})
               </a>
             ) : null}
             <button
               type="button"
-              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em]"
+              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] tracking-[0.2em] uppercase"
               onClick={() => router.push("/professor/cursos")}
             >
               Voltar à lista

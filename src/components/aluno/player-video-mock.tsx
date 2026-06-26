@@ -69,7 +69,7 @@ export function PlayerVideoMock({ lesson }: Props) {
       }}
     >
       {/* Vinheta para profundidade */}
-      <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
+      <div className="from-carbon via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
 
       {/* Estado ocioso: título + duração */}
       {!playing && (
@@ -113,7 +113,7 @@ export function PlayerVideoMock({ lesson }: Props) {
       {/* Estado tocando: barra inferior */}
       {playing && (
         <>
-          <div className="absolute inset-0 bg-carbon/30" />
+          <div className="bg-carbon/30 absolute inset-0" />
           <div className="absolute inset-x-0 bottom-0 p-4">
             <LabeledProgress
               value={Math.max(1, progressPercentFromRatio(initialProgress))}
@@ -230,13 +230,13 @@ export function PlayerVideoMock({ lesson }: Props) {
               <button
                 type="button"
                 onClick={handleMarkComplete}
-                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors"
+                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors"
               >
                 Marcar aula como concluída
               </button>
             )}
             {markedComplete && (
-              <p className="text-amber fm-mono mt-3 text-center text-[10px] uppercase tracking-[0.14em]">
+              <p className="text-amber fm-mono mt-3 text-center text-[10px] tracking-[0.14em] uppercase">
                 Aula concluída
               </p>
             )}

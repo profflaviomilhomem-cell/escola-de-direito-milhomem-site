@@ -101,7 +101,7 @@ export function AreaMobileNav({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors"
+        className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-2 font-mono text-[11px] tracking-[0.12em] uppercase transition-colors"
         aria-expanded={open}
         aria-controls="area-mobile-nav-panel"
       >

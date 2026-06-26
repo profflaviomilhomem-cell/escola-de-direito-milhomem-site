@@ -159,7 +159,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
         onSubmit={submit}
         className="border-paper-100 bg-carbon-elevated space-y-4 border p-5"
       >
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           {editingId ? "Editar aula" : "Nova aula"}
         </p>
         <div className="grid gap-4 md:grid-cols-2">
@@ -215,7 +215,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
           />
         </label>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <label className="flex items-center gap-2 text-sm text-paper">
+          <label className="text-paper flex items-center gap-2 text-sm">
             <input
               type="checkbox"
               className="accent-amber h-4 w-4"
@@ -232,7 +232,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
                 type="button"
                 onClick={resetForm}
                 disabled={busy}
-                className="border-paper-200 text-paper-700 hover:border-amber fm-mono border px-4 py-2 text-[10px] uppercase tracking-[0.16em] disabled:opacity-50"
+                className="border-paper-200 text-paper-700 hover:border-amber fm-mono border px-4 py-2 text-[10px] tracking-[0.16em] uppercase disabled:opacity-50"
               >
                 Cancelar
               </button>
@@ -240,9 +240,13 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
             <button
               type="submit"
               disabled={busy}
-              className="bg-amber text-carbon hover:bg-amber-soft fm-mono px-4 py-2 text-[10px] uppercase tracking-[0.16em] disabled:opacity-50"
+              className="bg-amber text-carbon hover:bg-amber-soft fm-mono px-4 py-2 text-[10px] tracking-[0.16em] uppercase disabled:opacity-50"
             >
-              {busy ? "Salvando…" : editingId ? "Salvar aula" : "Adicionar aula"}
+              {busy
+                ? "Salvando…"
+                : editingId
+                  ? "Salvar aula"
+                  : "Adicionar aula"}
             </button>
           </div>
         </div>
@@ -317,7 +321,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
                   type="button"
                   disabled={busy}
                   onClick={() => togglePublish(l)}
-                  className="border-paper-200 text-paper-700 hover:border-amber fm-mono border px-3 py-1 text-[10px] uppercase tracking-[0.14em] disabled:opacity-50"
+                  className="border-paper-200 text-paper-700 hover:border-amber fm-mono border px-3 py-1 text-[10px] tracking-[0.14em] uppercase disabled:opacity-50"
                 >
                   {l.published ? "Despublicar" : "Publicar"}
                 </button>
@@ -325,7 +329,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
                   type="button"
                   disabled={busy}
                   onClick={() => startEdit(l)}
-                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1 text-[10px] uppercase tracking-[0.14em] disabled:opacity-50"
+                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1 text-[10px] tracking-[0.14em] uppercase disabled:opacity-50"
                 >
                   Editar
                 </button>
@@ -337,7 +341,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
                       void mutate(l.id, "DELETE");
                     }
                   }}
-                  className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 fm-mono border px-3 py-1 text-[10px] uppercase tracking-[0.14em] disabled:opacity-50"
+                  className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 fm-mono border px-3 py-1 text-[10px] tracking-[0.14em] uppercase disabled:opacity-50"
                 >
                   Excluir
                 </button>

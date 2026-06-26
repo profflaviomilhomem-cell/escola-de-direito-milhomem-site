@@ -147,7 +147,10 @@ export async function POST(req: Request) {
     };
 
     if (existing) {
-      await prisma.order.update({ where: { id: existing.id }, data: orderData });
+      await prisma.order.update({
+        where: { id: existing.id },
+        data: orderData,
+      });
     } else {
       await prisma.order.create({
         data: { userId: aluno.id, productId: product.id, ...orderData },
@@ -158,7 +161,11 @@ export async function POST(req: Request) {
       ok: true,
       course: PRODUCT.slug,
       lessons: lessons.length,
-      accounts: users.map((u) => ({ email: u.email, role: u.role, name: u.name })),
+      accounts: users.map((u) => ({
+        email: u.email,
+        role: u.role,
+        name: u.name,
+      })),
       password: DEMO_PASSWORD,
       urls: {
         aluno: "/aluno/dashboard",

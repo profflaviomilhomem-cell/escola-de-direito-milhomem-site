@@ -12,7 +12,11 @@ const SOURCE = join(ROOT, "public/curso/milhomem");
 const OUT = join(ROOT, "public/curso/provas-digitais");
 
 function sh(cmd) {
-  return execSync(cmd, { encoding: "utf8", stdio: "pipe", maxBuffer: 64 * 1024 * 1024 });
+  return execSync(cmd, {
+    encoding: "utf8",
+    stdio: "pipe",
+    maxBuffer: 64 * 1024 * 1024,
+  });
 }
 
 function md5FirstMB(path) {
@@ -22,7 +26,10 @@ function md5FirstMB(path) {
 
 function classifyPath(p) {
   const u = p.toUpperCase();
-  if (/EDITAD|EDITA\)|_EDIT/.test(u) || /VÍDEOS EDITADOS|VIDEOS EDITADOS/.test(p))
+  if (
+    /EDITAD|EDITA\)|_EDIT/.test(u) ||
+    /VÍDEOS EDITADOS|VIDEOS EDITADOS/.test(p)
+  )
     return "editado";
   if (/CRUA|BRUTA|GRAVA/.test(u) || /PARA EDITAR/.test(u)) return "cru";
   if (/\.MP4$/i.test(p)) return "mp4-outro";
@@ -35,13 +42,14 @@ function listAllMp4InZips() {
     const zip = join(SOURCE, zipName);
     let lines;
     try {
-      lines = sh(`unzip -Z1 '${zip.replace(/'/g, "'\\''")}'`).trim().split("\n");
+      lines = sh(`unzip -Z1 '${zip.replace(/'/g, "'\\''")}'`)
+        .trim()
+        .split("\n");
     } catch {
       continue;
     }
     for (const line of lines) {
       if (!/\.mp4$/i.test(line)) continue;
-      const m = line.match(/(\d+)\s+(\d+)-(\d+)-(\d+)/);
       entries.push({
         zip: zipName,
         path: line,
@@ -143,7 +151,7 @@ for (let n = 1; n <= 13; n++) {
 
   const editedSizes = awaitSizesForLesson(n, edited);
   const matchesEdited = editedSizes.some((s) => s === loadedSize);
-  const matchesRaw = (awaitSizesForLesson(n, raw)).some((s) => s === loadedSize);
+  const matchesRaw = awaitSizesForLesson(n, raw).some((s) => s === loadedSize);
 
   if (matchesRaw && !matchesEdited) {
     row.verdict = "⚠️ PARECE CRU (tamanho bate com bruto, não com editado)";
@@ -211,15 +219,22 @@ for (let n = 1; n <= 13; n++) {
   const ed = KNOWN_EDITED_SIZES[n];
   const raw = KNOWN_RAW_SIZES[n];
   let verdict;
-  if (ed && sz === ed) verdict = "✅ CONFIRMADO editado (byte a byte com ZIP editado)";
+  if (ed && sz === ed)
+    verdict = "✅ CONFIRMADO editado (byte a byte com ZIP editado)";
   else if (raw && sz === raw) verdict = "❌ ERRO: é a gravação CRUA";
   else if (ed && Math.abs(sz - ed) < 1000) verdict = "✅ CONFIRMADO editado";
-  else verdict = `⚠️ revisar manualmente (loaded=${sz}, editado ref=${ed}, cru ref=${raw})`;
+  else
+    verdict = `⚠️ revisar manualmente (loaded=${sz}, editado ref=${ed}, cru ref=${raw})`;
 
   const loose = readdirSync(SOURCE).find(
-    (f) => /\.mp4$/i.test(f) && /editad/i.test(f) && new RegExp(`AULA\\s*0?${n}\\b`, "i").test(f),
+    (f) =>
+      /\.mp4$/i.test(f) &&
+      /editad/i.test(f) &&
+      new RegExp(`AULA\\s*0?${n}\\b`, "i").test(f),
   );
-  const sourceHint = loose ? `solto: ${loose}` : "extraído de ZIP (padrão *EDIT*)";
+  const sourceHint = loose
+    ? `solto: ${loose}`
+    : "extraído de ZIP (padrão *EDIT*)";
   console.log(`Aula ${pad}: ${verdict}`);
   console.log(`         ${(sz / 1e9).toFixed(2)} GB · ${sourceHint}\n`);
 }

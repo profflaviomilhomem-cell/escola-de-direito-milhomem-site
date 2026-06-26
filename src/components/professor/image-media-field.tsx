@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-import { EditorField, editorInputClass } from "@/components/professor/editor-field";
+import {
+  EditorField,
+  editorInputClass,
+} from "@/components/professor/editor-field";
 
 type Props = {
   label: string;
@@ -53,8 +56,7 @@ export function ImageMediaField({
     }
   }
 
-  const aspectClass =
-    aspect === "banner" ? "aspect-[21/9]" : "aspect-[4/3]";
+  const aspectClass = aspect === "banner" ? "aspect-[21/9]" : "aspect-[4/3]";
 
   return (
     <EditorField label={label} hint={hint}>
@@ -71,7 +73,7 @@ export function ImageMediaField({
             type="button"
             disabled={uploading}
             onClick={() => inputRef.current?.click()}
-            className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors disabled:opacity-50"
+            className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase transition-colors disabled:opacity-50"
           >
             {uploading ? "Enviando…" : "Enviar arquivo"}
           </button>
@@ -79,7 +81,7 @@ export function ImageMediaField({
             <button
               type="button"
               onClick={() => onChange("")}
-              className="border-paper-200 text-paper-600 hover:text-alerta-400 border px-3 py-2 font-mono text-[10px] uppercase tracking-[0.16em]"
+              className="border-paper-200 text-paper-600 hover:text-alerta-400 border px-3 py-2 font-mono text-[10px] tracking-[0.16em] uppercase"
             >
               Remover
             </button>
@@ -115,7 +117,7 @@ export function ImageMediaField({
               {previewLabel}
             </div>
           )}
-          <span className="bg-carbon/80 text-paper-600 absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-widest px-2 py-1">
+          <span className="bg-carbon/80 text-paper-600 absolute bottom-2 left-2 px-2 py-1 font-mono text-[9px] tracking-widest uppercase">
             Preview · {aspect === "banner" ? "banner" : "capa"}
           </span>
         </div>

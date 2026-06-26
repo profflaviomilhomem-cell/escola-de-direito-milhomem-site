@@ -65,24 +65,25 @@ export function CheckoutForm({
           document,
           phone,
           billingLine1: paymentMethod === "BOLETO" ? billingLine1 : undefined,
-          billingZipCode: paymentMethod === "BOLETO" ? billingZipCode : undefined,
+          billingZipCode:
+            paymentMethod === "BOLETO" ? billingZipCode : undefined,
           billingCity: paymentMethod === "BOLETO" ? billingCity : undefined,
           billingState: paymentMethod === "BOLETO" ? billingState : undefined,
           ...utm,
         }),
       });
 
-      const body = (await res.json().catch(() => null)) as
-        | {
-            ok?: boolean;
-            error?: string;
-            redirectTo?: string;
-            orderId?: string;
-          }
-        | null;
+      const body = (await res.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+        redirectTo?: string;
+        orderId?: string;
+      } | null;
 
       if (res.status === 401) {
-        router.push(`/entrar?from=${encodeURIComponent(`/checkout/${productSlug}`)}`);
+        router.push(
+          `/entrar?from=${encodeURIComponent(`/checkout/${productSlug}`)}`,
+        );
         return;
       }
 
@@ -112,7 +113,7 @@ export function CheckoutForm({
   return (
     <form onSubmit={onSubmit} className="space-y-8">
       <div className="border-paper-100 bg-carbon-elevated border p-6">
-        <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber fm-mono text-[10px] tracking-[0.2em] uppercase">
           Resumo
         </p>
         <h2 className="text-paper mt-2 font-serif text-2xl">{productName}</h2>
@@ -123,7 +124,7 @@ export function CheckoutForm({
       </div>
 
       <fieldset className="space-y-3">
-        <legend className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+        <legend className="text-paper fm-mono text-[11px] tracking-[0.2em] uppercase">
           Forma de pagamento
         </legend>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -226,7 +227,7 @@ export function CheckoutForm({
       ) : null}
 
       {status.state === "error" ? (
-        <p className="text-red-400 text-sm" role="alert">
+        <p className="text-sm text-red-400" role="alert">
           {status.message}
         </p>
       ) : null}
@@ -235,7 +236,7 @@ export function CheckoutForm({
         <button
           type="submit"
           disabled={status.state === "submitting"}
-          className="bg-amber text-paper hover:bg-amber-soft disabled:opacity-60 px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors"
+          className="bg-amber text-paper hover:bg-amber-soft px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors disabled:opacity-60"
         >
           {status.state === "submitting" ? "Processando…" : "Pagar agora"}
         </button>
@@ -249,11 +250,17 @@ export function CheckoutForm({
 
       <p className="text-paper-600 text-xs leading-relaxed">
         Pagamento processado pela Pagar.me. Ao confirmar, você concorda com os{" "}
-        <Link href="/termos" className="text-amber underline-offset-2 hover:underline">
+        <Link
+          href="/termos"
+          className="text-amber underline-offset-2 hover:underline"
+        >
           termos
         </Link>{" "}
         e a{" "}
-        <Link href="/reembolso" className="text-amber underline-offset-2 hover:underline">
+        <Link
+          href="/reembolso"
+          className="text-amber underline-offset-2 hover:underline"
+        >
           política de reembolso
         </Link>
         .

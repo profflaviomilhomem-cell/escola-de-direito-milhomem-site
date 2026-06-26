@@ -23,11 +23,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function EditarArtigoPage({
-  params,
-}: {
-  params: Params;
-}) {
+export default async function EditarArtigoPage({ params }: { params: Params }) {
   const { slug } = await params;
   const post = await getProfessorBlogPostBySlug(slug);
   if (!post) notFound();
@@ -36,13 +32,13 @@ export default async function EditarArtigoPage({
     <section className="fm-site-page py-12">
       <Link
         href="/professor/blog"
-        className="text-paper-700 hover:text-amber font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
+        className="text-paper-700 hover:text-amber font-mono text-[10px] tracking-[0.2em] uppercase transition-colors"
       >
         ← Pipeline editorial
       </Link>
       <header className="mt-6 mb-10 flex flex-wrap items-end justify-between gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
             Editar artigo
           </p>
           <h1
@@ -55,7 +51,7 @@ export default async function EditarArtigoPage({
         {post.status === "PUBLISHED" && (
           <Link
             href={`/blog/${post.slug}`}
-            className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-4 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
           >
             Ver artigo público →
           </Link>

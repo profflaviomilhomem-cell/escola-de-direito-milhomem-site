@@ -18,21 +18,22 @@ type Props = {
  */
 export function HeroBillboard({ course, nextLesson, studentName }: Props) {
   const firstName = studentName.split(/\s+/)[0];
-  const progress = course.completedLessonCount / Math.max(1, course.lessonCount);
+  const progress =
+    course.completedLessonCount / Math.max(1, course.lessonCount);
 
   return (
     <section
       aria-label={`Continue assistindo — ${course.title}`}
-      className="relative fm-hero-under-header overflow-hidden"
+      className="fm-hero-under-header relative overflow-hidden"
     >
-      <div className="relative h-[78vh] min-h-[560px] w-full bg-carbon">
+      <div className="bg-carbon relative h-[78vh] min-h-[560px] w-full">
         <HeroBridgeDrawAnimation className="fm-hero-bridge-draw" />
         <div
           aria-hidden
-          className="border-amber/40 absolute right-12 top-0 z-[1] hidden h-full border-r lg:block"
+          className="border-amber/40 absolute top-0 right-12 z-[1] hidden h-full border-r lg:block"
         />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-t from-carbon via-carbon/80 to-carbon/25" />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r from-carbon/95 via-carbon/55 to-transparent" />
+        <div className="from-carbon via-carbon/80 to-carbon/25 absolute inset-0 z-[1] bg-gradient-to-t" />
+        <div className="from-carbon/95 via-carbon/55 absolute inset-0 z-[1] bg-gradient-to-r to-transparent" />
 
         <div className="relative z-10 flex h-full items-end pb-20">
           <div className="fm-site-container w-full">
@@ -61,7 +62,7 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
               {nextLesson && (
                 <Link
                   href={`/aluno/aulas/${nextLesson.slug}`}
-                  className="bg-paper text-carbon hover:bg-amber inline-flex items-center gap-3 px-7 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] no-underline transition-colors"
+                  className="bg-paper text-carbon hover:bg-amber inline-flex items-center gap-3 px-7 py-3 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase no-underline transition-colors"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +84,7 @@ export function HeroBillboard({ course, nextLesson, studentName }: Props) {
               )}
               <Link
                 href={`/aluno/cursos/${course.slug}`}
-                className="border-paper-400 text-paper hover:border-amber hover:text-amber inline-flex items-center gap-2 border bg-carbon/40 px-7 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] no-underline backdrop-blur-sm transition-colors"
+                className="border-paper-400 text-paper hover:border-amber hover:text-amber bg-carbon/40 inline-flex items-center gap-2 border px-7 py-3 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase no-underline backdrop-blur-sm transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

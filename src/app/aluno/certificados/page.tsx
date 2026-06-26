@@ -88,7 +88,7 @@ export default async function CertificadosPage() {
                 key={c.hash}
                 className="border-paper-100 bg-carbon-elevated border p-6"
               >
-                <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+                <p className="text-amber fm-mono text-[10px] tracking-[0.2em] uppercase">
                   Certificado de conclusão
                 </p>
                 <h2 className="text-paper mt-3 font-serif text-xl leading-tight">
@@ -102,7 +102,7 @@ export default async function CertificadosPage() {
                 </p>
                 <Link
                   href={`/certificado/${c.hash}`}
-                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono mt-5 inline-block border px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors"
+                  className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono mt-5 inline-block border px-4 py-2 text-[11px] tracking-[0.18em] uppercase transition-colors"
                 >
                   Ver / baixar
                 </Link>

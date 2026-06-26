@@ -43,9 +43,9 @@ export function ContactForm() {
         return;
       }
       if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as
-          | { error?: string }
-          | null;
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
         setStatus({
           state: "error",
           message: body?.error ?? "Falha ao enviar. Tente novamente.",
@@ -67,10 +67,12 @@ export function ContactForm() {
         role="status"
         className="border-amber/40 bg-amber/5 mt-stack flex flex-col gap-2 border-l-2 px-6 py-5"
       >
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           Enviado
         </p>
-        <p className="text-paper-800 text-sm leading-relaxed">{c.formSuccess}</p>
+        <p className="text-paper-800 text-sm leading-relaxed">
+          {c.formSuccess}
+        </p>
       </div>
     );
   }
@@ -86,7 +88,10 @@ export function ContactForm() {
         {...register("website")}
       />
       <div>
-        <label htmlFor="contact-name" className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <label
+          htmlFor="contact-name"
+          className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase"
+        >
           Nome
         </label>
         <input
@@ -100,7 +105,10 @@ export function ContactForm() {
         ) : null}
       </div>
       <div>
-        <label htmlFor="contact-email" className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <label
+          htmlFor="contact-email"
+          className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase"
+        >
           E-mail
         </label>
         <input
@@ -115,7 +123,10 @@ export function ContactForm() {
         ) : null}
       </div>
       <div>
-        <label htmlFor="contact-message" className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <label
+          htmlFor="contact-message"
+          className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase"
+        >
           Mensagem
         </label>
         <textarea
@@ -125,7 +136,9 @@ export function ContactForm() {
           {...register("message")}
         />
         {errors.message ? (
-          <p className="text-alerta-400 mt-1 text-sm">{errors.message.message}</p>
+          <p className="text-alerta-400 mt-1 text-sm">
+            {errors.message.message}
+          </p>
         ) : null}
       </div>
       {status.state === "error" ? (
@@ -136,7 +149,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status.state === "submitting"}
-        className="bg-amber text-paper hover:bg-amber-soft disabled:opacity-60 px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors"
+        className="bg-amber text-paper hover:bg-amber-soft px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors disabled:opacity-60"
       >
         {status.state === "submitting" ? "Enviando…" : "Enviar"}
       </button>

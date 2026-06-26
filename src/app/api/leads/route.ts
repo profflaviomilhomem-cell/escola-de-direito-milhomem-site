@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
   });
   if (!rl.success) {
     return NextResponse.json(
-      { ok: false, error: "Muitas tentativas. Tente novamente em alguns minutos." },
+      {
+        ok: false,
+        error: "Muitas tentativas. Tente novamente em alguns minutos.",
+      },
       { status: 429 },
     );
   }
@@ -61,8 +64,7 @@ export async function POST(req: NextRequest) {
 
   const data = parsed.data;
   const trimmedName = data.name?.trim();
-  const name =
-    trimmedName && trimmedName.length > 0 ? trimmedName : undefined;
+  const name = trimmedName && trimmedName.length > 0 ? trimmedName : undefined;
 
   // Honeypot — fingimos sucesso para não ensinar o bot.
   if (data.website && data.website.length > 0) {

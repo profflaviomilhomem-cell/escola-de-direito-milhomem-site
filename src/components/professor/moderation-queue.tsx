@@ -45,9 +45,7 @@ export function ModerationQueue({ items }: { items: ModerationItem[] }) {
         setError(data.error ?? "Falha ao moderar.");
         return;
       }
-      setRows((prev) =>
-        prev.map((r) => (r.id === id ? { ...r, status } : r)),
-      );
+      setRows((prev) => prev.map((r) => (r.id === id ? { ...r, status } : r)));
     } catch {
       setError("Falha de rede.");
     } finally {
@@ -91,13 +89,15 @@ export function ModerationQueue({ items }: { items: ModerationItem[] }) {
                 {STATUS_LABEL[c.status]}
               </span>
             </div>
-            <p className="text-paper-800 text-sm leading-relaxed">{c.content}</p>
+            <p className="text-paper-800 text-sm leading-relaxed">
+              {c.content}
+            </p>
             <div className="mt-3 flex flex-wrap gap-2">
               <button
                 type="button"
                 disabled={busyId === c.id || c.status === "APPROVED"}
                 onClick={() => moderate(c.id, "APPROVED")}
-                className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] transition-colors disabled:opacity-40"
+                className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-3 py-1.5 text-[10px] tracking-[0.14em] uppercase transition-colors disabled:opacity-40"
               >
                 Aprovar
               </button>
@@ -105,7 +105,7 @@ export function ModerationQueue({ items }: { items: ModerationItem[] }) {
                 type="button"
                 disabled={busyId === c.id || c.status === "REJECTED"}
                 onClick={() => moderate(c.id, "REJECTED")}
-                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 fm-mono border px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] transition-colors disabled:opacity-40"
+                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 fm-mono border px-3 py-1.5 text-[10px] tracking-[0.14em] uppercase transition-colors disabled:opacity-40"
               >
                 Rejeitar
               </button>

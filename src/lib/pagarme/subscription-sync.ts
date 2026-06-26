@@ -98,8 +98,7 @@ export async function upsertSubscriptionFromWebhook(input: {
   }
 
   const nextBillingAt = parsePagarmeDate(input.data.next_billing_at);
-  const canceledAt =
-    input.status === "CANCELED" ? new Date() : null;
+  const canceledAt = input.status === "CANCELED" ? new Date() : null;
 
   const existing = await prisma.subscription.findFirst({
     where: {

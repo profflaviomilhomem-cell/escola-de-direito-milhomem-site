@@ -29,8 +29,8 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
 
   if (!certificate) {
     return (
-      <article className="fm-site-page max-w-prose py-page text-center">
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+      <article className="fm-site-page py-page max-w-prose text-center">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           Escola Flávio Milhomem
         </p>
         <h1 className="mt-4 font-serif text-3xl">Certificado não encontrado</h1>
@@ -38,7 +38,9 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
           Não localizamos um certificado válido para este código. Confira se o
           link foi copiado por inteiro.
         </p>
-        <p className="text-paper-500 mt-4 font-mono text-xs break-all">{hash}</p>
+        <p className="text-paper-500 mt-4 font-mono text-xs break-all">
+          {hash}
+        </p>
         <p className="text-paper-600 mt-10 text-sm">
           Dúvidas?{" "}
           <Link
@@ -70,7 +72,7 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
         className="mx-auto flex max-w-[1040px] flex-wrap items-end justify-between gap-4"
       >
         <div>
-          <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
             Certificado autêntico
           </p>
           <h1 className="text-paper mt-2 font-serif text-2xl md:text-3xl">

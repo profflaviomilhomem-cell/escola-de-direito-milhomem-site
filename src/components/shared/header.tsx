@@ -31,14 +31,14 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-paper-700 hover:text-paper font-mono text-[13px] uppercase tracking-[0.18em] transition-colors lg:text-[14px]"
+                  className="text-paper-700 hover:text-paper font-mono text-[13px] tracking-[0.18em] uppercase transition-colors lg:text-[14px]"
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/newsletter"
-                className="border-amber text-amber hover:bg-amber hover:text-paper shrink-0 border px-3 py-2 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors lg:text-[13px]"
+                className="border-amber text-amber hover:bg-amber hover:text-paper shrink-0 border px-3 py-2 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors lg:text-[13px]"
               >
                 Entre na lista
               </Link>

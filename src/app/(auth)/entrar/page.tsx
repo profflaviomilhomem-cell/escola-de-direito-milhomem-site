@@ -34,7 +34,7 @@ export default async function EntrarPage({
     <div className="w-full max-w-[450px]">
       <div className="bg-carbon/85 border-paper-100 border p-8 shadow-2xl backdrop-blur-md md:p-12">
         <header className="mb-8">
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
             Área do aluno
           </p>
           <h1 className="mt-3 font-serif text-3xl leading-[1.1] md:text-4xl">
@@ -59,7 +59,7 @@ export default async function EntrarPage({
         Ainda não tem conta?{" "}
         <Link
           href="/cadastro"
-          className="text-paper hover:text-amber font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="text-paper hover:text-amber font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           Criar conta →
         </Link>

@@ -3,11 +3,7 @@ export const LS_TEXT_STEP = "fm-text-step";
 export const LS_VISION = "fm-vision";
 
 export type ThemePref = "dark" | "light";
-export type VisionPref =
-  | "none"
-  | "high-contrast"
-  | "mono"
-  | "assist-full";
+export type VisionPref = "none" | "high-contrast" | "mono" | "assist-full";
 
 /** Mínimo = normal do site (sem redução de fonte). */
 export const TEXT_STEP_MIN = 2;
@@ -89,9 +85,7 @@ export function readDomPreferences(): {
     return readStoredPreferences();
   }
   const root = document.documentElement;
-  const theme: ThemePref = root.classList.contains("light")
-    ? "light"
-    : "dark";
+  const theme: ThemePref = root.classList.contains("light") ? "light" : "dark";
   const rawStep = root.getAttribute("data-fm-text-step");
   const textStep =
     rawStep !== null && rawStep !== ""

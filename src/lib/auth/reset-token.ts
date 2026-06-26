@@ -14,9 +14,7 @@ const ISSUER = "escola-flavio-milhomem/reset";
 function getSecretKey(): Uint8Array {
   const secret = process.env.AUTH_SECRET;
   if (!secret || secret.length < 32) {
-    throw new Error(
-      "AUTH_SECRET ausente ou curto demais (mínimo 32 chars).",
-    );
+    throw new Error("AUTH_SECRET ausente ou curto demais (mínimo 32 chars).");
   }
   return new TextEncoder().encode(secret);
 }
@@ -26,9 +24,7 @@ export type ResetPayload = {
   email: string;
 };
 
-export async function signResetToken(
-  payload: ResetPayload,
-): Promise<string> {
+export async function signResetToken(payload: ResetPayload): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   return new SignJWT(payload as JWTPayload)
     .setProtectedHeader({ alg: ALGORITHM, typ: "JWT" })

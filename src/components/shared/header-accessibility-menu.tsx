@@ -171,13 +171,13 @@ export function HeaderAccessibilityMenu() {
         onClick={stopMenuClose}
       >
         <div role="toolbar" aria-label="Preferências de acessibilidade">
-          <p className="text-paper fm-mono mb-4 border-b border-paper-100/20 pb-3 text-[10px] uppercase tracking-[0.18em]">
+          <p className="text-paper fm-mono border-paper-100/20 mb-4 border-b pb-3 text-[10px] tracking-[0.18em] uppercase">
             Acessibilidade
           </p>
 
           <div className="space-y-4">
             <div>
-              <p className="text-paper-600 fm-mono mb-2 text-[9px] uppercase tracking-[0.14em]">
+              <p className="text-paper-600 fm-mono mb-2 text-[9px] tracking-[0.14em] uppercase">
                 Tamanho do texto
               </p>
               <div className="flex items-center gap-2">
@@ -243,7 +243,7 @@ export function HeaderAccessibilityMenu() {
             </div>
 
             <div>
-              <p className="text-paper-600 fm-mono mb-2 text-[9px] uppercase tracking-[0.14em]">
+              <p className="text-paper-600 fm-mono mb-2 text-[9px] tracking-[0.14em] uppercase">
                 Tema
               </p>
               <div className="flex gap-2">
@@ -251,7 +251,7 @@ export function HeaderAccessibilityMenu() {
                   type="button"
                   variant={theme === "dark" ? "secondary" : "outline"}
                   size="sm"
-                  className="fm-mono flex-1 gap-1.5 text-[10px] uppercase tracking-[0.12em]"
+                  className="fm-mono flex-1 gap-1.5 text-[10px] tracking-[0.12em] uppercase"
                   aria-pressed={theme === "dark"}
                   onClick={() => setThemeAndPersist("dark")}
                 >
@@ -262,7 +262,7 @@ export function HeaderAccessibilityMenu() {
                   type="button"
                   variant={theme === "light" ? "secondary" : "outline"}
                   size="sm"
-                  className="fm-mono flex-1 gap-1.5 text-[10px] uppercase tracking-[0.12em]"
+                  className="fm-mono flex-1 gap-1.5 text-[10px] tracking-[0.12em] uppercase"
                   aria-pressed={theme === "light"}
                   onClick={() => setThemeAndPersist("light")}
                 >
@@ -275,7 +275,7 @@ export function HeaderAccessibilityMenu() {
             <div>
               <p
                 id={idVision}
-                className="text-paper-600 fm-mono mb-2 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.14em]"
+                className="text-paper-600 fm-mono mb-2 flex items-center gap-1.5 text-[9px] tracking-[0.14em] uppercase"
               >
                 <Glasses className="text-amber size-3" aria-hidden />
                 Leitura, cores e vídeos
@@ -294,7 +294,7 @@ export function HeaderAccessibilityMenu() {
                     disabled={!ready}
                     onClick={() => setVisionAndPersist(o.value)}
                     className={cn(
-                      "fm-mono rounded-md border px-2.5 py-2 text-left text-[10px] uppercase tracking-[0.1em] transition-colors",
+                      "fm-mono rounded-md border px-2.5 py-2 text-left text-[10px] tracking-[0.1em] uppercase transition-colors",
                       vision === o.value
                         ? "border-amber/50 bg-amber/15 text-paper"
                         : "border-paper-100/30 text-paper-700 hover:border-amber/35 hover:text-paper bg-transparent",
@@ -332,7 +332,7 @@ export function HeaderAccessibilityMenu() {
             return next;
           });
         }}
-        className="border-amber/25 text-paper-700 hover:border-amber/50 hover:text-paper fm-mono flex cursor-pointer items-center gap-2 rounded-md border bg-paper/[0.04] px-2.5 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors"
+        className="border-amber/25 text-paper-700 hover:border-amber/50 hover:text-paper fm-mono bg-paper/[0.04] flex cursor-pointer items-center gap-2 rounded-md border px-2.5 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors"
       >
         <Accessibility className="text-amber size-5 shrink-0" aria-hidden />
         <span className="text-paper-700 hidden max-w-[11rem] truncate sm:inline">

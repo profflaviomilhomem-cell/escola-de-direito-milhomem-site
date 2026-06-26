@@ -30,15 +30,13 @@ export function LessonCardRanked({ lesson }: Props) {
       {/* Numeral outline gigante — atrás do card */}
       <span
         aria-hidden
-        className="fm-title-fluid font-display pointer-events-none absolute bottom-0 left-0 z-0 select-none leading-[0.78]"
+        className="fm-title-fluid font-display pointer-events-none absolute bottom-0 left-0 z-0 leading-[0.78] select-none"
         style={{
           ...fmTitleClamp("8rem", "14vw", "12rem"),
           fontWeight: 700,
           color: "var(--color-carbon)",
-          WebkitTextStroke:
-            "2px var(--color-paper-400)",
-          textShadow:
-            "3px 0 0 var(--color-carbon), 0 0 0 var(--color-carbon)",
+          WebkitTextStroke: "2px var(--color-paper-400)",
+          textShadow: "3px 0 0 var(--color-carbon), 0 0 0 var(--color-carbon)",
           letterSpacing: "-0.04em",
         }}
       >
@@ -46,7 +44,7 @@ export function LessonCardRanked({ lesson }: Props) {
       </span>
 
       {/* Card poster 2:3 */}
-      <div className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241,187,65,0.18)] relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 md:ml-20">
+      <div className="border-paper-100 group-hover:border-amber relative ml-14 aspect-[2/3] overflow-hidden border transition-all duration-300 group-hover:shadow-[0_8px_30px_rgba(241,187,65,0.18)] md:ml-20">
         <LessonMediaCover
           cover={lesson.cover}
           posterSrc={lesson.posterSrc}
@@ -64,13 +62,13 @@ export function LessonCardRanked({ lesson }: Props) {
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent"
+          className="from-carbon via-carbon/40 pointer-events-none absolute inset-0 bg-gradient-to-t to-transparent"
         />
 
         {/* ✓ amber se concluída */}
         {isDone && (
           <span
-            className="bg-amber text-carbon absolute right-2 top-2 grid h-7 w-7 place-items-center rounded-full"
+            className="bg-amber text-carbon absolute top-2 right-2 grid h-7 w-7 place-items-center rounded-full"
             aria-label="Aula concluída"
           >
             <svg
@@ -91,7 +89,7 @@ export function LessonCardRanked({ lesson }: Props) {
 
         {/* Em-andamento: pill mostarda */}
         {inProgress && (
-          <span className="bg-amber/90 text-carbon fm-mono absolute right-2 top-2 px-2 py-1">
+          <span className="bg-amber/90 text-carbon fm-mono absolute top-2 right-2 px-2 py-1">
             Em andamento
           </span>
         )}
@@ -101,7 +99,7 @@ export function LessonCardRanked({ lesson }: Props) {
           <p className="text-amber fm-mono line-clamp-1">
             {lesson.moduleTitle}
           </p>
-          <h3 className="font-display text-paper line-clamp-3 text-base font-bold uppercase leading-tight tracking-[0.04em] drop-shadow-lg md:text-lg">
+          <h3 className="font-display text-paper line-clamp-3 text-base leading-tight font-bold tracking-[0.04em] uppercase drop-shadow-lg md:text-lg">
             {lesson.title}
           </h3>
           <p className="text-paper-700 fm-mono">

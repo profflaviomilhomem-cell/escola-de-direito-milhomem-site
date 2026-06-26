@@ -10,11 +10,7 @@ function diagonalAngleDeg(width: number, height: number): number {
   return -(Math.atan2(height, width) * 180) / Math.PI;
 }
 
-function fitsBox(
-  text: HTMLSpanElement,
-  maxW: number,
-  maxH: number,
-): boolean {
+function fitsBox(text: HTMLSpanElement, maxW: number, maxH: number): boolean {
   const { width, height } = text.getBoundingClientRect();
   return width <= maxW + 0.5 && height <= maxH + 0.5;
 }

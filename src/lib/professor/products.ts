@@ -7,7 +7,10 @@ import {
   type ProfessorCourse,
 } from "@/lib/professor/product-types";
 
-export type { CourseUpsertInput, ProfessorCourse } from "@/lib/professor/product-types";
+export type {
+  CourseUpsertInput,
+  ProfessorCourse,
+} from "@/lib/professor/product-types";
 export {
   PRODUCT_PUBLISH_LABEL,
   PRODUCT_TYPE_LABEL,
@@ -69,7 +72,9 @@ export async function upsertProfessorCourse(
     bannerImage: input.bannerImage?.trim() || null,
     publishStatus: input.publishStatus,
     publishedAt:
-      input.publishStatus === "PUBLISHED" ? publishedAt ?? new Date() : publishedAt,
+      input.publishStatus === "PUBLISHED"
+        ? (publishedAt ?? new Date())
+        : publishedAt,
     active: input.active,
   };
 

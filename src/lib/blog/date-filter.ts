@@ -45,13 +45,20 @@ export type BlogDateSearch = {
 };
 
 /** Resolve `periodo` em intervalo [de, ate] em yyyy-mm-dd local. */
-export function resolveDateRangeFromSearchParams(
-  sp: BlogDateSearch,
-): { de: string | null; ate: string | null; periodo: string | null } {
+export function resolveDateRangeFromSearchParams(sp: BlogDateSearch): {
+  de: string | null;
+  ate: string | null;
+  periodo: string | null;
+} {
   const periodo = sp.periodo?.trim() || null;
   const now = new Date();
 
-  if (periodo === "7d" || periodo === "30d" || periodo === "90d" || periodo === "365d") {
+  if (
+    periodo === "7d" ||
+    periodo === "30d" ||
+    periodo === "90d" ||
+    periodo === "365d"
+  ) {
     const days =
       periodo === "7d"
         ? 7

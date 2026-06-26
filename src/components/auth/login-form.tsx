@@ -112,7 +112,7 @@ export function LoginForm({ redirectTo = "/aluno/dashboard" }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Entrando…" : "Entrar"}
       </button>

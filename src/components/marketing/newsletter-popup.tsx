@@ -31,7 +31,9 @@ export function NewsletterPopup() {
   const [open, setOpen] = useState(false);
 
   const excluded =
-    !pathname || isNewsletterPopupExcluded(pathname) || isNewsletterPopupDismissed();
+    !pathname ||
+    isNewsletterPopupExcluded(pathname) ||
+    isNewsletterPopupDismissed();
 
   const close = useCallback((persist = true) => {
     setOpen(false);
@@ -109,7 +111,7 @@ export function NewsletterPopup() {
           </svg>
         </span>
         <span className="text-left leading-tight">
-          <span className="text-amber block font-mono text-[8px] uppercase tracking-[0.18em]">
+          <span className="text-amber block font-mono text-[8px] tracking-[0.18em] uppercase">
             {newsletter.eyebrow}
           </span>
           <span className="block text-[12px] font-medium">Entre na lista</span>
@@ -123,7 +125,7 @@ export function NewsletterPopup() {
         >
           <button
             type="button"
-            className="absolute inset-0 bg-carbon/70 backdrop-blur-[2px]"
+            className="bg-carbon/70 absolute inset-0 backdrop-blur-[2px]"
             aria-label="Fechar"
             onClick={() => close()}
           />
@@ -138,11 +140,11 @@ export function NewsletterPopup() {
             tabIndex={-1}
             className="border-paper-100/50 bg-carbon-elevated/96 relative z-10 w-full max-w-md rounded-lg border shadow-[0_16px_48px_-12px_rgba(0,0,0,0.55)] backdrop-blur-md"
           >
-            <div className="flex items-start justify-between gap-3 border-b border-paper-100/40 px-4 py-3.5 sm:px-5">
+            <div className="border-paper-100/40 flex items-start justify-between gap-3 border-b px-4 py-3.5 sm:px-5">
               <div className="min-w-0 pr-2">
                 <p
                   id={titleId}
-                  className="text-amber font-mono text-[9px] uppercase tracking-[0.2em]"
+                  className="text-amber font-mono text-[9px] tracking-[0.2em] uppercase"
                 >
                   {newsletter.eyebrow}
                 </p>

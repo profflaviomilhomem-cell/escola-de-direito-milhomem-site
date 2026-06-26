@@ -19,8 +19,8 @@ export const metadata: Metadata = {
  */
 export default function NewsletterPage() {
   return (
-    <section className="fm-site-page max-w-prose py-page">
-      <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+    <section className="fm-site-page py-page max-w-prose">
+      <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
         {newsletter.eyebrow}
       </p>
       <h1

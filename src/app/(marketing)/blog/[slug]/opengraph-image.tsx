@@ -23,140 +23,136 @@ export default async function Image({ params }: Params) {
 
   if (!post) {
     return new ImageResponse(
-      (
-        <div
-          style={{
-            background: "#030024",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#e6c35c",
-            fontSize: 60,
-            fontWeight: "bold",
-          }}
-        >
-          Escola Flávio Milhomem
-        </div>
-      ),
-      { ...size },
-    );
-  }
-
-  return new ImageResponse(
-    (
       <div
         style={{
           background: "#030024",
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          padding: 80,
-          justifyContent: "space-between",
-          fontFamily: "sans-serif",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#e6c35c",
+          fontSize: 60,
+          fontWeight: "bold",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: -100,
-            right: -100,
-            width: 500,
-            height: 500,
-            background: "#e6c35c",
-            borderRadius: "50%",
-            opacity: 0.1,
-            filter: "blur(80px)",
-          }}
-        />
+        Escola Flávio Milhomem
+      </div>,
+      { ...size },
+    );
+  }
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <p
-            style={{
-              color: "#e6c35c",
-              fontSize: 24,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              margin: 0,
-              marginBottom: 32,
-            }}
-          >
-            {CATEGORY_LABEL[post.category] || "Artigo"}
-          </p>
-          <h1
-            style={{
-              color: "#fcfaf2",
-              fontSize: 72,
-              lineHeight: 1.1,
-              fontWeight: "bold",
-              margin: 0,
-              maxWidth: 900,
-            }}
-          >
-            {post.title}
-          </h1>
-        </div>
+  return new ImageResponse(
+    <div
+      style={{
+        background: "#030024",
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        padding: 80,
+        justifyContent: "space-between",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: -100,
+          right: -100,
+          width: 500,
+          height: 500,
+          background: "#e6c35c",
+          borderRadius: "50%",
+          opacity: 0.1,
+          filter: "blur(80px)",
+        }}
+      />
 
-        <div
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <p
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            borderTop: "1px solid rgba(230, 195, 92, 0.2)",
-            paddingTop: 40,
+            color: "#e6c35c",
+            fontSize: 24,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            margin: 0,
+            marginBottom: 32,
           }}
         >
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <div
-              style={{
-                width: 60,
-                height: 60,
-                background: "#e6c35c",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 24,
-                color: "#030024",
-                fontWeight: "bold",
-                marginRight: 20,
-              }}
-            >
-              FM
-            </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span
-                style={{ color: "#fcfaf2", fontSize: 24, fontWeight: "bold" }}
-              >
-                Flávio Milhomem
-              </span>
-              <span
-                style={{
-                  color: "rgba(252, 250, 242, 0.6)",
-                  fontSize: 18,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                }}
-              >
-                Professor de Direito Penal
-              </span>
-            </div>
-          </div>
+          {CATEGORY_LABEL[post.category] || "Artigo"}
+        </p>
+        <h1
+          style={{
+            color: "#fcfaf2",
+            fontSize: 72,
+            lineHeight: 1.1,
+            fontWeight: "bold",
+            margin: 0,
+            maxWidth: 900,
+          }}
+        >
+          {post.title}
+        </h1>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          borderTop: "1px solid rgba(230, 195, 92, 0.2)",
+          paddingTop: 40,
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
           <div
             style={{
-              color: "#e6c35c",
-              fontSize: 20,
+              width: 60,
+              height: 60,
+              background: "#e6c35c",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 24,
+              color: "#030024",
               fontWeight: "bold",
-              letterSpacing: "0.1em",
+              marginRight: 20,
             }}
           >
-            ESCOLAFLAVIOMILHOMEM.COM.BR
+            FM
+          </div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span
+              style={{ color: "#fcfaf2", fontSize: 24, fontWeight: "bold" }}
+            >
+              Flávio Milhomem
+            </span>
+            <span
+              style={{
+                color: "rgba(252, 250, 242, 0.6)",
+                fontSize: 18,
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Professor de Direito Penal
+            </span>
           </div>
         </div>
+        <div
+          style={{
+            color: "#e6c35c",
+            fontSize: 20,
+            fontWeight: "bold",
+            letterSpacing: "0.1em",
+          }}
+        >
+          ESCOLAFLAVIOMILHOMEM.COM.BR
+        </div>
       </div>
-    ),
+    </div>,
     { ...size },
   );
 }

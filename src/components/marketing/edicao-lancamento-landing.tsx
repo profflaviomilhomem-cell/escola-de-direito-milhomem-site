@@ -27,19 +27,21 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
     <article className="fm-site-page py-page">
       {/* Bloco 1 */}
       <header className="max-w-3xl">
-        <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">
+        <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
           {ed.eyebrow}
         </p>
         <h1
           className="fm-title-fluid mt-4 font-serif leading-[1.02]"
           style={fmTitleClamp("40px", "5vw", "64px")}
         >
-          {ed.title}{" "}
-          <em className="text-amber italic">{ed.titleEmphasis}</em>
+          {ed.title} <em className="text-amber italic">{ed.titleEmphasis}</em>
         </h1>
         <p className="text-paper-700 mt-6 text-lg leading-relaxed">
           {ed.lead}{" "}
-          <Link href="/sobre" className="text-amber underline-offset-2 hover:underline">
+          <Link
+            href="/sobre"
+            className="text-amber underline-offset-2 hover:underline"
+          >
             {ed.leadLinkLabel}
           </Link>
           .
@@ -47,13 +49,13 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
         <div className="mt-8 flex flex-wrap gap-4">
           <a
             href="#investimento"
-            className="bg-amber text-paper inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+            className="bg-amber text-paper inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             {ed.ctaInvestimento}
           </a>
           <Link
             href="/newsletter?source=edicao-lancamento"
-            className="border-amber text-amber border px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+            className="border-amber text-amber border px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             {ed.ctaLista}
           </Link>
@@ -68,17 +70,22 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
 
       {/* Bloco 2 */}
       <section className="mt-20" aria-labelledby="pilares-title">
-        <h2 id="pilares-title" className="text-paper fm-mono text-[11px] uppercase tracking-[0.22em]">
+        <h2
+          id="pilares-title"
+          className="text-paper fm-mono text-[11px] tracking-[0.22em] uppercase"
+        >
           {ed.pilaresTitle}
         </h2>
         <ul className="mt-8 grid gap-6 md:grid-cols-3">
           {ed.pilares.map((p) => (
             <li
               key={p.title}
-              className="border-paper-100 rounded-xl border bg-carbon-elevated/30 p-5"
+              className="border-paper-100 bg-carbon-elevated/30 rounded-xl border p-5"
             >
-              <h3 className="font-serif text-xl text-paper">{p.title}</h3>
-              <p className="text-paper-600 mt-2 text-sm leading-relaxed">{p.body}</p>
+              <h3 className="text-paper font-serif text-xl">{p.title}</h3>
+              <p className="text-paper-600 mt-2 text-sm leading-relaxed">
+                {p.body}
+              </p>
             </li>
           ))}
         </ul>
@@ -89,7 +96,9 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
         <h2 id="para-quem-title" className="font-serif text-3xl">
           {ed.paraQuemTitle}
         </h2>
-        <p className="text-paper-700 mt-4 max-w-prose leading-relaxed">{ed.paraQuemLead}</p>
+        <p className="text-paper-700 mt-4 max-w-prose leading-relaxed">
+          {ed.paraQuemLead}
+        </p>
         <p className="text-paper-600 mt-4 max-w-prose text-sm leading-relaxed">
           {ed.paraQuemSim} {ed.paraQuemNao}
         </p>
@@ -108,7 +117,9 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
               <p className="text-amber font-mono text-[10px] tracking-[0.2em]">
                 Módulo {m.id} — {m.title}
               </p>
-              <p className="text-paper-600 mt-2 text-sm leading-relaxed">{m.desc}</p>
+              <p className="text-paper-600 mt-2 text-sm leading-relaxed">
+                {m.desc}
+              </p>
               <ul className="text-paper-700 mt-4 space-y-2 text-sm leading-relaxed">
                 {m.lessons.map((aula) => (
                   <li key={aula.number}>
@@ -169,7 +180,7 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
       {/* Bloco 11 */}
       <section
         id="investimento"
-        className="border-amber/30 mt-20 scroll-mt-28 rounded-xl border bg-amber/[0.06] p-8"
+        className="border-amber/30 bg-amber/[0.06] mt-20 scroll-mt-28 rounded-xl border p-8"
         aria-labelledby="investimento-title"
       >
         <h2 id="investimento-title" className="font-serif text-3xl">
@@ -181,27 +192,35 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
             <>
               {" "}
               {ed.investimentoPriceLead}{" "}
-              <span className="text-paper-800">{ed.investimentoPriceInstallments}</span>
+              <span className="text-paper-800">
+                {ed.investimentoPriceInstallments}
+              </span>
             </>
           ) : null}
         </p>
         {ed.investimentoCheckoutNote ? (
-          <p className="text-paper-600 mt-2 text-sm">{ed.investimentoCheckoutNote}</p>
+          <p className="text-paper-600 mt-2 text-sm">
+            {ed.investimentoCheckoutNote}
+          </p>
         ) : null}
-        <p className="text-amber mt-4 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber mt-4 font-mono text-[10px] tracking-[0.2em] uppercase">
           {ed.investimentoSelo}
         </p>
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
         <Link
           href={`/checkout/${CURSO_PRINCIPAL_SLUG}`}
-          className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+          className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
         >
           {ed.investimentoCta}
         </Link>
       </section>
 
       {/* Bloco 12 */}
-      <section id="faq" className="mt-16 scroll-mt-28" aria-labelledby="faq-title">
+      <section
+        id="faq"
+        className="mt-16 scroll-mt-28"
+        aria-labelledby="faq-title"
+      >
         <h2 id="faq-title" className="font-serif text-3xl">
           {ed.faqTitle}
         </h2>
@@ -209,7 +228,9 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
           {faqItems.map((item) => (
             <div key={item.q}>
               <dt className="text-paper font-medium">{item.q}</dt>
-              <dd className="text-paper-600 mt-2 text-sm leading-relaxed">{item.a}</dd>
+              <dd className="text-paper-600 mt-2 text-sm leading-relaxed">
+                {item.a}
+              </dd>
             </div>
           ))}
         </dl>
@@ -221,7 +242,7 @@ export function EdicaoLancamentoLanding({ priceLabel, faqItems }: Props) {
         <p className="text-paper-600 mt-2 text-sm">{ed.fechamentoNote}</p>
         <Link
           href="/newsletter?source=edicao-lancamento-rodape"
-          className="border-amber text-amber mt-6 inline-block border px-8 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+          className="border-amber text-amber mt-6 inline-block border px-8 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
         >
           {ed.fechamentoCta}
         </Link>

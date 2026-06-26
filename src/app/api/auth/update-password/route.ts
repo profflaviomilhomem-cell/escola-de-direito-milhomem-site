@@ -1,7 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
-import { verifyPassword, hashPassword, PasswordTooLongError } from "@/lib/auth/password";
+import {
+  verifyPassword,
+  hashPassword,
+  PasswordTooLongError,
+} from "@/lib/auth/password";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
 import { updatePasswordSchema } from "@/schemas/auth";
@@ -19,7 +23,10 @@ import { updatePasswordSchema } from "@/schemas/auth";
 export async function PATCH(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   let raw: unknown;
@@ -48,7 +55,10 @@ export async function PATCH(req: NextRequest) {
   });
 
   if (!user || !user.passwordHash) {
-    return NextResponse.json({ ok: false, error: "Usuário não encontrado." }, { status: 404 });
+    return NextResponse.json(
+      { ok: false, error: "Usuário não encontrado." },
+      { status: 404 },
+    );
   }
 
   // Valida senha atual

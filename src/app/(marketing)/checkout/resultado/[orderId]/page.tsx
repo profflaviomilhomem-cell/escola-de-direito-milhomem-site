@@ -54,8 +54,8 @@ export default async function CheckoutResultadoPage({
       statusHint === "failed";
 
     return (
-      <section className="fm-site-page max-w-2xl py-page">
-        <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">
+      <section className="fm-site-page py-page max-w-2xl">
+        <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
           Assinatura
         </p>
 
@@ -70,7 +70,7 @@ export default async function CheckoutResultadoPage({
             </p>
             <Link
               href={`/aluno/cursos/${subscription.product.slug}`}
-              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
             >
               Ir para o conteúdo
             </Link>
@@ -101,7 +101,7 @@ export default async function CheckoutResultadoPage({
             </p>
             <Link
               href={`/checkout/${subscription.product.slug}`}
-              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
             >
               Tentar de novo
             </Link>
@@ -136,7 +136,9 @@ export default async function CheckoutResultadoPage({
 
   const payment = order.paymentPayload as CheckoutPaymentPayload | null;
   const isSuccess =
-    order.status === "PAID" || statusHint === "sucesso" || statusHint === "success";
+    order.status === "PAID" ||
+    statusHint === "sucesso" ||
+    statusHint === "success";
   const isPending =
     order.status === "PENDING" ||
     statusHint === "pendente" ||
@@ -147,8 +149,8 @@ export default async function CheckoutResultadoPage({
     statusHint === "failed";
 
   return (
-    <section className="fm-site-page max-w-2xl py-page">
-      <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">
+    <section className="fm-site-page py-page max-w-2xl">
+      <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
         Pagamento
       </p>
 
@@ -174,7 +176,7 @@ export default async function CheckoutResultadoPage({
           </p>
           <Link
             href={`/aluno/cursos/${order.product.slug}`}
-            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Ir para o curso
           </Link>
@@ -186,16 +188,16 @@ export default async function CheckoutResultadoPage({
           </h1>
           <p className="text-paper-700 mt-4 leading-relaxed">
             Pedido de {formatPrice(order.amountCents)} em{" "}
-            <strong>{order.product.name}</strong>. Assim que o Pagar.me confirmar,
-            liberamos o acesso automaticamente.
+            <strong>{order.product.name}</strong>. Assim que o Pagar.me
+            confirmar, liberamos o acesso automaticamente.
           </p>
 
           {payment?.pixQrCode ? (
             <div className="border-paper-100 bg-carbon-elevated mt-8 border p-5">
-              <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+              <p className="text-amber fm-mono text-[10px] tracking-[0.2em] uppercase">
                 PIX copia e cola
               </p>
-              <p className="text-paper-800 mt-3 break-all font-mono text-xs leading-relaxed">
+              <p className="text-paper-800 mt-3 font-mono text-xs leading-relaxed break-all">
                 {payment.pixQrCode}
               </p>
               {payment.pixQrCodeUrl ? (
@@ -213,10 +215,10 @@ export default async function CheckoutResultadoPage({
 
           {payment?.boletoLine ? (
             <div className="border-paper-100 bg-carbon-elevated mt-8 border p-5">
-              <p className="text-amber fm-mono text-[10px] uppercase tracking-[0.2em]">
+              <p className="text-amber fm-mono text-[10px] tracking-[0.2em] uppercase">
                 Linha digitável
               </p>
-              <p className="text-paper-800 mt-3 break-all font-mono text-xs">
+              <p className="text-paper-800 mt-3 font-mono text-xs break-all">
                 {payment.boletoLine}
               </p>
               {payment.boletoPdf ? (
@@ -234,7 +236,10 @@ export default async function CheckoutResultadoPage({
 
           <p className="text-paper-600 mt-6 text-sm">
             Você também encontra este pedido em{" "}
-            <Link href="/aluno/minha-conta" className="text-amber hover:underline">
+            <Link
+              href="/aluno/minha-conta"
+              className="text-amber hover:underline"
+            >
               Minha conta
             </Link>
             .
@@ -251,7 +256,7 @@ export default async function CheckoutResultadoPage({
           </p>
           <Link
             href={`/checkout/${order.product.slug}`}
-            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]"
+            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Tentar de novo
           </Link>

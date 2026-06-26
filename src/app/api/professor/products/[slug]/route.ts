@@ -17,7 +17,10 @@ export async function GET(_req: Request, { params }: Params) {
   const { slug } = await params;
   const course = await getProfessorCourseBySlug(slug);
   if (!course) {
-    return NextResponse.json({ error: "Curso não encontrado." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Curso não encontrado." },
+      { status: 404 },
+    );
   }
   return NextResponse.json({ course });
 }
@@ -29,7 +32,10 @@ export async function PATCH(req: Request, { params }: Params) {
 
   const existing = await getProfessorCourseBySlug(currentSlug);
   if (!existing) {
-    return NextResponse.json({ error: "Curso não encontrado." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Curso não encontrado." },
+      { status: 404 },
+    );
   }
 
   let body: CourseUpsertInput;

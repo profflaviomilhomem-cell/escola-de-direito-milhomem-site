@@ -85,11 +85,11 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
         }}
       />
       {!markedComplete && (
-        <div className="absolute bottom-3 right-3 left-3 sm:left-auto">
+        <div className="absolute right-3 bottom-3 left-3 sm:left-auto">
           <button
             type="button"
             onClick={handleMarkComplete}
-            className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors sm:w-auto"
+            className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors sm:w-auto"
           >
             Marcar aula como concluída
           </button>
@@ -147,11 +147,11 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
         <track kind="captions" />
       </video>
       {!markedComplete && (
-        <div className="absolute bottom-3 right-3 left-3 sm:left-auto">
+        <div className="absolute right-3 bottom-3 left-3 sm:left-auto">
           <button
             type="button"
             onClick={handleMarkComplete}
-            className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition-colors sm:w-auto"
+            className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors sm:w-auto"
           >
             Marcar aula como concluída
           </button>
@@ -209,7 +209,7 @@ function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
         backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
+      <div className="from-carbon via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
 
       {!playing && (
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
@@ -231,7 +231,9 @@ function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
           </button>
           <div className="text-center">
             <p className="text-amber fm-mono">{lesson.moduleTitle}</p>
-            <p className="text-paper mt-2 font-serif text-2xl">{lesson.title}</p>
+            <p className="text-paper mt-2 font-serif text-2xl">
+              {lesson.title}
+            </p>
             <p className="text-paper-600 fm-mono mt-3">
               Vídeo em preparação · {formatDuration(lesson.durationSec)}
             </p>
@@ -241,7 +243,7 @@ function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
 
       {playing && (
         <>
-          <div className="absolute inset-0 bg-carbon/30" />
+          <div className="bg-carbon/30 absolute inset-0" />
           <div className="absolute inset-x-0 bottom-0 p-4">
             <LabeledProgress
               value={Math.max(1, progressPercentFromRatio(initialProgress))}
@@ -251,7 +253,7 @@ function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
               <button
                 type="button"
                 onClick={handleMarkComplete}
-                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] uppercase tracking-[0.14em]"
+                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase"
               >
                 Marcar aula como concluída
               </button>

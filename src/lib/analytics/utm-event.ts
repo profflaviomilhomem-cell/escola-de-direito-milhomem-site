@@ -19,7 +19,10 @@ export type UtmEventInput = {
 function hashIp(ip?: string | null): string | null {
   if (!ip || ip === "unknown") return null;
   const salt = process.env.AUTH_SECRET ?? "fm-utm";
-  return createHash("sha256").update(`${salt}:${ip}`).digest("hex").slice(0, 32);
+  return createHash("sha256")
+    .update(`${salt}:${ip}`)
+    .digest("hex")
+    .slice(0, 32);
 }
 
 /**

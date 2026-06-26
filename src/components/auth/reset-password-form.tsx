@@ -39,7 +39,7 @@ export function ResetPasswordForm({ token }: Props) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(input),
       });
-      
+
       if (res.status === 401) {
         setStatus({
           state: "error",
@@ -69,7 +69,7 @@ export function ResetPasswordForm({ token }: Props) {
     return (
       <div className="space-y-6 text-center">
         <div className="border-amber/30 bg-amber/5 border-l-2 px-4 py-3 text-left">
-          <p className="text-paper text-sm leading-relaxed font-serif">
+          <p className="text-paper font-serif text-sm leading-relaxed">
             Sua senha foi atualizada com sucesso.
           </p>
           <p className="text-paper-600 mt-2 text-xs">
@@ -78,7 +78,7 @@ export function ResetPasswordForm({ token }: Props) {
         </div>
         <Link
           href="/entrar"
-          className="bg-amber text-carbon hover:bg-amber-soft block w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft block w-full py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors"
         >
           Ir para Login
         </Link>
@@ -93,7 +93,7 @@ export function ResetPasswordForm({ token }: Props) {
       </p>
 
       <input type="hidden" {...register("token")} />
-      
+
       <FloatingInput
         label="Nova senha"
         type="password"
@@ -115,7 +115,7 @@ export function ResetPasswordForm({ token }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Redefinindo…" : "Salvar nova senha"}
       </button>

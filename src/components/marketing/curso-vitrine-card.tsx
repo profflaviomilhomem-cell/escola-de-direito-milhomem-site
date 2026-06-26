@@ -13,13 +13,15 @@ function CardInner({ produto }: Props) {
   return (
     <>
       {produto.destaque && (
-        <p className="text-amber mb-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber mb-3 font-mono text-[10px] tracking-[0.2em] uppercase">
           Edição fundadora
         </p>
       )}
-      <h2 className="font-serif text-2xl text-paper">{produto.titulo}</h2>
-      <p className="text-paper-600 mt-2 text-sm leading-relaxed">{produto.subtitulo}</p>
-      <dl className="text-paper-500 mt-4 flex flex-wrap gap-x-6 gap-y-1 font-mono text-[10px] uppercase tracking-[0.14em]">
+      <h2 className="text-paper font-serif text-2xl">{produto.titulo}</h2>
+      <p className="text-paper-600 mt-2 text-sm leading-relaxed">
+        {produto.subtitulo}
+      </p>
+      <dl className="text-paper-500 mt-4 flex flex-wrap gap-x-6 gap-y-1 font-mono text-[10px] tracking-[0.14em] uppercase">
         {produto.cargaHoraria && (
           <>
             <dt className="sr-only">Carga horária</dt>
@@ -34,7 +36,7 @@ function CardInner({ produto }: Props) {
         )}
         {produto.externo && <dd>Eduzz · link externo</dd>}
       </dl>
-      <p className="text-amber mt-5 font-mono text-[11px] uppercase tracking-[0.18em]">
+      <p className="text-amber mt-5 font-mono text-[11px] tracking-[0.18em] uppercase">
         {produto.externo ? "Ver na Eduzz →" : "Saber mais →"}
       </p>
     </>

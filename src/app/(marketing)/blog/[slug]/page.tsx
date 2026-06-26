@@ -7,10 +7,7 @@ import { BlogArticleBody } from "@/components/marketing/blog-article-body";
 import { BlogAnswerFirst, BlogToc } from "@/components/marketing/blog-toc";
 import { JsonLd } from "@/components/shared/json-ld";
 import { siteConfig } from "@/config/site";
-import {
-  getBlogArticleBySlug,
-  getRelatedBlogPosts,
-} from "@/lib/blog/content";
+import { getBlogArticleBySlug, getRelatedBlogPosts } from "@/lib/blog/content";
 import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
 import {
   anchorHeadingsAndExtractToc,
@@ -48,11 +45,7 @@ export async function generateMetadata({
 /**
  * Página individual do artigo (Puxando do Prisma com fallback mock).
  */
-export default async function BlogArtigoPage({
-  params,
-}: {
-  params: Params;
-}) {
+export default async function BlogArtigoPage({ params }: { params: Params }) {
   const { slug } = await params;
   const post = await getBlogArticleBySlug(slug);
   if (!post) notFound();
@@ -92,7 +85,9 @@ export default async function BlogArtigoPage({
       <section
         className="relative overflow-hidden"
         style={{
-          backgroundImage: !post.coverImage ? `linear-gradient(135deg, ${post.cover.from}, ${post.cover.to})` : undefined,
+          backgroundImage: !post.coverImage
+            ? `linear-gradient(135deg, ${post.cover.from}, ${post.cover.to})`
+            : undefined,
         }}
       >
         {post.coverImage && (
@@ -106,21 +101,21 @@ export default async function BlogArtigoPage({
         )}
         <div
           aria-hidden
-          className="absolute -right-32 top-1/3 h-[420px] w-[420px] rounded-full opacity-15 blur-3xl"
+          className="absolute top-1/3 -right-32 h-[420px] w-[420px] rounded-full opacity-15 blur-3xl"
           style={{ background: "var(--color-amber)" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent" />
+        <div className="from-carbon via-carbon/40 absolute inset-0 bg-gradient-to-t to-transparent" />
 
         <div
-          className={`relative z-10 fm-site-page pt-10 ${flushLeadVideo ? "pb-6" : "pb-20"}`}
+          className={`fm-site-page relative z-10 pt-10 ${flushLeadVideo ? "pb-6" : "pb-20"}`}
         >
           <Link
             href="/blog"
-            className="text-paper-700 hover:text-amber font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="text-paper-700 hover:text-amber font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
           >
             ← Todos os artigos
           </Link>
-          <p className="text-amber mt-8 font-mono text-[11px] uppercase tracking-[0.2em]">
+          <p className="text-amber mt-8 font-mono text-[11px] tracking-[0.2em] uppercase">
             {DB_CATEGORY_LABEL[post.category] || post.category}
           </p>
           <h1
@@ -149,17 +144,18 @@ export default async function BlogArtigoPage({
               <p className="text-paper text-sm font-semibold">
                 {post.author.name}
               </p>
-              <p className="text-paper-600 mt-1 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <p className="text-paper-600 mt-1 font-mono text-[10px] tracking-[0.2em] uppercase">
                 {post.author.role}
               </p>
             </div>
             <span className="border-paper-200 hidden h-8 border-l md:inline-block" />
-            <p className="text-paper-700 font-mono text-[10px] uppercase tracking-[0.2em]">
-              {post.publishedAt && new Date(post.publishedAt).toLocaleDateString("pt-BR", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}{" "}
+            <p className="text-paper-700 font-mono text-[10px] tracking-[0.2em] uppercase">
+              {post.publishedAt &&
+                new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "long",
+                  year: "numeric",
+                })}{" "}
               · {post.readingMin} min de leitura
             </p>
           </div>
@@ -176,13 +172,13 @@ export default async function BlogArtigoPage({
 
         {/* Tags */}
         <div className="border-paper-100 mt-12 flex flex-wrap items-center gap-2 border-t pt-8">
-          <span className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+          <span className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
             Tags ·
           </span>
           {post.tags?.map((tag) => (
             <span
               key={tag}
-              className="border-paper-200 text-paper-700 border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em]"
+              className="border-paper-200 text-paper-700 border px-3 py-1 font-mono text-[10px] tracking-[0.15em] uppercase"
             >
               {tag}
             </span>
@@ -201,7 +197,7 @@ export default async function BlogArtigoPage({
             />
           )}
           <div className="min-w-0 flex-1">
-            <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
               Sobre o autor
             </p>
             <p className="text-paper mt-2 font-serif text-xl leading-tight">
@@ -214,7 +210,7 @@ export default async function BlogArtigoPage({
           </div>
           <Link
             href="/sobre"
-            className="border-amber text-amber hover:bg-amber hover:text-carbon border px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="border-amber text-amber hover:bg-amber hover:text-carbon border px-4 py-2 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
           >
             Trajetória →
           </Link>
@@ -241,9 +237,9 @@ export default async function BlogArtigoPage({
                       backgroundImage: `linear-gradient(135deg, ${p.cover.from}, ${p.cover.to})`,
                     }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
+                    <div className="from-carbon via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
                   </div>
-                  <p className="text-amber mt-4 font-mono text-[10px] uppercase tracking-[0.2em]">
+                  <p className="text-amber mt-4 font-mono text-[10px] tracking-[0.2em] uppercase">
                     {DB_CATEGORY_LABEL[p.category] || p.category}
                   </p>
                   <h3 className="text-paper group-hover:text-amber mt-2 font-serif text-lg leading-tight transition-colors">

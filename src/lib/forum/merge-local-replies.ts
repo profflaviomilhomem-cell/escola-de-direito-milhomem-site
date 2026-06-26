@@ -5,8 +5,7 @@ export const FORUM_ROOT_PARENT_ID = "__forum_root__";
 
 function sortByCreatedAtChronological(list: MockComment[]): MockComment[] {
   return [...list].sort(
-    (a, b) =>
-      new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
   );
 }
 

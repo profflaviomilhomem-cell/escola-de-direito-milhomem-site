@@ -30,8 +30,7 @@ export type SendOptions = {
 export async function sendEmail(
   opts: SendOptions,
 ): Promise<
-  | { ok: true; id?: string; skipped?: true }
-  | { ok: false; error: string }
+  { ok: true; id?: string; skipped?: true } | { ok: false; error: string }
 > {
   const client = getClient();
   const from =

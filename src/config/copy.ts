@@ -117,10 +117,8 @@ export const copy = {
       eyebrow: "Quem conduz a Escola",
       titleLine1: "Flávio",
       titleEmphasis: "Milhomem",
-      lead:
-        "Flávio Milhomem leciona Direito Penal e Processo Penal há 30 anos, é autor de obras adotadas em graduação e concurso, e formou-se academicamente na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
-      body:
-        "Você não recebe apenas videoaulas: recebe método, referências e espaço para dúvida — no formato de cohort, com fórum e encontros ao vivo na cadência do programa. Se a preparação pesa, a turma existe para sustentar o ritmo; a trajetória na carreira pública e os vínculos institucionais estão descritos com transparência na biografia.",
+      lead: "Flávio Milhomem leciona Direito Penal e Processo Penal há 30 anos, é autor de obras adotadas em graduação e concurso, e formou-se academicamente na Universidade Católica Portuguesa e na École Nationale de la Magistrature.",
+      body: "Você não recebe apenas videoaulas: recebe método, referências e espaço para dúvida — no formato de cohort, com fórum e encontros ao vivo na cadência do programa. Se a preparação pesa, a turma existe para sustentar o ritmo; a trajetória na carreira pública e os vínculos institucionais estão descritos com transparência na biografia.",
       ctaLabel: "Biografia e credenciais",
     },
     cohort: {
@@ -143,8 +141,7 @@ export const copy = {
     eyebrow: "Bastidor da Acusação",
     title: "Boletim quinzenal pelo",
     titleEmphasis: "ângulo da acusação",
-    lead:
-      "A cada quinze dias, na sua caixa de entrada: comentário a informativos do STJ e do STF em matéria penal, leitura recomendada e o que importa na Escola. Sem filler. Sem spam.",
+    lead: "A cada quinze dias, na sua caixa de entrada: comentário a informativos do STJ e do STF em matéria penal, leitura recomendada e o que importa na Escola. Sem filler. Sem spam.",
   },
 
   dossie: {
@@ -159,8 +156,7 @@ export const copy = {
     eyebrow: "Edição Lançamento · cohort inaugural · turma fundadora",
     title: "Prova Digital no",
     titleEmphasis: "Processo Penal",
-    lead:
-      "O curso da Edição Lançamento da Escola: prova digital e cadeia de custódia pela perspectiva da acusação, em doze semanas de cohort com trilha semanal, fórum por aula e encontros ao vivo. Conduzido por Flávio Milhomem — professor, autor e docente com 30 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
+    lead: "O curso da Edição Lançamento da Escola: prova digital e cadeia de custódia pela perspectiva da acusação, em doze semanas de cohort com trilha semanal, fórum por aula e encontros ao vivo. Conduzido por Flávio Milhomem — professor, autor e docente com 30 anos em sala. Sobre formação, obras e trajetória profissional, veja a",
     leadLinkLabel: "página Sobre",
     ctaInvestimento: "Ver investimento",
     ctaLista: "Entrar na lista de espera",
@@ -282,7 +278,8 @@ export const copy = {
     lead: "Dúvidas sobre a Edição Lançamento, parcerias acadêmicas ou imprensa. Respondemos em até três dias úteis.",
     responseNote: "Prazo de resposta: até 3 dias úteis.",
     formTitle: "Enviar mensagem",
-    formSuccess: "Mensagem recebida. Retornaremos em breve no e-mail informado.",
+    formSuccess:
+      "Mensagem recebida. Retornaremos em breve no e-mail informado.",
   },
 
   /**
@@ -353,9 +350,11 @@ export const copy = {
       "Abertura das inscrições da Edição Lançamento",
     ] as const,
     rsvpTitle: "Inscrição gratuita",
-    rsvpLead: "Garanta sua vaga presencial ou o link da transmissão. Você receberá confirmação por e-mail.",
+    rsvpLead:
+      "Garanta sua vaga presencial ou o link da transmissão. Você receberá confirmação por e-mail.",
     rsvpCta: "Confirmar presença",
-    rsvpSuccess: "Inscrição registrada. Em breve você receberá os detalhes por e-mail.",
+    rsvpSuccess:
+      "Inscrição registrada. Em breve você receberá os detalhes por e-mail.",
   },
 
   materiais: {

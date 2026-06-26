@@ -8,12 +8,13 @@ import { LessonTabs } from "@/components/aluno/lesson-tabs";
 import { PlayerVideo } from "@/components/aluno/player-video";
 import { formatDuration } from "@/lib/course/format";
 import type { CourseLesson } from "@/lib/course/types";
-import {
-  findLessonWithCourse,
-} from "@/lib/course/aluno-courses";
+import { findLessonWithCourse } from "@/lib/course/aluno-courses";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { userHasAccess } from "@/lib/enrollment";
-import { listLessonComments, type ForumCommentNode } from "@/lib/forum/comments";
+import {
+  listLessonComments,
+  type ForumCommentNode,
+} from "@/lib/forum/comments";
 import { getLessonVideoId } from "@/lib/lessons/media";
 import {
   getLessonProgress,
@@ -89,7 +90,10 @@ export default async function AulaPage({ params }: { params: Params }) {
     <div className="fm-site-page py-10">
       {/* Breadcrumb editorial */}
       <nav className="text-paper-600 fm-mono mb-6 flex flex-wrap items-center gap-2">
-        <Link href={`/aluno/cursos/${course.slug}`} className="hover:text-amber">
+        <Link
+          href={`/aluno/cursos/${course.slug}`}
+          className="hover:text-amber"
+        >
           {course.shortTitle}
         </Link>
         <span aria-hidden>/</span>
@@ -114,13 +118,17 @@ export default async function AulaPage({ params }: { params: Params }) {
               <span className="text-paper-700 fm-mono">
                 {formatDuration(lesson.durationSec)}
               </span>
-              <span className="text-paper-400" aria-hidden>·</span>
+              <span className="text-paper-400" aria-hidden>
+                ·
+              </span>
               <span className="text-paper-700 fm-mono">
                 Aula {lesson.position} de {flat.length}
               </span>
               {lesson.status === "concluida" && (
                 <>
-                  <span className="text-paper-400" aria-hidden>·</span>
+                  <span className="text-paper-400" aria-hidden>
+                    ·
+                  </span>
                   <span className="text-amber fm-mono">Concluída</span>
                 </>
               )}
@@ -306,7 +314,7 @@ export default async function AulaPage({ params }: { params: Params }) {
                           className={`flex items-center gap-3 px-4 py-3 transition-colors ${
                             isCurrent
                               ? "bg-amber/10 border-amber border-l-2"
-                              : "border-l-2 border-transparent hover:bg-paper-100"
+                              : "hover:bg-paper-100 border-l-2 border-transparent"
                           }`}
                         >
                           <span

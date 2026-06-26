@@ -27,7 +27,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Arquivo ausente." }, { status: 400 });
   }
   if (!ALLOWED.has(file.type)) {
-    return NextResponse.json({ error: "Use JPEG, PNG ou WebP." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Use JPEG, PNG ou WebP." },
+      { status: 400 },
+    );
   }
   if (file.size > MAX_BYTES) {
     return NextResponse.json({ error: "Máximo 3 MB." }, { status: 400 });

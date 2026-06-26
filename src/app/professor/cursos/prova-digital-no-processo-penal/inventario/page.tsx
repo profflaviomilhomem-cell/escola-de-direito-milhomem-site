@@ -25,7 +25,7 @@ export default function ProvaDigitalInventarioPage() {
       <header className="mb-8">
         <Link
           href="/professor/cursos"
-          className="text-paper-600 hover:text-amber font-mono text-[10px] uppercase tracking-[0.2em]"
+          className="text-paper-600 hover:text-amber font-mono text-[10px] tracking-[0.2em] uppercase"
         >
           ← Cursos
         </Link>
@@ -40,15 +40,15 @@ export default function ProvaDigitalInventarioPage() {
           <code className="text-paper">public/curso/milhomem</code> — atualizado
           em {new Date(manifest.importedAt).toLocaleString("pt-BR")}.{" "}
           {manifest.summary.videosOk}/{LESSON_TOTAL} vídeos editados ·{" "}
-          {manifest.summary.slidesOk}/{LESSON_TOTAL} slides. Esta página é só para o
-          professor; o aluno não vê nomes de arquivo de origem.
+          {manifest.summary.slidesOk}/{LESSON_TOTAL} slides. Esta página é só
+          para o professor; o aluno não vê nomes de arquivo de origem.
         </p>
       </header>
 
       <div className="border-paper-100 bg-carbon-elevated overflow-x-auto border">
         <table className="w-full min-w-[880px] text-sm">
           <thead className="border-paper-100 border-b">
-            <tr className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <tr className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
               <th className="px-4 py-3 text-left">#</th>
               <th className="px-4 py-3 text-left">Título na plataforma</th>
               <th className="px-4 py-3 text-left">Vídeo (arquivo editado)</th>
@@ -63,13 +63,17 @@ export default function ProvaDigitalInventarioPage() {
                   {l.number.toString().padStart(2, "0")}
                 </td>
                 <td className="px-4 py-4">
-                  <p className="text-paper font-serif leading-snug">{l.title}</p>
+                  <p className="text-paper font-serif leading-snug">
+                    {l.title}
+                  </p>
                 </td>
                 <td className="px-4 py-4">
                   {l.video ? (
                     <div className="space-y-1">
-                      <p className="text-amber font-mono text-[10px] uppercase tracking-widest">
-                        {l.video.variant === "editado" ? "Editado" : l.video.variant}
+                      <p className="text-amber font-mono text-[10px] tracking-widest uppercase">
+                        {l.video.variant === "editado"
+                          ? "Editado"
+                          : l.video.variant}
                       </p>
                       <p className="text-paper font-mono text-[11px] leading-relaxed break-all">
                         {l.video.sourceFile ?? "—"}
@@ -103,7 +107,7 @@ export default function ProvaDigitalInventarioPage() {
                 <td className="px-4 py-4 text-right">
                   <Link
                     href={`/aluno/aulas/${l.slug}`}
-                    className="text-amber hover:underline font-mono text-[10px] uppercase"
+                    className="text-amber font-mono text-[10px] uppercase hover:underline"
                   >
                     Ver aula
                   </Link>

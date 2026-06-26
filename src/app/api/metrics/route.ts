@@ -9,14 +9,7 @@ import { NextResponse, type NextRequest } from "next/server";
  * (ex.: Cloudflare Analytics Engine), conforme Cap 5.6 do guia.
  */
 
-const ALLOWED_METRICS = new Set([
-  "CLS",
-  "INP",
-  "LCP",
-  "FCP",
-  "TTFB",
-  "FID",
-]);
+const ALLOWED_METRICS = new Set(["CLS", "INP", "LCP", "FCP", "TTFB", "FID"]);
 
 type Payload = {
   id?: string;

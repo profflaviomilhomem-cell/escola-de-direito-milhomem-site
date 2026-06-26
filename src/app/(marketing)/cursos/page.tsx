@@ -20,7 +20,9 @@ export default async function CursosPage() {
 
   return (
     <section className="fm-site-page py-page">
-      <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">Programas</p>
+      <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
+        Programas
+      </p>
       <h1
         className="fm-title-fluid mt-3 font-serif leading-[1.05]"
         style={fmTitleClamp("40px", "5vw", "56px")}
@@ -33,8 +35,9 @@ export default async function CursosPage() {
         Lançamento. Para quem estuda para concursos, o Direito Penal em Questões
         está disponível na Eduzz.
         {fromDatabase ? (
-          <span className="text-paper-600 block mt-2 text-sm">
-            Catálogo sincronizado com os cursos publicados no painel do professor.
+          <span className="text-paper-600 mt-2 block text-sm">
+            Catálogo sincronizado com os cursos publicados no painel do
+            professor.
           </span>
         ) : null}
       </p>
@@ -45,7 +48,7 @@ export default async function CursosPage() {
         ))}
       </div>
 
-      <h2 className="text-paper fm-mono mt-16 text-[11px] uppercase tracking-[0.22em]">
+      <h2 className="text-paper fm-mono mt-16 text-[11px] tracking-[0.22em] uppercase">
         Para concurseiros
       </h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">

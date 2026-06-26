@@ -34,7 +34,11 @@ type Window =
   | `${number} h`
   | `${number} d`;
 
-function getLimiter(prefix: string, max: number, window: Window): Ratelimit | null {
+function getLimiter(
+  prefix: string,
+  max: number,
+  window: Window,
+): Ratelimit | null {
   const redis = getRedis();
   if (!redis) return null;
   const key = `${prefix}|${max}|${window}`;

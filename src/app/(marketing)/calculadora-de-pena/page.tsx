@@ -59,10 +59,10 @@ export default function CalculadoraPage() {
           ]),
         ]}
       />
-      <section className="relative z-10 fm-site-page px-3 pt-8 pb-8 sm:px-4 md:pt-10 lg:pb-16 lg:pt-12">
+      <section className="fm-site-page relative z-10 px-3 pt-8 pb-8 sm:px-4 md:pt-10 lg:pt-12 lg:pb-16">
         <h1 className="sr-only">Calculadora de Pena Hipotética</h1>
         <header className="hidden max-w-3xl lg:block">
-          <p className="text-amber font-mono text-[9px] uppercase tracking-[0.18em] sm:text-[10px] sm:tracking-[0.2em]">
+          <p className="text-amber font-mono text-[9px] tracking-[0.18em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
             Ferramenta interativa
           </p>
           <h1
@@ -82,12 +82,12 @@ export default function CalculadoraPage() {
           role="note"
           className="border-amber/40 bg-amber/5 text-paper-800 mt-5 hidden border-l-2 px-3 py-2.5 text-[12px] leading-snug sm:mt-8 sm:flex sm:flex-wrap sm:items-start sm:gap-3 sm:px-5 sm:py-3 sm:text-[13px] sm:leading-relaxed lg:flex"
         >
-          <span className="text-amber font-mono text-[9px] uppercase tracking-[0.16em] sm:text-[10px] sm:tracking-[0.2em]">
+          <span className="text-amber font-mono text-[9px] tracking-[0.16em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
             Didático
           </span>
           <span className="mt-1 block sm:mt-0 sm:flex-1">
-            Não é parecer jurídico nem vincula {siteConfig.name}, o Prof.
-            Flávio Milhomem (MPDFT) nem o MPDFT.
+            Não é parecer jurídico nem vincula {siteConfig.name}, o Prof. Flávio
+            Milhomem (MPDFT) nem o MPDFT.
           </span>
         </aside>
 

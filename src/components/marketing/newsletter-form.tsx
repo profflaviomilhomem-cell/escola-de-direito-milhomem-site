@@ -55,9 +55,9 @@ export function NewsletterForm({
         return;
       }
       if (!res.ok) {
-        const body = (await res.json().catch(() => null)) as
-          | { error?: string }
-          | null;
+        const body = (await res.json().catch(() => null)) as {
+          error?: string;
+        } | null;
         setStatus({
           state: "error",
           message: body?.error ?? "Falha ao registrar. Tente novamente.",
@@ -91,8 +91,8 @@ export function NewsletterForm({
         <p
           className={
             compact
-              ? "text-amber font-mono text-[9px] uppercase tracking-[0.16em]"
-              : "text-amber font-mono text-[11px] uppercase tracking-[0.2em]"
+              ? "text-amber font-mono text-[9px] tracking-[0.16em] uppercase"
+              : "text-amber font-mono text-[11px] tracking-[0.2em] uppercase"
           }
         >
           Inscrição registrada
@@ -124,13 +124,15 @@ export function NewsletterForm({
     <form
       onSubmit={onSubmit}
       noValidate
-      className={compact ? "flex flex-col gap-3" : "mt-stack flex flex-col gap-5"}
+      className={
+        compact ? "flex flex-col gap-3" : "mt-stack flex flex-col gap-5"
+      }
     >
       {/* Honeypot — deve permanecer vazio. tabIndex=-1 e aria-hidden
           evitam que leitores de tela ou usuários de teclado parem aqui. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[10000px] top-auto h-px w-px overflow-hidden"
+        className="pointer-events-none absolute top-auto -left-[10000px] h-px w-px overflow-hidden"
       >
         <label>
           Não preencha este campo:
@@ -203,8 +205,8 @@ export function NewsletterForm({
         disabled={isSubmitting || status.state === "submitting"}
         className={
           compact
-            ? "bg-amber text-carbon hover:bg-amber-soft inline-flex w-full items-center justify-center rounded px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
-            : "bg-amber text-carbon hover:bg-amber-soft mt-2 inline-flex items-center justify-center gap-2 self-start px-7 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            ? "bg-amber text-carbon hover:bg-amber-soft inline-flex w-full items-center justify-center rounded px-4 py-2.5 font-mono text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+            : "bg-amber text-carbon hover:bg-amber-soft mt-2 inline-flex items-center justify-center gap-2 self-start px-7 py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
         }
       >
         {status.state === "submitting" ? "Enviando…" : "Quero receber"}

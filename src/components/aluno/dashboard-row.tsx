@@ -53,18 +53,19 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
     <section className="relative">
       <div className="fm-site-page flex items-end justify-between">
         <div>
-          {eyebrow && (
-            <p className="text-amber fm-mono">{eyebrow}</p>
-          )}
+          {eyebrow && <p className="text-amber fm-mono">{eyebrow}</p>}
           <h2 className="text-paper mt-1 font-serif text-2xl leading-tight md:text-3xl">
             {title}
           </h2>
         </div>
         {cta && (
-          <Button variant="ghost" size="sm" className="text-paper-700 hover:text-amber fm-mono h-auto px-0 py-0" asChild>
-            <Link href={cta.href}>
-              {cta.label} →
-            </Link>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-paper-700 hover:text-amber fm-mono h-auto px-0 py-0"
+            asChild
+          >
+            <Link href={cta.href}>{cta.label} →</Link>
           </Button>
         )}
       </div>
@@ -73,7 +74,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           então as setas ficam coladas nas bordas dos cards (não na borda
           da viewport). Setas sempre visíveis; a inativa fica em estado
           disabled (opacidade reduzida + cursor-not-allowed). */}
-      <div className="relative fm-site-container mt-6">
+      <div className="fm-site-container relative mt-6">
         <Button
           type="button"
           variant="outline"
@@ -81,7 +82,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           aria-label="Rolar para a esquerda"
           onClick={() => scrollBy(-1)}
           disabled={!canPrev}
-          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute left-3 top-1/2 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 lg:left-10 md:flex"
+          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber absolute top-1/2 left-3 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 md:flex lg:left-10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +105,7 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
           aria-label="Rolar para a direita"
           onClick={() => scrollBy(1)}
           disabled={!canNext}
-          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 absolute right-3 top-1/2 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 lg:right-10 md:flex"
+          className="border-paper-200 bg-carbon-elevated/85 text-paper enabled:hover:bg-amber enabled:hover:text-carbon enabled:hover:border-amber absolute top-1/2 right-3 z-20 hidden size-11 -translate-y-1/2 rounded-full shadow-lg backdrop-blur-md transition-all duration-200 enabled:hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 md:flex lg:right-10"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -127,13 +128,13 @@ export function DashboardRow({ title, eyebrow, cta, children }: Props) {
         {canPrev && (
           <div
             aria-hidden
-            className="from-carbon pointer-events-none absolute left-0 top-0 z-10 hidden h-full w-20 bg-gradient-to-r to-transparent md:block"
+            className="from-carbon pointer-events-none absolute top-0 left-0 z-10 hidden h-full w-20 bg-gradient-to-r to-transparent md:block"
           />
         )}
         {canNext && (
           <div
             aria-hidden
-            className="from-carbon pointer-events-none absolute right-0 top-0 z-10 hidden h-full w-20 bg-gradient-to-l to-transparent md:block"
+            className="from-carbon pointer-events-none absolute top-0 right-0 z-10 hidden h-full w-20 bg-gradient-to-l to-transparent md:block"
           />
         )}
 

@@ -45,7 +45,10 @@ function handDrawProgress(linearT: number): number {
   return 0.555 + (1 - (1 - u) ** 3) * 0.445;
 }
 
-function strokeTiming(index: number, pathLength: number): {
+function strokeTiming(
+  index: number,
+  pathLength: number,
+): {
   staggerMs: number;
   drawMs: number;
 } {
@@ -93,8 +96,7 @@ function appendHandStrokeKeyframes(
     const step = HAND_DRAW_STEPS[i];
     const t = phaseStartMs + phaseDurationMs * step;
     const progress = handDrawProgress(step);
-    const dashOffset =
-      mode === "draw" ? len * (1 - progress) : len * progress;
+    const dashOffset = mode === "draw" ? len * (1 - progress) : len * progress;
 
     kf.push({
       strokeDashoffset: dashOffset,
@@ -144,8 +146,7 @@ function appendHandGlowStrokeKeyframes(
     const pressure = 0.35 + visible * 0.65;
     const width =
       GLOW_STROKE_WIDTH * (0.92 + Math.sin(visible * Math.PI) * 0.38);
-    const dashOffset =
-      mode === "draw" ? len * (1 - progress) : len * progress;
+    const dashOffset = mode === "draw" ? len * (1 - progress) : len * progress;
 
     kf.push({
       strokeDashoffset: dashOffset,
@@ -171,9 +172,7 @@ function buildHandDrawKeyframes(
   cycleMs: number,
 ): Keyframe[] {
   const { drawDelay, drawMs, drawEnd, eraseDelay, eraseMs, eraseEnd } = timing;
-  const kf: Keyframe[] = [
-    { strokeDashoffset: len, offset: 0 },
-  ];
+  const kf: Keyframe[] = [{ strokeDashoffset: len, offset: 0 }];
 
   appendHandStrokeKeyframes(kf, len, drawDelay, drawMs, cycleMs, "draw");
 
@@ -288,10 +287,7 @@ function applyEraseTimings(
     t.eraseEnd = t.eraseDelay + t.eraseMs;
   });
 
-  return Math.max(
-    erasePhaseStart,
-    ...timings.map((t) => t.eraseEnd),
-  );
+  return Math.max(erasePhaseStart, ...timings.map((t) => t.eraseEnd));
 }
 
 function animateStrokePair(
@@ -442,7 +438,12 @@ export function HeroBridgeDrawAnimation({ className }: Props) {
             height="1000"
           >
             <rect width="1000" height="1000" fill="black" />
-            <g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round">
+            <g
+              fill="none"
+              stroke="white"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               {bridgeArt.paths.map((d, i) => (
                 <path
                   key={`m-${i}`}

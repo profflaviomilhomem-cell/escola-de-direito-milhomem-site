@@ -11,9 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const course = await getProfessorCourseBySlug(slug);
   return {
-    title: course
-      ? `Editar ${course.name} — Professor`
-      : "Curso — Professor",
+    title: course ? `Editar ${course.name} — Professor` : "Curso — Professor",
     robots: { index: false, follow: false },
   };
 }
@@ -26,7 +24,7 @@ export default async function ProfessorEditarCursoPage({ params }: Props) {
   return (
     <section className="fm-site-page py-12">
       <header className="mb-10">
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           {course.slug}
         </p>
         <h1

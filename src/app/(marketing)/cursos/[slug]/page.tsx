@@ -89,7 +89,10 @@ export default async function CursoSlugPage({ params }: Props) {
               ]),
             ]}
           />
-          <EdicaoLancamentoLanding priceLabel={priceLabel} faqItems={faqItems} />
+          <EdicaoLancamentoLanding
+            priceLabel={priceLabel}
+            faqItems={faqItems}
+          />
         </>
       );
     }
@@ -104,16 +107,16 @@ export default async function CursoSlugPage({ params }: Props) {
   if (existing) {
     return (
       <article className="fm-site-page max-w-prose-wide py-page">
-        <h1 className="font-serif text-heading-1 text-tinta-700">
+        <h1 className="text-heading-1 text-tinta-700 font-serif">
           {existing.name}
         </h1>
-        <p className="text-slate-700 mt-4 leading-relaxed">
+        <p className="mt-4 leading-relaxed text-slate-700">
           Este programa ainda não está publicado na vitrine. Volte em breve ou
           entre em contato para saber sobre a próxima turma.
         </p>
         <Link
           href="/cursos"
-          className="text-amber hover:underline mt-6 inline-block font-mono text-[11px] uppercase tracking-widest"
+          className="text-amber mt-6 inline-block font-mono text-[11px] tracking-widest uppercase hover:underline"
         >
           ← Voltar aos cursos
         </Link>
@@ -123,15 +126,15 @@ export default async function CursoSlugPage({ params }: Props) {
 
   return (
     <article className="fm-site-page max-w-prose-wide py-page">
-      <h1 className="font-serif text-heading-1 text-tinta-700">
+      <h1 className="text-heading-1 text-tinta-700 font-serif">
         Curso não encontrado
       </h1>
-      <p className="text-slate-700 mt-4 leading-relaxed">
+      <p className="mt-4 leading-relaxed text-slate-700">
         O endereço pode estar incorreto ou o programa foi removido do catálogo.
       </p>
       <Link
         href="/cursos"
-        className="text-amber hover:underline mt-6 inline-block font-mono text-[11px] uppercase tracking-widest"
+        className="text-amber mt-6 inline-block font-mono text-[11px] tracking-widest uppercase hover:underline"
       >
         ← Voltar aos cursos
       </Link>

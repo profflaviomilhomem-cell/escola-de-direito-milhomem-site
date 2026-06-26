@@ -25,7 +25,8 @@ const widthClass: Record<NonNullable<Props["width"]>, string> = {
  * progresso quando há watchedSec.
  */
 export function LessonCard({ lesson, width = "md", showModule }: Props) {
-  const progress = lesson.durationSec > 0 ? lesson.watchedSec / lesson.durationSec : 0;
+  const progress =
+    lesson.durationSec > 0 ? lesson.watchedSec / lesson.durationSec : 0;
   const isDone = lesson.status === "concluida";
   const inProgress = lesson.status === "em-andamento";
 
@@ -37,7 +38,7 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
       {/* Thumbnail */}
       <div
         data-fm-media-surface
-        className="border-paper-100 relative aspect-video overflow-hidden border transition-all duration-300 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241, 187, 65,0.15)]"
+        className="border-paper-100 group-hover:border-amber group-hover:shadow-[0_8px_30px_rgba(241, 187, 65,0.15)] relative aspect-video overflow-hidden border transition-all duration-300"
       >
         <LessonMediaCover
           cover={lesson.cover}
@@ -47,11 +48,11 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
           className="absolute inset-0"
         />
         {/* Vinheta sutil para legibilidade do título */}
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t from-carbon via-carbon/30 to-transparent" />
+        <div className="from-carbon via-carbon/30 pointer-events-none absolute inset-0 z-[1] bg-gradient-to-t to-transparent" />
 
         {/* Status badge */}
         {isDone && (
-          <div className="bg-amber text-carbon absolute right-2 top-2 z-[2] flex h-7 w-7 items-center justify-center rounded-full">
+          <div className="bg-amber text-carbon absolute top-2 right-2 z-[2] flex h-7 w-7 items-center justify-center rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="14"
@@ -69,7 +70,7 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
         )}
 
         {/* Duração */}
-        <span className="bg-carbon/80 text-paper fm-mono absolute left-2 top-2 z-[2] px-2 py-1 backdrop-blur-sm">
+        <span className="bg-carbon/80 text-paper fm-mono absolute top-2 left-2 z-[2] px-2 py-1 backdrop-blur-sm">
           {formatDuration(lesson.durationSec)}
         </span>
 
@@ -90,10 +91,8 @@ export function LessonCard({ lesson, width = "md", showModule }: Props) {
       {(inProgress || isDone) && (
         <div className="mt-2">
           <Progress
-            value={
-              isDone ? 100 : progressPercentFromRatio(progress)
-            }
-            className="h-[3px] bg-paper-200"
+            value={isDone ? 100 : progressPercentFromRatio(progress)}
+            className="bg-paper-200 h-[3px]"
           />
         </div>
       )}

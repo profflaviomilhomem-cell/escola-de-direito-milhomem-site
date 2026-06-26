@@ -7,7 +7,9 @@ export function isPagarmeConfigured(): boolean {
 export function getPagarmeSecretKey(): string {
   const key = process.env.PAGARME_SECRET_KEY?.trim();
   if (!key) {
-    throw new Error("PAGARME_SECRET_KEY ausente — configure em .env.local ou Vercel.");
+    throw new Error(
+      "PAGARME_SECRET_KEY ausente — configure em .env.local ou Vercel.",
+    );
   }
   return key;
 }

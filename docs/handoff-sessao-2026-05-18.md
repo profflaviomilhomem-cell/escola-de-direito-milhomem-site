@@ -4,12 +4,12 @@ Documento para continuidade em **novo chat** (contexto longo estava deixando res
 
 ## Repositório e branch
 
-| Item | Valor |
-|------|--------|
-| **GitHub (correto)** | https://github.com/profflaviomilhomem-cell/escola-de-direito-milhomem-site |
-| **Branch ativa** | `feature/aluno-area` |
-| **Último commit** | `271fb8b` — `feat(a11y): menu de acessibilidade, escala global e contraste no dossiê` |
-| **Dev local** | `npm run dev` → porta **3055** |
+| Item                 | Valor                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| **GitHub (correto)** | https://github.com/profflaviomilhomem-cell/escola-de-direito-milhomem-site            |
+| **Branch ativa**     | `feature/aluno-area`                                                                  |
+| **Último commit**    | `271fb8b` — `feat(a11y): menu de acessibilidade, escala global e contraste no dossiê` |
+| **Dev local**        | `npm run dev` → porta **3055**                                                        |
 | **Regra do cliente** | Não fazer commit/push sem pedido explícito (nesta sessão o usuário pediu e foi feito) |
 
 ## O que foi feito nesta sessão (resumo)
@@ -84,4 +84,4 @@ src/components/shared/client-providers.tsx
 
 ---
 
-*Gerado ao encerrar chat longo — 18/05/2026.*
+_Gerado ao encerrar chat longo — 18/05/2026._

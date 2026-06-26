@@ -48,143 +48,143 @@ export function Footer() {
   return (
     <footer className="border-amber/20 fm-site-section relative z-10 border-t py-16 text-center">
       <div className="fm-site-container">
-      <Link
-        href="/"
-        className="mx-auto inline-flex flex-col items-center justify-center text-inherit no-underline"
-        aria-label={`${siteConfig.name} — início`}
-      >
-        <BrandLogo variant="stacked" className="mx-auto" />
-      </Link>
-      <p className="text-paper-500 mx-auto mt-3 max-w-sm font-mono text-[10px] uppercase tracking-[0.22em]">
-        {siteConfig.taglineInstitucional}
-      </p>
-
-      <nav
-        aria-label="Mapa do site"
-        className="mt-8 flex flex-wrap items-center justify-center gap-6 font-mono text-[10px] uppercase tracking-[0.2em]"
-      >
         <Link
-          href="/sobre"
-          className="text-paper-700 hover:text-amber transition-colors"
+          href="/"
+          className="mx-auto inline-flex flex-col items-center justify-center text-inherit no-underline"
+          aria-label={`${siteConfig.name} — início`}
         >
-          Sobre
+          <BrandLogo variant="stacked" className="mx-auto" />
         </Link>
-        <Link
-          href="/cursos"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Cursos
-        </Link>
-        <Link
-          href="/blog"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Blog
-        </Link>
-        <Link
-          href="/calculadora-de-pena"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Calculadora
-        </Link>
-        <Link
-          href="/faq"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          FAQ
-        </Link>
-        {siteConfig.secondaryNav.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="text-paper-700 hover:text-amber transition-colors"
-          >
-            {item.label}
-          </Link>
-        ))}
-        <Link
-          href="/privacidade"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Privacidade
-        </Link>
-        <Link
-          href="/termos"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Termos
-        </Link>
-        <Link
-          href="/reembolso"
-          className="text-paper-700 hover:text-amber transition-colors"
-        >
-          Reembolso
-        </Link>
-      </nav>
-
-      <div className="mt-8 flex flex-col items-center gap-6">
-        <a
-          href={`mailto:${siteConfig.contact.email}`}
-          className="text-paper-600 hover:text-amber font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
-        >
-          {siteConfig.contact.email}
-        </a>
+        <p className="text-paper-500 mx-auto mt-3 max-w-sm font-mono text-[10px] tracking-[0.22em] uppercase">
+          {siteConfig.taglineInstitucional}
+        </p>
 
         <nav
-          aria-label="Redes sociais do Flávio Milhomem"
-          className="flex flex-wrap items-center justify-center gap-3"
+          aria-label="Mapa do site"
+          className="mt-8 flex flex-wrap items-center justify-center gap-6 font-mono text-[10px] tracking-[0.2em] uppercase"
         >
-          <a
-            href={siteConfig.social.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialPillClass}
+          <Link
+            href="/sobre"
+            className="text-paper-700 hover:text-amber transition-colors"
           >
-            <IconInstagram className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
-            <span className="flex flex-col items-start gap-0.5 leading-tight">
-              <span>Instagram</span>
-              <span className="text-paper-500 group-hover:text-paper-600 normal-case tracking-normal">
-                {siteConfig.social.instagramHandle}
-              </span>
-            </span>
-          </a>
-          <a
-            href={siteConfig.social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialPillClass}
+            Sobre
+          </Link>
+          <Link
+            href="/cursos"
+            className="text-paper-700 hover:text-amber transition-colors"
           >
-            <IconYoutube className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
-            <span className="flex flex-col items-start gap-0.5 leading-tight">
-              <span>YouTube</span>
-              <span className="text-paper-500 group-hover:text-paper-600 normal-case tracking-normal">
-                {siteConfig.social.youtubeFooterLabel}
-              </span>
-            </span>
-          </a>
-          <a
-            href={siteConfig.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialPillClass}
+            Cursos
+          </Link>
+          <Link
+            href="/blog"
+            className="text-paper-700 hover:text-amber transition-colors"
           >
-            <IconLinkedin className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
-            <span className="flex flex-col items-start gap-0.5 leading-tight">
-              <span>LinkedIn</span>
-              <span className="text-paper-500 group-hover:text-paper-600 normal-case tracking-normal">
-                {siteConfig.social.linkedinFooterLabel}
-              </span>
-            </span>
-          </a>
+            Blog
+          </Link>
+          <Link
+            href="/calculadora-de-pena"
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            Calculadora
+          </Link>
+          <Link
+            href="/faq"
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            FAQ
+          </Link>
+          {siteConfig.secondaryNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-paper-700 hover:text-amber transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            href="/privacidade"
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            Privacidade
+          </Link>
+          <Link
+            href="/termos"
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            Termos
+          </Link>
+          <Link
+            href="/reembolso"
+            className="text-paper-700 hover:text-amber transition-colors"
+          >
+            Reembolso
+          </Link>
         </nav>
-      </div>
 
-      <InstitutionalNotice className="mx-auto mt-10 max-w-xl" />
+        <div className="mt-8 flex flex-col items-center gap-6">
+          <a
+            href={`mailto:${siteConfig.contact.email}`}
+            className="text-paper-600 hover:text-amber font-mono text-[10px] tracking-[0.2em] uppercase transition-colors"
+          >
+            {siteConfig.contact.email}
+          </a>
 
-      <p className="text-paper-400 mt-8 font-mono text-[9px] tracking-[0.3em]">
-        © {new Date().getFullYear()} {siteConfig.name.toUpperCase()} ·
-        DESENVOLVIDO POR ORBEE LABS · TODOS OS DIREITOS RESERVADOS
-      </p>
+          <nav
+            aria-label="Redes sociais do Flávio Milhomem"
+            className="flex flex-wrap items-center justify-center gap-3"
+          >
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialPillClass}
+            >
+              <IconInstagram className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
+              <span className="flex flex-col items-start gap-0.5 leading-tight">
+                <span>Instagram</span>
+                <span className="text-paper-500 group-hover:text-paper-600 tracking-normal normal-case">
+                  {siteConfig.social.instagramHandle}
+                </span>
+              </span>
+            </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialPillClass}
+            >
+              <IconYoutube className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
+              <span className="flex flex-col items-start gap-0.5 leading-tight">
+                <span>YouTube</span>
+                <span className="text-paper-500 group-hover:text-paper-600 tracking-normal normal-case">
+                  {siteConfig.social.youtubeFooterLabel}
+                </span>
+              </span>
+            </a>
+            <a
+              href={siteConfig.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialPillClass}
+            >
+              <IconLinkedin className="text-amber h-[18px] w-[18px] shrink-0 opacity-90 group-hover:opacity-100" />
+              <span className="flex flex-col items-start gap-0.5 leading-tight">
+                <span>LinkedIn</span>
+                <span className="text-paper-500 group-hover:text-paper-600 tracking-normal normal-case">
+                  {siteConfig.social.linkedinFooterLabel}
+                </span>
+              </span>
+            </a>
+          </nav>
+        </div>
+
+        <InstitutionalNotice className="mx-auto mt-10 max-w-xl" />
+
+        <p className="text-paper-400 mt-8 font-mono text-[9px] tracking-[0.3em]">
+          © {new Date().getFullYear()} {siteConfig.name.toUpperCase()} ·
+          DESENVOLVIDO POR ORBEE LABS · TODOS OS DIREITOS RESERVADOS
+        </p>
       </div>
     </footer>
   );

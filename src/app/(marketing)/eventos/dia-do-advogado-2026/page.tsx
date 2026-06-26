@@ -18,15 +18,14 @@ export default function EventoDiaAdvogadoPage() {
   return (
     <article className="fm-site-page py-page">
       <header className="max-w-3xl">
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.22em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.22em] uppercase">
           {e.eyebrow}
         </p>
         <h1
           className="fm-title-fluid mt-4 font-serif leading-[1.02]"
           style={fmTitleClamp("40px", "5vw", "64px")}
         >
-          {e.title}{" "}
-          <em className="text-amber italic">{e.titleEmphasis}</em>
+          {e.title} <em className="text-amber italic">{e.titleEmphasis}</em>
         </h1>
         <p className="text-paper-700 mt-6 text-lg leading-relaxed">{e.lead}</p>
       </header>
@@ -43,19 +42,24 @@ export default function EventoDiaAdvogadoPage() {
       </section>
 
       <section
-        className="border-amber/30 mt-16 rounded-xl border bg-amber/[0.06] p-8"
+        className="border-amber/30 bg-amber/[0.06] mt-16 rounded-xl border p-8"
         aria-labelledby="rsvp-title"
       >
         <h2 id="rsvp-title" className="font-serif text-2xl">
           {e.rsvpTitle}
         </h2>
-        <p className="text-paper-700 mt-3 text-sm leading-relaxed">{e.rsvpLead}</p>
+        <p className="text-paper-700 mt-3 text-sm leading-relaxed">
+          {e.rsvpLead}
+        </p>
         <div className="mt-6 max-w-md">
           <NewsletterForm source="evento-dia-advogado-2026" />
         </div>
         <p className="text-paper-500 mt-6 text-xs">
           Ao confirmar, você concorda em receber comunicações sobre o evento.{" "}
-          <Link href="/privacidade" className="text-amber underline-offset-2 hover:underline">
+          <Link
+            href="/privacidade"
+            className="text-amber underline-offset-2 hover:underline"
+          >
             Privacidade
           </Link>
           .

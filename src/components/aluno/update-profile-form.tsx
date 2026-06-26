@@ -55,7 +55,7 @@ export function UpdateProfileForm({ initialName, initialEmail }: Props) {
         <span className="text-paper-700 fm-mono">Nome completo</span>
         <input
           {...register("name")}
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
         />
         {errors.name && (
           <p className="text-alerta-400 mt-1 text-xs">{errors.name.message}</p>
@@ -67,7 +67,7 @@ export function UpdateProfileForm({ initialName, initialEmail }: Props) {
         <input
           {...register("email")}
           type="email"
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
         />
         {errors.email && (
           <p className="text-alerta-400 mt-1 text-xs">{errors.email.message}</p>
@@ -81,7 +81,7 @@ export function UpdateProfileForm({ initialName, initialEmail }: Props) {
       <button
         type="submit"
         disabled={isSubmitting || !isDirty}
-        className="bg-amber text-carbon hover:bg-amber-soft fm-mono px-6 py-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-amber text-carbon hover:bg-amber-soft fm-mono px-6 py-3 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? "Salvando…" : "Salvar alterações"}
       </button>

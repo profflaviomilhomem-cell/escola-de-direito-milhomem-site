@@ -71,10 +71,10 @@ npx vercel env pull .env.local
 
 **Mínimo para produção:**
 
-| Variável | Notas |
-|----------|--------|
-| `DATABASE_URL` | Neon, connection pooled |
-| `AUTH_SECRET` | `openssl rand -base64 48` |
+| Variável               | Notas                                             |
+| ---------------------- | ------------------------------------------------- |
+| `DATABASE_URL`         | Neon, connection pooled                           |
+| `AUTH_SECRET`          | `openssl rand -base64 48`                         |
 | `NEXT_PUBLIC_SITE_URL` | `https://seu-projeto.vercel.app` ou domínio final |
 
 Opcional: `RESEND_API_KEY`, `RESEND_FROM_EMAIL`.

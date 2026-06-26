@@ -64,7 +64,7 @@ export default async function ConfirmadoPage({
   const copy = COPY[status];
 
   return (
-    <section className="fm-site-page max-w-prose py-page">
+    <section className="fm-site-page py-page max-w-prose">
       {status === "ok" && (
         <TrackEvent
           event="lead_confirm"
@@ -72,7 +72,7 @@ export default async function ConfirmadoPage({
           props={{ source: "newsletter" }}
         />
       )}
-      <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+      <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
         {copy.eyebrow}
       </p>
       <h1
@@ -86,7 +86,7 @@ export default async function ConfirmadoPage({
       {copy.cta && (
         <Link
           href={copy.cta.href}
-          className="border-amber text-paper hover:text-amber mt-stack inline-block border-b font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="border-amber text-paper hover:text-amber mt-stack inline-block border-b font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           {copy.cta.label} →
         </Link>

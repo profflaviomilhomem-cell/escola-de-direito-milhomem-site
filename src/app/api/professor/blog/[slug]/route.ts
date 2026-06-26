@@ -17,7 +17,10 @@ export async function GET(_req: Request, { params }: Params) {
   const { slug } = await params;
   const post = await getProfessorBlogPostBySlug(slug);
   if (!post) {
-    return NextResponse.json({ error: "Artigo não encontrado." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Artigo não encontrado." },
+      { status: 404 },
+    );
   }
   return NextResponse.json({ post });
 }
@@ -29,7 +32,10 @@ export async function PATCH(req: Request, { params }: Params) {
 
   const existing = await getProfessorBlogPostBySlug(currentSlug);
   if (!existing) {
-    return NextResponse.json({ error: "Artigo não encontrado." }, { status: 404 });
+    return NextResponse.json(
+      { error: "Artigo não encontrado." },
+      { status: 404 },
+    );
   }
 
   let body: BlogUpsertInput;

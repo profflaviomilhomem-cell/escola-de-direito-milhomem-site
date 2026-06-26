@@ -5,7 +5,7 @@
  * Uso: node scripts/generate-lesson-posters.mjs
  */
 import { execSync } from "node:child_process";
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 const ROOT = resolve(process.cwd());
@@ -33,7 +33,9 @@ for (const lesson of manifest.lessons) {
       `ffmpeg -y -hide_banner -loglevel error -ss 00:00:06 -i '${v}' -frames:v 1 -q:v 5 '${p}'`,
     );
     if (existsSync(posterPath) && statSync(posterPath).size > 2048) {
-      lesson.video ??= { path: `/curso/provas-digitais/${lesson.slug}/video.mp4` };
+      lesson.video ??= {
+        path: `/curso/provas-digitais/${lesson.slug}/video.mp4`,
+      };
       lesson.video.poster = {
         path: `/curso/provas-digitais/${lesson.slug}/poster.jpg`,
         bytes: statSync(posterPath).size,

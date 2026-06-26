@@ -34,7 +34,7 @@ export function ForgotPasswordForm() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(input),
       });
-      
+
       if (res.status === 429) {
         setStatus({
           state: "error",
@@ -74,7 +74,7 @@ export function ForgotPasswordForm() {
         </div>
         <Link
           href="/entrar"
-          className="bg-amber text-carbon hover:bg-amber-soft block w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 text-center transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft block w-full py-4 text-center font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors"
         >
           Voltar para login
         </Link>
@@ -88,7 +88,7 @@ export function ForgotPasswordForm() {
         Informe seu e-mail de cadastro. Enviaremos um link de recuperação com
         validade de 1 hora.
       </p>
-      
+
       <FloatingInput
         label="E-mail"
         type="email"
@@ -110,7 +110,7 @@ export function ForgotPasswordForm() {
       <button
         type="submit"
         disabled={isSubmitting || status.state === "submitting"}
-        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full font-mono text-[12px] font-semibold uppercase tracking-[0.2em] py-4 transition-colors disabled:cursor-not-allowed disabled:opacity-60"
+        className="bg-amber text-carbon hover:bg-amber-soft mt-2 w-full py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors disabled:cursor-not-allowed disabled:opacity-60"
       >
         {status.state === "submitting" ? "Enviando…" : "Enviar link"}
       </button>

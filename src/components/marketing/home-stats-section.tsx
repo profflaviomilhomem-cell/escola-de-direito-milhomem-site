@@ -13,22 +13,22 @@ export function HomeStatsSection({
 }: HomeStatsSectionProps) {
   return (
     <section
-      className="fm-site-section pb-14 pt-2 sm:pb-16 sm:pt-4 lg:py-24"
+      className="fm-site-section pt-2 pb-14 sm:pt-4 sm:pb-16 lg:py-24"
       aria-label={eyebrow}
     >
       <div className="fm-site-container">
         <p
           data-reveal
-          className="text-amber/90 mb-4 text-center font-mono text-[9px] uppercase tracking-[0.28em] sm:mb-5 sm:text-[10px]"
+          className="text-amber/90 mb-4 text-center font-mono text-[9px] tracking-[0.28em] uppercase sm:mb-5 sm:text-[10px]"
         >
           {eyebrow}
         </p>
 
         <div
           data-reveal
-          className="fm-home-stats overflow-hidden rounded-md border border-amber/20 shadow-[0_20px_50px_-28px_rgba(0,0,0,0.65)]"
+          className="fm-home-stats border-amber/20 overflow-hidden rounded-md border shadow-[0_20px_50px_-28px_rgba(0,0,0,0.65)]"
         >
-          <div className="grid grid-cols-2 divide-x divide-y divide-amber/15 lg:grid-cols-4 lg:divide-y-0">
+          <div className="divide-amber/15 grid grid-cols-2 divide-x divide-y lg:grid-cols-4 lg:divide-y-0">
             {stats.map((stat) => (
               <article
                 key={stat.label}
@@ -40,7 +40,7 @@ export function HomeStatsSection({
                 >
                   {stat.val}
                 </span>
-                <p className="fm-home-stat__label relative z-[1] mx-auto mt-1.5 max-w-[10.5rem] font-mono text-[8px] leading-snug uppercase tracking-[0.13em] sm:mt-2 sm:max-w-[12rem] sm:text-[9px] sm:tracking-[0.16em] lg:max-w-[14rem] lg:text-[10px]">
+                <p className="fm-home-stat__label relative z-[1] mx-auto mt-1.5 max-w-[10.5rem] font-mono text-[8px] leading-snug tracking-[0.13em] uppercase sm:mt-2 sm:max-w-[12rem] sm:text-[9px] sm:tracking-[0.16em] lg:max-w-[14rem] lg:text-[10px]">
                   {stat.label}
                 </p>
               </article>

@@ -33,7 +33,9 @@ export function mapChargeStatusToOrderStatus(
   }
 }
 
-export function primaryCharge(order: PagarmeOrderResponse): PagarmeCharge | null {
+export function primaryCharge(
+  order: PagarmeOrderResponse,
+): PagarmeCharge | null {
   return order.charges?.[0] ?? null;
 }
 

@@ -1,9 +1,6 @@
 import type { PaymentMethod, Product } from "@prisma/client";
 
-import { userHasAccess } from "@/lib/enrollment";
-import {
-  buildPagarmeCustomer,
-} from "@/lib/pagarme/build-payment";
+import { buildPagarmeCustomer } from "@/lib/pagarme/build-payment";
 import { buildPagarmeSubscriptionInput } from "@/lib/pagarme/build-subscription";
 import {
   createPagarmeSubscription,
@@ -18,7 +15,6 @@ import {
   mapPagarmeSubscriptionStatus,
   parsePagarmeDate,
 } from "@/lib/pagarme/map-subscription";
-import { isPagarmeConfigured } from "@/lib/pagarme/config";
 import type { CreateCheckoutResult } from "@/lib/orders/checkout-types";
 import type { UtmFields } from "@/lib/orders/utm";
 import { prisma } from "@/lib/prisma";

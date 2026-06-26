@@ -192,8 +192,7 @@ export async function POST(req: NextRequest) {
   } else if (sigSha1) {
     const header = String(sigSha1);
     const expected =
-      "sha1=" +
-      crypto.createHmac("sha1", secret).update(rawBody).digest("hex");
+      "sha1=" + crypto.createHmac("sha1", secret).update(rawBody).digest("hex");
     verified = safeEquals(header, expected);
   }
 

@@ -4,7 +4,10 @@ import { useState } from "react";
 import type { BlogCategory, BlogStatus } from "@prisma/client";
 
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
-import { PROFESSOR_STATUS_LABEL, type ProfessorBlogPost } from "@/lib/blog/professor";
+import {
+  PROFESSOR_STATUS_LABEL,
+  type ProfessorBlogPost,
+} from "@/lib/blog/professor";
 
 type Props = {
   post?: ProfessorBlogPost;
@@ -116,7 +119,10 @@ export function BlogEditor({ post }: Props) {
           />
         </Field>
 
-        <Field label="Resumo" hint="Aparece nos cards e no SEO meta description">
+        <Field
+          label="Resumo"
+          hint="Aparece nos cards e no SEO meta description"
+        >
           <textarea
             value={excerpt}
             onChange={(e) => setExcerpt(e.target.value)}
@@ -193,7 +199,7 @@ export function BlogEditor({ post }: Props) {
 
       <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
         <div className="border-paper-100 bg-carbon-elevated border p-6">
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-3">
+          <p className="text-amber mb-3 font-mono text-[10px] tracking-[0.2em] uppercase">
             Preview · {DB_CATEGORY_LABEL[category]}
           </p>
           <h2 className="text-paper font-serif text-xl leading-tight">
@@ -211,7 +217,7 @@ export function BlogEditor({ post }: Props) {
         </div>
 
         <div className="border-paper-100 bg-carbon-elevated border p-6">
-          <h3 className="text-amber font-mono text-[10px] uppercase tracking-[0.2em] mb-4">
+          <h3 className="text-amber mb-4 font-mono text-[10px] tracking-[0.2em] uppercase">
             Ações
           </h3>
           <div className="space-y-3">
@@ -223,7 +229,7 @@ export function BlogEditor({ post }: Props) {
             <button
               type="button"
               disabled={saving}
-              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
+              className="bg-amber text-carbon hover:bg-amber-soft w-full px-4 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors disabled:opacity-50"
               onClick={() => save()}
             >
               {saving
@@ -235,7 +241,7 @@ export function BlogEditor({ post }: Props) {
             <button
               type="button"
               disabled={saving}
-              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
+              className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber w-full border px-4 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors disabled:opacity-50"
               onClick={() => window.history.back()}
             >
               Cancelar
@@ -244,7 +250,7 @@ export function BlogEditor({ post }: Props) {
               <button
                 type="button"
                 disabled={saving}
-                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 w-full border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
+                className="border-alerta-400/50 text-alerta-400 hover:bg-alerta-400/10 w-full border px-4 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors disabled:opacity-50"
                 onClick={() => save("DRAFT")}
               >
                 Despublicar
@@ -270,7 +276,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-paper-600 mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+      <span className="text-paper-600 mb-2 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase">
         {label}
         {required && <span className="text-amber">*</span>}
       </span>

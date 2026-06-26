@@ -49,7 +49,7 @@ export function UpdatePasswordForm() {
         <input
           {...register("currentPassword")}
           type="password"
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
         />
         {errors.currentPassword && (
           <p className="text-alerta-400 mt-1 text-xs">
@@ -63,7 +63,7 @@ export function UpdatePasswordForm() {
         <input
           {...register("newPassword")}
           type="password"
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
         />
         {errors.newPassword && (
           <p className="text-alerta-400 mt-1 text-xs">
@@ -78,7 +78,7 @@ export function UpdatePasswordForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-6 py-3 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono border px-6 py-3 transition-colors disabled:cursor-not-allowed disabled:opacity-50"
       >
         {isSubmitting ? "Trocando…" : "Trocar senha"}
       </button>

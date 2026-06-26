@@ -39,7 +39,7 @@ export function AlunoTopNav({ userName, userEmail, initials }: Props) {
             type="button"
             onClick={() => setMenuOpen((v) => !v)}
             onBlur={() => setTimeout(() => setMenuOpen(false), 120)}
-            className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition-colors"
+            className="border-amber/60 bg-carbon-elevated text-amber hover:border-amber flex items-center gap-2 rounded-full border py-1 pr-3 pl-1 transition-colors"
             aria-haspopup="menu"
             aria-expanded={menuOpen}
             aria-label="Menu da conta"

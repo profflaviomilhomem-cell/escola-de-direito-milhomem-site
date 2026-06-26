@@ -34,7 +34,9 @@ describe("mapSubscriptionEventType", () => {
 
 describe("extractPagarmeSubscriptionId", () => {
   it("extrai sub_ do id quando for assinatura", () => {
-    expect(extractPagarmeSubscriptionId({ id: "sub_abc123" })).toBe("sub_abc123");
+    expect(extractPagarmeSubscriptionId({ id: "sub_abc123" })).toBe(
+      "sub_abc123",
+    );
   });
 
   it("ignora charge id em data.id", () => {

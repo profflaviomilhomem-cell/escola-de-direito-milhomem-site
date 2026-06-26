@@ -23,7 +23,7 @@ export default async function ProfessorBlogPage() {
     <section className="fm-site-page py-12">
       <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
             Pipeline editorial
           </p>
           <h1
@@ -40,7 +40,7 @@ export default async function ProfessorBlogPage() {
         </div>
         <Link
           href="/professor/blog/novo"
-          className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           Novo artigo
         </Link>
@@ -60,7 +60,7 @@ export default async function ProfessorBlogPage() {
       <div className="border-paper-100 bg-carbon-elevated overflow-hidden border">
         <table className="w-full text-sm">
           <thead className="border-paper-100 border-b">
-            <tr className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <tr className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
               <th className="px-5 py-3 text-left">Artigo</th>
               <th className="hidden px-5 py-3 text-left md:table-cell">
                 Categoria
@@ -78,7 +78,7 @@ export default async function ProfessorBlogPage() {
                     <p className="text-paper font-serif text-base leading-tight">
                       {post.title}
                     </p>
-                    <p className="text-paper-600 mt-1 font-mono text-[10px] uppercase tracking-[0.15em]">
+                    <p className="text-paper-600 mt-1 font-mono text-[10px] tracking-[0.15em] uppercase">
                       {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
                         day: "2-digit",
                         month: "short",
@@ -88,13 +88,13 @@ export default async function ProfessorBlogPage() {
                     </p>
                   </td>
                   <td className="hidden px-5 py-4 md:table-cell">
-                    <span className="text-paper-700 font-mono text-[10px] uppercase tracking-[0.15em]">
+                    <span className="text-paper-700 font-mono text-[10px] tracking-[0.15em] uppercase">
                       {DB_CATEGORY_LABEL[post.category] ?? post.category}
                     </span>
                   </td>
                   <td className="px-5 py-4">
                     <span
-                      className={`inline-block border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.15em] ${tone.cls}`}
+                      className={`inline-block border px-2 py-1 font-mono text-[10px] tracking-[0.15em] uppercase ${tone.cls}`}
                     >
                       {tone.label}
                     </span>
@@ -104,14 +104,14 @@ export default async function ProfessorBlogPage() {
                       {post.status === "PUBLISHED" && (
                         <Link
                           href={`/blog/${post.slug}`}
-                          className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors"
+                          className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber border px-3 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase transition-colors"
                         >
                           Abrir
                         </Link>
                       )}
                       <Link
                         href={`/professor/blog/${post.slug}/editar`}
-                        className="border-amber text-amber hover:bg-amber hover:text-carbon border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.15em] transition-colors"
+                        className="border-amber text-amber hover:bg-amber hover:text-carbon border px-3 py-1.5 font-mono text-[10px] tracking-[0.15em] uppercase transition-colors"
                       >
                         Editar
                       </Link>
@@ -138,7 +138,7 @@ function Stat({
 }) {
   return (
     <div className="bg-carbon-elevated/40 p-5">
-      <p className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
         {label}
       </p>
       <p

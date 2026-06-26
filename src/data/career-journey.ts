@@ -28,12 +28,12 @@ export type CareerMilestone = {
 export const CAREER_JOURNEY_PATH =
   "M 180 430 " +
   "C 340 430, 340 360, 180 360 " + // Loop 1
-  "C 20 360, 20 290, 180 290 " +   // Loop 2
+  "C 20 360, 20 290, 180 290 " + // Loop 2
   "C 300 290, 300 230, 180 230 " + // Loop 3
-  "C 60 230, 60 170, 180 170 " +   // Loop 4
+  "C 60 230, 60 170, 180 170 " + // Loop 4
   "C 260 170, 260 120, 180 120 " + // Loop 5
-  "C 100 120, 100 70, 180 70 " +   // Loop 6
-  "C 180 70, 180 20, 180 20";      // Ascensão Final
+  "C 100 120, 100 70, 180 70 " + // Loop 6
+  "C 180 70, 180 20, 180 20"; // Ascensão Final
 
 export const careerMilestones: CareerMilestone[] = [
   {

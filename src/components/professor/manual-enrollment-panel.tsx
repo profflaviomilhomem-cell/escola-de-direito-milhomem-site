@@ -26,15 +26,10 @@ function formatDate(iso: string) {
   }).format(new Date(iso));
 }
 
-export function ManualEnrollmentPanel({
-  products,
-  initialEnrollments,
-}: Props) {
+export function ManualEnrollmentPanel({ products, initialEnrollments }: Props) {
   const router = useRouter();
   const [email, setEmail] = useState("");
-  const [productSlug, setProductSlug] = useState(
-    products[0]?.slug ?? "",
-  );
+  const [productSlug, setProductSlug] = useState(products[0]?.slug ?? "");
   const [note, setNote] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,9 +93,8 @@ export function ManualEnrollmentPanel({
           Conceder acesso manual
         </h2>
         <p className="text-paper-600 mt-2 text-sm leading-relaxed">
-          Para turma fundadora, cortesias ou pagamentos fora do checkout.
-          Cria um pedido <span className="fm-mono text-xs">PAID</span> sem
-          Pagar.me.
+          Para turma fundadora, cortesias ou pagamentos fora do checkout. Cria
+          um pedido <span className="fm-mono text-xs">PAID</span> sem Pagar.me.
         </p>
 
         {products.length === 0 ? (
@@ -111,7 +105,7 @@ export function ManualEnrollmentPanel({
         ) : (
           <form onSubmit={handleSubmit} className="mt-6 space-y-4">
             <label className="block">
-              <span className="text-paper-600 fm-mono text-[10px] uppercase tracking-[0.18em]">
+              <span className="text-paper-600 fm-mono text-[10px] tracking-[0.18em] uppercase">
                 E-mail do aluno
               </span>
               <input
@@ -126,7 +120,7 @@ export function ManualEnrollmentPanel({
             </label>
 
             <label className="block">
-              <span className="text-paper-600 fm-mono text-[10px] uppercase tracking-[0.18em]">
+              <span className="text-paper-600 fm-mono text-[10px] tracking-[0.18em] uppercase">
                 Produto
               </span>
               <select
@@ -144,7 +138,7 @@ export function ManualEnrollmentPanel({
             </label>
 
             <label className="block">
-              <span className="text-paper-600 fm-mono text-[10px] uppercase tracking-[0.18em]">
+              <span className="text-paper-600 fm-mono text-[10px] tracking-[0.18em] uppercase">
                 Observação (opcional)
               </span>
               <input
@@ -158,7 +152,7 @@ export function ManualEnrollmentPanel({
             </label>
 
             {error ? (
-              <p className="text-red-400 text-sm" role="alert">
+              <p className="text-sm text-red-400" role="alert">
                 {error}
               </p>
             ) : null}
@@ -171,7 +165,7 @@ export function ManualEnrollmentPanel({
             <button
               type="submit"
               disabled={saving}
-              className="bg-amber text-carbon hover:bg-amber/90 disabled:opacity-60 w-full px-4 py-3 font-mono text-xs uppercase tracking-[0.16em] transition-colors"
+              className="bg-amber text-carbon hover:bg-amber/90 w-full px-4 py-3 font-mono text-xs tracking-[0.16em] uppercase transition-colors disabled:opacity-60"
             >
               {saving ? "Concedendo…" : "Conceder acesso"}
             </button>
@@ -180,7 +174,7 @@ export function ManualEnrollmentPanel({
       </section>
 
       <section>
-        <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+        <h2 className="text-paper fm-mono text-[11px] tracking-[0.2em] uppercase">
           Matrículas manuais recentes
         </h2>
 
@@ -191,7 +185,7 @@ export function ManualEnrollmentPanel({
         ) : (
           <div className="mt-6 overflow-x-auto">
             <table className="border-paper-100 w-full min-w-[640px] border text-left text-sm">
-              <thead className="bg-carbon-elevated text-paper-600 fm-mono text-[10px] uppercase tracking-[0.14em]">
+              <thead className="bg-carbon-elevated text-paper-600 fm-mono text-[10px] tracking-[0.14em] uppercase">
                 <tr>
                   <th className="border-paper-100 border px-4 py-3 font-normal">
                     Aluno
@@ -232,10 +226,10 @@ export function ManualEnrollmentPanel({
                         {row.productSlug}
                       </p>
                     </td>
-                    <td className="border-paper-100 text-paper-600 border px-4 py-3 fm-mono text-xs">
+                    <td className="border-paper-100 text-paper-600 fm-mono border px-4 py-3 text-xs">
                       {row.kind === "order" ? "Pedido PAID" : "Assinatura"}
                     </td>
-                    <td className="border-paper-100 text-paper-600 border px-4 py-3 fm-mono text-xs whitespace-nowrap">
+                    <td className="border-paper-100 text-paper-600 fm-mono border px-4 py-3 text-xs whitespace-nowrap">
                       {formatDate(row.createdAt)}
                     </td>
                   </tr>

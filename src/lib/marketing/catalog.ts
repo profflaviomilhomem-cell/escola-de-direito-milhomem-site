@@ -24,7 +24,8 @@ function mapProduct(row: Product): ProdutoEscola {
     subtitulo: row.tagline ?? row.description.slice(0, 160),
     tipo: mapTipo(row.type),
     destaque: row.type === "COHORT",
-    ticketLabel: row.priceCents > 0 ? formatPriceBrl(row.priceCents) : undefined,
+    ticketLabel:
+      row.priceCents > 0 ? formatPriceBrl(row.priceCents) : undefined,
     href: `/cursos/${row.slug}`,
   };
 }

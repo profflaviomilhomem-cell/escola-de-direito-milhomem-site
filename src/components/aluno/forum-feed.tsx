@@ -35,7 +35,11 @@ type Props = {
   userName?: string;
 };
 
-const FILTERS: Array<{ key: FilterKey; label: string; tone?: "danger" | "amber" }> = [
+const FILTERS: Array<{
+  key: FilterKey;
+  label: string;
+  tone?: "danger" | "amber";
+}> = [
   { key: "all", label: "Todos" },
   { key: "no-prof", label: "Sem resposta do professor", tone: "danger" },
   { key: "has-prof", label: "Resposta do professor", tone: "amber" },
@@ -118,8 +122,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
     const q = query.trim().toLowerCase();
     let out = threads.filter((t) => {
       if (q) {
-        const blob =
-          `${t.title} ${t.body} ${t.author.name}`.toLowerCase();
+        const blob = `${t.title} ${t.body} ${t.author.name}`.toLowerCase();
         if (!blob.includes(q)) return false;
       }
       switch (filter) {
@@ -146,8 +149,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
         .filter((t) => !t.professorReplied)
         .sort(
           (a, b) =>
-            new Date(a.createdAt).getTime() -
-            new Date(b.createdAt).getTime(),
+            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
         );
     }
     return out;
@@ -187,7 +189,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Buscar por título, autor ou trecho…"
-                className="bg-transparent text-paper placeholder:text-paper-600 w-full outline-none text-sm"
+                className="text-paper placeholder:text-paper-600 w-full bg-transparent text-sm outline-none"
                 aria-label="Buscar no fórum"
               />
               {query && (
@@ -221,7 +223,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                 value={sort}
                 onChange={(e) => setSort(e.target.value as SortKey)}
                 aria-label="Ordenar por"
-                className="border-paper-200 focus:border-amber bg-carbon-elevated text-paper appearance-none border py-2 pl-3 pr-9 text-sm outline-none transition-colors"
+                className="border-paper-200 focus:border-amber bg-carbon-elevated text-paper appearance-none border py-2 pr-9 pl-3 text-sm transition-colors outline-none"
               >
                 {SORTS.map((s) => (
                   <option
@@ -243,7 +245,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="text-paper-600 pointer-events-none absolute right-3 top-1/2 -translate-y-1/2"
+                className="text-paper-600 pointer-events-none absolute top-1/2 right-3 -translate-y-1/2"
               >
                 <path d="m6 9 6 6 6-6" />
               </svg>
@@ -261,9 +263,8 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                     ? counts["no-prof"]
                     : f.key === "has-prof"
                       ? counts["has-prof"]
-                      : threads.filter((t) =>
-                          t.lessonSlug?.startsWith(f.key),
-                        ).length;
+                      : threads.filter((t) => t.lessonSlug?.startsWith(f.key))
+                          .length;
               return (
                 <button
                   key={f.key}
@@ -359,7 +360,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                           {/* Vinheta para legibilidade do badge */}
                           <span
                             aria-hidden
-                            className="absolute inset-0 bg-gradient-to-tr from-carbon/70 via-transparent to-transparent"
+                            className="from-carbon/70 absolute inset-0 bg-gradient-to-tr via-transparent to-transparent"
                           />
                           {/* Duração mini no canto */}
                           <span className="bg-carbon/80 text-paper fm-mono absolute bottom-1 left-1 px-1 py-[1px] text-[8px] tracking-[0.15em] backdrop-blur-sm">
@@ -369,7 +370,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                           {lesson.status === "concluida" && (
                             <span
                               aria-hidden
-                              className="bg-amber text-carbon absolute right-1 top-1 grid h-4 w-4 place-items-center rounded-full"
+                              className="bg-amber text-carbon absolute top-1 right-1 grid h-4 w-4 place-items-center rounded-full"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -464,7 +465,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
                         <h3 className="text-amber fm-mono mb-4">
                           {replyTotal} resposta
                           {replyTotal === 1 ? "" : "s"}
-                          <span className="text-paper-600 ml-2 font-sans text-xs font-normal normal-case tracking-normal">
+                          <span className="text-paper-600 ml-2 font-sans text-xs font-normal tracking-normal normal-case">
                             (ordem cronológica em cada fio · responda a qualquer
                             mensagem)
                           </span>
@@ -533,7 +534,7 @@ export function ForumFeed({ threads, course, userName = "Aluno" }: Props) {
       {/* FAB — Novo tópico */}
       <button
         type="button"
-        className="bg-amber text-carbon hover:bg-amber-soft group/fab fixed bottom-6 right-6 z-40 inline-flex items-center gap-3 rounded-full px-5 py-4 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] shadow-2xl transition-all hover:scale-105 md:bottom-8 md:right-8"
+        className="bg-amber text-carbon hover:bg-amber-soft group/fab fixed right-6 bottom-6 z-40 inline-flex items-center gap-3 rounded-full px-5 py-4 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase shadow-2xl transition-all hover:scale-105 md:right-8 md:bottom-8"
         aria-label="Abrir novo tópico no fórum"
       >
         <svg

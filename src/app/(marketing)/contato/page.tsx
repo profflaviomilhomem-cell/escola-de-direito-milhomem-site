@@ -16,9 +16,9 @@ export default function ContatoPage() {
   const c = copy.contato;
 
   return (
-    <article className="fm-site-page max-w-prose py-page">
+    <article className="fm-site-page py-page max-w-prose">
       <header>
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           {c.eyebrow}
         </p>
         <h1
@@ -34,7 +34,7 @@ export default function ContatoPage() {
       <section className="mt-12" aria-labelledby="contact-channels">
         <h2
           id="contact-channels"
-          className="text-paper font-mono text-[11px] uppercase tracking-[0.2em]"
+          className="text-paper font-mono text-[11px] tracking-[0.2em] uppercase"
         >
           Canais diretos
         </h2>

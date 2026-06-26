@@ -15,7 +15,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const item = copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
+  const item =
+    copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
   if (!item) return { title: "Material não encontrado" };
   return {
     title: item.title,
@@ -26,13 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
-  const item = copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
+  const item =
+    copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
   if (!item) notFound();
 
   return (
-    <article className="fm-site-page max-w-prose py-page">
+    <article className="fm-site-page py-page max-w-prose">
       <header>
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           Material gratuito
         </p>
         <h1
@@ -45,7 +47,7 @@ export default async function MaterialPage({ params }: Props) {
       </header>
 
       <section
-        className="border-amber/30 mt-12 rounded-xl border bg-carbon-elevated/30 p-6"
+        className="border-amber/30 bg-carbon-elevated/30 mt-12 rounded-xl border p-6"
         aria-labelledby="download-title"
       >
         <h2 id="download-title" className="font-serif text-xl">

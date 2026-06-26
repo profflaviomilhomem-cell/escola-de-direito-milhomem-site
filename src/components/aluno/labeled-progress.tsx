@@ -29,7 +29,7 @@ export function LabeledProgress({
   const bar = (
     <Progress
       value={value}
-      className={cn("h-1.5 bg-paper-200", barClassName, !label && className)}
+      className={cn("bg-paper-200 h-1.5", barClassName, !label && className)}
     />
   );
 

@@ -52,7 +52,9 @@ export function CertificateDiploma({
 
           <p className="fm-cert__eyebrow">Certificado de Conclusão</p>
 
-          <p className="fm-cert__lead">A Escola Flávio Milhomem certifica que</p>
+          <p className="fm-cert__lead">
+            A Escola Flávio Milhomem certifica que
+          </p>
           <p className="fm-cert__name">{userName}</p>
           <span className="fm-cert__rule" aria-hidden="true" />
 

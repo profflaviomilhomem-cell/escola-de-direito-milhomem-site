@@ -47,16 +47,16 @@ export default async function CheckoutPage({ params }: Props) {
   const pagarmeReady = isPagarmeConfigured();
 
   return (
-    <section className="fm-site-page max-w-2xl py-page">
-      <p className="text-amber fm-mono text-[11px] uppercase tracking-[0.22em]">
+    <section className="fm-site-page py-page max-w-2xl">
+      <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
         Checkout
       </p>
       <h1 className="text-paper mt-3 font-serif text-3xl md:text-4xl">
         Finalizar matrícula
       </h1>
       <p className="text-paper-700 mt-4 text-base leading-relaxed">
-        Escolha PIX ou boleto. Após a confirmação do pagamento, o acesso ao curso
-        é liberado automaticamente na área do aluno.
+        Escolha PIX ou boleto. Após a confirmação do pagamento, o acesso ao
+        curso é liberado automaticamente na área do aluno.
       </p>
 
       {!pagarmeReady ? (
@@ -65,8 +65,9 @@ export default async function CheckoutPage({ params }: Props) {
             Pagamento online temporariamente indisponível.
           </p>
           <p className="text-paper-700 mt-2">
-            A integração Pagar.me ainda não está configurada neste ambiente. Entre
-            em contato ou use a lista de espera enquanto finalizamos a chave de API.
+            A integração Pagar.me ainda não está configurada neste ambiente.
+            Entre em contato ou use a lista de espera enquanto finalizamos a
+            chave de API.
           </p>
           <Link
             href={`/cursos/${slug}`}

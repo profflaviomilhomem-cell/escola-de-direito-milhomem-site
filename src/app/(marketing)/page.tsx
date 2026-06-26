@@ -23,14 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const {
-    hero,
-    stats,
-    manifesto,
-    programa,
-    professorSection,
-    cohort,
-  } = copy.home;
+  const { hero, stats, manifesto, programa, professorSection, cohort } =
+    copy.home;
 
   // Preço real do produto (banco); fallback estático quando offline.
   const { product } = await getCursoPrincipal();
@@ -48,7 +42,7 @@ export default async function HomePage() {
       <section className="fm-site-section fm-hero-under-header relative overflow-x-clip pb-10 md:pb-14 lg:flex lg:min-h-screen lg:items-center lg:overflow-visible lg:pb-0">
         <div className="fm-site-container grid w-full grid-cols-1 gap-6 lg:grid-cols-[1.12fr_1fr] lg:gap-12 xl:gap-16">
           <div className="relative z-10 flex flex-col justify-center lg:col-start-1 lg:row-start-1">
-            <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] uppercase tracking-[0.32em]">
+            <p className="fm-hero-fade fm-hero-fade--eyebrow text-amber mb-6 font-mono text-[10px] tracking-[0.32em] uppercase">
               {hero.eyebrow}
             </p>
             <h1
@@ -63,7 +57,7 @@ export default async function HomePage() {
             </h1>
           </div>
 
-          <div className="fm-hero-fade fm-hero-fade--dossie relative z-10 mx-auto mb-4 w-full max-w-[280px] shrink-0 overflow-visible pb-8 py-1 lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:mb-0 lg:max-w-none lg:overflow-visible lg:pb-0 lg:py-0 lg:self-center">
+          <div className="fm-hero-fade fm-hero-fade--dossie relative z-10 mx-auto mb-4 w-full max-w-[280px] shrink-0 overflow-visible py-1 pb-8 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:mb-0 lg:max-w-none lg:self-center lg:overflow-visible lg:py-0 lg:pb-0">
             <div className="lg:hidden">
               <Dossie3D compact />
             </div>
@@ -73,7 +67,7 @@ export default async function HomePage() {
           </div>
 
           <div className="relative z-20 flex flex-col justify-center lg:col-start-1 lg:row-start-2">
-            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-6 max-w-2xl text-xl italic leading-relaxed tracking-[0.03em] md:mb-10 md:text-2xl lg:max-w-none">
+            <p className="fm-hero-fade fm-hero-fade--tagline text-paper-800 mb-6 max-w-2xl text-xl leading-relaxed tracking-[0.03em] italic md:mb-10 md:text-2xl lg:max-w-none">
               {hero.tagline}
             </p>
             <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-8 max-w-2xl text-base leading-relaxed tracking-[0.025em] md:mb-10 lg:max-w-none">
@@ -82,7 +76,7 @@ export default async function HomePage() {
             <div className="fm-hero-fade fm-hero-fade--cta flex justify-center lg:justify-start">
               <Link
                 href="#cohort"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
+                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaPrimary} →
               </Link>
@@ -118,7 +112,7 @@ export default async function HomePage() {
           <Link
             data-reveal
             href="/sobre"
-            className="border-amber text-paper hover:text-amber mt-10 inline-block border-b font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="border-amber text-paper hover:text-amber mt-10 inline-block border-b font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
           >
             {manifesto.linkLabel} →
           </Link>
@@ -139,7 +133,8 @@ export default async function HomePage() {
             data-reveal
             className="text-paper-600 mb-12 max-w-2xl text-sm leading-relaxed"
           >
-            {programa.courseName} — ementa importada do acervo gravado do professor.
+            {programa.courseName} — ementa importada do acervo gravado do
+            professor.
           </p>
           <div className="grid gap-8 md:grid-cols-2">
             {provaDigitalModuloCards.map((m) => (
@@ -159,7 +154,7 @@ export default async function HomePage() {
           <div data-reveal className="mt-16 text-center">
             <Link
               href={`${CURSO_PRINCIPAL_PATH}#ementa-title`}
-              className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+              className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
             >
               {programa.ctaLabel}
             </Link>
@@ -177,7 +172,7 @@ export default async function HomePage() {
       >
         <div className="fm-site-container border-amber/25 flex flex-col items-start justify-between gap-8 border bg-white/[0.02] p-8 md:flex-row md:items-center md:p-10">
           <div>
-            <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
               {copy.home.calculadoraBand.eyebrow}
             </p>
             <h2
@@ -195,7 +190,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/calculadora-de-pena"
-            className="bg-amber text-carbon hover:bg-amber-soft shrink-0 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+            className="bg-amber text-carbon hover:bg-amber-soft shrink-0 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
           >
             {copy.home.calculadoraBand.cta}
           </Link>
@@ -221,7 +216,7 @@ export default async function HomePage() {
             <div>
               <p
                 data-reveal
-                className="text-amber mb-4 font-mono text-[10px] uppercase tracking-[0.2em]"
+                className="text-amber mb-4 font-mono text-[10px] tracking-[0.2em] uppercase"
               >
                 {professorSection.eyebrow}
               </p>
@@ -231,18 +226,26 @@ export default async function HomePage() {
                 style={fmTitleClamp("40px", "5vw", "72px")}
               >
                 {professorSection.titleLine1}{" "}
-                <em className="text-amber italic">{professorSection.titleEmphasis}</em>
+                <em className="text-amber italic">
+                  {professorSection.titleEmphasis}
+                </em>
               </h2>
-              <p data-reveal className="text-paper-800 mb-7 text-lg leading-[1.8]">
+              <p
+                data-reveal
+                className="text-paper-800 mb-7 text-lg leading-[1.8]"
+              >
                 {professorSection.lead}
               </p>
-              <p data-reveal className="text-paper-800 mb-10 text-lg leading-[1.8]">
+              <p
+                data-reveal
+                className="text-paper-800 mb-10 text-lg leading-[1.8]"
+              >
                 {professorSection.body}
               </p>
               <Link
                 data-reveal
                 href="/sobre"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
               >
                 {professorSection.ctaLabel}
               </Link>
@@ -261,7 +264,7 @@ export default async function HomePage() {
                 "radial-gradient(circle at center, rgba(156,91,30,0.15), transparent)",
             }}
           >
-            <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+            <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
               {cohort.eyebrow}
             </p>
             <h2
@@ -271,20 +274,18 @@ export default async function HomePage() {
               {cohort.title}{" "}
               <em className="text-amber italic">{cohort.titleEmphasis}</em>
             </h2>
-            <div className="font-serif text-7xl my-8">
+            <div className="my-8 font-serif text-7xl">
               <span className="text-paper">R$ {priceDisplay}</span>
               <small className="text-amber text-2xl">{priceSuffix}</small>
             </div>
-            <p className="text-paper-600 mb-10 text-base">
-              {cohort.note}
-            </p>
+            <p className="text-paper-600 mb-10 text-base">{cohort.note}</p>
             <Link
               href="/newsletter"
-              className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-16 py-5 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+              className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-16 py-5 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
             >
               {cohort.cta}
             </Link>
-            <div className="text-paper-600 mt-10 flex flex-wrap justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.2em]">
+            <div className="text-paper-600 mt-10 flex flex-wrap justify-center gap-10 font-mono text-[10px] tracking-[0.2em] uppercase">
               {cohort.chips.map((chip) => (
                 <span key={chip}>{chip}</span>
               ))}

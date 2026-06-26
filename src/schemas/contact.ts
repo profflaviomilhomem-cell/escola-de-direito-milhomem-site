@@ -1,10 +1,7 @@
 import { z } from "zod";
 
 export const contactSchema = z.object({
-  name: z
-    .string()
-    .min(2, "Informe seu nome.")
-    .max(120, "Nome longo demais."),
+  name: z.string().min(2, "Informe seu nome.").max(120, "Nome longo demais."),
   email: z
     .string()
     .min(1, "Informe seu e-mail.")

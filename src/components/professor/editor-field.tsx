@@ -11,7 +11,7 @@ export function EditorField({
 }) {
   return (
     <label className="block">
-      <span className="text-paper-600 mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+      <span className="text-paper-600 mb-2 flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] uppercase">
         {label}
         {required && <span className="text-amber">*</span>}
       </span>

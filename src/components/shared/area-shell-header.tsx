@@ -45,9 +45,7 @@ export function AreaShellHeader({
   const isActive = (href: string) =>
     href === exactHref ? pathname === href : pathname.startsWith(href);
 
-  const navGap = compactNav
-    ? "gap-3 lg:gap-4 xl:gap-5"
-    : "gap-5 lg:gap-7";
+  const navGap = compactNav ? "gap-3 lg:gap-4 xl:gap-5" : "gap-5 lg:gap-7";
   const linkSize = compactNav
     ? "text-[12px] lg:text-[13px]"
     : "text-[13px] lg:text-[14px]";
@@ -73,7 +71,7 @@ export function AreaShellHeader({
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`shrink-0 font-mono uppercase tracking-[0.18em] transition-colors ${linkSize} ${
+                  className={`shrink-0 font-mono tracking-[0.18em] uppercase transition-colors ${linkSize} ${
                     isActive(item.href)
                       ? "text-paper"
                       : "text-paper-700 hover:text-paper"

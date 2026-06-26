@@ -31,7 +31,7 @@ export default async function RecuperarSenhaPage({ searchParams }: Props) {
         </h1>
       </header>
 
-      <div className="bg-carbon-elevated/40 border-paper-100/10 backdrop-blur-xl border p-8 md:p-10">
+      <div className="bg-carbon-elevated/40 border-paper-100/10 border p-8 backdrop-blur-xl md:p-10">
         <ResetPasswordForm token={token} />
       </div>
     </div>

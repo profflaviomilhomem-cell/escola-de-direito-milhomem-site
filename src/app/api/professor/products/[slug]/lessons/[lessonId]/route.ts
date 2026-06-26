@@ -15,7 +15,9 @@ export async function PATCH(req: Request, { params }: Params) {
   if (error) return error;
   const { slug, lessonId } = await params;
 
-  let body: (LessonInput & { action?: "move"; direction?: "up" | "down" }) | null;
+  let body:
+    | (LessonInput & { action?: "move"; direction?: "up" | "down" })
+    | null;
   try {
     body = (await req.json()) as typeof body;
   } catch {
@@ -87,7 +89,9 @@ export async function DELETE(_req: Request, { params }: Params) {
     return NextResponse.json({ ok: true });
   } catch {
     return NextResponse.json(
-      { error: "Não foi possível excluir (progresso/comentários vinculados?)." },
+      {
+        error: "Não foi possível excluir (progresso/comentários vinculados?).",
+      },
       { status: 500 },
     );
   }

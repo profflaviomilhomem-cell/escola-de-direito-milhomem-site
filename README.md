@@ -3,7 +3,7 @@
 Repositório do site institucional, vitrine de cursos e plataforma do aluno
 da **Escola Flávio Milhomem** — escola de direito criminal. Direito criminal pela perspectiva da acusação.
 
-> *"O Promotor que te ensina o que o Promotor vê."*
+> _"O Promotor que te ensina o que o Promotor vê."_
 
 Stack alinhada ao **Guia de Desenvolvimento Web v1.0** (Orbita Labs) e ao
 **Checklist de Tecnologias mar/2026**:
@@ -52,20 +52,20 @@ openssl rand -base64 48
 
 ## Scripts npm
 
-| Script                 | Função                                            |
-|------------------------|---------------------------------------------------|
-| `npm run dev`          | Dev server (Next.js)                              |
-| `npm run build`        | Build de produção                                 |
-| `npm run start`        | Servir build de produção                          |
-| `npm run lint`         | ESLint                                            |
-| `npm run lint:fix`     | ESLint com autofix                                |
-| `npm run typecheck`    | `tsc --noEmit`                                    |
-| `npm run format`       | Prettier write                                    |
-| `npm run format:check` | Prettier check (CI)                               |
-| `npm test`             | Jest (unit + integration)                         |
-| `npm run test:watch`   | Jest watch                                        |
-| `npm run test:coverage`| Jest com coverage                                 |
-| `npm run prisma:*`     | generate / migrate / studio                       |
+| Script                  | Função                      |
+| ----------------------- | --------------------------- |
+| `npm run dev`           | Dev server (Next.js)        |
+| `npm run build`         | Build de produção           |
+| `npm run start`         | Servir build de produção    |
+| `npm run lint`          | ESLint                      |
+| `npm run lint:fix`      | ESLint com autofix          |
+| `npm run typecheck`     | `tsc --noEmit`              |
+| `npm run format`        | Prettier write              |
+| `npm run format:check`  | Prettier check (CI)         |
+| `npm test`              | Jest (unit + integration)   |
+| `npm run test:watch`    | Jest watch                  |
+| `npm run test:coverage` | Jest com coverage           |
+| `npm run prisma:*`      | generate / migrate / studio |
 
 ---
 

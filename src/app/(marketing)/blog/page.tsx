@@ -49,14 +49,16 @@ export default async function BlogPage({
 
   const posts = await getPublishedBlogListPosts();
 
-  const { de, ate, periodo: activePeriodo } = resolveDateRangeFromSearchParams(
-    {
-      page: sp.page,
-      de: typeof sp.de === "string" ? sp.de : undefined,
-      ate: typeof sp.ate === "string" ? sp.ate : undefined,
-      periodo: typeof sp.periodo === "string" ? sp.periodo : undefined,
-    },
-  );
+  const {
+    de,
+    ate,
+    periodo: activePeriodo,
+  } = resolveDateRangeFromSearchParams({
+    page: sp.page,
+    de: typeof sp.de === "string" ? sp.de : undefined,
+    ate: typeof sp.ate === "string" ? sp.ate : undefined,
+    periodo: typeof sp.periodo === "string" ? sp.periodo : undefined,
+  });
 
   const filteredPosts = filterPostsByPublishedRange(posts, de, ate);
 
@@ -83,20 +85,20 @@ export default async function BlogPage({
     <section className="fm-site-page py-page">
       {/* Hero editorial */}
       <header className="mb-10 max-w-3xl md:mb-14">
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           Bastidor da acusação · Blog
         </p>
         <h1
           className="fm-title-fluid mt-4 font-serif leading-[1.02]"
           style={fmTitleClamp("48px", "6vw", "88px")}
         >
-          O penal pelo{" "}
-          <em className="text-amber italic">ângulo da acusação</em>.
+          O penal pelo <em className="text-amber italic">ângulo da acusação</em>
+          .
         </h1>
         <p className="text-paper-700 mt-6 text-base leading-relaxed md:text-lg">
           Análises de decisões recentes do STJ e STF, dogmática aplicada à
-          prática forense e comentários sobre o que move a agenda
-          institucional. Sem opinião sem prova; sem prova sem ângulo.
+          prática forense e comentários sobre o que move a agenda institucional.
+          Sem opinião sem prova; sem prova sem ângulo.
         </p>
       </header>
 
@@ -130,7 +132,7 @@ export default async function BlogPage({
         <article className="group">
           <Link href={`/blog/${featured.slug}`} className="block no-underline">
             <div
-              className="border-paper-100 group-hover:border-amber relative aspect-[16/9] w-full overflow-hidden border bg-carbon md:aspect-[21/9]"
+              className="border-paper-100 group-hover:border-amber bg-carbon relative aspect-[16/9] w-full overflow-hidden border md:aspect-[21/9]"
               style={{
                 backgroundImage: !featured.coverImage
                   ? `linear-gradient(135deg, ${featured.cover.from}, ${featured.cover.to})`
@@ -148,19 +150,21 @@ export default async function BlogPage({
               )}
               <div
                 aria-hidden
-                className="absolute -right-24 top-0 hidden h-full w-1/2 rounded-full opacity-15 blur-3xl md:block"
+                className="absolute top-0 -right-24 hidden h-full w-1/2 rounded-full opacity-15 blur-3xl md:block"
                 style={{ background: "var(--color-amber)" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/40 to-transparent md:via-carbon/30" />
-              <div className="absolute inset-0 hidden bg-gradient-to-r from-carbon/85 via-carbon/30 to-transparent md:block" />
+              <div className="from-carbon via-carbon/40 md:via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
+              <div className="from-carbon/85 via-carbon/30 absolute inset-0 hidden bg-gradient-to-r to-transparent md:block" />
 
-              <p className="text-amber absolute bottom-0 left-0 z-10 p-4 font-mono text-[10px] uppercase tracking-[0.2em] md:hidden">
-                Em destaque · {DB_CATEGORY_LABEL[featured.category] || featured.category}
+              <p className="text-amber absolute bottom-0 left-0 z-10 p-4 font-mono text-[10px] tracking-[0.2em] uppercase md:hidden">
+                Em destaque ·{" "}
+                {DB_CATEGORY_LABEL[featured.category] || featured.category}
               </p>
 
               <div className="relative z-10 hidden h-full max-w-3xl flex-col justify-end p-12 md:flex">
-                <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
-                  Em destaque · {DB_CATEGORY_LABEL[featured.category] || featured.category}
+                <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
+                  Em destaque ·{" "}
+                  {DB_CATEGORY_LABEL[featured.category] || featured.category}
                 </p>
                 <h2
                   className="fm-title-fluid text-paper group-hover:text-amber mt-3 font-serif leading-[1.05] transition-colors"
@@ -171,14 +175,17 @@ export default async function BlogPage({
                 <p className="text-paper-800 mt-4 line-clamp-3 max-w-2xl text-base leading-relaxed">
                   {featured.excerpt}
                 </p>
-                <div className="text-paper-600 mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em]">
+                <div className="text-paper-600 mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase">
                   <span>
                     {featured.publishedAt &&
-                      new Date(featured.publishedAt).toLocaleDateString("pt-BR", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                      })}
+                      new Date(featured.publishedAt).toLocaleDateString(
+                        "pt-BR",
+                        {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        },
+                      )}
                   </span>
                   <span aria-hidden>·</span>
                   <span>{featured.readingMin} min de leitura</span>
@@ -195,7 +202,7 @@ export default async function BlogPage({
               <p className="text-paper-700 mt-3 line-clamp-3 text-sm leading-relaxed">
                 {featured.excerpt}
               </p>
-              <div className="text-paper-600 mt-4 flex flex-wrap items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em]">
+              <div className="text-paper-600 mt-4 flex flex-wrap items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase">
                 <span>
                   {featured.publishedAt &&
                     new Date(featured.publishedAt).toLocaleDateString("pt-BR", {
@@ -242,24 +249,24 @@ export default async function BlogPage({
                 {currentPage > 1 ? (
                   <Link
                     href={pageHref(currentPage - 1)}
-                    className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber fm-mono border px-4 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors"
+                    className="border-paper-200 text-paper-700 hover:border-amber hover:text-amber fm-mono border px-4 py-2 text-[11px] tracking-[0.16em] uppercase transition-colors"
                   >
                     ← Anterior
                   </Link>
                 ) : (
-                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] uppercase tracking-[0.16em] opacity-40">
+                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-40">
                     ← Anterior
                   </span>
                 )}
                 {currentPage < totalPages ? (
                   <Link
                     href={pageHref(currentPage + 1)}
-                    className="border-amber text-amber hover:bg-amber hover:text-carbon fm-mono border px-4 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors"
+                    className="border-amber text-amber hover:bg-amber hover:text-carbon fm-mono border px-4 py-2 text-[11px] tracking-[0.16em] uppercase transition-colors"
                   >
                     Seguinte →
                   </Link>
                 ) : (
-                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] uppercase tracking-[0.16em] opacity-40">
+                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-40">
                     Seguinte →
                   </span>
                 )}
@@ -272,7 +279,7 @@ export default async function BlogPage({
       {/* Newsletter CTA — porta de entrada pro lead capture */}
       <aside className="border-amber/30 bg-amber/5 mt-20 flex flex-wrap items-center justify-between gap-6 border-l-2 px-6 py-8 md:px-10">
         <div>
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
             Bastidor quinzenal
           </p>
           <h2 className="text-paper mt-2 font-serif text-2xl leading-tight">
@@ -281,7 +288,7 @@ export default async function BlogPage({
         </div>
         <Link
           href="/newsletter"
-          className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-6 py-3 font-mono text-[12px] font-semibold uppercase tracking-[0.2em] transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft inline-flex items-center gap-2 px-6 py-3 font-mono text-[12px] font-semibold tracking-[0.2em] uppercase transition-colors"
         >
           Assinar boletim →
         </Link>

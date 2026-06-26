@@ -66,18 +66,6 @@ type CalculadoraDeviceMobileProps = {
   layout?: "mobile" | "desktop";
 };
 
-const CRIME_CATEGORY_KEYS: Array<{
-  id: CrimeCategory;
-  label: string;
-  hint: string;
-}> = [
-  { id: "all", label: "Todos", hint: "Todos os crimes" },
-  { id: "patrimonio", label: "Patrimônio", hint: "Crimes patrimoniais" },
-  { id: "pessoa", label: "Pessoa", hint: "Crimes contra a pessoa" },
-  { id: "drogas", label: "Drogas", hint: "Crimes de drogas" },
-  { id: "outros", label: "Outros", hint: "Outras categorias" },
-];
-
 function buildQuickReceipt(display: CalculadoraDeviceMobileProps["display"]) {
   return [
     "FM · DOSIMETRIA",
@@ -117,9 +105,6 @@ export function CalculadoraDeviceMobile({
   display,
   onReset,
   resetDisabled,
-  crimeCategory,
-  onCrimeCategoryChange,
-  crimeCategoryCounts,
   children,
   layout = "mobile",
 }: CalculadoraDeviceMobileProps) {
@@ -170,14 +155,16 @@ export function CalculadoraDeviceMobile({
       setIsPrinting(true);
 
       lines.forEach((_, i) => {
-        const t = window.setTimeout(() => {
-          setVisibleLineCount(i + 1);
-        }, PRINT_WARMUP_MS + i * LINE_PRINT_MS);
+        const t = window.setTimeout(
+          () => {
+            setVisibleLineCount(i + 1);
+          },
+          PRINT_WARMUP_MS + i * LINE_PRINT_MS,
+        );
         lineTimersRef.current.push(t);
       });
 
-      const printDoneMs =
-        PRINT_WARMUP_MS + lines.length * LINE_PRINT_MS + 280;
+      const printDoneMs = PRINT_WARMUP_MS + lines.length * LINE_PRINT_MS + 280;
 
       printTimerRef.current = setTimeout(() => {
         setIsPrinting(false);
@@ -227,9 +214,7 @@ export function CalculadoraDeviceMobile({
   };
 
   const paperHeight =
-    visibleLineCount > 0
-      ? Math.min(visibleLineCount * 13 + 12, 200)
-      : 0;
+    visibleLineCount > 0 ? Math.min(visibleLineCount * 13 + 12, 200) : 0;
   const showPaper = receiptOpen || isPrinting;
 
   const handleFeed = () => {
@@ -322,17 +307,18 @@ export function CalculadoraDeviceMobile({
         </div>
       </div>
 
-      <div className={`fm-calc-device-body relative flex min-h-0 flex-1 flex-col overflow-hidden ${
+      <div
+        className={`fm-calc-device-body relative flex min-h-0 flex-1 flex-col overflow-hidden ${
           isDesktop
             ? "fm-calc-device-body--desktop rounded-lg rounded-t-md"
-            : "rounded-[1.35rem] rounded-br-[1.1rem] rounded-t-[0.65rem]"
+            : "rounded-[1.35rem] rounded-t-[0.65rem] rounded-br-[1.1rem]"
         }`}
       >
         <div
           className={
             isDesktop
               ? "fm-calc-device-top fm-calc-device-top--desktop shrink-0"
-              : "fm-calc-device-top flex shrink-0 items-center justify-between gap-2 px-3.5 pb-2 pt-2"
+              : "fm-calc-device-top flex shrink-0 items-center justify-between gap-2 px-3.5 pt-2 pb-2"
           }
         >
           {isDesktop ? (
@@ -365,7 +351,7 @@ export function CalculadoraDeviceMobile({
                   title={isPrinting ? "Imprimindo" : "Ao vivo"}
                 />
               </div>
-              <p className="text-paper/50 font-mono text-[8px] uppercase tracking-[0.28em]">
+              <p className="text-paper/50 font-mono text-[8px] tracking-[0.28em] uppercase">
                 {isPrinting ? "Imprimindo…" : "Dosimetria · FM"}
               </p>
               <span className="text-amber/80 font-serif text-[11px] italic">
@@ -408,15 +394,15 @@ export function CalculadoraDeviceMobile({
           ) : (
             <>
               <div className="flex items-start justify-between gap-2">
-                <p className="fm-calc-lcd-line text-[9px] uppercase tracking-[0.2em] opacity-70">
+                <p className="fm-calc-lcd-line text-[9px] tracking-[0.2em] uppercase opacity-70">
                   {display.modeLabel}
                 </p>
-                <p className="fm-calc-lcd-line text-right text-[8px] uppercase tracking-[0.12em] opacity-55">
+                <p className="fm-calc-lcd-line text-right text-[8px] tracking-[0.12em] uppercase opacity-55">
                   {display.artigo}
                 </p>
               </div>
               <p
-                className="fm-calc-lcd-main mt-1 tabular-nums leading-none tracking-tight"
+                className="fm-calc-lcd-main mt-1 leading-none tracking-tight tabular-nums"
                 aria-live="polite"
               >
                 {display.penaFinal}
@@ -424,7 +410,7 @@ export function CalculadoraDeviceMobile({
               <p className="fm-calc-lcd-line mt-1 truncate text-[10px] opacity-80">
                 {display.crimeName}
               </p>
-              <div className="mt-2 flex justify-between gap-2 border-t border-[#1a3d28]/40 pt-1.5 font-mono text-[8px] uppercase tracking-[0.1em] opacity-65">
+              <div className="mt-2 flex justify-between gap-2 border-t border-[#1a3d28]/40 pt-1.5 font-mono text-[8px] tracking-[0.1em] uppercase opacity-65">
                 <span>B:{display.penaBase}</span>
                 <span>I:{display.penaIntermediaria}</span>
                 <span className="text-[#9ee6b8]">{display.statusLine}</span>
@@ -434,7 +420,7 @@ export function CalculadoraDeviceMobile({
         </div>
 
         <div
-          className={`fm-calc-screen-well mb-2 mt-2.5 flex min-h-0 flex-1 flex-col overflow-hidden rounded-sm ${
+          className={`fm-calc-screen-well mt-2.5 mb-2 flex min-h-0 flex-1 flex-col overflow-hidden rounded-sm ${
             isDesktop ? "fm-calc-screen-well--desktop mx-4" : "mx-3"
           }`}
         >
@@ -449,7 +435,10 @@ export function CalculadoraDeviceMobile({
           }`}
         >
           {isDesktop ? (
-            <div className="fm-calc-fn-row mb-2 grid grid-cols-6 gap-1" aria-hidden>
+            <div
+              className="fm-calc-fn-row mb-2 grid grid-cols-6 gap-1"
+              aria-hidden
+            >
               <span className="fm-calc-fn-key fm-calc-fn-key--label">ITEM</span>
               <span className="fm-calc-fn-key fm-calc-fn-key--label">CONV</span>
               <button
@@ -501,7 +490,9 @@ export function CalculadoraDeviceMobile({
                   >
                     {label}
                   </span>
-                  <span className="text-[7px] uppercase opacity-60">{hint}</span>
+                  <span className="text-[7px] uppercase opacity-60">
+                    {hint}
+                  </span>
                 </button>
               );
             })}
@@ -532,13 +523,15 @@ export function CalculadoraDeviceMobile({
                       isDesktop ? "py-3" : "py-2.5"
                     } ${active ? "fm-calc-key--active" : ""}`}
                   >
-                    <span className="font-serif text-base italic leading-none">
+                    <span className="font-serif text-base leading-none italic">
                       {n}
                     </span>
-                    <span className="mt-0.5 text-[7px] font-bold uppercase tracking-[0.08em]">
+                    <span className="mt-0.5 text-[7px] font-bold tracking-[0.08em] uppercase">
                       {label}
                     </span>
-                    <span className="text-[6px] uppercase opacity-50">{sub}</span>
+                    <span className="text-[6px] uppercase opacity-50">
+                      {sub}
+                    </span>
                   </button>
                 );
               })}
@@ -593,7 +586,9 @@ export function CalculadoraDeviceMobile({
                 className="fm-calc-key fm-calc-key--danger py-3 disabled:opacity-35"
                 aria-label="Zerar caso"
               >
-                <span className="text-[10px] font-bold tracking-[0.12em]">CLR</span>
+                <span className="text-[10px] font-bold tracking-[0.12em]">
+                  CLR
+                </span>
                 <span className="text-[7px] uppercase opacity-60">Zerar</span>
               </button>
               <button
@@ -615,7 +610,7 @@ export function CalculadoraDeviceMobile({
         </div>
       </div>
 
-      <p className="text-paper-600 mt-2 text-center font-mono text-[8px] uppercase tracking-[0.14em]">
+      <p className="text-paper-600 mt-2 text-center font-mono text-[8px] tracking-[0.14em] uppercase">
         Instrumento didático · sem valor jurídico vinculante
       </p>
     </div>

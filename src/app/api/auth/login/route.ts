@@ -120,7 +120,8 @@ export async function POST(req: NextRequest) {
     {
       ok: true,
       user: { id: user.id, email: user.email, name: user.name, role },
-      redirectTo: role === "admin" ? "/professor/dashboard" : "/aluno/dashboard",
+      redirectTo:
+        role === "admin" ? "/professor/dashboard" : "/aluno/dashboard",
     },
     { status: 200 },
   );

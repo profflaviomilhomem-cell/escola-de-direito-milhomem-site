@@ -29,11 +29,15 @@ export default function AuthLayout({
           className="inline-flex items-center no-underline"
           aria-label="Escola Flávio Milhomem — voltar para a home"
         >
-          <BrandLogo variant="stacked" className="fm-footer-logo--compact" priority />
+          <BrandLogo
+            variant="stacked"
+            className="fm-footer-logo--compact"
+            priority
+          />
         </Link>
         <Link
           href="/"
-          className="text-paper-700 hover:text-paper font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="text-paper-700 hover:text-paper font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           ← Voltar ao site
         </Link>
@@ -47,8 +51,8 @@ export default function AuthLayout({
       <footer className="relative z-10 px-6 py-10 md:px-14">
         <div className="border-paper-100 mx-auto max-w-[450px] border-t pt-6 md:max-w-2xl">
           <p className="text-paper-600 text-xs leading-relaxed">
-            Esta página é protegida contra automação e fraude. Seus dados
-            são tratados conforme a LGPD —{" "}
+            Esta página é protegida contra automação e fraude. Seus dados são
+            tratados conforme a LGPD —{" "}
             <Link
               href="/privacidade"
               className="text-paper hover:text-amber underline-offset-2 hover:underline"

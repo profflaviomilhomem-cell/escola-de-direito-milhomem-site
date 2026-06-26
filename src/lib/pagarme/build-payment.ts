@@ -94,7 +94,8 @@ export function buildPagarmePayments(input: {
         payment_method: "boleto",
         amount: input.amountCents,
         boleto: {
-          instructions: "Pagamento referente a matrícula na Escola Flávio Milhomem.",
+          instructions:
+            "Pagamento referente a matrícula na Escola Flávio Milhomem.",
           due_at: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
           billing_address: {
             line_1: addr.line1,

@@ -17,7 +17,10 @@ import { updateProfileSchema } from "@/schemas/auth";
 export async function PATCH(req: NextRequest) {
   const session = await getSessionFromCookies();
   if (!session) {
-    return NextResponse.json({ ok: false, error: "Não autorizado." }, { status: 401 });
+    return NextResponse.json(
+      { ok: false, error: "Não autorizado." },
+      { status: 401 },
+    );
   }
 
   let raw: unknown;

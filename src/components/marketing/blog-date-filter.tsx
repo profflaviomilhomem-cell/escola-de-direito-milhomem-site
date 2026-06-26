@@ -33,13 +33,13 @@ export function BlogDateFilter({
       aria-label="Filtrar artigos por data"
     >
       <div className="mb-2.5 flex items-center justify-between gap-3">
-        <p className="text-paper-600 font-mono text-[9px] uppercase tracking-[0.16em]">
+        <p className="text-paper-600 font-mono text-[9px] tracking-[0.16em] uppercase">
           Período
         </p>
         {hasDateFilter ? (
           <Link
             href="/blog"
-            className="text-amber hover:text-amber-soft font-mono text-[9px] uppercase tracking-[0.12em] underline-offset-2 hover:underline"
+            className="text-amber hover:text-amber-soft font-mono text-[9px] tracking-[0.12em] uppercase underline-offset-2 hover:underline"
           >
             Limpar
           </Link>
@@ -81,11 +81,11 @@ export function BlogDateFilter({
       </div>
 
       <details className="group mt-3" open={Boolean(de || ate)}>
-        <summary className="text-paper-600 hover:text-paper list-none cursor-pointer font-mono text-[9px] uppercase tracking-[0.14em] [&::-webkit-details-marker]:hidden">
+        <summary className="text-paper-600 hover:text-paper cursor-pointer list-none font-mono text-[9px] tracking-[0.14em] uppercase [&::-webkit-details-marker]:hidden">
           <span className="inline-flex items-center gap-1.5">
             Intervalo personalizado
             <span
-              className="text-paper-600/70 group-open:rotate-180 transition-transform"
+              className="text-paper-600/70 transition-transform group-open:rotate-180"
               aria-hidden
             >
               ▾
@@ -98,7 +98,7 @@ export function BlogDateFilter({
           className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-end"
         >
           <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-[11rem]">
-            <span className="text-paper-600 shrink-0 font-mono text-[9px] uppercase tracking-[0.1em]">
+            <span className="text-paper-600 shrink-0 font-mono text-[9px] tracking-[0.1em] uppercase">
               De
             </span>
             <input
@@ -109,7 +109,7 @@ export function BlogDateFilter({
             />
           </label>
           <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-[11rem]">
-            <span className="text-paper-600 shrink-0 font-mono text-[9px] uppercase tracking-[0.1em]">
+            <span className="text-paper-600 shrink-0 font-mono text-[9px] tracking-[0.1em] uppercase">
               Até
             </span>
             <input
@@ -121,7 +121,7 @@ export function BlogDateFilter({
           </label>
           <button
             type="submit"
-            className="border-amber/50 text-amber hover:bg-amber/10 fm-mono w-full border px-3 py-1.5 text-[9px] uppercase tracking-[0.12em] transition-colors sm:w-auto"
+            className="border-amber/50 text-amber hover:bg-amber/10 fm-mono w-full border px-3 py-1.5 text-[9px] tracking-[0.12em] uppercase transition-colors sm:w-auto"
           >
             Aplicar
           </button>
@@ -131,9 +131,7 @@ export function BlogDateFilter({
       {hasDateFilter ? (
         <p className="text-paper-600 mt-2.5 font-mono text-[10px] leading-snug">
           <span className="text-paper">
-            {de
-              ? new Date(de + "T12:00:00").toLocaleDateString("pt-BR")
-              : "…"}
+            {de ? new Date(de + "T12:00:00").toLocaleDateString("pt-BR") : "…"}
             {" — "}
             {ate
               ? new Date(ate + "T12:00:00").toLocaleDateString("pt-BR")

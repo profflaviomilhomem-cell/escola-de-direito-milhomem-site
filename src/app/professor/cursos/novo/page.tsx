@@ -12,7 +12,7 @@ export default function ProfessorNovoCursoPage() {
   return (
     <section className="fm-site-page py-12">
       <header className="mb-10">
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           Catálogo
         </p>
         <h1

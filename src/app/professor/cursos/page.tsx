@@ -24,7 +24,7 @@ export default async function ProfessorCursosPage() {
     <section className="fm-site-page py-12">
       <header className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
             Catálogo · cohorts e produtos
           </p>
           <h1
@@ -40,7 +40,7 @@ export default async function ProfessorCursosPage() {
         </div>
         <Link
           href="/professor/cursos/novo"
-          className="bg-amber text-carbon hover:bg-amber-soft inline-flex px-5 py-3 font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="bg-amber text-carbon hover:bg-amber-soft inline-flex px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           Novo curso
         </Link>
@@ -68,11 +68,15 @@ export default async function ProfessorCursosPage() {
         <div className="border-paper-100 bg-carbon-elevated overflow-hidden border">
           <table className="w-full text-sm">
             <thead className="border-paper-100 border-b">
-              <tr className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <tr className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
                 <th className="px-5 py-3 text-left">Curso</th>
-                <th className="hidden px-5 py-3 text-left lg:table-cell">Tipo</th>
+                <th className="hidden px-5 py-3 text-left lg:table-cell">
+                  Tipo
+                </th>
                 <th className="px-5 py-3 text-left">Status</th>
-                <th className="hidden px-5 py-3 text-right md:table-cell">Aulas</th>
+                <th className="hidden px-5 py-3 text-right md:table-cell">
+                  Aulas
+                </th>
                 <th className="px-5 py-3 text-right">Ações</th>
               </tr>
             </thead>
@@ -94,7 +98,7 @@ export default async function ProfessorCursosPage() {
                     </td>
                     <td className="px-5 py-4">
                       <span
-                        className={`inline-block border px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest ${tone.cls}`}
+                        className={`inline-block border px-2 py-0.5 font-mono text-[9px] tracking-widest uppercase ${tone.cls}`}
                       >
                         {tone.label}
                       </span>
@@ -105,7 +109,7 @@ export default async function ProfessorCursosPage() {
                     <td className="px-5 py-4 text-right">
                       <Link
                         href={`/professor/cursos/${course.slug}/editar`}
-                        className="text-amber hover:underline font-mono text-[10px] uppercase tracking-widest"
+                        className="text-amber font-mono text-[10px] tracking-widest uppercase hover:underline"
                       >
                         Editar
                       </Link>
@@ -124,7 +128,7 @@ export default async function ProfessorCursosPage() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-carbon-elevated px-5 py-4">
-      <p className="text-paper-600 font-mono text-[10px] uppercase tracking-[0.2em]">
+      <p className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase">
         {label}
       </p>
       <p className="text-paper mt-2 font-serif text-3xl">{value}</p>

@@ -15,7 +15,10 @@ const MIN_PASSWORD_CHARS = 8;
 
 const passwordField = z
   .string()
-  .min(MIN_PASSWORD_CHARS, `Senha precisa de pelo menos ${MIN_PASSWORD_CHARS} caracteres.`)
+  .min(
+    MIN_PASSWORD_CHARS,
+    `Senha precisa de pelo menos ${MIN_PASSWORD_CHARS} caracteres.`,
+  )
   .refine(
     (value) => new TextEncoder().encode(value).length <= MAX_PASSWORD_BYTES,
     {

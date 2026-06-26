@@ -23,7 +23,10 @@ export default async function ProfessorAulasPage({ searchParams }: Props) {
         <h1 className="font-serif text-3xl">Aulas</h1>
         <p className="text-paper-700 mt-4">
           Nenhum curso cadastrado ainda.{" "}
-          <Link href="/professor/cursos/novo" className="text-amber hover:underline">
+          <Link
+            href="/professor/cursos/novo"
+            className="text-amber hover:underline"
+          >
             Criar curso →
           </Link>
         </p>
@@ -31,14 +34,13 @@ export default async function ProfessorAulasPage({ searchParams }: Props) {
     );
   }
 
-  const selected =
-    courses.find((c) => c.slug === curso) ?? courses[0]!;
+  const selected = courses.find((c) => c.slug === curso) ?? courses[0]!;
   const lessons = await listProductLessons(selected.slug);
 
   return (
     <section className="fm-site-page py-12">
       <header className="mb-8">
-        <p className="text-amber font-mono text-[10px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
           Conteúdo · {selected.name}
         </p>
         <h1

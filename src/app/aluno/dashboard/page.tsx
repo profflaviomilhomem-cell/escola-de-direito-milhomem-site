@@ -99,10 +99,10 @@ export default async function DashboardPage() {
         <div className="fm-site-page flex flex-col gap-4 py-6 lg:flex-row lg:items-stretch lg:gap-6">
           <Card
             size="sm"
-            className="border-paper-100/50 bg-card/90 flex w-full shrink-0 items-center justify-center py-8 ring-1 ring-paper-100/10 lg:w-40 lg:py-6"
+            className="border-paper-100/50 bg-card/90 ring-paper-100/10 flex w-full shrink-0 items-center justify-center py-8 ring-1 lg:w-40 lg:py-6"
           >
-            <Avatar size="lg" className="border border-paper-200">
-              <AvatarFallback className="bg-muted font-serif text-lg text-paper">
+            <Avatar size="lg" className="border-paper-200 border">
+              <AvatarFallback className="bg-muted text-paper font-serif text-lg">
                 {initials}
               </AvatarFallback>
             </Avatar>
@@ -113,7 +113,10 @@ export default async function DashboardPage() {
               value={`${completed.length} / ${totalLessons}`}
               progress={lessonsProgressPct}
             />
-            <StatCard label="Tempo de estudo" value={formatDuration(totalSec)} />
+            <StatCard
+              label="Tempo de estudo"
+              value={formatDuration(totalSec)}
+            />
             <StatCard
               label="Cursos matriculados"
               value={String(enrolled.length)}
@@ -130,7 +133,12 @@ export default async function DashboardPage() {
             cta={{ label: "Ver cursos", href: "/aluno/cursos" }}
           >
             {continueRow.map((lesson) => (
-              <LessonCard key={lesson.id} lesson={lesson} width="md" showModule />
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                width="md"
+                showModule
+              />
             ))}
           </DashboardRow>
         ) : null}
@@ -182,13 +190,15 @@ function StatCard({
     <Card
       size="sm"
       className={cn(
-        "border-paper-100/50 bg-card/90 ring-1 ring-paper-100/10 shadow-none backdrop-blur-sm",
+        "border-paper-100/50 bg-card/90 ring-paper-100/10 shadow-none ring-1 backdrop-blur-sm",
         className,
       )}
     >
       <CardHeader className="pb-2">
-        <CardDescription className="text-paper-600 fm-mono">{label}</CardDescription>
-        <CardTitle className="font-serif text-2xl leading-tight text-paper">
+        <CardDescription className="text-paper-600 fm-mono">
+          {label}
+        </CardDescription>
+        <CardTitle className="text-paper font-serif text-2xl leading-tight">
           {value}
         </CardTitle>
       </CardHeader>

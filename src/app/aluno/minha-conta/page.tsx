@@ -44,15 +44,18 @@ export default async function MinhaContaPage() {
 
       <div className="mt-14 grid gap-12 lg:grid-cols-2">
         <section>
-          <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+          <h2 className="text-paper fm-mono text-[11px] tracking-[0.2em] uppercase">
             Dados pessoais
           </h2>
           <div className="border-paper-100 bg-carbon-elevated mt-6 border p-6">
-            <UpdateProfileForm initialName={session?.name ?? ""} initialEmail={email} />
+            <UpdateProfileForm
+              initialName={session?.name ?? ""}
+              initialEmail={email}
+            />
           </div>
         </section>
         <section>
-          <h2 className="text-paper fm-mono text-[11px] uppercase tracking-[0.2em]">
+          <h2 className="text-paper fm-mono text-[11px] tracking-[0.2em] uppercase">
             Segurança
           </h2>
           <div className="border-paper-100 bg-carbon-elevated mt-6 border p-6">
@@ -61,7 +64,7 @@ export default async function MinhaContaPage() {
         </section>
       </div>
 
-      <h2 className="text-paper fm-mono mt-14 text-[11px] uppercase tracking-[0.2em]">
+      <h2 className="text-paper fm-mono mt-14 text-[11px] tracking-[0.2em] uppercase">
         Pedidos
       </h2>
       <div className="mt-6">
@@ -79,10 +82,10 @@ export default async function MinhaContaPage() {
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-paper font-semibold truncate">
+                    <p className="text-paper truncate font-semibold">
                       {o.product?.name ?? o.product?.slug ?? "Produto"}
                     </p>
-                    <p className="text-paper-600 mt-1 text-sm fm-mono">
+                    <p className="text-paper-600 fm-mono mt-1 text-sm">
                       {o.product?.slug ?? "—"}
                     </p>
                   </div>
@@ -90,7 +93,7 @@ export default async function MinhaContaPage() {
                     <p className="text-paper fm-mono text-sm">
                       {formatMoney(o.amountCents)}
                     </p>
-                    <p className="text-paper-600 fm-mono text-xs mt-1">
+                    <p className="text-paper-600 fm-mono mt-1 text-xs">
                       status: {o.status}
                     </p>
                   </div>

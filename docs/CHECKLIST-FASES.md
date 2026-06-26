@@ -35,15 +35,15 @@
 
 ## Visão das fases
 
-| Fase | Nome | Objetivo | Entrega principal |
-|------|------|----------|-------------------|
-| **0** | Fundação produção | Site estável em Vercel com env e quick wins | Deploy + conta aluno + vitrine DB |
-| **1** | Comercial | Vender e liberar acesso | Checkout Pagar.me + matrícula |
-| **2** | LMS unificado | Aluno consome curso do banco | Cursos/aulas runtime + progresso |
-| **3** | Painel professor | Operar conteúdo sem scripts | CMS blog + CRUD aulas + upload prod |
-| **4** | Comunidade | Engajamento pós-compra | Fórum global + por aula |
-| **5** | Certificados | Credencial verificável | Emissão + `/certificado/[hash]` |
-| **6** | CRM e métricas | Growth e operação | UTM, campanhas, dashboard |
+| Fase  | Nome              | Objetivo                                    | Entrega principal                   |
+| ----- | ----------------- | ------------------------------------------- | ----------------------------------- |
+| **0** | Fundação produção | Site estável em Vercel com env e quick wins | Deploy + conta aluno + vitrine DB   |
+| **1** | Comercial         | Vender e liberar acesso                     | Checkout Pagar.me + matrícula       |
+| **2** | LMS unificado     | Aluno consome curso do banco                | Cursos/aulas runtime + progresso    |
+| **3** | Painel professor  | Operar conteúdo sem scripts                 | CMS blog + CRUD aulas + upload prod |
+| **4** | Comunidade        | Engajamento pós-compra                      | Fórum global + por aula             |
+| **5** | Certificados      | Credencial verificável                      | Emissão + `/certificado/[hash]`     |
+| **6** | CRM e métricas    | Growth e operação                           | UTM, campanhas, dashboard           |
 
 ```mermaid
 flowchart TD
@@ -302,31 +302,31 @@ Depois: Fase 2 em paralelo com início da 3 (upload produção).
 
 ## Variáveis de ambiente (acumulado)
 
-| Variável | Fase |
-|----------|------|
-| `DATABASE_URL` | 0 |
-| `JWT_SECRET`, `RESEND_API_KEY` | 0 |
-| `PAGARME_API_KEY`, `PAGARME_WEBHOOK_SECRET` | 1 |
-| `BLOB_READ_WRITE_TOKEN` (Vercel Blob) | 3 |
-| `UPSTASH_*` | 0/6 |
-| `NEXT_PUBLIC_POSTHOG_*` | 6 |
+| Variável                                    | Fase |
+| ------------------------------------------- | ---- |
+| `DATABASE_URL`                              | 0    |
+| `JWT_SECRET`, `RESEND_API_KEY`              | 0    |
+| `PAGARME_API_KEY`, `PAGARME_WEBHOOK_SECRET` | 1    |
+| `BLOB_READ_WRITE_TOKEN` (Vercel Blob)       | 3    |
+| `UPSTASH_*`                                 | 0/6  |
+| `NEXT_PUBLIC_POSTHOG_*`                     | 6    |
 
 ---
 
 ## Controle de progresso
 
-| Fase | Itens | Concluídos | % |
-|------|-------|------------|---|
-| 0 | 17 | 14 | 82% |
-| 1 | 19 | 19 | 100% |
-| 2 | 11 | 0 | 0% |
-| 3 | 15 | 0 | 0% |
-| 4 | 8 | 0 | 0% |
-| 5 | 7 | 0 | 0% |
-| 6 | 10 | 0 | 0% |
+| Fase | Itens | Concluídos | %    |
+| ---- | ----- | ---------- | ---- |
+| 0    | 17    | 14         | 82%  |
+| 1    | 19    | 19         | 100% |
+| 2    | 11    | 0          | 0%   |
+| 3    | 15    | 0          | 0%   |
+| 4    | 8     | 0          | 0%   |
+| 5    | 7     | 0          | 0%   |
+| 6    | 10    | 0          | 0%   |
 
 _Atualizar a tabela ao marcar `[x]` nos itens acima._
 
 ---
 
-*Última atualização: maio/2026 — gerado a partir da auditoria de funcionalidades.*
+_Última atualização: maio/2026 — gerado a partir da auditoria de funcionalidades._

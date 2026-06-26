@@ -16,7 +16,9 @@ const SESSION_COOKIE = "escola_session";
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 dias
 
 /** @see resolveDevFakeSession — env `NEXT_PUBLIC_DEV_FAKE_SESSION` ou cookie `fm_dev_role` */
-export function getDevFakeSession(roleHint?: string | null): SessionPayload | null {
+export function getDevFakeSession(
+  roleHint?: string | null,
+): SessionPayload | null {
   return resolveDevFakeSession(roleHint);
 }
 

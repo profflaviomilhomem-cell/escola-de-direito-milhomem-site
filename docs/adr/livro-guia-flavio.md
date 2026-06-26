@@ -2,7 +2,7 @@
 
 **Manual Estratégico de Lançamento e Crescimento**
 
-*Documento interno confidencial · Orbee Labs para Flávio Milhomem*
+_Documento interno confidencial · Orbee Labs para Flávio Milhomem_
 
 ---
 
@@ -78,7 +78,7 @@ Os valores da Escola não são lista de adjetivos para parede de escritório. El
 
 **Respeito radical ao tempo do aluno.** O público-alvo — estudante de concurso, advogado criminalista em formação, servidor público em carreira — tem tempo escasso e atenção fragmentada. Isso impõe uma disciplina ao formato da aula, ao ritmo do conteúdo, à densidade da videoaula, ao desenho da trilha. Nada de "lives de quatro horas" sem roteiro. Nada de "curso com cento e vinte aulas" só para poder colocar no copy que o curso tem cento e vinte aulas. A trilha é planejada com a pergunta: qual é o menor conjunto de aulas que entrega, com densidade, o resultado prometido? E é esse conjunto que é gravado.
 
-**Transparência comercial.** A Escola Flávio Milhomem não opera com gatilhos de escassez inventada, com contador falso, com "últimas vagas" quando ainda há vagas, com depoimento forjado, com preço fantasma riscado. Transparência comercial também significa comunicar com clareza o que o aluno recebe, em qual formato, em qual prazo, com qual garantia, em qual política de reembolso. Isso é, em si mesmo, diferencial num mercado que está saturado de *funnel hacking* de mau gosto — e é também defesa institucional, porque Promotor que vende curso com escassez artificial gera material para representação disciplinar.
+**Transparência comercial.** A Escola Flávio Milhomem não opera com gatilhos de escassez inventada, com contador falso, com "últimas vagas" quando ainda há vagas, com depoimento forjado, com preço fantasma riscado. Transparência comercial também significa comunicar com clareza o que o aluno recebe, em qual formato, em qual prazo, com qual garantia, em qual política de reembolso. Isso é, em si mesmo, diferencial num mercado que está saturado de _funnel hacking_ de mau gosto — e é também defesa institucional, porque Promotor que vende curso com escassez artificial gera material para representação disciplinar.
 
 **Recorrência sobre viralidade.** A métrica que orienta o negócio é a lista de e-mail qualificada, não o número de seguidores do Instagram. A virada de chave conceitual é: cada post, cada vídeo, cada interação existe para converter atenção em lead qualificado — ou seja, em e-mail que entrou na lista com consentimento para receber conteúdo e oferta. Seguidores são dado emprestado da plataforma; lista de e-mail é ativo próprio. Esse valor orienta decisões concretas no Capítulo 7: que chamadas para ação priorizar, que iscas criar, que peças de funil desenvolver primeiro.
 
@@ -88,21 +88,21 @@ A proposta de valor única da Escola Flávio Milhomem, escrita no formato comple
 
 > Para estudantes de concurso da área criminal, advogados em início ou meio de carreira, servidores públicos em funções afins ao sistema de justiça e juristas em formação continuada que querem dominar Direito Penal e Processo Penal do Brasil em profundidade — a Escola Flávio Milhomem oferece o único programa nacional estruturado de formação criminal ensinado por um Promotor de Justiça ativo, ocupante do cargo institucional de Ouvidor-Geral do MPDFT, com trinta anos de carreira no Ministério Público, vinte e cinco anos de docência, mestrado pela Universidade Católica Portuguesa e especialização pela Escola Nacional da Magistratura Francesa, que ensina o Direito Penal pela perspectiva da acusação — o lado onde quase ninguém ensina, mas que é o lado que decide o que vira denúncia, como a jurisprudência se forma e como o processo penal efetivamente funciona no Brasil.
 
-Essa PVU é longa de propósito. Ela é a fonte de todas as PVUs curtas usadas em copy: o elevator pitch de vinte segundos, a tagline de sete palavras, o *above-the-fold* da landing, a bio do Instagram, o cabeçalho do e-mail de boas-vindas. Nenhuma dessas versões curtas pode contrariar a longa. Todas devem ser derivadas dela.
+Essa PVU é longa de propósito. Ela é a fonte de todas as PVUs curtas usadas em copy: o elevator pitch de vinte segundos, a tagline de sete palavras, o _above-the-fold_ da landing, a bio do Instagram, o cabeçalho do e-mail de boas-vindas. Nenhuma dessas versões curtas pode contrariar a longa. Todas devem ser derivadas dela.
 
 As três variações curtas oficialmente aprovadas para uso em superfícies diferentes são:
 
-Para página inicial do site, abaixo do nome e acima do botão principal: *"Direito Penal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia."*
+Para página inicial do site, abaixo do nome e acima do botão principal: _"Direito Penal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia."_
 
-Para bio do Instagram: *"Promotor de Justiça MPDFT · Direito Penal pela perspectiva da acusação · Professor há 25 anos"*
+Para bio do Instagram: _"Promotor de Justiça MPDFT · Direito Penal pela perspectiva da acusação · Professor há 25 anos"_
 
-Para tagline institucional (footer, assinatura de e-mail, rodapé de material didático): *"A Escola do Promotor."*
+Para tagline institucional (footer, assinatura de e-mail, rodapé de material didático): _"A Escola do Promotor."_
 
 ## 1.6 Diferenciais em relação aos concorrentes diretos
 
 A Escola Flávio Milhomem concorre, no primeiro recorte analítico, com três blocos de players: (a) professores-autores individuais em Direito Penal, como Rogério Sanches Cunha (RSC Max), Gabriel Habib, Evinis Talon, Warley Belo, Renato Brasileiro; (b) plataformas generalistas de concurso com trilhas criminais robustas, como Gran Cursos Online, Estratégia Concursos, Ênfase, G7 Jurídico e Ebeji; (c) cursos de pós-graduação em Ciências Criminais oferecidos por universidades e escolas de magistratura, como IDP, Faculdade Baiana de Direito Público, PUC-SP e ESMPU. Os diferenciais competitivos da Escola Flávio Milhomem em relação a cada bloco são os seguintes.
 
-**Em relação aos professores-autores individuais.** A diferença estrutural é a de posição institucional atual: Rogério Sanches é Promotor aposentado, Gabriel Habib é ex-Defensor, Evinis e Warley são advogados, Brasileiro é Delegado Federal aposentado. Nenhum deles, entre os nomes grandes, é membro ativo do Ministério Público. Flávio é. Além disso, o cargo de Ouvidor-Geral do MPDFT, que ele ocupa no biênio 2025-2027, é posição de autoridade institucional que não existe em nenhum dos concorrentes. Quando o site institucional do MPDFT publica nota sobre violência policial assinada pelo Ouvidor-Geral, o nome que aparece é o de Flávio Milhomem. Esse é um tipo de *social proof* que concorrente advogado ou concorrente aposentado não consegue fabricar. O diferencial é, portanto: autoridade institucional ativa + perspectiva única de acusação + acesso a bastidor de órgão colegiado de cúpula do MP.
+**Em relação aos professores-autores individuais.** A diferença estrutural é a de posição institucional atual: Rogério Sanches é Promotor aposentado, Gabriel Habib é ex-Defensor, Evinis e Warley são advogados, Brasileiro é Delegado Federal aposentado. Nenhum deles, entre os nomes grandes, é membro ativo do Ministério Público. Flávio é. Além disso, o cargo de Ouvidor-Geral do MPDFT, que ele ocupa no biênio 2025-2027, é posição de autoridade institucional que não existe em nenhum dos concorrentes. Quando o site institucional do MPDFT publica nota sobre violência policial assinada pelo Ouvidor-Geral, o nome que aparece é o de Flávio Milhomem. Esse é um tipo de _social proof_ que concorrente advogado ou concorrente aposentado não consegue fabricar. O diferencial é, portanto: autoridade institucional ativa + perspectiva única de acusação + acesso a bastidor de órgão colegiado de cúpula do MP.
 
 **Em relação às plataformas generalistas.** A diferença estrutural é a de densidade de contato com o professor. Em Gran Cursos, Estratégia e plataformas equivalentes, o aluno é usuário de uma biblioteca de videoaulas — o professor grava, e a entrega é unidirecional. Na Escola Flávio Milhomem, por decisão arquitetural explícita (Capítulo 6), o modelo é de cohort com fórum por aula, com sessões ao vivo de tira-dúvida na cadência definida, com recorte premium de mentoria em pequenos grupos. O aluno não compra acesso a videoteca; ele entra em uma turma que tem começo, meio e fim definidos, com o professor acessível dentro do fórum. Esse modelo é impraticável para plataforma que tem dois mil alunos por turma; é viável para uma escola que limita deliberadamente o tamanho do cohort. O diferencial é: experiência de cohort real + fórum aninhado por aula + acesso ao professor + escala humana.
 
@@ -114,11 +114,11 @@ Os diferenciais, sintetizados em uma linha cada: autoridade institucional ativa,
 
 A escolha de arquétipo é decisão estratégica porque é ela que orienta tom de voz, paleta visual, seleção de imagens, linguagem de copy, ritmo de conteúdo, direção criativa de peças pagas. Para a Escola Flávio Milhomem, a decisão aprovada é arquétipo primário **Sábio**, com arquétipo secundário **Cuidador**.
 
-**Por que Sábio é primário.** O Sábio é o arquétipo do professor, do pesquisador, do jurista, do analista. Ele valoriza a precisão, busca a verdade, desconfia da simplificação, procura a fonte. Flávio encarna isso biograficamente: mestrado na Católica de Portugal, especialização na ENM francesa, trinta anos no MP, docência de vinte e cinco anos, autoria de livros técnicos, trabalho editorial à frente de revista jurídica. A Escola é, pela natureza do conteúdo que entrega, um templo do Sábio. Isso se traduz em diretrizes concretas: copy que prefere explicar a impressionar, cabeçalhos que evitam pontos de exclamação, iluminação da videoaula sóbria, cenário limpo, trilha sonora ausente ou discretíssima, gráficos com densidade de dados em vez de *infografia* de efeito.
+**Por que Sábio é primário.** O Sábio é o arquétipo do professor, do pesquisador, do jurista, do analista. Ele valoriza a precisão, busca a verdade, desconfia da simplificação, procura a fonte. Flávio encarna isso biograficamente: mestrado na Católica de Portugal, especialização na ENM francesa, trinta anos no MP, docência de vinte e cinco anos, autoria de livros técnicos, trabalho editorial à frente de revista jurídica. A Escola é, pela natureza do conteúdo que entrega, um templo do Sábio. Isso se traduz em diretrizes concretas: copy que prefere explicar a impressionar, cabeçalhos que evitam pontos de exclamação, iluminação da videoaula sóbria, cenário limpo, trilha sonora ausente ou discretíssima, gráficos com densidade de dados em vez de _infografia_ de efeito.
 
 **Por que Cuidador é secundário.** Sábio puro, sem contraponto, tende a ficar frio, distante, inacessível. O aluno concurseiro — persona central do projeto — chega à Escola exausto, com medo de não passar, com história pessoal pesada. Ele não precisa só de conhecimento; precisa de acolhimento. O Cuidador é o arquétipo que contrabalança: ele se preocupa com o outro, é empático, é paciente, devolve segurança. Traduzido em diretrizes: a copy não é só precisa, é também calorosa; o professor, nas aberturas de aula, reconhece a dificuldade do aluno, valida o cansaço, celebra a conquista; o atendimento comercial não empurra, acolhe; o fórum é moderado com generosidade; o erro do aluno é oportunidade de explicar, não motivo de humilhação.
 
-**Arquétipos explicitamente evitados.** *Mago* (promessa de transformação mágica, "gatilhos secretos"), *Herói* (narrativa de "eu te farei vencer", competição agressiva com concorrentes), *Rebelde* (quebra de regras, antagonismo com instituições) — todos incompatíveis com a posição institucional do Flávio e com a ética do MP. *Fora da lei*, em particular, é o oposto do que a Escola pode projetar: Promotor não pode se posicionar como quem contraria a norma, sob pena de representação disciplinar imediata.
+**Arquétipos explicitamente evitados.** _Mago_ (promessa de transformação mágica, "gatilhos secretos"), _Herói_ (narrativa de "eu te farei vencer", competição agressiva com concorrentes), _Rebelde_ (quebra de regras, antagonismo com instituições) — todos incompatíveis com a posição institucional do Flávio e com a ética do MP. _Fora da lei_, em particular, é o oposto do que a Escola pode projetar: Promotor não pode se posicionar como quem contraria a norma, sob pena de representação disciplinar imediata.
 
 ## 1.8 Tom de voz e diretrizes de linguagem
 
@@ -136,7 +136,7 @@ Quarta diretriz: **endereçar o aluno em segunda pessoa, com respeito**. "Você 
 
 Quinta diretriz: **não evitar o termo técnico, mas explicá-lo na primeira ocorrência**. "Ne bis in idem" aparece; "standard de prova" aparece; "princípio da insignificância" aparece. Mas cada termo técnico, na primeira vez que aparece em um conteúdo de funil de topo, é traduzido em uma frase. Nos conteúdos de funil de fundo (cohort pago), a explicação pode ser dispensada porque o aluno já está no estrato avançado.
 
-Sexta diretriz: **evitar jargão de *internet marketing***. "Sacada", "segredo", "método infalível", "eu descobri que", "virada de chave", "mindset", "gatilho mental" — todos proibidos. Esse jargão colide frontalmente com o arquétipo Sábio e com a posição institucional.
+Sexta diretriz: **evitar jargão de _internet marketing_**. "Sacada", "segredo", "método infalível", "eu descobri que", "virada de chave", "mindset", "gatilho mental" — todos proibidos. Esse jargão colide frontalmente com o arquétipo Sábio e com a posição institucional.
 
 Sétima diretriz: **humor seco e pontual, nunca irônico com instituição**. Humor é permitido e desejável; a aula seca demais cansa. Mas o humor é sobre o concurso, sobre o cotidiano do estudante, sobre o absurdo de uma jurisprudência que muda a cada seis meses. Nunca é humor que ridicularize o STF, o STJ, o CNMP, a OAB, a Defensoria, a advocacia privada ou colega de carreira. Isso é linha vermelha institucional.
 
@@ -146,9 +146,9 @@ A síntese operacional das sete diretrizes acima se condensa em cinco atributos 
 
 **Atributo 1 — Erudito acessível.** Tese central do tom. Densidade técnica preservada, mas com porta de entrada para quem ainda não domina o vocabulário.
 
-> **FAZER:** "O *standard* de prova exigido para a condenação no Tribunal do Júri é o mesmo do juízo singular — *beyond a reasonable doubt*, ou, em português jurisprudencial, prova além da dúvida razoável. O que muda é quem decide: jurados leigos, instados a deliberar em sigilo. Essa diferença muda tudo."
+> **FAZER:** "O _standard_ de prova exigido para a condenação no Tribunal do Júri é o mesmo do juízo singular — _beyond a reasonable doubt_, ou, em português jurisprudencial, prova além da dúvida razoável. O que muda é quem decide: jurados leigos, instados a deliberar em sigilo. Essa diferença muda tudo."
 
-> **NÃO FAZER:** "O *standard* probatório do Júri é o BARD, que exige convencimento pleno." — Erudito mas inacessível: estudante de funil de topo não decifra a sigla, perde o argumento, sai. Ou pior: "Tribunal do Júri é fácil — basta convencer os jurados!" — Acessível mas raso, contradiz o arquétipo Sábio e a credencial institucional do Flávio.
+> **NÃO FAZER:** "O _standard_ probatório do Júri é o BARD, que exige convencimento pleno." — Erudito mas inacessível: estudante de funil de topo não decifra a sigla, perde o argumento, sai. Ou pior: "Tribunal do Júri é fácil — basta convencer os jurados!" — Acessível mas raso, contradiz o arquétipo Sábio e a credencial institucional do Flávio.
 
 **Atributo 2 — Concreto sobre abstrato.** Sempre que possível, o conceito vem ancorado em caso real, número de informativo, data de decisão, artigo de lei. A abstração desencarnada é a marca do mau curso jurídico.
 
@@ -194,21 +194,21 @@ A identidade é **sóbria, institucional e contemporânea**. Sóbria porque o ar
 
 O **elevator pitch de vinte segundos**, para Flávio usar em apresentação informal, em evento, em resposta a pergunta de podcast, é:
 
-> *"Eu sou Promotor de Justiça do MPDFT há trinta anos, ocupo hoje o cargo de Ouvidor-Geral do Ministério Público do DF, dou aula de Direito Penal há vinte e cinco. A Escola Flávio Milhomem é o lugar onde eu ensino Direito Penal pela perspectiva de quem acusa — que é a perspectiva que quase ninguém ensina, mas é a que decide como a jurisprudência se forma. Se você estuda pra concurso criminal, milita na advocacia criminal ou trabalha em alguma área do sistema de justiça, a Escola é pra você."*
+> _"Eu sou Promotor de Justiça do MPDFT há trinta anos, ocupo hoje o cargo de Ouvidor-Geral do Ministério Público do DF, dou aula de Direito Penal há vinte e cinco. A Escola Flávio Milhomem é o lugar onde eu ensino Direito Penal pela perspectiva de quem acusa — que é a perspectiva que quase ninguém ensina, mas é a que decide como a jurisprudência se forma. Se você estuda pra concurso criminal, milita na advocacia criminal ou trabalha em alguma área do sistema de justiça, a Escola é pra você."_
 
-A **tagline oficial** (footer, rodapé, assinatura): *"A Escola do Promotor."*
+A **tagline oficial** (footer, rodapé, assinatura): _"A Escola do Promotor."_
 
-A **tagline alternativa** (usos secundários): *"Direito Penal pela perspectiva da acusação."*
+A **tagline alternativa** (usos secundários): _"Direito Penal pela perspectiva da acusação."_
 
 Os **ganchos de copy** para peças publicitárias e headline de landing:
 
-- *"Você estudou a teoria. Agora aprenda como o Promotor pensa."*
-- *"O Direito Penal dos manuais é metade. Esta Escola te entrega a outra metade."*
-- *"Trinta anos no MPDFT. Vinte e cinco anos de sala de aula. Uma Escola."*
-- *"A jurisprudência se forma onde a acusação escreve. Aprenda a escrever."*
-- *"Promotor ativo, professor há duas décadas e meia, autor. Agora: escola."*
+- _"Você estudou a teoria. Agora aprenda como o Promotor pensa."_
+- _"O Direito Penal dos manuais é metade. Esta Escola te entrega a outra metade."_
+- _"Trinta anos no MPDFT. Vinte e cinco anos de sala de aula. Uma Escola."_
+- _"A jurisprudência se forma onde a acusação escreve. Aprenda a escrever."_
+- _"Promotor ativo, professor há duas décadas e meia, autor. Agora: escola."_
 
-Cada um desses ganchos deve ser testado em peças de funil de topo (anúncio de Instagram, Google Discovery, YouTube *bumper*) para medir *engagement*, mas os cinco já passam no crivo do arquétipo Sábio + Cuidador, do tom erudito acessível, da linha vermelha institucional.
+Cada um desses ganchos deve ser testado em peças de funil de topo (anúncio de Instagram, Google Discovery, YouTube _bumper_) para medir _engagement_, mas os cinco já passam no crivo do arquétipo Sábio + Cuidador, do tom erudito acessível, da linha vermelha institucional.
 
 ## 1.12 Sitemap conceitual do site institucional
 
@@ -268,23 +268,23 @@ O mapeamento detalhado e em prosa densa de cada concorrente encontra-se nos arqu
 
 ## 2.3.1 Auditoria técnica dos cinco principais concorrentes (executada em abril/2026)
 
-Em abril de 2026, a Orbita executou auditoria de código-fonte das homepages dos cinco concorrentes-chave — RSC Max, Ênfase, G7 Jurídico, Gabriel Habib e Evinis Talon — capturando HTML cru via *user-agent* Chrome desktop, inspecionando *meta tags*, *schema.org*, sinais de tracking (GTM, GA, Pixel), CMS, *frameworks* JS/CSS, fontes, processadores de pagamento e CRM. Os achados estão consolidados no documento operacional `pesquisa-operacional.html` (aba Concorrentes). Síntese aplicada ao posicionamento da Escola Flávio Milhomem:
+Em abril de 2026, a Orbita executou auditoria de código-fonte das homepages dos cinco concorrentes-chave — RSC Max, Ênfase, G7 Jurídico, Gabriel Habib e Evinis Talon — capturando HTML cru via _user-agent_ Chrome desktop, inspecionando _meta tags_, _schema.org_, sinais de tracking (GTM, GA, Pixel), CMS, _frameworks_ JS/CSS, fontes, processadores de pagamento e CRM. Os achados estão consolidados no documento operacional `pesquisa-operacional.html` (aba Concorrentes). Síntese aplicada ao posicionamento da Escola Flávio Milhomem:
 
-**Stack dominante do nicho é WordPress + Elementor.** Quatro dos cinco concorrentes auditados rodam WordPress. RSC Max (versão 6.9.4 + Elementor 3.33.4), Gabriel Habib (6.9.4 + Elementor 3.30.3), Evinis Talon (6.4.8 — desatualizado em dezoito meses + Elementor + Bootstrap), e o Curso Talon como página white-label do Hotmart Klickart hospedada em Amazon S3. Apenas G7 Jurídico (PHP proprietário em Apache 2.4 com Bootstrap e jQuery 3.3.1) e Ênfase (backend Java/JSP, HTML em ISO-8859-1 — encoding dos anos 1990) escapam do padrão. A implicação para a Escola é estrutural: a aposta arquitetural em Next.js + headless CMS, definida no Capítulo 4, deixa de ser preferência estética e passa a ser diferencial competitivo verificável. Sair do default WordPress significa entregar performance superior, *Cumulative Layout Shift* mais baixo, *Time to Interactive* sob dois segundos e tipografia variável estável — vantagens que o Google ranqueia diretamente desde a consolidação dos *Core Web Vitals* como sinal.
+**Stack dominante do nicho é WordPress + Elementor.** Quatro dos cinco concorrentes auditados rodam WordPress. RSC Max (versão 6.9.4 + Elementor 3.33.4), Gabriel Habib (6.9.4 + Elementor 3.30.3), Evinis Talon (6.4.8 — desatualizado em dezoito meses + Elementor + Bootstrap), e o Curso Talon como página white-label do Hotmart Klickart hospedada em Amazon S3. Apenas G7 Jurídico (PHP proprietário em Apache 2.4 com Bootstrap e jQuery 3.3.1) e Ênfase (backend Java/JSP, HTML em ISO-8859-1 — encoding dos anos 1990) escapam do padrão. A implicação para a Escola é estrutural: a aposta arquitetural em Next.js + headless CMS, definida no Capítulo 4, deixa de ser preferência estética e passa a ser diferencial competitivo verificável. Sair do default WordPress significa entregar performance superior, _Cumulative Layout Shift_ mais baixo, _Time to Interactive_ sob dois segundos e tipografia variável estável — vantagens que o Google ranqueia diretamente desde a consolidação dos _Core Web Vitals_ como sinal.
 
-**Tracking sofisticado é raro no nicho.** Apenas Gabriel Habib opera dois *containers* GTM em paralelo (GTM-NVZNPMQ e GTM-PKMQKVM8), o que sugere funil multi-domínio com lógica de retargeting entre o site institucional, a comunidade e o escritório de advocacia. Apenas G7 Jurídico tem GTM (GTM-KNR5RQK) acoplado a *Google Ads conversion* (AW-797375100) detectável. RSC Max não expõe GTM/GA na *home* (apesar de operar produto pago em escala). Ênfase tem zero *tracking client-side* detectável. Evinis Talon ainda usa Universal Analytics (UA-73080939-1) — formato deprecado pelo Google em julho de 2023, o que significa que o site está cego em retroativo desde então. O site institucional atual de Flávio (`professorflaviomilhomem.com.br`) também tem zero tracking. A barreira de entrada para tracking moderno (GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + Server-Side GTM no mês três + UTM Builder próprio definido no Capítulo 4.6) é baixa, e o salto qualitativo é alto. A Escola pode entrar como referência operacional do nicho, não como mais um.
+**Tracking sofisticado é raro no nicho.** Apenas Gabriel Habib opera dois _containers_ GTM em paralelo (GTM-NVZNPMQ e GTM-PKMQKVM8), o que sugere funil multi-domínio com lógica de retargeting entre o site institucional, a comunidade e o escritório de advocacia. Apenas G7 Jurídico tem GTM (GTM-KNR5RQK) acoplado a _Google Ads conversion_ (AW-797375100) detectável. RSC Max não expõe GTM/GA na _home_ (apesar de operar produto pago em escala). Ênfase tem zero _tracking client-side_ detectável. Evinis Talon ainda usa Universal Analytics (UA-73080939-1) — formato deprecado pelo Google em julho de 2023, o que significa que o site está cego em retroativo desde então. O site institucional atual de Flávio (`professorflaviomilhomem.com.br`) também tem zero tracking. A barreira de entrada para tracking moderno (GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + Server-Side GTM no mês três + UTM Builder próprio definido no Capítulo 4.6) é baixa, e o salto qualitativo é alto. A Escola pode entrar como referência operacional do nicho, não como mais um.
 
-**Marketplaces capturam margem.** RSC Max delega cobrança para a Editora Juspodivm (assinatura mensal/semestral/anual). Gabriel Habib opera a Comunidade Penal Full pela Hotmart. Evinis Talon vende o Curso Talon por uma *landing page* white-label do Hotmart Klickart hospedada em S3, com *Content-Security-Policy* autorizando frames de *hotmart.com*, *klickpages.com.br*, *eduzz.com* e *monetizze.com.br* — isto é, é uma *landing page* alugada da plataforma. Apenas G7 Jurídico e Ênfase têm checkout próprio. Esse é exatamente o problema da Eduzz orbita do Flávio hoje: margem comprometida pela plataforma, dado de cliente fora da agência, ausência de retargeting próprio. A integração direta com Pagar.me prevista no Capítulo 4.7 — com Eduzz como ponte transitória — é decisão estrutural, não preferência.
+**Marketplaces capturam margem.** RSC Max delega cobrança para a Editora Juspodivm (assinatura mensal/semestral/anual). Gabriel Habib opera a Comunidade Penal Full pela Hotmart. Evinis Talon vende o Curso Talon por uma _landing page_ white-label do Hotmart Klickart hospedada em S3, com _Content-Security-Policy_ autorizando frames de _hotmart.com_, _klickpages.com.br_, _eduzz.com_ e _monetizze.com.br_ — isto é, é uma _landing page_ alugada da plataforma. Apenas G7 Jurídico e Ênfase têm checkout próprio. Esse é exatamente o problema da Eduzz orbita do Flávio hoje: margem comprometida pela plataforma, dado de cliente fora da agência, ausência de retargeting próprio. A integração direta com Pagar.me prevista no Capítulo 4.7 — com Eduzz como ponte transitória — é decisão estrutural, não preferência.
 
 **Tickets explícitos capturados.** RSC Max: R$ 49,90/mês (Básico), R$ 74,90/mês (Avançado), 10× R$ 239,88 anual (~R$ 2.398). Ênfase: Juiz Federal R$ 2.443,70, Procuradorias R$ 2.517,24, Pós-graduação R$ 2.231,19, parcelado em 12 vezes. G7 Jurídico não publica ticket na home. Gabriel Habib: cursos avulsos no Hotmart entre R$ 97-300, Comunidade Penal Full em modelo de assinatura sem ticket público. Evinis Talon: assinatura via Hotmart com garantia de sete dias, preço atrás do checkout. **Inferência sobre o ticket-fundador da Edição Lançamento da Escola Flávio Milhomem (formalização do ponto 1.5):** o piso de mercado para cohort especialista de doze a vinte semanas com acesso ao professor está entre R$ 2.500 e R$ 4.000 à vista (Ênfase + Habib + benchmark de cohort em Direito penal premium). A Edição Lançamento, como turma única, com ticket-fundador, justifica posicionamento entre R$ 2.997 e R$ 3.997 com possibilidade de R$ 4.997 dependendo do desenho final. Cifras precisas dependem do briefing do Flávio (Bloco K) ainda em aberto.
 
-**Tech debt do site atual de Flávio (`professorflaviomilhomem.com.br`).** Auditoria observou: *meta description* posicionando o produto para "advogados criminalistas" — narrativa equivocada, dado o reposicionamento como Promotor ativo (Capítulo 1.2). Schema.org com apenas um bloco JSON-LD. Zero tracking client-side. *Footer* com a string "Escola de Direito Criminal", o que confirma a categoria já presente na auto-percepção do Flávio (e justifica a marca "Escola Flávio Milhomem" usada neste Livro-Guia). A migração de domínio para `escolaflaviomilhomem.com.br` (decisão pendente em 4.12) precisa preservar o *equity* branded existente via *redirect* 301 cuidadoso, schema *sameAs* apontando para os perfis institucionais de Flávio (MPDFT, LinkedIn, Google Scholar, Amazon do livro) e página "Sobre Flávio" rica em *credentials* externas verificáveis.
+**Tech debt do site atual de Flávio (`professorflaviomilhomem.com.br`).** Auditoria observou: _meta description_ posicionando o produto para "advogados criminalistas" — narrativa equivocada, dado o reposicionamento como Promotor ativo (Capítulo 1.2). Schema.org com apenas um bloco JSON-LD. Zero tracking client-side. _Footer_ com a string "Escola de Direito Criminal", o que confirma a categoria já presente na auto-percepção do Flávio (e justifica a marca "Escola Flávio Milhomem" usada neste Livro-Guia). A migração de domínio para `escolaflaviomilhomem.com.br` (decisão pendente em 4.12) precisa preservar o _equity_ branded existente via _redirect_ 301 cuidadoso, schema _sameAs_ apontando para os perfis institucionais de Flávio (MPDFT, LinkedIn, Google Scholar, Amazon do livro) e página "Sobre Flávio" rica em _credentials_ externas verificáveis.
 
 **Implicações arquiteturais sintéticas, derivadas da auditoria:**
 
 1. Stack moderna (Next.js 16 + Cache Components + Tailwind 4 + shadcn/ui + WeasyPrint para PDF) é diferencial real, não over-engineering. Implementar.
-2. *Tracking* baseline desde o dia um, com pelo menos GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + UTM Builder interno + GTM container único. Server-Side GTM a partir do mês três a seis.
-3. Schema.org agressivo: Person (Flávio com *sameAs* MPDFT/LinkedIn/Instagram/Google Scholar/Amazon), Course (cada cohort), Organization (Escola), VideoObject (cada aula gratuita), FAQPage (perguntas frequentes), EducationalOccupationalCredential (certificado). Implementação no MVP.
+2. _Tracking_ baseline desde o dia um, com pelo menos GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + UTM Builder interno + GTM container único. Server-Side GTM a partir do mês três a seis.
+3. Schema.org agressivo: Person (Flávio com _sameAs_ MPDFT/LinkedIn/Instagram/Google Scholar/Amazon), Course (cada cohort), Organization (Escola), VideoObject (cada aula gratuita), FAQPage (perguntas frequentes), EducationalOccupationalCredential (certificado). Implementação no MVP.
 4. Checkout próprio com Pagar.me. Eduzz como ponte transitória nos primeiros três a seis meses, depois encerramento.
 5. Defesa de marca no Google Ads desde o dia um (orçamento R$ 800-1.500/mês conforme Capítulo 7.5).
 6. Domínio definitivo decidido na primeira semana do plano de catorze dias. Registro tripartite: `escolaflaviomilhomem.com.br`, `flaviomilhomem.com.br`, `escoladopromotor.com.br`. Canonical único após decisão.
@@ -357,7 +357,7 @@ O drama central de Mariana é o cansaço mental em ciclo longo. Ela já passou p
 
 Mariana descobre professor pelo Instagram (primeiro contato é quase sempre um carrossel com texto denso ou um reels curto de análise de decisão recente), pesquisa no Google nome do professor + "avaliação", entra no site do professor, procura biografia completa, baixa material gratuito, entra em lista de e-mail, recebe dois a três e-mails antes de decidir compra, conversa em grupo de WhatsApp com colega que tenha feito o curso. O ciclo de decisão vai de sete a trinta dias. Ticket que ela aprova, sem hesitar, entre mil e quinhentos e três mil para curso percebido como indispensável; acima de três mil, ela considera com cautela e precisa ver prova social forte. O gatilho de compra mais eficaz para Mariana é **autoridade verificável** (biografia institucional, livros publicados, cargo atual) combinada com **depoimento de aprovado recente** (alguém que passou usando o método). Gatilho pouco eficaz: escassez artificial, "bônus exclusivo", contador falso. Esses fazem Mariana desconfiar e sair do carrinho.
 
-Para Mariana, a Escola Flávio Milhomem se posiciona com a frase: *"O Promotor que corrige a sua peça como a banca vai corrigir."* Produto de entrada: isca gratuita "Decisões do STJ que toda banca cobra" ou "As dez armadilhas do concurso criminal vistas pelo lado da acusação", captura o e-mail dela. Produto tripwire: "Análise por dentro: cinco HCs recentes que mudam o jogo" por R$ 297-497. Produto principal: "Edição Lançamento — Direito Penal pela perspectiva da acusação, cohort 12 semanas" por R$ 1.997-2.497 (ticket fundador). Produto recorrente: comunidade mensal R$ 97-147 para manter acesso a análise de informativo e fórum.
+Para Mariana, a Escola Flávio Milhomem se posiciona com a frase: _"O Promotor que corrige a sua peça como a banca vai corrigir."_ Produto de entrada: isca gratuita "Decisões do STJ que toda banca cobra" ou "As dez armadilhas do concurso criminal vistas pelo lado da acusação", captura o e-mail dela. Produto tripwire: "Análise por dentro: cinco HCs recentes que mudam o jogo" por R$ 297-497. Produto principal: "Edição Lançamento — Direito Penal pela perspectiva da acusação, cohort 12 semanas" por R$ 1.997-2.497 (ticket fundador). Produto recorrente: comunidade mensal R$ 97-147 para manter acesso a análise de informativo e fórum.
 
 ## 3.3 Persona 2 — Rafael, o advogado criminalista em formação
 
@@ -367,7 +367,7 @@ O drama central de Rafael é de **autoridade em construção**. Ele quer ser vis
 
 Ticket de Rafael é mais alto: entre dois mil e quatro mil, ele aprova sem hesitar; acima de quatro, precisa ver correspondência clara entre investimento e diferencial de carreira. Gatilho de compra eficaz: **densidade técnica** (mostra ementa detalhada, amostra de aula, depoimento de advogado em carreira), **credencial acadêmica** (mestrado, escola europeia, artigo em revista), **posição institucional** (Promotor ativo é exatamente o que ele quer ter como professor — ele aprende por dentro como a acusação opera para poder construir defesa melhor).
 
-Para Rafael, a Escola se posiciona com a frase: *"Aprenda a pensar como o Promotor que está do outro lado da sua sustentação."* Produto de entrada: artigo longo no blog, análise de decisão recente do STF em caso econômico, captura e-mail via download de material complementar. Produto tripwire: "Masterclass: Análise da Lei Anticrime pela perspectiva da acusação" por R$ 497-797. Produto principal: cohort com ticket fundador R$ 2.497. Produto premium futuro: mentoria em pequeno grupo voltada para advogados, com casos anonimizados, ticket R$ 7.000-12.000 em cohort semestral.
+Para Rafael, a Escola se posiciona com a frase: _"Aprenda a pensar como o Promotor que está do outro lado da sua sustentação."_ Produto de entrada: artigo longo no blog, análise de decisão recente do STF em caso econômico, captura e-mail via download de material complementar. Produto tripwire: "Masterclass: Análise da Lei Anticrime pela perspectiva da acusação" por R$ 497-797. Produto principal: cohort com ticket fundador R$ 2.497. Produto premium futuro: mentoria em pequeno grupo voltada para advogados, com casos anonimizados, ticket R$ 7.000-12.000 em cohort semestral.
 
 ## 3.4 Persona 3 — Dr. Otávio, o servidor público em educação continuada
 
@@ -375,7 +375,7 @@ Otávio tem quarenta e sete anos, é Juiz de Direito há dezessete anos, hoje ti
 
 Otávio descobre curso via indicação de colega dentro do tribunal, via newsletter institucional, via LinkedIn de pessoa que ele segue. Ele não consome Instagram jurídico com muita profundidade; consome LinkedIn e lê blog de análise (Conjur, Jota, Migalhas). Ticket não é entrave: ele paga cinco, sete, dez mil por programa de alta qualidade se a entrega for percebida como séria.
 
-Para Otávio, a Escola se posiciona como interlocução entre pares. A frase: *"Diálogo de carreira com um Promotor do MPDFT, autor, mestre pela Católica de Portugal."* Produto de entrada: newsletter quinzenal institucional "O olhar do Promotor — informativo comentado". Produto principal: assinatura anual de "Atualização Criminal Continuada" por R$ 1.800-2.400 ao ano, com cadência quinzenal de conteúdo denso, fórum por tema, encontro mensal síncrono com Flávio e convidados. Esse produto é viável na segunda ou terceira onda do roadmap (Capítulo 8), não no lançamento inicial.
+Para Otávio, a Escola se posiciona como interlocução entre pares. A frase: _"Diálogo de carreira com um Promotor do MPDFT, autor, mestre pela Católica de Portugal."_ Produto de entrada: newsletter quinzenal institucional "O olhar do Promotor — informativo comentado". Produto principal: assinatura anual de "Atualização Criminal Continuada" por R$ 1.800-2.400 ao ano, com cadência quinzenal de conteúdo denso, fórum por tema, encontro mensal síncrono com Flávio e convidados. Esse produto é viável na segunda ou terceira onda do roadmap (Capítulo 8), não no lançamento inicial.
 
 ## 3.5 Persona 4 — Luísa, a estudante de graduação em estrato superior
 
@@ -389,7 +389,7 @@ Ticket de Luísa é baixo — ela paga entre quatrocentos e mil e duzentos por c
 
 Paulo tem cinquenta e cinco anos, é professor de Direito Penal em faculdade privada em São Paulo, advoga pontualmente como parecerista, autor de livro, comentador de decisão em coluna jurídica. Para ele, a Escola não vende conteúdo — vende **material de referência**, **interlocução qualificada** e **visibilidade cruzada**. Ele pode comprar produto premium da Escola por afinidade intelectual, pode participar de painel convidado, pode indicar a Escola para alunos seus.
 
-Para Paulo, a Escola se posiciona como espaço de troca acadêmica. A frase: *"Diálogo de autoridade entre quem ensina e quem pratica."* Produto: eventualmente, participação em painel de abertura de cohort; assinatura institucional de material; citação cruzada em livro e revista. Paulo é menos um cliente e mais um **multiplicador**: o acesso a ele vem via LinkedIn, evento, publicação.
+Para Paulo, a Escola se posiciona como espaço de troca acadêmica. A frase: _"Diálogo de autoridade entre quem ensina e quem pratica."_ Produto: eventualmente, participação em painel de abertura de cohort; assinatura institucional de material; citação cruzada em livro e revista. Paulo é menos um cliente e mais um **multiplicador**: o acesso a ele vem via LinkedIn, evento, publicação.
 
 ## 3.7 Jornadas por persona — mapa consolidado
 
@@ -415,19 +415,19 @@ Em abril de 2026, a Orbita executou a captura de SERPs em tempo real para essas 
 
 ## 3.8.1 Achados da captura de SERPs e do mapa de volumes (abr/2026)
 
-**Distribuição de volume estimada.** Dezessete das cinquenta palavras-chave estão em faixa transacional branded com volume residual abaixo de cem buscas mensais (todas as quinze de fundo de funil mais "flavio milhomem curso", "flavio milhomem mpdft", "ouvidor geral mpdft", "professores direito penal instagram", "curso processo penal militar", "dogmática penal brasileira", "direito penal mpdft"). Dezesseis estão na faixa cem a mil, que é o sweet spot operacional: long-tail temática viável mais branded comparativo de player médio mais nichos militares mais jurisprudência atualizada. Sete estão na faixa mil a dez mil ("o que é princípio da insignificância", "lei anticrime comentada", "princípio da insignificância jurisprudência", "crimes contra a administração pública", "crime de corrupção passiva", "denúncia ministério público exemplo", "carreira ministério público", "ministério público como funciona", "melhor curso direito penal concurso", "curso direito penal online" — totalizando dez se contar precisamente). Apenas uma keyword está em faixa dez mil ou mais ("direito penal concurso") — e é exatamente a *cabeça* onde a Escola não vai brigar nos primeiros doze meses.
+**Distribuição de volume estimada.** Dezessete das cinquenta palavras-chave estão em faixa transacional branded com volume residual abaixo de cem buscas mensais (todas as quinze de fundo de funil mais "flavio milhomem curso", "flavio milhomem mpdft", "ouvidor geral mpdft", "professores direito penal instagram", "curso processo penal militar", "dogmática penal brasileira", "direito penal mpdft"). Dezesseis estão na faixa cem a mil, que é o sweet spot operacional: long-tail temática viável mais branded comparativo de player médio mais nichos militares mais jurisprudência atualizada. Sete estão na faixa mil a dez mil ("o que é princípio da insignificância", "lei anticrime comentada", "princípio da insignificância jurisprudência", "crimes contra a administração pública", "crime de corrupção passiva", "denúncia ministério público exemplo", "carreira ministério público", "ministério público como funciona", "melhor curso direito penal concurso", "curso direito penal online" — totalizando dez se contar precisamente). Apenas uma keyword está em faixa dez mil ou mais ("direito penal concurso") — e é exatamente a _cabeça_ onde a Escola não vai brigar nos primeiros doze meses.
 
 **Cinco arquétipos de SERP detectados, cada um com posicionamento próprio.**
 
-*Arquétipo 1 — Cabeça-de-funil dominada por agregadores.* Sete a oito agregadores de concurso (Estratégia, Gran Cursos, Pciconcursos, Qconcursos, Próximos Concursos, Alfaconcursos, Ceisc) dominam as posições um a dez nas keywords genéricas. *Postura recomendada para a Escola:* não brigar nos primeiros doze meses. Atalho: long-tail temática mais nicho (acusação, militar, MPDFT-específico).
+_Arquétipo 1 — Cabeça-de-funil dominada por agregadores._ Sete a oito agregadores de concurso (Estratégia, Gran Cursos, Pciconcursos, Qconcursos, Próximos Concursos, Alfaconcursos, Ceisc) dominam as posições um a dez nas keywords genéricas. _Postura recomendada para a Escola:_ não brigar nos primeiros doze meses. Atalho: long-tail temática mais nicho (acusação, militar, MPDFT-específico).
 
-*Arquétipo 2 — Conceitual jurídico saturado.* "Princípio da insignificância", "crimes contra a administração pública", "corrupção passiva" são tópicos cobertos por dezenas de blogs jurídicos genéricos (Jusbrasil, Migalhas, Conjur, blogs de tribunais). Domínio individual de Promotor ativo com jurisprudência comentada e olhar crítico bate o Jusbrasil-genérico em qualidade — mas exige consistência editorial. *Postura recomendada:* assumir tom autoral, não-genérico; nunca "caminhar onde todos caminham" — comentar caso real, citar tese de autoria própria, posicionar pela acusação.
+_Arquétipo 2 — Conceitual jurídico saturado._ "Princípio da insignificância", "crimes contra a administração pública", "corrupção passiva" são tópicos cobertos por dezenas de blogs jurídicos genéricos (Jusbrasil, Migalhas, Conjur, blogs de tribunais). Domínio individual de Promotor ativo com jurisprudência comentada e olhar crítico bate o Jusbrasil-genérico em qualidade — mas exige consistência editorial. _Postura recomendada:_ assumir tom autoral, não-genérico; nunca "caminhar onde todos caminham" — comentar caso real, citar tese de autoria própria, posicionar pela acusação.
 
-*Arquétipo 3 — Nicho aberto onde Flávio é autor.* "Processo penal militar", "direito penal militar", "prova digital no processo penal", "cadeia de custódia prova digital", "denúncia ministério público exemplo". SERP fragmentada, sem player consolidado, e em quase todas Flávio tem livro próprio ou produto Eduzz já publicado. *Postura recomendada:* prioridade alta para conteúdo blog plus página de produto plus *schema* de autor, com expectativa razoável de Top 5 em três a seis meses.
+_Arquétipo 3 — Nicho aberto onde Flávio é autor._ "Processo penal militar", "direito penal militar", "prova digital no processo penal", "cadeia de custódia prova digital", "denúncia ministério público exemplo". SERP fragmentada, sem player consolidado, e em quase todas Flávio tem livro próprio ou produto Eduzz já publicado. _Postura recomendada:_ prioridade alta para conteúdo blog plus página de produto plus _schema_ de autor, com expectativa razoável de Top 5 em três a seis meses.
 
-*Arquétipo 4 — Branded comparativo de concorrente sem reviews independentes.* "Rsc max vale a pena", "gabriel habib curso", "comunidade penal full" — SERPs pequenas com o oficial e poucos atravessadores. Página comparativa honesta ("Escola Flávio Milhomem versus RSC Max", "versus Gabriel Habib") captura tráfego comparador alto-de-funil. *Postura recomendada:* uma página comparativa por concorrente principal, honesta, sem ataque direto, com critérios claros (formato, perspectiva, ticket, comunidade), usando o framework do Capítulo 1.6.
+_Arquétipo 4 — Branded comparativo de concorrente sem reviews independentes._ "Rsc max vale a pena", "gabriel habib curso", "comunidade penal full" — SERPs pequenas com o oficial e poucos atravessadores. Página comparativa honesta ("Escola Flávio Milhomem versus RSC Max", "versus Gabriel Habib") captura tráfego comparador alto-de-funil. _Postura recomendada:_ uma página comparativa por concorrente principal, honesta, sem ataque direto, com critérios claros (formato, perspectiva, ticket, comunidade), usando o framework do Capítulo 1.6.
 
-*Arquétipo 5 — Branded próprio com SERPs vazias.* Quinze keywords transacionais mais quatro institucionais mais quatro de produto totalizam vinte e três keywords brand-zero. *Postura recomendada:* (a) site próprio precisa rankear topo; (b) Google Ads de defesa de marca desde o dia um, orçamento R$ 800-1.500/mês conforme 7.5; (c) cada keyword virá com sua URL canônica (/turma-2026, /sobre-flavio, /comprar, /agenda).
+_Arquétipo 5 — Branded próprio com SERPs vazias._ Quinze keywords transacionais mais quatro institucionais mais quatro de produto totalizam vinte e três keywords brand-zero. _Postura recomendada:_ (a) site próprio precisa rankear topo; (b) Google Ads de defesa de marca desde o dia um, orçamento R$ 800-1.500/mês conforme 7.5; (c) cada keyword virá com sua URL canônica (/turma-2026, /sobre-flavio, /comprar, /agenda).
 
 **Achado estratégico transversal.** A SERP brasileira em educação jurídica privilegia agregadores na cabeça (Estratégia, Gran Cursos) e blogs em massa nos conceitos. Não há player individual com cobertura editorial densa, atualizada e autoral em Direito Penal. Esse é o vácuo competitivo onde a Escola Flávio Milhomem entra — não para superar a Estratégia em "direito penal concurso", mas para se tornar referência editorial autoral em Direito Penal pela acusação.
 
@@ -459,17 +459,17 @@ Cinco personas, duas prioritárias para o lançamento inicial (Mariana e Rafael)
 
 ## 4.1 Princípios de decisão tecnológica
 
-A escolha da *stack* de tecnologia para a Escola Flávio Milhomem é decisão estratégica, não apenas técnica. Ela responde a cinco princípios, que precedem e orientam qualquer debate sobre framework, biblioteca ou provedor.
+A escolha da _stack_ de tecnologia para a Escola Flávio Milhomem é decisão estratégica, não apenas técnica. Ela responde a cinco princípios, que precedem e orientam qualquer debate sobre framework, biblioteca ou provedor.
 
-Primeiro, **alinhamento com o padrão Orbee Labs**. A Orbee Labs já tem uma *stack* padrão validada em projetos anteriores — Next.js 16 em App Router, React 19.2.4, TypeScript 5.8, Tailwind 4.1, shadcn/ui, Prisma 7.5, PostgreSQL gerenciado via Neon, deploy em Vercel. Sair desse padrão sem razão forte é multiplicar custo de manutenção e curva de aprendizado da equipe; permanecer dentro dele é capitalizar conhecimento já pago. A decisão default é "usar a *stack* padrão Orbee"; desvios precisam de justificativa explícita.
+Primeiro, **alinhamento com o padrão Orbee Labs**. A Orbee Labs já tem uma _stack_ padrão validada em projetos anteriores — Next.js 16 em App Router, React 19.2.4, TypeScript 5.8, Tailwind 4.1, shadcn/ui, Prisma 7.5, PostgreSQL gerenciado via Neon, deploy em Vercel. Sair desse padrão sem razão forte é multiplicar custo de manutenção e curva de aprendizado da equipe; permanecer dentro dele é capitalizar conhecimento já pago. A decisão default é "usar a _stack_ padrão Orbee"; desvios precisam de justificativa explícita.
 
-Segundo, **primado do SEO e da performance**. A Escola precisa rankear no Google desde o primeiro mês, e a rotina de conteúdo (blog, análise de decisão, página por curso) depende de Server-Side Rendering e de tempo de carregamento agressivamente otimizado. Next.js em App Router entrega isso nativamente. Evitar *stacks* SPA puras (Vite + React sem SSR) é deliberação consciente.
+Segundo, **primado do SEO e da performance**. A Escola precisa rankear no Google desde o primeiro mês, e a rotina de conteúdo (blog, análise de decisão, página por curso) depende de Server-Side Rendering e de tempo de carregamento agressivamente otimizado. Next.js em App Router entrega isso nativamente. Evitar _stacks_ SPA puras (Vite + React sem SSR) é deliberação consciente.
 
 Terceiro, **minimizar lock-in em infoproduto SaaS terceirizado**. O briefing define que o CRM será codado pela Orbee Labs, não uma integração permanente com HubSpot, Active Campaign, Sendinblue ou similar. Essa decisão é estratégica: a Escola não quer replicar o padrão Hotmart/Eduzz onde a plataforma captura dados do cliente, margem e relacionamento. Eduzz fica no transitório (os dois produtos já publicados continuam lá) mas a arquitetura final é de cliente-primeiro em base própria.
 
-Quarto, **integração obrigatória com Pagar.me**. A decisão comercial do briefing é Pagar.me (stone) como gateway principal, pelas taxas, pela qualidade da API, pela possibilidade de antecipação. Primeira vez da equipe com Pagar.me: prever *sprint* dedicada, ambiente *sandbox*, testes de cartão, PIX, boleto, *subscription*, *3DS*, *chargeback*. Não subestimar.
+Quarto, **integração obrigatória com Pagar.me**. A decisão comercial do briefing é Pagar.me (stone) como gateway principal, pelas taxas, pela qualidade da API, pela possibilidade de antecipação. Primeira vez da equipe com Pagar.me: prever _sprint_ dedicada, ambiente _sandbox_, testes de cartão, PIX, boleto, _subscription_, _3DS_, _chargeback_. Não subestimar.
 
-Quinto, **observabilidade e tracking desde o dia um**. O projeto não repete o erro de construir funil sem medição. UTM Builder interno (codado), Google Analytics 4 + GTM, Meta Pixel, LinkedIn Insight, pixel próprio, PostHog ou equivalente para *product analytics*, Sentry para erro, Vercel Analytics para Web Vitals. Tudo configurado antes do primeiro anúncio.
+Quinto, **observabilidade e tracking desde o dia um**. O projeto não repete o erro de construir funil sem medição. UTM Builder interno (codado), Google Analytics 4 + GTM, Meta Pixel, LinkedIn Insight, pixel próprio, PostHog ou equivalente para _product analytics_, Sentry para erro, Vercel Analytics para Web Vitals. Tudo configurado antes do primeiro anúncio.
 
 ## 4.2 Arquitetura de alto nível
 
@@ -479,9 +479,9 @@ A Escola opera em três camadas principais de software, conectadas por APIs.
 
 **Camada 2 — Plataforma de curso (`aluno.flaviomilhomem.com.br` ou subdomínio equivalente, estilo Netflix):** Next.js também, mas com sessão autenticada, player de vídeo (Cloudflare Stream ou Mux, detalhado adiante), fórum por aula (comentários aninhados codados internamente), área de material PDF, certificado emitido. Conecta ao site institucional via SSO interno. Acesso depende de compra registrada no CRM.
 
-**Camada 3 — Backend e CRM (codado):** servidor Next.js em rota API e/ou serviço separado em Node, Prisma como ORM, PostgreSQL no Neon, autenticação via Auth.js (NextAuth v5) com provedor *email magic link* + Google OAuth, tabelas principais: User, Product, Order, Subscription, Lesson, Comment, LeadMagnet, EmailCampaign, UTMEvent. CRM interno tem *dashboard* próprio acessível a Flávio e à equipe — lista de lead, segmentação, histórico de e-mail, comportamento no site, origem UTM, estado na jornada.
+**Camada 3 — Backend e CRM (codado):** servidor Next.js em rota API e/ou serviço separado em Node, Prisma como ORM, PostgreSQL no Neon, autenticação via Auth.js (NextAuth v5) com provedor _email magic link_ + Google OAuth, tabelas principais: User, Product, Order, Subscription, Lesson, Comment, LeadMagnet, EmailCampaign, UTMEvent. CRM interno tem _dashboard_ próprio acessível a Flávio e à equipe — lista de lead, segmentação, histórico de e-mail, comportamento no site, origem UTM, estado na jornada.
 
-Integrações externas da Camada 3: Pagar.me (gateway pagamento), provedor de e-mail transacional (Resend, Postmark ou SendGrid — recomendação Resend pela integração direta com Vercel), provedor de e-mail marketing (pode ser serviço próprio sobre Resend + fila, ou Sendy em VPS minúscula, decisão técnica na *sprint* 2), Eduzz API (transitório, leitura de venda antiga), YouTube Data API (embeds, métricas), Meta Graph API (pixel server-side).
+Integrações externas da Camada 3: Pagar.me (gateway pagamento), provedor de e-mail transacional (Resend, Postmark ou SendGrid — recomendação Resend pela integração direta com Vercel), provedor de e-mail marketing (pode ser serviço próprio sobre Resend + fila, ou Sendy em VPS minúscula, decisão técnica na _sprint_ 2), Eduzz API (transitório, leitura de venda antiga), YouTube Data API (embeds, métricas), Meta Graph API (pixel server-side).
 
 ## 4.3 Próxima camada — player de vídeo e armazenamento
 
@@ -495,7 +495,7 @@ O briefing é explícito: Flávio quer **fórum**, não "comunidade Discord" ou 
 
 A arquitetura do fórum é de **comentários aninhados por aula**, no estilo Disqus mas interno. Tabela `Comment` com campos `id`, `user_id`, `lesson_id`, `parent_id` (nullable, para aninhamento), `content` (markdown simples), `created_at`, `updated_at`, `moderation_status`. Interface React: árvore de comentário com profundidade máxima de três níveis visíveis (quatro+ ficam em "ver respostas"), reação por emoji limitada (coração e joinha), marcação de "resposta do Professor" destacada. Moderação assíncrona: comentários de aluno passam, comentários com palavras-chave suspeitas ou de usuário novo entram em fila. Ferramenta interna de moderação para equipe (dashboard simples).
 
-Conteúdo do fórum é um dos maiores ativos de retenção da Escola. Ele deve ser versátil o suficiente para suportar, na segunda onda, tópicos cross-cohort (não atados a aula específica) — isto é, virar *comunidade dentro da plataforma*, sem fugir para Discord/WhatsApp.
+Conteúdo do fórum é um dos maiores ativos de retenção da Escola. Ele deve ser versátil o suficiente para suportar, na segunda onda, tópicos cross-cohort (não atados a aula específica) — isto é, virar _comunidade dentro da plataforma_, sem fugir para Discord/WhatsApp.
 
 ## 4.5 Integração Eduzz — ponte de transição
 
@@ -507,21 +507,21 @@ Migração definitiva dos dois produtos Eduzz para plataforma própria é decis�
 
 O UTM Builder é ferramenta interna codada pela Orbee Labs, acessível apenas à equipe Flávio + Orbee Labs. Função: gerar, a partir de um formulário (campanha, canal, mídia, conteúdo, termo), URLs padronizadas com parâmetros UTM consistentes, com slug encurtado próprio (`flm.br/abc123`), rastreadas no banco. Cada clique em link encurtado é evento na tabela `UTMEvent`, com timestamp, user_agent, IP (hash), geolocalização, origem UTM, destino. Cruza com eventos de conversão no CRM para medir funil end-to-end por canal.
 
-Por que codar em vez de usar bit.ly ou similar? Controle total de dado, zero custo recorrente, integração nativa com CRM, privacidade (sem dado enviado a terceiro). É *sprint* pequena (estimativa: 2-3 dias com UI simples).
+Por que codar em vez de usar bit.ly ou similar? Controle total de dado, zero custo recorrente, integração nativa com CRM, privacidade (sem dado enviado a terceiro). É _sprint_ pequena (estimativa: 2-3 dias com UI simples).
 
 ## 4.7 Pagar.me — integração detalhada
 
-O briefing sinaliza que é primeira vez da equipe com Pagar.me, portanto é *sprint* dedicada, não paralela. O escopo mínimo da integração:
+O briefing sinaliza que é primeira vez da equipe com Pagar.me, portanto é _sprint_ dedicada, não paralela. O escopo mínimo da integração:
 
 Criar conta Pagar.me empresarial (CNPJ), passar KYC, configurar conta bancária de recebimento, definir antecipação (taxa pós-antecipação).
 
-Implementar checkout com suporte a: cartão de crédito à vista e parcelado até 12x com juros do gateway, PIX (instantâneo, taxa baixa), boleto bancário (fallback). *3DS* ativado para cartões acima de ticket mínimo (R$ 500, convencional).
+Implementar checkout com suporte a: cartão de crédito à vista e parcelado até 12x com juros do gateway, PIX (instantâneo, taxa baixa), boleto bancário (fallback). _3DS_ ativado para cartões acima de ticket mínimo (R$ 500, convencional).
 
-Implementar *webhook* de atualização de status da transação (authorized, paid, refused, chargedback, refunded). *Webhook* alimenta tabela `Order` com estado atual. Reconciliação diária via cron: listar transações Pagar.me, conferir contra `Order`, corrigir divergência.
+Implementar _webhook_ de atualização de status da transação (authorized, paid, refused, chargedback, refunded). _Webhook_ alimenta tabela `Order` com estado atual. Reconciliação diária via cron: listar transações Pagar.me, conferir contra `Order`, corrigir divergência.
 
-Implementar *subscription* para produtos recorrentes (comunidade mensal R$ 97-147): cobrança recorrente mensal, cancelamento self-service, upgrade/downgrade, retentativa automática em falha (3 tentativas com intervalo de 3 dias), suspensão de acesso após falha definitiva.
+Implementar _subscription_ para produtos recorrentes (comunidade mensal R$ 97-147): cobrança recorrente mensal, cancelamento self-service, upgrade/downgrade, retentativa automática em falha (3 tentativas com intervalo de 3 dias), suspensão de acesso após falha definitiva.
 
-Testar exaustivamente em ambiente *sandbox* antes de produção: cartões de teste da Pagar.me, cenários de chargeback simulado, PIX real com valor mínimo.
+Testar exaustivamente em ambiente _sandbox_ antes de produção: cartões de teste da Pagar.me, cenários de chargeback simulado, PIX real com valor mínimo.
 
 Política de reembolso: 7 dias por Código de Defesa do Consumidor + garantia estendida da Escola conforme oferta (recomendação: 15 dias incondicionais para cohort de alto ticket). Fluxo de reembolso integrado: aluno solicita via área logada, equipe aprova ou contesta, chamada à API Pagar.me `/refunds`, confirmação por e-mail.
 
@@ -549,7 +549,7 @@ Estrutura de URL semanticamente limpa, orientada a SEO:
 
 Subdomínio do aluno:
 
-- `/` — *dashboard*
+- `/` — _dashboard_
 - `/cursos/{slug}` — página do curso matriculado
 - `/aulas/{slug}` — player da aula
 - `/forum` — fórum geral
@@ -563,11 +563,11 @@ Subdomínio do aluno:
 
 **Google Tag Manager (GTM)** como orquestrador — facilita adição de tag sem deploy de código.
 
-**Meta Pixel** para campanhas Instagram/Facebook, com Conversions API *server-side* (Pagar.me webhook → servidor → Facebook CAPI) para recuperar evento perdido por iOS/Safari.
+**Meta Pixel** para campanhas Instagram/Facebook, com Conversions API _server-side_ (Pagar.me webhook → servidor → Facebook CAPI) para recuperar evento perdido por iOS/Safari.
 
 **LinkedIn Insight Tag** para campanhas LinkedIn.
 
-**PostHog** (auto-hospedado em VPS pequena) ou **Mixpanel** (hospedado) para *product analytics* — funil de matrícula, retenção de aluno em aula, conclusão de trilha. Recomendação: PostHog auto-hospedado, porque é gratuito em escala pequena-média e mantém dados sob controle.
+**PostHog** (auto-hospedado em VPS pequena) ou **Mixpanel** (hospedado) para _product analytics_ — funil de matrícula, retenção de aluno em aula, conclusão de trilha. Recomendação: PostHog auto-hospedado, porque é gratuito em escala pequena-média e mantém dados sob controle.
 
 **Sentry** para monitoramento de erro em produção, ambiente Next.js e API.
 
@@ -575,7 +575,7 @@ Subdomínio do aluno:
 
 **UTM Builder interno** (ver 4.6) alimenta tabela própria; cruza com GA4 via parâmetros UTM canônicos.
 
-A política de consentimento (LGPD): banner de primeiro acesso com opt-in explícito para analytics não essencial, respeitando Art. 7º da LGPD. Ferramentas essenciais (autenticação, segurança) dispensam consentimento; analytics e marketing exigem. Implementação via biblioteca *cookie consent* padrão da equipe.
+A política de consentimento (LGPD): banner de primeiro acesso com opt-in explícito para analytics não essencial, respeitando Art. 7º da LGPD. Ferramentas essenciais (autenticação, segurança) dispensam consentimento; analytics e marketing exigem. Implementação via biblioteca _cookie consent_ padrão da equipe.
 
 ## 4.10 Segurança, LGPD e hardening
 
@@ -583,15 +583,15 @@ A Escola trata dados pessoais sensíveis (nome, CPF, e-mail, telefone, cartão v
 
 **Camada de transporte:** SSL/TLS em todos os domínios, HSTS, certificados gerenciados pela Vercel. Redirecionamento automático HTTP → HTTPS.
 
-**Camada de aplicação:** autenticação via Auth.js com sessão em cookie HttpOnly + SameSite=Lax, rate limiting em endpoints de autenticação (Upstash Redis ou Vercel KV), proteção CSRF nativa do Next.js em formulário de mutação. Sanitização de input em fórum (conteúdo em markdown com *whitelist* de tags, sem HTML bruto). Prepared statements via Prisma evitam SQL injection.
+**Camada de aplicação:** autenticação via Auth.js com sessão em cookie HttpOnly + SameSite=Lax, rate limiting em endpoints de autenticação (Upstash Redis ou Vercel KV), proteção CSRF nativa do Next.js em formulário de mutação. Sanitização de input em fórum (conteúdo em markdown com _whitelist_ de tags, sem HTML bruto). Prepared statements via Prisma evitam SQL injection.
 
-**Camada de dados:** banco Neon criptografado *at rest*, backup automático diário. Dados sensíveis (CPF) armazenados com hash ou segmentados. Tokens Pagar.me nunca armazenados em claro — apenas identificadores de cartão (last4, brand) para UI. Logs de acesso administrativo auditados.
+**Camada de dados:** banco Neon criptografado _at rest_, backup automático diário. Dados sensíveis (CPF) armazenados com hash ou segmentados. Tokens Pagar.me nunca armazenados em claro — apenas identificadores de cartão (last4, brand) para UI. Logs de acesso administrativo auditados.
 
-**LGPD:** *Privacy Policy* publicada em `/privacidade` com linguagem clara, enumeração de dados coletados, finalidade, base legal (geralmente consentimento + execução de contrato + legítimo interesse), direitos do titular (acesso, correção, exclusão, portabilidade), canal para solicitação (e-mail `privacidade@flaviomilhomem.com.br`). Processo interno para resposta em até 15 dias. DPO designado (pode ser Flávio ou advogado terceirizado, decisão com o cliente).
+**LGPD:** _Privacy Policy_ publicada em `/privacidade` com linguagem clara, enumeração de dados coletados, finalidade, base legal (geralmente consentimento + execução de contrato + legítimo interesse), direitos do titular (acesso, correção, exclusão, portabilidade), canal para solicitação (e-mail `privacidade@flaviomilhomem.com.br`). Processo interno para resposta em até 15 dias. DPO designado (pode ser Flávio ou advogado terceirizado, decisão com o cliente).
 
 ## 4.11 Checklist de stack e CVEs
 
-A *stack* segue o CHECKLIST DE TECNOLOGIAS — ATUALIZADO 2026 da Orbee, que lista versões, CVEs conhecidos e mitigação. Versões-alvo na data de fundação do projeto:
+A _stack_ segue o CHECKLIST DE TECNOLOGIAS — ATUALIZADO 2026 da Orbee, que lista versões, CVEs conhecidos e mitigação. Versões-alvo na data de fundação do projeto:
 
 - **Next.js**: 16.2.x (ou mais recente estável — verificar semana do deploy)
 - **React**: 19.2.4+
@@ -604,7 +604,7 @@ A *stack* segue o CHECKLIST DE TECNOLOGIAS — ATUALIZADO 2026 da Orbee, que lis
 - **Resend SDK**: versão estável
 - **Pagar.me SDK**: `@pagar.me/pagarme-nodejs-sdk` na versão estável
 - **Zod**: 4.x para validação de schema
-- **tRPC ou rota API Next padrão**: decisão em *sprint* 1 (recomendação: rota API Next nativa, por simplicidade e alinhamento com App Router)
+- **tRPC ou rota API Next padrão**: decisão em _sprint_ 1 (recomendação: rota API Next nativa, por simplicidade e alinhamento com App Router)
 
 Dependências auditadas quinzenalmente via `pnpm audit` + Snyk gratuito. CVEs críticas tratadas em janela de 7 dias; altas em 30 dias.
 
@@ -612,14 +612,14 @@ Dependências auditadas quinzenalmente via `pnpm audit` + Snyk gratuito. CVEs cr
 
 Flávio hoje usa `professorflaviomilhomem.com.br` (com "professor"). O novo domínio oficial da Escola pode ser: (a) manter o atual, (b) `flaviomilhomem.com.br` (mais curto, se disponível), (c) `escolaflaviomilhomem.com.br`, (d) `escoladopromotor.com.br` (conceitual, ressonante com o posicionamento, mais curto).
 
-Recomendação técnica: verificar disponibilidade em Registro.br e, se disponível, registrar imediatamente as três variantes (`flaviomilhomem`, `escolaflaviomilhomem`, `escoladopromotor`) pelo valor nominal de R$ 40/ano cada, independentemente da decisão de qual virar principal. A decisão final de qual é o primário é tomada em conjunto com Flávio na *sprint* 1, considerando: brandability, SEO, conflito com o site atual. Os não-primários ficam como redirect 301 para o primário.
+Recomendação técnica: verificar disponibilidade em Registro.br e, se disponível, registrar imediatamente as três variantes (`flaviomilhomem`, `escolaflaviomilhomem`, `escoladopromotor`) pelo valor nominal de R$ 40/ano cada, independentemente da decisão de qual virar principal. A decisão final de qual é o primário é tomada em conjunto com Flávio na _sprint_ 1, considerando: brandability, SEO, conflito com o site atual. Os não-primários ficam como redirect 301 para o primário.
 
 ## 4.13 Custos estimados de infraestrutura — primeiro ano
 
 Projeção conservadora de custos mensais recorrentes no primeiro ano:
 
 - **Vercel Pro** (necessário para SSR em produção com múltiplos domínios): R$ 100-200/mês (conforme conversão de dólar).
-- **Neon PostgreSQL** (plano inicial *Launch*): R$ 100-150/mês.
+- **Neon PostgreSQL** (plano inicial _Launch_): R$ 100-150/mês.
 - **Cloudflare Stream** (R$ 0,05 por minuto assistido, projeção inicial 3.000 min/mês): R$ 150-300/mês, escalando com alunos.
 - **Cloudflare R2** (armazenamento frio, 100GB): R$ 50/mês.
 - **Resend** (e-mail transacional, 50k envios): R$ 100/mês.
@@ -633,7 +633,7 @@ Projeção conservadora de custos mensais recorrentes no primeiro ano:
 
 ## 4.14 Síntese do capítulo
 
-A *stack* é Next.js 16 App Router + React 19.2.4 + TypeScript 5.8 + Tailwind 4.1 + shadcn + Prisma 7.5 + Neon + Vercel, em alinhamento com o padrão Orbee. Três camadas: site institucional, plataforma do aluno em subdomínio, backend e CRM codado. Cloudflare Stream para vídeo. Fórum interno com comentários aninhados. Eduzz em transitório via API. UTM Builder interno. Pagar.me com *sprint* dedicada. *Stack* de tracking multicamada com Meta CAPI. Segurança LGPD-ready. Custos de infra na faixa R$ 750-1.100/mês. A base tecnológica está desenhada para suportar escala de milhares de alunos sem reescrita. O capítulo seguinte traduz essa base em arquitetura de informação e design system.
+A _stack_ é Next.js 16 App Router + React 19.2.4 + TypeScript 5.8 + Tailwind 4.1 + shadcn + Prisma 7.5 + Neon + Vercel, em alinhamento com o padrão Orbee. Três camadas: site institucional, plataforma do aluno em subdomínio, backend e CRM codado. Cloudflare Stream para vídeo. Fórum interno com comentários aninhados. Eduzz em transitório via API. UTM Builder interno. Pagar.me com _sprint_ dedicada. _Stack_ de tracking multicamada com Meta CAPI. Segurança LGPD-ready. Custos de infra na faixa R$ 750-1.100/mês. A base tecnológica está desenhada para suportar escala de milhares de alunos sem reescrita. O capítulo seguinte traduz essa base em arquitetura de informação e design system.
 
 ---
 
@@ -654,6 +654,7 @@ A paleta é deliberadamente restrita. Duas cores de destaque, três neutros, est
 **Cor secundária — Dourado fosco.** Token nome: `accent`. Hex: `#B08A3E` (fosco, não metálico). Uso: detalhe, borda de destaque, número de capítulo, citação. Por que dourado fosco: resgata a tradição clássica do livro jurídico (lombada dourada) em versão contemporânea, combina com azul-tinta sem conflitar.
 
 **Neutros — Cinza quente.**
+
 - `neutral-900`: `#1A1A1A` (texto principal em tema light; fundo em tema dark)
 - `neutral-700`: `#404040` (texto secundário)
 - `neutral-500`: `#737373` (texto terciário, metadados)
@@ -662,6 +663,7 @@ A paleta é deliberadamente restrita. Duas cores de destaque, três neutros, est
 - `neutral-50`: `#FAFAF9` (fundo primário em tema light)
 
 **Estados funcionais.**
+
 - `success`: `#166534` (verde sóbrio, não fluorescente)
 - `warning`: `#B45309` (âmbar, não amarelo puro)
 - `error`: `#991B1B` (vermelho tinto, não vermelho vibrante)
@@ -675,7 +677,7 @@ Diretriz de uso: a tela média do site deve respeitar a proporção aproximada d
 
 Dois tipos, duas funções.
 
-**Tipo serifado — Títulos e citações.** Escolha principal: **Newsreader** (Google Fonts, serifa contemporânea com grau variável, ótima em tela). Alternativa: Source Serif 4. Uso: H1, H2, H3, *blockquote*, título de aula, título de livro citado. Tamanhos em escala modular 1.25: H1 48px, H2 36px, H3 28px, H4 22px. Line-height generoso (1.2 para H1, 1.35 para H2-H3). Peso dominante: Regular 400; Bold 700 para ênfase pontual.
+**Tipo serifado — Títulos e citações.** Escolha principal: **Newsreader** (Google Fonts, serifa contemporânea com grau variável, ótima em tela). Alternativa: Source Serif 4. Uso: H1, H2, H3, _blockquote_, título de aula, título de livro citado. Tamanhos em escala modular 1.25: H1 48px, H2 36px, H3 28px, H4 22px. Line-height generoso (1.2 para H1, 1.35 para H2-H3). Peso dominante: Regular 400; Bold 700 para ênfase pontual.
 
 **Tipo sans-serif — Corpo e UI.** Escolha principal: **Inter** (a sans serif de referência em UI contemporânea). Alternativa: General Sans. Uso: parágrafo, botão, label, metadado, menu. Tamanhos: body 17px com line-height 1.65, small 15px, caption 13px. Peso dominante: Regular 400; Medium 500 para destaque; Semibold 600 para label de UI.
 
@@ -703,7 +705,7 @@ A biblioteca mínima para entrar no ar com o site institucional é enxuta. Compo
 
 **Badge** — para tag de artigo, para rótulo "Edição Lançamento", para status de aluno.
 
-**Dialog / Modal** — captura de lead via *lightbox*, confirmação de ação.
+**Dialog / Modal** — captura de lead via _lightbox_, confirmação de ação.
 
 **Tabs** — na página do curso, na página Sobre (segmentando carreira, formação acadêmica, obra).
 
@@ -723,7 +725,7 @@ A biblioteca mínima para entrar no ar com o site institucional é enxuta. Compo
 
 **Testimonial** (depoimento) — foto, nome, cargo, texto, com validação visual (selo de "aluno verificado" quando aplicável).
 
-Cada componente tem *stories* em Storybook (setup opcional a partir da *sprint* 3 se a equipe julgar necessário) e testes de *snapshot*.
+Cada componente tem _stories_ em Storybook (setup opcional a partir da _sprint_ 3 se a equipe julgar necessário) e testes de _snapshot_.
 
 ## 5.6 Acessibilidade — diretrizes mínimas
 
@@ -735,9 +737,9 @@ Todos os elementos interativos têm estado `focus` visível com outline de 2px n
 
 Imagens têm atributo `alt` descritivo (não "image.jpg"). Imagens decorativas têm `alt=""`.
 
-Vídeos têm legenda/CC embutida; *transcript* disponível em texto abaixo.
+Vídeos têm legenda/CC embutida; _transcript_ disponível em texto abaixo.
 
-Formulários têm `label` associado, `aria-describedby` para mensagem de erro, validação *client-side* + *server-side*.
+Formulários têm `label` associado, `aria-describedby` para mensagem de erro, validação _client-side_ + _server-side_.
 
 Estrutura semântica respeitada: H1 único por página, ordem hierárquica H1 → H2 → H3 sem pular. Landmarks (`<main>`, `<nav>`, `<aside>`, `<footer>`) corretamente usados.
 
@@ -747,7 +749,7 @@ Teste com leitor de tela (VoiceOver no Mac, NVDA no Windows) antes de cada relea
 
 A estrutura navegacional do site é intencionalmente simples, orientada por três perguntas do visitante: **Quem é Flávio?** (responde a página Sobre), **O que ele ensina?** (responde a vitrine de cursos + blog), **Como eu começo?** (responde CTA de lead e landings de oferta).
 
-Navegação principal no cabeçalho (máximo cinco itens): *Sobre*, *Cursos*, *Blog*, *Eventos*, *Contato*. Item de CTA destacado à direita: *Entre na lista* (newsletter institucional) ou *Acessar Escola* (para aluno logado). Menu mobile em *hamburger*.
+Navegação principal no cabeçalho (máximo cinco itens): _Sobre_, _Cursos_, _Blog_, _Eventos_, _Contato_. Item de CTA destacado à direita: _Entre na lista_ (newsletter institucional) ou _Acessar Escola_ (para aluno logado). Menu mobile em _hamburger_.
 
 Rodapé: bloco institucional à esquerda (logo, tagline "A Escola do Promotor", breve sobre), bloco de navegação ao centro (mapa do site), bloco de contato à direita (e-mail institucional, Instagram, LinkedIn, YouTube). Linha inferior: copyright, CNPJ, link para Política de Privacidade, Termos de Uso, Política de Reembolso.
 
@@ -765,23 +767,23 @@ Rodapé: bloco institucional à esquerda (logo, tagline "A Escola do Promotor", 
 
 **Página de evento "Dia do Advogado 2026".** Landing institucional do evento-âncora, detalhada no Capítulo 8 (porque o evento é parte da estratégia de lançamento).
 
-**Newsletter (/newsletter).** Página de captura dedicada, sem distração lateral, com formulário simples e *promessa editorial clara* ("a cada quinze dias, análise do informativo, sem filler").
+**Newsletter (/newsletter).** Página de captura dedicada, sem distração lateral, com formulário simples e _promessa editorial clara_ ("a cada quinze dias, análise do informativo, sem filler").
 
 **Contato.** Formulário direto com campos mínimos (nome, e-mail, assunto, mensagem), canais alternativos (Instagram DM, LinkedIn), aviso de prazo de resposta (até 3 dias úteis).
 
 ## 5.9 Área do aluno — blueprint
 
-*Dashboard* pós-login: saudação personalizada, progresso do curso em destaque ("Você concluiu 7 de 24 aulas"), próxima aula sugerida, atividade recente do fórum, anúncios institucionais.
+_Dashboard_ pós-login: saudação personalizada, progresso do curso em destaque ("Você concluiu 7 de 24 aulas"), próxima aula sugerida, atividade recente do fórum, anúncios institucionais.
 
 Página de curso: lista de módulos expansível, com marcador de aula concluída/em progresso/não iniciada. Clique em aula abre o player.
 
 Página de aula: player ao topo ocupando 60-70% da largura, à direita resumo da aula + material PDF + fórum em abas. Abaixo do player, comentários aninhados da aula.
 
-*Minha conta*: dados pessoais, assinaturas ativas, faturas, certificado (quando elegível).
+_Minha conta_: dados pessoais, assinaturas ativas, faturas, certificado (quando elegível).
 
 ## 5.10 Identidade visual — logo, marca, aplicação
 
-Logo: tipografia customizada sobre Newsreader, "Flávio Milhomem" em duas linhas ou em linha única, com pequeno elemento geométrico (linha horizontal sutil ou acento). Variante institucional: "Escola Flávio Milhomem" com hierarquia tipográfica clara. Evitar iconografia decorativa (balança, coluna). Decisão final de brandmark se faz em *sprint* de design.
+Logo: tipografia customizada sobre Newsreader, "Flávio Milhomem" em duas linhas ou em linha única, com pequeno elemento geométrico (linha horizontal sutil ou acento). Variante institucional: "Escola Flávio Milhomem" com hierarquia tipográfica clara. Evitar iconografia decorativa (balança, coluna). Decisão final de brandmark se faz em _sprint_ de design.
 
 Aplicação: versões em fundo claro e fundo escuro. Versão reduzida para favicon (monograma "FM" estilizado). Versão horizontal, versão empilhada, versão apenas-tipográfica para aplicações de espaço reduzido.
 
@@ -795,7 +797,7 @@ Ilustração: quando necessária, usar ilustração vetorial sóbria, monocromá
 
 ## 5.12 Motion e micro-interação
 
-A Escola prefere **movimento sóbrio**. Transições: 200-300ms em curva *ease-in-out*. Hover em card eleva sombra em 4-8px. Abertura de modal: fade + slide discreto. Micro-animação no player durante carregamento (spinner calmo).
+A Escola prefere **movimento sóbrio**. Transições: 200-300ms em curva _ease-in-out_. Hover em card eleva sombra em 4-8px. Abertura de modal: fade + slide discreto. Micro-animação no player durante carregamento (spinner calmo).
 
 Evitar: animação paralaxe pesada, movimento contínuo em fundo, auto-play de vídeo com áudio, transição em carrossel de depoimentos acima de 4 segundos de visibilidade por slide (por acessibilidade).
 
@@ -805,7 +807,7 @@ Antes do lançamento, a Orbee Labs entrega dois artefatos:
 
 (a) **Figma** com todas as páginas em versão desktop e mobile, biblioteca de componentes, paleta, tipografia, espaçamentos — utilizado para revisão com Flávio e para implementação.
 
-(b) **Storybook** (opcional, avaliar na *sprint* 3) em subdomínio `design.flaviomilhomem.com.br` com todos os componentes instanciados em estados — para referência da equipe de desenvolvimento.
+(b) **Storybook** (opcional, avaliar na _sprint_ 3) em subdomínio `design.flaviomilhomem.com.br` com todos os componentes instanciados em estados — para referência da equipe de desenvolvimento.
 
 ## 5.14 Síntese do capítulo
 
@@ -817,7 +819,7 @@ Paleta restrita (azul-tinta + dourado fosco + neutros quentes + estados discreto
 
 ## 6.1 Organização do código e disciplina de engenharia
 
-O projeto de código vive em repositório Git privado (GitHub da Orbee Labs), com branch principal `main` protegido (exige *pull request* e *review*). Branches de trabalho: `feature/{ticket}-descricao`, `fix/{ticket}-descricao`, `hotfix/{ticket}`. Cada *pull request* exige (1) revisão de um colega da Orbee Labs, (2) CI verde (lint, typecheck, testes automáticos), (3) *preview deployment* em subdomínio gerado pela Vercel para revisão visual. Merge via *squash* para manter histórico limpo.
+O projeto de código vive em repositório Git privado (GitHub da Orbee Labs), com branch principal `main` protegido (exige _pull request_ e _review_). Branches de trabalho: `feature/{ticket}-descricao`, `fix/{ticket}-descricao`, `hotfix/{ticket}`. Cada _pull request_ exige (1) revisão de um colega da Orbee Labs, (2) CI verde (lint, typecheck, testes automáticos), (3) _preview deployment_ em subdomínio gerado pela Vercel para revisão visual. Merge via _squash_ para manter histórico limpo.
 
 Estrutura de pastas do monorepo Next.js:
 
@@ -842,9 +844,9 @@ A Escola não exige cobertura total de testes (é ineficiente para código de ma
 
 **Testes de integração (Vitest com banco de teste).** Para rotas API críticas: cadastro de lead, compra, cancelamento, emissão de certificado. Rodam em CI com Postgres descartável.
 
-**Testes e2e (Playwright).** Para fluxos críticos de usuário: cadastro, login, compra completa (ambiente *sandbox* Pagar.me), assistir aula, comentar no fórum. Três a cinco cenários principais, rodados em CI em cada *pull request* que toca esses caminhos.
+**Testes e2e (Playwright).** Para fluxos críticos de usuário: cadastro, login, compra completa (ambiente _sandbox_ Pagar.me), assistir aula, comentar no fórum. Três a cinco cenários principais, rodados em CI em cada _pull request_ que toca esses caminhos.
 
-*Linters e formatadores:* ESLint com preset Next.js + TypeScript strict, Prettier padrão Orbee, Tailwind *class sorting* automatizado. Pre-commit hook (Husky + lint-staged) impede commit com erro de lint.
+_Linters e formatadores:_ ESLint com preset Next.js + TypeScript strict, Prettier padrão Orbee, Tailwind _class sorting_ automatizado. Pre-commit hook (Husky + lint-staged) impede commit com erro de lint.
 
 ## 6.3 Conteúdo editorial — estratégia e cadência
 
@@ -864,7 +866,7 @@ Layout de artigo individual no blog:
 
 Acima da dobra: breadcrumb (Home > Blog > Categoria), título em Newsreader 44px, subtítulo em Inter 22px cinza, autor ("Por Flávio Milhomem") com data e tempo de leitura, imagem destacada (1600x900). Abaixo, corpo do artigo em coluna central de 68ch com tipografia serifada em 18px.
 
-Elementos editoriais internos: citação em *blockquote* com borda lateral dourada, listas com marcadores sóbrios, imagens em largura total com legenda, trecho de código ou de lei destacado em bloco monoespaçado com fundo neutro, *pull quote* em Newsreader grande para frase-chave do artigo.
+Elementos editoriais internos: citação em _blockquote_ com borda lateral dourada, listas com marcadores sóbrios, imagens em largura total com legenda, trecho de código ou de lei destacado em bloco monoespaçado com fundo neutro, _pull quote_ em Newsreader grande para frase-chave do artigo.
 
 Fim do artigo: bloco de chamada à ação ("Gostou? Entre na lista da Escola e receba análises como esta a cada duas semanas"), assinatura do autor com mini-bio, sugestão de três artigos relacionados, área de comentários (opcional, pode ser desabilitada no blog público para concentrar engajamento no fórum pago).
 
@@ -878,7 +880,7 @@ A landing do produto principal é peça crítica. Estrutura em 14 blocos:
 
 **Bloco 2 — Diferenciais em três pilares.** "Perspectiva institucional única (Promotor ativo)", "Cohort com acesso ao professor (fórum + sessões ao vivo)", "Trilha certificada em doze semanas".
 
-**Bloco 3 — Sobre Flávio.** Mini-biografia (3 parágrafos), foto, lista de credenciais, *link* para página Sobre completa.
+**Bloco 3 — Sobre Flávio.** Mini-biografia (3 parágrafos), foto, lista de credenciais, _link_ para página Sobre completa.
 
 **Bloco 4 — Para quem é.** Descrição direta das personas Mariana (concurseira) e Rafael (advogado criminalista). Frase de corte clara: "Esta edição é para você se: ... Não é para você se: ...".
 
@@ -895,6 +897,7 @@ A landing do produto principal é peça crítica. Estrutura em 14 blocos:
 **Bloco 10 — Depoimentos.** No primeiro lançamento, sem depoimento de aluno. Substituído por: depoimentos de pares (outros professores, promotores aposentados que conhecem o Flávio, se dispostos a gravar), trechos de resenhas de seus livros, capas de suas publicações acadêmicas. A partir do segundo cohort, preencher com depoimentos reais.
 
 **Bloco 11 — Investimento.** Seção central da landing. Card destacado com:
+
 - Preço fundador "Edição Lançamento": **R$ 1.997** à vista ou **12x de R$ 199** (cartão).
 - PIX com 10% de desconto: **R$ 1.797**.
 - Selo "Vaga de fundador — turma inaugural".
@@ -910,11 +913,11 @@ A landing do produto principal é peça crítica. Estrutura em 14 blocos:
 
 A Escola pode, em ondas posteriores, desenvolver ferramentas interativas que são ao mesmo tempo utilidade para o público e motor de SEO/lead. Sugestões priorizadas:
 
-**Calculadora de pena hipotética.** Input: tipo penal (art.), circunstâncias (agravantes, atenuantes, causas de aumento/diminuição), regime. Output: estimativa de pena com explicação passo a passo. Útil para estudante; atrai busca orgânica de alta intenção. Estimativa de esforço: 2-3 *sprints*.
+**Calculadora de pena hipotética.** Input: tipo penal (art.), circunstâncias (agravantes, atenuantes, causas de aumento/diminuição), regime. Output: estimativa de pena com explicação passo a passo. Útil para estudante; atrai busca orgânica de alta intenção. Estimativa de esforço: 2-3 _sprints_.
 
 **Buscador de informativos anotados.** Indexação comentada dos informativos do STF e do STJ em matéria penal, com filtro por tema, por ano, por relator. Pode começar como listagem simples no blog e virar ferramenta em ondas futuras.
 
-**Quiz "Qual é seu nível em Direito Penal?"** Vinte questões, feedback por área, recomendação de trilha. Excelente gerador de lead no topo do funil. Implementação enxuta em 1 *sprint*.
+**Quiz "Qual é seu nível em Direito Penal?"** Vinte questões, feedback por área, recomendação de trilha. Excelente gerador de lead no topo do funil. Implementação enxuta em 1 _sprint_.
 
 **Cronograma personalizado de estudos.** Input: concurso-alvo + data + horas/dia + nível atual. Output: cronograma semanal com leituras, exercícios, revisão. Ticket maior de esforço; avaliar em ondas posteriores.
 
@@ -922,11 +925,11 @@ Todas as ferramentas exigem, no formulário de acesso, captura de e-mail (opt-in
 
 ## 6.7 AEO (Answer Engine Optimization) e GEO (Generative Engine Optimization)
 
-O mercado de busca está em transição: parte relevante das consultas não termina em clique em SERP, mas em resposta direta de *assistant* (ChatGPT, Perplexity, Gemini, Copilot). Para que a Escola seja **citada como fonte** nessas respostas, três práticas entram no manual.
+O mercado de busca está em transição: parte relevante das consultas não termina em clique em SERP, mas em resposta direta de _assistant_ (ChatGPT, Perplexity, Gemini, Copilot). Para que a Escola seja **citada como fonte** nessas respostas, três práticas entram no manual.
 
-**AEO — estrutura de conteúdo para resposta direta.** Cada artigo inicia com parágrafo de resposta sintética (2-4 frases respondendo a pergunta-título do artigo), seguido por desenvolvimento. Inclusão de *tabela de conteúdo* semântica (H2/H3). Uso de *FAQ schema* em páginas com perguntas frequentes. Linguagem clara, evitar subordinação excessiva.
+**AEO — estrutura de conteúdo para resposta direta.** Cada artigo inicia com parágrafo de resposta sintética (2-4 frases respondendo a pergunta-título do artigo), seguido por desenvolvimento. Inclusão de _tabela de conteúdo_ semântica (H2/H3). Uso de _FAQ schema_ em páginas com perguntas frequentes. Linguagem clara, evitar subordinação excessiva.
 
-**GEO — autoridade e citabilidade.** LLMs citam preferencialmente fontes que são (1) específicas no tema, (2) coerentes no tom, (3) identificáveis por autor verificável. A Escola favorece isso por construção — Flávio é autor identificável com credenciais verificáveis em fontes externas (site MPDFT, portal de livros, Google Scholar). Prática adicional: cada artigo tem *schema.org Author* completo (nome, URL, sameAs com perfis institucionais), *schema.org Article* com `datePublished` e `dateModified`, citação de fontes primárias (lei, acórdão, informativo) com *link* externo.
+**GEO — autoridade e citabilidade.** LLMs citam preferencialmente fontes que são (1) específicas no tema, (2) coerentes no tom, (3) identificáveis por autor verificável. A Escola favorece isso por construção — Flávio é autor identificável com credenciais verificáveis em fontes externas (site MPDFT, portal de livros, Google Scholar). Prática adicional: cada artigo tem _schema.org Author_ completo (nome, URL, sameAs com perfis institucionais), _schema.org Article_ com `datePublished` e `dateModified`, citação de fontes primárias (lei, acórdão, informativo) com _link_ externo.
 
 **Presença nos índices que os LLMs leem.** Wikipedia (página sobre Flávio como autoridade jurídica — possível, se a notabilidade for demonstrável; tarefa para fase 2 ou 3 do roadmap). Google Knowledge Graph (alimentado por marcação schema no site + perfil Google Scholar + LinkedIn). OpenAlex, Semantic Scholar (automáticos se houver publicação acadêmica indexada). Crossref (automático via DOI de artigo acadêmico).
 
@@ -944,7 +947,7 @@ Do brainstorm à publicação, o fluxo é:
 
 **Etapa 5 — Revisão técnica.** Segundo leitor com formação jurídica (pode ser acadêmico ou colega de carreira aposentado) valida forma técnica em casos de dúvida dogmática. Opcional, ativado em artigos de maior densidade.
 
-**Etapa 6 — Diagramação e SEO.** Equipe técnica insere no CMS (Next.js + Contentlayer ou CMS headless), aplica imagens, revisa metadados, confere Open Graph, publica em ambiente *staging*, Flávio revisa visualmente, aprovação final.
+**Etapa 6 — Diagramação e SEO.** Equipe técnica insere no CMS (Next.js + Contentlayer ou CMS headless), aplica imagens, revisa metadados, confere Open Graph, publica em ambiente _staging_, Flávio revisa visualmente, aprovação final.
 
 **Etapa 7 — Publicação e distribuição.** Publicado no blog; automaticamente distribuído para (a) newsletter quinzenal em compilação, (b) post Instagram carrossel, (c) post LinkedIn texto-primeiro, (d) thread X/Twitter, (e) menção no YouTube Shorts/Reels se o tema se presta a vídeo curto.
 
@@ -996,7 +999,7 @@ O canal `@PROFESSORFLÁVIOMILHOMEM` existe; a maturação é próxima. Estratég
 - **Shorts (15-60s)**: 2-3 por semana, recortes de aula, análise rápida. Função: alcance e captação para canal.
 - **Lives quinzenais**: Q&A gravada, convidado eventual.
 
-SEO de YouTube: título otimizado (pergunta + palavra-chave), descrição de 300-500 palavras com timestamps e *link* para newsletter, tags consistentes, capa personalizada com padrão visual da marca.
+SEO de YouTube: título otimizado (pergunta + palavra-chave), descrição de 300-500 palavras com timestamps e _link_ para newsletter, tags consistentes, capa personalizada com padrão visual da marca.
 
 ## 6.13 E-mail e newsletter
 
@@ -1004,19 +1007,19 @@ O canal de e-mail é o **ativo principal** do projeto (declarado em múltiplas p
 
 **Lista principal — "Bastidor da Acusação" (newsletter quinzenal).** Toda lead que entra pela isca ou pelo site é automaticamente inscrita (com duplo opt-in). Cadência: quinzenal, quartas-feiras. Formato: 4-6 blocos — "Análise da semana" (resumo de artigo do blog), "Informativo comentado" (1-2 decisões recentes com 2-3 parágrafos cada), "Dica de leitura" (livro, artigo, ou trecho), "Destaque da Escola" (novidade de produto, próximo evento, vaga aberta, se houver), "Fecho" (reflexão curta, pergunta para engajamento). Comprimento total: 800-1.500 palavras. Tom: mais pessoal do que o blog, mas sempre erudito acessível.
 
-**Segmentações:** concurseiro, advogado, servidor, acadêmico. Algumas comunicações específicas vão só para segmentos relevantes (ex: abertura de cohort primeiro para concurseiros e advogados em *early bird*).
+**Segmentações:** concurseiro, advogado, servidor, acadêmico. Algumas comunicações específicas vão só para segmentos relevantes (ex: abertura de cohort primeiro para concurseiros e advogados em _early bird_).
 
 **Sequências automáticas de e-mail:**
 
-*Sequência de boas-vindas* (acionada no opt-in): 5 e-mails ao longo de 10 dias. E-mail 1 (imediato): "Bem-vindo + download da isca". E-mail 2 (dia 2): "Quem é Flávio — breve biografia + vídeo de 3 min". E-mail 3 (dia 4): "Por que o lado da acusação importa — artigo-tese". E-mail 4 (dia 7): "O que é a Edição Lançamento — pré-apresentação". E-mail 5 (dia 10): "Convite para a lista de espera do cohort (opt-in adicional)".
+_Sequência de boas-vindas_ (acionada no opt-in): 5 e-mails ao longo de 10 dias. E-mail 1 (imediato): "Bem-vindo + download da isca". E-mail 2 (dia 2): "Quem é Flávio — breve biografia + vídeo de 3 min". E-mail 3 (dia 4): "Por que o lado da acusação importa — artigo-tese". E-mail 4 (dia 7): "O que é a Edição Lançamento — pré-apresentação". E-mail 5 (dia 10): "Convite para a lista de espera do cohort (opt-in adicional)".
 
-*Sequência de lançamento* (acionada manualmente no momento do *open cart* do cohort): 7 e-mails em 7 dias. Segue narrativa clássica adaptada: abertura + storytelling + prova + FAQ + objeção + escassez real + fechamento. Sem gatilho falso.
+_Sequência de lançamento_ (acionada manualmente no momento do _open cart_ do cohort): 7 e-mails em 7 dias. Segue narrativa clássica adaptada: abertura + storytelling + prova + FAQ + objeção + escassez real + fechamento. Sem gatilho falso.
 
-*Sequência de carrinho abandonado*: 3 e-mails em 48h pós-abandono. Foco em objeção e garantia.
+_Sequência de carrinho abandonado_: 3 e-mails em 48h pós-abandono. Foco em objeção e garantia.
 
-*Sequência pós-compra*: 3 e-mails em 7 dias. Boas-vindas ao cohort, instruções de acesso, convite para grupo de alunos, primeira tarefa.
+_Sequência pós-compra_: 3 e-mails em 7 dias. Boas-vindas ao cohort, instruções de acesso, convite para grupo de alunos, primeira tarefa.
 
-Provedor: Resend com serviço próprio de automação codado em Node, ou solução híbrida com Loops.so se a equipe optar por velocidade de implementação. Decisão em *sprint* 2.
+Provedor: Resend com serviço próprio de automação codado em Node, ou solução híbrida com Loops.so se a equipe optar por velocidade de implementação. Decisão em _sprint_ 2.
 
 ## 6.14 Atendimento e suporte
 
@@ -1055,7 +1058,7 @@ O SEO da Escola é construído sobre três pilares: **autoridade do autor**, **d
 
 **Autoridade do autor.** Flávio é assinatura identificável com credenciais externas verificáveis — MPDFT, Católica de Portugal, ENM francesa, autoria de livros. Isso é combustível para os algoritmos contemporâneos de busca, que privilegiam autor com E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness). Tática: página `Sobre Flávio` com schema markup completo (Person com `sameAs` apontando para MPDFT, Google Scholar, Amazon do livro, LinkedIn), presença de biografia em outras fontes externas (entrevistas, menções em mídia jurídica especializada, eventualmente Wikipedia).
 
-**Densidade de conteúdo.** Blog com cadência sustentada (ver 6.3), cada artigo com 1.500-3.500 palavras, cobertura de clusters temáticos bem definidos. Os clusters iniciais da Escola são: (a) decisões recentes de STF e STJ em matéria penal, (b) dogmática do Direito Penal (princípios, classificações de crime, teoria da pena), (c) Processo Penal — prova, cadeia de custódia, nulidade, recurso, (d) Direito e Processo Penal Militar, (e) Lei Anticrime comentada, (f) carreiras do Ministério Público (conteúdo informacional para concursero). Cada cluster organiza 8-15 artigos em formato *hub-and-spoke*: um artigo-pilar de 4.000+ palavras, 8-12 artigos de apoio de 1.500-2.500 palavras cada, todos linkando internamente entre si.
+**Densidade de conteúdo.** Blog com cadência sustentada (ver 6.3), cada artigo com 1.500-3.500 palavras, cobertura de clusters temáticos bem definidos. Os clusters iniciais da Escola são: (a) decisões recentes de STF e STJ em matéria penal, (b) dogmática do Direito Penal (princípios, classificações de crime, teoria da pena), (c) Processo Penal — prova, cadeia de custódia, nulidade, recurso, (d) Direito e Processo Penal Militar, (e) Lei Anticrime comentada, (f) carreiras do Ministério Público (conteúdo informacional para concursero). Cada cluster organiza 8-15 artigos em formato _hub-and-spoke_: um artigo-pilar de 4.000+ palavras, 8-12 artigos de apoio de 1.500-2.500 palavras cada, todos linkando internamente entre si.
 
 **Arquitetura técnica.** Next.js App Router entrega SSR nativo e ISR (Incremental Static Regeneration) para conteúdo editorial — combinação ótima de performance e frescor. Core Web Vitals: LCP < 2s, CLS < 0.1, INP < 200ms (metas por página). Sitemap XML dinâmico. Robots.txt permissivo para indexação de conteúdo, bloqueador para área logada. Breadcrumbs com schema. Artigos com schema.org Article, autor com schema.org Person, FAQ com schema.org FAQPage. Internacionalização: no primeiro ano, apenas pt-BR (BR); pt-PT opcional em onda futura para atender brasileiros em Portugal e PALOP.
 
@@ -1078,10 +1081,10 @@ O calendário editorial da Escola é planejado em ciclos mensais, com temas alin
 **Cadência semanal padrão no pré-lançamento (abril-julho 2026):**
 
 - Segunda: post texto LinkedIn de análise (persona Rafael, Otávio).
-- Terça: artigo no blog publicado + carrossel Instagram derivado + *Reel* curto.
-- Quarta: *Reel*/Short com recorte da semana.
+- Terça: artigo no blog publicado + carrossel Instagram derivado + _Reel_ curto.
+- Quarta: _Reel_/Short com recorte da semana.
 - Quinta: newsletter quinzenal (em semanas alternadas).
-- Sexta: *Reel*/Short + post texto LinkedIn institucional (cargo, evento, obra).
+- Sexta: _Reel_/Short + post texto LinkedIn institucional (cargo, evento, obra).
 - Sábado: Story conversa / bastidor / perguntas.
 - Domingo: descanso editorial.
 
@@ -1093,31 +1096,31 @@ Todas as datas, formatos, briefings e status são mantidos em planilha central (
 
 ## 7.5 Tráfego pago — abordagem cautelosa
 
-A decisão estratégica sobre tráfego pago é particularmente sensível na Escola Flávio Milhomem, por três razões: (1) compliance institucional — anúncios assinados por Promotor têm escrutínio extra, publicidade profissional em matéria jurídica é tema regulado, e há linha fina entre "anunciar curso educacional" e "promover atividade profissional de membro do MP"; (2) o projeto é primeiro lançamento sem histórico, portanto sem *pixel data* maduro para otimizar campanha; (3) as regras de publicidade do Ministério Público (Código de Ética, Recomendação CN-CNMP 1/2016, orientações internas do MPDFT) impõem limites de forma e de conteúdo.
+A decisão estratégica sobre tráfego pago é particularmente sensível na Escola Flávio Milhomem, por três razões: (1) compliance institucional — anúncios assinados por Promotor têm escrutínio extra, publicidade profissional em matéria jurídica é tema regulado, e há linha fina entre "anunciar curso educacional" e "promover atividade profissional de membro do MP"; (2) o projeto é primeiro lançamento sem histórico, portanto sem _pixel data_ maduro para otimizar campanha; (3) as regras de publicidade do Ministério Público (Código de Ética, Recomendação CN-CNMP 1/2016, orientações internas do MPDFT) impõem limites de forma e de conteúdo.
 
 **Linha vermelha publicitária absoluta.** Nunca anunciar com foto do Flávio em vestimenta institucional do MP, nunca usar brasão oficial do MPDFT, nunca fazer afirmação que sugira que o cargo de Promotor ou de Ouvidor-Geral é motivo para comprar o curso (a formulação correta é inversa: "Flávio é Promotor, e ensina com a perspectiva que esse acúmulo trouxe" — não "compre porque ele é Promotor"). O texto publicitário é calibrado para destacar o professor e o conteúdo, não o cargo como isca.
 
 **Escopo do tráfego pago no primeiro ciclo:**
 
-*Fase pré-lançamento (abril-julho 2026).* Tráfego frio zero. Foco exclusivo em amplificação de conteúdo orgânico de alto desempenho via *Meta Ads boost* limitado (R$ 50-150 por post que passa filtro orgânico de engajamento). Objetivo: multiplicar alcance de material já validado, capturar lead via link na bio.
+_Fase pré-lançamento (abril-julho 2026)._ Tráfego frio zero. Foco exclusivo em amplificação de conteúdo orgânico de alto desempenho via _Meta Ads boost_ limitado (R$ 50-150 por post que passa filtro orgânico de engajamento). Objetivo: multiplicar alcance de material já validado, capturar lead via link na bio.
 
-*Fase lançamento (agosto 2026).* Campanhas de conversão com tráfego morno (retargeting de visitantes do blog, lista de e-mail, seguidores) + campanhas restritas de prospecção para públicos similares (*lookalike*) pequenos, na faixa de R$ 3.000-8.000 no mês de agosto. Pixel server-side via Meta CAPI já ativo. Teste de criativos A/B controlado.
+_Fase lançamento (agosto 2026)._ Campanhas de conversão com tráfego morno (retargeting de visitantes do blog, lista de e-mail, seguidores) + campanhas restritas de prospecção para públicos similares (_lookalike_) pequenos, na faixa de R$ 3.000-8.000 no mês de agosto. Pixel server-side via Meta CAPI já ativo. Teste de criativos A/B controlado.
 
-*Fase sustentação (setembro em diante).* Campanha permanente de retargeting com orçamento baixo-médio (R$ 1.500-3.500/mês), campanha de captura de lead via isca gratuita (R$ 2.000-4.000/mês), campanha de Google Ads para palavras-chave de marca e de alta intenção (R$ 800-1.500/mês).
+_Fase sustentação (setembro em diante)._ Campanha permanente de retargeting com orçamento baixo-médio (R$ 1.500-3.500/mês), campanha de captura de lead via isca gratuita (R$ 2.000-4.000/mês), campanha de Google Ads para palavras-chave de marca e de alta intenção (R$ 800-1.500/mês).
 
-**Google Ads no primeiro ano:** priorizar *brand search* (proteger marca contra concorrente que lance anúncio sobre "flavio milhomem"), *high-intent keywords* ("curso direito penal mpf", "curso direito penal promotoria"), *Discovery* para conteúdo do blog. Evitar *Display* genérico.
+**Google Ads no primeiro ano:** priorizar _brand search_ (proteger marca contra concorrente que lance anúncio sobre "flavio milhomem"), _high-intent keywords_ ("curso direito penal mpf", "curso direito penal promotoria"), _Discovery_ para conteúdo do blog. Evitar _Display_ genérico.
 
 ## 7.6 Link building e autoridade externa
 
 A Escola constrói autoridade externa por três táticas principais, todas compatíveis com o compliance institucional.
 
-**Publicação em revista jurídica indexada.** Flávio já é autor. Continuar publicando em revistas acadêmicas (Revista do MPDFT, Revista Brasileira de Ciências Criminais, Revista dos Tribunais) é fonte de *backlink* de altíssima autoridade quando a revista oferece versão online com DOI e link para o perfil do autor.
+**Publicação em revista jurídica indexada.** Flávio já é autor. Continuar publicando em revistas acadêmicas (Revista do MPDFT, Revista Brasileira de Ciências Criminais, Revista dos Tribunais) é fonte de _backlink_ de altíssima autoridade quando a revista oferece versão online com DOI e link para o perfil do autor.
 
 **Colunismo em portais jurídicos.** Conjur, Jota, Migalhas recebem colunistas. Oferecer coluna mensal gratuita de Flávio (compatível com cargo MP, desde que sem compensação pecuniária) gera presença editorial com link para o site da Escola. Atenção ao compliance: coluna não pode ser publicidade disfarçada; precisa ser conteúdo analítico genuíno.
 
-**Participação em eventos.** Painéis, palestras, mesas em congressos jurídicos, seminários de escolas de magistratura, eventos OAB são excelente fonte de visibilidade e de *backlink* quando o evento divulga os palestrantes em página web com link institucional. Agenda anual de 6-10 participações ao longo de 2026-2027.
+**Participação em eventos.** Painéis, palestras, mesas em congressos jurídicos, seminários de escolas de magistratura, eventos OAB são excelente fonte de visibilidade e de _backlink_ quando o evento divulga os palestrantes em página web com link institucional. Agenda anual de 6-10 participações ao longo de 2026-2027.
 
-**Não fazer.** Comprar *backlink*, participar de PBN (private blog networks), trocar link em esquema de reciprocidade com sites de baixa qualidade — tudo isso é contraindicado, por razão de SEO e por razão institucional.
+**Não fazer.** Comprar _backlink_, participar de PBN (private blog networks), trocar link em esquema de reciprocidade com sites de baixa qualidade — tudo isso é contraindicado, por razão de SEO e por razão institucional.
 
 ## 7.7 Evento presencial âncora — Dia do Advogado 2026
 
@@ -1137,13 +1140,13 @@ O evento presencial em Brasília, no Dia do Advogado (11 de agosto de 2026), é 
 
 Parcerias comerciais com escritório de advocacia são linha vermelha (Capítulo 9). Mas parcerias **editoriais não-comerciais** são possíveis e saudáveis.
 
-**Modelo de parceria aceitável:** (a) coautoria ocasional de artigo com pesquisador acadêmico, sem remuneração, com apenas o crédito; (b) entrevista de Flávio em podcast jurídico com troca de *co-marketing* (cada um divulga ao público do outro), sem fluxo financeiro; (c) painel conjunto com professor de outra escola em evento público, sem vínculo comercial; (d) intercâmbio de alunos entre cursos com tema complementar, com regras claras de não-concorrência direta.
+**Modelo de parceria aceitável:** (a) coautoria ocasional de artigo com pesquisador acadêmico, sem remuneração, com apenas o crédito; (b) entrevista de Flávio em podcast jurídico com troca de _co-marketing_ (cada um divulga ao público do outro), sem fluxo financeiro; (c) painel conjunto com professor de outra escola em evento público, sem vínculo comercial; (d) intercâmbio de alunos entre cursos com tema complementar, com regras claras de não-concorrência direta.
 
-**Modelo inaceitável:** patrocínio de escritório, *affiliate* com comissão paga a advogado em atividade, revenda de produto a curso por escritório, *bundle* com serviço jurídico. Todos esses configuram captação indireta vedada a Promotor.
+**Modelo inaceitável:** patrocínio de escritório, _affiliate_ com comissão paga a advogado em atividade, revenda de produto a curso por escritório, _bundle_ com serviço jurídico. Todos esses configuram captação indireta vedada a Promotor.
 
 ## 7.9 Programa de embaixadores e alunos pioneiros
 
-No segundo cohort (a partir de janeiro de 2027) e em diante, a Escola pode operar um **programa de embaixadores** com alunos destaque (aprovados em concurso, advogados em carreira, servidores reconhecidos na comunidade jurídica) que compartilham depoimento em troca de bônus (próximo cohort com desconto, acesso vitalício a material, menção em landing). Isso NÃO é programa de afiliados — não há comissão em dinheiro — mas é *social proof* formalizado.
+No segundo cohort (a partir de janeiro de 2027) e em diante, a Escola pode operar um **programa de embaixadores** com alunos destaque (aprovados em concurso, advogados em carreira, servidores reconhecidos na comunidade jurídica) que compartilham depoimento em troca de bônus (próximo cohort com desconto, acesso vitalício a material, menção em landing). Isso NÃO é programa de afiliados — não há comissão em dinheiro — mas é _social proof_ formalizado.
 
 Regras operacionais: contrato simples de cessão de imagem, compromisso de transparência (qualquer oferta "em troca de depoimento" é informada ao público), limite de embaixadores por cohort (máximo 10) para preservar credibilidade.
 
@@ -1237,15 +1240,15 @@ CRO é trabalho permanente, mas só vale a pena quando há volume mínimo que d�
 
 Testes prioritários do primeiro ciclo: (1) headline da landing do cohort — duas variações em rodízio 50/50 por duas semanas; (2) CTA do formulário de newsletter — "Entre na lista" vs. "Quero receber as análises" vs. "Começar agora"; (3) posição do preço na landing — alto (logo após o bloco 3) vs. meio (bloco 11) vs. final (bloco 14 apenas); (4) formato da isca — PDF longo vs. mini-curso por e-mail em 5 dias vs. vídeo-aula única.
 
-Ferramenta: VWO ou Optimizely têm custo alto; no primeiro ano, testes simples via GTM + cookie *split* e verificação cruzada com GA4.
+Ferramenta: VWO ou Optimizely têm custo alto; no primeiro ano, testes simples via GTM + cookie _split_ e verificação cruzada com GA4.
 
 ## 8.8 Roadmap — 24 semanas consolidadas em 3 fases
 
 O roadmap detalhado está no artefato `roadmap_lancamento.html`. Esta seção do Livro-Guia é síntese integrada das três fases.
 
-**Fase 1 — Fundação (semanas 1-10, aproximadamente 22 de abril a 30 de junho de 2026).** Objetivos: infra técnica no ar (site + plataforma), conteúdo de abertura publicado (20-30 artigos + conjunto inicial de redes), lista de e-mail nascida (meta: 1.500-2.500 assinantes ao fim da fase 1), consulta formal ao CSMPDFT protocolada, produção de primeiro lote de aulas do cohort (3-4 módulos gravados), evento-âncora planejado com local/convidados/divulgação. *Sprints* previstas: S1 identidade + domínios + setup repositório; S2 landing inicial + primeiras páginas; S3 blog + 5 primeiros artigos; S4 sistema de lead + sequências básicas; S5 Pagar.me integração (*sprint* dedicada); S6-S7 plataforma do aluno MVP; S8 UTM Builder + tracking; S9 gravação de aulas; S10 testes e ajustes.
+**Fase 1 — Fundação (semanas 1-10, aproximadamente 22 de abril a 30 de junho de 2026).** Objetivos: infra técnica no ar (site + plataforma), conteúdo de abertura publicado (20-30 artigos + conjunto inicial de redes), lista de e-mail nascida (meta: 1.500-2.500 assinantes ao fim da fase 1), consulta formal ao CSMPDFT protocolada, produção de primeiro lote de aulas do cohort (3-4 módulos gravados), evento-âncora planejado com local/convidados/divulgação. _Sprints_ previstas: S1 identidade + domínios + setup repositório; S2 landing inicial + primeiras páginas; S3 blog + 5 primeiros artigos; S4 sistema de lead + sequências básicas; S5 Pagar.me integração (_sprint_ dedicada); S6-S7 plataforma do aluno MVP; S8 UTM Builder + tracking; S9 gravação de aulas; S10 testes e ajustes.
 
-**Fase 2 — Pré-lançamento e aquecimento (semanas 11-15, julho-primeira semana de agosto de 2026).** Objetivos: amplificação de conteúdo, *warm-up* da lista para abertura do cohort, confirmação do evento âncora com RSVP aberto, finalização das aulas do primeiro cohort, cadeia de sequências de lançamento pronta e testada em *staging*, tráfego pago de amplificação começa. Meta de lista ao fim da fase 2: 3.500-5.500 assinantes.
+**Fase 2 — Pré-lançamento e aquecimento (semanas 11-15, julho-primeira semana de agosto de 2026).** Objetivos: amplificação de conteúdo, _warm-up_ da lista para abertura do cohort, confirmação do evento âncora com RSVP aberto, finalização das aulas do primeiro cohort, cadeia de sequências de lançamento pronta e testada em _staging_, tráfego pago de amplificação começa. Meta de lista ao fim da fase 2: 3.500-5.500 assinantes.
 
 **Fase 3 — Lançamento e entrega (semanas 16-24, agosto-outubro de 2026).** Evento-âncora em 11 de agosto (semana 16). Abertura oficial do cohort para o público-geral em 12-15 de agosto. Janela de carrinho aberto por 10-14 dias. Sequência de lançamento em operação. Fechamento do carrinho em 22-24 de agosto. Início do cohort em 1 de setembro. Entrega ao longo das 12 semanas de cohort. Encerramento em dezembro, com NPS, depoimentos capturados, certificação emitida.
 
@@ -1255,7 +1258,7 @@ O roadmap detalhado está no artefato `roadmap_lancamento.html`. Esta seção do
 
 Subitem crítico do roadmap. Quarenta itens distribuídos em seis blocos, a serem fechados até cinco dias antes do evento:
 
-**Bloco A — Local e produção.** Contrato de espaço assinado. Layout de montagem confirmado. Equipe de *buffet* briefada. Equipe de streaming/filmagem briefada. Iluminação checada. Som checado. Plano B em caso de incidente técnico definido.
+**Bloco A — Local e produção.** Contrato de espaço assinado. Layout de montagem confirmado. Equipe de _buffet_ briefada. Equipe de streaming/filmagem briefada. Iluminação checada. Som checado. Plano B em caso de incidente técnico definido.
 
 **Bloco B — Convidados e painéis.** Painelistas confirmados por escrito (convite + contrato simples de cessão de imagem). Briefing enviado aos painelistas com 10 dias de antecedência. Roteiro do evento distribuído 3 dias antes. Mediador do painel (pode ser Flávio ou jornalista convidado) alinhado.
 
@@ -1271,7 +1274,7 @@ Subitem crítico do roadmap. Quarenta itens distribuídos em seis blocos, a sere
 
 O artefato `roadmap_lancamento.html` lista cinco riscos principais. A síntese:
 
-**Risco 1 — Atraso na integração Pagar.me (primeira vez da equipe).** Impacto: alto (sem pagamento, sem receita). Probabilidade: média. Mitigação: *sprint* dedicada (S5), prototipagem antes do desenvolvimento final, ambiente *sandbox* extensivo, reserva de 5 dias adicionais no cronograma. Plano B: Pagar.me + Stripe em paralelo como fallback temporário se houver bloqueio específico de produto.
+**Risco 1 — Atraso na integração Pagar.me (primeira vez da equipe).** Impacto: alto (sem pagamento, sem receita). Probabilidade: média. Mitigação: _sprint_ dedicada (S5), prototipagem antes do desenvolvimento final, ambiente _sandbox_ extensivo, reserva de 5 dias adicionais no cronograma. Plano B: Pagar.me + Stripe em paralelo como fallback temporário se houver bloqueio específico de produto.
 
 **Risco 2 — Corregedoria ou consulta institucional traz restrições.** Impacto: muito alto (pode alterar escopo do produto ou exigir adaptações). Probabilidade: baixa-média. Mitigação: consulta formal ao CSMPDFT protocolada em maio de 2026, antes de qualquer comunicação de venda; assessoria jurídica dedicada ao compliance do projeto (Capítulo 9); monitoramento de correspondência do MPDFT semanal.
 
@@ -1285,9 +1288,9 @@ O artefato `roadmap_lancamento.html` lista cinco riscos principais. A síntese:
 
 Extraído do roadmap. Tarefas imediatas a partir de 23 de abril de 2026:
 
-Dias 1-3: protocolar consulta formal ao CSMPDFT (apoio jurídico); registrar domínios (`flaviomilhomem.com.br` se disponível, variantes); iniciar *sprint* 1 do repositório técnico.
+Dias 1-3: protocolar consulta formal ao CSMPDFT (apoio jurídico); registrar domínios (`flaviomilhomem.com.br` se disponível, variantes); iniciar _sprint_ 1 do repositório técnico.
 
-Dias 4-7: identidade visual com decisão final (Figma), landing institucional inicial em *staging*, primeiros 2 artigos no blog em rascunho.
+Dias 4-7: identidade visual com decisão final (Figma), landing institucional inicial em _staging_, primeiros 2 artigos no blog em rascunho.
 
 Dias 8-14: landing institucional publicada, newsletter aberta para inscrição, primeira peça de Instagram/LinkedIn publicada sob nova narrativa, reunião de briefing formal com Flávio para captura de respostas pendentes do briefing (especialmente blocos H e K).
 
@@ -1445,7 +1448,7 @@ O compliance MP/MPDFT é pilar estrutural da Escola, não apêndice. Cinco grupo
 
 ## Apêndice A — Glossário essencial
 
-**AEO (Answer Engine Optimization).** Otimização de conteúdo para que seja citado por motores de resposta e *assistants* (ChatGPT, Perplexity, Gemini).
+**AEO (Answer Engine Optimization).** Otimização de conteúdo para que seja citado por motores de resposta e _assistants_ (ChatGPT, Perplexity, Gemini).
 
 **Cohort.** Turma de alunos que percorrem o curso em janela temporal sincronizada, com começo, meio e fim definidos, com acesso ao professor durante a jornada.
 
@@ -1465,7 +1468,7 @@ O compliance MP/MPDFT é pilar estrutural da Escola, não apêndice. Cinco grupo
 
 **LGPD.** Lei Geral de Proteção de Dados — Lei 13.709/2018.
 
-**LLM.** Large Language Model — modelo de linguagem de grande porte, usado em *assistants* e geração.
+**LLM.** Large Language Model — modelo de linguagem de grande porte, usado em _assistants_ e geração.
 
 **LOMPU / LONMP.** Lei Complementar 75/1993 (MP da União) e Lei 8.625/1993 (MP estaduais) — estatutos disciplinares.
 
@@ -1485,27 +1488,27 @@ O compliance MP/MPDFT é pilar estrutural da Escola, não apêndice. Cinco grupo
 
 ## Apêndice B — Dores das personas (formato narrativo)
 
-**Mariana — topo de funil.** Vai bem em prova objetiva mas trava em peça. Sente que os manuais explicam sem responder o que a banca cobra. *Gancho:* "Veja como a acusação lê a mesma norma que a banca cobra".
+**Mariana — topo de funil.** Vai bem em prova objetiva mas trava em peça. Sente que os manuais explicam sem responder o que a banca cobra. _Gancho:_ "Veja como a acusação lê a mesma norma que a banca cobra".
 
-**Mariana — meio de funil.** Tem tempo escasso, estudou tudo mas não sabe se estudou o que importa. Busca validação de método. *Gancho:* "Três decisões do STJ que caem em quase toda banca de MP — e o que eles têm em comum".
+**Mariana — meio de funil.** Tem tempo escasso, estudou tudo mas não sabe se estudou o que importa. Busca validação de método. _Gancho:_ "Três decisões do STJ que caem em quase toda banca de MP — e o que eles têm em comum".
 
-**Mariana — fundo de funil.** Tem 2-3 concursos no horizonte. Precisa da ponte final entre estudo acumulado e peça escrita. *Gancho:* "Cohort de 12 semanas: do artigo à peça, pela perspectiva de quem recebe a denúncia".
+**Mariana — fundo de funil.** Tem 2-3 concursos no horizonte. Precisa da ponte final entre estudo acumulado e peça escrita. _Gancho:_ "Cohort de 12 semanas: do artigo à peça, pela perspectiva de quem recebe a denúncia".
 
-**Rafael — topo.** Quer ser visto como advogado preparado. Cansa de dicas vagas. *Gancho:* "Como o Promotor prepara a denúncia — e o que isso te diz sobre como construir a defesa".
+**Rafael — topo.** Quer ser visto como advogado preparado. Cansa de dicas vagas. _Gancho:_ "Como o Promotor prepara a denúncia — e o que isso te diz sobre como construir a defesa".
 
-**Rafael — meio.** Tem caso ativo. Precisa de tese. *Gancho:* "Masterclass: Análise da Lei Anticrime pela perspectiva da acusação".
+**Rafael — meio.** Tem caso ativo. Precisa de tese. _Gancho:_ "Masterclass: Análise da Lei Anticrime pela perspectiva da acusação".
 
-**Rafael — fundo.** Quer diferenciação pesada em 6-12 meses. *Gancho:* "Cohort com Promotor ativo do MPDFT, acesso direto ao professor, casos reais anonimizados".
+**Rafael — fundo.** Quer diferenciação pesada em 6-12 meses. _Gancho:_ "Cohort com Promotor ativo do MPDFT, acesso direto ao professor, casos reais anonimizados".
 
-**Otávio — topo.** Quer estar atualizado sem abrir 200 páginas/semana. *Gancho:* "Newsletter quinzenal 'Bastidor da Acusação' — informativo comentado por Promotor ativo".
+**Otávio — topo.** Quer estar atualizado sem abrir 200 páginas/semana. _Gancho:_ "Newsletter quinzenal 'Bastidor da Acusação' — informativo comentado por Promotor ativo".
 
-**Otávio — meio.** Quer interlocução. *Gancho:* "Encontro mensal com Flávio Milhomem e convidados — análise de julgados recentes em mesa restrita".
+**Otávio — meio.** Quer interlocução. _Gancho:_ "Encontro mensal com Flávio Milhomem e convidados — análise de julgados recentes em mesa restrita".
 
-**Otávio — fundo.** Quer assinatura anual de conteúdo denso contínuo. *Gancho:* "Assinatura 'Atualização Criminal Continuada' — quinzenal, com análise anotada e fórum restrito".
+**Otávio — fundo.** Quer assinatura anual de conteúdo denso contínuo. _Gancho:_ "Assinatura 'Atualização Criminal Continuada' — quinzenal, com análise anotada e fórum restrito".
 
-**Luísa — topo.** Quer referência internacional acessível. *Gancho:* "Dogmática comparada — Brasil, Portugal, França — esquema de leitura".
+**Luísa — topo.** Quer referência internacional acessível. _Gancho:_ "Dogmática comparada — Brasil, Portugal, França — esquema de leitura".
 
-**Paulo — topo/rede.** Quer interlocução institucional e visibilidade cruzada. *Gancho:* "Convite para painel" ou "artigo coautorado", não produto pago.
+**Paulo — topo/rede.** Quer interlocução institucional e visibilidade cruzada. _Gancho:_ "Convite para painel" ou "artigo coautorado", não produto pago.
 
 ## Apêndice C — Ferramentas e contas recomendadas
 
@@ -1527,7 +1530,8 @@ O compliance MP/MPDFT é pilar estrutural da Escola, não apêndice. Cinco grupo
 
 Modelos em JSON-LD para uso no `<head>` de páginas.
 
-*Person — página Sobre:*
+_Person — página Sobre:_
+
 ```json
 {
   "@context": "https://schema.org",
@@ -1535,8 +1539,14 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
   "name": "Flávio Milhomem",
   "jobTitle": "Promotor de Justiça — MPDFT · Ouvidor-Geral do MPDFT (2025-2027)",
   "alumniOf": [
-    { "@type": "CollegeOrUniversity", "name": "Universidade Católica Portuguesa" },
-    { "@type": "CollegeOrUniversity", "name": "École Nationale de la Magistrature" }
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Universidade Católica Portuguesa"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "École Nationale de la Magistrature"
+    }
   ],
   "sameAs": [
     "https://www.mpdft.mp.br/...",
@@ -1546,7 +1556,8 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
 }
 ```
 
-*Article — página de artigo de blog:*
+_Article — página de artigo de blog:_
+
 ```json
 {
   "@context": "https://schema.org",
@@ -1559,7 +1570,8 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
 }
 ```
 
-*Course — página do cohort:*
+_Course — página do cohort:_
+
 ```json
 {
   "@context": "https://schema.org",
@@ -1573,11 +1585,13 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
 ## Apêndice E — Recursos institucionais e fontes primárias
 
 **Normas federais:**
+
 - Constituição Federal, Art. 128, §5º, II.
 - Lei Complementar 75 de 20/05/1993 (LOMPU).
 - Lei 8.625 de 12/02/1993 (LONMP).
 
 **Resoluções CNMP:**
+
 - Res. CNMP 73/2011 — exercício de magistério por membro do MP.
 - Res. CNMP 132/2015 — ética e disciplina.
 - Res. CNMP 224/2021 — atividade em redes sociais.
@@ -1585,17 +1599,20 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
 - Rec. CN-CNMP 1/2016 — uso de redes sociais.
 
 **Normas internas MPDFT:**
+
 - Código de Ética MPDFT.
 - Regimento Interno MPDFT — procedimento de consulta ao CSMPDFT.
 - Orientações da Corregedoria do MPDFT sobre magistério privado.
 
 **Portais de referência:**
+
 - mpdft.mp.br (portal institucional).
 - cnmp.mp.br (Conselho Nacional do MP).
 - planalto.gov.br (texto oficial de lei).
 - stf.jus.br, stj.jus.br (jurisprudência).
 
 **Documentação Orbee Labs referenciada neste Livro-Guia:**
+
 - `pesquisa_mercado.html` (mercado Brasil).
 - `pesquisa_mercado_mg.html` (MG complementar).
 - `pesquisa_mercado_bh.html` (BH/RMBH).
@@ -1608,7 +1625,7 @@ Modelos em JSON-LD para uso no `<head>` de páginas.
 
 ## Apêndice F — Arquivos GEO/AEO literais (`llms.txt` e `robots.txt`)
 
-Esta seção entrega os dois arquivos prontos para *deploy* na raiz do site. Eles fecham, no plano operacional, o critério 29 do framework dos 38 critérios da Orbee Labs (GEO + IA generativa). O `llms.txt` é o ponto de entrada que IAs generativas (ChatGPT, Claude, Perplexity, Gemini) usam para entender qual conteúdo do site é citável e como. O `robots.txt` autoriza explicitamente os *bots* de IA de uso legítimo e bloqueia *crawlers* maliciosos.
+Esta seção entrega os dois arquivos prontos para _deploy_ na raiz do site. Eles fecham, no plano operacional, o critério 29 do framework dos 38 critérios da Orbee Labs (GEO + IA generativa). O `llms.txt` é o ponto de entrada que IAs generativas (ChatGPT, Claude, Perplexity, Gemini) usam para entender qual conteúdo do site é citável e como. O `robots.txt` autoriza explicitamente os _bots_ de IA de uso legítimo e bloqueia _crawlers_ maliciosos.
 
 ### F.1 — `llms.txt` (raiz do site, formato Markdown)
 
@@ -1806,11 +1823,11 @@ Sitemap: https://escolaflaviomilhomem.com.br/sitemap.xml
 Sitemap: https://escolaflaviomilhomem.com.br/sitemap-blog.xml
 ```
 
-**Observação operacional:** o `User-agent: *` no fim consolida o regime de bloqueio universal das áreas privadas para qualquer crawler não nomeado. As permissões nominais acima dele têm precedência específica para os bots listados. A decisão de permitir AhrefsBot e SemrushBot foi negativa — quando a Escola adotar Ahrefs ou Semrush como fornecedor próprio (mês seis em diante, conforme cap 7.2), o bloqueio aqui pode ser revisto, mas hoje a permissão expõe a Escola a *content scraping* de concorrente que paga essas plataformas para mapear o conteúdo.
+**Observação operacional:** o `User-agent: *` no fim consolida o regime de bloqueio universal das áreas privadas para qualquer crawler não nomeado. As permissões nominais acima dele têm precedência específica para os bots listados. A decisão de permitir AhrefsBot e SemrushBot foi negativa — quando a Escola adotar Ahrefs ou Semrush como fornecedor próprio (mês seis em diante, conforme cap 7.2), o bloqueio aqui pode ser revisto, mas hoje a permissão expõe a Escola a _content scraping_ de concorrente que paga essas plataformas para mapear o conteúdo.
 
 ## Apêndice G — Tokens de Design System (`tailwind.config.ts` literal)
 
-Tradução operacional dos caps 5.2 (paleta) e 5.3 (tipografia) em arquivo TypeScript pronto para importação no projeto Next.js. Cores em escala 50-900 derivadas dos HEX-base já aprovados, tipografia variável Newsreader (serifa) + Inter (sans), espaçamentos em escala modular e tokens auxiliares (border-radius, box-shadow, breakpoints) calibrados para *Cumulative Layout Shift* baixo e legibilidade jurídica em prosa densa.
+Tradução operacional dos caps 5.2 (paleta) e 5.3 (tipografia) em arquivo TypeScript pronto para importação no projeto Next.js. Cores em escala 50-900 derivadas dos HEX-base já aprovados, tipografia variável Newsreader (serifa) + Inter (sans), espaçamentos em escala modular e tokens auxiliares (border-radius, box-shadow, breakpoints) calibrados para _Cumulative Layout Shift_ baixo e legibilidade jurídica em prosa densa.
 
 ```typescript
 // tailwind.config.ts
@@ -1830,7 +1847,7 @@ export default {
         // Inspiração: tinta de caneta-tinteiro de cartório.
         // Uso: títulos, links, CTAs primários, footer institucional.
         tinta: {
-          50:  "#f3f5fa",
+          50: "#f3f5fa",
           100: "#e3e8f3",
           200: "#c1cce4",
           300: "#94a7d0",
@@ -1845,7 +1862,7 @@ export default {
         // Inspiração: detalhe de capa de livro jurídico clássico.
         // Uso: separadores, ênfases, destaque editorial, ornamento de capa.
         dourado: {
-          50:  "#fdf9ec",
+          50: "#fdf9ec",
           100: "#faefcb",
           200: "#f5dd8e",
           300: "#efc650",
@@ -1860,7 +1877,7 @@ export default {
         // Tons mais quentes que slate Tailwind padrão; melhor leitura em
         // bloco longo de prosa jurídica.
         slate: {
-          50:  "#f8f8f6",
+          50: "#f8f8f6",
           100: "#eeede8",
           200: "#dcdacf",
           300: "#bdbaaa",
@@ -1916,77 +1933,93 @@ export default {
           "sans-serif",
         ],
         // === JetBrains Mono — código jurídico (artigo, inciso, número) ===
-        mono: [
-          "JetBrains Mono",
-          "Menlo",
-          "Consolas",
-          "monospace",
-        ],
+        mono: ["JetBrains Mono", "Menlo", "Consolas", "monospace"],
       },
       fontSize: {
         // Escala modular ratio 1.25 (terça menor)
-        "display-1": ["clamp(2.5rem, 4vw + 1rem, 4rem)", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" }],
-        "display-2": ["clamp(2rem, 3vw + 1rem, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "700" }],
-        "heading-1": ["2.25rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" }],
-        "heading-2": ["1.75rem", { lineHeight: "1.3", letterSpacing: "-0.005em", fontWeight: "700" }],
+        "display-1": [
+          "clamp(2.5rem, 4vw + 1rem, 4rem)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" },
+        ],
+        "display-2": [
+          "clamp(2rem, 3vw + 1rem, 3rem)",
+          { lineHeight: "1.15", letterSpacing: "-0.015em", fontWeight: "700" },
+        ],
+        "heading-1": [
+          "2.25rem",
+          { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "700" },
+        ],
+        "heading-2": [
+          "1.75rem",
+          { lineHeight: "1.3", letterSpacing: "-0.005em", fontWeight: "700" },
+        ],
         "heading-3": ["1.375rem", { lineHeight: "1.35", fontWeight: "600" }],
         "heading-4": ["1.125rem", { lineHeight: "1.4", fontWeight: "600" }],
-        "body-lg":   ["1.125rem", { lineHeight: "1.7" }],
-        "body":      ["1rem", { lineHeight: "1.7" }],
-        "body-sm":   ["0.9375rem", { lineHeight: "1.65" }],
-        "caption":   ["0.8125rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
-        "overline":  ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: "700" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.7" }],
+        body: ["1rem", { lineHeight: "1.7" }],
+        "body-sm": ["0.9375rem", { lineHeight: "1.65" }],
+        caption: ["0.8125rem", { lineHeight: "1.5", letterSpacing: "0.01em" }],
+        overline: [
+          "0.75rem",
+          {
+            lineHeight: "1.4",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            fontWeight: "700",
+          },
+        ],
       },
       spacing: {
         // Escala 4px-base (Tailwind default) + tokens semânticos para
         // arquitetura editorial.
-        "gutter":    "1.5rem",   // padding lateral do article
-        "stack":     "2rem",     // espaçamento entre seções de prosa
-        "section":   "5rem",     // espaçamento entre blocos do site
-        "page":      "8rem",     // top padding de página principal
+        gutter: "1.5rem", // padding lateral do article
+        stack: "2rem", // espaçamento entre seções de prosa
+        section: "5rem", // espaçamento entre blocos do site
+        page: "8rem", // top padding de página principal
       },
       borderRadius: {
-        "sm":  "0.25rem",
-        "md":  "0.5rem",
-        "lg":  "0.75rem",
-        "xl":  "1rem",
+        sm: "0.25rem",
+        md: "0.5rem",
+        lg: "0.75rem",
+        xl: "1rem",
         "2xl": "1.5rem",
-        "card": "0.75rem",
-        "pill": "9999px",
+        card: "0.75rem",
+        pill: "9999px",
       },
       boxShadow: {
-        "subtle": "0 1px 2px 0 rgba(15, 23, 52, 0.04), 0 1px 3px 0 rgba(15, 23, 52, 0.06)",
-        "card":   "0 4px 6px -1px rgba(15, 23, 52, 0.06), 0 2px 4px -2px rgba(15, 23, 52, 0.04)",
-        "elev":   "0 10px 15px -3px rgba(15, 23, 52, 0.08), 0 4px 6px -4px rgba(15, 23, 52, 0.05)",
-        "modal":  "0 25px 50px -12px rgba(15, 23, 52, 0.18)",
+        subtle:
+          "0 1px 2px 0 rgba(15, 23, 52, 0.04), 0 1px 3px 0 rgba(15, 23, 52, 0.06)",
+        card: "0 4px 6px -1px rgba(15, 23, 52, 0.06), 0 2px 4px -2px rgba(15, 23, 52, 0.04)",
+        elev: "0 10px 15px -3px rgba(15, 23, 52, 0.08), 0 4px 6px -4px rgba(15, 23, 52, 0.05)",
+        modal: "0 25px 50px -12px rgba(15, 23, 52, 0.18)",
         "inset-focus": "inset 0 0 0 2px rgba(203, 141, 18, 0.5)",
       },
       maxWidth: {
-        "prose":     "68ch",     // largura ideal de leitura para prosa jurídica
+        prose: "68ch", // largura ideal de leitura para prosa jurídica
         "prose-wide": "76ch",
-        "container": "1200px",
+        container: "1200px",
       },
       screens: {
-        "xs":  "475px",
-        "sm":  "640px",
-        "md":  "768px",
-        "lg":  "1024px",
-        "xl":  "1280px",
+        xs: "475px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
         "2xl": "1536px",
       },
       typography: ({ theme }: { theme: (path: string) => string }) => ({
         DEFAULT: {
           css: {
-            "--tw-prose-body":     theme("colors.slate.900"),
+            "--tw-prose-body": theme("colors.slate.900"),
             "--tw-prose-headings": theme("colors.tinta.700"),
-            "--tw-prose-links":    theme("colors.tinta.600"),
-            "--tw-prose-bold":     theme("colors.slate.900"),
-            "--tw-prose-quotes":   theme("colors.tinta.700"),
+            "--tw-prose-links": theme("colors.tinta.600"),
+            "--tw-prose-bold": theme("colors.slate.900"),
+            "--tw-prose-quotes": theme("colors.tinta.700"),
             "--tw-prose-quote-borders": theme("colors.dourado.500"),
             "--tw-prose-captions": theme("colors.slate.600"),
-            "--tw-prose-code":     theme("colors.tinta.700"),
+            "--tw-prose-code": theme("colors.tinta.700"),
             "--tw-prose-pre-code": theme("colors.slate.50"),
-            "--tw-prose-pre-bg":   theme("colors.slate.900"),
+            "--tw-prose-pre-bg": theme("colors.slate.900"),
             "--tw-prose-th-borders": theme("colors.slate.300"),
             "--tw-prose-td-borders": theme("colors.slate.200"),
             fontFamily: theme("fontFamily.serif"),
@@ -1996,14 +2029,11 @@ export default {
       }),
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/forms"),
-  ],
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 } satisfies Config;
 ```
 
-**Observação operacional:** os tokens de cor seguem escala 50-900 gerada via uicolors.app a partir dos HEX-base aprovados. Os HEX semânticos (`primary`, `accent`, `background`, `foreground`) são *aliases* dos pontos da escala mais usados em componentes shadcn/ui — facilitam a configuração do CLI shadcn. A escala de fonte usa `clamp()` para os tamanhos display, que escalam fluidamente entre desktop e mobile sem media queries adicionais. Os tokens de espaçamento semântico (`gutter`, `stack`, `section`, `page`) materializam o ritmo editorial discutido no cap 5.4 — são usáveis como `p-gutter`, `space-y-stack`, `mb-section`. A integração com `@tailwindcss/typography` está pré-configurada para que `<article class="prose">` renderize prosa jurídica com tipografia, espaçamento e cores corretos sem CSS adicional.
+**Observação operacional:** os tokens de cor seguem escala 50-900 gerada via uicolors.app a partir dos HEX-base aprovados. Os HEX semânticos (`primary`, `accent`, `background`, `foreground`) são _aliases_ dos pontos da escala mais usados em componentes shadcn/ui — facilitam a configuração do CLI shadcn. A escala de fonte usa `clamp()` para os tamanhos display, que escalam fluidamente entre desktop e mobile sem media queries adicionais. Os tokens de espaçamento semântico (`gutter`, `stack`, `section`, `page`) materializam o ritmo editorial discutido no cap 5.4 — são usáveis como `p-gutter`, `space-y-stack`, `mb-section`. A integração com `@tailwindcss/typography` está pré-configurada para que `<article class="prose">` renderize prosa jurídica com tipografia, espaçamento e cores corretos sem CSS adicional.
 
 ## Apêndice H — Template de prova social (case de sucesso)
 
@@ -2013,6 +2043,7 @@ A Escola Flávio Milhomem inicia com zero vendas e zero alunos, conforme registr
 
 ```markdown
 # [Título impactante em uma linha]
+
 ## [Subtítulo com a transformação ou número-síntese]
 
 **Aluno(a):** [Nome ou pseudônimo se solicitado]
@@ -2088,21 +2119,21 @@ Link secundário: "Ler outros cases de alunos" (link para `/cases`).
 
 ### Orientações de coleta dos cases
 
-1. **Permissão por escrito.** Cada *case* só pode ser publicado após autorização formal do(a) aluno(a) por instrumento separado de cessão de imagem e uso de depoimento. Modelo a ser produzido pela assessoria jurídica, integrável ao termo de matrícula como cláusula opcional.
+1. **Permissão por escrito.** Cada _case_ só pode ser publicado após autorização formal do(a) aluno(a) por instrumento separado de cessão de imagem e uso de depoimento. Modelo a ser produzido pela assessoria jurídica, integrável ao termo de matrícula como cláusula opcional.
 
 2. **Anonimato como opção padrão.** Por respeito ao perfil do público (concurseiros que ainda estão em prova, servidores públicos em carreira), o anonimato com pseudônimo deve ser oferecido como primeira opção. Apenas se o(a) aluno(a) optar por identificação plena, nome real é usado.
 
-3. **Métricas verificáveis.** Sempre que possível, screenshots ou prints de interfaces (GSC, GA4, plataforma de concurso, comunicação institucional do MPDFT/MPF) devem acompanhar a métrica afirmada. Sem prova, a métrica não vai à página de *case* — vai para depoimento testemunhal qualitativo.
+3. **Métricas verificáveis.** Sempre que possível, screenshots ou prints de interfaces (GSC, GA4, plataforma de concurso, comunicação institucional do MPDFT/MPF) devem acompanhar a métrica afirmada. Sem prova, a métrica não vai à página de _case_ — vai para depoimento testemunhal qualitativo.
 
-4. **Atualização dos cases.** Cada *case* publicado leva data e é atualizado ao menos uma vez ao ano. *Case* não atualizado em 18 meses sai do destaque da página `/cases` e migra para arquivo histórico. Isso evita o problema clássico de portfólio de agência — *cases* fósseis dominando a vitrine.
+4. **Atualização dos cases.** Cada _case_ publicado leva data e é atualizado ao menos uma vez ao ano. _Case_ não atualizado em 18 meses sai do destaque da página `/cases` e migra para arquivo histórico. Isso evita o problema clássico de portfólio de agência — _cases_ fósseis dominando a vitrine.
 
-5. **Limite numérico.** A página `/cases` exibe no máximo 12 *cases* em destaque simultâneo. Acima disso, ela é arquivo paginado.
+5. **Limite numérico.** A página `/cases` exibe no máximo 12 _cases_ em destaque simultâneo. Acima disso, ela é arquivo paginado.
 
 ## Apêndice I — Ferramenta interativa: Calculadora de pena hipotética
 
-A Escola Flávio Milhomem entrega, na arquitetura do site, uma ferramenta interativa que cumpre quatro funções simultâneas: capta lead de alta intenção (estudante avançado, advogado em treinamento, Promotor júnior), demonstra expertise direta do Flávio em dosimetria penal, atrai tráfego orgânico em long-tail jurídica de difícil falsificação, e ranqueia em busca por voz e *Featured Snippets* por ser a única ferramenta do nicho que entrega resultado calculado, não link para texto.
+A Escola Flávio Milhomem entrega, na arquitetura do site, uma ferramenta interativa que cumpre quatro funções simultâneas: capta lead de alta intenção (estudante avançado, advogado em treinamento, Promotor júnior), demonstra expertise direta do Flávio em dosimetria penal, atrai tráfego orgânico em long-tail jurídica de difícil falsificação, e ranqueia em busca por voz e _Featured Snippets_ por ser a única ferramenta do nicho que entrega resultado calculado, não link para texto.
 
-A ferramenta escolhida — entre as duas listadas no *idea backlog* do cap 6.6 — é a **Calculadora de Pena Hipotética**. A justificativa para esta escolha sobre o "Buscador de informativos anotados" é tripla: (a) calculadora gera valor imediato verificável (recebe número, processa, devolve número e raciocínio); (b) usa expertise específica do Flávio (dosimetria é tema central da prática do Promotor); (c) buscador de informativos compete diretamente com Dizer o Direito, que tem dez anos de SEO consolidado — calculadora compete contra zero player no nicho.
+A ferramenta escolhida — entre as duas listadas no _idea backlog_ do cap 6.6 — é a **Calculadora de Pena Hipotética**. A justificativa para esta escolha sobre o "Buscador de informativos anotados" é tripla: (a) calculadora gera valor imediato verificável (recebe número, processa, devolve número e raciocínio); (b) usa expertise específica do Flávio (dosimetria é tema central da prática do Promotor); (c) buscador de informativos compete diretamente com Dizer o Direito, que tem dez anos de SEO consolidado — calculadora compete contra zero player no nicho.
 
 Esta especificação é o documento operacional que a equipe técnica usará na implementação. É também documento editorial — descreve por escrito o que a ferramenta faz e como, para que esteja documentado antes do código existir.
 
@@ -2118,7 +2149,7 @@ A proposta de valor para a Escola Flávio Milhomem é qualitativa e mensurável.
 
 Antes de qualquer especificação técnica, é necessário registrar o disclaimer institucional. A calculadora **não calcula pena para caso real em curso, não substitui parecer técnico de advogado constituído, não emite opinião sobre casos pendentes em juízo, e não vincula a Escola, o Flávio Milhomem em qualquer uma de suas posições, ou o MPDFT a qualquer resultado calculado**.
 
-Esse disclaimer aparece em três pontos do fluxo da ferramenta: (a) no *modal* introdutório que o usuário precisa fechar antes de começar; (b) no rodapé permanente da página da calculadora; (c) no *output* de resultado, junto à pena estimada. O texto-base do disclaimer:
+Esse disclaimer aparece em três pontos do fluxo da ferramenta: (a) no _modal_ introdutório que o usuário precisa fechar antes de começar; (b) no rodapé permanente da página da calculadora; (c) no _output_ de resultado, junto à pena estimada. O texto-base do disclaimer:
 
 > Esta calculadora é instrumento didático. A estimativa abaixo é simulação de aplicação trifásica da pena para fins de estudo, não constitui parecer jurídico, não substitui consulta a advogado, não opina sobre casos reais em juízo, e não vincula a Escola Flávio Milhomem, o Prof. Flávio Milhomem em sua condição de Promotor de Justiça do MPDFT, nem o próprio MPDFT a qualquer resultado calculado. O cálculo definitivo da pena em caso real é prerrogativa do magistrado, fundamentada nos autos.
 
@@ -2130,59 +2161,64 @@ A calculadora é organizada em **wizard de três etapas**, espelhando as três f
 
 **Etapa 1 — Definição do crime e situação do agente (alimenta a 1ª fase).**
 
-| Campo | Tipo | Obrigatório | Validação |
-|---|---|---|---|
-| Tipo penal | autocomplete em lista pré-carregada (50 crimes mais comuns + busca por palavra-chave) | Sim | precisa selecionar item da lista |
-| Artigo do CP/lei especial | preenchimento automático ao selecionar tipo | derivado | — |
-| Pena mínima e máxima abstratas | preenchimento automático | derivado | — |
-| Idade do agente no momento do crime | número | Sim | 0-120; abaixo de 18 → mensagem ECA, calculadora não prossegue |
-| Primariedade | radio (primário / reincidente / multirreincidente) | Sim | — |
-| Antecedentes criminais | radio (sem / com — não computáveis para reincidência / com — computáveis para reincidência) | Sim | — |
-| Conduta social | radio (favorável / desfavorável / não há elementos) | Sim | — |
-| Personalidade | radio (favorável / desfavorável / não há elementos) | Sim | — |
-| Motivos do crime | radio (relevantes em favor / neutros / desfavoráveis) | Sim | — |
-| Circunstâncias do crime | radio (em favor / neutras / desfavoráveis) | Sim | — |
-| Consequências do crime | radio (em favor / neutras / desfavoráveis / graves) | Sim | — |
-| Comportamento da vítima | radio (em favor / neutro / contribuiu) | Sim | — |
+| Campo                               | Tipo                                                                                        | Obrigatório | Validação                                                     |
+| ----------------------------------- | ------------------------------------------------------------------------------------------- | ----------- | ------------------------------------------------------------- |
+| Tipo penal                          | autocomplete em lista pré-carregada (50 crimes mais comuns + busca por palavra-chave)       | Sim         | precisa selecionar item da lista                              |
+| Artigo do CP/lei especial           | preenchimento automático ao selecionar tipo                                                 | derivado    | —                                                             |
+| Pena mínima e máxima abstratas      | preenchimento automático                                                                    | derivado    | —                                                             |
+| Idade do agente no momento do crime | número                                                                                      | Sim         | 0-120; abaixo de 18 → mensagem ECA, calculadora não prossegue |
+| Primariedade                        | radio (primário / reincidente / multirreincidente)                                          | Sim         | —                                                             |
+| Antecedentes criminais              | radio (sem / com — não computáveis para reincidência / com — computáveis para reincidência) | Sim         | —                                                             |
+| Conduta social                      | radio (favorável / desfavorável / não há elementos)                                         | Sim         | —                                                             |
+| Personalidade                       | radio (favorável / desfavorável / não há elementos)                                         | Sim         | —                                                             |
+| Motivos do crime                    | radio (relevantes em favor / neutros / desfavoráveis)                                       | Sim         | —                                                             |
+| Circunstâncias do crime             | radio (em favor / neutras / desfavoráveis)                                                  | Sim         | —                                                             |
+| Consequências do crime              | radio (em favor / neutras / desfavoráveis / graves)                                         | Sim         | —                                                             |
+| Comportamento da vítima             | radio (em favor / neutro / contribuiu)                                                      | Sim         | —                                                             |
 
 Cada radio tem ícone de informação ao lado que abre tooltip explicando o que aquela circunstância judicial significa concretamente, com referência ao art. 59 do CP e a uma decisão paradigma do STJ (atualizada anualmente).
 
 **Etapa 2 — Agravantes e atenuantes legais (alimenta a 2ª fase).**
 
-| Campo | Tipo | Obrigatório |
-|---|---|---|
-| Agravantes incidentes | multiselect com lista de art. 61 e 62 CP | Não |
-| Atenuantes incidentes | multiselect com lista de art. 65 e 66 CP | Não |
+| Campo                                           | Tipo                                                                                 | Obrigatório |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------ | ----------- |
+| Agravantes incidentes                           | multiselect com lista de art. 61 e 62 CP                                             | Não         |
+| Atenuantes incidentes                           | multiselect com lista de art. 65 e 66 CP                                             | Não         |
 | Concurso entre agravante e atenuante (se ambas) | radio (preponderância da reincidência / preponderância da menoridade / equivalência) | Condicional |
 
 **Etapa 3 — Causas de aumento e diminuição (alimenta a 3ª fase).**
 
-| Campo | Tipo | Obrigatório |
-|---|---|---|
-| Causas de aumento | multiselect com lista (parte geral + parte especial relevantes ao tipo penal escolhido) | Não |
-| Causas de diminuição | multiselect com lista | Não |
-| Tentativa | toggle | Não |
-| Iter criminis percorrido (se tentativa) | slider 1/3 a 2/3 | Condicional |
-| Arrependimento posterior | toggle + valor restituído | Não |
-| Concurso de crimes | radio (material / formal / continuidade delitiva / nenhum) | Sim |
-| Número de crimes em concurso | número | Condicional |
+| Campo                                   | Tipo                                                                                    | Obrigatório |
+| --------------------------------------- | --------------------------------------------------------------------------------------- | ----------- |
+| Causas de aumento                       | multiselect com lista (parte geral + parte especial relevantes ao tipo penal escolhido) | Não         |
+| Causas de diminuição                    | multiselect com lista                                                                   | Não         |
+| Tentativa                               | toggle                                                                                  | Não         |
+| Iter criminis percorrido (se tentativa) | slider 1/3 a 2/3                                                                        | Condicional |
+| Arrependimento posterior                | toggle + valor restituído                                                               | Não         |
+| Concurso de crimes                      | radio (material / formal / continuidade delitiva / nenhum)                              | Sim         |
+| Número de crimes em concurso            | número                                                                                  | Condicional |
 
 ### I.4 — Lógica de cálculo
 
-A lógica é determinística e segue precisamente o roteiro trifásico do art. 68 do CP. Implementação em TypeScript no *backend* (Next.js API Route) — não no *frontend* — para evitar manipulação do cálculo via DevTools e para permitir registro auditável de cada cálculo realizado (telemetria opcional, com consentimento LGPD).
+A lógica é determinística e segue precisamente o roteiro trifásico do art. 68 do CP. Implementação em TypeScript no _backend_ (Next.js API Route) — não no _frontend_ — para evitar manipulação do cálculo via DevTools e para permitir registro auditável de cada cálculo realizado (telemetria opcional, com consentimento LGPD).
 
 **Pseudocódigo da 1ª fase — pena-base.**
 
 ```typescript
-function calcularPenaBase(crime: Crime, circunstancias: CircunstanciasJudiciais): number {
+function calcularPenaBase(
+  crime: Crime,
+  circunstancias: CircunstanciasJudiciais,
+): number {
   const penaMin = crime.penaMinima;
   const penaMax = crime.penaMaxima;
   const intervalo = penaMax - penaMin;
   // Cada uma das 8 circunstâncias judiciais que for desfavorável aumenta a pena-base
   // em 1/8 do intervalo entre mínima e máxima (regra prática consolidada do STJ).
-  const desfavoraveis = circunstancias.filter(c => c === "desfavoravel").length;
+  const desfavoraveis = circunstancias.filter(
+    (c) => c === "desfavoravel",
+  ).length;
   const acrescimoPorCircunstancia = intervalo / 8;
-  const penaBase = penaMin + (desfavoraveis * acrescimoPorCircunstancia);
+  const penaBase = penaMin + desfavoraveis * acrescimoPorCircunstancia;
   return Math.min(penaBase, penaMax); // não pode ultrapassar máxima
 }
 ```
@@ -2194,32 +2230,32 @@ function calcularPenaIntermediaria(
   penaBase: number,
   agravantes: string[],
   atenuantes: string[],
-  preponderancia: "reincidencia" | "menoridade" | "equivalencia" | null
+  preponderancia: "reincidencia" | "menoridade" | "equivalencia" | null,
 ): number {
   // Convencional: cada agravante/atenuante move 1/6 sobre a pena-base.
   // Quando há concurso, a preponderância (art. 67 CP) define qual prevalece.
-  const fatorAgravantes = agravantes.length * (1/6);
-  const fatorAtenuantes = atenuantes.length * (1/6);
+  const fatorAgravantes = agravantes.length * (1 / 6);
+  const fatorAtenuantes = atenuantes.length * (1 / 6);
   let pena = penaBase;
   if (preponderancia === "reincidencia") {
-    pena = pena + (fatorAgravantes * penaBase) - ((fatorAtenuantes / 2) * penaBase);
+    pena = pena + fatorAgravantes * penaBase - (fatorAtenuantes / 2) * penaBase;
   } else if (preponderancia === "menoridade") {
-    pena = pena + ((fatorAgravantes / 2) * penaBase) - (fatorAtenuantes * penaBase);
+    pena = pena + (fatorAgravantes / 2) * penaBase - fatorAtenuantes * penaBase;
   } else if (preponderancia === "equivalencia" || preponderancia === null) {
-    pena = pena + (fatorAgravantes * penaBase) - (fatorAtenuantes * penaBase);
+    pena = pena + fatorAgravantes * penaBase - fatorAtenuantes * penaBase;
   }
   // Limite: pena intermediária não pode ficar abaixo da mínima nem acima da máxima
   return Math.max(crime.penaMinima, Math.min(pena, crime.penaMaxima));
 }
 ```
 
-**Pseudocódigo da 3ª fase — pena definitiva.** A 3ª fase aplica frações sobre a pena intermediária — diferente das fases anteriores, a pena pode ultrapassar mínimos e máximos abstratos do tipo. Causas de aumento e diminuição operam por fração legal (1/3, 1/6, 1/2, 2/3 — cada causa tem sua fração no CP). Tentativa diminui de 1/3 a 2/3 conforme *iter criminis*. Concurso material soma; formal aumenta 1/6 a 1/2; continuidade delitiva aumenta 1/6 a 2/3.
+**Pseudocódigo da 3ª fase — pena definitiva.** A 3ª fase aplica frações sobre a pena intermediária — diferente das fases anteriores, a pena pode ultrapassar mínimos e máximos abstratos do tipo. Causas de aumento e diminuição operam por fração legal (1/3, 1/6, 1/2, 2/3 — cada causa tem sua fração no CP). Tentativa diminui de 1/3 a 2/3 conforme _iter criminis_. Concurso material soma; formal aumenta 1/6 a 1/2; continuidade delitiva aumenta 1/6 a 2/3.
 
-Cada cálculo intermediário é registrado em estrutura de dados que vira a **explicação passo-a-passo** mostrada ao usuário no *output*.
+Cada cálculo intermediário é registrado em estrutura de dados que vira a **explicação passo-a-passo** mostrada ao usuário no _output_.
 
 ### I.5 — Output e explicação
 
-O *output* da calculadora é uma página com cinco blocos visuais:
+O _output_ da calculadora é uma página com cinco blocos visuais:
 
 1. **Cartão-resumo** com a pena definitiva estimada em destaque (anos, meses, dias). Cor de fundo: tinta-50 com borda tinta-600. Acima do cartão, o disclaimer institucional em letra menor.
 
@@ -2233,7 +2269,7 @@ O *output* da calculadora é uma página com cinco blocos visuais:
 > 4. **3ª fase — causas de aumento e diminuição.** O crime foi tentado, com iter criminis percorrido em 1/2. Aplicando redução de 1/2 (média entre 1/3 e 2/3 conforme art. 14, II, CP), a pena definitiva fica em 1 ano e 1 mês e 15 dias.
 > 5. **Regime inicial estimado** (art. 33, §2º, CP): aberto, dado que a pena é inferior a 4 anos e o agente é primário. Possibilidade de substituição por restritivas de direito (art. 44 CP): atendidos os requisitos, sim.
 
-4. **Bloco "estude esta dosimetria"**, com três links contextuais: artigo do blog comentando o art. 68 do CP em detalhe, vídeo do YouTube do Flávio sobre dosimetria em concurso material, e — quando há *match* — link para aula específica do cohort que aprofunda o tipo penal escolhido.
+4. **Bloco "estude esta dosimetria"**, com três links contextuais: artigo do blog comentando o art. 68 do CP em detalhe, vídeo do YouTube do Flávio sobre dosimetria em concurso material, e — quando há _match_ — link para aula específica do cohort que aprofunda o tipo penal escolhido.
 
 5. **Bloco de CTA pós-resultado**, com:
    - Botão primário: "Receber boletim mensal de jurisprudência STJ/STF" (gera lead na newsletter).
@@ -2242,11 +2278,11 @@ O *output* da calculadora é uma página com cinco blocos visuais:
 
 ### I.6 — Captura de lead e fluxo de conversão
 
-A calculadora **não exige cadastro para uso**. Restrições à frente do paywall (cadastro obrigatório, login social, e-mail antes do cálculo) destruiriam o sinal de SEO — a página precisa ser indexável e usável por *crawler* sem barreira. A captura de lead é por incentivo pós-resultado, não por barreira pré-uso.
+A calculadora **não exige cadastro para uso**. Restrições à frente do paywall (cadastro obrigatório, login social, e-mail antes do cálculo) destruiriam o sinal de SEO — a página precisa ser indexável e usável por _crawler_ sem barreira. A captura de lead é por incentivo pós-resultado, não por barreira pré-uso.
 
 O fluxo de conversão tem três pontos de captura:
 
-1. **Antes do cálculo:** *modal* de boas-vindas com checkbox opcional "Quero receber um boletim mensal de análise de jurisprudência STJ/STF do Prof. Flávio". Pré-marcado como falso. Conversão estimada: 8-12% dos visitantes que abrem a calculadora.
+1. **Antes do cálculo:** _modal_ de boas-vindas com checkbox opcional "Quero receber um boletim mensal de análise de jurisprudência STJ/STF do Prof. Flávio". Pré-marcado como falso. Conversão estimada: 8-12% dos visitantes que abrem a calculadora.
 
 2. **No bloco de CTA pós-resultado:** botão primário direto pra newsletter. Conversão estimada: 15-20% dos que receberam resultado.
 
@@ -2281,18 +2317,18 @@ Telemetria via GA4 e via PostHog próprio (cap 4.9): eventos `calculator_started
 }
 ```
 
-Combinado com `FAQPage` na própria página, contendo as 8-10 perguntas mais frequentes sobre dosimetria que aparecem no Google PAA — capturando *Featured Snippet* e busca por voz.
+Combinado com `FAQPage` na própria página, contendo as 8-10 perguntas mais frequentes sobre dosimetria que aparecem no Google PAA — capturando _Featured Snippet_ e busca por voz.
 
 ### I.8 — Esforço técnico e cronograma
 
 Estimativa em sprints de duas semanas:
 
-- **Sprint 3 do roadmap (semanas 5-6 do desenvolvimento):** definição final dos 50 tipos penais carregados, redação dos *tooltips* educacionais (Flávio + revisor jurídico), validação de cada caso de uso pelo Flávio.
-- **Sprint 4 (semanas 7-8):** implementação do *frontend* (formulário em três etapas, *wizard*, validação client-side), implementação da API Route com lógica trifásica, testes Jest da lógica de cálculo (mínimo 30 casos de teste cobrindo tipos comuns + edge cases).
-- **Sprint 5 (semanas 9-10):** implementação do bloco de explicação passo-a-passo, geração de PDF (WeasyPrint ou Puppeteer), integração com newsletter, telemetria, schema, *meta tags* SEO, testes de acessibilidade WCAG AA.
-- **Sprint 6 (semanas 11-12):** *beta* fechado com 10-20 usuários piloto (alunos da Eduzz orbita atual, colegas próximos do Flávio em concurso), coleta de feedback, ajustes finais, *go live*.
+- **Sprint 3 do roadmap (semanas 5-6 do desenvolvimento):** definição final dos 50 tipos penais carregados, redação dos _tooltips_ educacionais (Flávio + revisor jurídico), validação de cada caso de uso pelo Flávio.
+- **Sprint 4 (semanas 7-8):** implementação do _frontend_ (formulário em três etapas, _wizard_, validação client-side), implementação da API Route com lógica trifásica, testes Jest da lógica de cálculo (mínimo 30 casos de teste cobrindo tipos comuns + edge cases).
+- **Sprint 5 (semanas 9-10):** implementação do bloco de explicação passo-a-passo, geração de PDF (WeasyPrint ou Puppeteer), integração com newsletter, telemetria, schema, _meta tags_ SEO, testes de acessibilidade WCAG AA.
+- **Sprint 6 (semanas 11-12):** _beta_ fechado com 10-20 usuários piloto (alunos da Eduzz orbita atual, colegas próximos do Flávio em concurso), coleta de feedback, ajustes finais, _go live_.
 
-Esforço total estimado: 4 *sprints* × 2 semanas = 8 semanas de calendário, com ~120-150 horas de desenvolvimento e ~25-40 horas de validação editorial-jurídica.
+Esforço total estimado: 4 _sprints_ × 2 semanas = 8 semanas de calendário, com ~120-150 horas de desenvolvimento e ~25-40 horas de validação editorial-jurídica.
 
 ### I.9 — Edge cases e limitações documentadas
 
@@ -2341,6 +2377,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > 📚 Esse é o tipo de leitura que faço com os alunos da Escola Flávio Milhomem — Direito Penal pela perspectiva da acusação. Link na bio.
 
 **Cards do carrossel (texto curto):**
+
 1. Capa: gancho + foto do Flávio sóbria.
 2. Decisão 1: HC 165.394/SP — qualificadora "motivo torpe" e ciúme. Citação literal + 2 linhas de leitura pela acusação.
 3. Decisão 2: HC 213.890/RJ — quesito da legítima defesa em sequência de votação. Citação + 2 linhas.
@@ -2370,6 +2407,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > [50-60s] É isso que faço na Escola. Direito Penal pelo lado de cá. Boletim mensal grátis no link da bio. Edição lançamento do cohort em setembro.
 
 **Legenda:**
+
 > Trinta anos de Promotoria. Vinte e cinco de docência. Um lado da mesa que o manual não conta.
 >
 > Quem estuda concurso de carreira jurídica precisa ver o Direito Penal pelos dois lados. O manual cobre um. A Escola cobre o outro. Link na bio.
@@ -2392,6 +2430,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > Pra entender direitinho, link na bio com o boletim mensal da Escola Flávio Milhomem.
 
 **Cards:**
+
 1. Capa: gancho + ilustração de balança.
 2. "Vai" — exemplo 1: fundamentação concreta de "consequências do crime" em homicídio.
 3. "Volta" — exemplo 1: a mesma circunstância em fundamentação genérica.
@@ -2417,6 +2456,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > Salva. Comenta com sua experiência. Compartilha com colega que está abrindo escritório criminal.
 
 **Cards:**
+
 1. Capa: gancho + ícone de balança.
 2. Critério 1: justa causa (suporte fático mínimo).
 3. Critério 2: viabilidade processual (testemunhas, custódia, prova).
@@ -2447,6 +2487,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > [55-75s] Saber esses três pontos é diferença entre advogado iniciante e advogado eficiente. Boletim mensal da Escola Flávio Milhomem no link da bio. Direito Penal pelo lado da acusação — pra você operar mais rápido na defesa.
 
 **Legenda:**
+
 > ANPP foi a maior mudança do Pacote Anticrime. E na prática, ele falha mais do que funciona — porque o advogado tenta sem cruzar os três critérios institucionais que o Promotor olha primeiro.
 >
 > Aqui em 75 segundos os três critérios. Boletim mensal grátis no link da bio.
@@ -2490,6 +2531,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > Receba o boletim completo no link da bio — todo mês, no seu e-mail.
 
 **Cards:**
+
 1. Capa institucional do Boletim com data.
 2. Decisão 1: REsp 1.963.433 (Tema 1.154) — quantidade de droga e tráfico privilegiado.
 3. Decisão 2: Informativo 854 — print de WhatsApp e ônus da prova de manipulação.
@@ -2514,6 +2556,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > [45-60s] Estuda essa decisão. É a tendência do STJ em matéria de prova digital, e é o que vai cair em concurso de MP em 2026 e 2027. Boletim completo do Boletim do Promotor no link da bio.
 
 **Legenda:**
+
 > O STJ relativizou nulidade por cadeia de custódia em prints de WhatsApp. Mudou o jogo. Boletim do Promotor analisa em 60 segundos. Versão completa no link da bio.
 
 **Hashtags:** #ProvaDigital #CadeiaDeCustodia #STJ #DireitoPenal #FlavioMilhomem #JurisprudenciaPenal
@@ -2550,6 +2593,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > Veja nos cards o que faz a Escola diferente — e por que abrir agora.
 
 **Cards:**
+
 1. Capa: nome da Escola + foto institucional do Flávio.
 2. Quem dirige — Flávio Milhomem, credenciais.
 3. Por que cohort e não videoteca.
@@ -2577,6 +2621,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > [75-90s] Edição Lançamento abre em agosto. Lista de espera no link da bio. Vai ser um cohort só, com vagas limitadas. Convido você a participar.
 
 **Legenda:**
+
 > A Escola Flávio Milhomem nasce de uma observação de trinta anos no MPDFT: o aluno brasileiro estuda Direito Penal por um lado só. A Escola complementa. Edição Lançamento em agosto. Link na bio.
 
 **Hashtags:** #EscolaFlavioMilhomem #DireitoPenal #FlavioMilhomem #MPDFT #PromotorDeJustica #ConcursoJuridico
@@ -2595,6 +2640,7 @@ A bateria está organizada em quatro séries editoriais. Cada série tem um ganc
 > Vagas presenciais limitadas. Transmissão online aberta para inscritos. Link na bio.
 
 **Cards:**
+
 1. Capa: data + cidade + logo da Escola.
 2. Programa do evento (16h-21h).
 3. Painel de abertura — quem participa.
@@ -2782,12 +2828,12 @@ LinkedIn opera melhor com texto-primeiro, formato longo, sem dependência de vis
 
 ### J.3 — Calendário de publicação sugerido (4 semanas)
 
-| Semana | Segunda | Terça | Quarta | Quinta | Sexta | Sábado |
-|--------|---------|-------|--------|--------|-------|--------|
-| **S1** (1ª semana de junho) | LI-06 (autoridade) | IG-02 (reels apresentação) | IG-10 (institucional carrossel) | IG-04 (carrossel Rafael) | LI-01 (análise lei) | IG-01 (carrossel Mariana) |
-| **S2** | LI-03 (autoridade concurso) | IG-05 (reels ANPP) | IG-07 (Boletim) | LI-05 (Ouvidor) | IG-11 (reels institucional) | IG-03 (carrossel art. 59) |
-| **S3** | LI-04 (decisão STJ) | IG-08 (reels Boletim) | LI-02 (caso institucional) | IG-06 (estático preventiva) | IG-12 (evento 11/ago) | IG-09 (estático STF) |
-| **S4** | LI-07 (Penal Militar) | LI-08 (convite evento) | (republicar IG-02 stories) | (republicar IG-08 stories) | (republicar IG-12 stories) | — |
+| Semana                      | Segunda                     | Terça                      | Quarta                          | Quinta                      | Sexta                       | Sábado                    |
+| --------------------------- | --------------------------- | -------------------------- | ------------------------------- | --------------------------- | --------------------------- | ------------------------- |
+| **S1** (1ª semana de junho) | LI-06 (autoridade)          | IG-02 (reels apresentação) | IG-10 (institucional carrossel) | IG-04 (carrossel Rafael)    | LI-01 (análise lei)         | IG-01 (carrossel Mariana) |
+| **S2**                      | LI-03 (autoridade concurso) | IG-05 (reels ANPP)         | IG-07 (Boletim)                 | LI-05 (Ouvidor)             | IG-11 (reels institucional) | IG-03 (carrossel art. 59) |
+| **S3**                      | LI-04 (decisão STJ)         | IG-08 (reels Boletim)      | LI-02 (caso institucional)      | IG-06 (estático preventiva) | IG-12 (evento 11/ago)       | IG-09 (estático STF)      |
+| **S4**                      | LI-07 (Penal Militar)       | LI-08 (convite evento)     | (republicar IG-02 stories)      | (republicar IG-08 stories)  | (republicar IG-12 stories)  | —                         |
 
 **Cadência operacional:** 6 publicações/semana em IG (mix de carrossel/reels/estático), 2 publicações/semana em LinkedIn. Ritmo sustentável para Flávio (que escreve textos densos) com produção apoio editorial da Orbita Labs (cards, capas, edição de reels).
 
@@ -2797,6 +2843,6 @@ LinkedIn opera melhor com texto-primeiro, formato longo, sem dependência de vis
 
 **Fim do Livro-Guia — Edição Lançamento 1.2**
 
-*Documento vivo. Revisões mensais conforme entregas avançam. Última atualização: 27/abr/2026 — integração da pesquisa operacional (auditoria de concorrentes, SERPs reais, estimativa de volumes) + atualização do tom de voz no cap 1.8 (FAZER/NÃO FAZER) + Apêndices F (llms.txt + robots.txt), G (tailwind.config.ts), H (template de case), I (calculadora de pena hipotética) e J (12 posts IG + 8 posts LinkedIn). Próxima revisão programada: 23 de maio de 2026.*
+_Documento vivo. Revisões mensais conforme entregas avançam. Última atualização: 27/abr/2026 — integração da pesquisa operacional (auditoria de concorrentes, SERPs reais, estimativa de volumes) + atualização do tom de voz no cap 1.8 (FAZER/NÃO FAZER) + Apêndices F (llms.txt + robots.txt), G (tailwind.config.ts), H (template de case), I (calculadora de pena hipotética) e J (12 posts IG + 8 posts LinkedIn). Próxima revisão programada: 23 de maio de 2026._
 
-*Orbita Labs — Flávio Milhomem — versão 1.2.*
+_Orbita Labs — Flávio Milhomem — versão 1.2._

@@ -11,7 +11,7 @@ export function CertificatePrintButton() {
     <button
       type="button"
       onClick={() => window.print()}
-      className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono inline-block border px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] transition-colors"
+      className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono inline-block border px-5 py-2.5 text-[11px] tracking-[0.18em] uppercase transition-colors"
     >
       Baixar / Imprimir
     </button>

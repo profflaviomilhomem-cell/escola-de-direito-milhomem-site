@@ -15,9 +15,7 @@ const COST_FACTOR = 12;
 
 export class PasswordTooLongError extends Error {
   constructor() {
-    super(
-      `Senha excede o limite de ${MAX_PASSWORD_BYTES} bytes do bcrypt.`,
-    );
+    super(`Senha excede o limite de ${MAX_PASSWORD_BYTES} bytes do bcrypt.`);
     this.name = "PasswordTooLongError";
   }
 }

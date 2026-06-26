@@ -174,7 +174,9 @@ function toModerationItem(row: {
 }
 
 /** Fila de moderação do professor: comentários mais recentes de todas as aulas. */
-export async function getModerationQueue(limit = 60): Promise<ModerationItem[]> {
+export async function getModerationQueue(
+  limit = 60,
+): Promise<ModerationItem[]> {
   try {
     const rows = await prisma.comment.findMany({
       orderBy: { createdAt: "desc" },
@@ -186,7 +188,11 @@ export async function getModerationQueue(limit = 60): Promise<ModerationItem[]> 
         moderationStatus: true,
         user: { select: { name: true, email: true, role: true } },
         lesson: {
-          select: { slug: true, title: true, product: { select: { slug: true } } },
+          select: {
+            slug: true,
+            title: true,
+            product: { select: { slug: true } },
+          },
         },
       },
     });
@@ -227,7 +233,11 @@ export async function listRecentCommentsForProducts(
         moderationStatus: true,
         user: { select: { name: true, email: true, role: true } },
         lesson: {
-          select: { slug: true, title: true, product: { select: { slug: true } } },
+          select: {
+            slug: true,
+            title: true,
+            product: { select: { slug: true } },
+          },
         },
       },
     });

@@ -1,4 +1,8 @@
-import type { OrderStatus, ProductType, SubscriptionStatus } from "@prisma/client";
+import type {
+  OrderStatus,
+  ProductType,
+  SubscriptionStatus,
+} from "@prisma/client";
 
 /**
  * Regras comerciais Fase 1 — fonte única para `enrollment` e checkout.

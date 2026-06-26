@@ -66,7 +66,13 @@ export function LessonMediaCover({
     );
   }
 
-  return <div className={base} style={coverGradientStyle(cover)} aria-hidden={!alt} />;
+  return (
+    <div
+      className={base}
+      style={coverGradientStyle(cover)}
+      aria-hidden={!alt}
+    />
+  );
 }
 
 function VideoFramePreview({
@@ -125,7 +131,11 @@ function VideoFramePreview({
   }, [inView, videoSrc]);
 
   return (
-    <div ref={ref} className={className} style={!ready ? coverGradientStyle(cover) : undefined}>
+    <div
+      ref={ref}
+      className={className}
+      style={!ready ? coverGradientStyle(cover) : undefined}
+    >
       {inView ? (
         <video
           ref={videoRef}
