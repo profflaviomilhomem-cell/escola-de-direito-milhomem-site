@@ -3,10 +3,12 @@
 import { useState } from "react";
 
 import type { ProfessorLesson } from "@/lib/professor/lessons";
+import type { ProfessorModule } from "@/lib/professor/modules";
 
 type Props = {
   productSlug: string;
   initialLessons: ProfessorLesson[];
+  modules: ProfessorModule[];
 };
 
 type FormState = {
@@ -15,6 +17,7 @@ type FormState = {
   description: string;
   durationMin: string;
   videoId: string;
+  moduleId: string;
   published: boolean;
 };
 
@@ -24,14 +27,17 @@ const EMPTY: FormState = {
   description: "",
   durationMin: "",
   videoId: "",
+  moduleId: "",
   published: false,
 };
 
 const inputCls =
   "border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-3 py-2 text-sm outline-none";
 
-export function LessonManager({ productSlug, initialLessons }: Props) {
+export function LessonManager({ productSlug, initialLessons, modules }: Props) {
   const [lessons, setLessons] = useState<ProfessorLesson[]>(initialLessons);
+  const moduleLabel = (id: string | null) =>
+    modules.find((m) => m.id === id)?.title ?? null;
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(EMPTY);
   const [busy, setBusy] = useState(false);
@@ -65,6 +71,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
       description: l.description,
       durationMin: l.durationSec ? String(Math.round(l.durationSec / 60)) : "",
       videoId: l.videoId,
+      moduleId: l.moduleId ?? "",
       published: l.published,
     });
   }
@@ -77,6 +84,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
       description: form.description,
       durationSec: Number.isFinite(min) && min > 0 ? Math.round(min * 60) : 0,
       videoId: form.videoId,
+      moduleId: form.moduleId || null,
       published: form.published,
     };
   }
@@ -142,6 +150,7 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
       description: l.description,
       durationSec: l.durationSec,
       videoId: l.videoId,
+      moduleId: l.moduleId,
       published: !l.published,
     });
   }
@@ -203,6 +212,26 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
               onChange={(e) => setForm({ ...form, videoId: e.target.value })}
               placeholder="opcional"
             />
+          </label>
+          <label className="block">
+            <span className="text-paper-600 fm-mono">Módulo</span>
+            <select
+              className={inputCls}
+              value={form.moduleId}
+              onChange={(e) => setForm({ ...form, moduleId: e.target.value })}
+              disabled={modules.length === 0}
+            >
+              <option value="">
+                {modules.length === 0
+                  ? "Sem módulos cadastrados"
+                  : "Sem módulo"}
+              </option>
+              {modules.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.title}
+                </option>
+              ))}
+            </select>
           </label>
         </div>
         <label className="block">
@@ -281,7 +310,8 @@ export function LessonManager({ productSlug, initialLessons }: Props) {
                   )}
                 </p>
                 <p className="text-paper-600 fm-mono mt-1 text-[11px]">
-                  /{l.slug}
+                  {moduleLabel(l.moduleId) ?? "Sem módulo"}
+                  {" · "}/{l.slug}
                   {l.durationSec
                     ? ` · ${Math.round(l.durationSec / 60)} min`
                     : ""}

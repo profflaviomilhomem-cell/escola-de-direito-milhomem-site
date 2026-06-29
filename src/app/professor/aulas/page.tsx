@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { LessonManager } from "@/components/professor/lesson-manager";
+import { ModuleManager } from "@/components/professor/module-manager";
 import { listProductLessons } from "@/lib/professor/lessons";
+import { listProductModules } from "@/lib/professor/modules";
 import { getProfessorCourses } from "@/lib/professor/products";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
@@ -35,7 +37,10 @@ export default async function ProfessorAulasPage({ searchParams }: Props) {
   }
 
   const selected = courses.find((c) => c.slug === curso) ?? courses[0]!;
-  const lessons = await listProductLessons(selected.slug);
+  const [lessons, modules] = await Promise.all([
+    listProductLessons(selected.slug),
+    listProductModules(selected.slug),
+  ]);
 
   return (
     <section className="fm-site-page py-12">
@@ -69,7 +74,31 @@ export default async function ProfessorAulasPage({ searchParams }: Props) {
         )}
       </header>
 
-      <LessonManager productSlug={selected.slug} initialLessons={lessons} />
+      <div className="space-y-12">
+        <section aria-labelledby="modulos-heading">
+          <h2
+            id="modulos-heading"
+            className="text-paper border-paper-100 mb-5 border-b pb-2 font-serif text-xl"
+          >
+            Módulos
+          </h2>
+          <ModuleManager productSlug={selected.slug} initialModules={modules} />
+        </section>
+
+        <section aria-labelledby="aulas-heading">
+          <h2
+            id="aulas-heading"
+            className="text-paper border-paper-100 mb-5 border-b pb-2 font-serif text-xl"
+          >
+            Aulas
+          </h2>
+          <LessonManager
+            productSlug={selected.slug}
+            initialLessons={lessons}
+            modules={modules}
+          />
+        </section>
+      </div>
     </section>
   );
 }

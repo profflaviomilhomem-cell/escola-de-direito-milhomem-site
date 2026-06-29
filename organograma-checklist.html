@@ -3558,14 +3558,14 @@
     "sub": "#4 LMS",
     "theme": "var(--color-3)",
     "ref": "Fase 2.2",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 2,
     "order": 6,
     "dependsOn": [
       "prod-lms-sync"
     ],
     "desc": "/aluno/cursos/[slug] e /aluno/aulas/[slug] leem módulos/aulas do banco.",
-    "rich": "Runtime real: getEnrolledCourseSlugs/getEnrolledCourses implementados (query decide o que o aluno vê; conteúdo ainda do manifest/mock no MVP). [Auditoria C 26/jun vs código: Fase 2.2 NÃO é 0% — funções em src/lib/enrollment/index.ts. GAP restante: trocar conteúdo mock por DB.]",
+    "rich": "Runtime 100% do DB: loader src/lib/course/db-course.ts (getCourseFromDb/getLessonFromDb) mapeia Product+Module+Lesson -> tipo Course com progresso e videoId aplicados; rotas cursos/[slug] e aulas/[slug] + getEnrolledCourses trocadas do estático para o banco. Schema estendido (model Module; Lesson.summary/keyPoints/materials/videoSrc/posterImage/slidesUrl; Product.shortTitle/catalogLabel/coverGradient) via migração 20260629120000; seed popula 2 módulos + campos ricos; estático vira só fallback dev. [Fase 2.2 CONCLUÍDA 29/jun: migração aplicada (Neon), seed rodado e DB conferido, tsc+eslint+unit verdes. Pendente apenas validação visual logada (auth). CRUD admin de módulos FEITO 29/jun no nó prod-professor-aulas-crud.]",
     "code": "src/app/aluno/cursos/[slug] · src/app/aluno/aulas/[slug]"
   },
   {
@@ -3632,8 +3632,8 @@
     "dependsOn": [
       "prod-lms-runtime"
     ],
-    "desc": "API products/[slug]/lessons (GET/POST/PATCH/DELETE), UI em editar (aba Módulos/Aulas), reordenar, publicar.",
-    "rich": "Rotas /professor/cursos/[slug]/editar e api/professor/products existem como scaffold. GAP: CRUD de Lesson completo (Fase 3.2 = 0%). [Reconciliado 25/06 vs código: EM PROGRESSO→CONCLUÍDO. API lessons GET/POST/PATCH/DELETE + LessonManager + reordenar/publicar.]",
+    "desc": "API products/[slug]/lessons + /modules (GET/POST/PATCH/DELETE), UI em /professor/aulas (Módulos + Aulas), reordenar, publicar, vincular aula a módulo.",
+    "rich": "CRUD completo de Lesson E Module. API lessons GET/POST/PATCH/DELETE + LessonManager + reordenar/publicar. CRUD de Módulos 29/jun: lib professor/modules.ts, api/professor/products/[slug]/modules (+/[moduleId] PATCH/DELETE/move), ModuleManager (criar/editar/subtítulo/reordenar/excluir com onDelete SetNull) e seletor de módulo no LessonManager (lesson.moduleId, sanitizado p/ não vazar entre cursos). Integrado em /professor/aulas (seções Módulos e Aulas). [Reconciliado 25/06: EM PROGRESSO→CONCLUÍDO. Módulos reais adicionados 29/jun: tsc+eslint verdes, CRUD validado no Neon.]",
     "code": "src/app/professor/cursos/[slug]/editar · api/professor/products/[slug]"
   },
   {
