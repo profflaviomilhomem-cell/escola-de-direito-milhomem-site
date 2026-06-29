@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorDashboardPage() {
+  await requireAdminSession();
   const [courses, metrics, moderation] = await Promise.all([
     getProfessorCourses(),
     getProfessorMetrics(),

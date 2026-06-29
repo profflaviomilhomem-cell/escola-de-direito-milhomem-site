@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 
 import { CourseEditor } from "@/components/professor/course-editor";
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ProfessorNovoCursoPage() {
+export default async function ProfessorNovoCursoPage() {
+  await requireAdminSession();
   return (
     <section className="fm-site-page py-12">
       <header className="mb-10">

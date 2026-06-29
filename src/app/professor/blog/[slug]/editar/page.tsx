@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -24,6 +25,7 @@ export async function generateMetadata({
 }
 
 export default async function EditarArtigoPage({ params }: { params: Params }) {
+  await requireAdminSession();
   const { slug } = await params;
   const post = await getProfessorBlogPostBySlug(slug);
   if (!post) notFound();

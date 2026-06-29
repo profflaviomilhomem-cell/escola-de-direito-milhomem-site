@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
@@ -8,7 +9,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ProfessorAnunciosPage() {
+export default async function ProfessorAnunciosPage() {
+  await requireAdminSession();
   return (
     <section className="fm-site-page py-12">
       <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">

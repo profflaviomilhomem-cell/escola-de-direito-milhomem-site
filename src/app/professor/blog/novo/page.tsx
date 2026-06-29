@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function NovoArtigoPage() {
+export default async function NovoArtigoPage() {
+  await requireAdminSession();
   return (
     <section className="fm-site-page py-12">
       <Link

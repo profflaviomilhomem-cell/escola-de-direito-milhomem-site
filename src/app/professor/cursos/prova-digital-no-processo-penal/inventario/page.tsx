@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -17,7 +18,8 @@ function formatBytes(n: number) {
 
 const LESSON_TOTAL = 10;
 
-export default function ProvaDigitalInventarioPage() {
+export default async function ProvaDigitalInventarioPage() {
+  await requireAdminSession();
   const lessons = manifest.lessons.filter((l) => l.number <= LESSON_TOTAL);
 
   return (

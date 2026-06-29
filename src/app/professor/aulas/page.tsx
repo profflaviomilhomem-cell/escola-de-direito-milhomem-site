@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 type Props = { searchParams: Promise<{ curso?: string }> };
 
 export default async function ProfessorAulasPage({ searchParams }: Props) {
+  await requireAdminSession();
   const { curso } = await searchParams;
   const courses = await getProfessorCourses();
 

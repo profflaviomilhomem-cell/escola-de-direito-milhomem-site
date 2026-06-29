@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProfessorEditarCursoPage({ params }: Props) {
+  await requireAdminSession();
   const { slug } = await params;
   const course = await getProfessorCourseBySlug(slug);
   if (!course) notFound();

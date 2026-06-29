@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 export default async function ProfessorCursosPage() {
+  await requireAdminSession();
   const courses = await getProfessorCourses();
   const publicados = courses.filter((c) => c.publishStatus === "PUBLISHED");
   const rascunhos = courses.filter((c) => c.publishStatus === "DRAFT");

@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 
 import { getProfessorMetrics, formatBRL } from "@/lib/professor/metrics";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorMetricasPage() {
+  await requireAdminSession();
   const m = await getProfessorMetrics();
 
   const cards: Array<{ label: string; value: string; hint: string }> = [

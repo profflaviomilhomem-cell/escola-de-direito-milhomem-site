@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 
 import { ManualEnrollmentPanel } from "@/components/professor/manual-enrollment-panel";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorAlunosPage() {
+  await requireAdminSession();
   let products: {
     slug: string;
     name: string;

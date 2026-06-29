@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorBlogPage() {
+  await requireAdminSession();
   const posts = await getProfessorBlogPosts();
   const publicados = posts.filter((p) => p.status === "PUBLISHED");
   const rascunhos = posts.filter((p) => p.status === "DRAFT");

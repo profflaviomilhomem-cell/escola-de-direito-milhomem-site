@@ -1,3 +1,4 @@
+import { requireAdminSession } from "@/lib/auth/require-admin";
 import type { Metadata } from "next";
 
 import { ModerationQueue } from "@/components/professor/moderation-queue";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfessorForumPage() {
+  await requireAdminSession();
   const items = await getModerationQueue();
 
   return (
