@@ -5,7 +5,8 @@ import {
   productUsesSubscriptionAccess,
   SUBSCRIPTION_STATUS_WITH_ACCESS,
 } from "@/lib/business/commercial-rules";
-import { enrolledCourses, findCourseBySlug } from "@/lib/course/aluno-courses";
+import { enrolledCourses } from "@/lib/course/aluno-courses";
+import { getCourseFromDb } from "@/lib/course/db-course";
 import {
   getUserProgressMap,
   mergeMockLessonProgress,
@@ -110,11 +111,12 @@ export async function getEnrolledCourseSlugs(userId: string) {
 export async function getEnrolledCourses(userId: string) {
   const slugs = await getEnrolledCourseSlugs(userId);
 
-  // MVP: ainda usamos os cursos mock/importados para conteúdo.
-  // A query decide apenas "o que o aluno pode ver".
-  const courses = slugs
-    .map((slug) => findCourseBySlug(slug))
-    .filter((c): c is NonNullable<typeof c> => c != null);
+  // Conteúdo (módulos/aulas) vem do banco (Product + Module + Lesson);
+  // a query de matrícula decide apenas "o que o aluno pode ver".
+  // O progresso é aplicado por `getEnrolledCoursesWithProgress`.
+  const courses = (
+    await Promise.all(slugs.map((slug) => getCourseFromDb(slug)))
+  ).filter((c): c is NonNullable<typeof c> => c != null);
 
   return courses;
 }

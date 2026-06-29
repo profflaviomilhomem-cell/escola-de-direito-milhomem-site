@@ -8,18 +8,13 @@ import { LessonTabs } from "@/components/aluno/lesson-tabs";
 import { PlayerVideo } from "@/components/aluno/player-video";
 import { formatDuration } from "@/lib/course/format";
 import type { CourseLesson } from "@/lib/course/types";
-import { findLessonWithCourse } from "@/lib/course/aluno-courses";
+import { getLessonFromDb } from "@/lib/course/db-course";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { userHasAccess } from "@/lib/enrollment";
 import {
   listLessonComments,
   type ForumCommentNode,
 } from "@/lib/forum/comments";
-import { getLessonVideoId } from "@/lib/lessons/media";
-import {
-  getLessonProgress,
-  mergeMockLessonProgress,
-} from "@/lib/lessons/progress";
 import { progressPercentFromRatio } from "@/lib/utils";
 
 type Params = Promise<{ slug: string }>;
@@ -30,7 +25,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const found = findLessonWithCourse(slug);
+  const found = await getLessonFromDb(slug);
   if (!found) return { title: "Aula não encontrada" };
   return {
     title: `${found.lesson.title} — ${found.course.shortTitle}`,
@@ -44,29 +39,17 @@ export async function generateMetadata({
  */
 export default async function AulaPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const found = findLessonWithCourse(slug);
-  if (!found) notFound();
-  const { course } = found;
-  const baseLesson = found.lesson;
 
   const session = await getSessionFromCookies();
   if (!session) redirect("/entrar");
 
+  // Curso + aula vêm do banco com progresso real e videoId (Stream) aplicados.
+  const found = await getLessonFromDb(slug, session.sub);
+  if (!found) notFound();
+  const { course, lesson } = found;
+
   const hasAccess = await userHasAccess(session.sub, course.slug);
   if (!hasAccess) redirect(`/cursos/${course.slug}`);
-
-  let lesson = baseLesson;
-  if (session && process.env.DATABASE_URL) {
-    try {
-      const row = await getLessonProgress(session.sub, course.slug, slug);
-      lesson = mergeMockLessonProgress(baseLesson, row);
-    } catch {
-      /* mock puro se o banco não estiver acessível */
-    }
-    // Ponte do vídeo real (Cloudflare Stream) cadastrado pelo professor.
-    const videoId = await getLessonVideoId(course.slug, lesson.slug);
-    if (videoId) lesson = { ...lesson, videoId };
-  }
 
   let initialComments: ForumCommentNode[] = [];
   try {

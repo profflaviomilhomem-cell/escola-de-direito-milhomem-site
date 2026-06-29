@@ -7,9 +7,9 @@ import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import { formatDuration } from "@/data/mock-aluno";
 import {
   courseCatalogLabel,
-  findCourseBySlug,
   nextLessonInCourse,
 } from "@/lib/course/aluno-courses";
+import { getCourseFromDb } from "@/lib/course/db-course";
 import { progressPercentFromRatio } from "@/lib/utils";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { getSessionFromCookies } from "@/lib/auth/session";
@@ -23,7 +23,7 @@ export async function generateMetadata({
   params: Params;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const course = findCourseBySlug(slug);
+  const course = await getCourseFromDb(slug);
   if (!course) return { title: "Curso não encontrado" };
   return {
     title: `${course.shortTitle} — área do aluno`,
@@ -37,11 +37,12 @@ export default async function CursoMatriculadoPage({
   params: Params;
 }) {
   const { slug } = await params;
-  const course = findCourseBySlug(slug);
-  if (!course) notFound();
 
   const session = await getSessionFromCookies();
   if (!session) redirect("/entrar");
+
+  const course = await getCourseFromDb(slug, session.sub);
+  if (!course) notFound();
 
   const hasAccess = await userHasAccess(session.sub, slug);
   if (!hasAccess) redirect(`/cursos/${slug}`);
