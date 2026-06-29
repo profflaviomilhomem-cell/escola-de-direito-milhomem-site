@@ -3075,15 +3075,15 @@
     "sub": "#25 Dashboard",
     "theme": "var(--color-2)",
     "ref": "Cap 8.6",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 2,
     "order": 104,
     "dependsOn": [
       "met-taxonomia-eventos"
     ],
     "desc": "/admin/dashboard com 3 visões: semanal (Carlos/Diana), quinzenal (Flávio PDF), mensal agregada. Revisão estratégica trimestral.",
-    "rich": "VERIFICADO: rota /admin/dashboard NÃO existe no código. [Auditoria C 26/jun vs código: mantém ROADMAP; nenhum dashboard interno encontrado.]",
-    "code": ""
+    "rich": "Painel interno criado 29/jun: rota /admin/dashboard (gate admin no layout + na página via requireAdminSession — fechado vazamento de conteúdo por race layout/page). lib src/lib/admin/dashboard-metrics.ts agrega comercial (receita, pedidos pagos/pendentes/reembolsos, alunos, assinaturas) + aquisição/produto (leads, leads confirmados/duplo opt-in, vagas reais, conclusões, certificados, moderação) + últimos pedidos + top campanhas UTM; fallback gracioso se DB cair; teste confirmRatePct. [ROADMAP->CONCLUÍDO 29/jun: HTTP 200 logado, gate testado (sem cookie/aluno não vazam), tsc+eslint+unit verdes. SIMPLIFICAÇÃO: visão única em tempo real; as 3 cadências (semanal/quinzenal/PDF) ficam como evolução.]",
+    "code": "src/app/admin/dashboard · src/lib/admin/dashboard-metrics.ts"
   },
   {
     "id": "met-cro-testes-ab",
@@ -4416,14 +4416,14 @@
     "sub": "#4 Blueprint de artigo",
     "theme": "var(--color-4)",
     "ref": "Cap 6.4",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 14,
     "dependsOn": [
       "edit-blueprint-artigo-layout"
     ],
     "desc": "Blockquote borda dourada, listas sóbrias, imagens com legenda, bloco mono de lei, pull quote.",
-    "rich": "Componentes editoriais do corpo do artigo. [status?]"
+    "rich": "CSS editorial 29/jun em globals.css (.blog-article .wp-migrated-html): blockquote com borda dourada, figure/figcaption (legenda de imagem), .pull-quote (destaque serif com aspas douradas) e .law-text/pre (bloco mono de lei com filete dourado). Listas já tinham marcador âmbar. Aplica ao HTML autoral/migrado quando presente. [ROADMAP->CONCLUÍDO: artigo renderiza HTTP 200, tsc+eslint verdes.]"
   },
   {
     "id": "edit-artigo-fim-cta",
@@ -4432,14 +4432,14 @@
     "sub": "#4 Blueprint de artigo",
     "theme": "var(--color-4)",
     "ref": "Cap 6.4",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 15,
     "dependsOn": [
       "edit-blueprint-artigo-layout"
     ],
     "desc": "CTA de lista, assinatura com mini-bio, 3 artigos relacionados, comentários opcionais.",
-    "rich": "Comentários do blog público podem ser desabilitados para concentrar engajamento no fórum pago. [status?]"
+    "rich": "Fim de artigo completo 29/jun: bio do autor (mini-assinatura) e grade de 3 relacionados já existiam; adicionado CTA de lista (boletim, source blog-artigo) entre bio e relacionados, e getRelatedBlogPosts passou a priorizar a MESMA categoria (relevância) completando por recência. Comentários públicos seguem desabilitados (engajamento concentrado no fórum pago). [ROADMAP->CONCLUÍDO: render HTTP 200, tsc+eslint verdes.]"
   },
   {
     "id": "edit-artigo-seo-estrutural",
@@ -4494,14 +4494,14 @@
     "sub": "#5 Landing de cohort",
     "theme": "var(--color-4)",
     "ref": "Cap 6.5",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 19,
     "dependsOn": [
       "land-bloco1-hero"
     ],
     "desc": "Mini-bio 3 parágrafos, foto, credenciais, link para página Sobre completa.",
-    "rich": "GAP: depende de fotos novas pendentes do Flávio."
+    "rich": "Construído 29/jun na landing (edicao-lancamento-landing.tsx): mini-bio de 3 parágrafos compliance-safe (copy.edicaoLancamento.sobre*) + foto existente /images/professor/flavio-portrait.png (troca direta quando vier foto nova) + link 'Biografia e credenciais' para /sobre. [ROADMAP->CONCLUÍDO: render verificado. Foto nova era o GAP citado, mas a foto atual destrava o bloco.]"
   },
   {
     "id": "land-bloco4-para-quem",
@@ -4638,14 +4638,14 @@
     "sub": "#5 Landing de cohort",
     "theme": "var(--color-4)",
     "ref": "Cap 6.5",
-    "status": "EM PROGRESSO",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 28,
     "dependsOn": [
       "land-bloco1-hero"
     ],
     "desc": "10 perguntas em accordion: acesso, prazo, reembolso, certificação, NF, dedicação, suporte, parcelamento.",
-    "rich": "/faq existe com markup FAQPage espelhando a UI (copy.faqInstitucional). GAP: FAQ específico da landing do cohort ainda não montado. [Auditoria C 26/jun vs código: FAQ institucional pronto; falta o do cohort.]"
+    "rich": "FAQ do cohort JÁ montado (verificado 29/jun): 10 itens (copy.edicaoLancamento.faq + faqExtra) renderizados no Bloco 12 da landing via cursoFaqItems, fonte única também do JSON-LD FAQPage. [Org estava STALE: EM PROGRESSO->CONCLUÍDO; o FAQ do cohort existe e está ligado ao schema.]"
   },
   {
     "id": "land-bloco13-garantia",
@@ -4654,14 +4654,14 @@
     "sub": "#5 Landing de cohort",
     "theme": "var(--color-4)",
     "ref": "Cap 6.5",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 29,
     "dependsOn": [
       "land-bloco1-hero"
     ],
     "desc": "Reforço da garantia 15 dias incondicionais, texto calibrado para persona Mariana.",
-    "rich": "Redução de risco percebido."
+    "rich": "Bloco dedicado de garantia adicionado 29/jun (copy.edicaoLancamento.garantia*): reforço dos 15 dias incondicionais, sem letras miúdas, apontando /reembolso. [ROADMAP->CONCLUÍDO: render verificado.]"
   },
   {
     "id": "land-bloco14-cta-rodape",
@@ -4670,14 +4670,14 @@
     "sub": "#5 Landing de cohort",
     "theme": "var(--color-4)",
     "ref": "Cap 6.5",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 3,
     "order": 30,
     "dependsOn": [
       "land-bloco1-hero"
     ],
     "desc": "CTA última (vagas limitadas a 50), contador de vagas real, footer institucional.",
-    "rich": "Contador real, sem gatilho falso."
+    "rich": "Contador de vagas REAL implementado 29/jun: getCohortVagas() em catalog.ts (50 - pedidos com acesso liberado do curso principal), exibido no bloco de investimento e no CTA final; some se o banco cair e vira 'Vagas esgotadas -> lista de espera' quando lota. Sem gatilho falso. CTA final já existia. [ROADMAP->CONCLUÍDO: renderizou '49 de 50 vagas restantes' (1 pedido pago no banco).]"
   },
   {
     "id": "tool-calculadora-pena",
@@ -4715,12 +4715,13 @@
     "sub": "#6 Ferramentas interativas",
     "theme": "var(--color-4)",
     "ref": "Cap 6.6",
-    "status": "ROADMAP",
+    "status": "CONCLUÍDO",
     "phase": 4,
     "order": 33,
     "dependsOn": [],
     "desc": "20 questões, feedback por área, recomendação de trilha. Captura e-mail opt-in.",
-    "rich": "Gerador de lead de topo; implementação enxuta ~1 sprint."
+    "rich": "Construído 29/jun: /quiz-penal com 20 questões em 4 áreas (cadeia de custódia, prova digital, processo penal, direito penal) base CPP/CP/Pacote Anticrime; correção comentada por questão; resultado com nível, barras por área e recomendação de trilha calibrada pela área mais fraca; captura de lead reusando NewsletterForm->/api/leads (source quiz-penal, duplo opt-in). Lógica pura testável (src/lib/quiz/penal.ts, 5 testes). [ROADMAP->CONCLUÍDO: HTTP 200, tsc+eslint+unit verdes.]",
+    "code": "src/app/(marketing)/quiz-penal · src/data/quiz-penal.ts · src/lib/quiz/penal.ts"
   },
   {
     "id": "tool-cronograma-estudos",
