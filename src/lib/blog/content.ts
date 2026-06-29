@@ -70,15 +70,26 @@ export async function getRelatedBlogPosts(
   limit = 3,
 ): Promise<BlogRelatedPost[]> {
   const posts = await getPublishedBlogListPosts();
-  return posts
-    .filter((p) => p.slug !== slug)
-    .slice(0, limit)
-    .map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      category: p.category,
-      cover: p.cover,
-    }));
+  const current = posts.find((p) => p.slug === slug);
+  const others = posts.filter((p) => p.slug !== slug);
+
+  // Prioriza a mesma categoria (relevância) e completa por recência;
+  // a lista já vem ordenada por data, então a ordem se preserva.
+  const sameCategory = current
+    ? others.filter((p) => p.category === current.category)
+    : [];
+  const sameSlugs = new Set(sameCategory.map((p) => p.slug));
+  const ordered = [
+    ...sameCategory,
+    ...others.filter((p) => !sameSlugs.has(p.slug)),
+  ].slice(0, limit);
+
+  return ordered.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    category: p.category,
+    cover: p.cover,
+  }));
 }
 
 export async function getBlogFeedItems(limit = 20): Promise<BlogFeedItem[]> {

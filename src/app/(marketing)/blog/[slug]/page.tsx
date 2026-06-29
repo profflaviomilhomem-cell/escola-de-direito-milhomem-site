@@ -215,6 +215,26 @@ export default async function BlogArtigoPage({ params }: { params: Params }) {
             Trajetória →
           </Link>
         </aside>
+
+        {/* CTA de lista — fim de artigo */}
+        <aside className="border-amber/30 bg-amber/[0.06] mt-10 rounded-xl border p-6 text-center md:p-8">
+          <p className="text-amber font-mono text-[10px] tracking-[0.2em] uppercase">
+            Boletim da Escola
+          </p>
+          <p className="text-paper mt-3 font-serif text-2xl leading-tight">
+            Análises de direito penal, direto no seu e-mail
+          </p>
+          <p className="text-paper-600 mx-auto mt-2 max-w-prose text-sm leading-relaxed">
+            Receba os próximos artigos e materiais pela perspectiva da acusação.
+            Confirmação por e-mail, sem spam.
+          </p>
+          <Link
+            href="/newsletter?source=blog-artigo"
+            className="bg-amber text-paper mt-6 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+          >
+            Receber o boletim
+          </Link>
+        </aside>
       </article>
 
       {/* Posts relacionados */}

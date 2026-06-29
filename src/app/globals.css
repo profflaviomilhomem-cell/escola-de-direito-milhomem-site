@@ -706,6 +706,68 @@ html.light .fm-journey-milestone-year--active {
   margin-top: 0;
 }
 
+/* ── Elementos editoriais do corpo do artigo (Blueprint #4) ───────────
+   Estilos para HTML autoral/migrado. Specificity de .blog-article vence
+   as utilities arbitrárias do HTML_PROSE. */
+
+/* Citação — borda dourada e respiro */
+.blog-article .wp-migrated-html blockquote {
+  border-left: 2px solid var(--color-amber);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--color-paper-700);
+}
+
+/* Legenda de imagem */
+.blog-article .wp-migrated-html figure {
+  margin: 2rem 0;
+}
+.blog-article .wp-migrated-html figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+  color: var(--color-paper-600);
+}
+
+/* Pull quote — destaque editorial sem borda */
+.blog-article .wp-migrated-html .pull-quote {
+  border: 0;
+  margin: 2.5rem 0;
+  padding: 0;
+  font-family: var(--font-clash-display), serif;
+  font-style: normal;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  color: var(--color-paper);
+  text-align: center;
+}
+.blog-article .wp-migrated-html .pull-quote::before {
+  content: "“";
+  color: var(--color-amber);
+}
+.blog-article .wp-migrated-html .pull-quote::after {
+  content: "”";
+  color: var(--color-amber);
+}
+
+/* Bloco de lei — texto normativo em mono, com filete dourado */
+.blog-article .wp-migrated-html .law-text,
+.blog-article .wp-migrated-html pre {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  background: var(--color-carbon-elevated);
+  border-left: 3px solid var(--color-amber);
+  padding: 1rem 1.25rem;
+  margin: 2rem 0;
+  color: var(--color-paper-700);
+  overflow-x: auto;
+}
+
 /* Mobile: largura total (mesmo tamanho para lead e corpo) */
 @media (max-width: 767px) {
   .blog-article .blog-article-lead,
