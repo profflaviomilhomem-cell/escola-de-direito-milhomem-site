@@ -1,0 +1,53 @@
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+
+type Stat = { readonly val: string; readonly label: string };
+
+type HomeStatsSectionProps = {
+  stats: readonly Stat[];
+  eyebrow?: string;
+};
+
+export function HomeStatsSection({
+  stats,
+  eyebrow = "Trajetória em números",
+}: HomeStatsSectionProps) {
+  return (
+    <section
+      className="fm-site-section pt-2 pb-14 sm:pt-4 sm:pb-16 lg:py-24"
+      aria-label={eyebrow}
+    >
+      <div className="fm-site-container">
+        <p
+          data-reveal
+          className="text-amber/90 mb-4 text-center font-mono text-[9px] tracking-[0.28em] uppercase sm:mb-5 sm:text-[10px]"
+        >
+          {eyebrow}
+        </p>
+
+        <div
+          data-reveal
+          className="fm-home-stats border-amber/20 overflow-hidden rounded-md border shadow-[0_20px_50px_-28px_rgba(0,0,0,0.65)]"
+        >
+          <div className="divide-amber/15 grid grid-cols-2 divide-x divide-y lg:grid-cols-4 lg:divide-y-0">
+            {stats.map((stat) => (
+              <article
+                key={stat.label}
+                className="fm-home-stat group relative flex min-h-[5.25rem] flex-col items-center justify-center px-3.5 py-4 text-center sm:min-h-[6.25rem] sm:px-6 sm:py-6 lg:min-h-[7.25rem] lg:px-8 lg:py-8"
+              >
+                <span
+                  className="fm-title-fluid text-amber relative z-[1] block w-full font-serif leading-none tabular-nums"
+                  style={fmTitleClamp("2rem", "6.5vw", "3.5rem")}
+                >
+                  {stat.val}
+                </span>
+                <p className="fm-home-stat__label relative z-[1] mx-auto mt-1.5 max-w-[10.5rem] font-mono text-[8px] leading-snug tracking-[0.13em] uppercase sm:mt-2 sm:max-w-[12rem] sm:text-[9px] sm:tracking-[0.16em] lg:max-w-[14rem] lg:text-[10px]">
+                  {stat.label}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,56 +1,55 @@
 import Link from "next/link";
 
-/**
- * Header institucional dark — absorvido do mockup oficial.
- * Brand mark circular "FM" + nav uppercase mono + CTA Cohort destacado.
- * Fixed top com backdrop-blur sobre as camadas de grid/noise.
- */
-const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Manifesto", href: "/sobre" },
-  { label: "Programa", href: "/cursos" },
-  { label: "Blog", href: "/blog" },
-  { label: "Calculadora", href: "/calculadora-de-pena" },
-  { label: "Professor", href: "/sobre" },
-  { label: "FAQ", href: "/contato" },
-];
+import { BrandLogo } from "@/components/shared/brand-logo";
+import { HeaderAccessibilityMenu } from "@/components/shared/header-accessibility-menu";
+import { HeaderMobileNav } from "@/components/shared/header-mobile-nav";
+import { siteConfig } from "@/config/site";
 
+/**
+ * Header institucional — fixo no topo; logo em círculo que avança sobre a borda inferior.
+ * O espaçador reserva altura no fluxo para o conteúdo não ficar sob o header.
+ */
 export function Header() {
   return (
-    <header className="bg-carbon/70 border-amber/10 fixed left-0 right-0 top-0 z-50 flex items-center justify-between border-b px-[5%] py-5 backdrop-blur-md">
-      <Link
-        href="/"
-        className="flex items-center gap-3 text-inherit no-underline"
-        aria-label="Escola Flávio Milhomem — início"
-      >
-        <span className="border-amber text-amber grid h-11 w-11 place-items-center rounded-full border font-serif text-[20px] italic">
-          FM
-        </span>
-        <span className="font-serif text-[28px]">
-          Flávio <em className="text-amber italic">Milhomem</em>
-        </span>
-      </Link>
-
-      <nav
-        aria-label="Navegação principal"
-        className="hidden items-center gap-8 md:flex"
-      >
-        {navItems.map((item) => (
+    <>
+      <header className="fm-site-header fm-a11y-chrome bg-carbon/90 border-amber/10 fm-site-section fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md">
+        <div className="fm-site-header__inner fm-site-container flex items-center justify-between gap-4 overflow-visible">
           <Link
-            key={item.href + item.label}
-            href={item.href}
-            className="text-paper-700 hover:text-paper font-mono text-[18px] uppercase tracking-[0.2em] transition-colors"
+            href="/"
+            className="fm-header-logo-slot shrink-0 text-inherit no-underline"
+            aria-label={`${siteConfig.name} — início`}
           >
-            {item.label}
+            <BrandLogo variant="header" priority />
           </Link>
-        ))}
-        <Link
-          href="#cohort"
-          className="border-amber text-amber hover:bg-amber hover:text-paper border px-4 py-2 font-mono text-[16px] uppercase tracking-[0.2em] transition-colors"
-        >
-          Cohort 2026 →
-        </Link>
-      </nav>
-    </header>
+
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-3 md:gap-6">
+            <nav
+              aria-label="Navegação principal"
+              className="hidden min-w-0 items-center gap-5 md:flex lg:gap-7"
+            >
+              {siteConfig.mainNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-paper-700 hover:text-paper font-mono text-[13px] tracking-[0.18em] uppercase transition-colors lg:text-[14px]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <Link
+                href="/newsletter"
+                className="border-amber text-amber hover:bg-amber hover:text-paper shrink-0 border px-3 py-2 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors lg:text-[13px]"
+              >
+                Entre na lista
+              </Link>
+            </nav>
+
+            <HeaderMobileNav />
+            <HeaderAccessibilityMenu />
+          </div>
+        </div>
+      </header>
+      <div className="fm-site-header-spacer" aria-hidden />
+    </>
   );
 }

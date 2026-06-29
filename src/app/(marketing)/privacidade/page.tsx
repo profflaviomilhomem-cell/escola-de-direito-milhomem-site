@@ -33,12 +33,11 @@ export default function PrivacidadePage() {
                 A {siteConfig.name} é o controlador dos dados pessoais tratados
                 neste site, conforme art. 5º, VI, da LGPD. Operações de
                 tratamento são realizadas em nome do professor Flávio Milhomem
-                (CNPJ a ser informado), com endereço institucional em Brasília
-                · DF.
+                (CNPJ a ser informado), com endereço institucional em Brasília ·
+                DF.
               </p>
               <p className="mt-4">
-                Para qualquer assunto envolvendo proteção de dados, escreva
-                para{" "}
+                Para qualquer assunto envolvendo proteção de dados, escreva para{" "}
                 <a
                   className="text-amber underline-offset-2 hover:underline"
                   href={`mailto:${siteConfig.contact.privacyEmail}`}
@@ -146,8 +145,8 @@ export default function PrivacidadePage() {
               Usamos cookies necessários (sessão de aluno, preferências) e
               cookies analíticos (somente após consentimento via banner). O
               banner permite aceitar, recusar ou personalizar a escolha por
-              categoria; sua decisão é registrada e pode ser alterada a
-              qualquer momento na página de preferências.
+              categoria; sua decisão é registrada e pode ser alterada a qualquer
+              momento na página de preferências.
             </p>
           ),
         },
@@ -179,11 +178,11 @@ export default function PrivacidadePage() {
           body: (
             <p>
               Aplicamos medidas técnicas e administrativas razoáveis:
-              criptografia em trânsito (TLS), senhas com hash (bcrypt),
-              controle de acesso por papéis, auditoria de operações
-              administrativas e revisão periódica de dependências. Em caso de
-              incidente de segurança que possa gerar risco relevante,
-              comunicamos a ANPD e os titulares afetados nos prazos legais.
+              criptografia em trânsito (TLS), senhas com hash (bcrypt), controle
+              de acesso por papéis, auditoria de operações administrativas e
+              revisão periódica de dependências. Em caso de incidente de
+              segurança que possa gerar risco relevante, comunicamos a ANPD e os
+              titulares afetados nos prazos legais.
             </p>
           ),
         },
@@ -197,12 +196,16 @@ export default function PrivacidadePage() {
               <ul className="mt-4 ml-6 list-disc space-y-2">
                 <li>confirmação da existência de tratamento;</li>
                 <li>acesso aos dados;</li>
-                <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+                <li>
+                  correção de dados incompletos, inexatos ou desatualizados;
+                </li>
                 <li>
                   anonimização, bloqueio ou eliminação de dados desnecessários;
                 </li>
                 <li>portabilidade;</li>
-                <li>eliminação dos dados tratados com base no consentimento;</li>
+                <li>
+                  eliminação dos dados tratados com base no consentimento;
+                </li>
                 <li>revogação do consentimento.</li>
               </ul>
               <p className="mt-4">
@@ -226,8 +229,8 @@ export default function PrivacidadePage() {
             <p>
               O DPO é um advogado externo nomeado especificamente para esta
               função. Identificação completa, registro profissional e canais
-              serão publicados aqui assim que a designação for finalizada
-              (Fase 0.3 do checklist operacional).
+              serão publicados aqui assim que a designação for finalizada (Fase
+              0.3 do checklist operacional).
             </p>
           ),
         },

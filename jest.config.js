@@ -41,4 +41,18 @@ const customJestConfig = {
   },
 };
 
-module.exports = createJestConfig(customJestConfig);
+/**
+ * `next/jest` resolve sua própria `transformIgnorePatterns` que exclui
+ * `node_modules` do transform. Como `jose` é ESM-only e precisa ser
+ * transformado, sobrescrevemos a lista após o config ser resolvido.
+ */
+module.exports = async () => {
+  const config = await createJestConfig(customJestConfig)();
+  return {
+    ...config,
+    transformIgnorePatterns: [
+      "/node_modules/(?!jose/)",
+      "^.+\\.module\\.(css|sass|scss)$",
+    ],
+  };
+};

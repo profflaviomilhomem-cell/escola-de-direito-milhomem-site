@@ -1,32 +1,80 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+
+import { NewsletterForm } from "@/components/marketing/newsletter-form";
+import { copy } from "@/config/copy";
+import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Dia do Advogado 2026 · Abertura oficial da Escola",
-  description:
-    "11 de agosto de 2026, em Brasília. Painel de Direito Penal contemporâneo, aula inaugural e abertura oficial da Edição Lançamento.",
+  description: copy.evento.lead,
   alternates: { canonical: "/eventos/dia-do-advogado-2026" },
 };
 
-/**
- * Landing do evento-âncora (Cap 7.7 do livro-guia).
- * Inscrição gratuita com captura de e-mail.
- * Lista de presença vira segmento alto-valor.
- */
 export default function EventoDiaAdvogadoPage() {
+  const e = copy.evento;
+
   return (
-    <section className="mx-auto max-w-(--container-narrow) px-gutter py-page">
-      <p className="text-overline text-dourado-600">11 · ago · 2026</p>
-      <h1 className="font-serif text-display-1 text-tinta-700 mt-3">
-        Dia do Advogado · Abertura oficial em Brasília
-      </h1>
-      <p className="text-slate-700 mt-stack max-w-2xl text-body-lg">
-        Painel sobre Direito Penal contemporâneo, aula inaugural de Flávio
-        Milhomem e abertura formal das inscrições da Edição Lançamento da
-        Escola. Vagas presenciais limitadas. Transmissão online aberta.
+    <article className="fm-site-page py-page">
+      <header className="max-w-3xl">
+        <p className="text-amber font-mono text-[11px] tracking-[0.22em] uppercase">
+          {e.eyebrow}
+        </p>
+        <h1
+          className="fm-title-fluid mt-4 font-serif leading-[1.02]"
+          style={fmTitleClamp("40px", "5vw", "64px")}
+        >
+          {e.title} <em className="text-amber italic">{e.titleEmphasis}</em>
+        </h1>
+        <p className="text-paper-700 mt-6 text-lg leading-relaxed">{e.lead}</p>
+      </header>
+
+      <section className="mt-16" aria-labelledby="agenda-title">
+        <h2 id="agenda-title" className="font-serif text-2xl">
+          {e.agendaTitle}
+        </h2>
+        <ol className="text-paper-700 mt-6 list-decimal space-y-2 pl-5 text-sm leading-relaxed">
+          {e.agenda.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section
+        className="border-amber/30 bg-amber/[0.06] mt-16 rounded-xl border p-8"
+        aria-labelledby="rsvp-title"
+      >
+        <h2 id="rsvp-title" className="font-serif text-2xl">
+          {e.rsvpTitle}
+        </h2>
+        <p className="text-paper-700 mt-3 text-sm leading-relaxed">
+          {e.rsvpLead}
+        </p>
+        <div className="mt-6 max-w-md">
+          <NewsletterForm source="evento-dia-advogado-2026" />
+        </div>
+        <p className="text-paper-500 mt-6 text-xs">
+          Ao confirmar, você concorda em receber comunicações sobre o evento.{" "}
+          <Link
+            href="/privacidade"
+            className="text-amber underline-offset-2 hover:underline"
+          >
+            Privacidade
+          </Link>
+          .
+        </p>
+      </section>
+
+      <p className="text-paper-600 mt-12 text-sm">
+        <Link
+          href={CURSO_PRINCIPAL_PATH}
+          className="text-amber underline-offset-2 hover:underline"
+        >
+          Conheça o curso Prova Digital no Processo Penal
+        </Link>{" "}
+        — a Edição Lançamento será aberta no evento.
       </p>
-      <p className="text-slate-500 mt-6 text-sm italic">
-        Página em construção · landing detalhada chega em junho.
-      </p>
-    </section>
+    </article>
   );
 }

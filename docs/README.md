@@ -16,6 +16,17 @@ ADRs ativos:
 O projeto é guiado por dois documentos vivos mantidos em
 `/Users/carlos/Documents/BettoOrbee/clientes /Flavio Milhomem/docs/`:
 
-- **Livro-Guia v1.2** (`doc oficial /livro-guia-flavio.md`) — DNA da Escola.
+- **Livro-Guia v1.2** ([`adr/livro-guia-flavio.md`](./adr/livro-guia-flavio.md)) — DNA da Escola (cópia no repositório).
 - **Guia de Desenvolvimento Web v1.0** (`dev/guia-desenvolvimento-web.md`)
   — fonte de verdade técnica deste repositório.
+
+## Handoff de sessão (agente / continuidade)
+
+- [`handoff-sessao-2026-05-18.md`](./handoff-sessao-2026-05-18.md) — contexto da sessão de
+  acessibilidade, commit `271fb8b`, arquivos-chave e pendências. **Ler primeiro** ao retomar
+  em novo chat.
+
+## Auditoria alinhamento (Livro-Guia × site)
+
+- [`auditoria-tecnica-livro-guia.md`](./auditoria-tecnica-livro-guia.md) — **principal:** produto, rotas, integrações e funil (sem copy nem identidade visual).
+- [`auditoria-livro-guia.md`](./auditoria-livro-guia.md) — versão ampla (inclui copy/visual); mantida como referência histórica.

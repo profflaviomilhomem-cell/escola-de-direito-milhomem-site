@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+
 /**
  * Layout editorial para páginas institucionais e legais
  * (Privacidade, Termos, Reembolso). Mesma família tipográfica das
@@ -36,25 +38,25 @@ export function LegalPage({
   sections,
 }: Props) {
   return (
-    <article className="mx-auto max-w-prose px-gutter py-page">
+    <article className="fm-site-page py-page max-w-prose">
       <header>
-        <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
           {eyebrow}
         </p>
         <h1
-          className="mt-3 font-serif leading-[1.05]"
-          style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("40px", "5vw", "64px")}
         >
           {title}
         </h1>
-        <p className="text-paper-600 mt-4 font-mono text-[11px] uppercase tracking-[0.2em]">
+        <p className="text-paper-600 mt-4 font-mono text-[11px] tracking-[0.2em] uppercase">
           Última atualização · {lastUpdated}
         </p>
 
         {draftNotice && (
           <p
             role="note"
-            className="border-amber/40 bg-amber/5 text-paper-800 mt-stack border-l-2 px-5 py-4 text-base italic leading-[1.6]"
+            className="border-amber/40 bg-amber/5 text-paper-800 mt-stack border-l-2 px-5 py-4 text-base leading-[1.6] italic"
           >
             {draftNotice}
           </p>

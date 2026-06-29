@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { TrackEvent } from "@/components/shared/track-event";
 
 export const metadata: Metadata = {
   title: "Inscrição confirmada — Bastidor da Acusação",
@@ -62,13 +64,20 @@ export default async function ConfirmadoPage({
   const copy = COPY[status];
 
   return (
-    <section className="mx-auto max-w-prose px-gutter py-page">
-      <p className="text-amber font-mono text-[11px] uppercase tracking-[0.2em]">
+    <section className="fm-site-page py-page max-w-prose">
+      {status === "ok" && (
+        <TrackEvent
+          event="lead_confirm"
+          once="lead_confirm:newsletter"
+          props={{ source: "newsletter" }}
+        />
+      )}
+      <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
         {copy.eyebrow}
       </p>
       <h1
-        className="mt-3 font-serif leading-[1.05]"
-        style={{ fontSize: "clamp(40px, 5vw, 64px)" }}
+        className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+        style={fmTitleClamp("40px", "5vw", "64px")}
       >
         {copy.title}
       </h1>
@@ -77,7 +86,7 @@ export default async function ConfirmadoPage({
       {copy.cta && (
         <Link
           href={copy.cta.href}
-          className="border-amber text-paper hover:text-amber mt-stack inline-block border-b font-mono text-[11px] uppercase tracking-[0.2em] transition-colors"
+          className="border-amber text-paper hover:text-amber mt-stack inline-block border-b font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
         >
           {copy.cta.label} →
         </Link>

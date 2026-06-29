@@ -15,12 +15,12 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <main className="mx-auto flex max-w-prose flex-1 flex-col items-center justify-center px-gutter py-page text-center">
+    <main className="fm-site-page py-page flex max-w-prose flex-1 flex-col items-center justify-center text-center">
       <p className="text-overline text-alerta-500">Erro inesperado</p>
-      <h1 className="font-serif text-display-2 text-tinta-700 mt-3">
+      <h1 className="text-display-2 text-tinta-700 mt-3 font-serif">
         Algo saiu do trilho
       </h1>
-      <p className="text-slate-700 mt-stack max-w-md">
+      <p className="mt-stack max-w-md text-slate-700">
         Tentamos processar sua solicitação, mas encontramos um erro. Você pode
         tentar de novo ou voltar à home.
       </p>

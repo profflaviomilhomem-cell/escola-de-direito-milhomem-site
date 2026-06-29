@@ -10,9 +10,11 @@ export type ConfirmNewsletterEmail = {
   name?: string;
 };
 
-export function renderConfirmNewsletterEmail(
-  opts: ConfirmNewsletterEmail,
-): { subject: string; html: string; text: string } {
+export function renderConfirmNewsletterEmail(opts: ConfirmNewsletterEmail): {
+  subject: string;
+  html: string;
+  text: string;
+} {
   const safeName = opts.name?.trim() || "Olá";
   const subject = "Confirme sua inscrição — Bastidor da Acusação";
 
@@ -37,21 +39,21 @@ export function renderConfirmNewsletterEmail(
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>${subject}</title>
   </head>
-  <body style="margin:0;padding:0;background:#06172f;color:#eae4d9;font-family:Helvetica,Arial,sans-serif;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#06172f;padding:40px 16px;">
+  <body style="margin:0;padding:0;background:#030024;color:#e0e0e0;font-family:Helvetica,Arial,sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#030024;padding:40px 16px;">
       <tr>
         <td align="center">
-          <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background:#0b1f3d;border:1px solid rgba(221,173,12,0.25);">
+          <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;width:100%;background:#0b1f3d;border:1px solid rgba(241, 187, 65,0.25);">
             <tr>
-              <td style="padding:32px 40px 16px 40px;font-family:Georgia,'Times New Roman',serif;color:#eae4d9;">
-                <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#ddad0c;">Escola Flávio Milhomem</p>
-                <h1 style="margin:0;font-size:28px;line-height:1.2;color:#eae4d9;">
-                  Confirme sua inscrição na <em style="color:#ddad0c;font-style:italic;">Bastidor da Acusação</em>.
+              <td style="padding:32px 40px 16px 40px;font-family:Georgia,'Times New Roman',serif;color:#e0e0e0;">
+                <p style="margin:0 0 4px 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#f1bb41;">Escola Flávio Milhomem</p>
+                <h1 style="margin:0;font-size:28px;line-height:1.2;color:#e0e0e0;">
+                  Confirme sua inscrição na <em style="color:#f1bb41;font-style:italic;">Bastidor da Acusação</em>.
                 </h1>
               </td>
             </tr>
             <tr>
-              <td style="padding:8px 40px 0 40px;font-size:16px;line-height:1.7;color:rgba(234,228,217,0.85);">
+              <td style="padding:8px 40px 0 40px;font-size:16px;line-height:1.7;color:rgba(224, 224, 224,0.85);">
                 <p style="margin:0 0 16px 0;">${escapeHtml(safeName)},</p>
                 <p style="margin:0 0 16px 0;">
                   Falta um clique para validar sua inscrição. Sem essa confirmação, seu e-mail
@@ -62,16 +64,16 @@ export function renderConfirmNewsletterEmail(
             <tr>
               <td align="left" style="padding:24px 40px 8px 40px;">
                 <a href="${opts.confirmUrl}"
-                   style="display:inline-block;background:#ddad0c;color:#06172f;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 22px;border-radius:2px;">
+                   style="display:inline-block;background:#f1bb41;color:#030024;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.06em;text-transform:uppercase;padding:14px 22px;border-radius:2px;">
                   Confirmar inscrição
                 </a>
               </td>
             </tr>
             <tr>
-              <td style="padding:8px 40px 32px 40px;font-size:13px;line-height:1.6;color:rgba(234,228,217,0.55);">
+              <td style="padding:8px 40px 32px 40px;font-size:13px;line-height:1.6;color:rgba(224, 224, 224,0.55);">
                 <p style="margin:16px 0 0 0;">
                   Se o botão não funcionar, copie este endereço no navegador:<br/>
-                  <span style="word-break:break-all;color:rgba(234,228,217,0.75);">${escapeHtml(opts.confirmUrl)}</span>
+                  <span style="word-break:break-all;color:rgba(224, 224, 224,0.75);">${escapeHtml(opts.confirmUrl)}</span>
                 </p>
                 <p style="margin:24px 0 0 0;">
                   Você não pediu essa inscrição? Apenas ignore este e-mail — nenhum dado fica retido.
@@ -79,9 +81,9 @@ export function renderConfirmNewsletterEmail(
               </td>
             </tr>
             <tr>
-              <td style="padding:0 40px 32px 40px;border-top:1px solid rgba(221,173,12,0.18);">
-                <p style="margin:24px 0 0 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(234,228,217,0.55);">
-                  Equipe Editorial · MPDFT · Brasília
+              <td style="padding:0 40px 32px 40px;border-top:1px solid rgba(241, 187, 65,0.18);">
+                <p style="margin:24px 0 0 0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(224, 224, 224,0.55);">
+                  Equipe Editorial · Brasília
                 </p>
               </td>
             </tr>

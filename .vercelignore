@@ -1,0 +1,6 @@
+# Não enviar mídia pesada no deploy CLI (ficam no CDN / Blob depois)
+public/curso/**/*.mp4
+public/curso/**/*.zip
+public/curso/milhomem
+public/JPEG.zip
+public/PNG.zip

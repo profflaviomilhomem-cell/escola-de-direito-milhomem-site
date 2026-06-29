@@ -24,10 +24,13 @@ model User {
   updatedAt     DateTime       @updatedAt
 
   // Relações
-  orders        Order[]
-  subscriptions Subscription[]
-  comments      Comment[]
-  utmEvents    UTMEvent[]
+  orders            Order[]
+  subscriptions     Subscription[]
+  comments          Comment[]
+  utmEvents         UTMEvent[]
+  posts             BlogPost[]
+  lessonProgress    UserLessonProgress[]
+  certificates      Certificate[]
 
   @@index([email])
 }
@@ -42,21 +45,38 @@ enum UserRole {
 // ============================================================
 
 model Product {
-  id            String         @id @default(cuid())
-  slug          String         @unique
+  id            String               @id @default(cuid())
+  slug          String               @unique
   name          String
-  description   String         @db.Text
+  shortTitle    String?              // título curto (área do aluno)
+  tagline       String?
+  catalogLabel  String?              // rótulo de catálogo ("Curso gravado · …")
+  description   String               @db.Text
   type          ProductType
   priceCents    Int
-  active        Boolean        @default(true)
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  coverImage    String?              // capa (card do aluno, listagens)
+  bannerImage   String?              // banner (hero / vitrine do curso)
+  coverGradient Json?                // gradiente do hero/card: { from, via?, to, angle? }
+  publishStatus ProductPublishStatus @default(DRAFT)
+  publishedAt   DateTime?
+  active        Boolean              @default(true)
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
 
   orders        Order[]
   subscriptions Subscription[]
+  modules       Module[]
   lessons       Lesson[]
+  certificates  Certificate[]
 
   @@index([slug])
+  @@index([publishStatus])
+}
+
+enum ProductPublishStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
 }
 
 enum ProductType {
@@ -75,6 +95,8 @@ model Order {
   paymentMethod   PaymentMethod
   pagarmeChargeId String?       @unique
   pagarmeOrderId  String?       @unique
+  /// QR code, URL do boleto etc. — retorno da API Pagar.me (MVP checkout).
+  paymentPayload  Json?
   utmSource       String?
   utmMedium       String?
   utmCampaign     String?
@@ -86,6 +108,13 @@ model Order {
 
   @@index([userId])
   @@index([status])
+}
+
+/// Idempotência de webhooks Pagar.me (eventId = payload.id).
+model PagarmeWebhookEvent {
+  id        String   @id
+  type      String
+  createdAt DateTime @default(now())
 }
 
 enum OrderStatus {
@@ -101,6 +130,8 @@ enum PaymentMethod {
   CARD
   PIX
   BOLETO
+  /// Concessão manual (turma fundadora / cortesia) — sem Pagar.me.
+  MANUAL
 }
 
 model Subscription {
@@ -130,24 +161,68 @@ enum SubscriptionStatus {
 // PLATAFORMA DE CURSO
 // ============================================================
 
+model Module {
+  id        String   @id @default(cuid())
+  productId String
+  slug      String
+  title     String
+  subtitle  String?
+  position  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  product Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  lessons Lesson[]
+
+  @@unique([productId, slug])
+  @@index([productId, position])
+}
+
 model Lesson {
   id           String    @id @default(cuid())
   productId    String
+  moduleId     String?
   slug         String
   title        String
   description  String?   @db.Text
+  summary      String?   @db.Text // resumo exibido na aba "Sobre" da aula
+  keyPoints    Json?              // string[] — pontos-chave da aula
+  materials    Json?              // { title, pages, sizeKb }[] — materiais de apoio
+  coverImage   String?   // thumbnail da aula no painel do aluno
   videoId      String?   // Cloudflare Stream UID
+  videoSrc     String?   // caminho do mp4 (manifest) — fallback ao videoId/Stream
+  posterImage  String?   // poster do player
+  slidesUrl    String?   // caminho dos slides (pptx/pdf)
   position     Int
   durationSec  Int?
   publishedAt  DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  product  Product   @relation(fields: [productId], references: [id])
-  comments Comment[]
+  product   Product              @relation(fields: [productId], references: [id])
+  module    Module?              @relation(fields: [moduleId], references: [id], onDelete: SetNull)
+  comments  Comment[]
+  progress  UserLessonProgress[]
 
   @@unique([productId, slug])
   @@index([productId, position])
+  @@index([moduleId, position])
+}
+
+model UserLessonProgress {
+  id          String    @id @default(cuid())
+  userId      String
+  lessonId    String
+  watchedSec  Int       @default(0)
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
 }
 
 model Comment {
@@ -249,4 +324,59 @@ model UTMEvent {
 
   @@index([shortCode])
   @@index([utmCampaign])
+}
+
+// ============================================================
+// CONTEÚDO (BLOG)
+// ============================================================
+
+model BlogPost {
+  id          String       @id @default(cuid())
+  slug        String       @unique
+  title       String
+  excerpt     String?      @db.Text
+  body        String       @db.Text
+  coverImage  String?      // URL da imagem de destaque do WordPress
+  status      BlogStatus   @default(DRAFT)
+  category    BlogCategory @default(GERAL)
+  publishedAt DateTime?
+  authorId    String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  author User @relation(fields: [authorId], references: [id])
+
+  @@index([slug])
+  @@index([authorId])
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  SCHEDULED
+}
+
+enum BlogCategory {
+  ANALISE_DECISAO
+  DOGMATICA
+  COMENTARIO
+  GERAL
+}
+
+// ============================================================
+// CERTIFICADOS
+// ============================================================
+
+model Certificate {
+  id        String   @id @default(cuid())
+  hash      String   @unique // código público de validação (/certificado/[hash])
+  userId    String
+  productId String
+  issuedAt  DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([hash])
 }

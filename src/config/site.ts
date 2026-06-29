@@ -4,38 +4,39 @@
  * Single source of truth para metadata, URLs canônicas,
  * informações institucionais e canais.
  *
+ * Textos de marketing e tom de voz: `src/config/copy.ts`.
  * NÃO duplique strings deste arquivo em outros lugares —
  * sempre importe daqui. Isso evita drift entre páginas.
  */
 
+import { copy } from "./copy";
+
 export const siteConfig = {
   name: "Escola Flávio Milhomem",
   shortName: "Escola Flávio Milhomem",
-  tagline: "A Escola do Promotor",
-  pvuShort:
-    "Direito Penal ensinado por quem está no Ministério Público — o lado que decide o que vira denúncia.",
-  description:
-    "Escola digital de Direito Penal pela perspectiva da acusação, dirigida por Flávio Milhomem, Promotor de Justiça do MPDFT desde 1996, Ouvidor-Geral do MPDFT (2025-2027), professor há 25 anos.",
+  tagline: copy.site.tagline,
+  taglineInstitucional: copy.guia.taglineInstitucional,
+  pvuShort: copy.site.pvuShort,
+  description: copy.site.description,
+  // Domínio definitivo (decisão 12/jun/2026): mantém o registrado com equity.
   url:
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://escolaflaviomilhomem.com.br",
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://professorflaviomilhomem.com.br",
   locale: "pt-BR",
   // OG image gerada por `app/opengraph-image.tsx` (file-based).
 
+  /** Arte institucional (ponte JK) — hero da área do aluno e vitrines de curso. */
+  brand: {
+    courseHeroBanner: "/images/brand/elementos_marca-18.png",
+  },
+
   professor: {
-    fullName: "Flávio Milhomem",
-    role: "Promotor de Justiça — MPDFT · Ouvidor-Geral do MPDFT (2025-2027)",
-    careerYears: 30,
-    teachingYears: 25,
-    education: [
-      {
-        institution: "Universidade Católica Portuguesa",
-        program: "Mestrado em Ciências Jurídico-Criminais",
-      },
-      {
-        institution: "École Nationale de la Magistrature (França)",
-        program: "Especialização",
-      },
-    ],
+    fullName: copy.professor.fullName,
+    role: copy.professor.marketingTitle,
+    bioRoleLine: copy.professor.bioRoleLine,
+    careerYears: copy.professor.careerYears,
+    teachingYears: copy.professor.teachingYears,
+    education: copy.professor.education,
   },
 
   contact: {
@@ -47,8 +48,23 @@ export const siteConfig = {
     instagram: "https://instagram.com/prof.flaviomilhomem",
     instagramHandle: "@prof.flaviomilhomem",
     linkedin: "https://linkedin.com/in/professorflaviomilhomem",
-    youtube: "https://youtube.com/@PROFESSORFLÁVIOMILHOMEM",
+    /** Canal oficial (URL ASCII — evita problemas em mailers e alguns browsers) */
+    youtube: "https://www.youtube.com/@professorflaviomilhomem",
+    /** Linha secundária no chip do footer (YouTube) */
+    youtubeFooterLabel: "Professor Flávio Milhomem",
+    /**
+     * Vídeo de abertura — Edição Lançamento (canal @professorflaviomilhomem).
+     * Metodologia: videoaulas + PDFs (~4 min). Trocar quando houver vídeo da edição.
+     */
+    edicaoLancamentoVideoId: "Sud0au_ogS0",
+    /** Linha secundária no chip do footer (LinkedIn) */
+    linkedinFooterLabel: "/in/professorflaviomilhomem",
     mpdft: "https://www.mpdft.mp.br/",
+    /** Site legado — equity branded preservado (guia 7.2, auditoria de domínio). */
+    legacySite: "https://professorflaviomilhomem.com.br/",
+    /** Página de professor no Gran Cursos — credencial de docência verificável. */
+    granCursos:
+      "https://www.grancursosonline.com.br/cursos/professor/flavio-milhomem",
   },
 
   // IDs de tracking — preencher via .env quando criar conta.
@@ -63,11 +79,19 @@ export const siteConfig = {
       process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
   },
 
-  // Navegação principal — máximo 5 itens (Seção 8.1 do guia)
+  // Navegação principal do header + CTA lista (6 itens — Calculadora e FAQ no topo).
+  // Sem link "Entrar" de propósito: acesso à área do aluno só por convite/e-mail
+  // (magic link ou URL direta), para não expor o login no site público.
   mainNav: [
+    { label: "Início", href: "/" },
     { label: "Sobre", href: "/sobre" },
     { label: "Cursos", href: "/cursos" },
     { label: "Blog", href: "/blog" },
+    { label: "Calculadora", href: "/calculadora-de-pena" },
+    { label: "FAQ", href: "/faq" },
+  ],
+  /** Links secundários (footer e menu mobile “Mais”) */
+  secondaryNav: [
     { label: "Eventos", href: "/eventos/dia-do-advogado-2026" },
     { label: "Contato", href: "/contato" },
   ],

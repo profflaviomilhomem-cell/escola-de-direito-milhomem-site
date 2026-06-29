@@ -54,9 +54,7 @@ export default function ReembolsoPage() {
               </p>
               <ul className="mt-4 ml-6 list-disc space-y-2">
                 <li>até 30% do conteúdo entregue: reembolso de 70%;</li>
-                <li>
-                  entre 30% e 60% do conteúdo: reembolso de 40%;
-                </li>
+                <li>entre 30% e 60% do conteúdo: reembolso de 40%;</li>
                 <li>
                   acima de 60% do conteúdo: sem reembolso, mas mantemos seu
                   acesso até o fim do programa.
@@ -103,8 +101,8 @@ export default function ReembolsoPage() {
                 cadastrada na compra.
               </li>
               <li>
-                <strong>Boleto</strong>: depósito em conta indicada por você
-                em até 7 dias úteis após o envio dos dados bancários.
+                <strong>Boleto</strong>: depósito em conta indicada por você em
+                até 7 dias úteis após o envio dos dados bancários.
               </li>
             </ul>
           ),

@@ -1,30 +1,66 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { NewsletterForm } from "@/components/marketing/newsletter-form";
+import { copy } from "@/config/copy";
+import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = { params: Promise<{ slug: string }> };
 
+const SLUGS = Object.keys(copy.materiais.bySlug);
+
+export async function generateStaticParams() {
+  return SLUGS.map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  const item =
+    copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
+  if (!item) return { title: "Material não encontrado" };
   return {
-    title: `Material gratuito · ${slug}`,
+    title: item.title,
+    description: item.lead,
     alternates: { canonical: `/materiais/${slug}` },
   };
 }
 
-/**
- * Página de isca/material gratuito (PDF baixado via formulário).
- * Slug → registro em LeadMagnet, captura via /api/leads.
- */
 export default async function MaterialPage({ params }: Props) {
   const { slug } = await params;
+  const item =
+    copy.materiais.bySlug[slug as keyof typeof copy.materiais.bySlug];
+  if (!item) notFound();
 
   return (
-    <section className="mx-auto max-w-prose px-gutter py-page">
-      <h1 className="font-serif text-heading-1 text-tinta-700">
-        Material: {slug}
-      </h1>
-      <p className="text-slate-500 mt-2 italic">
-        Página de isca placeholder — preencher com material editorial.
-      </p>
-    </section>
+    <article className="fm-site-page py-page max-w-prose">
+      <header>
+        <p className="text-amber font-mono text-[11px] tracking-[0.2em] uppercase">
+          Material gratuito
+        </p>
+        <h1
+          className="fm-title-fluid mt-3 font-serif leading-[1.05]"
+          style={fmTitleClamp("36px", "4vw", "52px")}
+        >
+          {item.title}
+        </h1>
+        <p className="text-paper-700 mt-4 leading-relaxed">{item.lead}</p>
+      </header>
+
+      <section
+        className="border-amber/30 bg-carbon-elevated/30 mt-12 rounded-xl border p-6"
+        aria-labelledby="download-title"
+      >
+        <h2 id="download-title" className="font-serif text-xl">
+          Baixar o PDF
+        </h2>
+        <p className="text-paper-600 mt-2 text-sm leading-relaxed">
+          Informe seu e-mail para receber o link de download. Sem spam — apenas
+          este material e o boletim, se você optar por recebê-lo.
+        </p>
+        <div className="mt-6">
+          <NewsletterForm source={`material-${slug}`} leadMagnetSlug={slug} />
+        </div>
+      </section>
+    </article>
   );
 }

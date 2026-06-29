@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Design System — Escola Flávio Milhomem</title>
+  <meta name="description" content="Tokens, tipografia e componentes da identidade visual 2026 — Escola Flávio Milhomem." />
+  <style>
+    :root {
+      --carbon: #030024;
+      --carbon-elevated: #242a34;
+      --paper: #e0e0e0;
+      --amber: #f1bb41;
+      --amber-soft: #f5ce6a;
+      --paper-50: rgba(224, 224, 224, 0.04);
+      --paper-100: rgba(224, 224, 224, 0.08);
+      --paper-200: rgba(224, 224, 224, 0.12);
+      --paper-400: rgba(224, 224, 224, 0.4);
+      --paper-600: rgba(224, 224, 224, 0.6);
+      --paper-700: rgba(224, 224, 224, 0.7);
+      --paper-800: rgba(224, 224, 224, 0.8);
+      --alerta: #dc4a52;
+      --sucesso: #5dba73;
+      --border-amber: rgba(241, 187, 65, 0.2);
+      --font-display: "Clash Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-body: "Hiragino Maru Gothic ProN", "Hiragino Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", Menlo, Consolas, monospace;
+      --tracking-site: 0.028em;
+      --container-narrow: 1400px;
+      --section-py: 5rem;
+      --sidebar-w: 240px;
+      --radius: 0.75rem;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; color-scheme: dark; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: var(--tracking-site);
+      background: var(--carbon);
+      color: var(--paper);
+    }
+
+    .ds-layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+    }
+
+    .ds-nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 1.5rem 1rem;
+      border-right: 1px solid var(--paper-100);
+      background: rgba(3, 0, 36, 0.95);
+    }
+
+    .ds-nav h1 {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin: 0 0 0.25rem;
+    }
+
+    .ds-nav .subtitle {
+      font-size: 0.7rem;
+      color: var(--paper-600);
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .ds-nav a {
+      display: block;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.8rem;
+      color: var(--paper-700);
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .ds-nav a:hover,
+    .ds-nav a:focus-visible {
+      color: var(--paper);
+      background: var(--paper-50);
+      outline: none;
+    }
+
+    .ds-main {
+      padding: 2rem 2rem 4rem;
+      max-width: 960px;
+    }
+
+    .ds-section {
+      margin-bottom: var(--section-py);
+      scroll-margin-top: 1.5rem;
+    }
+
+    .ds-section > h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .ds-section > .lead {
+      color: var(--paper-700);
+      margin: 0 0 2rem;
+      max-width: 60ch;
+    }
+
+    .ds-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+    }
+
+    .ds-grid-2 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+    .ds-grid-3 { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+    .ds-swatch {
+      border: 1px solid var(--paper-100);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    .ds-swatch:hover { border-color: var(--amber); }
+    .ds-swatch:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+    .ds-swatch-color { height: 72px; }
+    .ds-swatch-meta {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.75rem;
+      background: var(--carbon-elevated);
+    }
+    .ds-swatch-meta strong { display: block; color: var(--paper); }
+    .ds-swatch-meta span { color: var(--paper-600); font-family: var(--font-mono); font-size: 0.65rem; }
+
+    .ds-type-sample {
+      border-bottom: 1px solid var(--paper-100);
+      padding: 1.25rem 0;
+    }
+    .ds-type-sample .label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--paper-600);
+      margin-bottom: 0.5rem;
+    }
+
+    .t-display-hero {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 8vw, 72px);
+      line-height: 1.02;
+      letter-spacing: 0.055em;
+    }
+    .t-display-hero em { color: var(--amber); font-style: italic; }
+    .t-h1 { font-family: var(--font-display); font-size: clamp(32px, 5vw, 48px); line-height: 1.05; }
+    .t-h2 { font-family: var(--font-display); font-size: 1.875rem; line-height: 1.1; }
+    .t-h3 { font-family: var(--font-display); font-size: 1.25rem; }
+    .t-lead { font-size: 1.125rem; color: var(--paper-700); line-height: 1.65; }
+    .t-body { font-size: 1rem; color: var(--paper-700); }
+    .t-small { font-size: 0.875rem; color: var(--paper-600); }
+    .t-mono-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: var(--amber);
+    }
+    .t-tagline { font-size: 1.25rem; font-style: italic; color: var(--paper-800); }
+
+    .ds-btn {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, background 0.2s;
+    }
+    .ds-btn-primary { background: var(--amber); color: var(--carbon); }
+    .ds-btn-primary:hover { opacity: 0.92; }
+    .ds-btn-outline {
+      background: transparent;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+    }
+    .ds-btn-outline:hover { background: rgba(241, 187, 65, 0.08); }
+    .ds-btn-ghost {
+      background: transparent;
+      color: var(--paper-700);
+      border: 1px solid var(--paper-200);
+    }
+
+    .ds-card {
+      border: 1px solid var(--paper-100);
+      border-radius: var(--radius);
+      background: rgba(36, 42, 52, 0.3);
+      padding: 1.25rem;
+    }
+    .ds-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0 0 0.5rem; }
+    .ds-card p { margin: 0; font-size: 0.875rem; color: var(--paper-600); }
+
+    .ds-card-invest {
+      border: 1px solid rgba(241, 187, 65, 0.3);
+      border-radius: var(--radius);
+      background: rgba(241, 187, 65, 0.06);
+      padding: 2rem;
+    }
+    .ds-price { font-family: var(--font-display); font-size: 2.25rem; }
+
+    .ds-demo-row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1rem; }
+
+    .ds-link { color: var(--amber); text-underline-offset: 2px; }
+    .ds-link:hover { text-decoration: underline; }
+
+    .ds-do-dont {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 700px) { .ds-do-dont { grid-template-columns: 1fr; } }
+    .ds-do { border-left: 3px solid var(--sucesso); padding-left: 1rem; }
+    .ds-dont { border-left: 3px solid var(--alerta); padding-left: 1rem; }
+    .ds-do h4, .ds-dont h4 { margin: 0 0 0.5rem; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .ds-do ul, .ds-dont ul { margin: 0; padding-left: 1.1rem; font-size: 0.875rem; color: var(--paper-700); }
+
+    .ds-logo-box {
+      padding: 2rem;
+      border: 1px dashed var(--paper-200);
+      border-radius: var(--radius);
+      text-align: center;
+      background: var(--paper-50);
+    }
+    .ds-logo-box img { max-width: 280px; height: auto; }
+
+    .ds-spacing-bar {
+      height: 24px;
+      background: var(--amber);
+      margin-bottom: 0.5rem;
+      border-radius: 2px;
+    }
+
+    .ds-toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--carbon-elevated);
+      border: 1px solid var(--amber);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s, transform 0.25s;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .ds-toast.show { opacity: 1; transform: translateY(0); }
+
+    .ds-pattern-hero {
+      padding: 2rem;
+      border: 1px solid var(--paper-100);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(241, 187, 65, 0.08) 0%, transparent 60%),
+        var(--carbon);
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.8em;
+      background: var(--paper-50);
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      color: var(--amber-soft);
+    }
+
+    .ds-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .ds-table th, .ds-table td {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--paper-100);
+    }
+    .ds-table th { color: var(--paper-600); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; }
+
+    @media (max-width: 900px) {
+      .ds-layout { grid-template-columns: 1fr; }
+      .ds-nav {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--paper-100);
+      }
+      .ds-nav nav { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+      .ds-nav a { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ds-layout">
+    <aside class="ds-nav">
+      <h1>Escola FM</h1>
+      <p class="subtitle">Design System 2026 · dark navy + mostarda</p>
+      <nav aria-label="Seções do design system">
+        <a href="#marca">Marca</a>
+        <a href="#cores">Cores</a>
+        <a href="#tipografia">Tipografia</a>
+        <a href="#botoes">Botões</a>
+        <a href="#cards">Cards</a>
+        <a href="#layout">Layout</a>
+        <a href="#copy">Tom de voz</a>
+        <a href="#landing">Blocos landing</a>
+        <a href="#regras">Regras</a>
+        <a href="#refs">Referências</a>
+      </nav>
+    </aside>
+
+    <main class="ds-main">
+      <header class="ds-section" id="top">
+        <p class="ds-eyebrow">Documentação viva · maio 2026</p>
+        <h2 class="t-display-hero" style="margin:0 0 1rem;">
+          Design System<br />
+          <em>Escola Flávio Milhomem</em>
+        </h2>
+        <p class="t-lead">
+          Espelho interativo dos tokens em <code>src/app/globals.css</code> e dos padrões usados nas páginas de marketing.
+          Clique em um swatch de cor para copiar o hex. No site em produção, as fontes Clash Display e Hiragino são carregadas via Next.js.
+        </p>
+      </header>
+
+      <section class="ds-section" id="marca">
+        <h2>Marca</h2>
+        <p class="lead">Monograma oficial (PNG transparente). Proporção ~737×413 px.</p>
+        <div class="ds-logo-box">
+          <img
+            src="assets/logo-monogram.png"
+            alt="Monograma Escola Flávio Milhomem"
+            width="280"
+            height="157"
+          />
+        </div>
+        <table class="ds-table" style="margin-top:1.5rem;">
+          <thead><tr><th>Token</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><code>carbon</code></td><td>Fundo principal (#030024)</td></tr>
+            <tr><td><code>amber</code></td><td>Destaque, CTAs, ênfase em títulos</td></tr>
+            <tr><td><code>paper</code></td><td>Texto principal (#E0E0E0)</td></tr>
+            <tr><td>Arquétipo</td><td>Sábio + Cuidador — erudito acessível</td></tr>
+            <tr><td>Tagline</td><td>Direito criminal pela perspectiva da acusação</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="ds-section" id="cores">
+        <h2>Paleta de cores</h2>
+        <p class="lead">Clique para copiar. Opacidades <code>paper-*</code> são derivadas de #E0E0E0.</p>
+        <h3 class="t-h3" style="margin:2rem 0 1rem;">Principais</h3>
+        <div class="ds-grid-2" id="swatches-main"></div>
+        <h3 class="t-h3" style="margin:2rem 0 1rem;">Estados</h3>
+        <div class="ds-grid-2" id="swatches-state"></div>
+        <h3 class="t-h3" style="margin:2rem 0 1rem;">Legado (páginas antigas)</h3>
+        <div class="ds-grid-2" id="swatches-legacy"></div>
+      </section>
+
+      <section class="ds-section" id="tipografia">
+        <h2>Tipografia</h2>
+        <p class="lead">Display = Clash · Corpo = Hiragino Maru Gothic · Labels = JetBrains Mono uppercase.</p>
+
+        <div class="ds-type-sample">
+          <div class="label">Hero · fm-title-fluid + font-serif</div>
+          <p class="t-display-hero">A <em>Escola</em> de direito criminal</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">Eyebrow · text-amber fm-mono · tracking 0.22–0.32em</div>
+          <p class="t-mono-label">Edição Lançamento · 11 de agosto · Brasília</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">Tagline · italic paper-800</div>
+          <p class="t-tagline">Direito criminal pela perspectiva da acusação — com rigor de quem ensina em sala e em tribunal.</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">H2 seção · font-serif text-3xl</div>
+          <p class="t-h2">Para quem é</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">Lead · text-lg paper-700</div>
+          <p class="t-lead">Doze semanas em cohort, com trilha semanal, fórum por aula e encontros ao vivo.</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">Corpo · text-base paper-700</div>
+          <p class="t-body">A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.</p>
+        </div>
+        <div class="ds-type-sample">
+          <div class="label">Small / meta · text-sm paper-600</div>
+          <p class="t-small">Valor único da turma fundadora. Pagamento via PIX ou boleto (Pagar.me).</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="botoes">
+        <h2>Botões</h2>
+        <p class="lead">Marketing usa CTAs retangulares sem border-radius (não o shadcn arredondado).</p>
+        <div class="ds-demo-row">
+          <button type="button" class="ds-btn ds-btn-primary">CTA primário</button>
+          <button type="button" class="ds-btn ds-btn-outline">CTA secundário</button>
+          <button type="button" class="ds-btn ds-btn-ghost">Ghost</button>
+        </div>
+        <p class="t-small" style="margin-top:1rem;">
+          Classes Tailwind no site: <code>bg-amber text-paper px-6 py-3 font-mono text-[12px] uppercase tracking-[0.16em]</code>
+          e variante outline <code>border-amber text-amber border</code>.
+        </p>
+      </section>
+
+      <section class="ds-section" id="cards">
+        <h2>Cards e blocos</h2>
+        <div class="ds-grid-3">
+          <article class="ds-card">
+            <h3>Perspectiva da acusação</h3>
+            <p>Pilar da landing — borda paper-100, fundo carbon-elevated/30.</p>
+          </article>
+          <article class="ds-card">
+            <h3>Cohort, não videoteca</h3>
+            <p>Turma com início e fim, fórum e encontros ao vivo.</p>
+          </article>
+          <article class="ds-card-invest">
+            <p class="ds-eyebrow">Investimento</p>
+            <p class="ds-price">R$ 297,00</p>
+            <p class="t-small">Turma fundadora · até 50 alunos</p>
+            <button type="button" class="ds-btn ds-btn-primary" style="margin-top:1rem;">Garantir minha vaga</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="ds-section" id="layout">
+        <h2>Layout e espaçamento</h2>
+        <p class="lead">Seções marketing: <code>fm-site-section</code> + <code>fm-site-container</code> (max 1400px).</p>
+        <div class="ds-spacing-bar" style="width:1rem;" title="gutter mobile"></div>
+        <p class="t-small">gutter mobile — 1rem (+ safe-area)</p>
+        <div class="ds-spacing-bar" style="width:1.5rem;margin-top:1rem;"></div>
+        <p class="t-small">gutter sm — 1.5rem</p>
+        <div class="ds-spacing-bar" style="width:2rem;margin-top:1rem;"></div>
+        <p class="t-small">gutter lg — 2rem</p>
+        <div class="ds-spacing-bar" style="width:100%;max-width:400px;margin-top:1.5rem;height:8px;"></div>
+        <p class="t-small">section vertical — py-page (~8rem) em landings longas</p>
+
+        <div class="ds-pattern-hero" style="margin-top:2rem;">
+          <p class="t-mono-label">Padrão hero (home)</p>
+          <p class="t-display-hero" style="font-size:clamp(36px,6vw,56px);margin:0.5rem 0;">
+            A <em>Escola</em> de direito criminal
+          </p>
+          <p class="t-tagline" style="font-size:1.1rem;">Mesh e grid vêm do BackgroundLayers — não pintar <code>bg-carbon</code> na section inteira.</p>
+        </div>
+      </section>
+
+      <section class="ds-section" id="copy">
+        <h2>Tom de voz</h2>
+        <p class="lead">Fonte única: <code>src/config/copy.ts</code>. Segunda pessoa com o aluno; sem infomarketing.</p>
+        <blockquote class="ds-card" style="font-style:italic;border-left:3px solid var(--amber);">
+          "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática."
+        </blockquote>
+        <p class="t-small" style="margin-top:1rem;">
+          PVU curta: <strong>Direito criminal pela perspectiva da acusação</strong> ·
+          Institucional: <strong>A Escola do Promotor.</strong> (uso externo/redes)
+        </p>
+        <p class="t-small">
+          Aviso legal (footer/landing): projeto educacional privado; não representa o MP; sem captação por cargo institucional.
+        </p>
+      </section>
+
+      <section class="ds-section" id="landing">
+        <h2>14 blocos — Edição Lançamento</h2>
+        <p class="lead">Blueprint Livro-Guia 6.5 · implementação em <code>edicao-lancamento-landing.tsx</code></p>
+        <table class="ds-table">
+          <thead>
+            <tr><th>#</th><th>Bloco</th><th>Status no código</th></tr>
+          </thead>
+          <tbody id="landing-blocks"></tbody>
+        </table>
+      </section>
+
+      <section class="ds-section" id="regras">
+        <h2>Regras visuais</h2>
+        <div class="ds-do-dont">
+          <div class="ds-do">
+            <h4>Fazer</h4>
+            <ul>
+              <li>Fundo local só em cards (border + backdrop)</li>
+              <li>Ênfase em títulos com <code>text-amber italic</code> em &lt;em&gt;</li>
+              <li>Eyebrows em mono 10–11px, tracking largo</li>
+              <li>CTA primário âmbar sobre texto carbon</li>
+              <li>Copy sempre via <code>copy.ts</code></li>
+            </ul>
+          </div>
+          <div class="ds-dont">
+            <h4>Evitar</h4>
+            <ul>
+              <li><code>bg-carbon</code> / <code>bg-amber/[n]</code> na &lt;section&gt; inteira (tapa o mesh)</li>
+              <li>Promessa de aprovação em concurso</li>
+              <li>Explorar cargo MPDFT no hero de captação</li>
+              <li>Duplicar strings fora de copy.ts</li>
+              <li>Box-shadow pesado (identidade flat)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="ds-section" id="refs">
+        <h2>Referências no repositório</h2>
+        <table class="ds-table">
+          <tbody>
+            <tr><td>Tokens CSS</td><td><code>src/app/globals.css</code></td></tr>
+            <tr><td>Textos</td><td><code>src/config/copy.ts</code></td></tr>
+            <tr><td>Marca / logo</td><td><code>src/config/brand.ts</code></td></tr>
+            <tr><td>Landing cohort</td><td><code>src/components/marketing/edicao-lancamento-landing.tsx</code></td></tr>
+            <tr><td>Home</td><td><code>src/app/(marketing)/page.tsx</code></td></tr>
+            <tr><td>Guia estratégico</td><td><code>docs/adr/livro-guia-flavio.md</code> cap. 6.5</td></tr>
+            <tr><td>Handoff copy</td><td><code>docs/HANDOFF-LANDING-PAGES.md</code></td></tr>
+          </tbody>
+        </table>
+        <p class="t-small" style="margin-top:2rem;">
+          Produção: <a class="ds-link" href="https://escola-de-direito-milhomem-site.vercel.app" target="_blank" rel="noopener">escola-de-direito-milhomem-site.vercel.app</a>
+          · Abrir este arquivo: <code>/design-system/index.html</code> no mesmo domínio do site.
+        </p>
+      </section>
+    </main>
+  </div>
+
+  <div class="ds-toast" id="toast" role="status" aria-live="polite">Copiado</div>
+
+  <script>
+    const swatchesMain = [
+      { name: "carbon", hex: "#030024", token: "--color-carbon" },
+      { name: "carbon-elevated", hex: "#242A34", token: "--color-carbon-elevated" },
+      { name: "paper", hex: "#E0E0E0", token: "--color-paper" },
+      { name: "amber", hex: "#F1BB41", token: "--color-amber" },
+      { name: "amber-soft", hex: "#F5CE6A", token: "--color-amber-soft" },
+    ];
+    const swatchesState = [
+      { name: "alerta-500", hex: "#DC4A52", token: "erro" },
+      { name: "sucesso-500", hex: "#5DBA73", token: "sucesso" },
+    ];
+    const swatchesLegacy = [
+      { name: "tinta-700", hex: "#1F3268", token: "legado" },
+      { name: "dourado-400", hex: "#E6AD26", token: "legado" },
+      { name: "slate-600", hex: "#54513F", token: "legado" },
+    ];
+
+    function renderSwatches(containerId, items) {
+      const el = document.getElementById(containerId);
+      items.forEach((s) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "ds-swatch";
+        btn.setAttribute("aria-label", "Copiar " + s.hex);
+        btn.innerHTML =
+          '<div class="ds-swatch-color" style="background:' +
+          s.hex +
+          '"></div><div class="ds-swatch-meta"><strong>' +
+          s.name +
+          '</strong><span>' +
+          s.hex +
+          "</span></div>";
+        btn.addEventListener("click", () => copyHex(s.hex));
+        el.appendChild(btn);
+      });
+    }
+
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function copyHex(hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        toast.textContent = "Copiado: " + hex;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
+      });
+    }
+
+    renderSwatches("swatches-main", swatchesMain);
+    renderSwatches("swatches-state", swatchesState);
+    renderSwatches("swatches-legacy", swatchesLegacy);
+
+    const blocks = [
+      [1, "Acima da dobra (título, lead, vídeo, CTAs)", "Implementado"],
+      [2, "Três pilares", "Implementado"],
+      [3, "Sobre Flávio (mini-bio + foto)", "Pendente — link /sobre apenas no lead"],
+      [4, "Para quem é", "Implementado"],
+      [5, "Ementa por módulo", "Implementado (2 módulos / 10 aulas)"],
+      [6, "Cronograma", "Implementado"],
+      [7, "Como funciona", "Implementado"],
+      [8, "Professores convidados", "N/A lançamento — omitido OK"],
+      [9, "Materiais inclusos", "Implementado"],
+      [10, "Depoimentos", "Implementado (turma fundadora)"],
+      [11, "Investimento + checkout", "Implementado (R$ 297 — preço operacional)"],
+      [12, "FAQ", "Implementado (7 perguntas; guia pede 10)"],
+      [13, "Garantia reforçada", "Parcial — texto no bloco investimento"],
+      [14, "CTA final + rodapé", "Implementado (lista de espera; falta contador vagas)"],
+    ];
+    const tbody = document.getElementById("landing-blocks");
+    blocks.forEach(([n, title, status]) => {
+      const tr = document.createElement("tr");
+      const ok = status === "Implementado" || status.startsWith("Implementado");
+      tr.innerHTML =
+        "<td>" +
+        n +
+        "</td><td>" +
+        title +
+        '</td><td style="color:' +
+        (ok ? "var(--sucesso)" : "var(--amber-soft)") +
+        '">' +
+        status +
+        "</td>";
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

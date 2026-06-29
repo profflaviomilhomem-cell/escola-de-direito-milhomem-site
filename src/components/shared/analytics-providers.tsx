@@ -1,46 +1,57 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
+import { hasAnalyticsConsent } from "@/lib/analytics/consent";
 
 /**
  * Carga client-side de Meta Pixel, LinkedIn Insight Tag e PostHog.
- *
- * Cada bloco é gated pelo ID correspondente em `siteConfig.tracking`:
- * sem ID, nada é renderizado e nenhum script externo é carregado.
- *
- * GTM já vem do `app/layout.tsx` via `@next/third-parties/google` —
- * não duplicado aqui.
+ * Scripts só carregam após consentimento explícito (LGPD).
  */
 export function AnalyticsProviders() {
   const { metaPixelId, linkedinPartnerId, posthogKey, posthogHost } =
     siteConfig.tracking;
 
+  const [consented, setConsented] = useState(false);
+
   useEffect(() => {
-    if (!posthogKey) return;
+    const sync = () => setConsented(hasAnalyticsConsent());
+    sync();
+    const onConsent = () => sync();
+    window.addEventListener("fm-analytics-consent", onConsent);
+    return () => window.removeEventListener("fm-analytics-consent", onConsent);
+  }, []);
+
+  useEffect(() => {
+    if (!consented || !posthogKey) return;
     let cancelled = false;
-    void import("posthog-js").then((mod) => {
-      if (cancelled) return;
-      const ph = mod.default;
-      if (ph.__loaded) return;
-      ph.init(posthogKey, {
-        api_host: posthogHost,
-        defaults: "2025-05-24",
-        capture_pageview: true,
-        capture_pageleave: true,
-        person_profiles: "identified_only",
+    const t = window.setTimeout(() => {
+      void import("posthog-js").then((mod) => {
+        if (cancelled) return;
+        const ph = mod.default;
+        if (ph.__loaded) return;
+        ph.init(posthogKey, {
+          api_host: posthogHost,
+          defaults: "2025-05-24",
+          capture_pageview: true,
+          capture_pageleave: true,
+          person_profiles: "identified_only",
+        });
       });
-    });
+    }, 0);
     return () => {
       cancelled = true;
+      window.clearTimeout(t);
     };
-  }, [posthogKey, posthogHost]);
+  }, [consented, posthogKey, posthogHost]);
+
+  if (!consented) return null;
 
   return (
     <>
-      {metaPixelId && (
+      {metaPixelId ? (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
             {`
@@ -67,9 +78,9 @@ export function AnalyticsProviders() {
             />
           </noscript>
         </>
-      )}
+      ) : null}
 
-      {linkedinPartnerId && (
+      {linkedinPartnerId ? (
         <>
           <Script id="linkedin-insight" strategy="afterInteractive">
             {`
@@ -98,7 +109,7 @@ export function AnalyticsProviders() {
             />
           </noscript>
         </>
-      )}
+      ) : null}
     </>
   );
 }
