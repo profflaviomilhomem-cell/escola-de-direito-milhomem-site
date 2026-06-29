@@ -248,6 +248,19 @@ export const copy = {
       "Decisões anotadas em PDF",
       "Certificado de 60–80h ao concluir a trilha",
     ] as const,
+    // Bloco 3 — Sobre o professor (mini-bio, compliance-safe)
+    sobreTitle: "Quem conduz a Edição",
+    sobreParagraphs: [
+      "Flávio Milhomem é professor de Direito Penal e Processo Penal há 30 anos e autor de obras adotadas em graduação e em preparação para concursos.",
+      "Formou-se academicamente na Universidade Católica Portuguesa (mestrado em Ciências Jurídico-Criminais) e na École Nationale de la Magistrature, na França, somando três décadas de prática no sistema de justiça criminal.",
+      "A trajetória completa, com credenciais verificáveis e os vínculos institucionais descritos com transparência, está na página Sobre.",
+    ] as const,
+    sobrePhotoAlt: "Retrato do professor Flávio Milhomem",
+    sobreCtaLabel: "Biografia e credenciais",
+    // Bloco 13 — Garantia risco zero
+    garantiaTitle: "Garantia de risco zero",
+    garantiaBody:
+      "Você tem 15 dias após a compra para conhecer a turma por dentro — aulas, fórum e materiais. Se concluir que não é o caminho certo agora, basta pedir: devolvemos o valor integral, sem letras miúdas, conforme a política publicada em /reembolso.",
     faqExtra: [
       {
         q: "Posso assistir no celular?",

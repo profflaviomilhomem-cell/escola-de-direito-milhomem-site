@@ -18,6 +18,9 @@ export type ProdutoEscola = {
 export const CURSO_PRINCIPAL_SLUG = "prova-digital-no-processo-penal";
 export const CURSO_PRINCIPAL_PATH = `/cursos/${CURSO_PRINCIPAL_SLUG}`;
 
+/** Vagas da turma fundadora (Edição Lançamento) — selo "até 50 alunos". */
+export const COHORT_VAGAS_TOTAL = 50;
+
 export const produtosEscola: readonly ProdutoEscola[] = [
   {
     slug: CURSO_PRINCIPAL_SLUG,

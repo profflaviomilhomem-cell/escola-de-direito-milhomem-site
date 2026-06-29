@@ -3,8 +3,19 @@ import { cache } from "react";
 import type { Product, ProductType } from "@prisma/client";
 
 import type { ProdutoEscola } from "@/data/produtos-escola";
-import { CURSO_PRINCIPAL_SLUG, produtosEscola } from "@/data/produtos-escola";
+import {
+  COHORT_VAGAS_TOTAL,
+  CURSO_PRINCIPAL_SLUG,
+  produtosEscola,
+} from "@/data/produtos-escola";
+import { ORDER_STATUSES_WITH_ACCESS } from "@/lib/business/commercial-rules";
 import { prisma } from "@/lib/prisma";
+
+export type CohortVagas = {
+  total: number;
+  preenchidas: number;
+  restantes: number;
+};
 
 export function formatPriceBrl(cents: number): string {
   return new Intl.NumberFormat("pt-BR", {
@@ -92,6 +103,26 @@ export const getCatalogProductBySlug = cache(
     }
   },
 );
+
+/**
+ * Vagas reais da turma fundadora: total fixo (selo) menos matrículas pagas
+ * (orders com acesso liberado) do curso principal. Retorna `null` se o banco
+ * estiver indisponível — a UI então omite o contador (sem gatilho falso).
+ */
+export const getCohortVagas = cache(async (): Promise<CohortVagas | null> => {
+  try {
+    const preenchidas = await prisma.order.count({
+      where: {
+        status: { in: [...ORDER_STATUSES_WITH_ACCESS] },
+        product: { slug: CURSO_PRINCIPAL_SLUG },
+      },
+    });
+    const restantes = Math.max(0, COHORT_VAGAS_TOTAL - preenchidas);
+    return { total: COHORT_VAGAS_TOTAL, preenchidas, restantes };
+  } catch {
+    return null;
+  }
+});
 
 /** Mescla DB + fallback estático (slugs únicos; campos do DB têm prioridade,
  *  mas campos curados que o DB não fornece — ex.: cargaHoraria — persistem). */

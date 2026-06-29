@@ -13,6 +13,7 @@ import {
 import {
   formatPriceBrl,
   getCatalogProductBySlug,
+  getCohortVagas,
   getCursoPrincipal,
   getPublishedProductBySlug,
 } from "@/lib/marketing/catalog";
@@ -72,6 +73,7 @@ export default async function CursoSlugPage({ params }: Props) {
         ? formatPriceBrl(product.priceCents)
         : copy.edicaoLancamento.investimentoPriceMain;
       const faqItems = cursoFaqItems(priceLabel);
+      const vagas = await getCohortVagas();
 
       return (
         <>
@@ -92,6 +94,7 @@ export default async function CursoSlugPage({ params }: Props) {
           <EdicaoLancamentoLanding
             priceLabel={priceLabel}
             faqItems={faqItems}
+            vagas={vagas}
           />
         </>
       );
