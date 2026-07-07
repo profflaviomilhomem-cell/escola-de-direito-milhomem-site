@@ -1,17 +1,20 @@
 "use client";
 
 import Script from "next/script";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { useEffect, useState } from "react";
 
 import { siteConfig } from "@/config/site";
 import { hasAnalyticsConsent } from "@/lib/analytics/consent";
 
 /**
- * Carga client-side de Meta Pixel, LinkedIn Insight Tag e PostHog.
- * Scripts só carregam após consentimento explícito (LGPD).
+ * Carga client-side de GTM, Meta Pixel, LinkedIn Insight Tag e PostHog.
+ * Scripts só carregam após consentimento explícito (LGPD). O dataLayer é
+ * alimentado por track() antes mesmo do GTM carregar — o container drena
+ * a fila ao iniciar, nada se perde.
  */
 export function AnalyticsProviders() {
-  const { metaPixelId, linkedinPartnerId, posthogKey, posthogHost } =
+  const { gtmId, metaPixelId, linkedinPartnerId, posthogKey, posthogHost } =
     siteConfig.tracking;
 
   const [consented, setConsented] = useState(false);
@@ -51,6 +54,8 @@ export function AnalyticsProviders() {
 
   return (
     <>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
+
       {metaPixelId ? (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">

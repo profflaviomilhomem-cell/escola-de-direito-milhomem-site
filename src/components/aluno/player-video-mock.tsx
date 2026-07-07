@@ -7,6 +7,7 @@ import type { MockLesson } from "@/data/mock-aluno";
 import { formatDuration } from "@/data/mock-aluno";
 import { mockCourse } from "@/lib/course/aluno-courses";
 import { patchLessonProgress } from "@/lib/lessons/progress-client";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { progressPercentFromRatio } from "@/lib/utils";
 
@@ -41,14 +42,14 @@ export function PlayerVideoMock({ lesson }: Props) {
     setPlaying(true);
     if (startedTracked.current) return;
     startedTracked.current = true;
-    track("lesson_started", lessonProps);
+    track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
   };
 
   const handleMarkComplete = () => {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
-    track("lesson_completed", {
+    track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
       completion_source: "manual_mock",
     });

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { UTM_STORAGE_KEY, type UtmFields } from "@/lib/orders/utm";
 
@@ -95,7 +96,7 @@ export function CheckoutForm({
         return;
       }
 
-      track("begin_checkout", {
+      track(ANALYTICS_EVENTS.CART_INITIATED, {
         product_slug: productSlug,
         payment_method: paymentMethod,
       });

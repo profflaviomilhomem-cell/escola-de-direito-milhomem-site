@@ -7,6 +7,7 @@ import { getSubscriptionForUser } from "@/lib/pagarme/subscription-sync";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { getOrderForUser } from "@/lib/orders/create-checkout";
 import { TrackEvent } from "@/components/shared/track-event";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 
 type Props = {
   params: Promise<{ orderId: string }>;
@@ -109,7 +110,7 @@ export default async function CheckoutResultadoPage({
         ) : (
           <>
             <TrackEvent
-              event="purchase_completed"
+              event={ANALYTICS_EVENTS.PURCHASE_COMPLETED}
               once={`subscription:${subscription.id}`}
               props={{
                 subscription_id: subscription.id,
@@ -157,7 +158,7 @@ export default async function CheckoutResultadoPage({
       {isSuccess ? (
         <>
           <TrackEvent
-            event="purchase_completed"
+            event={ANALYTICS_EVENTS.PURCHASE_COMPLETED}
             once={`purchase:${order.id}`}
             props={{
               order_id: order.id,

@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import { sendMetaCapi } from "@/lib/analytics/meta-capi";
 import { verifyConfirmToken } from "@/lib/auth/confirm-token";
+import { enrollLead } from "@/lib/email/sequences";
 import { prisma } from "@/lib/prisma";
 
 /**
@@ -54,6 +56,21 @@ export async function GET(req: NextRequest) {
       `${baseUrl}/newsletter/confirmado?status=error`,
     );
   }
+
+  // Sequência de boas-vindas (guia 6.13) — inscrita no opt-in confirmado.
+  // Fire-and-forget e idempotente: reconfirmar o link não duplica a inscrição.
+  void enrollLead("WELCOME", payload.email).catch((err) => {
+    console.error("[api/leads/confirm] falha ao inscrever em WELCOME:", err);
+  });
+
+  // Lead confirmado (duplo opt-in) → Meta CAPI. event_id determinístico
+  // (email + isca) deduplica reenvios do link; fire-and-forget.
+  void sendMetaCapi("Lead", {
+    eventId: `lead:${payload.email}:${payload.leadMagnetSlug ?? "newsletter"}`,
+    email: payload.email,
+    eventSourceUrl: `${baseUrl}/newsletter/confirmado`,
+    userAgent: req.headers.get("user-agent"),
+  });
 
   return NextResponse.redirect(`${baseUrl}/newsletter/confirmado?status=ok`);
 }

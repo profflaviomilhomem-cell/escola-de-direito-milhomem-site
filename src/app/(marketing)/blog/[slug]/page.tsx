@@ -6,7 +6,9 @@ import { notFound } from "next/navigation";
 import { BlogArticleBody } from "@/components/marketing/blog-article-body";
 import { BlogAnswerFirst, BlogToc } from "@/components/marketing/blog-toc";
 import { JsonLd } from "@/components/shared/json-ld";
+import { TrackEvent } from "@/components/shared/track-event";
 import { siteConfig } from "@/config/site";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { getBlogArticleBySlug, getRelatedBlogPosts } from "@/lib/blog/content";
 import { bodyLooksLikeHtml, hasBlogLeadVideo } from "@/lib/blog/html";
 import {
@@ -70,6 +72,14 @@ export default async function BlogArtigoPage({ params }: { params: Params }) {
 
   return (
     <>
+      <TrackEvent
+        event={ANALYTICS_EVENTS.CONTENT_VIEWED}
+        props={{
+          content_type: "article",
+          content_slug: slug,
+          category: post.category,
+        }}
+      />
       <JsonLd
         data={[
           articleLd(post, canonicalUrl),

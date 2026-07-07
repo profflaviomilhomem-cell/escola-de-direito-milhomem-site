@@ -8,6 +8,7 @@ import { formatDuration } from "@/data/mock-aluno";
 import type { MockCourse } from "@/data/mock-aluno";
 import { primaryCourse } from "@/lib/course/aluno-courses";
 import { patchLessonProgress } from "@/lib/lessons/progress-client";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { progressPercentFromRatio } from "@/lib/utils";
 
@@ -50,7 +51,7 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
-    track("lesson_completed", {
+    track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
       completion_source: "manual",
     });
@@ -81,7 +82,7 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
         onLoad={() => {
           if (startedTracked.current) return;
           startedTracked.current = true;
-          track("lesson_started", lessonProps);
+          track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
         }}
       />
       {!markedComplete && (
@@ -118,7 +119,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
-    track("lesson_completed", {
+    track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
       completion_source: "manual",
     });
@@ -142,7 +143,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
         playsInline
         preload="metadata"
         src={lesson.videoSrc}
-        onPlay={() => track("lesson_started", lessonProps)}
+        onPlay={() => track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps)}
       >
         <track kind="captions" />
       </video>
@@ -182,14 +183,14 @@ function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
     setPlaying(true);
     if (startedTracked.current) return;
     startedTracked.current = true;
-    track("lesson_started", lessonProps);
+    track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
   };
 
   const handleMarkComplete = () => {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
-    track("lesson_completed", {
+    track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
       completion_source: "manual_mock",
     });

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 import { AnalyticsProviders } from "@/components/shared/analytics-providers";
 import { ClientProviders } from "@/components/shared/client-providers";
@@ -178,12 +177,10 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground flex min-h-full flex-col font-sans">
         <ClientProviders>{children}</ClientProviders>
+        {/* GTM vive dentro de AnalyticsProviders — gated por env + consentimento LGPD. */}
         <AnalyticsProviders />
         <WebVitalsReporter />
       </body>
-      {siteConfig.tracking.gtmId ? (
-        <GoogleTagManager gtmId={siteConfig.tracking.gtmId} />
-      ) : null}
     </html>
   );
 }

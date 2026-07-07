@@ -1,5 +1,7 @@
 import type { ModerationStatus } from "@prisma/client";
 
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackServerEvent } from "@/lib/analytics/server-track";
 import { prisma } from "@/lib/prisma";
 import { sanitizePlainText } from "@/lib/sanitize";
 
@@ -113,12 +115,14 @@ export async function createLessonComment(input: {
   const content = sanitizePlainText(input.content);
   if (content.length < 2) return { ok: false, error: "CONTENT_EMPTY" };
 
+  let parentAuthorId: string | null = null;
   if (input.parentId) {
     const parent = await prisma.comment.findFirst({
       where: { id: input.parentId, lessonId },
-      select: { id: true },
+      select: { id: true, userId: true },
     });
     if (!parent) return { ok: false, error: "PARENT_INVALID" };
+    parentAuthorId = parent.userId;
   }
 
   const row = await prisma.comment.create({
@@ -137,6 +141,21 @@ export async function createLessonComment(input: {
       user: { select: { name: true, email: true, role: true } },
     },
   });
+
+  // forum_reply_received (guia 8.5) — o professor (ADMIN) respondeu ao
+  // comentário de um aluno; o userId do evento é quem RECEBE a resposta.
+  if (
+    parentAuthorId &&
+    parentAuthorId !== input.userId &&
+    row.user.role === "ADMIN"
+  ) {
+    void trackServerEvent(ANALYTICS_EVENTS.FORUM_REPLY_RECEIVED, {
+      userId: parentAuthorId,
+      product_slug: input.productSlug,
+      lesson_slug: input.lessonSlug,
+      comment_id: row.id,
+    });
+  }
 
   return {
     ok: true,

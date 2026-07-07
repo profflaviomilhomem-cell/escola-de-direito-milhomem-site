@@ -1,5 +1,7 @@
 import { randomUUID } from "node:crypto";
 
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackServerEvent } from "@/lib/analytics/server-track";
 import { prisma } from "@/lib/prisma";
 
 export type CertificateView = {
@@ -52,6 +54,14 @@ export async function issueCertificateIfEligible(
       data: { userId, productId: product.id, hash: publicHash() },
       select: { hash: true },
     });
+
+    // certificate_issued (guia 8.5) — server-side, fire-and-forget.
+    void trackServerEvent(ANALYTICS_EVENTS.CERTIFICATE_ISSUED, {
+      userId,
+      product_slug: productSlug,
+      certificate_hash: cert.hash,
+    });
+
     return cert.hash;
   } catch {
     return null;

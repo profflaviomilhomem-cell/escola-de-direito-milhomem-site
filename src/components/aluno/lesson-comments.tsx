@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import { CommentTree } from "@/components/aluno/comment-tree";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { track } from "@/lib/analytics/track";
 import type { ForumCommentNode } from "@/lib/forum/comments";
 
 type Props = {
@@ -54,6 +56,11 @@ export function LessonComments({
         setError(data.error ?? "Não foi possível enviar.");
         return;
       }
+      track(ANALYTICS_EVENTS.FORUM_COMMENT_POSTED, {
+        product_slug: productSlug,
+        lesson_slug: lessonSlug,
+        is_reply: parentId !== null,
+      });
       if (parentId === null) setRoot("");
       await refresh();
     } catch {

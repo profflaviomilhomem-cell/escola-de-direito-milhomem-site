@@ -1,11 +1,38 @@
 import type { SubscriptionStatus } from "@prisma/client";
 
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackServerEvent } from "@/lib/analytics/server-track";
 import {
   extractPagarmeSubscriptionId,
   parsePagarmeDate,
   readPagarmeMetadata,
 } from "@/lib/pagarme/map-subscription";
 import { prisma } from "@/lib/prisma";
+
+/**
+ * subscription_canceled (guia 8.5) — dispara só na TRANSIÇÃO para CANCELED
+ * (webhook subscription.canceled). Fire-and-forget: nunca quebra o sync.
+ */
+function trackSubscriptionCanceled(input: {
+  userId: string;
+  productId: string;
+  subscriptionId: string;
+}) {
+  void (async () => {
+    const product = await prisma.product
+      .findUnique({
+        where: { id: input.productId },
+        select: { slug: true, type: true },
+      })
+      .catch(() => null);
+    await trackServerEvent(ANALYTICS_EVENTS.SUBSCRIPTION_CANCELED, {
+      userId: input.userId,
+      subscription_id: input.subscriptionId,
+      product_slug: product?.slug ?? null,
+      product_type: product?.type ?? null,
+    });
+  })();
+}
 
 export type SubscriptionSyncResult =
   | { ok: true; id: string; created: boolean }
@@ -120,6 +147,13 @@ export async function upsertSubscriptionFromWebhook(input: {
             : null,
       },
     });
+    if (input.status === "CANCELED" && existing.status !== "CANCELED") {
+      trackSubscriptionCanceled({
+        userId,
+        productId,
+        subscriptionId: existing.id,
+      });
+    }
     return { ok: true, id: existing.id, created: false };
   }
 
@@ -133,6 +167,14 @@ export async function upsertSubscriptionFromWebhook(input: {
       canceledAt,
     },
   });
+
+  if (input.status === "CANCELED") {
+    trackSubscriptionCanceled({
+      userId,
+      productId,
+      subscriptionId: created.id,
+    });
+  }
 
   return { ok: true, id: created.id, created: true };
 }

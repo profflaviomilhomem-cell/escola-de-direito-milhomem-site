@@ -4,7 +4,9 @@ import Link from "next/link";
 import { EdicaoLancamentoLanding } from "@/components/marketing/edicao-lancamento-landing";
 import { CursoProdutoPublico } from "@/components/marketing/curso-produto-publico";
 import { JsonLd } from "@/components/shared/json-ld";
+import { TrackEvent } from "@/components/shared/track-event";
 import { copy } from "@/config/copy";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import {
   breadcrumbLd,
   edicaoLancamentoCourseLd,
@@ -77,6 +79,14 @@ export default async function CursoSlugPage({ params }: Props) {
 
       return (
         <>
+          <TrackEvent
+            event={ANALYTICS_EVENTS.CART_VIEWED}
+            props={{
+              product_slug: CURSO_PRINCIPAL_SLUG,
+              product_type: product?.type ?? "COHORT",
+              price: product ? product.priceCents / 100 : null,
+            }}
+          />
           <JsonLd
             data={[
               edicaoLancamentoCourseLd({ priceCents: product?.priceCents }),
@@ -103,7 +113,19 @@ export default async function CursoSlugPage({ params }: Props) {
 
   const published = await getPublishedProductBySlug(slug);
   if (published) {
-    return <CursoProdutoPublico product={published} />;
+    return (
+      <>
+        <TrackEvent
+          event={ANALYTICS_EVENTS.CART_VIEWED}
+          props={{
+            product_slug: published.slug,
+            product_type: published.type,
+            price: published.priceCents / 100,
+          }}
+        />
+        <CursoProdutoPublico product={published} />
+      </>
+    );
   }
 
   const existing = await getCatalogProductBySlug(slug);

@@ -274,6 +274,8 @@ model Lead {
   leadMagnetId  String?
   optInAt       DateTime?
   doubleOptInAt DateTime?
+  /// LGPD — descadastro. Setado bloqueia qualquer envio (sequência ou campanha).
+  unsubscribedAt DateTime?
   utmSource     String?
   utmMedium     String?
   utmCampaign   String?
@@ -302,6 +304,37 @@ enum CampaignStatus {
   DRAFT
   SCHEDULED
   SENT
+  CANCELED
+}
+
+/// Inscrição de um lead numa sequência automática de e-mail (guia 6.13).
+/// Motor drenado de hora em hora pelo cron /api/cron/email-sequences.
+model EmailSequenceEnrollment {
+  id          String              @id @default(cuid())
+  leadEmail   String
+  sequence    EmailSequence
+  currentStep Int                 @default(0)
+  status      EmailSequenceStatus @default(ACTIVE)
+  nextSendAt  DateTime?
+  /// Pós-compra / carrinho abandonado — referência ao pedido de origem.
+  orderId     String?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@unique([leadEmail, sequence])
+  @@index([status, nextSendAt])
+}
+
+enum EmailSequence {
+  WELCOME
+  LAUNCH
+  ABANDONED_CART
+  POST_PURCHASE
+}
+
+enum EmailSequenceStatus {
+  ACTIVE
+  COMPLETED
   CANCELED
 }
 

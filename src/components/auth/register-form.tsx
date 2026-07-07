@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { FloatingInput } from "@/components/auth/floating-input";
+import { AUTH_SIGN_UP_EVENT } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { registerSchema, type RegisterInput } from "@/schemas/auth";
 
@@ -64,7 +65,7 @@ export function RegisterForm({ redirectTo = "/aluno/dashboard" }: Props) {
         });
         return;
       }
-      track("sign_up", { method: "password" });
+      track(AUTH_SIGN_UP_EVENT, { method: "password" });
       router.push(redirectTo);
       router.refresh();
     } catch {

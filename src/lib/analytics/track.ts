@@ -6,11 +6,8 @@
  * impedirá a chamada antes mesmo de chegar aqui.
  *
  * Convenção de nomes (snake_case, mesmas chaves nos dois sinks):
- *   page_view          (auto via PostHog)
- *   lead_capture       (newsletter, isca)
- *   calculator_started / completed / pdf_exported
- *   lesson_started / lesson_completed (área do aluno)
- *   purchase_completed (servidor, via webhook)
+ * taxonomia oficial em `@/lib/analytics/events` (Livro-Guia 8.5) —
+ * importe as constantes de lá em vez de digitar o nome do evento.
  */
 
 export type TrackProps = Record<

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { newsletterSchema, type NewsletterInput } from "@/schemas/newsletter";
 
@@ -64,7 +65,8 @@ export function NewsletterForm({
         });
         return;
       }
-      track("lead_capture", {
+      // lead_capture_source (guia 8.5) viaja como dimensão: `source` + `lead_magnet`.
+      track(ANALYTICS_EVENTS.LEAD_CAPTURE, {
         source: input.source ?? source,
         lead_magnet: input.leadMagnetSlug ?? leadMagnetSlug ?? null,
       });
