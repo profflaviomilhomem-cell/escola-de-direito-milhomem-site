@@ -14,6 +14,7 @@ const links: AreaNavLink[] = [
   { label: "Blog", href: "/professor/blog" },
   { label: "Fórum", href: "/professor/forum" },
   { label: "Alunos", href: "/professor/alunos" },
+  { label: "Reembolsos", href: "/professor/reembolsos" },
   { label: "Anúncios", href: "/professor/anuncios" },
   { label: "Métricas", href: "/professor/metricas" },
 ];

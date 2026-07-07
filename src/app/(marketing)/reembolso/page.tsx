@@ -72,18 +72,32 @@ export default function ReembolsoPage() {
           number: 3,
           title: "Como solicitar",
           body: (
-            <p>
-              Envie e-mail para{" "}
-              <a
-                className="text-amber underline-offset-2 hover:underline"
-                href={`mailto:${siteConfig.contact.email}`}
-              >
-                {siteConfig.contact.email}
-              </a>{" "}
-              com o assunto <em>“Reembolso · [seu nome]”</em>, informando o
-              e-mail usado na matrícula e a forma de pagamento original. Não
-              precisa anexar comprovante — localizamos pelo Pagar.me.
-            </p>
+            <>
+              <p>
+                O jeito mais rápido é pela sua conta: acesse{" "}
+                <a
+                  className="text-amber underline-offset-2 hover:underline"
+                  href="/aluno/minha-conta"
+                >
+                  Minha conta
+                </a>
+                , localize o pedido em <em>“Pedidos”</em> e clique em{" "}
+                <em>“Solicitar reembolso”</em>. A solicitação chega direto para
+                a nossa equipe, com o valor elegível já calculado.
+              </p>
+              <p className="mt-4">
+                Prefere e-mail? Escreva para{" "}
+                <a
+                  className="text-amber underline-offset-2 hover:underline"
+                  href={`mailto:${siteConfig.contact.email}`}
+                >
+                  {siteConfig.contact.email}
+                </a>{" "}
+                com o assunto <em>“Reembolso · [seu nome]”</em>, informando o
+                e-mail usado na matrícula e a forma de pagamento original. Não
+                precisa anexar comprovante — localizamos pelo Pagar.me.
+              </p>
+            </>
           ),
         },
         {

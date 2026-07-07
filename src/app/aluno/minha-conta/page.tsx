@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 
+import { RefundRequestButton } from "@/components/aluno/refund-request-button";
 import { UpdatePasswordForm } from "@/components/aluno/update-password-form";
 import { UpdateProfileForm } from "@/components/aluno/update-profile-form";
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { initialsFromName } from "@/lib/course/format";
 import { getSessionFromCookies } from "@/lib/auth/session";
 import { getUserOrders } from "@/lib/enrollment";
+import {
+  estimateEligibleForOrder,
+  getRefundStatusByOrder,
+} from "@/lib/refunds/summary";
+
+const REFUND_STATUS_LABEL: Record<string, string> = {
+  REQUESTED: "Reembolso solicitado",
+  APPROVED: "Reembolso aprovado",
+  PROCESSED: "Reembolsado",
+  REJECTED: "Reembolso recusado",
+};
+
+const OPEN_REFUND = new Set(["REQUESTED", "APPROVED"]);
 
 export const metadata: Metadata = {
   title: "Minha conta",
@@ -18,6 +32,33 @@ export default async function MinhaContaPage() {
   const email = session?.email ?? "";
   const initials = initialsFromName(name);
   const orders = session?.sub ? await getUserOrders(session.sub) : [];
+
+  const now = new Date();
+  const refundByOrder = session?.sub
+    ? await getRefundStatusByOrder(session.sub)
+    : new Map();
+
+  // Estima o valor elegível só dos pedidos PAID sem solicitação em aberto
+  // (os únicos que exibem o botão de solicitar).
+  const eligibleByOrder = new Map<string, number>();
+  if (session?.sub) {
+    for (const o of orders) {
+      const refund = refundByOrder.get(o.id);
+      const hasOpen = refund ? OPEN_REFUND.has(refund.status) : false;
+      if (o.status === "PAID" && !hasOpen && o.product?.slug) {
+        eligibleByOrder.set(
+          o.id,
+          await estimateEligibleForOrder({
+            userId: session.sub,
+            productSlug: o.product.slug,
+            amountCents: o.amountCents,
+            createdAt: o.createdAt,
+            now,
+          }),
+        );
+      }
+    }
+  }
 
   const formatMoney = (cents: number) =>
     new Intl.NumberFormat("pt-BR", {
@@ -75,31 +116,50 @@ export default async function MinhaContaPage() {
           />
         ) : (
           <div className="space-y-3">
-            {orders.slice(0, 10).map((o) => (
-              <div
-                key={o.id}
-                className="border-paper-100 bg-carbon-elevated border p-5"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-paper truncate font-semibold">
-                      {o.product?.name ?? o.product?.slug ?? "Produto"}
-                    </p>
-                    <p className="text-paper-600 fm-mono mt-1 text-sm">
-                      {o.product?.slug ?? "—"}
-                    </p>
+            {orders.slice(0, 10).map((o) => {
+              const refund = refundByOrder.get(o.id);
+              const hasOpen = refund ? OPEN_REFUND.has(refund.status) : false;
+              const eligible = eligibleByOrder.get(o.id);
+              const canRequest = o.status === "PAID" && !hasOpen;
+              return (
+                <div
+                  key={o.id}
+                  className="border-paper-100 bg-carbon-elevated border p-5"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-paper truncate font-semibold">
+                        {o.product?.name ?? o.product?.slug ?? "Produto"}
+                      </p>
+                      <p className="text-paper-600 fm-mono mt-1 text-sm">
+                        {o.product?.slug ?? "—"}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-paper fm-mono text-sm">
+                        {formatMoney(o.amountCents)}
+                      </p>
+                      <p className="text-paper-600 fm-mono mt-1 text-xs">
+                        status: {o.status}
+                      </p>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-paper fm-mono text-sm">
-                      {formatMoney(o.amountCents)}
+
+                  {refund && (
+                    <p className="text-amber fm-mono mt-3 text-xs">
+                      {REFUND_STATUS_LABEL[refund.status] ?? refund.status}
                     </p>
-                    <p className="text-paper-600 fm-mono mt-1 text-xs">
-                      status: {o.status}
-                    </p>
-                  </div>
+                  )}
+
+                  {canRequest && eligible != null && (
+                    <RefundRequestButton
+                      orderId={o.id}
+                      eligibleAmountCents={eligible}
+                    />
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

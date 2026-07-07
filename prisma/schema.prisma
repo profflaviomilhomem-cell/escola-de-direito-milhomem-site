@@ -106,8 +106,41 @@ model Order {
   user    User    @relation(fields: [userId], references: [id])
   product Product @relation(fields: [productId], references: [id])
 
+  refundRequests RefundRequest[]
+
   @@index([userId])
   @@index([status])
+}
+
+/// Solicitação de reembolso do aluno (livro-guia 4.7): aluno solicita pela
+/// área logada, admin aprova (executa estorno Pagar.me) ou rejeita.
+/// Regra "1 pedido aberto por Order" (REQUESTED/APPROVED) é garantida em
+/// código (Prisma não suporta unique condicional) — ver src/lib/refunds.
+model RefundRequest {
+  id              String       @id @default(cuid())
+  orderId         String
+  userId          String
+  status          RefundStatus @default(REQUESTED)
+  /// Motivo informado pelo aluno.
+  reason          String?      @db.Text
+  /// Valor elegível calculado (centavos) — o que será/foi estornado.
+  amountCents     Int?
+  decidedByUserId String?
+  decidedAt       DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@index([orderId])
+  @@index([status])
+}
+
+enum RefundStatus {
+  REQUESTED
+  APPROVED
+  REJECTED
+  PROCESSED
 }
 
 /// Idempotência de webhooks Pagar.me (eventId = payload.id).

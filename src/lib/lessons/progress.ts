@@ -132,6 +132,34 @@ export async function getUserProgressMap(
   return map;
 }
 
+/**
+ * Percentual de conteúdo consumido de um produto pelo aluno (0..100) —
+ * razão entre aulas concluídas e o total de aulas do curso. Base do cálculo
+ * de reembolso proporcional (16–90 dias, ver refundableAmountCents).
+ * Banco indisponível ou curso sem aulas → 0 (conservador).
+ */
+export async function getContentConsumedPct(
+  userId: string,
+  productSlug: string,
+): Promise<number> {
+  try {
+    const [total, completed] = await Promise.all([
+      prisma.lesson.count({ where: { product: { slug: productSlug } } }),
+      prisma.userLessonProgress.count({
+        where: {
+          userId,
+          completedAt: { not: null },
+          lesson: { product: { slug: productSlug } },
+        },
+      }),
+    ]);
+    if (total <= 0) return 0;
+    return Math.round((completed / total) * 100);
+  } catch {
+    return 0;
+  }
+}
+
 /** Aplica progresso do banco sobre o mock (SSR). */
 export function mergeMockLessonProgress(
   lesson: MockLesson,

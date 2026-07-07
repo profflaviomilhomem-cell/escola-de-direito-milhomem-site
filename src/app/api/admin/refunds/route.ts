@@ -5,55 +5,83 @@ import { getSessionFromCookies } from "@/lib/auth/session";
 import { PagarmeApiError } from "@/lib/pagarme/client";
 import { isPagarmeConfigured, refundPagarmeCharge } from "@/lib/pagarme/refund";
 import { prisma } from "@/lib/prisma";
+import {
+  approveRefundRequest,
+  rejectRefundRequest,
+} from "@/lib/refunds/decide";
+import { listOpenRefundRequests } from "@/lib/refunds/summary";
 import { rateLimit } from "@/lib/upstash/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 /**
- * POST /api/admin/refunds — APROVAÇÃO/EXECUÇÃO de reembolso (admin).
+ * Fila e decisão de reembolsos (admin) — livro-guia 4.7.
  *
- * Conecta a aprovação interna à API de estorno do Pagar.me. É a etapa final
- * do fluxo de reembolso (a solicitação do aluno hoje chega por e-mail, ver
- * /reembolso). GATED em duas camadas:
- *   1. sessão com role=admin (senão 401/403);
- *   2. PAGARME_SECRET_KEY presente (senão 503) — nunca estorna sem chave.
+ * GET  → lista solicitações em aberto (REQUESTED/APPROVED) para revisão.
+ * POST → decide uma solicitação (approve/reject) OU executa estorno direto
+ *        (contrato legado por orderId, mantido para operação manual).
  *
- * Estorno parcial: passe `amountCents` (centavos) conforme a política
- * proporcional; omita para estorno integral.
+ * GATED em duas camadas: sessão role=admin (401/403) e, no caminho que estorna,
+ * PAGARME_SECRET_KEY presente (503) — nunca estorna sem chave.
  */
-const bodySchema = z.object({
+
+async function requireAdmin() {
+  const session = await getSessionFromCookies();
+  if (!session) {
+    return {
+      error: NextResponse.json(
+        { ok: false, error: "Não autorizado." },
+        { status: 401 },
+      ),
+    };
+  }
+  if (session.role !== "admin") {
+    return {
+      error: NextResponse.json(
+        {
+          ok: false,
+          error: "Apenas administradores podem operar reembolsos.",
+        },
+        { status: 403 },
+      ),
+    };
+  }
+  return { session };
+}
+
+export async function GET() {
+  const gate = await requireAdmin();
+  if (gate.error) return gate.error;
+
+  try {
+    const requests = await listOpenRefundRequests();
+    return NextResponse.json({ ok: true, requests });
+  } catch (err) {
+    console.error("[api/admin/refunds] GET falha:", err);
+    return NextResponse.json(
+      { ok: false, error: "Banco indisponível." },
+      { status: 503 },
+    );
+  }
+}
+
+const decisionSchema = z.object({
+  refundRequestId: z.string().trim().min(1),
+  decision: z.enum(["approve", "reject"]),
+  amountCents: z.number().int().positive().optional(),
+});
+
+const legacySchema = z.object({
   orderId: z.string().trim().min(1),
   amountCents: z.number().int().positive().optional(),
   reason: z.string().trim().max(500).optional(),
 });
 
 export async function POST(req: NextRequest) {
-  const session = await getSessionFromCookies();
-  if (!session) {
-    return NextResponse.json(
-      { ok: false, error: "Não autorizado." },
-      { status: 401 },
-    );
-  }
-  if (session.role !== "admin") {
-    return NextResponse.json(
-      { ok: false, error: "Apenas administradores podem aprovar reembolsos." },
-      { status: 403 },
-    );
-  }
-
-  // Gate de configuração: sem chave, não executa — responde de forma clara.
-  if (!isPagarmeConfigured()) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error:
-          "Reembolso indisponível: PAGARME_SECRET_KEY não configurada neste ambiente.",
-      },
-      { status: 503 },
-    );
-  }
+  const gate = await requireAdmin();
+  if (gate.error) return gate.error;
+  const session = gate.session;
 
   const rl = await rateLimit({
     prefix: "admin:refund",
@@ -78,11 +106,82 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const parsed = bodySchema.safeParse(raw);
+  const hasRequestId =
+    typeof raw === "object" && raw !== null && "refundRequestId" in raw;
+
+  // Caminho 1 — decisão sobre uma solicitação do aluno (approve/reject).
+  if (hasRequestId) {
+    const parsed = decisionSchema.safeParse(raw);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { ok: false, errors: z.flattenError(parsed.error) },
+        { status: 422 },
+      );
+    }
+
+    if (parsed.data.decision === "reject") {
+      const result = await rejectRefundRequest({
+        refundRequestId: parsed.data.refundRequestId,
+        decidedByUserId: session.sub,
+        now: new Date(),
+      });
+      if (!result.ok) {
+        return NextResponse.json(
+          { ok: false, error: result.message },
+          { status: result.httpStatus },
+        );
+      }
+      return NextResponse.json({ ok: true, status: result.status });
+    }
+
+    // approve → estorna: exige chave.
+    if (!isPagarmeConfigured()) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Reembolso indisponível: PAGARME_SECRET_KEY não configurada neste ambiente.",
+        },
+        { status: 503 },
+      );
+    }
+
+    const result = await approveRefundRequest({
+      refundRequestId: parsed.data.refundRequestId,
+      decidedByUserId: session.sub,
+      now: new Date(),
+      amountCentsOverride: parsed.data.amountCents,
+    });
+    if (!result.ok) {
+      return NextResponse.json(
+        { ok: false, error: result.message },
+        { status: result.httpStatus },
+      );
+    }
+    return NextResponse.json({
+      ok: true,
+      status: result.status,
+      chargeId: result.chargeId,
+    });
+  }
+
+  // Caminho 2 — estorno direto por orderId (operação manual, contrato legado).
+  const parsed = legacySchema.safeParse(raw);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, errors: z.flattenError(parsed.error) },
       { status: 422 },
+    );
+  }
+
+  if (!isPagarmeConfigured()) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Reembolso indisponível: PAGARME_SECRET_KEY não configurada neste ambiente.",
+      },
+      { status: 503 },
     );
   }
 
@@ -132,7 +231,6 @@ export async function POST(req: NextRequest) {
       parsed.data.amountCents,
     );
 
-    // Otimista: o webhook charge.refunded confirma de novo (updateMany idempotente).
     await prisma.order.update({
       where: { id: order.id },
       data: { status: "REFUNDED" },

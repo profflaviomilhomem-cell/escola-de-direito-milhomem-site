@@ -1,11 +1,7 @@
 import crypto from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
-import type { Prisma } from "@prisma/client";
 
-import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
-import { sendMetaCapi } from "@/lib/analytics/meta-capi";
-import { trackServerEvent } from "@/lib/analytics/server-track";
-import { cancelSequence, enrollLead } from "@/lib/email/sequences";
+import { ordersBecomingPaid, settleOrdersPaid } from "@/lib/orders/settle";
 import {
   extractPagarmeSubscriptionId,
   mapSubscriptionEventType,
@@ -64,75 +60,6 @@ function asRecord(value: unknown): Record<string, unknown> {
     : {};
 }
 
-const PAID_ORDER_SELECT = {
-  id: true,
-  amountCents: true,
-  utmSource: true,
-  utmMedium: true,
-  utmCampaign: true,
-  product: { select: { slug: true, name: true, type: true } },
-  user: { select: { id: true, email: true } },
-} satisfies Prisma.OrderSelect;
-
-type PaidOrder = Prisma.OrderGetPayload<{ select: typeof PAID_ORDER_SELECT }>;
-
-/** Pedidos que VÃO transicionar para PAID neste evento (dedup de order./charge.paid). */
-async function ordersBecomingPaid(where: Prisma.OrderWhereInput) {
-  try {
-    return await prisma.order.findMany({
-      where: { ...where, status: { not: "PAID" } },
-      select: PAID_ORDER_SELECT,
-    });
-  } catch {
-    return [];
-  }
-}
-
-/**
- * purchase_completed server-side (guia 8.5) + Purchase na Meta CAPI.
- * Fire-and-forget: nunca derruba o webhook. event_id = orderId (dedup
- * determinístico com o Pixel client).
- */
-function trackOrdersPaid(orders: PaidOrder[]) {
-  for (const order of orders) {
-    void trackServerEvent(ANALYTICS_EVENTS.PURCHASE_COMPLETED, {
-      userId: order.user.id,
-      utmSource: order.utmSource,
-      utmMedium: order.utmMedium,
-      utmCampaign: order.utmCampaign,
-      order_id: order.id,
-      product_slug: order.product.slug,
-      product_type: order.product.type,
-      value: order.amountCents / 100,
-      currency: "BRL",
-    });
-    void sendMetaCapi("Purchase", {
-      eventId: order.id,
-      email: order.user.email,
-      value: order.amountCents / 100,
-      currency: "BRL",
-      contentIds: [order.product.slug],
-      contentName: order.product.name,
-    });
-
-    // Sequência pós-compra (guia 6.13) — fire-and-forget, nunca derruba o
-    // webhook. Idempotente por (email, POST_PURCHASE).
-    void enrollLead("POST_PURCHASE", order.user.email, {
-      orderId: order.id,
-    }).catch((err) => {
-      console.error(
-        "[pagarme webhook] falha ao inscrever em POST_PURCHASE:",
-        err,
-      );
-    });
-
-    // Compra concluída encerra qualquer sequência de carrinho abandonado em
-    // andamento (plumbing pronto; o gatilho de ENTRADA segue pendente — ver
-    // src/lib/email/sequences.ts).
-    void cancelSequence(order.user.email, "ABANDONED_CART").catch(() => {});
-  }
-}
-
 async function handleOrderEvent(type: string, data: Record<string, unknown>) {
   const externalId = normalizeExternalId(data.id);
   if (!externalId) return;
@@ -163,7 +90,7 @@ async function handleOrderEvent(type: string, data: Record<string, unknown>) {
     data: { status: desiredStatus, paymentMethod },
   });
 
-  trackOrdersPaid(becomingPaid);
+  settleOrdersPaid(becomingPaid);
 }
 
 async function handleChargeEvent(type: string, data: Record<string, unknown>) {
@@ -203,7 +130,7 @@ async function handleChargeEvent(type: string, data: Record<string, unknown>) {
     data: { status: desiredStatus, paymentMethod },
   });
 
-  trackOrdersPaid(becomingPaid);
+  settleOrdersPaid(becomingPaid);
 }
 
 async function handleSubscriptionEvent(

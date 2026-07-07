@@ -4,6 +4,7 @@ import {
   pagarmeBasicAuth,
 } from "@/lib/pagarme/config";
 import type {
+  PagarmeCharge,
   PagarmeCreateOrderInput,
   PagarmeOrderResponse,
   PagarmeSubscriptionResponse,
@@ -56,6 +57,22 @@ export async function createPagarmeOrder(
   return pagarmeRequest<PagarmeOrderResponse>("/orders", {
     method: "POST",
     body: JSON.stringify(input),
+  });
+}
+
+/** GET /orders/:id — consulta o estado atual do pedido (reconciliação). */
+export async function getPagarmeOrder(
+  id: string,
+): Promise<PagarmeOrderResponse> {
+  return pagarmeRequest<PagarmeOrderResponse>(`/orders/${id}`, {
+    method: "GET",
+  });
+}
+
+/** GET /charges/:id — consulta o estado atual da cobrança (reconciliação). */
+export async function getPagarmeCharge(id: string): Promise<PagarmeCharge> {
+  return pagarmeRequest<PagarmeCharge>(`/charges/${id}`, {
+    method: "GET",
   });
 }
 
