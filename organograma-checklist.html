@@ -3514,7 +3514,7 @@
    "prod-checkout-pagarme"
   ],
   "desc": "Política 7 dias CDC + garantia estendida; solicitação na área logada → API Pagar.me /refunds.",
-  "rich": "Página /reembolso (política 15d + proporcional). SCAFFOLD da execução pronto e testado: lib/pagarme/refund.ts (refundPagarmeCharge via DELETE /charges/:id + refundableAmountCents puro) + rota admin-gated POST /api/admin/refunds (role=admin, 503 sem PAGARME_SECRET_KEY, estorno parcial/integral, seta Order→REFUNDED). 7 testes em tests/unit/pagarme/refund.test.ts. [Scaffold gated 26/jun: execução pronta; ATIVA com PAGARME_SECRET_KEY. FALTA ainda: modelo RefundRequest + UI de solicitação do aluno (hoje por e-mail) — precisa de migration/DB.]",
+  "rich": "Página /reembolso (política 15d + proporcional). SCAFFOLD da execução pronto e testado: lib/pagarme/refund.ts (refundPagarmeCharge via DELETE /charges/:id + refundableAmountCents puro) + rota admin-gated POST /api/admin/refunds (role=admin, 503 sem PAGARME_SECRET_KEY, estorno parcial/integral, seta Order→REFUNDED). 7 testes em tests/unit/pagarme/refund.test.ts. [Scaffold gated 26/jun: execução pronta; ATIVA com PAGARME_SECRET_KEY. FALTA ainda: modelo RefundRequest + UI de solicitação do aluno (hoje por e-mail) — precisa de migration/DB.]<br><br><b>Sessão 07/07 (comercial, commit 6c3701a):</b> Gaps de código fechados: model RefundRequest (migração criada, não aplicada) + solicitação do aluno em /aluno/minha-conta (valida posse+PAID+duplicata, calcula elegível pela política com consumo real) + fila admin em /professor/reembolsos (aprova→estorna via refundPagarmeCharge+PROCESSED/REFUNDED / rejeita). Mantém EM PROGRESSO: resta chave Pagar.me + aplicar migração + teste real; e-mail de confirmação de reembolso não implementado.",
   "code": "src/app/(marketing)/reembolso/page.tsx"
  },
  {
@@ -3779,14 +3779,14 @@
   "sub": "#3 Comercial",
   "theme": "var(--color-3)",
   "ref": "Cap 4.7",
-  "status": "PENDENTE",
+  "status": "EM PROGRESSO",
   "phase": 2,
   "order": 9,
   "dependsOn": [
    "prod-webhook-pagarme"
   ],
   "desc": "Cron diário lista transações Pagar.me, confere contra Order e corrige divergência.",
-  "rich": "GAP/PENDENTE: rotina de reconciliação não implementada (webhook cobre o caminho feliz)."
+  "rich": "GAP/PENDENTE: rotina de reconciliação não implementada (webhook cobre o caminho feliz).<br><br><b>Sessão 07/07 (comercial, commit 6c3701a):</b> PENDENTE → EM PROGRESSO. Reconciliação implementada: src/lib/orders/reconcile.ts varre PENDING órfãos (webhook perdido), consulta status real no Pagar.me e sincroniza pelo MESMO caminho pós-PAID do webhook (settle.ts, sem drift) + expira PENDING morto; cron /api/cron/reconcile-pagarme (15 * * * *) gated por CRON_SECRET. Resta chave Pagar.me + CRON_SECRET + teste no sandbox. NÃO cobre Subscription."
  },
  {
   "id": "infra-design-system",
