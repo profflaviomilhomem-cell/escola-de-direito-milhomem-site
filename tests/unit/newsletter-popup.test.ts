@@ -6,6 +6,7 @@ describe("isNewsletterPopupExcluded", () => {
       "/newsletter",
       "/newsletter/confirmado",
       "/eventos/dia-do-advogado-2026",
+      "/calculadora-de-pena",
       "/entrar",
       "/cadastro",
       "/esqueci-senha",

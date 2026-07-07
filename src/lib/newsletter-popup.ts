@@ -3,12 +3,13 @@ const STORAGE_KEY = "fm-newsletter-popup-dismissed";
 /**
  * Páginas onde o popup / FAB não aparecem — inclui as que já têm o próprio
  * formulário de captura como CTA principal (o FAB seria redundante e disputa
- * o canto inferior-esquerdo com o form): /newsletter e /eventos.
+ * o canto inferior-esquerdo com o form): /newsletter, /eventos e /calculadora.
  */
 export function isNewsletterPopupExcluded(pathname: string): boolean {
   return (
     pathname.startsWith("/newsletter") ||
     pathname.startsWith("/eventos") ||
+    pathname.startsWith("/calculadora") ||
     pathname.startsWith("/entrar") ||
     pathname.startsWith("/cadastro") ||
     pathname.startsWith("/recuperar-senha") ||
