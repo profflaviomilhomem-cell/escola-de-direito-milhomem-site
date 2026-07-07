@@ -999,7 +999,7 @@
    "marca-sitemap-conceitual"
   ],
   "desc": "Home converte lead; Sobre valida autoridade; vitrine converte cliente; blog gera tráfego; área retém.",
-  "rich": "Princípio: página sem objetivo claro não é criada. GAP: instrumentação de métrica por página a implementar.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Há trabalho real: instrumentação baseline e eventos de conversão existem; falta o mapa formal objetivo→métrica por página e chaves de analytics em produção (PostHog ausente do .env). Evidência: src/lib/analytics/track.ts (fan-out GTM/dataLayer + PostHog) + src/components/marketing/newsletter-form.tsx:67 track('lead_capture') + commit 8ec1252 (baseline GA4/Meta/LinkedIn/PostHog + Web Vitals)"
+  "rich": "Princípio: página sem objetivo claro não é criada. GAP: instrumentação de métrica por página a implementar.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Há trabalho real: instrumentação baseline e eventos de conversão existem; falta o mapa formal objetivo→métrica por página e chaves de analytics em produção (PostHog ausente do .env). Evidência: src/lib/analytics/track.ts (fan-out GTM/dataLayer + PostHog) + src/components/marketing/newsletter-form.tsx:67 track('lead_capture') + commit 8ec1252 (baseline GA4/Meta/LinkedIn/PostHog + Web Vitals)<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> eventos de conversão por página completos (taxonomia 8.5). Falta o mapa formal objetivo→métrica documentado + chaves."
  },
  {
   "id": "comp-plexo-normativo",
@@ -1742,7 +1742,7 @@
    "mkt-auditoria-tracking-raro"
   ],
   "desc": "GA4 + Meta Pixel + TikTok Pixel + LinkedIn Insight + UTM Builder + GTM único; SS-GTM no mês 3-6.",
-  "rich": "[status?] Não confirmado em produção; operacionalização pendente. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. eventos PostHog/GTM no código, gated por chave.]",
+  "rich": "[status?] Não confirmado em produção; operacionalização pendente. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. eventos PostHog/GTM no código, gated por chave.]<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> baseline de tracking completado no código (GTM loader + CAPI + server-track + 15 eventos). Resta chaves.",
   "code": ""
  },
  {
@@ -2268,7 +2268,7 @@
    "acq-hierarquia-canais"
   ],
   "desc": "Canal primário de nutrição e conversão; sequência de 5-7 mensagens por jornada.",
-  "rich": "Lista é métrica-rainha do 1º ano. Depende de setup Resend+CRM. Operação pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Infra de captação construída, operação zero. Lista (métrica-rainha) está literalmente em 0 a 35 dias do lançamento. Evidência: Infra pronta em código: src/app/api/leads/route.ts (captura + honeypot + rate limit), /api/leads/confirm (duplo opt-in LGPD), template confirm-newsletter.ts, modelos Lead/LeadMagnet/EmailCampaign no Prisma. Porém: banco de produção tem 0 leads; único template é o de confirmação (nenhuma sequência de nutrição 5-7 mensagens); .env.local não tem chave RESEND.",
+  "rich": "Lista é métrica-rainha do 1º ano. Depende de setup Resend+CRM. Operação pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Infra de captação construída, operação zero. Lista (métrica-rainha) está literalmente em 0 a 35 dias do lançamento. Evidência: Infra pronta em código: src/app/api/leads/route.ts (captura + honeypot + rate limit), /api/leads/confirm (duplo opt-in LGPD), template confirm-newsletter.ts, modelos Lead/LeadMagnet/EmailCampaign no Prisma. Porém: banco de produção tem 0 leads; único template é o de confirmação (nenhuma sequência de nutrição 5-7 mensagens); .env.local não tem chave RESEND.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> nutrição codada (sequências). Operação segue em 0 (0 leads, sem chave).",
   "code": ""
  },
  {
@@ -2837,7 +2837,7 @@
    "acq-canal-email-nutricao"
   ],
   "desc": "Métrica-rainha. Mês 3: 800-1.500; mês 6: 3.000-5.000; mês 12: 10.000-15.000. Fonte: Resend, CRM.",
-  "rich": "Depende de captura ativa. Medição pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Infra pronta mas métrica-rainha em ZERO vs meta fim-Fase-1 de 1.500-2.500. Chave Resend ausente (MEMORY 25/jun) pode travar o e-mail de confirmação do opt-in — verificar env de produção. Evidência: Captura implementada e no ar: NewsletterForm + POST /api/leads com duplo opt-in; dashboard conta leads/confirmados (src/lib/admin/dashboard-metrics.ts). Banco em 07/07: 0 leads (contagem via Prisma).",
+  "rich": "Depende de captura ativa. Medição pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Infra pronta mas métrica-rainha em ZERO vs meta fim-Fase-1 de 1.500-2.500. Chave Resend ausente (MEMORY 25/jun) pode travar o e-mail de confirmação do opt-in — verificar env de produção. Evidência: Captura implementada e no ar: NewsletterForm + POST /api/leads com duplo opt-in; dashboard conta leads/confirmados (src/lib/admin/dashboard-metrics.ts). Banco em 07/07: 0 leads (contagem via Prisma).<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> captura + sequências prontas em código. Lista real ainda 0.",
   "code": ""
  },
  {
@@ -2881,14 +2881,14 @@
   "sub": "#22 Métricas conversão",
   "theme": "var(--color-2)",
   "ref": "Cap 8.3",
-  "status": "ROADMAP",
+  "status": "EM PROGRESSO",
   "phase": 4,
   "order": 92,
   "dependsOn": [
    "acq-canal-email-nutricao"
   ],
   "desc": "Abertura 28-42%, clique 3-8% (benchmark infoproduto jurídico).",
-  "rich": "Medição pendente.",
+  "rich": "Medição pendente.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> ROADMAP → EM PROGRESSO. código de medição pronto — sequence_opened (pixel /api/email/track/open) + sequence_clicked (wrapper /api/email/track/click). Resta operação/chaves.",
   "code": ""
  },
  {
@@ -3065,7 +3065,7 @@
    "mkt-implicacao-tracking-baseline"
   ],
   "desc": "Implementar eventos GA4+PostHog+CRM: page_view, content_viewed, lead_capture, cart_*, purchase_completed (webhook Pagar.me), lesson_*, forum_*, certificate_issued, subscription_canceled.",
-  "rich": "Cada evento com dimensões (UTM, produto, persona, cohort). Implementação no lançamento. Pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Código pronto parcial (~5 de 16 eventos) E chaves ausentes (NEXT_PUBLIC_POSTHOG_KEY/GTM fora do .env.local) — hoje nenhum evento chega aos sinks. Duplo gap: completar eventos + ativar env. Evidência: src/lib/analytics/track.ts (fan-out GTM+PostHog com consent gate LGPD) implementa lead_capture, lesson_started/completed, begin_checkout, sign_up + page_view automático. Da taxonomia Cap 8.5 FALTAM: content_viewed, cart_viewed, purchase_completed server-side (webhook Pagar.me sem capture), sequence_*, forum_*, certificate_issued, subscription_canceled.",
+  "rich": "Cada evento com dimensões (UTM, produto, persona, cohort). Implementação no lançamento. Pendente.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Código pronto parcial (~5 de 16 eventos) E chaves ausentes (NEXT_PUBLIC_POSTHOG_KEY/GTM fora do .env.local) — hoje nenhum evento chega aos sinks. Duplo gap: completar eventos + ativar env. Evidência: src/lib/analytics/track.ts (fan-out GTM+PostHog com consent gate LGPD) implementa lead_capture, lesson_started/completed, begin_checkout, sign_up + page_view automático. Da taxonomia Cap 8.5 FALTAM: content_viewed, cart_viewed, purchase_completed server-side (webhook Pagar.me sem capture), sequence_*, forum_*, certificate_issued, subscription_canceled.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> taxonomia completa (15 eventos do guia 8.5) tipada em events.ts — gap de código fechado (era ~5/16). Resta ativar chaves.",
   "code": ""
  },
  {
@@ -4050,7 +4050,7 @@
    "infra-deploy-vercel"
   ],
   "desc": "Funil de matrícula, retenção, conclusão; eventos purchase / lesson_complete / lead_confirm.",
-  "rich": "posthog-js presente. GAP: instrumentação de eventos de produto (Fase 6.1 = 0%); NEXT_PUBLIC_POSTHOG_* a confirmar.",
+  "rich": "posthog-js presente. GAP: instrumentação de eventos de produto (Fase 6.1 = 0%); NEXT_PUBLIC_POSTHOG_* a confirmar.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> server-track envia a PostHog via HTTP quando POSTHOG_API_KEY existir. Resta chave.",
   "code": "posthog-js · NEXT_PUBLIC_POSTHOG_*"
  },
  {
@@ -4067,7 +4067,7 @@
    "infra-deploy-vercel"
   ],
   "desc": "GA4 via GTM com eventos customizados (lead_capture, cohort_purchase, lesson_completed).",
-  "rich": "@next/third-parties presente (pode hospedar GA/GTM). GAP: configuração de GA4/GTM e eventos.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Camada dataLayer pronta e alimentada; PORÉM não há loader do GTM/GA4 injetado em lugar nenhum (grep 'googletagmanager' vazio) e NEXT_PUBLIC_GTM_ID está ausente — falta o script do container + env para o dado chegar ao GA4. Evidência: src/config/site.ts:74 (gtmId ← NEXT_PUBLIC_GTM_ID) + lib/analytics/track.ts:41-42 (window.dataLayer.push em todo evento)",
+  "rich": "@next/third-parties presente (pode hospedar GA/GTM). GAP: configuração de GA4/GTM e eventos.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Camada dataLayer pronta e alimentada; PORÉM não há loader do GTM/GA4 injetado em lugar nenhum (grep 'googletagmanager' vazio) e NEXT_PUBLIC_GTM_ID está ausente — falta o script do container + env para o dado chegar ao GA4. Evidência: src/config/site.ts:74 (gtmId ← NEXT_PUBLIC_GTM_ID) + lib/analytics/track.ts:41-42 (window.dataLayer.push em todo evento)<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> loader GTM adicionado (antes inexistente), gated por env+consentimento (corrige bug LGPD); dataLayer alimentado. Resta NEXT_PUBLIC_GTM_ID + tags GA4 no container.",
   "code": "@next/third-parties"
  },
  {
@@ -4084,7 +4084,7 @@
    "infra-analytics-ga4"
   ],
   "desc": "Meta Pixel + Conversions API server-side (webhook→CAPI); LinkedIn Insight Tag.",
-  "rich": "GAP: pixels e CAPI server-side a implementar antes do primeiro anúncio.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Pixels client-side prontos, falta env/config (IDs ausentes). Conversions API server-side (webhook→CAPI) não existe no código — segue pendente antes do primeiro anúncio. Evidência: src/components/shared/analytics-providers.tsx:59-67 (Meta Pixel fbq init+PageView) e :83-108 (LinkedIn Insight Tag), ambos gated por consentimento e por NEXT_PUBLIC_META_PIXEL_ID/NEXT_PUBLIC_LINKEDIN_PARTNER_ID"
+  "rich": "GAP: pixels e CAPI server-side a implementar antes do primeiro anúncio.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Pixels client-side prontos, falta env/config (IDs ausentes). Conversions API server-side (webhook→CAPI) não existe no código — segue pendente antes do primeiro anúncio. Evidência: src/components/shared/analytics-providers.tsx:59-67 (Meta Pixel fbq init+PageView) e :83-108 (LinkedIn Insight Tag), ambos gated por consentimento e por NEXT_PUBLIC_META_PIXEL_ID/NEXT_PUBLIC_LINKEDIN_PARTNER_ID<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> Meta CAPI server-side implementada (era inexistente) — Purchase no webhook, Lead no confirm, SHA-256, event_id p/ dedup com o pixel. Resta IDs/token."
  },
  {
   "id": "infra-web-vitals",
@@ -4895,7 +4895,7 @@
    "pipe-etapa6-diagramacao-seo"
   ],
   "desc": "Publica no blog; distribui para newsletter, IG, LinkedIn, X, YouTube Shorts.",
-  "rich": "Distribuição multicanal.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Publicar no blog funciona; a distribuição multicanal (núcleo do nó) está a zero. EM PROGRESSO pela metade concreta; não confundir com quase-pronto. Evidência: Metade 'publicação': real — 79 posts PUBLISHED no banco + feed RSS em src/app/(marketing)/blog/feed.xml. Metade 'distribuição': inexistente — 0 EmailCampaign no banco, model EmailCampaign sem nenhum uso em src/, nenhuma automação para IG/LinkedIn/X/Shorts."
+  "rich": "Distribuição multicanal.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Publicar no blog funciona; a distribuição multicanal (núcleo do nó) está a zero. EM PROGRESSO pela metade concreta; não confundir com quase-pronto. Evidência: Metade 'publicação': real — 79 posts PUBLISHED no banco + feed RSS em src/app/(marketing)/blog/feed.xml. Metade 'distribuição': inexistente — 0 EmailCampaign no banco, model EmailCampaign sem nenhum uso em src/, nenhuma automação para IG/LinkedIn/X/Shorts.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> distribuição por e-mail (campanha + sequências) agora existe no código. Distribuição social segue pendente."
  },
  {
   "id": "pipe-etapa8-analise",
@@ -5191,7 +5191,7 @@
   "order": 64,
   "dependsOn": [],
   "desc": "Quinzenal, 4-6 blocos, 800-1.500 palavras, duplo opt-in automático de todo lead.",
-  "rich": "Captura de lead já existe (/newsletter, /newsletter/confirmado, api/leads, api/leads/confirm). GAP: conteúdo editorial e cadência da newsletter."
+  "rich": "Captura de lead já existe (/newsletter, /newsletter/confirmado, api/leads, api/leads/confirm). GAP: conteúdo editorial e cadência da newsletter.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> motor de sequências + envio em lote (EmailCampaign, antes uso zero) + 18 templates. Resta chave Resend + edição editorial + migração."
  },
  {
   "id": "email-segmentacoes",
@@ -5216,14 +5216,14 @@
   "sub": "#13 E-mail/newsletter",
   "theme": "var(--color-4)",
   "ref": "Cap 6.13",
-  "status": "ROADMAP",
+  "status": "EM PROGRESSO",
   "phase": 3,
   "order": 66,
   "dependsOn": [
    "email-newsletter-bastidor"
   ],
   "desc": "5 e-mails em 10 dias: isca, bio+vídeo, artigo-tese, pré-apresentação, lista de espera.",
-  "rich": "Acionada no opt-in."
+  "rich": "Acionada no opt-in.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> ROADMAP → EM PROGRESSO. código pronto — 5 templates (dias 0/2/4/7/10) em welcome.ts + motor sequences.ts; inscrição no opt-in confirmado. Resta chave Resend + migração EmailSequenceEnrollment."
  },
  {
   "id": "email-seq-lancamento",
@@ -5232,14 +5232,14 @@
   "sub": "#13 E-mail/newsletter",
   "theme": "var(--color-4)",
   "ref": "Cap 6.13",
-  "status": "ROADMAP",
+  "status": "EM PROGRESSO",
   "phase": 3,
   "order": 67,
   "dependsOn": [
    "email-newsletter-bastidor"
   ],
   "desc": "7 e-mails em 7 dias no open cart: abertura, story, prova, FAQ, objeção, escassez real, fechamento.",
-  "rich": "Sem gatilho falso. Acionada manualmente."
+  "rich": "Sem gatilho falso. Acionada manualmente.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> ROADMAP → EM PROGRESSO. código pronto — 7 templates (launch.ts) + gatilho manual admin (/api/admin/email/launch/start). Resta chave + migração."
  },
  {
   "id": "email-seq-carrinho",
@@ -5248,14 +5248,14 @@
   "sub": "#13 E-mail/newsletter",
   "theme": "var(--color-4)",
   "ref": "Cap 6.13",
-  "status": "ROADMAP",
+  "status": "EM PROGRESSO",
   "phase": 3,
   "order": 68,
   "dependsOn": [
    "email-newsletter-bastidor"
   ],
   "desc": "3 e-mails em 48h pós-abandono, foco em objeção e garantia.",
-  "rich": "Recuperação de conversão."
+  "rich": "Recuperação de conversão.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> ROADMAP → EM PROGRESSO. código pronto — 3 templates (abandoned-cart.ts) + saída ligada (compra PAID cancela). GATILHO DE ENTRADA pendente (cart_initiated sem persistência confiável — decisão em aberto)."
  },
  {
   "id": "email-seq-pos-compra",
@@ -5264,14 +5264,14 @@
   "sub": "#13 E-mail/newsletter",
   "theme": "var(--color-4)",
   "ref": "Cap 6.13",
-  "status": "ROADMAP",
+  "status": "EM PROGRESSO",
   "phase": 3,
   "order": 69,
   "dependsOn": [
    "email-newsletter-bastidor"
   ],
   "desc": "3 e-mails em 7 dias: boas-vindas ao cohort, acesso, grupo de alunos, primeira tarefa.",
-  "rich": "Onboarding do aluno."
+  "rich": "Onboarding do aluno.<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> ROADMAP → EM PROGRESSO. código pronto — 3 templates (post-purchase.ts) + gatilho no webhook PAID. Resta chave + migração."
  },
  {
   "id": "email-provedor-automacao",
@@ -5285,7 +5285,7 @@
   "order": 70,
   "dependsOn": [],
   "desc": "Resend com automação, ou híbrido Loops.so. Decisão em sprint 2.",
-  "rich": "Dependência resend presente e EmailCampaign no schema. GAP: RESEND_API_KEY + domínio verificado e automação (Fase 0.1/6.2)."
+  "rich": "Dependência resend presente e EmailCampaign no schema. GAP: RESEND_API_KEY + domínio verificado e automação (Fase 0.1/6.2).<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> camada de automação codada (sequences.ts + cron gated por CRON_SECRET). Resta decisão Resend-nativo vs Loops + chave + domínio verificado (SPF/DKIM/DMARC)."
  },
  {
   "id": "sup-email-institucional",
@@ -5299,7 +5299,7 @@
   "order": 71,
   "dependsOn": [],
   "desc": "contato@..., resposta prometida em 48h úteis. Rota /contato + api/contact existem.",
-  "rich": "Form de contato presente (/contato, api/contact). GAP: e-mail institucional e SLA operacionalizados.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Lado site pronto; lado operação não: envio inoperante sem RESEND_API_KEY, caixa contato@ NÃO criada (checklist-cronologico.md linha 62 desmarcado) e SLA 48h não operacionalizado. Atenção: livro-guia 6.14 cita contato@flaviomilhomem.com.br e o código usa contato@escolaflaviomilhomem.com.br — alinhar domínio (decisão de domínio pendente, Cap 4.12). Evidência: src/app/(marketing)/contato/page.tsx + src/app/api/contact/route.ts funcionais (rate limit, Zod, honeypot, envio via Resend com replyTo do remetente); endereço contato@escolaflaviomilhomem.com.br em src/config/site.ts; /faq existe (src/app/(marketing)/faq)."
+  "rich": "Form de contato presente (/contato, api/contact). GAP: e-mail institucional e SLA operacionalizados.<br><br><b>Auditoria 07/07/2026:</b> ROADMAP → EM PROGRESSO. Lado site pronto; lado operação não: envio inoperante sem RESEND_API_KEY, caixa contato@ NÃO criada (checklist-cronologico.md linha 62 desmarcado) e SLA 48h não operacionalizado. Atenção: livro-guia 6.14 cita contato@flaviomilhomem.com.br e o código usa contato@escolaflaviomilhomem.com.br — alinhar domínio (decisão de domínio pendente, Cap 4.12). Evidência: src/app/(marketing)/contato/page.tsx + src/app/api/contact/route.ts funcionais (rate limit, Zod, honeypot, envio via Resend com replyTo do remetente); endereço contato@escolaflaviomilhomem.com.br em src/config/site.ts; /faq existe (src/app/(marketing)/faq).<br><br><b>Sessão 07/07 (funil, commit cdffaf4):</b> descadastro LGPD implementado (token + rota + página + guarda em 3 pontos). Resta caixa contato@ + chave + SLA."
  },
  {
   "id": "sup-whatsapp-institucional",
