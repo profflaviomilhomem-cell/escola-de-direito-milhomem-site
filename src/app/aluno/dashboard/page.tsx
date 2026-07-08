@@ -194,19 +194,22 @@ function StatCard({
         className,
       )}
     >
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-0">
         <CardDescription className="text-paper-600 fm-mono">
           {label}
         </CardDescription>
+      </CardHeader>
+      {/* Número + barra ancorados no rodapé; a barra reservada (invisível)
+          nos cards sem progresso mantém os três com a mesma altura/baseline. */}
+      <CardContent className="mt-auto space-y-2 pt-0">
         <CardTitle className="text-paper font-serif text-2xl leading-tight">
           {value}
         </CardTitle>
-      </CardHeader>
-      {progress != null && (
-        <CardContent className="pt-0">
-          <LabeledProgress value={progress} />
-        </CardContent>
-      )}
+        <LabeledProgress
+          value={progress ?? 0}
+          barClassName={progress == null ? "invisible" : undefined}
+        />
+      </CardContent>
     </Card>
   );
 }
