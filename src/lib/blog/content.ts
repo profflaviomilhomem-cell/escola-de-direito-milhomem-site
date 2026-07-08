@@ -88,6 +88,7 @@ export async function getRelatedBlogPosts(
     slug: p.slug,
     title: p.title,
     category: p.category,
+    coverImage: p.coverImage,
     cover: p.cover,
   }));
 }

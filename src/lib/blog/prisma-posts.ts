@@ -41,6 +41,7 @@ export type BlogRelatedPost = {
   slug: string;
   title: string;
   category: string;
+  coverImage?: string;
   cover: { from: string; to: string };
 };
 
@@ -94,6 +95,7 @@ export function mapPrismaPostToRelated(p: BlogPost): BlogRelatedPost {
     slug: p.slug,
     title: p.title,
     category: p.category,
+    coverImage: p.coverImage ?? undefined,
     cover: { ...BLOG_COVER },
   };
 }

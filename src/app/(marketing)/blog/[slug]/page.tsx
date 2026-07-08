@@ -264,9 +264,20 @@ export default async function BlogArtigoPage({ params }: { params: Params }) {
                   <div
                     className="border-paper-100 group-hover:border-amber relative aspect-[16/9] overflow-hidden border transition-colors"
                     style={{
-                      backgroundImage: `linear-gradient(135deg, ${p.cover.from}, ${p.cover.to})`,
+                      backgroundImage: !p.coverImage
+                        ? `linear-gradient(135deg, ${p.cover.from}, ${p.cover.to})`
+                        : undefined,
                     }}
                   >
+                    {p.coverImage && (
+                      <Image
+                        src={p.coverImage}
+                        alt={p.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     <div className="from-carbon via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
                   </div>
                   <p className="text-amber mt-4 font-mono text-[10px] tracking-[0.2em] uppercase">
