@@ -92,7 +92,10 @@ export async function getProfessorMetrics(): Promise<ProfessorMetrics> {
       comentarios,
       comentariosPendentes,
     };
-  } catch {
+  } catch (err) {
+    // Uma query falha -> métricas zeradas. Logar p/ não confundir "banco
+    // fora" com "0 alunos/0 receita real".
+    console.error("[professor] getProfessorMetrics falhou:", err);
     return ZERO;
   }
 }

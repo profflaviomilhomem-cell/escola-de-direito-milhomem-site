@@ -142,11 +142,14 @@ export async function reconcilePendingOrders(
           where: { id: order.id, status: { not: "PAID" } },
           data: { status: "PAID" },
         });
+        // Só liquida se ESTE reconcile transicionou o pedido. Se o webhook o
+        // marcou PAID entre o SELECT e o UPDATE, res.count=0 e liquidar de
+        // novo duplicaria os efeitos pós-PAID (acesso/certificado/etc.).
         if (res.count > 0) {
           summary.updated += 1;
           summary.paid += 1;
+          settleOrdersPaid(becomingPaid);
         }
-        settleOrdersPaid(becomingPaid);
         continue;
       }
 

@@ -85,7 +85,13 @@ export async function listLessonComments(
   const rows = await prisma.comment.findMany({
     where: {
       lessonId,
-      OR: [{ moderationStatus: "APPROVED" }, { userId: viewerId }],
+      // Aprovados para todos; e os do próprio autor MENOS os rejeitados —
+      // senão o autor continua vendo o comentário que o professor rejeitou
+      // como se estivesse publicado.
+      OR: [
+        { moderationStatus: "APPROVED" },
+        { userId: viewerId, moderationStatus: { not: "REJECTED" } },
+      ],
     },
     orderBy: { createdAt: "asc" },
     select: {
@@ -228,7 +234,11 @@ export async function getModerationQueue(
       },
     });
     return rows.map(toModerationItem);
-  } catch {
+  } catch (err) {
+    // Falha de banco não derruba o painel, mas NÃO pode ser silenciosa:
+    // "fila vazia" por erro é indistinguível de "nada a moderar". Logamos p/
+    // diagnóstico (distinção visual no painel fica como melhoria futura).
+    console.error("[forum] listagem de comentários falhou:", err);
     return [];
   }
 }
@@ -273,7 +283,11 @@ export async function listRecentCommentsForProducts(
       },
     });
     return rows.map(toModerationItem);
-  } catch {
+  } catch (err) {
+    // Falha de banco não derruba o painel, mas NÃO pode ser silenciosa:
+    // "fila vazia" por erro é indistinguível de "nada a moderar". Logamos p/
+    // diagnóstico (distinção visual no painel fica como melhoria futura).
+    console.error("[forum] listagem de comentários falhou:", err);
     return [];
   }
 }

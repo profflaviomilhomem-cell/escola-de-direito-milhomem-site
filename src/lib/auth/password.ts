@@ -34,6 +34,15 @@ export async function hashPassword(plaintext: string): Promise<string> {
   return bcrypt.hash(plaintext, COST_FACTOR);
 }
 
+/**
+ * Hash bcrypt "descartável" (custo 12) usado só para IGUALAR o timing do
+ * login quando o e-mail não existe: comparar contra ele paga o mesmo ~250ms
+ * do caso real, evitando enumeração de usuário por timing. Pré-computado
+ * (não roda hashSync no cold start). Nunca corresponde a uma senha real.
+ */
+export const TIMING_DUMMY_HASH =
+  "$2b$12$N7RHCM41HRGaTt1xeN3i2eewppxouCbLDb9EZWt/nA1.rsBadoibG";
+
 export async function verifyPassword(
   plaintext: string,
   hash: string,

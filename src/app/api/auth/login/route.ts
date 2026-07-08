@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
 import { signSession } from "@/lib/auth/jwt";
-import { verifyPassword } from "@/lib/auth/password";
+import { TIMING_DUMMY_HASH, verifyPassword } from "@/lib/auth/password";
 import { setSessionCookie, sessionTtlSeconds } from "@/lib/auth/session";
 import { prisma } from "@/lib/prisma";
 import { rateLimit } from "@/lib/upstash/rate-limit";
@@ -88,15 +88,16 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  // 401 idêntico para "usuário não existe" e "senha errada".
-  // Não vaza enumeração — mesmo timing aproximado porque
-  // bcrypt.compare leva ~250ms para retornar.
-  const valid =
-    user?.passwordHash != null
-      ? await verifyPassword(password, user.passwordHash)
-      : false;
+  // 401 idêntico para "usuário não existe" e "senha errada". Para não vazar
+  // enumeração por TIMING, sempre pagamos o custo do bcrypt: quando não há
+  // hash real (usuário inexistente), comparamos contra um hash descartável —
+  // o ~250ms é o mesmo do caso real. O resultado desse caso nunca é aceito.
+  const valid = await verifyPassword(
+    password,
+    user?.passwordHash ?? TIMING_DUMMY_HASH,
+  );
 
-  if (!user || !valid) {
+  if (!user || !user.passwordHash || !valid) {
     return NextResponse.json(
       { ok: false, error: "E-mail ou senha incorretos." },
       { status: 401 },

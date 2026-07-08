@@ -150,7 +150,10 @@ export async function getAdminDashboard(): Promise<AdminDashboard> {
         total: g._count._all,
       })),
     };
-  } catch {
+  } catch (err) {
+    // Uma query falha -> painel inteiro zerado. Logar p/ não confundir
+    // "banco fora" com "R$0 de receita real".
+    console.error("[admin] getAdminDashboard falhou:", err);
     return ZERO;
   }
 }

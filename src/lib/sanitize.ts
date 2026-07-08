@@ -20,8 +20,14 @@
 // Blocos cujo CONTEÚDO também deve sumir (não só as tags): script/style.
 const RAW_BLOCKS = /<(script|style)\b[\s\S]*?<\/\1\s*>/gi;
 
-// Tags HTML completas ou fragmentos de abertura/fechamento remanescentes.
-const HTML_TAG = /<\/?[a-z][\s\S]*?>/gi;
+// Tags HTML: `<`/`</` + nome de tag real + atributos (sem `<`/`>` internos).
+// Antes usava `[\s\S]*?`, que casava `<` seguido de QUALQUER letra e engolia
+// o texto até o próximo `>` (ex.: "a<b>c" → "ac"; comparações "x<y ... z>w").
+// Agora exige nome de tag (`[a-z][a-z0-9]*`) e limita o corpo a não-`<>`, o
+// que remove tags reais sem atravessar outros sinais. Resíduo conhecido: um
+// trecho "<palavra outra>" ainda parece uma tag e é removido — inerente ao
+// strip de texto puro; é raro em prosa (exige `<` colado a uma letra).
+const HTML_TAG = /<\/?[a-z][a-z0-9]*(?:\s[^<>]*)?>/gi;
 
 // Controle C0 (U+0000–U+001F) e C1 (U+007F–U+009F), preservando TAB e LF.
 const CONTROL_CHARS = new RegExp(

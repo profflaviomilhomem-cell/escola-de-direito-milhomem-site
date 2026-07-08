@@ -77,34 +77,52 @@ export async function POST(req: NextRequest) {
         .catch(() => null)
     : null;
 
-  // Insert idempotente: tenta `create` e, em colisão (P2002 — mesmo
-  // email/leadMagnet), refresca o `optInAt` via `updateMany`. Evita o
-  // edge case do `upsert` com chave composta nullable que ainda não
-  // tipa bem no Prisma client gerado.
+  const leadData = {
+    email: data.email,
+    name: name,
+    source: data.source ?? "newsletter",
+    leadMagnetId: leadMagnet?.id,
+    optInAt: new Date(),
+    utmSource: data.utmSource,
+    utmMedium: data.utmMedium,
+    utmCampaign: data.utmCampaign,
+  };
+  const refreshData = {
+    optInAt: new Date(),
+    name: name ?? undefined,
+    utmSource: data.utmSource,
+    utmMedium: data.utmMedium,
+    utmCampaign: data.utmCampaign,
+  };
+
+  // Insert idempotente por (email, leadMagnet).
   try {
-    await prisma.lead.create({
-      data: {
-        email: data.email,
-        name: name,
-        source: data.source ?? "newsletter",
-        leadMagnetId: leadMagnet?.id,
-        optInAt: new Date(),
-        utmSource: data.utmSource,
-        utmMedium: data.utmMedium,
-        utmCampaign: data.utmCampaign,
-      },
-    });
+    if (leadMagnet) {
+      // Com isca: o índice único [email, leadMagnetId] dedupa de forma atômica
+      // (create -> P2002 -> refresca).
+      await prisma.lead.create({ data: leadData });
+    } else {
+      // Newsletter puro (sem isca): leadMagnetId é NULL, e o Postgres trata
+      // cada NULL como DISTINTO no índice único — então create nunca colide e
+      // leads duplicados se acumulariam. Dedup manual por (email, NULL).
+      const existing = await prisma.lead.findFirst({
+        where: { email: data.email, leadMagnetId: null },
+        select: { id: true },
+      });
+      if (existing) {
+        await prisma.lead.update({
+          where: { id: existing.id },
+          data: refreshData,
+        });
+      } else {
+        await prisma.lead.create({ data: leadData });
+      }
+    }
   } catch (err) {
-    if ((err as { code?: string }).code === "P2002") {
+    if ((err as { code?: string }).code === "P2002" && leadMagnet) {
       await prisma.lead.updateMany({
-        where: { email: data.email, leadMagnetId: leadMagnet?.id ?? null },
-        data: {
-          optInAt: new Date(),
-          name: name ?? undefined,
-          utmSource: data.utmSource,
-          utmMedium: data.utmMedium,
-          utmCampaign: data.utmCampaign,
-        },
+        where: { email: data.email, leadMagnetId: leadMagnet.id },
+        data: refreshData,
       });
     } else {
       console.error("[api/leads] Falha ao gravar lead:", err);
