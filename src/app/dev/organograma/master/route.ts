@@ -6,11 +6,15 @@ import path from "node:path";
  * do livro-guia) como HTML cru, para ser exibido num <iframe> pela página
  * `/dev/organograma`. Ferramenta interna de desenvolvimento (no-index).
  *
- * Lê o arquivo da raiz do repositório em tempo de request (estado vivo).
+ * Lê o arquivo de `docs/` em tempo de request (estado vivo).
  */
 export const dynamic = "force-dynamic";
 
-const MASTER_PATH = path.join(process.cwd(), "organograma-checklist.html");
+const MASTER_PATH = path.join(
+  process.cwd(),
+  "docs",
+  "organograma-checklist.html",
+);
 
 export function GET() {
   if (!fs.existsSync(MASTER_PATH)) {
