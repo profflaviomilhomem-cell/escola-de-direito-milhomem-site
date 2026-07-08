@@ -3582,7 +3582,7 @@
    "prod-lms-runtime"
   ],
   "desc": "PlayerVideo custom sobre Cloudflare Stream: legenda, velocidade, voltar 15s, progresso.",
-  "rich": "GAP: videoSrc/videoId (Stream) ainda não resolvido a partir de Lesson; integração Stream/R2 pendente. ROADMAP. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. ponte getLessonVideoId (Cloudflare) + player gated existem; mock ainda default.]",
+  "rich": "GAP: videoSrc/videoId (Stream) ainda não resolvido a partir de Lesson; integração Stream/R2 pendente. ROADMAP. [Reconciliado 25/06 vs código: ROADMAP→EM PROGRESSO. ponte getLessonVideoId (Cloudflare) + player gated existem; mock ainda default.]<br><br><b>Sessão 08/07/2026:</b> Player NATIVO (HTML5) passou a persistir progresso real: onTimeUpdate grava watchedSec (throttle 15s) e onEnded auto-conclui a ≥95%. Verificado ponta a ponta contra o DB (PATCH 200, grava e relê). Stream (iframe) ainda sem progresso de playback (precisa do Stream Player SDK/postMessage) — por isso segue EM PROGRESSO.",
   "code": "Cloudflare Stream + R2 (URL assinada)"
  },
  {
@@ -3599,7 +3599,7 @@
    "prod-lms-runtime"
   ],
   "desc": "PATCH progresso valida acesso ao produto; % de conclusão calculado do DB; continuar assistindo.",
-  "rich": "Progresso real do DB: progress.ts (watchedSec/completedAt) + getEnrolledCoursesWithProgress recalcula completedLessonCount; UI Continuar aula + % no hero-billboard.tsx (completedLessonCount/lessonCount); api/aluno/lessons/progress. [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. Fase 2.3: % e continuar assistindo presentes.]",
+  "rich": "Progresso real do DB: progress.ts (watchedSec/completedAt) + getEnrolledCoursesWithProgress recalcula completedLessonCount; UI Continuar aula + % no hero-billboard.tsx (completedLessonCount/lessonCount); api/aluno/lessons/progress. [Coluna Plataforma 26/jun: EM PROGRESSO->CONCLUIDO. Fase 2.3: % e continuar assistindo presentes.]<br><br><b>Sessão 08/07/2026:</b> watchedSec agora também vem do player nativo (onTimeUpdate/onEnded), não só do botão manual 'Marcar concluída'. Persistência verificada ponta a ponta (api/aluno/lessons/progress → 200).",
   "code": "model UserLessonProgress · api/aluno/lessons/progress"
  },
  {
@@ -4439,7 +4439,7 @@
    "edit-blueprint-artigo-layout"
   ],
   "desc": "CTA de lista, assinatura com mini-bio, 3 artigos relacionados, comentários opcionais.",
-  "rich": "Fim de artigo completo 29/jun: bio do autor (mini-assinatura) e grade de 3 relacionados já existiam; adicionado CTA de lista (boletim, source blog-artigo) entre bio e relacionados, e getRelatedBlogPosts passou a priorizar a MESMA categoria (relevância) completando por recência. Comentários públicos seguem desabilitados (engajamento concentrado no fórum pago). [ROADMAP->CONCLUÍDO: render HTTP 200, tsc+eslint verdes.]"
+  "rich": "Fim de artigo completo 29/jun: bio do autor (mini-assinatura) e grade de 3 relacionados já existiam; adicionado CTA de lista (boletim, source blog-artigo) entre bio e relacionados, e getRelatedBlogPosts passou a priorizar a MESMA categoria (relevância) completando por recência. Comentários públicos seguem desabilitados (engajamento concentrado no fórum pago). [ROADMAP->CONCLUÍDO: render HTTP 200, tsc+eslint verdes.]<br><br><b>Sessão 08/07/2026:</b> Cards 'Continue lendo' passaram a renderizar a coverImage real do post (antes só gradiente), consistente com hero/listagem; gradiente vira fallback. BlogRelatedPost carrega coverImage. Verificado ao vivo (object-cover na seção, zero gradientes nos posts com capa)."
  },
  {
   "id": "edit-artigo-seo-estrutural",
