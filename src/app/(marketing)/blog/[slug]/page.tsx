@@ -45,7 +45,7 @@ export async function generateMetadata({
 }
 
 /**
- * Página individual do artigo (Puxando do Prisma com fallback mock).
+ * Página individual do artigo (conteúdo do Prisma; sem fallback mock).
  */
 export default async function BlogArtigoPage({ params }: { params: Params }) {
   const { slug } = await params;
