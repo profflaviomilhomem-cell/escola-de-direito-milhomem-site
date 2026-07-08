@@ -190,12 +190,12 @@ export default async function AulaPage({ params }: { params: Params }) {
                                 Baixar
                               </a>
                             ) : (
-                              <button
-                                type="button"
-                                className="border-amber text-paper hover:bg-amber hover:text-carbon fm-mono shrink-0 border px-4 py-2 transition-colors"
+                              <span
+                                aria-disabled
+                                className="border-paper-100 text-paper-600 fm-mono shrink-0 cursor-not-allowed border px-4 py-2 opacity-60"
                               >
-                                Baixar
-                              </button>
+                                Em breve
+                              </span>
                             )}
                           </li>
                         ))}

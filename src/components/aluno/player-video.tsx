@@ -100,12 +100,20 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
   );
 }
 
+/** Intervalo mínimo (s de vídeo assistido) entre gravações de progresso. */
+const NATIVE_PROGRESS_SAVE_STEP_SEC = 15;
+/** Fração assistida a partir da qual a aula conta como concluída ao terminar. */
+const NATIVE_COMPLETE_RATIO = 0.95;
+
 function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [markedComplete, setMarkedComplete] = useState(
     lesson.status === "concluida",
   );
   const completedTracked = useRef(lesson.status === "concluida");
+  const startedTracked = useRef(false);
+  // Maior watchedSec já persistido — evita gravar em cada onTimeUpdate (~4/s).
+  const lastPersistedSec = useRef(Math.floor(lesson.watchedSec));
 
   const lessonProps = {
     lesson_slug: lesson.slug,
@@ -115,13 +123,13 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
     player: "html5" as const,
   };
 
-  const handleMarkComplete = () => {
+  const handleMarkComplete = (source: "manual" | "auto" = "manual") => {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
     track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
-      completion_source: "manual",
+      completion_source: source,
     });
     void patchLessonProgress({
       productSlug: course.slug,
@@ -129,6 +137,38 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
       watchedSec: lesson.durationSec,
       completed: true,
     });
+    lastPersistedSec.current = lesson.durationSec;
+  };
+
+  // Persiste o ponto assistido a cada NATIVE_PROGRESS_SAVE_STEP_SEC de avanço.
+  const handleTimeUpdate = () => {
+    if (completedTracked.current) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const watchedSec = Math.floor(el.currentTime);
+    if (watchedSec - lastPersistedSec.current < NATIVE_PROGRESS_SAVE_STEP_SEC) {
+      return;
+    }
+    lastPersistedSec.current = watchedSec;
+    void patchLessonProgress({
+      productSlug: course.slug,
+      lessonSlug: lesson.slug,
+      watchedSec,
+    });
+  };
+
+  const handleEnded = () => {
+    const el = videoRef.current;
+    const duration = el?.duration;
+    const watched = el?.currentTime ?? 0;
+    // Só auto-conclui se o aluno realmente chegou ao fim (não em seek/replay).
+    if (
+      duration &&
+      Number.isFinite(duration) &&
+      watched / duration >= NATIVE_COMPLETE_RATIO
+    ) {
+      handleMarkComplete("auto");
+    }
   };
 
   return (
@@ -143,7 +183,13 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
         playsInline
         preload="metadata"
         src={lesson.videoSrc}
-        onPlay={() => track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps)}
+        onPlay={() => {
+          if (startedTracked.current) return;
+          startedTracked.current = true;
+          track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
+        }}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
       >
         <track kind="captions" />
       </video>
@@ -151,7 +197,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
         <div className="absolute right-3 bottom-3 left-3 sm:left-auto">
           <button
             type="button"
-            onClick={handleMarkComplete}
+            onClick={() => handleMarkComplete("manual")}
             className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors sm:w-auto"
           >
             Marcar aula como concluída
