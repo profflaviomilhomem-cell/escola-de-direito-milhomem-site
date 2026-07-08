@@ -123,9 +123,23 @@ export async function sendCampaign(
     select: { email: true, name: true },
   });
 
+  // Descadastro é GLOBAL por e-mail, mas cada e-mail tem N linhas de Lead
+  // (uma por isca). Filtrar unsubscribedAt:null por LINHA deixaria passar um
+  // e-mail que tem outra linha descadastrada. Excluir qualquer e-mail com ao
+  // menos uma linha descadastrada (mesma regra agregada das sequências).
+  const unsubscribed = new Set(
+    (
+      await prisma.lead.findMany({
+        where: { unsubscribedAt: { not: null } },
+        select: { email: true },
+      })
+    ).map((l) => l.email),
+  );
+
   // Dedup por e-mail (um lead pode ter várias linhas, uma por isca).
   const byEmail = new Map<string, string | undefined>();
   for (const lead of leads) {
+    if (unsubscribed.has(lead.email)) continue;
     if (!byEmail.has(lead.email))
       byEmail.set(lead.email, lead.name ?? undefined);
   }
@@ -169,10 +183,22 @@ export async function sendCampaign(
     }
   }
 
-  await prisma.emailCampaign.update({
-    where: { id: campaign.id },
-    data: { status: "SENT", sentAt: now },
-  });
+  // Só marca SENT se ao menos um envio saiu. Se TUDO falhou (ex.: Resend fora
+  // do ar / mal configurado), manter o status atual permite reenvio — caso
+  // contrário a campanha ficaria "queimada" como enviada sem ter enviado nada.
+  if (sent > 0) {
+    await prisma.emailCampaign.update({
+      where: { id: campaign.id },
+      data: { status: "SENT", sentAt: now },
+    });
+  }
 
-  return { ok: true, slug, recipients: recipients.length, sent, failed };
+  return {
+    ok: sent > 0,
+    slug,
+    recipients: recipients.length,
+    sent,
+    failed,
+    ...(sent === 0 ? { skipped: "all-failed" as const } : {}),
+  };
 }

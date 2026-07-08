@@ -69,9 +69,11 @@ async function handleOrderEvent(type: string, data: Record<string, unknown>) {
       ? "PAID"
       : type === "order.payment_failed" || type === "order.canceled"
         ? "REFUSED"
-        : type.includes("refund")
-          ? "REFUNDED"
-          : null;
+        : type.includes("chargeback") || type.includes("chargedback")
+          ? "CHARGEDBACK"
+          : type.includes("refund")
+            ? "REFUNDED"
+            : null;
 
   if (!desiredStatus) return;
 
@@ -111,7 +113,9 @@ async function handleChargeEvent(type: string, data: Record<string, unknown>) {
         ? "REFUSED"
         : type === "charge.refunded"
           ? "REFUNDED"
-          : null;
+          : type === "charge.chargedback" || type === "charge.chargeback"
+            ? "CHARGEDBACK"
+            : null;
 
   if (!desiredStatus) return;
 

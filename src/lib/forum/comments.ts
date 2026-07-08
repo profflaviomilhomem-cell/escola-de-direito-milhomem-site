@@ -46,8 +46,12 @@ function buildTree(rows: CommentRow[]): ForumCommentNode[] {
   const roots: ForumCommentNode[] = [];
   for (const r of rows) {
     const node = nodes.get(r.id)!;
-    if (r.parentId && nodes.has(r.parentId)) {
-      nodes.get(r.parentId)!.replies.push(node);
+    if (r.parentId) {
+      // Resposta: anexa ao pai SE ele estiver visível. Se o pai foi filtrado
+      // (rejeitado/oculto na moderação), descarta a resposta em vez de
+      // promovê-la a raiz — senão moderar o pai não esconde a sub-thread.
+      const parent = nodes.get(r.parentId);
+      if (parent) parent.replies.push(node);
     } else {
       roots.push(node);
     }

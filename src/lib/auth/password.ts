@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+
 import bcrypt from "bcryptjs";
 
 /**
@@ -39,4 +41,19 @@ export async function verifyPassword(
   // Não chamamos assertPasswordLength aqui — verify de senha truncada
   // retorna false naturalmente.
   return bcrypt.compare(plaintext, hash);
+}
+
+/**
+ * Fingerprint curto e não-reversível do hash de senha atual. Embutido no
+ * token de reset (claim `pv`) e reconferido na hora do reset: quando a senha
+ * muda, o hash muda, o fingerprint muda e o token antigo deixa de valer —
+ * tornando o link de reset single-use (impede replay/tomada de conta).
+ */
+export function passwordFingerprint(
+  passwordHash: string | null | undefined,
+): string {
+  return createHash("sha256")
+    .update(passwordHash ?? "")
+    .digest("hex")
+    .slice(0, 24);
 }

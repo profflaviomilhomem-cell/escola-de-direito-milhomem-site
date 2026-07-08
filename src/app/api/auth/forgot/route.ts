@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+import { passwordFingerprint } from "@/lib/auth/password";
 import { signResetToken } from "@/lib/auth/reset-token";
 import { prisma } from "@/lib/prisma";
 import { sendEmail } from "@/lib/resend/client";
@@ -77,7 +78,7 @@ export async function POST(req: NextRequest) {
 
   const user = await prisma.user.findUnique({
     where: { email },
-    select: { id: true, email: true, name: true },
+    select: { id: true, email: true, name: true, passwordHash: true },
   });
 
   // Se o usuário não existe, retornamos sucesso mas não fazemos nada.
@@ -86,7 +87,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true });
   }
 
-  const token = await signResetToken({ sub: user.id, email: user.email });
+  const token = await signResetToken({
+    sub: user.id,
+    email: user.email,
+    pv: passwordFingerprint(user.passwordHash),
+  });
   const resetUrl = `${new URL(req.url).origin}/recuperar-senha?token=${token}`;
 
   await sendEmail({

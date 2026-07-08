@@ -11,7 +11,11 @@ import {
 
 jest.mock("@/lib/prisma", () => ({
   prisma: {
-    refundRequest: { findUnique: jest.fn(), update: jest.fn() },
+    refundRequest: {
+      findUnique: jest.fn(),
+      update: jest.fn(),
+      updateMany: jest.fn(),
+    },
     order: { update: jest.fn() },
   },
 }));
@@ -22,6 +26,7 @@ jest.mock("@/lib/pagarme/refund", () => ({
 
 const rrFindUnique = prisma.refundRequest.findUnique as jest.Mock;
 const rrUpdate = prisma.refundRequest.update as jest.Mock;
+const rrUpdateMany = prisma.refundRequest.updateMany as jest.Mock;
 const orderUpdate = prisma.order.update as jest.Mock;
 const refund = refundPagarmeCharge as jest.Mock;
 
@@ -45,6 +50,7 @@ function request(overrides: Record<string, unknown> = {}) {
 beforeEach(() => {
   jest.clearAllMocks();
   rrUpdate.mockResolvedValue({});
+  rrUpdateMany.mockResolvedValue({ count: 1 }); // claim atômico vence por padrão
   orderUpdate.mockResolvedValue({});
 });
 
@@ -60,15 +66,18 @@ describe("approveRefundRequest", () => {
     });
 
     expect(refund).toHaveBeenCalledWith("ch_1", undefined);
-    expect(rrUpdate).toHaveBeenCalledWith({
-      where: { id: "rr1" },
-      data: {
-        status: "PROCESSED",
-        amountCents: 29700,
-        decidedByUserId: "admin1",
-        decidedAt: NOW,
-      },
-    });
+    // Claim atômico (updateMany com guarda de status), não update simples.
+    expect(rrUpdateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({ id: "rr1" }),
+        data: expect.objectContaining({
+          status: "PROCESSED",
+          amountCents: 29700,
+          decidedByUserId: "admin1",
+          decidedAt: NOW,
+        }),
+      }),
+    );
     expect(orderUpdate).toHaveBeenCalledWith({
       where: { id: "o1" },
       data: { status: "REFUNDED" },
@@ -78,6 +87,35 @@ describe("approveRefundRequest", () => {
       status: "PROCESSED",
       chargeId: "ch_1",
     });
+  });
+
+  it("recusa aprovação quando o valor elegível é 0 (política sem reembolso)", async () => {
+    // Regressão bug #4: valor 0 NÃO pode virar estorno integral.
+    rrFindUnique.mockResolvedValue(request({ amountCents: 0 }));
+    const res = await approveRefundRequest({
+      refundRequestId: "rr1",
+      decidedByUserId: "admin1",
+      now: NOW,
+    });
+    expect(res).toMatchObject({
+      ok: false,
+      code: "AMOUNT_NOT_REFUNDABLE",
+      httpStatus: 422,
+    });
+    expect(refund).not.toHaveBeenCalled();
+  });
+
+  it("aborta se o claim atômico não vence (race — já em processamento)", async () => {
+    // Regressão bug #5: sob concorrência, só uma aprovação estorna.
+    rrFindUnique.mockResolvedValue(request());
+    rrUpdateMany.mockResolvedValueOnce({ count: 0 });
+    const res = await approveRefundRequest({
+      refundRequestId: "rr1",
+      decidedByUserId: "admin1",
+      now: NOW,
+    });
+    expect(res).toMatchObject({ ok: false, code: "NOT_OPEN" });
+    expect(refund).not.toHaveBeenCalled();
   });
 
   it("estorno parcial quando o valor elegível é menor que o total", async () => {

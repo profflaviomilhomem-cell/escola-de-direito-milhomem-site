@@ -73,11 +73,14 @@ describe("sendCampaign", () => {
 
   it("envia só a leads confirmados e não descadastrados, deduplicados", async () => {
     campaignFindUnique.mockResolvedValue(campaign);
-    leadFindMany.mockResolvedValue([
-      { email: "a@b.com", name: "A" },
-      { email: "a@b.com", name: "A-outra-isca" },
-      { email: "c@d.com", name: null },
-    ]);
+    // 1ª query: leads opt-in. 2ª query: e-mails descadastrados (nenhum).
+    leadFindMany
+      .mockResolvedValueOnce([
+        { email: "a@b.com", name: "A" },
+        { email: "a@b.com", name: "A-outra-isca" },
+        { email: "c@d.com", name: null },
+      ])
+      .mockResolvedValueOnce([]);
 
     const summary = await sendCampaign("edicao-01", {
       now: new Date("2026-07-01T00:00:00Z"),
@@ -99,6 +102,23 @@ describe("sendCampaign", () => {
     );
   });
 
+  it("exclui e-mail que tem QUALQUER linha descadastrada (regressão #7)", async () => {
+    campaignFindUnique.mockResolvedValue(campaign);
+    // a@b.com está opt-in por uma isca, mas descadastrado (global) por outra.
+    leadFindMany
+      .mockResolvedValueOnce([
+        { email: "a@b.com", name: "A" },
+        { email: "c@d.com", name: "C" },
+      ])
+      .mockResolvedValueOnce([{ email: "a@b.com" }]);
+
+    const summary = await sendCampaign("edicao-01");
+
+    expect(summary.recipients).toBe(1); // só c@d.com
+    expect(sendMock).toHaveBeenCalledTimes(1);
+    expect(sendMock.mock.calls[0][0].to).toBe("c@d.com");
+  });
+
   it("não reenvia campanha já enviada", async () => {
     campaignFindUnique.mockResolvedValue({ ...campaign, status: "SENT" });
 
@@ -118,10 +138,12 @@ describe("sendCampaign", () => {
 
   it("contabiliza falha parcial sem abortar o lote", async () => {
     campaignFindUnique.mockResolvedValue(campaign);
-    leadFindMany.mockResolvedValue([
-      { email: "a@b.com", name: "A" },
-      { email: "c@d.com", name: "C" },
-    ]);
+    leadFindMany
+      .mockResolvedValueOnce([
+        { email: "a@b.com", name: "A" },
+        { email: "c@d.com", name: "C" },
+      ])
+      .mockResolvedValueOnce([]);
     sendMock
       .mockResolvedValueOnce({ ok: true })
       .mockResolvedValueOnce({ ok: false, error: "bounce" });
@@ -130,5 +152,20 @@ describe("sendCampaign", () => {
 
     expect(summary.sent).toBe(1);
     expect(summary.failed).toBe(1);
+  });
+
+  it("NÃO marca SENT quando todos os envios falham (regressão #8)", async () => {
+    campaignFindUnique.mockResolvedValue(campaign);
+    leadFindMany
+      .mockResolvedValueOnce([{ email: "a@b.com", name: "A" }])
+      .mockResolvedValueOnce([]);
+    sendMock.mockResolvedValue({ ok: false, error: "provedor fora" });
+
+    const summary = await sendCampaign("edicao-01");
+
+    expect(summary.ok).toBe(false);
+    expect(summary.sent).toBe(0);
+    // Campanha NÃO é queimada — permanece reenviável.
+    expect(campaignUpdate).not.toHaveBeenCalled();
   });
 });

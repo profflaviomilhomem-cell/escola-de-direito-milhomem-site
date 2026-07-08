@@ -225,20 +225,30 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  // Estorno integral quando não há valor (Pagar.me devolve o total) ou o valor
+  // cobre o pedido inteiro. Parcial NÃO marca REFUNDED: o aluno mantém acesso
+  // (reembolso só de parte) e o saldo remanescente segue estornável.
+  const isFullRefund =
+    parsed.data.amountCents == null ||
+    parsed.data.amountCents >= order.amountCents;
+
   try {
     const charge = await refundPagarmeCharge(
       order.pagarmeChargeId,
       parsed.data.amountCents,
     );
 
-    await prisma.order.update({
-      where: { id: order.id },
-      data: { status: "REFUNDED" },
-    });
+    if (isFullRefund) {
+      await prisma.order.update({
+        where: { id: order.id },
+        data: { status: "REFUNDED" },
+      });
+    }
 
     return NextResponse.json({
       ok: true,
       chargeId: charge.id ?? order.pagarmeChargeId,
+      partial: !isFullRefund,
     });
   } catch (err) {
     if (err instanceof PagarmeApiError) {

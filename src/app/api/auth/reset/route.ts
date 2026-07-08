@@ -1,7 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 
-import { hashPassword, PasswordTooLongError } from "@/lib/auth/password";
+import {
+  hashPassword,
+  passwordFingerprint,
+  PasswordTooLongError,
+} from "@/lib/auth/password";
 import { verifyResetToken } from "@/lib/auth/reset-token";
 import { prisma } from "@/lib/prisma";
 import { rateLimit } from "@/lib/upstash/rate-limit";
@@ -66,6 +70,29 @@ export async function POST(req: NextRequest) {
       {
         ok: false,
         error: "Link expirado ou inválido. Peça um novo link de recuperação.",
+      },
+      { status: 401 },
+    );
+  }
+
+  // Single-use: o token carrega o fingerprint do hash de senha vigente na
+  // emissão. Se a senha já foi trocada (o próprio reset, ou outro), o
+  // fingerprint atual não bate e o link é recusado — impede replay.
+  const user = await prisma.user.findUnique({
+    where: { id: payload.sub },
+    select: { passwordHash: true },
+  });
+  if (!user) {
+    return NextResponse.json(
+      { ok: false, error: "Usuário não encontrado." },
+      { status: 404 },
+    );
+  }
+  if (passwordFingerprint(user.passwordHash) !== payload.pv) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Link já utilizado ou expirado. Peça um novo link.",
       },
       { status: 401 },
     );

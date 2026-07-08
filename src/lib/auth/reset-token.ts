@@ -22,6 +22,12 @@ function getSecretKey(): Uint8Array {
 export type ResetPayload = {
   sub: string; // user id
   email: string;
+  /**
+   * Fingerprint do hash de senha no momento da emissão (ver
+   * `passwordFingerprint`). Torna o token single-use: assim que a senha é
+   * trocada, o fingerprint muda e o token antigo deixa de ser aceito no reset.
+   */
+  pv: string;
 };
 
 export async function signResetToken(payload: ResetPayload): Promise<string> {
@@ -45,6 +51,7 @@ export async function verifyResetToken(
     return {
       sub: String(payload.sub ?? ""),
       email: String(payload.email ?? ""),
+      pv: String(payload.pv ?? ""),
     };
   } catch {
     return null;

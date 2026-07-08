@@ -13,6 +13,7 @@ export type DecideRefundResult =
         | "ORDER_NOT_REFUNDABLE"
         | "NO_CHARGE"
         | "AMOUNT_TOO_HIGH"
+        | "AMOUNT_NOT_REFUNDABLE"
         | "PAGARME_ERROR"
         | "FAILURE";
       message: string;
@@ -24,8 +25,10 @@ export type DecideRefundResult =
  * refundPagarmeCharge) e transiciona RefundRequest→PROCESSED + Order→REFUNDED.
  *
  * Valor: `amountCentsOverride` (se o admin ajustar) tem prioridade; senão usa
- * o valor elegível gravado na solicitação (estorno parcial); 0/nulo → estorno
- * integral. O webhook `charge.refunded` confirma o Order de novo (idempotente).
+ * o valor elegível gravado na solicitação. O valor DEVE ser > 0 e ≤ total —
+ * um valor 0 significa "política não prevê reembolso" e é rejeitado (nunca
+ * vira estorno integral). Estorno é integral só quando o valor == total do
+ * pedido. O webhook `charge.refunded` confirma o Order de novo (idempotente).
  */
 export async function approveRefundRequest(input: {
   refundRequestId: string;
@@ -89,7 +92,18 @@ export async function approveRefundRequest(input: {
   const preferred =
     amountCentsOverride != null ? amountCentsOverride : request.amountCents;
 
-  if (preferred != null && preferred > orderAmount) {
+  // Valor 0/nulo = política não prevê reembolso. NUNCA tratar como integral —
+  // o admin precisa informar um valor explícito se quiser estornar mesmo assim.
+  if (preferred == null || preferred <= 0) {
+    return {
+      ok: false,
+      code: "AMOUNT_NOT_REFUNDABLE",
+      message:
+        "Valor elegível é zero (política não prevê reembolso). Informe um valor para estornar manualmente.",
+      httpStatus: 422,
+    };
+  }
+  if (preferred > orderAmount) {
     return {
       ok: false,
       code: "AMOUNT_TOO_HIGH",
@@ -98,11 +112,29 @@ export async function approveRefundRequest(input: {
     };
   }
 
-  // Estorno parcial só quando 0 < valor < total; senão integral (undefined).
-  const estornoAmount =
-    preferred != null && preferred > 0 && preferred < orderAmount
-      ? preferred
-      : undefined;
+  // Integral (undefined → Pagar.me estorna o total) só quando valor == total;
+  // caso contrário, estorno parcial exato.
+  const estornoAmount = preferred < orderAmount ? preferred : undefined;
+
+  // Claim atômico: só UMA aprovação concorrente transiciona OPEN→PROCESSED.
+  // Impede que duplo-clique / dois admins chamem refundPagarmeCharge duas vezes.
+  const claim = await prisma.refundRequest.updateMany({
+    where: { id: request.id, status: { in: OPEN_REFUND_STATUSES } },
+    data: {
+      status: "PROCESSED",
+      amountCents: estornoAmount ?? orderAmount,
+      decidedByUserId,
+      decidedAt: now,
+    },
+  });
+  if (claim.count === 0) {
+    return {
+      ok: false,
+      code: "NOT_OPEN",
+      message: "Solicitação já está sendo processada ou foi decidida.",
+      httpStatus: 409,
+    };
+  }
 
   try {
     const charge = await refundPagarmeCharge(
@@ -110,15 +142,6 @@ export async function approveRefundRequest(input: {
       estornoAmount,
     );
 
-    await prisma.refundRequest.update({
-      where: { id: request.id },
-      data: {
-        status: "PROCESSED",
-        amountCents: estornoAmount ?? orderAmount,
-        decidedByUserId,
-        decidedAt: now,
-      },
-    });
     await prisma.order.update({
       where: { id: request.order.id },
       data: { status: "REFUNDED" },
@@ -130,6 +153,11 @@ export async function approveRefundRequest(input: {
       chargeId: charge.id ?? request.order.pagarmeChargeId,
     };
   } catch (err) {
+    // Estorno falhou depois do claim: reverte para REQUESTED p/ permitir retry.
+    await prisma.refundRequest.updateMany({
+      where: { id: request.id, status: "PROCESSED" },
+      data: { status: "REQUESTED", decidedByUserId: null, decidedAt: null },
+    });
     if (err instanceof PagarmeApiError) {
       return {
         ok: false,

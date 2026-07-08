@@ -1,3 +1,4 @@
+import { timingSafeEqual } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -24,14 +25,29 @@ const PRODUCT = {
 
 const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? "EscolaFM2026!";
 
+/** Comparação constant-time de strings (evita timing oracle no token). */
+function safeEqual(a: string, b: string) {
+  const ab = Buffer.from(a);
+  const bb = Buffer.from(b);
+  if (ab.length !== bb.length) return false;
+  return timingSafeEqual(ab, bb);
+}
+
 function authorized(req: Request) {
   const token = req.headers.get("x-bootstrap-token")?.trim();
-  const secret = process.env.BOOTSTRAP_DEMO_TOKEN ?? process.env.AUTH_SECRET;
-  return Boolean(secret && token && token === secret);
+  // Exige um token DEDICADO — nunca cair para AUTH_SECRET (o segredo de
+  // assinatura do JWT), senão vazar/adivinhar o token = tomar o admin.
+  const secret = process.env.BOOTSTRAP_DEMO_TOKEN;
+  return Boolean(secret && token && safeEqual(token, secret));
 }
 
 /** POST idempotente — curso publicado + contas demo + matrícula do aluno. */
 export async function POST(req: Request) {
+  // Ferramenta de setup demo: NÃO deve existir em produção. Cria/redefine
+  // uma conta ADMIN com senha conhecida — pura superfície de ataque no ar.
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Não encontrado" }, { status: 404 });
+  }
   if (!authorized(req)) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }
@@ -166,7 +182,6 @@ export async function POST(req: Request) {
         role: u.role,
         name: u.name,
       })),
-      password: DEMO_PASSWORD,
       urls: {
         aluno: "/aluno/dashboard",
         professor: "/professor/dashboard",
