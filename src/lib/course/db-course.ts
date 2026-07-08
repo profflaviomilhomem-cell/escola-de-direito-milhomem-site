@@ -1,3 +1,4 @@
+import { ORDER_STATUSES_WITH_ACCESS } from "@/lib/business/commercial-rules";
 import type { Course, CourseLesson, CourseModule } from "@/lib/course/types";
 import {
   findCourseBySlug,
@@ -178,11 +179,33 @@ export async function getLessonFromDb(
 ): Promise<{ lesson: CourseLesson; course: Course } | null> {
   let productSlug: string | null = null;
   try {
-    const row = await prisma.lesson.findFirst({
+    // O slug de aula só é único POR PRODUTO (@@unique([productId, slug])), não
+    // globalmente. Com mais de um curso, slugs comuns ('aula-01', 'conclusao')
+    // colidem — um findFirst sem escopo pegaria uma aula de produto arbitrário.
+    // Buscamos todos os candidatos (ordem estável) e, havendo colisão, ficamos
+    // com o produto que o usuário realmente tem (pedido PAID/AUTHORIZED).
+    const candidates = await prisma.lesson.findMany({
       where: { slug: lessonSlug },
-      select: { product: { select: { slug: true } } },
+      select: { product: { select: { id: true, slug: true } } },
+      orderBy: { productId: "asc" },
     });
-    productSlug = row?.product.slug ?? null;
+    if (candidates.length === 0) return findLessonWithCourse(lessonSlug);
+
+    productSlug = candidates[0]!.product.slug;
+    if (candidates.length > 1 && userId) {
+      const owned = await prisma.order.findFirst({
+        where: {
+          userId,
+          productId: { in: candidates.map((c) => c.product.id) },
+          status: { in: [...ORDER_STATUSES_WITH_ACCESS] },
+        },
+        select: { productId: true },
+      });
+      const match = owned
+        ? candidates.find((c) => c.product.id === owned.productId)
+        : undefined;
+      if (match) productSlug = match.product.slug;
+    }
   } catch {
     return findLessonWithCourse(lessonSlug);
   }

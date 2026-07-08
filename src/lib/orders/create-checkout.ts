@@ -1,4 +1,4 @@
-import type { PaymentMethod, Product } from "@prisma/client";
+import { Prisma, type PaymentMethod, type Product } from "@prisma/client";
 
 import { productUsesSubscriptionAccess } from "@/lib/business/commercial-rules";
 import { userHasAccess } from "@/lib/enrollment";
@@ -116,18 +116,39 @@ export async function createCheckoutOrder(
 
   const paymentMethod = input.paymentMethod as PaymentMethod;
 
-  const order = await prisma.order.create({
-    data: {
-      userId: user.id,
-      productId: product.id,
-      status: "PENDING",
-      amountCents: product.priceCents,
-      paymentMethod,
-      utmSource: utm.utmSource,
-      utmMedium: utm.utmMedium,
-      utmCampaign: utm.utmCampaign,
-    },
-  });
+  // O findFirst acima é um pré-check amigável, mas NÃO é atômico. O índice
+  // único parcial (1 PENDING por usuário+produto) é o backstop: se duas
+  // requisições concorrentes chegarem aqui juntas, só uma cria o pedido; a
+  // outra recebe P2002 e vira PENDING_ORDER — impede a cobrança dupla.
+  let order;
+  try {
+    order = await prisma.order.create({
+      data: {
+        userId: user.id,
+        productId: product.id,
+        status: "PENDING",
+        amountCents: product.priceCents,
+        paymentMethod,
+        utmSource: utm.utmSource,
+        utmMedium: utm.utmMedium,
+        utmCampaign: utm.utmCampaign,
+      },
+    });
+  } catch (err) {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === "P2002"
+    ) {
+      return {
+        ok: false,
+        code: "PENDING_ORDER",
+        message:
+          "Você já tem um pedido pendente deste curso. Conclua o pagamento ou aguarde expirar.",
+        status: 409,
+      };
+    }
+    throw err;
+  }
 
   try {
     const customer = buildPagarmeCustomer({

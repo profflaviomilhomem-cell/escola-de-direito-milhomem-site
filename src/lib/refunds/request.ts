@@ -1,4 +1,4 @@
-import type { RefundStatus } from "@prisma/client";
+import { Prisma, type RefundStatus } from "@prisma/client";
 
 import { getContentConsumedPct } from "@/lib/lessons/progress";
 import { refundableAmountCents } from "@/lib/pagarme/refund";
@@ -98,16 +98,35 @@ export async function createRefundRequest(
     contentConsumedPct,
   });
 
-  const created = await prisma.refundRequest.create({
-    data: {
-      orderId: order.id,
-      userId,
-      reason: reason?.trim() || null,
-      amountCents: eligibleAmountCents,
-      status: "REQUESTED",
-    },
-    select: { id: true, status: true },
-  });
+  // O findFirst acima não é atômico. O índice único parcial (1 solicitação
+  // aberta por Order) é o backstop contra duplo-submit concorrente: a 2ª
+  // criação recebe P2002 e vira DUPLICATE_OPEN.
+  let created;
+  try {
+    created = await prisma.refundRequest.create({
+      data: {
+        orderId: order.id,
+        userId,
+        reason: reason?.trim() || null,
+        amountCents: eligibleAmountCents,
+        status: "REQUESTED",
+      },
+      select: { id: true, status: true },
+    });
+  } catch (err) {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === "P2002"
+    ) {
+      return {
+        ok: false,
+        code: "DUPLICATE_OPEN",
+        message:
+          "Já existe uma solicitação de reembolso em aberto para este pedido.",
+      };
+    }
+    throw err;
+  }
 
   return {
     ok: true,
