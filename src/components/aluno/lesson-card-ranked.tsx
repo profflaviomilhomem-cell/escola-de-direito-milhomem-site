@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
-import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
+import type { MockLesson } from "@/lib/course/types";
+import { formatDuration } from "@/lib/course/format";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = {

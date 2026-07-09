@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
-import type { MockCourse } from "@/data/mock-aluno";
+import type { MockCourse } from "@/lib/course/types";
 import { courseCatalogLabel } from "@/lib/course/aluno-courses";
-import { formatDuration } from "@/data/mock-aluno";
+import { formatDuration } from "@/lib/course/format";
 import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {

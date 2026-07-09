@@ -105,7 +105,7 @@ export default async function AulaPage({ params }: { params: Params }) {
                 ·
               </span>
               <span className="text-paper-700 fm-mono">
-                Aula {lesson.position} de {flat.length}
+                Aula {idx + 1} de {flat.length}
               </span>
               {lesson.status === "concluida" && (
                 <>

@@ -3,9 +3,9 @@
 import { useRef, useState } from "react";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
-import type { MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
-import type { MockCourse } from "@/data/mock-aluno";
+import type { MockLesson } from "@/lib/course/types";
+import { formatDuration } from "@/lib/course/format";
+import type { MockCourse } from "@/lib/course/types";
 import { primaryCourse } from "@/lib/course/aluno-courses";
 import { patchLessonProgress } from "@/lib/lessons/progress-client";
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";

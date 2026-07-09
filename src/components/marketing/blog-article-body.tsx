@@ -1,4 +1,13 @@
 import { splitBlogLeadVideo } from "@/lib/blog/split-body-media";
+import { sanitizeBlogHtml } from "@/lib/blog/sanitize-html";
+
+/** Escapa entidades HTML de texto puro antes de aplicar ênfase markdown. */
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
 const HTML_PROSE =
   "wp-migrated-html prose-juridica text-paper-800 text-[18px] leading-[1.8] [&_a]:text-amber [&_a:hover]:underline [&_blockquote]:border-paper-200 [&_blockquote]:text-paper-700 [&_blockquote]:border-l-2 [&_blockquote]:pl-4 [&_h1]:text-paper [&_h2]:text-paper [&_h2]:scroll-mt-28 [&_h3]:text-paper [&_h3]:scroll-mt-28 [&_img]:h-auto [&_img]:max-w-full [&_li]:marker:text-amber [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_strong]:text-paper [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6";
@@ -20,7 +29,7 @@ export function BlogArticleBody({ body, isHtml }: BlogArticleBodyProps) {
             key={i}
             className="text-paper-800"
             dangerouslySetInnerHTML={{
-              __html: paragraph
+              __html: escapeHtml(paragraph)
                 .replace(
                   /\*\*(.+?)\*\*/g,
                   '<strong class="text-paper">$1</strong>',
@@ -43,7 +52,7 @@ export function BlogArticleBody({ body, isHtml }: BlogArticleBodyProps) {
             <div
               key={i}
               className={LEAD_VIDEO}
-              dangerouslySetInnerHTML={{ __html: chunk }}
+              dangerouslySetInnerHTML={{ __html: sanitizeBlogHtml(chunk) }}
             />
           ))}
         </div>
@@ -51,7 +60,7 @@ export function BlogArticleBody({ body, isHtml }: BlogArticleBodyProps) {
 
       <div
         className={HTML_PROSE}
-        dangerouslySetInnerHTML={{ __html: bodyHtml }}
+        dangerouslySetInnerHTML={{ __html: sanitizeBlogHtml(bodyHtml) }}
       />
     </>
   );

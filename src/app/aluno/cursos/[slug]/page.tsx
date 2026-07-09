@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { LessonCardCompact } from "@/components/aluno/lesson-card-compact";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
-import { formatDuration } from "@/data/mock-aluno";
+import { formatDuration } from "@/lib/course/format";
 import {
   courseCatalogLabel,
   nextLessonInCourse,

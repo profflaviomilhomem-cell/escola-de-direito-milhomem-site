@@ -76,9 +76,11 @@ export default async function DashboardPage() {
   const completed = allLessons.filter((l) => l.status === "concluida");
   const totalLessons = enrolled.reduce((n, c) => n + c.lessonCount, 0);
 
+  // Tempo de estudo: duração cheia das concluídas + o assistido de TODAS as
+  // aulas em andamento (não só a "próxima" — senão progresso paralelo some).
   const totalSec =
     completed.reduce((acc, l) => acc + l.durationSec, 0) +
-    (next?.watchedSec ?? 0);
+    inProgress.reduce((acc, l) => acc + l.watchedSec, 0);
 
   const lessonsProgressPct = Math.min(
     100,

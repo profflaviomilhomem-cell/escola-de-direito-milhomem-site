@@ -1,4 +1,4 @@
-import type { MockLesson, MockLessonStatus } from "@/data/mock-aluno";
+import type { MockLesson, MockLessonStatus } from "@/lib/course/types";
 import { prisma } from "@/lib/prisma";
 
 const COMPLETION_RATIO = 0.9;
@@ -64,7 +64,13 @@ export async function upsertLessonProgress(
     },
   });
 
-  let watchedSec = input.watchedSec ?? existing?.watchedSec ?? 0;
+  // watchedSec é monotônico: representa o ponto máximo já assistido. Um PATCH
+  // com valor menor (seek pra trás, corrida de eventos) não pode regredir o
+  // progresso já gravado.
+  let watchedSec =
+    input.watchedSec != null
+      ? Math.max(input.watchedSec, existing?.watchedSec ?? 0)
+      : (existing?.watchedSec ?? 0);
   let completedAt = existing?.completedAt ?? null;
 
   if (input.completed) {

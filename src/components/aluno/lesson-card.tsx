@@ -2,7 +2,8 @@ import Link from "next/link";
 
 import { LessonMediaCover } from "@/components/aluno/lesson-media-cover";
 import { Progress } from "@/components/ui/progress";
-import { formatDuration, type MockLesson } from "@/data/mock-aluno";
+import { formatDuration } from "@/lib/course/format";
+import type { MockLesson } from "@/lib/course/types";
 import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {

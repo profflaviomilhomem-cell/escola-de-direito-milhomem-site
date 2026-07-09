@@ -127,8 +127,9 @@ export default async function BlogPage({
         </div>
       ) : null}
 
-      {/* Featured — mobile: título abaixo da imagem (evita corte por overflow) */}
-      {featured && (
+      {/* Featured — só na primeira página; nas seguintes ele reapareceria
+          redundante acima da grelha paginada. */}
+      {currentPage === 1 && featured && (
         <article className="group">
           <Link href={`/blog/${featured.slug}`} className="block no-underline">
             <div

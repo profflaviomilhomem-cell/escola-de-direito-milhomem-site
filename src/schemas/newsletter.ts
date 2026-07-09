@@ -18,8 +18,10 @@ export const newsletterSchema = z.object({
   utmMedium: z.string().max(120).optional(),
   utmCampaign: z.string().max(120).optional(),
   // Honeypot — campo invisível. Bots tendem a preencher; humanos não.
-  // Se vier preenchido, derrubamos a requisição em silêncio.
-  website: z.string().max(0).optional(),
+  // Aceitamos qualquer valor no schema (limitado) DE PROPÓSITO: rejeitar aqui
+  // devolveria um 422 apontando o campo `website` e ensinaria o bot qual é a
+  // armadilha. O descarte silencioso (201 fake) acontece na rota, após validar.
+  website: z.string().max(255).optional(),
 });
 
 export type NewsletterInput = z.infer<typeof newsletterSchema>;

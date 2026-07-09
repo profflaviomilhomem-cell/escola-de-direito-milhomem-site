@@ -6,9 +6,6 @@ export const enrolledCourses: Course[] = [provasDigitaisCourse];
 
 export const primaryCourse = enrolledCourses[0]!;
 
-/** @deprecated Use `primaryCourse`. */
-export const mockCourse = primaryCourse;
-
 export function findLessonBySlug(slug: string): CourseLesson | null {
   return findLessonWithCourse(slug)?.lesson ?? null;
 }

@@ -1,4 +1,4 @@
-import type { MockLesson } from "@/data/mock-aluno";
+import type { MockLesson } from "@/lib/course/types";
 import { mergeMockLessonProgress } from "@/lib/lessons/progress";
 
 const baseLesson: MockLesson = {

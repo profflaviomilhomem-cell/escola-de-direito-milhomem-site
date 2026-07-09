@@ -4,12 +4,10 @@ import Image from "next/image";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 
-import type { MockComment } from "@/data/mock-aluno";
+import type { MockComment } from "@/lib/course/types";
 
 type Props = {
   comments: MockComment[];
-  /** @deprecated use `maxDepth` — mantido por compatibilidade */
-  depth?: number;
   /** Profundidade máxima de aninhamento visual (fórum pode usar 20+). */
   maxDepth?: number;
   /** Fórum: botão "Responder" em cada comentário + compositor. */
@@ -219,12 +217,10 @@ function CommentNode({
 
 export function CommentTree({
   comments,
-  depth = 3,
-  maxDepth: maxDepthProp,
+  maxDepth = 3,
   interactive = false,
   onPublishReply,
 }: Props) {
-  const maxDepth = maxDepthProp ?? depth;
   const [openReplyId, setOpenReplyId] = useState<string | null>(null);
   const [draft, setDraft] = useState("");
 

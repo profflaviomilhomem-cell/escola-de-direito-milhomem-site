@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import { HeroBridgeDrawAnimation } from "@/components/aluno/hero-bridge-draw";
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
-import type { MockCourse, MockLesson } from "@/data/mock-aluno";
-import { formatDuration } from "@/data/mock-aluno";
+import type { MockCourse, MockLesson } from "@/lib/course/types";
+import { formatDuration } from "@/lib/course/format";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 type Props = {
