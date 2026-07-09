@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+import { gotoHydratedForm } from "./helpers";
+
 /**
  * Cobertura e2e do funil de captura — exigido pelo Checklist Fase 1.4
  * ("teste e2e Playwright cobre o fluxo completo").
@@ -11,7 +13,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("/newsletter — captura de lead", () => {
   test("renderiza headline, formulário e copy LGPD", async ({ page }) => {
-    await page.goto("/newsletter");
+    await gotoHydratedForm(page, "/newsletter");
 
     await expect(
       page.getByRole("heading", { level: 1, name: /B[oa]letim/i }),
@@ -24,7 +26,7 @@ test.describe("/newsletter — captura de lead", () => {
   });
 
   test("bloqueia envio sem e-mail e mostra erro Zod", async ({ page }) => {
-    await page.goto("/newsletter");
+    await gotoHydratedForm(page, "/newsletter");
 
     await page.getByRole("button", { name: /Quero receber/i }).click();
 
@@ -45,7 +47,7 @@ test.describe("/newsletter — captura de lead", () => {
       });
     });
 
-    await page.goto("/newsletter");
+    await gotoHydratedForm(page, "/newsletter");
     await page.getByLabel(/Seu nome/i).fill("Rafael");
     await page.getByLabel(/E-mail/i).fill("rafael@advogados-rj.com");
     await page.getByRole("button", { name: /Quero receber/i }).click();
@@ -68,7 +70,7 @@ test.describe("/newsletter — captura de lead", () => {
       });
     });
 
-    await page.goto("/newsletter");
+    await gotoHydratedForm(page, "/newsletter");
     await page.getByLabel(/E-mail/i).fill("foo@bar.com");
     await page.getByRole("button", { name: /Quero receber/i }).click();
 

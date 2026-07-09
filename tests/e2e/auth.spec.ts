@@ -1,5 +1,7 @@
 import { test, expect } from "@playwright/test";
 
+import { gotoHydratedForm } from "./helpers";
+
 /**
  * Cobertura e2e da autenticação — exigido pelo Checklist Fase 2.2
  * ("E2E Playwright valida que /aluno/dashboard sem cookie redireciona").
@@ -52,16 +54,19 @@ test.describe("Fluxos de Auth (Mocked API)", () => {
       });
     });
 
-    await page.goto("/entrar");
+    // Espera o React hidratar o form antes de clicar — sem isso, sob carga o
+    // clique dispararia um submit GET nativo em vez do onSubmit client.
+    await gotoHydratedForm(page, "/entrar");
     await page.getByLabel(/E-mail/i).fill("rafael@advogados-rj.com");
     await page.getByLabel(/Senha/i).fill("senha-valida");
 
-    const submitBtn = page.getByRole("button", { name: /Entrar/i });
-    await submitBtn.click();
-
-    // Como o JWT retornado no Set-Cookie seria inválido para o servidor real,
-    // o Next.js redirecionaria de volta para /entrar após o push.
-    // Validamos que o botão entrou em estado de loading ou que o form sumiu/mudou.
-    await expect(submitBtn).toBeDisabled();
+    // Ancoramos na requisição POST de login: prova estável de que o JS assumiu
+    // o submit e tentou autenticar (o `disabled` do botão é transitório demais
+    // para asserção confiável sob carga).
+    const loginCall = page.waitForRequest(
+      (req) => req.url().includes("/api/auth/login") && req.method() === "POST",
+    );
+    await page.getByRole("button", { name: /Entrar/i }).click();
+    await loginCall;
   });
 });
