@@ -3609,14 +3609,14 @@
   "sub": "#5 Painel professor",
   "theme": "var(--color-3)",
   "ref": "Fase 3.1",
-  "status": "EM PROGRESSO",
+  "status": "CONCLUÍDO",
   "phase": 4,
   "order": 2,
   "dependsOn": [
    "prod-lms-runtime"
   ],
   "desc": "Vercel Blob/S3 para capa/banner/aula; habilitar POST upload em produção, validar MIME/tamanho.",
-  "rich": "Código pronto: rota api/professor/upload (Vercel Blob, auth, validação MIME/tamanho). AGUARDA CHAVE: BLOB_READ_WRITE_TOKEN ausente -> upload retorna 403 em produção. [Regra dado-preenchido 26/jun: CONCLUÍDO->EM PROGRESSO. so conclui quando BLOB_READ_WRITE_TOKEN estiver preenchida.]",
+  "rich": "Código pronto: rota api/professor/upload (Vercel Blob, auth, validação MIME/tamanho). CONCLUÍDO 10/07/2026: BLOB_READ_WRITE_TOKEN provisionado (store escola-milhomem-uploads, público, iad1) e linkado a prod/preview/dev. Testado ao vivo: put(access:public) -> fetch público 200 image/png -> del -> 404.",
   "code": "api/professor/upload · BLOB_READ_WRITE_TOKEN"
  },
  {

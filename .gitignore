@@ -68,6 +68,12 @@ next-env.d.ts
 
 # Material estratégico interno — não subir (repo público)
 calendario-editorial-*.html
+docs/
 
 # Gerador legado do checklist (101 nós) — NÃO é o mestre de 308
 .organograma-autogen.html
+
+# Mockups/protótipos de dev — trabalho local, não versionar
+src/app/dev/mockups/
+public/images/brand/cyber_glass_scale.jpg
+.env*

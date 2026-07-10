@@ -75,6 +75,20 @@ export default function DevLauncherPage() {
               <span className="text-paper-600 text-xs">/dev/organograma</span>
             </Link>
           </li>
+          <li>
+            <Link
+              href="/dev/mockups"
+              className="block rounded-lg border border-violet-500/40 px-5 py-4 transition-colors hover:bg-violet-500/10"
+            >
+              <span className="fm-mono text-[10px] tracking-widest text-violet-400 uppercase">
+                5 · Mockups Surreais
+              </span>
+              <span className="mt-1 block font-sans text-lg">
+                14 landings premium + 5 simuladores
+              </span>
+              <span className="text-paper-600 text-xs">/dev/mockups</span>
+            </Link>
+          </li>
         </ul>
 
         <p className="text-paper-600 mt-10 text-xs">
