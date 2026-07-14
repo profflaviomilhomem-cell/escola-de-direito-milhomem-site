@@ -6,6 +6,7 @@ import { CertificateDiploma } from "@/components/certificate/certificate-diploma
 import { CertificatePrintButton } from "@/components/certificate/certificate-print-button";
 import { siteConfig } from "@/config/site";
 import { getCertificateByHash } from "@/lib/certificates";
+import { formatDateLongPtBR } from "@/lib/utils";
 
 type Props = { params: Promise<{ hash: string }> };
 
@@ -13,14 +14,6 @@ export const metadata: Metadata = {
   title: "Validação de certificado",
   robots: { index: false, follow: false },
 };
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 /** Validação pública de certificado — consulta o banco pelo hash. */
 export default async function CertificadoValidacaoPage({ params }: Props) {
@@ -90,7 +83,7 @@ export default async function CertificadoValidacaoPage({ params }: Props) {
         <CertificateDiploma
           userName={certificate.userName}
           productName={certificate.productName}
-          issuedAtLabel={formatDate(certificate.issuedAt)}
+          issuedAtLabel={formatDateLongPtBR(certificate.issuedAt)}
           hash={certificate.hash}
           validateUrl={validateUrl}
           professorName={siteConfig.professor.fullName}

@@ -8,18 +8,12 @@ import { getSessionFromCookies } from "@/lib/auth/session";
 import { getOrderForUser } from "@/lib/orders/create-checkout";
 import { TrackEvent } from "@/components/shared/track-event";
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { formatBRLFromCents } from "@/lib/utils";
 
 type Props = {
   params: Promise<{ orderId: string }>;
   searchParams: Promise<{ status?: string; kind?: string }>;
 };
-
-function formatPrice(cents: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(cents / 100);
-}
 
 export const metadata: Metadata = {
   title: "Resultado do pagamento",
@@ -82,7 +76,8 @@ export default async function CheckoutResultadoPage({
               Aguardando pagamento
             </h1>
             <p className="text-paper-700 mt-4 leading-relaxed">
-              Assinatura de {formatPrice(subscription.product.priceCents)} em{" "}
+              Assinatura de{" "}
+              {formatBRLFromCents(subscription.product.priceCents)} em{" "}
               <strong>{subscription.product.name}</strong>. Assim que o Pagar.me
               confirmar a primeira cobrança, liberamos o acesso automaticamente.
             </p>
@@ -188,7 +183,7 @@ export default async function CheckoutResultadoPage({
             Aguardando pagamento
           </h1>
           <p className="text-paper-700 mt-4 leading-relaxed">
-            Pedido de {formatPrice(order.amountCents)} em{" "}
+            Pedido de {formatBRLFromCents(order.amountCents)} em{" "}
             <strong>{order.product.name}</strong>. Assim que o Pagar.me
             confirmar, liberamos o acesso automaticamente.
           </p>

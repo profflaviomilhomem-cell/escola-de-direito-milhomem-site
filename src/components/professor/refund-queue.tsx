@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { formatBRLFromCents, formatDateShortPtBR } from "@/lib/utils";
+
 export type RefundQueueItem = {
   id: string;
   status: string;
@@ -16,21 +18,6 @@ export type RefundQueueItem = {
   orderAmountCents: number;
   hasCharge: boolean;
 };
-
-function formatMoney(cents: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(cents / 100);
-}
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "2-digit",
-  });
-}
 
 export function RefundQueue({ initial }: { initial: RefundQueueItem[] }) {
   const [items, setItems] = useState(initial);
@@ -84,7 +71,7 @@ export function RefundQueue({ initial }: { initial: RefundQueueItem[] }) {
                 {item.alunoEmail}
               </p>
               <p className="text-paper-600 fm-mono mt-1 text-xs">
-                Solicitado em {formatDate(item.createdAt)}
+                Solicitado em {formatDateShortPtBR(item.createdAt)}
                 {!item.hasCharge && " · sem cobrança Pagar.me"}
               </p>
               {item.reason && (
@@ -96,10 +83,10 @@ export function RefundQueue({ initial }: { initial: RefundQueueItem[] }) {
             <div className="text-right">
               <p className="text-paper-600 fm-mono text-xs">Valor elegível</p>
               <p className="text-amber fm-mono text-lg">
-                {formatMoney(item.amountCents ?? 0)}
+                {formatBRLFromCents(item.amountCents ?? 0)}
               </p>
               <p className="text-paper-600 fm-mono mt-1 text-xs">
-                pedido {formatMoney(item.orderAmountCents)}
+                pedido {formatBRLFromCents(item.orderAmountCents)}
               </p>
             </div>
           </div>

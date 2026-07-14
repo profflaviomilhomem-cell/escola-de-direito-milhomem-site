@@ -2,19 +2,6 @@ import type { OrderStatus, PaymentMethod } from "@prisma/client";
 
 import type { PagarmeCharge, PagarmeOrderResponse } from "@/lib/pagarme/types";
 
-export function mapPagarmePaymentMethod(
-  method: PaymentMethod,
-): "pix" | "boleto" | "credit_card" {
-  switch (method) {
-    case "PIX":
-      return "pix";
-    case "BOLETO":
-      return "boleto";
-    default:
-      return "credit_card";
-  }
-}
-
 export function mapChargeStatusToOrderStatus(
   chargeStatus: string | undefined,
 ): OrderStatus {

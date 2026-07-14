@@ -8,15 +8,9 @@ import { userHasAccess } from "@/lib/enrollment";
 import { resolveCheckoutProductSlug } from "@/lib/orders/checkout-slugs";
 import { getPublishedProductBySlug } from "@/lib/marketing/catalog";
 import { isPagarmeConfigured } from "@/lib/pagarme/config";
+import { formatBRLFromCents } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
-
-function formatPrice(cents: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(cents / 100);
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -81,7 +75,7 @@ export default async function CheckoutPage({ params }: Props) {
           <CheckoutForm
             productSlug={product.slug}
             productName={product.name}
-            priceLabel={formatPrice(product.priceCents)}
+            priceLabel={formatBRLFromCents(product.priceCents)}
             userName={session.name ?? "Aluno"}
             userEmail={session.email ?? ""}
           />

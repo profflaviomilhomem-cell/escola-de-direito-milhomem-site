@@ -41,6 +41,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Protótipos de dev — gitignored, trabalho local descartável (não lintar).
+    "src/app/dev/mockups/**",
   ]),
 ]);
 

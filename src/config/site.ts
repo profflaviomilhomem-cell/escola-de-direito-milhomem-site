@@ -96,5 +96,3 @@ export const siteConfig = {
     { label: "Contato", href: "/contato" },
   ],
 } as const;
-
-export type SiteConfig = typeof siteConfig;

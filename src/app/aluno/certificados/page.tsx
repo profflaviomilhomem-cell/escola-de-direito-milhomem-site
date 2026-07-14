@@ -9,19 +9,12 @@ import {
   issueCertificateIfEligible,
 } from "@/lib/certificates";
 import { getEnrolledCoursesWithProgress } from "@/lib/enrollment";
+import { formatDateLongPtBR } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Certificados",
   robots: { index: false, follow: false },
 };
-
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 export default async function CertificadosPage() {
   const session = await getSessionFromCookies();
@@ -95,7 +88,7 @@ export default async function CertificadosPage() {
                   {c.productName}
                 </h2>
                 <p className="text-paper-700 mt-2 text-sm">
-                  Emitido em {formatDate(c.issuedAt)}
+                  Emitido em {formatDateLongPtBR(c.issuedAt)}
                 </p>
                 <p className="text-paper-600 mt-1 font-mono text-xs break-all">
                   Código: {c.hash}

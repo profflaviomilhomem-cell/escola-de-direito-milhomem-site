@@ -6,8 +6,6 @@ export type UtmFields = {
   utmCampaign?: string;
 };
 
-const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign"] as const;
-
 function pickUtm(searchParams: URLSearchParams): UtmFields {
   const utmSource = searchParams.get("utm_source")?.trim();
   const utmMedium = searchParams.get("utm_medium")?.trim();
@@ -53,7 +51,3 @@ export function mergeUtm(primary: UtmFields, fallback: UtmFields): UtmFields {
 
 /** Persiste UTM no sessionStorage (client) — chaves canônicas. */
 export const UTM_STORAGE_KEY = "fm_utm";
-
-export function utmStorageKeys(): readonly string[] {
-  return UTM_KEYS;
-}

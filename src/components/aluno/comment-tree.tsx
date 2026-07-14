@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 
+import { initialsFromName } from "@/lib/course/format";
 import type { MockComment } from "@/lib/course/types";
 
 type Props = {
@@ -47,16 +48,6 @@ function ago(iso: string): string {
     hour: "2-digit",
     minute: "2-digit",
   });
-}
-
-function initials(name: string): string {
-  return name
-    .split(/\s+/)
-    .map((p) => p[0])
-    .filter(Boolean)
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
 }
 
 function sortRepliesChronological(list: MockComment[]): MockComment[] {
@@ -117,7 +108,7 @@ function CommentNode({
           <span
             className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold ${tone.badge}`}
           >
-            {initials(comment.author.name)}
+            {initialsFromName(comment.author.name)}
           </span>
         )}
         <span className="text-paper text-sm font-semibold">

@@ -89,22 +89,3 @@ export function mapPrismaPostToArticle(p: PostWithAuthor): BlogArticlePost {
     modifiedAt: p.updatedAt?.toISOString(),
   };
 }
-
-export function mapPrismaPostToRelated(p: BlogPost): BlogRelatedPost {
-  return {
-    slug: p.slug,
-    title: p.title,
-    category: p.category,
-    coverImage: p.coverImage ?? undefined,
-    cover: { ...BLOG_COVER },
-  };
-}
-
-export function mapPrismaPostToFeed(p: BlogPost): BlogFeedItem {
-  return {
-    slug: p.slug,
-    title: p.title,
-    excerpt: p.excerpt ?? "",
-    publishedAt: p.publishedAt ?? p.createdAt,
-  };
-}

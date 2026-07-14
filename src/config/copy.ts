@@ -397,5 +397,3 @@ export const copy = {
       "A Escola existe para transmitir, com rigor e ética, o modo de pensar a acusação — em cohort, com materiais densos e espaço para dúvida. O magistério privado não se confunde com a função institucional.",
   },
 } as const;
-
-export type SiteCopy = typeof copy;

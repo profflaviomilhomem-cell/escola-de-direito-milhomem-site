@@ -9,5 +9,3 @@ export const manualEnrollmentSchema = z.object({
   productSlug: z.string().trim().min(1, "Selecione um produto."),
   note: z.string().trim().max(500).optional(),
 });
-
-export type ManualEnrollmentInput = z.infer<typeof manualEnrollmentSchema>;

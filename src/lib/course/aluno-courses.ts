@@ -6,10 +6,6 @@ export const enrolledCourses: Course[] = [provasDigitaisCourse];
 
 export const primaryCourse = enrolledCourses[0]!;
 
-export function findLessonBySlug(slug: string): CourseLesson | null {
-  return findLessonWithCourse(slug)?.lesson ?? null;
-}
-
 export function nextLesson(): CourseLesson | null {
   return nextLessonAcrossCourses();
 }

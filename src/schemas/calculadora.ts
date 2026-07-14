@@ -43,5 +43,3 @@ export const calculadoraSchema = z
     (data) => !data.minDias || !data.maxDias || data.maxDias >= data.minDias,
     { message: "O máximo legal não pode ser menor que o mínimo." },
   );
-
-export type CalculadoraInput = z.infer<typeof calculadoraSchema>;

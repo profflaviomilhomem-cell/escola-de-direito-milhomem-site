@@ -5,6 +5,7 @@ import { requireAdminSession } from "@/lib/auth/require-admin";
 import { getCohortVagas } from "@/lib/marketing/catalog";
 import { formatBRL } from "@/lib/professor/metrics";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { formatDateShortPtBR } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Painel interno — Operação",
@@ -19,14 +20,6 @@ const ORDER_STATUS_LABEL: Record<string, string> = {
   REFUNDED: "Reembolsado",
   CHARGEDBACK: "Chargeback",
 };
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "2-digit",
-  });
-}
 
 export default async function AdminDashboardPage() {
   await requireAdminSession();
@@ -168,7 +161,7 @@ export default async function AdminDashboardPage() {
                   <div className="min-w-0">
                     <p className="text-paper truncate text-sm">{o.produto}</p>
                     <p className="text-paper-600 font-mono text-[11px]">
-                      {formatDate(o.createdAt)} ·{" "}
+                      {formatDateShortPtBR(o.createdAt)} ·{" "}
                       {ORDER_STATUS_LABEL[o.status] ?? o.status}
                     </p>
                   </div>

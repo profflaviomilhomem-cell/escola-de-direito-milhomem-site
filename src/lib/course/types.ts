@@ -78,8 +78,5 @@ export type Announcement = {
 /** Aliases legados — migração gradual dos imports `Mock*`. */
 export type MockLessonStatus = LessonStatus;
 export type MockLesson = CourseLesson;
-export type MockModule = CourseModule;
 export type MockCourse = Course;
 export type MockComment = ForumComment;
-export type MockForumThread = ForumThread;
-export type MockAnnouncement = Announcement;

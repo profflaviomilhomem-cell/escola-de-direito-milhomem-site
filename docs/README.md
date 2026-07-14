@@ -1,5 +1,11 @@
 # Docs internos — Escola Flávio Milhomem
 
+Esta pasta guarda apenas **documentação técnica do código** (code-adjacent).
+Todo o material de **estratégia, conteúdo, livro-guia e auditorias** vive no
+vault Obsidian do cliente — não no repositório:
+
+`/Users/carlos/Documents/BettoOrbee/Vaults/Flavio Milhomem/`
+
 ## ADR (Architecture Decision Records)
 
 Decisões arquiteturais relevantes ficam em [`adr/`](./adr/) numeradas em
@@ -11,22 +17,16 @@ ADRs ativos:
 - [0001 — Escolha da Stack Tecnológica](./adr/0001-stack-technology.md)
 - [0002 — Design System em CSS-First com Tailwind v4](./adr/0002-design-system-tokens.md)
 
-## Documentos externos referenciados
+## Deploy
 
-O projeto é guiado por dois documentos vivos mantidos em
-`/Users/carlos/Documents/BettoOrbee/clientes /Flavio Milhomem/docs/`:
+- [`DEPLOY-VERCEL-CLI.md`](./DEPLOY-VERCEL-CLI.md) — passo a passo de deploy pela Vercel CLI.
 
-- **Livro-Guia v1.2** ([`adr/livro-guia-flavio.md`](./adr/livro-guia-flavio.md)) — DNA da Escola (cópia no repositório).
-- **Guia de Desenvolvimento Web v1.0** (`dev/guia-desenvolvimento-web.md`)
-  — fonte de verdade técnica deste repositório.
+## Material estratégico (mora no vault)
 
-## Handoff de sessão (agente / continuidade)
+Livro-guia, auditorias (livro-guia, técnica, SEO/AEO/GEO), checklists de fase,
+handoffs de sessão, calendário editorial e roteiros de vídeo foram movidos para
+o vault do cliente (fonte de verdade). Consulte o índice `Flavio Milhomem.md`
+no vault.
 
-- [`handoff-sessao-2026-05-18.md`](./handoff-sessao-2026-05-18.md) — contexto da sessão de
-  acessibilidade, commit `271fb8b`, arquivos-chave e pendências. **Ler primeiro** ao retomar
-  em novo chat.
-
-## Auditoria alinhamento (Livro-Guia × site)
-
-- [`auditoria-tecnica-livro-guia.md`](./auditoria-tecnica-livro-guia.md) — **principal:** produto, rotas, integrações e funil (sem copy nem identidade visual).
-- [`auditoria-livro-guia.md`](./auditoria-livro-guia.md) — versão ampla (inclui copy/visual); mantida como referência histórica.
+Protótipos de tela (versões React de desenvolvimento) ficam em
+`src/app/dev/mockups/` — trabalho local, fora do controle de versão.
