@@ -10,6 +10,10 @@ export function TestimonialsSection({ variant: _variant = "home" }: Props) {
   const { eyebrow, title, titleEmphasis, lead, items } =
     turmaFundadoraAvaliacoes;
 
+  // Sem avaliação real e autorizada, a seção não existe — página sem depoimento é
+  // melhor que depoimento inventado. Ver o cabeçalho de `turma-fundadora-avaliacoes`.
+  if (items.length === 0) return null;
+
   return (
     <section
       className="fm-site-section py-16 lg:py-32"
