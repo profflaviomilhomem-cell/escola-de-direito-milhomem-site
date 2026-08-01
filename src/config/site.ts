@@ -40,8 +40,18 @@ export const siteConfig = {
   },
 
   contact: {
-    email: "contato@escolaflaviomilhomem.com.br",
-    privacyEmail: "privacidade@escolaflaviomilhomem.com.br",
+    /**
+     * E-mail oficial do professor. Os anteriores (`contato@` e `privacidade@`
+     * em `escolaflaviomilhomem.com.br`) apontavam para um domínio que NÃO ESTÁ
+     * REGISTRADO — verificado no registro.br em 01/08/2026 —, então quem
+     * escrevesse levava bounce, inclusive no canal de LGPD, que é obrigatório.
+     *
+     * Este endereço é para RECEBER e para exibição. O remetente técnico dos
+     * e-mails transacionais NÃO pode ser ele: o Resend só envia de domínio
+     * verificado por DKIM, e gmail.com não é nosso. Ver `lib/resend/client.ts`.
+     */
+    email: "prof.flaviomilhomem@gmail.com",
+    privacyEmail: "prof.flaviomilhomem@gmail.com",
   },
 
   social: {

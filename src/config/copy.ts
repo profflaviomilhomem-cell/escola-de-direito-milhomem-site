@@ -345,7 +345,10 @@ export const copy = {
       },
       {
         q: "Como entrar em contato com a Escola?",
-        a: "Pelo formulário da página de contato ou pelo e-mail contato@escolaflaviomilhomem.com.br. O prazo de resposta é de até 3 dias úteis.",
+        // Endereço repetido à mão de propósito: `site.ts` importa este arquivo,
+        // então importar `siteConfig` aqui criaria ciclo. Se o e-mail oficial
+        // mudar, mudar nos dois lugares (`site.ts` → contact.email).
+        a: "Pelo formulário da página de contato ou pelo e-mail prof.flaviomilhomem@gmail.com. O prazo de resposta é de até 3 dias úteis.",
       },
     ] as const,
   },

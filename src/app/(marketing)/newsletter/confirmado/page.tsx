@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 import { TrackEvent } from "@/components/shared/track-event";
 
@@ -42,7 +43,7 @@ const COPY: Record<
   error: {
     eyebrow: "Erro inesperado",
     title: "Algo falhou na confirmação.",
-    body: "Tente novamente em alguns minutos. Se persistir, escreva para contato@escolaflaviomilhomem.com.br citando este link.",
+    body: `Tente novamente em alguns minutos. Se persistir, escreva para ${siteConfig.contact.email} citando este link.`,
   },
 };
 

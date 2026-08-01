@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 
+import { siteConfig } from "@/config/site";
+
 /**
  * Cliente Resend tolerante a ambiente vazio — mas só fora de produção.
  *
@@ -70,7 +72,12 @@ export async function sendEmail(
       subject: opts.subject,
       html: opts.html,
       text: opts.text,
-      replyTo: opts.replyTo,
+      // Sem `replyTo` explícito, a resposta do aluno iria para o remetente
+      // técnico (`@professorflaviomilhomem.com.br`), que é um domínio sem
+      // caixa configurada — a mensagem se perderia. O padrão é o e-mail
+      // oficial do professor. `api/contact` sobrescreve com o endereço do
+      // visitante, que é o comportamento certo lá.
+      replyTo: opts.replyTo ?? siteConfig.contact.email,
     });
     if (result.error) {
       return { ok: false, error: result.error.message };

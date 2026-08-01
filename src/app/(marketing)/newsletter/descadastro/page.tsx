@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
@@ -28,13 +29,13 @@ const COPY: Record<
   invalid: {
     eyebrow: "Link inválido",
     title: "Esse link de descadastro não pôde ser lido.",
-    body: "Pode ser que ele tenha sido truncado pelo cliente de e-mail. Se quiser sair da lista, escreva para contato@escolaflaviomilhomem.com.br que fazemos a remoção manualmente.",
+    body: `Pode ser que ele tenha sido truncado pelo cliente de e-mail. Se quiser sair da lista, escreva para ${siteConfig.contact.email} que fazemos a remoção manualmente.`,
     cta: { href: "/", label: "Voltar para a Escola" },
   },
   error: {
     eyebrow: "Erro inesperado",
     title: "Algo falhou no descadastro.",
-    body: "Tente novamente em alguns minutos. Se persistir, escreva para contato@escolaflaviomilhomem.com.br citando este link — resolvemos manualmente.",
+    body: `Tente novamente em alguns minutos. Se persistir, escreva para ${siteConfig.contact.email} citando este link — resolvemos manualmente.`,
   },
 };
 
