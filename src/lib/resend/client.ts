@@ -1,12 +1,20 @@
 import { Resend } from "resend";
 
 /**
- * Cliente Resend tolerante a ambiente vazio.
+ * Cliente Resend tolerante a ambiente vazio — mas só fora de produção.
  *
  * Em dev/CI sem `RESEND_API_KEY`, o cliente vira no-op: as chamadas
  * retornam `{ ok: true, skipped: true }` e logam o destinatário no
  * console — assim o fluxo da newsletter pode ser exercitado de ponta
  * a ponta sem credenciais reais.
+ *
+ * Em produção, ausência de chave é FALHA e nunca sucesso. Antes, o no-op
+ * valia em qualquer ambiente: o site respondia "e-mail enviado" sem enviar
+ * nada e sem deixar rastro, porque o log estava condicionado a dev. Isca,
+ * confirmação de cadastro e recuperação de senha sumiam em silêncio.
+ * Nenhuma rota muda de resposta com isso — `api/leads` já ignorava o
+ * resultado e `api/auth/forgot` responde `ok` por decisão anti-enumeração.
+ * O que muda é existir registro do problema.
  */
 
 let cached: Resend | null = null;
@@ -33,15 +41,25 @@ export async function sendEmail(
   { ok: true; id?: string; skipped?: true } | { ok: false; error: string }
 > {
   const client = getClient();
+  // Fallback no domínio que EXISTE. O anterior era
+  // `contato@escolaflaviomilhomem.com.br`, e esse domínio não está registrado
+  // (verificado no registro.br em 01/08/2026) — remetente ali é entrega
+  // garantidamente falha. O domínio real é professorflaviomilhomem.com.br,
+  // de FLÁVIO AUGUSTO MILHOMEM, e é ele que precisa ser verificado no Resend.
   const from =
-    process.env.RESEND_FROM_EMAIL ?? "contato@escolaflaviomilhomem.com.br";
+    process.env.RESEND_FROM_EMAIL ?? "contato@professorflaviomilhomem.com.br";
 
   if (!client) {
-    if (process.env.NODE_ENV !== "production") {
-      console.info(
-        `[resend:stub] would send to=${opts.to} subject="${opts.subject}"`,
+    if (process.env.NODE_ENV === "production") {
+      console.error(
+        `[resend] RESEND_API_KEY ausente em produção — e-mail NÃO enviado. ` +
+          `subject="${opts.subject}"`,
       );
+      return { ok: false, error: "RESEND_API_KEY ausente em produção" };
     }
+    console.info(
+      `[resend:stub] would send to=${opts.to} subject="${opts.subject}"`,
+    );
     return { ok: true, skipped: true };
   }
 
