@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/newsletter`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/faq`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/livros`, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${base}/materiais`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contato`, changeFrequency: "yearly", priority: 0.5 },
     {
       url: `${base}/eventos/dia-do-advogado-2026`,
