@@ -9,7 +9,7 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 export const metadata: Metadata = {
   title: "Dia do Advogado 2026 · Abertura oficial da Escola",
   description: copy.evento.lead,
-  alternates: { canonical: "/eventos/dia-do-advogado-2026" },
+  alternates: { canonical: "/eventos/dia-do-advogado-2026-brasilia" },
 };
 
 export default function EventoDiaAdvogadoPage() {

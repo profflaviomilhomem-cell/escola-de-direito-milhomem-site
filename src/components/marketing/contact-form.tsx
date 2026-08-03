@@ -124,6 +124,25 @@ export function ContactForm() {
       </div>
       <div>
         <label
+          htmlFor="contact-subject"
+          className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase"
+        >
+          Assunto
+        </label>
+        <input
+          id="contact-subject"
+          type="text"
+          className="border-paper-200 bg-carbon-elevated/50 text-paper mt-2 w-full border px-4 py-3 text-base"
+          {...register("subject")}
+        />
+        {errors.subject ? (
+          <p className="text-alerta-400 mt-1 text-sm">
+            {errors.subject.message}
+          </p>
+        ) : null}
+      </div>
+      <div>
+        <label
           htmlFor="contact-message"
           className="text-paper-600 font-mono text-[10px] tracking-[0.2em] uppercase"
         >

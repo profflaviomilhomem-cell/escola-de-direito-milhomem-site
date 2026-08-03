@@ -7,6 +7,18 @@ export const contactSchema = z.object({
     .min(1, "Informe seu e-mail.")
     .email("E-mail inválido.")
     .max(255, "E-mail longo demais."),
+  /**
+   * Previsto no blueprint da página de contato (Livro-Guia cap. 5.8: "campos
+   * mínimos — nome, e-mail, assunto, mensagem") e ausente até 03/08/2026.
+   *
+   * Vai para a linha de assunto do e-mail, então quem recebe tria sem abrir a
+   * mensagem — a página anuncia três canais bem diferentes (Edição Lançamento,
+   * parcerias acadêmicas e imprensa) numa caixa só.
+   */
+  subject: z
+    .string()
+    .min(3, "Informe o assunto.")
+    .max(150, "Assunto longo demais."),
   message: z
     .string()
     .min(10, "Mensagem muito curta.")

@@ -5,7 +5,7 @@ describe("isNewsletterPopupExcluded", () => {
     for (const path of [
       "/newsletter",
       "/newsletter/confirmado",
-      "/eventos/dia-do-advogado-2026",
+      "/eventos/dia-do-advogado-2026-brasilia",
       "/calculadora-de-pena",
       "/entrar",
       "/cadastro",

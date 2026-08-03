@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         destination: "/cursos/prova-digital-no-processo-penal",
         permanent: true,
       },
+      {
+        // O Livro-Guia (cap. 7.3) especifica o endereço COM o recorte
+        // geográfico — é a única página local da estratégia de SEO no DF, e
+        // publicá-la sem "brasilia" descartava justamente o sinal que ela
+        // existia para carregar. O endereço antigo esteve no ar, então segue
+        // redirecionando.
+        source: "/eventos/dia-do-advogado-2026",
+        destination: "/eventos/dia-do-advogado-2026-brasilia",
+        permanent: true,
+      },
     ];
   },
   images: {

@@ -57,16 +57,21 @@ export async function POST(req: NextRequest) {
   const html = `
     <p><strong>Nome:</strong> ${escapeHtml(data.name)}</p>
     <p><strong>E-mail:</strong> ${escapeHtml(data.email)}</p>
+    <p><strong>Assunto:</strong> ${escapeHtml(data.subject)}</p>
     <p><strong>Mensagem:</strong></p>
     <p>${escapeHtml(data.message).replace(/\n/g, "<br>")}</p>
   `;
 
   const result = await sendEmail({
     to: siteConfig.contact.email,
-    subject: `[Contato] ${data.name}`,
+    // O assunto informado pelo visitante passa a encabeçar o e-mail (antes era
+    // o nome dele), para permitir triagem sem abrir a mensagem: a página
+    // anuncia três canais distintos — Edição Lançamento, parcerias acadêmicas
+    // e imprensa — numa caixa só. O nome continua no corpo e no texto puro.
+    subject: `[Contato] ${data.subject}`,
     html,
     replyTo: data.email,
-    text: `${data.name} <${data.email}>\n\n${data.message}`,
+    text: `${data.name} <${data.email}>\nAssunto: ${data.subject}\n\n${data.message}`,
   });
 
   if (!result.ok) {

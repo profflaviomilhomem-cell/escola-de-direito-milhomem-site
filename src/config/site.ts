@@ -102,7 +102,7 @@ export const siteConfig = {
   ],
   /** Links secundários (footer e menu mobile “Mais”) */
   secondaryNav: [
-    { label: "Eventos", href: "/eventos/dia-do-advogado-2026" },
+    { label: "Eventos", href: "/eventos/dia-do-advogado-2026-brasilia" },
     { label: "Contato", href: "/contato" },
   ],
 } as const;
