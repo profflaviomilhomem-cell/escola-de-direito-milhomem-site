@@ -73,12 +73,27 @@ export default async function HomePage() {
             <p className="fm-hero-fade fm-hero-fade--bio text-paper-700 mb-8 max-w-2xl text-base leading-relaxed tracking-[0.025em] md:mb-10 lg:max-w-none">
               {hero.bio}
             </p>
-            <div className="fm-hero-fade fm-hero-fade--cta flex justify-center lg:justify-start">
+            {/*
+              Dois CTAs, conforme blueprint da home no Livro-Guia (cap. 5.8): um
+              primário para o curso e um secundário para a captura de lead.
+              O `ctaSecondary` já existia em `copy.home.hero` desde sempre — o que
+              faltava era renderizá-lo: a limpeza de CTAs de 18/05/2026 tirou o
+              elemento do JSX e deixou a string órfã no config.
+              O secundário é visualmente subordinado (contorno, sem preenchimento),
+              como manda o cap. 5.5 para o botão secundário.
+            */}
+            <div className="fm-hero-fade fm-hero-fade--cta flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start">
               <Link
                 href="#cohort"
                 className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaPrimary} →
+              </Link>
+              <Link
+                href="/newsletter"
+                className="border-amber/60 text-paper hover:border-amber hover:text-amber inline-flex w-full max-w-sm items-center justify-center gap-2 border px-8 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
+              >
+                {hero.ctaSecondary}
               </Link>
             </div>
           </div>
