@@ -105,7 +105,7 @@ export function BlogEditor({ post }: Props) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Título do artigo"
-            className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+            className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           />
         </Field>
 
@@ -115,7 +115,7 @@ export function BlogEditor({ post }: Props) {
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
             placeholder="exemplo-de-slug-do-artigo"
-            className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 font-mono text-sm outline-none"
+            className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 font-mono text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           />
         </Field>
 
@@ -128,7 +128,7 @@ export function BlogEditor({ post }: Props) {
             onChange={(e) => setExcerpt(e.target.value)}
             rows={3}
             placeholder="Em até 200 caracteres."
-            className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm leading-relaxed outline-none"
+            className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm leading-relaxed outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           />
         </Field>
 
@@ -141,7 +141,7 @@ export function BlogEditor({ post }: Props) {
             onChange={(e) => setBody(e.target.value)}
             rows={18}
             placeholder="Escreva o artigo completo aqui."
-            className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 font-serif text-base leading-relaxed outline-none"
+            className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 font-serif text-base leading-relaxed outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           />
         </Field>
 
@@ -150,7 +150,7 @@ export function BlogEditor({ post }: Props) {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as BlogCategory)}
-              className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+              className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {CATEGORY_OPTIONS.map(([key, label]) => (
                 <option key={key} value={key}>
@@ -164,7 +164,7 @@ export function BlogEditor({ post }: Props) {
             <select
               value={status}
               onChange={(e) => setStatus(e.target.value as BlogStatus)}
-              className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+              className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               {STATUS_OPTIONS.map((s) => (
                 <option key={s.value} value={s.value}>
@@ -181,7 +181,7 @@ export function BlogEditor({ post }: Props) {
               type="date"
               value={publishedAt}
               onChange={(e) => setPublishedAt(e.target.value)}
-              className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 font-mono text-sm outline-none"
+              className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 font-mono text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </Field>
 
@@ -191,7 +191,7 @@ export function BlogEditor({ post }: Props) {
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="STJ, cadeia de custódia, CPP"
-              className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+              className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </Field>
         </div>

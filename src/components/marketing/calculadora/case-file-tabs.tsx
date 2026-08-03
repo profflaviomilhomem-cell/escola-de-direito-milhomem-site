@@ -376,7 +376,7 @@ export function TabDados(props: TabDadosProps) {
                     props.setCrimeListOpen(true);
                   }}
                   placeholder="Buscar crime ou artigo…"
-                  className="fm-calc-screen-field w-full px-2.5 py-2 text-[12px] outline-none focus:border-[#8a6a09]"
+                  className="fm-calc-screen-field focus-visible:outline-amber w-full px-2.5 py-2 text-[12px] outline-none focus:border-[#8a6a09] focus-visible:outline-2 focus-visible:outline-offset-2"
                 />
               ) : (
                 <span aria-hidden />
@@ -396,7 +396,7 @@ export function TabDados(props: TabDadosProps) {
                       e.target.value as TabDadosProps["statusProc"],
                     )
                   }
-                  className="fm-calc-screen-field w-full px-2 py-1.5 text-[11px] outline-none"
+                  className="fm-calc-screen-field focus-visible:outline-amber w-full px-2 py-1.5 text-[11px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
                 >
                   <option value="ipl">Indiciamento (IPL)</option>
                   <option value="denuncia">Denúncia oferecida</option>
@@ -468,7 +468,7 @@ export function TabDados(props: TabDadosProps) {
                     e.target.value as TabDadosProps["antecedentes"],
                   )
                 }
-                className="fm-calc-screen-field mt-0.5 w-full px-2 py-1.5 text-[11px] outline-none"
+                className="fm-calc-screen-field focus-visible:outline-amber mt-0.5 w-full px-2 py-1.5 text-[11px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 <option value="limpos">Sem antecedentes</option>
                 <option value="1-condenacao">1 condenação</option>
@@ -489,7 +489,7 @@ export function TabDados(props: TabDadosProps) {
                   props.setCrimeListOpen(true);
                 }}
                 placeholder="Buscar crime ou artigo…"
-                className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-600 w-full border px-3 py-2.5 text-sm outline-none sm:px-4 sm:py-3"
+                className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-600 focus-visible:outline-amber w-full border px-3 py-2.5 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 sm:px-4 sm:py-3"
               />
             ) : null}
 
@@ -522,7 +522,7 @@ export function TabDados(props: TabDadosProps) {
                     e.target.value as TabDadosProps["statusProc"],
                   )
                 }
-                className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+                className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 <option value="ipl">Indiciamento (IPL)</option>
                 <option value="denuncia">Denúncia oferecida</option>
@@ -574,7 +574,7 @@ export function TabDados(props: TabDadosProps) {
                     e.target.value as TabDadosProps["antecedentes"],
                   )
                 }
-                className="border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-4 py-3 text-sm outline-none"
+                className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber w-full border px-4 py-3 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               >
                 <option value="limpos">Sem antecedentes criminais</option>
                 <option value="1-condenacao">
@@ -624,8 +624,8 @@ export function TabFato({
         placeholder="Narre o fato hipotético em poucas linhas…"
         className={
           embedded
-            ? "fm-calc-screen-field w-full resize-none px-2 py-2 text-[12px] leading-relaxed outline-none"
-            : "border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-600 w-full border px-4 py-3 text-sm leading-relaxed outline-none"
+            ? "fm-calc-screen-field focus-visible:outline-amber w-full resize-none px-2 py-2 text-[12px] leading-relaxed outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+            : "border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-600 focus-visible:outline-amber w-full border px-4 py-3 text-sm leading-relaxed outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
         }
       />
       <p

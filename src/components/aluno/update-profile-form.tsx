@@ -55,7 +55,7 @@ export function UpdateProfileForm({ initialName, initialEmail }: Props) {
         <span className="text-paper-700 fm-mono">Nome completo</span>
         <input
           {...register("name")}
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber mt-2 block w-full border-b px-2 py-3 transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
         />
         {errors.name && (
           <p className="text-alerta-400 mt-1 text-xs">{errors.name.message}</p>
@@ -67,7 +67,7 @@ export function UpdateProfileForm({ initialName, initialEmail }: Props) {
         <input
           {...register("email")}
           type="email"
-          className="border-paper-200 focus:border-amber bg-carbon text-paper mt-2 block w-full border-b px-2 py-3 transition-colors outline-none"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper focus-visible:outline-amber mt-2 block w-full border-b px-2 py-3 transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
         />
         {errors.email && (
           <p className="text-alerta-400 mt-1 text-xs">{errors.email.message}</p>

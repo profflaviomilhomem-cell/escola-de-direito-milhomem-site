@@ -161,7 +161,7 @@ export function CheckoutForm({
             autoComplete="off"
             value={document}
             onChange={(e) => setDocument(e.target.value)}
-            className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+            className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             placeholder="000.000.000-00"
           />
         </label>
@@ -175,7 +175,7 @@ export function CheckoutForm({
             autoComplete="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+            className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             placeholder="(61) 99999-9999"
           />
         </label>
@@ -189,7 +189,7 @@ export function CheckoutForm({
               required
               value={billingLine1}
               onChange={(e) => setBillingLine1(e.target.value)}
-              className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               placeholder="Rua, número, bairro"
             />
           </label>
@@ -200,7 +200,7 @@ export function CheckoutForm({
               inputMode="numeric"
               value={billingZipCode}
               onChange={(e) => setBillingZipCode(e.target.value)}
-              className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               placeholder="70000-000"
             />
           </label>
@@ -210,7 +210,7 @@ export function CheckoutForm({
               required
               value={billingCity}
               onChange={(e) => setBillingCity(e.target.value)}
-              className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </label>
           <label className="block">
@@ -220,7 +220,7 @@ export function CheckoutForm({
               maxLength={2}
               value={billingState}
               onChange={(e) => setBillingState(e.target.value.toUpperCase())}
-              className="border-paper-100 bg-carbon text-paper focus:border-amber w-full border px-3 py-2.5 outline-none"
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
               placeholder="DF"
             />
           </label>

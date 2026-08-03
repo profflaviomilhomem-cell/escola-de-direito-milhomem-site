@@ -84,7 +84,7 @@ export function RefundRequestButton({ orderId, eligibleAmountCents }: Props) {
           onChange={(e) => setReason(e.target.value)}
           rows={3}
           maxLength={1000}
-          className="border-paper-200 focus:border-amber bg-carbon-elevated text-paper mt-2 block w-full border px-3 py-2 text-sm transition-colors outline-none"
+          className="border-paper-200 focus:border-amber bg-carbon-elevated text-paper focus-visible:outline-amber mt-2 block w-full border px-3 py-2 text-sm transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
           placeholder="Conte por que você quer o reembolso."
         />
       </label>

@@ -20,7 +20,7 @@ type FormState = {
 const EMPTY: FormState = { title: "", slug: "", subtitle: "" };
 
 const inputCls =
-  "border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-3 py-2 text-sm outline-none";
+  "border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-3 py-2 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 
 export function ModuleManager({ productSlug, initialModules }: Props) {
   const router = useRouter();

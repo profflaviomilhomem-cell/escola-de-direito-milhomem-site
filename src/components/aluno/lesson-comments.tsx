@@ -93,7 +93,7 @@ export function LessonComments({
           value={root}
           onChange={(e) => setRoot(e.target.value)}
           placeholder="Escreva com clareza. Cite artigo/STJ quando puder."
-          className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-400 mt-3 block w-full border px-3 py-2 outline-none"
+          className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-400 focus-visible:outline-amber mt-3 block w-full border px-3 py-2 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
         />
         <div className="mt-3 flex justify-end">
           <button

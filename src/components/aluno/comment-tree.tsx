@@ -151,7 +151,7 @@ function CommentNode({
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 rows={3}
-                className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-500 w-full border px-2 py-2 text-sm outline-none"
+                className="border-paper-200 focus:border-amber bg-carbon text-paper placeholder:text-paper-500 focus-visible:outline-amber w-full border px-2 py-2 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
                 placeholder="Resposta neste fio…"
                 autoFocus
               />

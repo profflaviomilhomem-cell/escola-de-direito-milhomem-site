@@ -32,7 +32,7 @@ export const FloatingInput = forwardRef<HTMLInputElement, Props>(
           placeholder=" "
           aria-invalid={Boolean(error) || undefined}
           aria-describedby={errorId}
-          className={`peer border-paper-200 focus:border-amber bg-carbon-elevated/80 text-paper w-full border px-4 pt-6 pb-2 text-sm transition-colors outline-none ${
+          className={`peer border-paper-200 focus:border-amber bg-carbon-elevated/80 text-paper focus-visible:outline-amber w-full border px-4 pt-6 pb-2 text-sm transition-colors outline-none focus-visible:outline-2 focus-visible:outline-offset-2 ${
             error ? "border-alerta-400" : ""
           } ${className ?? ""}`}
         />

@@ -32,7 +32,7 @@ const EMPTY: FormState = {
 };
 
 const inputCls =
-  "border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-3 py-2 text-sm outline-none";
+  "border-paper-200 focus:border-amber bg-carbon text-paper w-full border px-3 py-2 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber";
 
 export function LessonManager({ productSlug, initialLessons, modules }: Props) {
   const [lessons, setLessons] = useState<ProfessorLesson[]>(initialLessons);

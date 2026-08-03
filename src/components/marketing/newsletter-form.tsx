@@ -119,8 +119,8 @@ export function NewsletterForm({
     : "text-paper-800 font-mono text-[11px] uppercase tracking-[0.2em]";
 
   const inputClass = compact
-    ? "border-paper-200 focus:border-amber bg-paper-50/80 text-paper mt-1.5 block w-full rounded border px-2.5 py-2 text-sm outline-none transition-colors"
-    : "border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none transition-colors";
+    ? "border-paper-200 focus:border-amber bg-paper-50/80 text-paper mt-1.5 block w-full rounded border px-2.5 py-2 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber transition-colors"
+    : "border-paper-200 focus:border-amber bg-paper-50 text-paper mt-2 block w-full border-b px-2 py-3 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber transition-colors";
 
   return (
     <form

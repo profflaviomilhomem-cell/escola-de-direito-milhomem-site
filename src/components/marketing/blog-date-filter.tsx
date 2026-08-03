@@ -105,7 +105,7 @@ export function BlogDateFilter({
               type="date"
               name="de"
               defaultValue={de ?? ""}
-              className="border-paper-200/80 focus:border-amber bg-carbon text-paper min-w-0 flex-1 border px-2 py-1.5 text-[13px] outline-none"
+              className="border-paper-200/80 focus:border-amber bg-carbon text-paper focus-visible:outline-amber min-w-0 flex-1 border px-2 py-1.5 text-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </label>
           <label className="flex min-w-0 flex-1 items-center gap-2 sm:max-w-[11rem]">
@@ -116,7 +116,7 @@ export function BlogDateFilter({
               type="date"
               name="ate"
               defaultValue={ate ?? ""}
-              className="border-paper-200/80 focus:border-amber bg-carbon text-paper min-w-0 flex-1 border px-2 py-1.5 text-[13px] outline-none"
+              className="border-paper-200/80 focus:border-amber bg-carbon text-paper focus-visible:outline-amber min-w-0 flex-1 border px-2 py-1.5 text-[13px] outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
             />
           </label>
           <button
