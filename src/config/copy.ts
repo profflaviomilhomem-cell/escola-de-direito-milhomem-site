@@ -373,15 +373,32 @@ export const copy = {
       "Inscrição registrada. Em breve você receberá os detalhes por e-mail.",
   },
 
+  /**
+   * Iscas de topo de funil.
+   *
+   * Os títulos vêm do Livro-Guia (cap. 3.9, "Gancho editorial por persona"), que
+   * define uma isca por persona e elege Mariana e Rafael como as duas prioritárias
+   * do lançamento — exatamente os dois slots desta vitrine.
+   *
+   * Antes daqui existiam "Mapa da acusação" e "Checklist do inquérito", que não
+   * constam do Livro-Guia em lugar nenhum: o site tinha divergido da especificação.
+   * Corrigido em 03/08/2026, por decisão do Carlos.
+   *
+   * ⚠️ Nenhum dos dois PDFs existe ainda (a tabela `LeadMagnet` em produção está
+   * vazia). O conteúdo é jurisprudência real e precisa ser conferido pelo Flávio
+   * antes de publicar — julgado inventado em site assinado por Promotor de Justiça
+   * em atividade é erro sem volta.
+   */
   materiais: {
     bySlug: {
-      "mapa-da-acusacao": {
-        title: "Mapa da acusação",
-        lead: "Visão geral em uma página: etapas da denúncia, prova e sustentação em tribunal — material de apoio ao estudo.",
+      "20-decisoes-stj-acusacao": {
+        title:
+          "As 20 decisões do STJ que a acusação cita mais e o que a defesa precisa saber sobre elas",
+        lead: "As decisões que aparecem com mais frequência na fundamentação do Ministério Público, comentadas pelo lado que as invoca — e o que elas exigem de quem precisa enfrentá-las.",
       },
-      "checklist-inquerito": {
-        title: "Checklist do inquérito",
-        lead: "Pontos de atenção na fase investigatória pela ótica acusatória — para revisão de casos e prova.",
+      "dez-pontos-defesa-acusacao-ataca": {
+        title: "Guia prático: dez pontos da defesa que a acusação mais ataca",
+        lead: "O que o Promotor procura antes de oferecer denúncia: as dez fragilidades recorrentes da tese defensiva, na ordem em que costumam ser exploradas.",
       },
     },
   },
