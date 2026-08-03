@@ -17,8 +17,18 @@ import { sessionCookieName } from "@/lib/auth/session";
  * autenticação via header). Mantenha 16.2.x mínimo.
  */
 
-const PROTECTED_PREFIXES = ["/aluno", "/professor"];
-const ADMIN_PREFIXES = ["/professor"];
+/**
+ * `/admin` entrou aqui em 03/08/2026. O matcher já o alcançava, mas o prefixo
+ * não constava destas listas: `/admin/dashboard` respondia **200 sem sessão**,
+ * enquanto `/aluno` e `/professor` devolviam 307 (verificado em produção).
+ *
+ * Não havia vazamento — a resposta era o shell da aplicação, sem dado
+ * renderizado, e a página tem guarda própria. Mas a defesa em profundidade
+ * estava furada justamente na rota de maior privilégio, e a assimetria entre
+ * três áreas logadas era convite a erro futuro.
+ */
+const PROTECTED_PREFIXES = ["/aluno", "/professor", "/admin"];
+const ADMIN_PREFIXES = ["/professor", "/admin"];
 
 export const config = {
   matcher: [
