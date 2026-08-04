@@ -219,7 +219,10 @@ async function main() {
         videoSrc: rich.videoSrc,
         slidesUrl: rich.slidesUrl,
         position: entry.number,
-        durationSec: 50 * 60,
+        // Duração real do arquivo, medida com ffprobe e gravada no manifest em
+        // 04/08/2026. Antes era `50 * 60` fixo para toda aula, o que fazia o
+        // aluno ver 8h20 de curso onde há 2h47.
+        durationSec: entry.video?.durationSec ?? 0,
         publishedAt: entry.video ? new Date() : null,
       },
       update: {
@@ -234,6 +237,9 @@ async function main() {
         videoSrc: rich.videoSrc,
         slidesUrl: rich.slidesUrl,
         position: entry.number,
+        // Também no update: sem isto, rodar o seed de novo não corrigia as aulas
+        // já existentes no banco — que é exatamente o caso das 10 atuais.
+        durationSec: entry.video?.durationSec ?? 0,
         publishedAt: entry.video ? new Date() : undefined,
       },
     });

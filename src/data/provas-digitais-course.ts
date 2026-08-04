@@ -24,7 +24,10 @@ function lessonFromManifest(
     slug: entry.slug,
     title: entry.title,
     description: entry.title,
-    durationSec: 50 * 60,
+    // Duração real do arquivo, medida com `ffprobe` em 04/08/2026 e gravada no
+    // manifest (`video.durationSec`). Antes daqui saía `50 * 60` fixo para toda
+    // aula — o player anunciava 8h20 de curso quando o material tem 2h47.
+    durationSec: entry.video?.durationSec ?? 0,
     position: entry.number,
     moduleSlug,
     moduleTitle,

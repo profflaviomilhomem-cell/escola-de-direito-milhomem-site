@@ -59,7 +59,14 @@ const launch3: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "Não peça para acreditar. Veja os relatos.",
     paragraphs: [
       "Os primeiros alunos já avaliaram a metodologia — e as avaliações estão publicadas, com autorização, na página do curso.",
-      "Além dos relatos, cada módulo inclui apostila densa em PDF, mapa mental do programa, caderno de questões comentadas e decisões anotadas — mais o certificado de carga horária ao concluir a trilha.",
+      // "certificado de carga horária" saiu em 04/08/2026 — não há carga horária
+      // declarada e verificável; o certificado é de conclusão. Ver copy.ts.
+      // ⚠️ PENDENTE NESTE MESMO E-MAIL: o primeiro parágrafo afirma que "os
+      // primeiros alunos já avaliaram" e que os relatos "estão publicados" — a
+      // lista de avaliações está VAZIA (turma-fundadora-avaliacoes.ts) e a seção
+      // não renderiza. Não corrigi aqui porque o texto depende da decisão sobre
+      // formato e datas do produto (12 semanas / encontros ao vivo / setembro).
+      "Além dos relatos, cada módulo inclui apostila densa em PDF, mapa mental do programa, caderno de questões comentadas e decisões anotadas — mais o certificado de conclusão ao concluir a trilha.",
       "É material de estudo real, feito para durar além do cohort: seu acesso à plataforma permanece por doze meses após o encerramento da turma.",
     ],
     ctas: [{ label: "Ler as avaliações", href: r.curso }],

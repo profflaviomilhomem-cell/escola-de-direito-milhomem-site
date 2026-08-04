@@ -132,7 +132,7 @@ export const copy = {
       chips: [
         "Aulas em trilha semanal",
         "Fórum com resposta em até 72h",
-        "Certificado de carga horária",
+        "Certificado de conclusão",
       ] as const,
     },
   },
@@ -185,13 +185,22 @@ export const copy = {
     paraQuemSim:
       "É para você se atua (ou quer atuar) no processo penal, busca método aplicável e valoriza turma com acesso ao professor.",
     paraQuemNao:
-      "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso — para preparação de concursos, veja o Direito Penal em Questões, na Eduzz.",
+      // Referência ao "Direito Penal em Questões, na Eduzz" removida em 04/08/2026:
+      // produto inativo (conta do professor restrita). Ver `data/produtos-escola.ts`.
+      "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso — esta edição é sobre método de trabalho no processo penal, não sobre preparação para provas objetivas.",
     ementaTitle: "Ementa do curso (10 aulas)",
     cronogramaTitle: "Cronograma",
     cronogramaItems: [
       "Início previsto: 1º de setembro de 2026",
       "Duração: 12 semanas",
-      "Carga estimada: 60–80 horas",
+      // Carga horária real, medida nos arquivos de vídeo em 04/08/2026 (2h47min37s
+      // somando as 10 aulas). O texto anterior anunciava "60–80 horas", número que
+      // não corresponde a nada medido — carga inflada em peça assinada por Promotor
+      // de Justiça em atividade é o risco que o cap. 9 do Livro-Guia existe para
+      // evitar. Se o professor quiser declarar carga de estudo maior (somando
+      // slides, materiais e questões), o número precisa vir de um plano de estudos
+      // escrito, e esta linha muda junto com a do certificado.
+      "Conteúdo gravado: 10 aulas · 2h47",
       "Marco presencial: 11 de agosto de 2026, Brasília (Dia do Advogado)",
     ] as const,
     comoFuncionaTitle: "Como funciona",
@@ -227,7 +236,11 @@ export const copy = {
       },
       {
         q: "Há certificado?",
-        a: "Sim — certificado de carga horária da Escola ao concluir os requisitos da trilha (percentual mínimo de aulas e participação previstos no regulamento da turma).",
+        // O texto anterior condicionava o certificado a "percentual mínimo de aulas
+        // e participação previstos no regulamento da turma" — regulamento que NÃO
+        // existe. O critério real está em `lib/certificates.ts`: 100% das aulas
+        // concluídas. Descrever o critério que o código aplica, e só ele.
+        a: "Sim — certificado de conclusão da Escola, emitido automaticamente ao concluir as 10 aulas da trilha, com código de validação pública.",
       },
       {
         q: "O programa substitui preparatório de concurso?",
@@ -246,7 +259,7 @@ export const copy = {
       "Mapa mental do programa",
       "Caderno de questões comentadas",
       "Decisões anotadas em PDF",
-      "Certificado de 60–80h ao concluir a trilha",
+      "Certificado de conclusão ao concluir as 10 aulas",
     ] as const,
     // Bloco 3 — Sobre o professor (mini-bio, compliance-safe)
     sobreTitle: "Quem conduz a Edição",
@@ -280,7 +293,8 @@ export const copy = {
       },
       {
         q: "Para quem é a Edição Lançamento?",
-        a: "Para o público profissional do processo penal — advogados criminalistas, delegados, membros do Ministério Público e magistrados — que busca método aplicável e turma com acesso ao professor. Para preparação de concursos, o indicado é o Direito Penal em Questões, na Eduzz. Não é indicada para quem espera videoteca passiva.",
+        // Idem: menção à Eduzz removida em 04/08/2026 (produto inativo).
+        a: "Para o público profissional do processo penal — advogados criminalistas, delegados, membros do Ministério Público e magistrados — que busca método aplicável e turma com acesso ao professor. Não é indicada para quem espera videoteca passiva.",
       },
     ] as const,
   },
@@ -333,7 +347,9 @@ export const copy = {
       },
       {
         q: "Os cursos emitem certificado?",
-        a: "Sim. Ao concluir os requisitos da trilha (percentual mínimo de aulas e participação previstos no regulamento da turma), o aluno recebe certificado de carga horária da Escola, com autenticação verificável por código.",
+        // Mesmo ajuste do FAQ do curso: o critério é 100% das aulas concluídas, e o
+        // "regulamento da turma" citado antes não existe.
+        a: "Sim. Ao concluir todas as aulas da trilha, o aluno recebe certificado de conclusão da Escola, com autenticação verificável por código.",
       },
       {
         q: "Qual é a política de reembolso?",

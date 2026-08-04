@@ -70,9 +70,15 @@ export default async function CertificadosPage() {
 
       <div className="mt-12">
         {certificates.length === 0 ? (
+          /*
+           * A partir de 04/08/2026 a emissão exige nome completo no perfil (o
+           * cadastro aceita conta sem nome). Quem concluiu tudo e não vê o
+           * certificado precisa saber por quê — sem esta linha, o aluno leria
+           * "conclua todas as aulas" tendo concluído todas.
+           */
           <AreaEmptyState
             title="Nenhum certificado emitido"
-            description="Conclua todas as aulas do curso para receber o certificado da Escola, com código de validação pública."
+            description="Conclua todas as aulas do curso para receber o certificado da Escola, com código de validação pública. O certificado sai com o nome cadastrado no seu perfil — se ele estiver em branco, complete o cadastro em Minha conta antes de concluir a trilha."
           />
         ) : (
           <ul className="grid gap-4 sm:grid-cols-2">

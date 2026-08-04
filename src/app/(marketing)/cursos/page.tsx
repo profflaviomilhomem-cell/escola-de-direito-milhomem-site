@@ -8,7 +8,7 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 export const metadata: Metadata = {
   title: "Cursos",
   description:
-    "Cursos da Escola Flávio Milhomem — Prova Digital no Processo Penal (cohort da Edição Lançamento) e Direito Penal em Questões para concurseiros, na Eduzz.",
+    "Cursos da Escola Flávio Milhomem — Prova Digital no Processo Penal, cohort da Edição Lançamento, para quem atua no processo penal.",
   alternates: { canonical: "/cursos" },
 };
 
@@ -30,10 +30,14 @@ export default async function CursosPage() {
         Cursos da <em className="text-amber italic">Escola</em>
       </h1>
       <p className="text-paper-700 mt-5 max-w-2xl text-lg leading-relaxed">
+        {/* A menção ao "Direito Penal em Questões, na Eduzz" saiu em 04/08/2026:
+            o produto está inativo na plataforma porque a conta do professor está
+            restrita por cadastro incompleto. Indicar um curso que ninguém
+            consegue comprar é pior do que não indicar nada. Volta quando o
+            cadastro for regularizado — ver `data/produtos-escola.ts`. */}
         A Escola oferece um único curso nesta edição: Prova Digital no Processo
         Penal, voltado ao público profissional, no cohort inaugural da Edição
-        Lançamento. Para quem estuda para concursos, o Direito Penal em Questões
-        está disponível na Eduzz.
+        Lançamento.
         {fromDatabase ? (
           <span className="text-paper-600 mt-2 block text-sm">
             Catálogo sincronizado com os cursos publicados no painel do

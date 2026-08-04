@@ -7,8 +7,10 @@ import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 export const metadata: Metadata = {
   title: "Materiais gratuitos",
+  // Sobrou da troca de títulos de 03/08: os materiais viraram os do Livro-Guia
+  // (cap. 3.9), mas a description continuava anunciando os títulos antigos.
   description:
-    "Materiais gratuitos da Escola Flávio Milhomem — mapa da acusação e checklist do inquérito, para apoio ao estudo de direito criminal.",
+    "Materiais gratuitos da Escola Flávio Milhomem — as 20 decisões do STJ que a acusação mais cita e os dez pontos da defesa que a acusação mais ataca, para apoio ao estudo de direito criminal.",
   alternates: { canonical: "/materiais" },
 };
 

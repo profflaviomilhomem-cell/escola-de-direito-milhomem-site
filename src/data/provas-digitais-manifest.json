@@ -23,7 +23,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-01/poster.jpg",
           "bytes": 146882
-        }
+        },
+        "durationSec": 1075
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-01/slides.pptx",
@@ -46,7 +47,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-02/poster.jpg",
           "bytes": 154416
-        }
+        },
+        "durationSec": 1361
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-02/slides.pptx",
@@ -69,7 +71,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-03/poster.jpg",
           "bytes": 132020
-        }
+        },
+        "durationSec": 956
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-03/slides.pptx",
@@ -92,7 +95,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-04/poster.jpg",
           "bytes": 154313
-        }
+        },
+        "durationSec": 726
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-04/slides.pptx",
@@ -115,7 +119,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-05/poster.jpg",
           "bytes": 137715
-        }
+        },
+        "durationSec": 1452
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-05/slides.pptx",
@@ -138,7 +143,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-06/poster.jpg",
           "bytes": 135927
-        }
+        },
+        "durationSec": 676
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-06/slides.pptx",
@@ -161,7 +167,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-07/poster.jpg",
           "bytes": 133867
-        }
+        },
+        "durationSec": 803
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-07/slides.pptx",
@@ -184,7 +191,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-08/poster.jpg",
           "bytes": 127720
-        }
+        },
+        "durationSec": 1538
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-08/slides.pptx",
@@ -207,7 +215,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-09/poster.jpg",
           "bytes": 136549
-        }
+        },
+        "durationSec": 579
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-09/slides.pptx",
@@ -230,7 +239,8 @@
         "poster": {
           "path": "/curso/provas-digitais/aula-10/poster.jpg",
           "bytes": 152442
-        }
+        },
+        "durationSec": 890
       },
       "slides": {
         "path": "/curso/provas-digitais/aula-10/slides.pptx",
@@ -239,5 +249,6 @@
         "sourceFile": "PROVA DIGITAL-Aula 10.pptx"
       }
     }
-  ]
+  ],
+  "measuredAt": "2026-08-04"
 }

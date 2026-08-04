@@ -58,7 +58,14 @@ export function CertificateDiploma({
           <p className="fm-cert__name">{userName}</p>
           <span className="fm-cert__rule" aria-hidden="true" />
 
-          <p className="fm-cert__body">concluiu com aproveitamento o curso</p>
+          {/*
+            "com aproveitamento" saiu em 04/08/2026: afirma avaliação de
+            desempenho, e não existe prova, nota nem correção neste curso — o
+            certificado é emitido ao concluir 100% das aulas (ver
+            `lib/certificates.ts`). Se um dia houver avaliação de fim de trilha,
+            a expressão volta legitimamente.
+          */}
+          <p className="fm-cert__body">concluiu o curso</p>
           <p className="fm-cert__course">{productName}</p>
 
           <p className="fm-cert__date">Emitido em {issuedAtLabel}</p>
@@ -87,6 +94,21 @@ export function CertificateDiploma({
               </span>
             </div>
           </div>
+
+          {/*
+            Rodapé legal — obrigatório (Livro-Guia cap. 9.5). O certificado é a
+            peça que o aluno mostra a terceiros: precisa dizer o que é (curso
+            livre, sem título acadêmico) e deixar explícita a separação entre a
+            Escola e o Ministério Público. A segunda frase é a mesma já publicada
+            em `/materiais`. Nunca abaixo de 7 pt na impressão.
+          */}
+          <p className="fm-cert__legal">
+            Curso livre de extensão. Não confere título acadêmico nem
+            habilitação profissional e não corresponde a curso de graduação ou
+            pós-graduação. A Escola Flávio Milhomem é um projeto educacional
+            privado. Não representa o Ministério Público e não utiliza cargo
+            institucional para captação de alunos.
+          </p>
         </div>
       </div>
     </div>

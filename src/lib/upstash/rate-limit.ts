@@ -27,6 +27,24 @@ function getRedis(): Redis | null {
 
 const limiterCache = new Map<string, Ratelimit>();
 
+/**
+ * O no-op é conveniência de desenvolvimento, e em produção ele é uma porta
+ * aberta: sem credencial, TODA chamada passa e o login fica sem freio contra
+ * força bruta. O silêncio é o que torna isso perigoso — o comentário do topo
+ * deste arquivo *presume* que os envs existiriam em produção, e em 31/07/2026 a
+ * auditoria mostrou que não existem. Aqui o fallback passa a gritar uma vez por
+ * instância, para aparecer no log da Vercel em vez de sumir.
+ */
+let noopWarned = false;
+function warnNoopOnce(prefix: string): void {
+  if (noopWarned || process.env.NODE_ENV !== "production") return;
+  noopWarned = true;
+  console.error(
+    `[rate-limit] SEM PROTEÇÃO EM PRODUÇÃO — UPSTASH_REDIS_REST_URL/TOKEN ausentes; ` +
+      `todas as requisições estão passando sem limite (primeira ocorrência: "${prefix}").`,
+  );
+}
+
 type Window =
   | `${number} ms`
   | `${number} s`
@@ -70,6 +88,7 @@ export async function rateLimit(opts: {
 }): Promise<RateLimitResult> {
   const limiter = getLimiter(opts.prefix, opts.max, opts.window);
   if (!limiter) {
+    warnNoopOnce(opts.prefix);
     return {
       success: true,
       limit: opts.max,

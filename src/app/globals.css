@@ -2979,6 +2979,13 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   font-weight: 600;
   line-height: 1.04;
   color: #0a0a23;
+  /* Nome longo já cabia (o layout usa border-box), mas quebrava em uma linha
+     cheia + uma órfã. `balance` distribui as duas linhas; `break-word` protege
+     contra nome composto sem espaço. Conferido com "Maria Aparecida da Silva
+     Gonçalves Pereira" (41 caracteres) em 04/08/2026. */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .fm-cert__rule {
@@ -3002,6 +3009,10 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   font-weight: 500;
   line-height: 1.1;
   color: #9a7200;
+  /* Mesmo tratamento do nome, para título de curso longo. */
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 .fm-cert__date {
@@ -3053,6 +3064,10 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   align-items: center;
   gap: 1.4cqw;
   max-width: 42cqw;
+  /* Item de flex nasce com `min-width: auto` e não encolhe abaixo do conteúdo.
+     Aqui não há vazamento hoje (a URL quebra por `word-break: break-all`), mas
+     `min-width: 0` é o que garante isso se a URL de validação crescer. */
+  min-width: 0;
 }
 
 .fm-cert__qr {
@@ -3073,6 +3088,8 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
+  /* Mesma proteção do pai. */
+  min-width: 0;
 }
 
 .fm-cert__valid-label {
@@ -3080,7 +3097,9 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   font-size: 1.1cqw;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #9a7200;
+  /* Era #9a7200 (4,24:1 sobre o papel #fdfbf3) — reprova em texto pequeno.
+     #8f6a00 dá 4,79:1 e passa no mínimo de 4,5:1. Medido em 04/08/2026. */
+  color: #8f6a00;
 }
 
 .fm-cert__valid-code {
@@ -3096,8 +3115,24 @@ html[data-fm-vision="assist-full"] [data-fm-media-surface] {
   margin-top: 0.4cqw;
   font-family: var(--font-jetbrains-mono), monospace;
   font-size: 1.1cqw;
-  color: rgba(10, 10, 35, 0.55);
+  /* Era 0.55 de opacidade (4,32:1) — reprova em 9,3 pt. 0.68 dá 6,82:1. */
+  color: rgba(10, 10, 35, 0.68);
   word-break: break-all;
+}
+
+/* Rodapé legal do diploma (cap. 9.5 do Livro-Guia). Fica rente à borda inferior
+   da caixa interna, discreto mas legível: 0.95cqw ≈ 8 pt na folha A4 paisagem —
+   o piso combinado com o design é 7 pt. */
+.fm-cert__legal {
+  width: 100%;
+  margin: 2cqw 0 0;
+  padding-top: 1.1cqw;
+  border-top: 0.08cqw solid rgba(10, 10, 35, 0.18);
+  font-size: 0.95cqw;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+  color: rgba(10, 10, 35, 0.68);
 }
 
 /* Impressão — só o diploma na folha A4 paisagem, cores fiéis. */

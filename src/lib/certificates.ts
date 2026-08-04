@@ -50,6 +50,18 @@ export async function issueCertificateIfEligible(
     ]);
     if (total === 0 || completed < total) return null;
 
+    // Nome completo é requisito de emissão (04/08/2026). O cadastro aceita conta
+    // sem nome (`registerSchema` deixa o campo opcional) e o certificado caía no
+    // prefixo do e-mail — documento oficial nomeando o aluno de "joaosilva88".
+    // Preferimos não emitir a emitir errado: o aluno completa o perfil e o
+    // certificado sai na visita seguinte (esta função é idempotente e roda de
+    // novo ao abrir /aluno/certificados).
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { name: true },
+    });
+    if (!user?.name?.trim()) return null;
+
     const cert = await prisma.certificate.create({
       data: { userId, productId: product.id, hash: publicHash() },
       select: { hash: true },
@@ -85,7 +97,8 @@ export async function getUserCertificates(
       issuedAt: r.issuedAt.toISOString(),
       productName: r.product.name,
       productSlug: r.product.slug,
-      userName: r.user.name ?? r.user.email.split("@")[0] ?? "Aluno",
+      // Sem fallback para prefixo de e-mail: a emissão já exige nome (acima).
+      userName: r.user.name?.trim() || "Aluno",
     }));
   } catch {
     return [];
@@ -109,7 +122,8 @@ export async function getCertificateByHash(
       issuedAt: r.issuedAt.toISOString(),
       productName: r.product.name,
       productSlug: r.product.slug,
-      userName: r.user.name ?? r.user.email.split("@")[0] ?? "Aluno",
+      // Sem fallback para prefixo de e-mail: a emissão já exige nome (acima).
+      userName: r.user.name?.trim() || "Aluno",
     };
   } catch {
     return null;
