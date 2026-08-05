@@ -146,6 +146,15 @@ test.describe("/cadastro — criação de conta", () => {
     expect(body.password).toBe("senha-bem-longa");
 
     // Caminho de sucesso: nenhum alerta de erro é exibido.
-    await expect(page.getByRole("alert")).toHaveCount(0);
+    //
+    // O escopo ao <form> não é cosmético. No sucesso o app navega para /entrar
+    // e o *route announcer* do Next injeta no <body> um live region com
+    // `role="alert"` contendo o título da nova página ("Entrar · Escola Flávio
+    // Milhomem"). Um `getByRole("alert")` solto contava esse anúncio como se
+    // fosse erro do formulário — e passava ou falhava conforme a navegação
+    // vencesse ou não a corrida com o expect (verde 2x e vermelho depois, no
+    // mesmo dia, sem mudança de código). O alerta de erro é renderizado dentro
+    // do <form> (register-form.tsx); o announcer, fora dele.
+    await expect(page.locator("form").getByRole("alert")).toHaveCount(0);
   });
 });

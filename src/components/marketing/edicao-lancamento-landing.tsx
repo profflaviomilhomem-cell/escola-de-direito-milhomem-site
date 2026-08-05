@@ -65,7 +65,7 @@ export function EdicaoLancamentoLanding({
         <div className="mt-8 flex flex-wrap gap-4">
           <a
             href="#investimento"
-            className="bg-amber text-paper inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+            className="bg-amber text-carbon inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             {ed.ctaInvestimento}
           </a>
@@ -266,7 +266,7 @@ export function EdicaoLancamentoLanding({
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
         <Link
           href={`/checkout/${CURSO_PRINCIPAL_SLUG}`}
-          className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+          className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
         >
           {ed.investimentoCta}
         </Link>

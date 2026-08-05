@@ -255,7 +255,7 @@ export default async function BlogPage({
                     ← Anterior
                   </Link>
                 ) : (
-                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-40">
+                  <span className="text-paper-800 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-70">
                     ← Anterior
                   </span>
                 )}
@@ -267,7 +267,7 @@ export default async function BlogPage({
                     Seguinte →
                   </Link>
                 ) : (
-                  <span className="text-paper-600 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-40">
+                  <span className="text-paper-800 fm-mono cursor-not-allowed border border-transparent px-4 py-2 text-[11px] tracking-[0.16em] uppercase opacity-70">
                     Seguinte →
                   </span>
                 )}

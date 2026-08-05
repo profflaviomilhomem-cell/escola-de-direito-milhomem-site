@@ -240,7 +240,7 @@ export default async function BlogArtigoPage({ params }: { params: Params }) {
           </p>
           <Link
             href="/newsletter?source=blog-artigo"
-            className="bg-amber text-paper mt-6 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+            className="bg-amber text-carbon mt-6 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Receber o boletim
           </Link>

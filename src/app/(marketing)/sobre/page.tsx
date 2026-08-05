@@ -384,7 +384,7 @@ export default function SobrePage() {
               </div>
               <Link
                 href="/cursos"
-                className="border-amber text-amber hover:bg-amber hover:text-paper fm-mono inline-flex shrink-0 items-center justify-center border px-5 py-3 text-center text-[13px] tracking-[0.18em] uppercase transition-colors"
+                className="border-amber text-amber hover:bg-amber hover:text-carbon fm-mono inline-flex shrink-0 items-center justify-center border px-5 py-3 text-center text-[13px] tracking-[0.18em] uppercase transition-colors"
               >
                 Programa →
               </Link>

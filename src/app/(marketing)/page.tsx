@@ -85,7 +85,7 @@ export default async function HomePage() {
             <div className="fm-hero-fade fm-hero-fade--cta flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start">
               <Link
                 href="#cohort"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
+                className="bg-paper text-carbon hover:bg-amber hover:text-carbon inline-flex w-full max-w-sm items-center justify-center gap-2 px-8 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors sm:w-auto sm:py-4 sm:text-[11px] sm:tracking-[0.2em]"
               >
                 {hero.ctaPrimary} →
               </Link>
@@ -169,7 +169,7 @@ export default async function HomePage() {
           <div data-reveal className="mt-16 text-center">
             <Link
               href={`${CURSO_PRINCIPAL_PATH}#ementa-title`}
-              className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
+              className="bg-paper text-carbon hover:bg-amber hover:text-carbon inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
             >
               {programa.ctaLabel}
             </Link>
@@ -260,7 +260,7 @@ export default async function HomePage() {
               <Link
                 data-reveal
                 href="/sobre"
-                className="bg-paper text-carbon hover:bg-amber hover:text-paper inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
+                className="bg-paper text-carbon hover:bg-amber hover:text-carbon inline-flex items-center gap-2 px-8 py-4 font-mono text-[11px] tracking-[0.2em] uppercase transition-colors"
               >
                 {professorSection.ctaLabel}
               </Link>

@@ -237,7 +237,7 @@ export function CheckoutForm({
         <button
           type="submit"
           disabled={status.state === "submitting"}
-          className="bg-amber text-paper hover:bg-amber-soft px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors disabled:opacity-60"
+          className="bg-amber text-carbon hover:bg-amber-soft px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase transition-colors disabled:opacity-60"
         >
           {status.state === "submitting" ? "Processando…" : "Pagar agora"}
         </button>

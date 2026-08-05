@@ -181,7 +181,9 @@ export function Footer() {
 
         <InstitutionalNotice className="mx-auto mt-10 max-w-xl" />
 
-        <p className="text-paper-400 mt-8 font-mono text-[9px] tracking-[0.3em]">
+        {/* paper-400 sobre carbon dá 3,05:1 e reprova o AA em texto de 9px — medido
+            com axe-core nas 96 páginas de produção em 05/08/2026. paper-600 dá 5,72:1. */}
+        <p className="text-paper-600 mt-8 font-mono text-[9px] tracking-[0.3em]">
           © {new Date().getFullYear()} {siteConfig.name.toUpperCase()} ·
           DESENVOLVIDO POR ORBEE LABS · TODOS OS DIREITOS RESERVADOS
         </p>

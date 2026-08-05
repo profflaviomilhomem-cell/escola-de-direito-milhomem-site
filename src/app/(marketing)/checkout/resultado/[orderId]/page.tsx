@@ -65,7 +65,7 @@ export default async function CheckoutResultadoPage({
             </p>
             <Link
               href={`/aluno/cursos/${subscription.product.slug}`}
-              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+              className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
             >
               Ir para o conteúdo
             </Link>
@@ -97,7 +97,7 @@ export default async function CheckoutResultadoPage({
             </p>
             <Link
               href={`/checkout/${subscription.product.slug}`}
-              className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+              className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
             >
               Tentar de novo
             </Link>
@@ -172,7 +172,7 @@ export default async function CheckoutResultadoPage({
           </p>
           <Link
             href={`/aluno/cursos/${order.product.slug}`}
-            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+            className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Ir para o curso
           </Link>
@@ -252,7 +252,7 @@ export default async function CheckoutResultadoPage({
           </p>
           <Link
             href={`/checkout/${order.product.slug}`}
-            className="bg-amber text-paper mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+            className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Tentar de novo
           </Link>

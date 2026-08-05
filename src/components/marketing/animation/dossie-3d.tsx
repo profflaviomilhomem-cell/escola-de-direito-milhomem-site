@@ -408,7 +408,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                 </span>
               </div>
               <div
-                className="bg-amber text-paper absolute bottom-1 left-1/2 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full font-serif text-[8px] italic shadow-md"
+                className="bg-amber text-carbon absolute bottom-1 left-1/2 flex h-7 w-7 -translate-x-1/2 items-center justify-center rounded-full font-serif text-[8px] italic shadow-md"
                 style={{ transform: "translateZ(2px)" }}
               >
                 {copy.dossie.sealLabel}
@@ -500,7 +500,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
             </div>
 
             <div
-              className="bg-amber text-paper absolute -right-4 -bottom-4 flex h-16 w-16 items-center justify-center rounded-full font-serif text-xs italic shadow-xl"
+              className="bg-amber text-carbon absolute -right-4 -bottom-4 flex h-16 w-16 items-center justify-center rounded-full font-serif text-xs italic shadow-xl"
               style={{ transform: "translateZ(50px)" }}
             >
               {copy.dossie.sealLabel}

@@ -98,7 +98,7 @@ export function QuizPenal() {
           </p>
           <Link
             href={CURSO_PRINCIPAL_PATH}
-            className="bg-amber text-paper mt-5 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
+            className="bg-amber text-carbon mt-5 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
           >
             Ver o curso recomendado
           </Link>
@@ -225,7 +225,7 @@ export function QuizPenal() {
             type="button"
             onClick={() => setFinished(true)}
             disabled={!answered}
-            className="bg-amber text-paper px-6 py-2.5 font-mono text-[11px] tracking-[0.16em] uppercase disabled:opacity-40"
+            className="bg-amber text-carbon px-6 py-2.5 font-mono text-[11px] tracking-[0.16em] uppercase disabled:opacity-40"
           >
             Ver resultado
           </button>
@@ -234,7 +234,7 @@ export function QuizPenal() {
             type="button"
             onClick={() => setIndex((i) => Math.min(TOTAL - 1, i + 1))}
             disabled={!answered}
-            className="bg-amber text-paper px-6 py-2.5 font-mono text-[11px] tracking-[0.16em] uppercase disabled:opacity-40"
+            className="bg-amber text-carbon px-6 py-2.5 font-mono text-[11px] tracking-[0.16em] uppercase disabled:opacity-40"
           >
             Próxima →
           </button>
