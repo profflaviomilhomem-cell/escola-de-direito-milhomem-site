@@ -65,7 +65,11 @@ export default function LivrosPage() {
                 width={800}
                 height={1200}
                 sizes="(max-width: 640px) 96vw, (max-width: 1200px) 42vw, 460px"
-                quality={92}
+                // Sem `quality`: desde o Next 16 o default de `images.qualities`
+                // é [75], e qualquer outro valor é coagido para o mais próximo da
+                // lista — o `quality={92}` que ficava aqui era inócuo e só emitia
+                // warning a cada render. Para valer, teria que entrar em
+                // `images.qualities` no next.config.ts (custa bytes e transformação).
                 className="block h-auto w-full"
               />
             </div>

@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+
 import { defineConfig, devices } from "@playwright/test";
 
 /**
@@ -10,6 +12,16 @@ import { defineConfig, devices } from "@playwright/test";
  * Em CI, browsers precisam ser instalados antes:
  *   npx playwright install --with-deps chromium
  */
+
+/**
+ * Nesta máquina o download do Chromium do Playwright trava (o CDN entrega
+ * ~1,5 MB e para), o que deixou a suíte e2e sem rodar de 31/07 a 05/08. Quando
+ * o Chrome do sistema existe e não estamos em CI, usamos ele via `channel`.
+ * Em CI o `playwright install chromium` roda normalmente e nada muda.
+ */
+const SYSTEM_CHROME_MACOS =
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const useSystemChrome = !process.env.CI && existsSync(SYSTEM_CHROME_MACOS);
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
@@ -30,7 +42,10 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        ...(useSystemChrome ? { channel: "chrome" as const } : {}),
+      },
     },
   ],
 

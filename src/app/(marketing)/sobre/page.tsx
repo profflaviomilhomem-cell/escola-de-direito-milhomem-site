@@ -253,7 +253,8 @@ export default function SobrePage() {
                           width={800}
                           height={1200}
                           sizes="(max-width: 640px) 96vw, (max-width: 1200px) 42vw, 360px"
-                          quality={92}
+                          // Ver comentário em /livros: `quality` fora de
+                          // `images.qualities` (default [75] no Next 16) é inócuo.
                           className="block h-auto w-full"
                         />
                       </div>
