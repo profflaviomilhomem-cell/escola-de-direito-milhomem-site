@@ -19,6 +19,7 @@ import {
 import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { articleLd, breadcrumbLd } from "@/lib/seo/jsonld";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { formatarDataLongaBR } from "@/lib/data-br";
 
 type Params = Promise<{ slug: string }>;
 
@@ -160,13 +161,8 @@ export default async function BlogArtigoPage({ params }: { params: Params }) {
             </div>
             <span className="border-paper-200 hidden h-8 border-l md:inline-block" />
             <p className="text-paper-700 font-mono text-[10px] tracking-[0.2em] uppercase">
-              {post.publishedAt &&
-                new Date(post.publishedAt).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric",
-                })}{" "}
-              · {post.readingMin} min de leitura
+              {post.publishedAt && formatarDataLongaBR(post.publishedAt)} ·{" "}
+              {post.readingMin} min de leitura
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { formatarDataComOpcoesBR } from "@/lib/data-br";
 
 interface BlogCardProps {
   post: {
@@ -69,7 +70,7 @@ export function BlogCard({ post, categoryLabel }: BlogCardProps) {
           <span aria-hidden>·</span>
           <span>
             {post.publishedAt &&
-              new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+              formatarDataComOpcoesBR(post.publishedAt, {
                 day: "2-digit",
                 month: "short",
               })}

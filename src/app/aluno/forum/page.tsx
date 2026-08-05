@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { AreaEmptyState } from "@/components/shared/area-empty-state";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { formatarDataHoraBR } from "@/lib/data-br";
 import { getEnrolledCourseSlugs } from "@/lib/enrollment";
 import { listRecentCommentsForProducts } from "@/lib/forum/comments";
 
@@ -12,14 +13,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-function ago(iso: string) {
-  return new Date(iso).toLocaleString("pt-BR", {
-    day: "2-digit",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-}
+// Server Component: sem `timeZone` explícito isto formatava no fuso do
+// servidor (UTC na Vercel) e toda mensagem aparecia 3 horas adiantada para o
+// aluno. Ver o cabeçalho de lib/data-br.ts.
+const ago = formatarDataHoraBR;
 
 export default async function AlunoForumPage() {
   const session = await getSessionFromCookies();

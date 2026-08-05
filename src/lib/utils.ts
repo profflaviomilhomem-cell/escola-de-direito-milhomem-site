@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { FUSO_BR } from "@/lib/data-br";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,6 +33,7 @@ export function formatBRLFromCents(cents: number): string {
 /** ISO → data por extenso pt-BR (ex.: 14 de julho de 2026). */
 export function formatDateLongPtBR(iso: string): string {
   return new Date(iso).toLocaleDateString("pt-BR", {
+    timeZone: FUSO_BR,
     day: "2-digit",
     month: "long",
     year: "numeric",
@@ -41,6 +43,7 @@ export function formatDateLongPtBR(iso: string): string {
 /** ISO → data curta numérica pt-BR (ex.: 14/07/26). */
 export function formatDateShortPtBR(iso: string): string {
   return new Date(iso).toLocaleDateString("pt-BR", {
+    timeZone: FUSO_BR,
     day: "2-digit",
     month: "2-digit",
     year: "2-digit",

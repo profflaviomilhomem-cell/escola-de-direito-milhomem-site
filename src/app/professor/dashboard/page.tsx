@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { professorUi } from "@/config/professor-ui";
+import { saudacaoBR } from "@/lib/data-br";
 import { getModerationQueue } from "@/lib/forum/comments";
 import { getProfessorMetrics, formatBRL } from "@/lib/professor/metrics";
 import { getProfessorCourses } from "@/lib/professor/products";
@@ -32,7 +33,7 @@ export default async function ProfessorDashboardPage() {
         className="fm-title-fluid mt-3 font-serif leading-[1.05]"
         style={fmTitleClamp("36px", "4.5vw", "56px")}
       >
-        Bom dia, <em className="text-amber italic">{firstName}</em>.
+        {saudacaoBR()}, <em className="text-amber italic">{firstName}</em>.
       </h1>
       <p className="text-paper-700 mt-4 max-w-2xl text-base leading-relaxed md:text-lg">
         Painel administrativo da Escola, com números reais da plataforma.

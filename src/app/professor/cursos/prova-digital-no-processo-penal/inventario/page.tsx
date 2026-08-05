@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import manifest from "@/data/provas-digitais-manifest.json";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { formatarDataComOpcoesBR } from "@/lib/data-br";
 
 export const metadata: Metadata = {
   title: "Inventário — Prova Digital",
@@ -40,8 +41,12 @@ export default async function ProvaDigitalInventarioPage() {
         <p className="text-paper-700 mt-3 max-w-3xl text-base leading-relaxed">
           Conferência técnica do acervo importado de{" "}
           <code className="text-paper">public/curso/milhomem</code> — atualizado
-          em {new Date(manifest.importedAt).toLocaleString("pt-BR")}.{" "}
-          {manifest.summary.videosOk}/{LESSON_TOTAL} vídeos editados ·{" "}
+          em{" "}
+          {formatarDataComOpcoesBR(manifest.importedAt, {
+            dateStyle: "short",
+            timeStyle: "short",
+          })}
+          . {manifest.summary.videosOk}/{LESSON_TOTAL} vídeos editados ·{" "}
           {manifest.summary.slidesOk}/{LESSON_TOTAL} slides. Esta página é só
           para o professor; o aluno não vê nomes de arquivo de origem.
         </p>

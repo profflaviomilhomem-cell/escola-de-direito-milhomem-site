@@ -8,6 +8,21 @@
  *
  * Cobertura-alvo: 80%+ em src/lib/business/.
  */
+/**
+ * FUSO DOS TESTES — UTC, de propósito.
+ *
+ * A produção roda na Vercel em UTC; nós desenvolvemos em America/Sao_Paulo
+ * (-03). Bug de fuso é invisível na máquina de quem escreve o código: um
+ * `toLocaleDateString()` sem `timeZone` acerta em Brasília e erra no servidor.
+ * Rodar a suíte em UTC faz o teste falhar aqui, na bancada, em vez de falhar
+ * na frente do aluno. Definido antes de `next/jest` para que os workers já
+ * nasçam com o TZ certo — depois da primeira leitura de data, não adianta.
+ *
+ * Verificado em 05/08/2026: as 33 suites (242 testes) passam em UTC; nenhuma
+ * dependia do fuso local.
+ */
+process.env.TZ = "UTC";
+
 const nextJest = require("next/jest");
 
 const createJestConfig = nextJest({ dir: "./" });

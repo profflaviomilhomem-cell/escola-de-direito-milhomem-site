@@ -8,6 +8,7 @@ import {
   getProfessorBlogPosts,
   PROFESSOR_STATUS_LABEL,
 } from "@/lib/blog/professor";
+import { formatarDataComOpcoesBR } from "@/lib/data-br";
 
 export const metadata: Metadata = {
   title: "Blog — Painel do professor",
@@ -81,7 +82,7 @@ export default async function ProfessorBlogPage() {
                       {post.title}
                     </p>
                     <p className="text-paper-600 mt-1 font-mono text-[10px] tracking-[0.15em] uppercase">
-                      {new Date(post.publishedAt).toLocaleDateString("pt-BR", {
+                      {formatarDataComOpcoesBR(post.publishedAt, {
                         day: "2-digit",
                         month: "short",
                         year: "numeric",

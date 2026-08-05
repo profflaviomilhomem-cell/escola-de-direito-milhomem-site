@@ -12,6 +12,7 @@ import { DB_CATEGORY_LABEL } from "@/lib/blog/prisma-posts";
 import { BlogCard } from "@/components/marketing/blog-card";
 import { BlogDateFilter } from "@/components/marketing/blog-date-filter";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
+import { formatarDataLongaBR } from "@/lib/data-br";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -179,14 +180,7 @@ export default async function BlogPage({
                 <div className="text-paper-600 mt-5 flex flex-wrap items-center gap-3 font-mono text-[10px] tracking-[0.2em] uppercase">
                   <span>
                     {featured.publishedAt &&
-                      new Date(featured.publishedAt).toLocaleDateString(
-                        "pt-BR",
-                        {
-                          day: "2-digit",
-                          month: "long",
-                          year: "numeric",
-                        },
-                      )}
+                      formatarDataLongaBR(featured.publishedAt)}
                   </span>
                   <span aria-hidden>·</span>
                   <span>{featured.readingMin} min de leitura</span>
@@ -206,11 +200,7 @@ export default async function BlogPage({
               <div className="text-paper-600 mt-4 flex flex-wrap items-center gap-2 font-mono text-[10px] tracking-[0.15em] uppercase">
                 <span>
                   {featured.publishedAt &&
-                    new Date(featured.publishedAt).toLocaleDateString("pt-BR", {
-                      day: "2-digit",
-                      month: "long",
-                      year: "numeric",
-                    })}
+                    formatarDataLongaBR(featured.publishedAt)}
                 </span>
                 <span aria-hidden>·</span>
                 <span>{featured.readingMin} min de leitura</span>
