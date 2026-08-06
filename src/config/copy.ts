@@ -201,7 +201,12 @@ export const copy = {
       // slides, materiais e questões), o número precisa vir de um plano de estudos
       // escrito, e esta linha muda junto com a do certificado.
       "Conteúdo gravado: 10 aulas · 2h47",
-      "Marco presencial: 11 de agosto de 2026, Brasília (Dia do Advogado)",
+      // Removido em 06/08/2026: "Marco presencial: 11 de agosto de 2026, Brasília
+      // (Dia do Advogado)". O site entra no ar em 17/08 — a data já teria passado
+      // quando o primeiro visitante lesse a linha, e um cronograma de curso que
+      // abre com um marco vencido queima a credibilidade do resto da página.
+      // Se o evento acontecer e o professor quiser citá-lo, o lugar é a seção de
+      // autoridade, no passado ("participou de"), nunca o cronograma da turma.
     ] as const,
     comoFuncionaTitle: "Como funciona",
     comoFuncionaItems: [
@@ -224,11 +229,21 @@ export const copy = {
     faq: [
       {
         q: "Quando começa a turma?",
-        a: "A previsão é 1º de setembro de 2026, cerca de três semanas após o evento de 11 de agosto em Brasília. A data final depende da abertura das inscrições.",
+        // Reescrito em 06/08/2026. A resposta anterior ancorava a data no "evento
+        // de 11 de agosto em Brasília" — evento anterior à entrada do site no ar
+        // (17/08), que o leitor encontraria já vencido.
+        a: "A previsão é 1º de setembro de 2026. A data final depende da abertura das inscrições e será confirmada por e-mail a quem já tiver garantido a vaga.",
       },
       {
         q: "Quanto tempo por semana?",
-        a: "Entre cinco e sete horas, somando aulas gravadas, leitura de materiais, fórum e encontros ao vivo.",
+        // Reescrito em 06/08/2026. A resposta anterior dizia "entre cinco e sete
+        // horas" por semana — vezes 12 semanas, são 60 a 84 horas, exatamente a
+        // carga inflada que a linha do cronograma corrigiu em 04/08 (o conteúdo
+        // gravado tem 2h47 no total, medido nos arquivos). O número tinha voltado
+        // pela porta dos fundos, expresso por semana em vez de no total.
+        // Regra desta página: só entra número que alguém mediu. Tempo de estudo do
+        // aluno não foi medido e por isso não é anunciado como se tivesse sido.
+        a: "O conteúdo gravado soma 2h47, distribuídas em 10 aulas ao longo da turma — cerca de 15 minutos de vídeo por semana. O tempo total de dedicação depende de quanto você aprofundar nos materiais, no fórum e nas leituras indicadas.",
       },
       {
         q: "Como funciona o reembolso?",

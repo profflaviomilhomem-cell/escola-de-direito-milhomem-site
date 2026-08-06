@@ -84,8 +84,13 @@ const launch4: SequenceTemplate = (input: SequenceEmailInput) => {
       'Respostas diretas às <em style="color:#f1bb41;font-style:italic;">dúvidas</em> que mais chegam.',
     titleText: "Respostas diretas às dúvidas que mais chegam.",
     paragraphs: [
-      "Quando começa? A previsão é 1º de setembro de 2026, cerca de três semanas após o evento de 11 de agosto em Brasília.",
-      "Quanto tempo por semana? Entre cinco e sete horas, somando aulas gravadas, leitura de materiais, fórum e encontros ao vivo.",
+      // As duas respostas abaixo espelham o FAQ de `config/copy.ts` e foram
+      // corrigidas junto com ele em 06/08/2026: a âncora no "evento de 11 de
+      // agosto" ficaria vencida (o site entra no ar em 17/08) e as "cinco a sete
+      // horas por semana" reintroduziam, por semana, a carga inflada de 60–80h
+      // que a página do curso já tinha corrigido em 04/08.
+      "Quando começa? A previsão é 1º de setembro de 2026. A data final depende da abertura das inscrições e será confirmada por e-mail a quem já tiver garantido a vaga.",
+      "Quanto tempo por semana? O conteúdo gravado soma 2h47, distribuídas em 10 aulas ao longo da turma — cerca de 15 minutos de vídeo por semana. O tempo total de dedicação depende de quanto você aprofundar nos materiais, no fórum e nas leituras indicadas.",
       "Substitui preparatório de concurso? Não. A Edição aprofunda Direito Penal e Processo Penal pela ótica da acusação; complementa, mas não substitui, um preparatório generalista.",
       "A lista completa de perguntas está na página do curso. Se a sua não estiver lá, responda este e-mail — eu leio.",
     ],
