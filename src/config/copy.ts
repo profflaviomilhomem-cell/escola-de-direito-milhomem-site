@@ -63,7 +63,13 @@ export const copy = {
 
   home: {
     hero: {
-      eyebrow: "Edição Lançamento · 11 de agosto · Brasília",
+      // 06/08/2026: era "Edição Lançamento · 11 de agosto · Brasília". O site
+      // entra no ar em 17/08 — o texto mais visível da home anunciava o
+      // lançamento numa data já vencida para quem chega. Agora o eyebrow diz o
+      // que o visitante pode fazer HOJE (se inscrever) e quando a turma começa,
+      // que é a distinção que faltava na página inteira.
+      eyebrow:
+        "Edição Lançamento · inscrições abertas · turma começa 1º de setembro",
       titleLine1: "A",
       titleEmphasis1: "Escola",
       titleLine2: "de direito",
@@ -190,9 +196,16 @@ export const copy = {
       "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso — esta edição é sobre método de trabalho no processo penal, não sobre preparação para provas objetivas.",
     ementaTitle: "Ementa do curso (10 aulas)",
     cronogramaTitle: "Cronograma",
+    // Reordenado em 06/08/2026. O cronograma começava pelo início da turma e
+    // nunca dizia quando as inscrições abriam — quem chegasse no dia 17 não
+    // tinha como saber que estava comprando vaga numa turma que só começa em
+    // setembro. A sequência abaixo torna essa distinção explícita, que é o
+    // ponto do art. 30 do CDC: a oferta veiculada vincula, então ela precisa
+    // dizer o que o comprador recebe e quando.
     cronogramaItems: [
-      "Início previsto: 1º de setembro de 2026",
-      "Duração: 12 semanas",
+      "Inscrições abertas: 17 de agosto de 2026",
+      "Início da turma: 1º de setembro de 2026",
+      "Duração: 12 semanas — encerramento previsto para 23 de novembro de 2026",
       // Carga horária real, medida nos arquivos de vídeo em 04/08/2026 (2h47min37s
       // somando as 10 aulas). O texto anterior anunciava "60–80 horas", número que
       // não corresponde a nada medido — carga inflada em peça assinada por Promotor
@@ -209,10 +222,24 @@ export const copy = {
       // autoridade, no passado ("participou de"), nunca o cronograma da turma.
     ] as const,
     comoFuncionaTitle: "Como funciona",
+    // Cada linha aqui é oferta veiculada — art. 30 do CDC vincula o fornecedor
+    // ao que anunciou, e o público é de advogados. Só entra o que a Escola
+    // consegue cumprir. Duas observações de 06/08/2026:
+    //
+    // 1. "Liberadas semanalmente" depende de alguém publicar cada aula no
+    //    painel do professor: `Lesson.publishedAt` é liga/desliga, não há
+    //    liberação por data no código. São 12 publicações manuais ao longo da
+    //    turma. Se isso virar risco operacional, ou se automatiza, ou a linha
+    //    muda para "todas as aulas disponíveis desde o início".
+    // 2. As datas dos quatro encontros ainda não existem. Enquanto não vierem
+    //    do professor, a linha promete os encontros (que é o que vincula) sem
+    //    inventar calendário. Quando as datas chegarem, elas entram aqui e no
+    //    cronograma — e aí a cláusula de "parte indissociável" em /termos passa
+    //    a ter data publicada para se apoiar.
     comoFuncionaItems: [
-      "Aulas gravadas liberadas semanalmente",
+      "Aulas gravadas liberadas semanalmente ao longo das 12 semanas",
       "Fórum por aula, com resposta do professor em até 72 horas",
-      "Quatro encontros ao vivo ao longo do cohort",
+      "Quatro encontros ao vivo ao longo do cohort — datas divulgadas na abertura da turma",
       "Acesso à plataforma por 12 meses após o encerramento da turma",
     ] as const,
     investimentoTitle: "Investimento · edição fundadora",
@@ -232,7 +259,7 @@ export const copy = {
         // Reescrito em 06/08/2026. A resposta anterior ancorava a data no "evento
         // de 11 de agosto em Brasília" — evento anterior à entrada do site no ar
         // (17/08), que o leitor encontraria já vencido.
-        a: "A previsão é 1º de setembro de 2026. A data final depende da abertura das inscrições e será confirmada por e-mail a quem já tiver garantido a vaga.",
+        a: "A turma começa em 1º de setembro de 2026 e vai até 23 de novembro. As inscrições abrem em 17 de agosto — quem garante a vaga agora recebe os acessos e o calendário completo por e-mail antes do primeiro dia.",
       },
       {
         q: "Quanto tempo por semana?",
@@ -296,7 +323,12 @@ export const copy = {
       },
       {
         q: "Há encontro presencial obrigatório?",
-        a: "Não. O marco de 11 de agosto em Brasília é opcional e aberto a inscritos no evento; o cohort é predominantemente online.",
+        // 06/08/2026: a resposta anterior falava do marco de 11 de agosto no
+        // futuro ("é opcional e aberto a inscritos no evento"). O evento
+        // acontece em 11/08 e o site entra no ar em 17/08 — para quem lê, já
+        // passou. Reescrito no passado, e o evento sai da posição de item do
+        // curso para virar contexto de origem da Escola.
+        a: "Não. O cohort é inteiramente online — as doze semanas acontecem na plataforma, entre aulas gravadas, fórum e os quatro encontros ao vivo. A Escola foi aberta publicamente no Dia do Advogado, em 11 de agosto de 2026, em Brasília, mas nada do curso depende de presença física.",
       },
       {
         q: "Qual é o investimento?",
@@ -384,24 +416,36 @@ export const copy = {
     ] as const,
   },
 
+  /**
+   * Evento de abertura — 11/08/2026, Brasília.
+   *
+   * Reescrito no PASSADO em 06/08/2026. O evento acontece em 11/08 e o site
+   * entra no ar em 17/08: todo visitante desta página chega depois. O texto
+   * anterior estava no futuro e a página oferecia um formulário "Confirmar
+   * presença" — e ela está no `sitemap.ts`, ou seja, é submetida ao Google.
+   * Convite para confirmar presença em evento vencido é quebra de confiança
+   * com o público que a Escola quer (advogados), logo na primeira visita.
+   *
+   * A captura de lead foi mantida, mas com a promessa trocada: em vez de vaga
+   * num evento que já ocorreu, o registro dá acesso ao material do painel.
+   * A página deixa de ser convite e passa a ser prova de autoridade.
+   */
   evento: {
-    eyebrow: "11 · ago · 2026 · Brasília",
+    eyebrow: "Aconteceu · 11 · ago · 2026 · Brasília",
     title: "Dia do Advogado",
     titleEmphasis: "Abertura oficial",
-    lead: "Painel sobre Direito Penal contemporâneo, aula inaugural de Flávio Milhomem e abertura formal das inscrições da Edição Lançamento. Vagas presenciais limitadas; transmissão online aberta.",
-    agendaTitle: "Programação prevista",
+    lead: "A Escola foi aberta publicamente no Dia do Advogado, em Brasília: painel sobre Direito Penal contemporâneo e aula inaugural de Flávio Milhomem pela perspectiva da acusação. Foi ali que a Edição Lançamento — o cohort inaugural — foi apresentada ao público.",
+    agendaTitle: "O que aconteceu",
     agenda: [
-      "Credenciamento e café",
       "Painel: Direito Penal contemporâneo",
       "Aula inaugural — perspectiva da acusação",
-      "Abertura das inscrições da Edição Lançamento",
+      "Apresentação da Edição Lançamento, o cohort inaugural da Escola",
     ] as const,
-    rsvpTitle: "Inscrição gratuita",
+    rsvpTitle: "Não esteve presente?",
     rsvpLead:
-      "Garanta sua vaga presencial ou o link da transmissão. Você receberá confirmação por e-mail.",
-    rsvpCta: "Confirmar presença",
-    rsvpSuccess:
-      "Inscrição registrada. Em breve você receberá os detalhes por e-mail.",
+      "Deixe seu e-mail para receber o material da aula inaugural e acompanhar as próximas turmas da Escola.",
+    rsvpCta: "Quero receber",
+    rsvpSuccess: "Registrado. Em breve você receberá o material por e-mail.",
   },
 
   /**

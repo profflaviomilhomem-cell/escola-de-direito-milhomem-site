@@ -124,22 +124,31 @@ export function edicaoLancamentoCourseLd({
     hasCourseInstance: [
       {
         "@type": "CourseInstance",
-        // Predominantemente online + marco presencial opcional (11/ago, Brasília).
-        // Google exige `location` quando courseMode é blended/onsite.
-        courseMode: "blended",
-        location: {
-          "@type": "Place",
-          name: "Brasília, DF (marco presencial opcional)",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Brasília",
-            addressRegion: "DF",
-            addressCountry: "BR",
-          },
-        },
+        // 06/08/2026 — três correções neste bloco, todas do mesmo tipo: dado
+        // estruturado contradizendo a página visível.
+        //
+        // 1. `courseMode` era "blended", com `location` em Brasília chamada de
+        //    "marco presencial opcional". O evento de 11/08 é a abertura da
+        //    Escola, não parte do curso, e acontece antes de o site entrar no
+        //    ar. O cohort é inteiramente online — inclusive os quatro encontros
+        //    ao vivo. Com "online", o `location` deixa de ser exigido pelo
+        //    Google e sai junto.
+        //
+        // 2. `courseWorkload: "PT70H"` — 70 horas. É a MESMA carga inflada que
+        //    a página do curso corrigiu em 04/08 ("60–80 horas" → "10 aulas ·
+        //    2h47", medido nos arquivos de vídeo) e que o FAQ corrigiu hoje
+        //    ("cinco a sete horas por semana" = 60 a 84 horas). Terceiro lugar,
+        //    mesma mentira, agora em dado que o Google lê e pode exibir.
+        //    Removido em vez de estimado: ninguém mediu o tempo total de
+        //    dedicação, e a regra desta base é que só entra número medido.
+        //    Volta quando existir um plano de estudos escrito com a conta.
+        //
+        // 3. `endDate` não existia. Com 12 semanas a partir de 1º/09, a turma
+        //    encerra em 23/11/2026 — a mesma data agora publicada no cronograma.
+        courseMode: "online",
         name: "Edição Lançamento — turma fundadora",
-        courseWorkload: "PT70H",
         startDate: "2026-09-01",
+        endDate: "2026-11-23",
         inLanguage: "pt-BR",
         instructor: { "@id": PROFESSOR_ID },
       },
