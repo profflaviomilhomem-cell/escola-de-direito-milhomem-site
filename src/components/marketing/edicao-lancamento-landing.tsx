@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
+import { StickyOfertaBar } from "@/components/marketing/sticky-oferta-bar";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
 import { YoutubeEmbed } from "@/components/marketing/youtube-embed";
 import { copy } from "@/config/copy";
@@ -31,8 +32,15 @@ export function EdicaoLancamentoLanding({
   vagas,
 }: Props) {
   const ed = copy.edicaoLancamento;
+  // 13/08/2026 — o contador só entra quando já existe aluno matriculado.
+  // `getCohortVagas()` conta pedidos reais e o banco tem 1 pedido: no dia 17 a
+  // página anunciaria "49 de 50 vagas restantes", que é honesto e é exatamente
+  // a frase "ninguém comprou isto" em destaque. Enquanto não houver matrícula,
+  // a escassez fica por conta do selo ("Turma fundadora · até 50 alunos"), que
+  // é verdadeiro e não exibe placar. Quando as vagas começarem a sair, o
+  // contador volta sozinho e aí ele joga a favor.
   const vagasLabel =
-    vagas && vagas.restantes > 0
+    vagas && vagas.restantes > 0 && vagas.preenchidas > 0
       ? `${vagas.restantes} de ${vagas.total} vagas restantes`
       : vagas && vagas.restantes === 0
         ? "Vagas esgotadas — entre na lista de espera"
@@ -83,6 +91,93 @@ export function EdicaoLancamentoLanding({
         />
       </header>
 
+      {/* Barra de oferta fixa — some enquanto #investimento está na tela. */}
+      {/* 24/08/2026: a barra tem UM destino só, e ele é o mesmo do CTA de
+          investimento. Com as inscrições suspensas (adiamento), esse destino é a
+          lista — não o checkout, que responde "pagamento indisponível".
+          Voltar para `/checkout/<CURSO_PRINCIPAL_SLUG>` quando vendas abrirem,
+          junto com o CTA do bloco de investimento. */}
+      <StickyOfertaBar
+        priceLabel={priceLabel}
+        href="/newsletter?source=edicao-lancamento-barra"
+        cta={ed.investimentoCta}
+        note={ed.barraOfertaNote}
+      />
+
+      {/*
+        Faixa de números — 13/08/2026.
+        As cinco landings do benchmark abrem com números medidos antes de
+        qualquer argumento (o Ênfase põe quatro logo abaixo do herói). Nós
+        tínhamos os dados e não os mostrávamos. Cada valor aqui é medido:
+        ver o comentário de `numeros` em `copy.ts`.
+      */}
+      <section
+        className="border-paper-100 mt-14 border-y py-6"
+        aria-label="O curso em números"
+      >
+        <dl className="grid grid-cols-2 gap-x-6 gap-y-6 md:grid-cols-4">
+          {ed.numeros.map((n) => (
+            <div key={n.label}>
+              <dt className="sr-only">{n.label}</dt>
+              <dd>
+                <span className="text-paper block font-serif text-4xl leading-none tabular-nums">
+                  {n.valor}
+                </span>
+                <span
+                  className="text-paper-600 mt-2 block font-mono text-[10px] leading-snug tracking-[0.14em] uppercase"
+                  aria-hidden
+                >
+                  {n.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      {/*
+        Índice de âncoras — 13/08/2026. `sticky` puro, sem JS: o leitor cético
+        não lê em ordem, vai direto à ementa e ao preço. Insper e Maven fazem
+        igual logo abaixo do título.
+      */}
+      <nav
+        aria-label="Seções desta página"
+        className="border-paper-100 bg-carbon/95 sticky top-0 z-30 -mx-4 mt-0 border-b px-4 backdrop-blur-sm"
+      >
+        <ul className="flex gap-5 overflow-x-auto py-3">
+          {ed.navItems.map((item) => (
+            <li key={item.href} className="shrink-0">
+              <a
+                href={item.href}
+                className="text-paper-700 hover:text-amber focus-visible:outline-amber font-mono text-[11px] tracking-[0.16em] uppercase focus-visible:outline-2 focus-visible:outline-offset-4"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/*
+        Bloco "o problema" — 13/08/2026. A página abria em modo catálogo ("O
+        curso da Edição Lançamento da Escola…"). Nenhuma das cinco referências
+        faz isso: todas nomeiam a dor antes de apresentar o produto.
+      */}
+      <section className="mt-20 max-w-3xl" aria-labelledby="problema-title">
+        <p className="text-amber fm-mono text-[11px] tracking-[0.22em] uppercase">
+          {ed.problemaEyebrow}
+        </p>
+        <h2
+          id="problema-title"
+          className="text-paper mt-4 font-serif text-3xl leading-tight md:text-4xl"
+        >
+          {ed.problemaTitle}
+        </h2>
+        <p className="text-paper-700 mt-5 text-lg leading-relaxed">
+          {ed.problemaBody}
+        </p>
+      </section>
+
       {/* Bloco 2 */}
       <section className="mt-20" aria-labelledby="pilares-title">
         <h2
@@ -121,7 +216,10 @@ export function EdicaoLancamentoLanding({
           />
         </div>
         <div>
-          <h2 id="sobre-prof-title" className="font-serif text-3xl">
+          <h2
+            id="sobre-prof-title"
+            className="scroll-mt-28 font-serif text-3xl"
+          >
             {ed.sobreTitle}
           </h2>
           <div className="text-paper-700 mt-4 max-w-prose space-y-3 text-sm leading-relaxed">
@@ -146,9 +244,44 @@ export function EdicaoLancamentoLanding({
         <p className="text-paper-700 mt-4 max-w-prose leading-relaxed">
           {ed.paraQuemLead}
         </p>
-        <p className="text-paper-600 mt-4 max-w-prose text-sm leading-relaxed">
-          {ed.paraQuemSim} {ed.paraQuemNao}
-        </p>
+        {/*
+          13/08/2026 — as duas frases viraram duas colunas. Dizer para quem NÃO
+          é sobe a conversão de quem é e derruba pedido de reembolso; e o leitor
+          aqui é advogado, que procura a cláusula escondida. Sem afirmação nova:
+          cada item é um pedaço do texto que já estava publicado.
+        */}
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="border-amber/30 bg-amber/[0.06] rounded-xl border p-6">
+            <h3 className="text-amber font-mono text-[11px] tracking-[0.18em] uppercase">
+              {ed.paraQuemSimTitle}
+            </h3>
+            <ul className="text-paper-700 mt-4 space-y-3 text-sm leading-relaxed">
+              {ed.paraQuemSimItems.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="text-amber shrink-0" aria-hidden>
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="border-paper-100 rounded-xl border p-6">
+            <h3 className="text-paper-600 font-mono text-[11px] tracking-[0.18em] uppercase">
+              {ed.paraQuemNaoTitle}
+            </h3>
+            <ul className="text-paper-600 mt-4 space-y-3 text-sm leading-relaxed">
+              {ed.paraQuemNaoItems.map((item) => (
+                <li key={item} className="flex gap-3">
+                  <span className="text-paper-400 shrink-0" aria-hidden>
+                    ×
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section className="mt-16" aria-labelledby="ementa-title">
@@ -194,7 +327,12 @@ export function EdicaoLancamentoLanding({
           </ul>
         </div>
         <div>
-          <h2 className="font-serif text-2xl">{ed.comoFuncionaTitle}</h2>
+          <h2
+            id="como-funciona-title"
+            className="scroll-mt-28 font-serif text-2xl"
+          >
+            {ed.comoFuncionaTitle}
+          </h2>
           <ul className="text-paper-700 mt-4 space-y-2 text-sm leading-relaxed">
             {ed.comoFuncionaItems.map((item) => (
               <li key={item}>{item}</li>

@@ -80,3 +80,4 @@ docs/
 src/app/dev/mockups/
 public/images/brand/cyber_glass_scale.jpg
 .env*
+design/

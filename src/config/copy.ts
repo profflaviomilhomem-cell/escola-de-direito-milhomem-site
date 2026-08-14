@@ -164,6 +164,34 @@ export const copy = {
     leadLinkLabel: "página Sobre",
     ctaInvestimento: "Ver investimento",
     ctaLista: "Entrar na lista de espera",
+    // Índice de âncoras (13/08/2026). Insper e Maven abrem a página de curso com
+    // um índice: o leitor cético não lê em ordem, vai direto à ementa e ao preço.
+    // Sem ele, esse leitor rola até cansar e sai.
+    navItems: [
+      { href: "#ementa-title", label: "Ementa" },
+      { href: "#como-funciona-title", label: "Como funciona" },
+      { href: "#sobre-prof-title", label: "Professor" },
+      { href: "#investimento", label: "Investimento" },
+      { href: "#faq", label: "Perguntas" },
+    ] as const,
+    // Faixa de números do hero (13/08/2026). REGRA: só entra número MEDIDO.
+    // 12 semanas e 4 encontros vêm do formato decidido em 06/08; 10 aulas e 2h47
+    // foram medidos com ffprobe nos arquivos em 04/08; 50 é o teto da turma
+    // declarado em `investimentoSelo`. Nada aqui é estimativa.
+    numeros: [
+      { valor: "12", label: "semanas de turma" },
+      { valor: "10", label: "aulas gravadas · 2h47" },
+      { valor: "4", label: "encontros ao vivo" },
+      { valor: "50", label: "alunos, no máximo" },
+    ] as const,
+    // Bloco "o problema" (13/08/2026). Nenhuma das cinco landings do benchmark
+    // abre apresentando o produto: todas nomeiam a dor primeiro. Este texto
+    // descreve o cenário profissional, NÃO promete resultado — promessa de
+    // resultado em peça assinada por Promotor em atividade é o risco do cap. 9.
+    problemaEyebrow: "O ponto cego",
+    problemaTitle: "A prova que decide o caso é a que ninguém sabe atacar.",
+    problemaBody:
+      "Print de conversa, extração de celular, geolocalização, metadados: a prova digital entrou no processo penal antes de a prática forense aprender a discuti-la. Quando a defesa não sabe onde a cadeia de custódia se rompe, o laudo entra nos autos como se fosse fato — e deixa de ser discutido.",
     videoNote:
       "Vídeo do professor no YouTube: metodologia de estudo com videoaulas e materiais em PDF — base da trilha em cohort.",
     videoTitle:
@@ -192,6 +220,24 @@ export const copy = {
       // Referência ao "Direito Penal em Questões, na Eduzz" removida em 04/08/2026:
       // produto inativo (conta do professor restrita). Ver `data/produtos-escola.ts`.
       "Não é para você se espera videoteca passiva, sem participação no fórum, ou promessa de aprovação em concurso — esta edição é sobre método de trabalho no processo penal, não sobre preparação para provas objetivas.",
+    // 13/08/2026 — as duas frases acima viradas em colunas. NENHUMA afirmação
+    // nova: cada linha é um pedaço do que `paraQuemSim`/`paraQuemNao` já diziam.
+    // O bloco "não é para você" é o que mais destoa do infoproduto comum e o mais
+    // indicado aqui: dizer para quem NÃO é sobe a conversão de quem é e derruba
+    // pedido de reembolso — e o leitor é advogado, treinado em achar a cláusula
+    // escondida. Referência: Curso Ênfase (ENAM 2026.2), medido em 13/08.
+    paraQuemSimTitle: "É para você se",
+    paraQuemSimItems: [
+      "Atua — ou quer atuar — no processo penal",
+      "Busca método aplicável, não teoria geral",
+      "Valoriza turma com acesso ao professor e fórum por aula",
+    ] as const,
+    paraQuemNaoTitle: "Não é para você se",
+    paraQuemNaoItems: [
+      "Espera videoteca passiva, sem participar do fórum",
+      "Procura promessa de aprovação em concurso",
+      "Quer preparação para prova objetiva, não método de trabalho",
+    ] as const,
     ementaTitle: "Ementa do curso (10 aulas)",
     cronogramaTitle: "Cronograma",
     // Reordenado em 06/08/2026. O cronograma começava pelo início da turma e
@@ -255,6 +301,12 @@ export const copy = {
     // 21/08/2026: enquanto as inscrições estão suspensas (adiamento), o CTA
     // leva para a lista de espera, não para o checkout.
     investimentoCta: "Entrar na lista de espera",
+    // Linha de contexto da barra fixa (13/08/2026). A barra acompanha o scroll
+    // e é o único lugar onde preço e chamada aparecem juntos o tempo todo.
+    // 24/08/2026: a data saiu daqui junto com as demais — enquanto o site não
+    // anuncia início de turma em lugar nenhum, a barra fixa não pode ser a
+    // exceção que continua prometendo dia.
+    barraOfertaNote: "Turma fundadora · nova data em breve",
     faqTitle: "Perguntas frequentes",
     faq: [
       {
