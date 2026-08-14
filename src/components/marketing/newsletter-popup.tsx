@@ -8,6 +8,7 @@ import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { copy } from "@/config/copy";
 import {
   dismissNewsletterPopup,
+  isNewsletterAutoOpenSuppressed,
   isNewsletterPopupDismissed,
   isNewsletterPopupExcluded,
   NEWSLETTER_POPUP_DELAY_MS,
@@ -52,6 +53,8 @@ export function NewsletterPopup() {
 
   useEffect(() => {
     if (!ready || excluded) return;
+    // Na página de venda a pílula fica, o modal não abre sozinho.
+    if (pathname && isNewsletterAutoOpenSuppressed(pathname)) return;
 
     timerRef.current = setTimeout(() => {
       if (!isNewsletterPopupDismissed()) setOpen(true);

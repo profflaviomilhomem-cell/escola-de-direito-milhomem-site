@@ -100,7 +100,7 @@ export function HeaderMobileNav() {
       : null;
 
   return (
-    <div className="md:hidden">
+    <div className="xl:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}

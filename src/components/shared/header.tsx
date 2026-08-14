@@ -22,10 +22,27 @@ export function Header() {
             <BrandLogo variant="header" priority />
           </Link>
 
-          <div className="flex min-w-0 flex-1 items-center justify-end gap-3 md:gap-6">
+          {/*
+            14/08/2026 — a nav se sobrepunha ao botão de acessibilidade.
+            Causa medida, não suposta: com `min-w-0` o flex espremia a nav
+            abaixo do próprio conteúdo (precisava de 643px, recebia 502px) e o
+            CTA "Entre na lista" vazava por cima do vizinho. Duas correções:
+
+            1. `shrink-0` no lugar de `min-w-0` — a nav nunca mais é espremida
+               abaixo do que ela ocupa, então não existe vazamento silencioso.
+            2. Breakpoint em `xl`, não em `md`. A soma é aritmética: logo 260px
+               + nav 643px + menu de acessibilidade 162px + folgas ≈ 1150px.
+               Em `md` (768px) nunca coube; em `lg` (1024px) ainda colidia,
+               medido. Abaixo de 1280px vale o menu completo em tela cheia.
+
+            A correção durável é outra e não é minha: seis links no topo de uma
+            página de venda disputam com o botão de compra. O concorrente direto
+            medido em 13/08 tem ZERO links no header.
+          */}
+          <div className="flex min-w-0 flex-1 items-center justify-end gap-3 xl:gap-5">
             <nav
               aria-label="Navegação principal"
-              className="hidden min-w-0 items-center gap-5 md:flex lg:gap-7"
+              className="hidden shrink-0 items-center gap-4 xl:flex xl:gap-6"
             >
               {siteConfig.mainNav.map((item) => (
                 <Link

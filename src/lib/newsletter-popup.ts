@@ -10,6 +10,9 @@ export function isNewsletterPopupExcluded(pathname: string): boolean {
     pathname.startsWith("/newsletter") ||
     pathname.startsWith("/eventos") ||
     pathname.startsWith("/calculadora") ||
+    // 14/08/2026: durante o pagamento nada disputa a atenção. Um modal pedindo
+    // e-mail no meio do checkout é abandono de carrinho pedido por escrito.
+    pathname.startsWith("/checkout") ||
     pathname.startsWith("/entrar") ||
     pathname.startsWith("/cadastro") ||
     pathname.startsWith("/recuperar-senha") ||
@@ -17,6 +20,22 @@ export function isNewsletterPopupExcluded(pathname: string): boolean {
     pathname.startsWith("/aluno") ||
     pathname.startsWith("/professor")
   );
+}
+
+/**
+ * Páginas onde a pílula continua disponível, mas o modal NÃO abre sozinho.
+ *
+ * A página de curso é uma página de venda: quem está nela está decidindo uma
+ * compra. Interromper essa decisão com um modal que pede e-mail para uma
+ * newsletter gratuita é a oferta menor canibalizando a maior — e o modal ainda
+ * trava o scroll do corpo, então ele interrompe inclusive quem está no meio da
+ * demonstração da cadeia de custódia.
+ *
+ * A pílula fica: quem não vai comprar hoje ainda pode entrar na lista, e ela
+ * não interrompe ninguém.
+ */
+export function isNewsletterAutoOpenSuppressed(pathname: string): boolean {
+  return pathname.startsWith("/cursos");
 }
 
 export function isNewsletterPopupDismissed(): boolean {
