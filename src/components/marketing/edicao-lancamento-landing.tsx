@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { CadeiaCustodiaInterativa } from "@/components/marketing/cadeia-custodia-interativa";
 import { InstitutionalNotice } from "@/components/marketing/institutional-notice";
 import { StickyOfertaBar } from "@/components/marketing/sticky-oferta-bar";
 import { TestimonialsSection } from "@/components/marketing/testimonials-section";
@@ -177,6 +178,14 @@ export function EdicaoLancamentoLanding({
           {ed.problemaBody}
         </p>
       </section>
+
+      {/*
+        Demonstração — entra logo depois da dor, como resposta a ela.
+        Ocupa o lugar da prova social: a lista de depoimentos está vazia até a
+        turma estrear, e demonstração é o substituto honesto de um depoimento
+        que não existe.
+      */}
+      <CadeiaCustodiaInterativa />
 
       {/* Bloco 2 */}
       <section className="mt-20" aria-labelledby="pilares-title">
