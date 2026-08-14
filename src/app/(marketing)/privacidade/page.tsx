@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { LegalPage } from "@/components/marketing/legal-page";
+import { RevogarConsentimentoButton } from "@/components/shared/revogar-consentimento-button";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function PrivacidadePage() {
     <LegalPage
       eyebrow="LGPD · Lei 13.709/2018"
       title="Política de Privacidade"
-      lastUpdated="08 de maio de 2026"
+      lastUpdated="14 de agosto de 2026"
       draftNotice="Documento em revisão pela assessoria jurídica. A redação final pode ajustar termos sem alterar a estrutura abaixo."
       sections={[
         {
@@ -126,10 +127,23 @@ export default function PrivacidadePage() {
                 <li>Neon — banco de dados gerenciado.</li>
                 <li>Cloudflare — entrega de vídeo e proteção de borda.</li>
                 <li>
-                  PostHog (auto-hospedado) e Google Analytics 4 — analytics
-                  agregado.
+                  PostHog — análise de uso do produto, em nuvem operada pela
+                  PostHog nos Estados Unidos.
+                </li>
+                <li>
+                  Google (Google Tag Manager e Google Analytics 4) — medição de
+                  audiência.
+                </li>
+                <li>
+                  Meta (Facebook Pixel) e LinkedIn (Insight Tag) — medição de
+                  campanhas de anúncio.
                 </li>
               </ul>
+              <p className="mt-4">
+                PostHog, Google, Meta e LinkedIn são carregados{" "}
+                <strong>apenas</strong> se você aceitar os cookies analíticos.
+                Se recusar, ou enquanto não decidir, nenhum deles é acionado.
+              </p>
               <p className="mt-4">
                 Cada operador tem contrato dedicado de tratamento de dados.
               </p>
@@ -137,22 +151,57 @@ export default function PrivacidadePage() {
           ),
         },
         {
-          id: "cookies",
+          id: "transferencia-internacional",
           number: 5,
+          title: "Transferência internacional de dados",
+          body: (
+            <>
+              <p>
+                Parte da nossa infraestrutura fica fora do Brasil, o que
+                significa que seus dados podem ser processados no exterior —
+                principalmente nos Estados Unidos e na União Europeia. É o caso
+                de Vercel (hospedagem), Neon (banco de dados), Resend (e-mail),
+                Cloudflare (vídeo e borda) e, mediante o seu consentimento,
+                PostHog, Google, Meta e LinkedIn.
+              </p>
+              <p className="mt-4">
+                Essas transferências ocorrem nos termos do art. 33 da LGPD, com
+                base em cláusulas contratuais de proteção firmadas com cada
+                fornecedor e no consentimento específico, quando é essa a base
+                legal aplicável. Os dados de pagamento são processados pela
+                Pagar.me, empresa brasileira, e não deixam o país por nossa
+                iniciativa.
+              </p>
+            </>
+          ),
+        },
+        {
+          id: "cookies",
+          number: 6,
           title: "Cookies e tecnologias similares",
           body: (
-            <p>
-              Usamos cookies necessários (sessão de aluno, preferências) e
-              cookies analíticos (somente após consentimento via banner). O
-              banner permite aceitar, recusar ou personalizar a escolha por
-              categoria; sua decisão é registrada e pode ser alterada a qualquer
-              momento na página de preferências.
-            </p>
+            <>
+              <p>
+                Usamos cookies necessários (sessão de aluno, preferências) e
+                cookies analíticos, estes somente após consentimento. O aviso no
+                rodapé oferece duas opções — aceitar ou recusar — e nada de
+                analytics carrega antes da sua escolha.
+              </p>
+              <p className="mt-4">
+                Sua decisão fica registrada neste navegador e pode ser revista a
+                qualquer momento, aqui mesmo:
+              </p>
+              <RevogarConsentimentoButton />
+              <p className="mt-4">
+                Revogar não desfaz a coleta que já ocorreu: os scripts deixam de
+                ser carregados a partir da revogação.
+              </p>
+            </>
           ),
         },
         {
           id: "retencao",
-          number: 6,
+          number: 7,
           title: "Tempo de retenção",
           body: (
             <ul className="ml-6 list-disc space-y-2">
@@ -173,7 +222,7 @@ export default function PrivacidadePage() {
         },
         {
           id: "seguranca",
-          number: 7,
+          number: 8,
           title: "Segurança",
           body: (
             <p>
@@ -188,7 +237,7 @@ export default function PrivacidadePage() {
         },
         {
           id: "direitos",
-          number: 8,
+          number: 9,
           title: "Seus direitos como titular",
           body: (
             <>
@@ -223,7 +272,7 @@ export default function PrivacidadePage() {
         },
         {
           id: "dpo",
-          number: 9,
+          number: 10,
           title: "Encarregado pelo tratamento (DPO)",
           body: (
             <p>
@@ -236,7 +285,7 @@ export default function PrivacidadePage() {
         },
         {
           id: "atualizacoes",
-          number: 10,
+          number: 11,
           title: "Atualizações desta política",
           body: (
             <p>

@@ -21,7 +21,15 @@ export function CookieConsentBanner() {
     const id = requestAnimationFrame(() => {
       setChoice(getAnalyticsConsent());
     });
-    return () => cancelAnimationFrame(id);
+    // Ouve a revogação disparada em /privacidade (`clearAnalyticsConsent`) —
+    // sem isto o banner já está renderizado como `null` e não voltaria, e a
+    // revogação exigida pelo art. 8º, §5º só valeria depois de um reload.
+    const sync = () => setChoice(getAnalyticsConsent());
+    window.addEventListener("fm-analytics-consent", sync);
+    return () => {
+      cancelAnimationFrame(id);
+      window.removeEventListener("fm-analytics-consent", sync);
+    };
   }, []);
 
   if (choice === "loading" || choice !== null) return null;
@@ -77,19 +85,22 @@ export function CookieConsentBanner() {
                 Privacidade
               </Link>
             </p>
-            <div className="mt-2.5 flex items-center gap-2">
+            {/* Os dois botões têm a mesma caixa, o mesmo tipo e o mesmo peso:
+                o guia de cookies da ANPD pede que recusar seja tão fácil e tão
+                visível quanto aceitar. Até 14/08/2026 "Recusar" era texto solto
+                ao lado de um botão âmbar preenchido. */}
+            <div className="mt-2.5 grid grid-cols-2 gap-2">
               <button
                 type="button"
                 onClick={decline}
-                className="text-paper-600 hover:text-paper px-1 py-0.5 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
+                className="border-paper-100/70 text-paper-700 hover:border-paper-100 hover:text-paper rounded border px-2.5 py-1 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
               >
                 Recusar
               </button>
-              <span className="bg-paper-100/80 h-3 w-px" aria-hidden />
               <button
                 type="button"
                 onClick={accept}
-                className="bg-amber/90 text-carbon hover:bg-amber rounded px-2.5 py-1 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
+                className="border-amber/90 bg-amber/90 text-carbon hover:bg-amber hover:border-amber rounded border px-2.5 py-1 font-mono text-[9px] tracking-[0.14em] uppercase transition-colors"
               >
                 Aceitar
               </button>

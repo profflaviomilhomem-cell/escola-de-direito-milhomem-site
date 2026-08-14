@@ -29,3 +29,27 @@ export function setAnalyticsConsent(value: AnalyticsConsent): void {
     /* storage bloqueado — ignora */
   }
 }
+
+/**
+ * Revoga a escolha e devolve o visitante ao estado "ainda não decidiu" —
+ * o banner reaparece na próxima renderização.
+ *
+ * Existe por exigência do art. 8º, §5º da LGPD: o consentimento pode ser
+ * revogado a qualquer momento por procedimento gratuito e facilitado. Até
+ * 14/08/2026 não havia nenhum: quem clicasse em "Aceitar" só voltaria atrás
+ * limpando os dados do site no navegador, o que não é procedimento facilitado.
+ *
+ * A revogação não desfaz coleta já ocorrida — os scripts só param de carregar
+ * a partir da próxima navegação, e é isso que a política declara.
+ */
+export function clearAnalyticsConsent(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(ANALYTICS_CONSENT_KEY);
+    window.dispatchEvent(
+      new CustomEvent("fm-analytics-consent", { detail: null }),
+    );
+  } catch {
+    /* storage bloqueado — ignora */
+  }
+}
