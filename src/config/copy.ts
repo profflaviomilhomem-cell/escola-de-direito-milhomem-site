@@ -63,13 +63,11 @@ export const copy = {
 
   home: {
     hero: {
-      // 06/08/2026: era "Edição Lançamento · 11 de agosto · Brasília". O site
-      // entra no ar em 17/08 — o texto mais visível da home anunciava o
-      // lançamento numa data já vencida para quem chega. Agora o eyebrow diz o
-      // que o visitante pode fazer HOJE (se inscrever) e quando a turma começa,
-      // que é a distinção que faltava na página inteira.
-      eyebrow:
-        "Edição Lançamento · inscrições abertas · turma começa 1º de setembro",
+      // 21/08/2026: o lançamento (evento de 11/08, inscrições de 17/08 e turma
+      // de 1º/09) foi ADIADO. Enquanto as novas datas não são confirmadas, o
+      // texto mais visível da home não pode prometer inscrição nem data — só o
+      // que o visitante pode fazer hoje: entrar na lista para saber primeiro.
+      eyebrow: "Edição Lançamento · nova data em breve · entre na lista",
       titleLine1: "A",
       titleEmphasis1: "Escola",
       titleLine2: "de direito",
@@ -203,9 +201,12 @@ export const copy = {
     // ponto do art. 30 do CDC: a oferta veiculada vincula, então ela precisa
     // dizer o que o comprador recebe e quando.
     cronogramaItems: [
-      "Inscrições abertas: 17 de agosto de 2026",
-      "Início da turma: 1º de setembro de 2026",
-      "Duração: 12 semanas — encerramento previsto para 23 de novembro de 2026",
+      // 21/08/2026: datas de inscrição (17/08), início (1º/09) e encerramento
+      // (23/11) removidas — o lançamento foi adiado e as novas datas ainda não
+      // foram confirmadas. Voltar a datar estas linhas só com data fechada.
+      "Inscrições: nova data em breve — anunciada primeiro para quem está na lista",
+      "Início da turma: a confirmar — comunicado por e-mail e nesta página",
+      "Duração: 12 semanas",
       // Carga horária real, medida nos arquivos de vídeo em 04/08/2026 (2h47min37s
       // somando as 10 aulas). O texto anterior anunciava "60–80 horas", número que
       // não corresponde a nada medido — carga inflada em peça assinada por Promotor
@@ -251,7 +252,9 @@ export const copy = {
     investimentoSelo: "Turma fundadora · até 50 alunos",
     investimentoGarantia:
       "Garantia de 15 dias incondicionais, conforme política publicada em /reembolso.",
-    investimentoCta: "Garantir minha vaga",
+    // 21/08/2026: enquanto as inscrições estão suspensas (adiamento), o CTA
+    // leva para a lista de espera, não para o checkout.
+    investimentoCta: "Entrar na lista de espera",
     faqTitle: "Perguntas frequentes",
     faq: [
       {
@@ -259,7 +262,9 @@ export const copy = {
         // Reescrito em 06/08/2026. A resposta anterior ancorava a data no "evento
         // de 11 de agosto em Brasília" — evento anterior à entrada do site no ar
         // (17/08), que o leitor encontraria já vencido.
-        a: "A turma começa em 1º de setembro de 2026 e vai até 23 de novembro. As inscrições abrem em 17 de agosto — quem garante a vaga agora recebe os acessos e o calendário completo por e-mail antes do primeiro dia.",
+        // 21/08/2026: datas removidas (lançamento adiado). Reescrever com as
+        // datas novas assim que confirmadas.
+        a: "A data de início da turma será anunciada em breve. Quem está na lista recebe a data, o calendário completo e a abertura das inscrições por e-mail antes de todo mundo.",
       },
       {
         q: "Quanto tempo por semana?",
@@ -328,7 +333,9 @@ export const copy = {
         // acontece em 11/08 e o site entra no ar em 17/08 — para quem lê, já
         // passou. Reescrito no passado, e o evento sai da posição de item do
         // curso para virar contexto de origem da Escola.
-        a: "Não. O cohort é inteiramente online — as doze semanas acontecem na plataforma, entre aulas gravadas, fórum e os quatro encontros ao vivo. A Escola foi aberta publicamente no Dia do Advogado, em 11 de agosto de 2026, em Brasília, mas nada do curso depende de presença física.",
+        // 21/08/2026: o evento de abertura foi adiado; a resposta deixa de
+        // afirmar que ele aconteceu.
+        a: "Não. O cohort é inteiramente online — as doze semanas acontecem na plataforma, entre aulas gravadas, fórum e os quatro encontros ao vivo. O evento de abertura da Escola, em Brasília, terá nova data anunciada em breve, e nada do curso depende de presença física.",
       },
       {
         q: "Qual é o investimento?",
@@ -390,7 +397,7 @@ export const copy = {
       },
       {
         q: "Quais cursos a Escola oferece?",
-        a: "O programa principal é a Edição Lançamento — cohort inaugural de 12 semanas sobre cadeia de custódia e prova digital no processo penal, com início previsto para setembro de 2026. O catálogo completo, com ementas, está na página de cursos.",
+        a: "O programa principal é a Edição Lançamento — cohort inaugural de 12 semanas sobre cadeia de custódia e prova digital no processo penal, com data de início a ser anunciada. O catálogo completo, com ementas, está na página de cursos.",
       },
       {
         q: "Os cursos emitem certificado?",
@@ -430,22 +437,26 @@ export const copy = {
    * num evento que já ocorreu, o registro dá acesso ao material do painel.
    * A página deixa de ser convite e passa a ser prova de autoridade.
    */
+  // 21/08/2026: o evento de 11/08 NÃO aconteceu — foi adiado. A página deixa
+  // de ser registro ("Aconteceu") e volta a ser aviso de data a confirmar, sem
+  // prometer dia. Quando a nova data e o novo nome forem definidos, criar a
+  // página nova e redirecionar este slug (ver next.config.ts).
   evento: {
-    eyebrow: "Aconteceu · 11 · ago · 2026 · Brasília",
-    title: "Dia do Advogado",
-    titleEmphasis: "Abertura oficial",
-    lead: "A Escola foi aberta publicamente no Dia do Advogado, em Brasília: painel sobre Direito Penal contemporâneo e aula inaugural de Flávio Milhomem pela perspectiva da acusação. Foi ali que a Edição Lançamento — o cohort inaugural — foi apresentada ao público.",
-    agendaTitle: "O que aconteceu",
+    eyebrow: "Em breve · nova data · Brasília",
+    title: "Evento de abertura",
+    titleEmphasis: "da Escola",
+    lead: "O evento de abertura da Escola Flávio Milhomem — painel sobre Direito Penal contemporâneo e aula inaugural pela perspectiva da acusação — teve a data remarcada. A nova data será anunciada em breve, primeiro para quem está na lista.",
+    agendaTitle: "Programação prevista",
     agenda: [
       "Painel: Direito Penal contemporâneo",
       "Aula inaugural — perspectiva da acusação",
       "Apresentação da Edição Lançamento, o cohort inaugural da Escola",
     ] as const,
-    rsvpTitle: "Não esteve presente?",
+    rsvpTitle: "Quer ser avisado da nova data?",
     rsvpLead:
-      "Deixe seu e-mail para receber o material da aula inaugural e acompanhar as próximas turmas da Escola.",
-    rsvpCta: "Quero receber",
-    rsvpSuccess: "Registrado. Em breve você receberá o material por e-mail.",
+      "Deixe seu e-mail para receber a data, o convite e o material da aula inaugural assim que forem divulgados.",
+    rsvpCta: "Quero ser avisado",
+    rsvpSuccess: "Registrado. Você receberá a nova data por e-mail.",
   },
 
   /**

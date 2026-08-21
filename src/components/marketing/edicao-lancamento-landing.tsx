@@ -7,7 +7,6 @@ import { YoutubeEmbed } from "@/components/marketing/youtube-embed";
 import { copy } from "@/config/copy";
 import { siteConfig } from "@/config/site";
 import { provaDigitalModulosPublicos } from "@/data/curso-prova-digital-publico";
-import { CURSO_PRINCIPAL_SLUG } from "@/data/produtos-escola";
 import type { CohortVagas } from "@/lib/marketing/catalog";
 import type { FaqItem } from "@/lib/marketing/curso-faq";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
@@ -264,8 +263,11 @@ export function EdicaoLancamentoLanding({
           </p>
         ) : null}
         <p className="text-paper-600 mt-4 text-sm">{ed.investimentoGarantia}</p>
+        {/* 21/08/2026: inscrições suspensas (lançamento adiado) — o CTA do
+            investimento vai para a lista de espera, não para o checkout.
+            Voltar para `/checkout/<CURSO_PRINCIPAL_SLUG>` quando vendas abrirem. */}
         <Link
-          href={`/checkout/${CURSO_PRINCIPAL_SLUG}`}
+          href="/newsletter?source=edicao-lancamento-investimento"
           className="bg-amber text-carbon mt-8 inline-block px-6 py-3 font-mono text-[12px] tracking-[0.16em] uppercase"
         >
           {ed.investimentoCta}

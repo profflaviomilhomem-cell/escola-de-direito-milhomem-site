@@ -7,19 +7,19 @@ import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 import { fmTitleClamp } from "@/lib/ui/fm-title-clamp";
 
 /**
- * Registro do evento de abertura da Escola (11/08/2026, Brasília).
+ * Evento de abertura da Escola — data a confirmar.
  *
- * Em 06/08/2026 esta página deixou de ser convite e virou registro: o evento
- * ocorre em 11/08 e o site entra no ar em 17/08, então todo visitante chega
- * depois. Ela está no `sitemap.ts`, logo é indexada — e um "Confirmar
- * presença" para evento vencido é a primeira impressão errada para o público
- * de advogados que a Escola quer.
+ * Em 06/08/2026 esta página virou "registro" do evento de 11/08. Em 21/08/2026
+ * ficou claro que o evento NÃO aconteceu (lançamento adiado), então ela volta
+ * a ser aviso: sem data, sem "Confirmar presença", com captura de lead para
+ * avisar a nova data. O slug continua o antigo porque está indexado e no
+ * sitemap; quando o evento novo tiver nome e data, criar a página nova e
+ * redirecionar este caminho em `next.config.ts`.
  *
- * O texto vive em `copy.evento`. A captura de lead continua, com a promessa
- * trocada de vaga para material da aula inaugural.
+ * O texto vive em `copy.evento`.
  */
 export const metadata: Metadata = {
-  title: "Dia do Advogado 2026 · A abertura da Escola",
+  title: "Evento de abertura da Escola · nova data em breve",
   description: copy.evento.lead,
   alternates: { canonical: "/eventos/dia-do-advogado-2026-brasilia" },
 };
@@ -85,8 +85,8 @@ export default function EventoDiaAdvogadoPage() {
         >
           Conheça o curso Prova Digital no Processo Penal
         </Link>{" "}
-        — as inscrições da Edição Lançamento estão abertas, e a turma começa em
-        1º de setembro de 2026.
+        — a nova data das inscrições da Edição Lançamento será anunciada em
+        breve para quem está na lista.
       </p>
     </article>
   );
