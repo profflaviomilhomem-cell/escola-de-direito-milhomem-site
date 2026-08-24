@@ -467,14 +467,12 @@ export const copy = {
       },
       {
         q: "Que conteúdo gratuito a Escola mantém?",
-        // 24/08/2026: saiu daqui "aulas abertas no canal do YouTube", porque
-        // NÃO CONSEGUI VERIFICAR que existem — o único vídeo referenciado no
-        // código é o de abertura, marcado como provisório. Promessa que não se
-        // confere não fica no ar; se o canal tiver aulas abertas, o Flávio
-        // confirma e ela volta. Entrou o quiz, que virou a isca da Escola.
-        // A Calculadora CONTINUA listada: o pedido do Flávio foi tirar a
-        // promessa de conteúdo do pé da ferramenta, não esconder a ferramenta.
-        a: "Um blog editorial com análises de decisões do STJ e do STF em matéria penal, um boletim quinzenal por e-mail (Bastidor da Acusação), a Calculadora de Pena Hipotética — ferramenta didática gratuita — e um quiz de 20 questões com diagnóstico de trilha de estudo.",
+        // 24/08/2026: cheguei a tirar "aulas abertas no canal do YouTube"
+        // porque não consegui verificar o canal daqui. O Carlos confirmou no
+        // mesmo dia que o canal existe e é de lá que saem as aulas abertas —
+        // então a frase voltou. Entrou também o quiz, que virou a isca da
+        // Escola no lugar dos dois PDFs cancelados pelo Flávio.
+        a: "Um blog editorial com análises de decisões do STJ e do STF em matéria penal, um boletim quinzenal por e-mail (Bastidor da Acusação), a Calculadora de Pena Hipotética — ferramenta didática gratuita, um quiz de 20 questões com diagnóstico de trilha de estudo e aulas abertas no canal do YouTube.",
       },
       {
         q: "Como entrar em contato com a Escola?",
