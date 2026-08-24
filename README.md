@@ -168,6 +168,6 @@ pré-lançamento e lançamento.
 
 ## Links úteis
 
-- Site (futuro): https://escolaflaviomilhomem.com.br
+- Site (futuro): https://professorflaviomilhomem.com.br
 - Livro-Guia v1.2 (interno): [`docs/adr/livro-guia-flavio.md`](docs/adr/livro-guia-flavio.md)
 - Guia Dev Web v1.0 (interno): `../docs/dev/guia-desenvolvimento-web.md`

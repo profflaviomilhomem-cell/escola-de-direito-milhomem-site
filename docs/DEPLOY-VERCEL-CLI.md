@@ -111,7 +111,7 @@ Ou: faça **commit + push** no GitHub (com `.vercel` linkado, o push dispara dep
 ## 6. Domínio
 
 ```bash
-npx vercel domains add escolaflaviomilhomem.com.br
+npx vercel domains add professorflaviomilhomem.com.br
 ```
 
 Siga as instruções de DNS no terminal ou no dashboard.
