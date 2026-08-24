@@ -26,6 +26,13 @@ export type AdminDashboard = {
   assinaturasAtivas: number;
   leadsTotal: number;
   leadsConfirmados: number;
+  /**
+   * Quem a sequência de LANÇAMENTO alcançaria HOJE: confirmado no duplo opt-in
+   * E não descadastrado. Não é o mesmo que `leadsConfirmados`, que ignora o
+   * descadastro — o botão de disparo mostra ESTE número, porque é o que vira
+   * e-mail de verdade. Mesmo filtro de /api/admin/email/launch/start.
+   */
+  leadsElegiveisLancamento: number;
   taxaConfirmacaoPct: number;
   aulas: number;
   conclusoes: number;
@@ -44,6 +51,7 @@ const ZERO: AdminDashboard = {
   assinaturasAtivas: 0,
   leadsTotal: 0,
   leadsConfirmados: 0,
+  leadsElegiveisLancamento: 0,
   taxaConfirmacaoPct: 0,
   aulas: 0,
   conclusoes: 0,
@@ -73,6 +81,7 @@ export async function getAdminDashboard(): Promise<AdminDashboard> {
       assinaturasAtivas,
       leadsTotal,
       leadsConfirmados,
+      leadsElegiveisLancamento,
       aulas,
       conclusoes,
       certificados,
@@ -95,6 +104,9 @@ export async function getAdminDashboard(): Promise<AdminDashboard> {
       prisma.subscription.count({ where: { status: "ACTIVE" } }),
       prisma.lead.count(),
       prisma.lead.count({ where: { doubleOptInAt: { not: null } } }),
+      prisma.lead.count({
+        where: { doubleOptInAt: { not: null }, unsubscribedAt: null },
+      }),
       prisma.lesson.count(),
       prisma.userLessonProgress.count({
         where: { completedAt: { not: null } },
@@ -130,6 +142,7 @@ export async function getAdminDashboard(): Promise<AdminDashboard> {
       assinaturasAtivas,
       leadsTotal,
       leadsConfirmados,
+      leadsElegiveisLancamento,
       taxaConfirmacaoPct: confirmRatePct({
         total: leadsTotal,
         confirmados: leadsConfirmados,

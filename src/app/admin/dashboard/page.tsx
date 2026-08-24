@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { IniciarLancamentoPanel } from "@/components/admin/iniciar-lancamento-panel";
 import { getAdminDashboard } from "@/lib/admin/dashboard-metrics";
 import { requireAdminSession } from "@/lib/auth/require-admin";
 import { getCohortVagas } from "@/lib/marketing/catalog";
@@ -140,6 +141,11 @@ export default async function AdminDashboardPage() {
           </div>
         ))}
       </div>
+
+      <h2 className="text-paper-700 mt-12 font-mono text-[11px] tracking-[0.2em] uppercase">
+        Lançamento
+      </h2>
+      <IniciarLancamentoPanel elegiveis={m.leadsElegiveisLancamento} />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
         {/* Pedidos recentes */}
