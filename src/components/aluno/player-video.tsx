@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockLesson } from "@/lib/course/types";
-import { formatDuration } from "@/lib/course/format";
 import type { MockCourse } from "@/lib/course/types";
 import { primaryCourse } from "@/lib/course/aluno-courses";
 import {
@@ -18,7 +16,6 @@ import {
 } from "@/lib/lessons/progresso-regras";
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
-import { progressPercentFromRatio } from "@/lib/utils";
 
 type Props = {
   lesson: MockLesson;
@@ -36,7 +33,7 @@ export function PlayerVideo({ lesson, course = primaryCourse }: Props) {
   if (lesson.videoSrc) {
     return <PlayerVideoNative lesson={lesson} course={course} />;
   }
-  return <PlayerVideoMockFallback lesson={lesson} course={course} />;
+  return <PlayerVideoIndisponivel lesson={lesson} />;
 }
 
 /** Player Cloudflare Stream — embed por `videoId` (Stream UID). */
@@ -170,6 +167,11 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
 
 function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  // Fonte que não carrega. Não é hipótese: em 24/08/2026 as 10 aulas tinham
+  // `videoSrc` apontando para arquivos que respondiam 404 em produção (os MP4
+  // estão no .gitignore e nunca subiram), então o aluno via um player quebrado.
+  // Sem isto, "o vídeo não existe" fica indistinguível de "o vídeo travou".
+  const [fonteQuebrada, setFonteQuebrada] = useState(false);
   const [markedComplete, setMarkedComplete] = useState(
     lesson.status === "concluida",
   );
@@ -226,6 +228,8 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
     if (concluiAoTerminar(watched, duration)) handleMarkComplete("auto");
   };
 
+  if (fonteQuebrada) return <PlayerVideoIndisponivel lesson={lesson} />;
+
   return (
     <div
       data-fm-media-surface
@@ -238,6 +242,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
         playsInline
         preload="metadata"
         src={lesson.videoSrc}
+        onError={() => setFonteQuebrada(true)}
         onPlay={() => {
           if (startedTracked.current) return;
           startedTracked.current = true;
@@ -263,106 +268,37 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
   );
 }
 
-function PlayerVideoMockFallback({ lesson, course = primaryCourse }: Props) {
-  const [playing, setPlaying] = useState(false);
-  const [markedComplete, setMarkedComplete] = useState(
-    lesson.status === "concluida",
-  );
-  const startedTracked = useRef(false);
-  const completedTracked = useRef(lesson.status === "concluida");
-  const initialProgress = lesson.watchedSec / Math.max(1, lesson.durationSec);
-
-  const lessonProps = {
-    lesson_slug: lesson.slug,
-    lesson_id: lesson.id,
-    course_slug: course.slug,
-    module_title: lesson.moduleTitle,
-    player: "mock" as const,
-  };
-
-  const handlePlay = () => {
-    setPlaying(true);
-    if (startedTracked.current) return;
-    startedTracked.current = true;
-    track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
-  };
-
-  const handleMarkComplete = () => {
-    if (completedTracked.current) return;
-    completedTracked.current = true;
-    setMarkedComplete(true);
-    track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
-      ...lessonProps,
-      completion_source: "manual_mock",
-    });
-    void patchLessonProgress({
-      productSlug: course.slug,
-      lessonSlug: lesson.slug,
-      watchedSec: lesson.durationSec,
-      completed: true,
-    });
-  };
-
+/**
+ * Aula sem vídeo disponível.
+ *
+ * SUBSTITUIU, em 24/08/2026, um "player mock" herdado do protótipo: um degradê
+ * com botão de play grande que não tocava nada, apenas marcava a aula como
+ * iniciada — e um botão de concluir que CONTAVA PARA O CERTIFICADO
+ * (`completion_source: "manual_mock"`). Num curso pago, isso é um play que
+ * finge e um certificado por aula não assistida.
+ *
+ * Aqui não há botão de play nem de conclusão: se não há vídeo, não há o que
+ * concluir. O aluno lê o que está acontecendo, e os materiais da aula continuam
+ * acessíveis logo abaixo do player.
+ */
+function PlayerVideoIndisponivel({ lesson }: { lesson: MockLesson }) {
   return (
     <div
       data-fm-media-surface
-      className="border-paper-100 relative aspect-video w-full overflow-hidden border"
-      style={{
-        backgroundImage: `linear-gradient(${lesson.cover.angle ?? 135}deg, ${lesson.cover.from}, ${lesson.cover.to})`,
-      }}
+      role="status"
+      className="border-paper-100 bg-carbon-elevated/40 flex aspect-video w-full flex-col items-center justify-center gap-3 border px-6 text-center"
     >
-      <div className="from-carbon via-carbon/30 absolute inset-0 bg-gradient-to-t to-transparent" />
-
-      {!playing && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
-          <button
-            type="button"
-            onClick={handlePlay}
-            aria-label={`Reproduzir aula: ${lesson.title}`}
-            className="group bg-paper text-carbon hover:bg-amber relative grid h-20 w-20 place-items-center rounded-full transition-all hover:scale-110"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <polygon points="6 3 20 12 6 21 6 3" />
-            </svg>
-          </button>
-          <div className="text-center">
-            <p className="text-amber fm-mono">{lesson.moduleTitle}</p>
-            <p className="text-paper mt-2 font-serif text-2xl">
-              {lesson.title}
-            </p>
-            <p className="text-paper-600 fm-mono mt-3">
-              Vídeo em preparação · {formatDuration(lesson.durationSec)}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {playing && (
-        <>
-          <div className="bg-carbon/30 absolute inset-0" />
-          <div className="absolute inset-x-0 bottom-0 p-4">
-            <LabeledProgress
-              value={Math.max(1, progressPercentFromRatio(initialProgress))}
-              barClassName="h-1"
-            />
-            {!markedComplete && (
-              <button
-                type="button"
-                onClick={handleMarkComplete}
-                className="bg-amber/90 text-carbon hover:bg-amber fm-mono mt-3 w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase"
-              >
-                Marcar aula como concluída
-              </button>
-            )}
-          </div>
-        </>
-      )}
+      <p className="text-amber fm-mono text-[10px] tracking-[0.18em] uppercase">
+        Vídeo em preparação
+      </p>
+      <p className="text-paper max-w-md font-serif text-xl leading-snug">
+        {lesson.title}
+      </p>
+      <p className="text-paper-600 max-w-md text-sm leading-relaxed">
+        Esta aula ainda não está disponível para assistir. Você será avisado por
+        e-mail assim que ela entrar no ar. Os materiais de apoio, quando houver,
+        continuam disponíveis abaixo.
+      </p>
     </div>
   );
 }
