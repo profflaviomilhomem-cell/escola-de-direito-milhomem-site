@@ -37,9 +37,14 @@ const post2: SequenceTemplate = (input: SequenceEmailInput) => {
       'Tudo o que você precisa para <em style="color:#f1bb41;font-style:italic;">começar</em>.',
     titleText: "Tudo o que você precisa para começar.",
     paragraphs: [
-      "Seu acesso à plataforma já está liberado. É nela que ficam as aulas gravadas, os PDFs de cada módulo, o fórum por aula e o calendário dos encontros ao vivo.",
-      "Entre pela área do aluno com o e-mail desta compra. As aulas são liberadas semanalmente; os materiais de apoio — apostilas, mapa mental e caderno de questões — já estão disponíveis para download.",
-      "Recomendo o desktop para leitura dos PDFs mais extensos; as aulas e o fórum funcionam bem também no navegador do celular. Qualquer problema de acesso, responda este e-mail.",
+      // 24/08/2026: este e-mail prometia "os PDFs de cada módulo" e dizia que
+      // "apostilas, mapa mental e caderno de questões já estão disponíveis para
+      // download". No banco, cada aula tem UM material: os slides. Prometer isso
+      // a quem ACABOU DE PAGAR é a pior hora de descumprir — é o primeiro
+      // contato depois do dinheiro sair. Volta a listar quando existir.
+      "Seu acesso à plataforma já está liberado. É nela que ficam as aulas gravadas, os slides de cada aula, o fórum por aula e o calendário dos encontros ao vivo.",
+      "Entre pela área do aluno com o e-mail desta compra. Siga a trilha semanal na ordem das aulas — cada uma tem os slides para download na seção Materiais.",
+      "As aulas e o fórum funcionam bem no computador e no navegador do celular. Qualquer problema de acesso, responda este e-mail.",
     ],
     ctas: [{ label: "Entrar na área do aluno", href: r.alunoDashboard }],
   });
@@ -60,7 +65,7 @@ const post3: SequenceTemplate = (input: SequenceEmailInput) => {
       "Sua primeira tarefa é simples e vale a pena fazer agora: acesse o fórum da aula de abertura e escreva uma apresentação curta — quem é você, onde atua e o que espera do cohort. Conhecer a turma muda a qualidade das discussões que virão.",
       "Depois disso, assista à aula de abertura e siga a trilha no seu ritmo. Nos vemos por dentro.",
     ],
-    ctas: [{ label: "Ir para o fórum da turma", href: r.alunoDashboard }],
+    ctas: [{ label: "Ir para o fórum da turma", href: r.alunoForum }],
   });
 };
 

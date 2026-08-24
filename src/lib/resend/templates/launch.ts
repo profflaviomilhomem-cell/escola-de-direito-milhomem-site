@@ -52,24 +52,32 @@ const launch3: SequenceTemplate = (input: SequenceEmailInput) => {
   const r = emailRoutes(input.ctx.baseUrl);
   return composeEmail({
     input,
-    subject: "O que a turma fundadora está dizendo",
-    eyebrow: "Prova · avaliações",
+    // REESCRITO EM 24/08/2026. O texto anterior afirmava que "os primeiros
+    // alunos já avaliaram a metodologia" e que os relatos "estão publicados" —
+    // não existe turma, não existe aluno, e a lista de avaliações está vazia
+    // desde que os depoimentos fictícios saíram em 01/08. O mesmo e-mail
+    // prometia "apostila densa em PDF, mapa mental, caderno de questões
+    // comentadas e decisões anotadas": no banco, cada aula tem UM material, os
+    // slides. Duas afirmações falsas em peça assinada por Promotor de Justiça.
+    //
+    // Turma fundadora não tem depoimento por definição — a primeira nunca tem.
+    // O substituto honesto da prova social é DEMONSTRAÇÃO: o que já está no ar
+    // e qualquer um pode conferir antes de pagar. Quando a turma terminar e
+    // houver avaliação real com autorização, este e-mail volta a ser "prova".
+    subject: "Não acredite em mim — teste antes de pagar",
+    eyebrow: "Prova · demonstração",
     title:
-      'Não peça para acreditar. <em style="color:#f1bb41;font-style:italic;">Veja os relatos.</em>',
-    titleText: "Não peça para acreditar. Veja os relatos.",
+      'Não peça para acreditar. <em style="color:#f1bb41;font-style:italic;">Teste.</em>',
+    titleText: "Não peça para acreditar. Teste.",
     paragraphs: [
-      "Os primeiros alunos já avaliaram a metodologia — e as avaliações estão publicadas, com autorização, na página do curso.",
-      // "certificado de carga horária" saiu em 04/08/2026 — não há carga horária
-      // declarada e verificável; o certificado é de conclusão. Ver copy.ts.
-      // ⚠️ PENDENTE NESTE MESMO E-MAIL: o primeiro parágrafo afirma que "os
-      // primeiros alunos já avaliaram" e que os relatos "estão publicados" — a
-      // lista de avaliações está VAZIA (turma-fundadora-avaliacoes.ts) e a seção
-      // não renderiza. Não corrigi aqui porque o texto depende da decisão sobre
-      // formato e datas do produto (12 semanas / encontros ao vivo / setembro).
-      "Além dos relatos, cada módulo inclui apostila densa em PDF, mapa mental do programa, caderno de questões comentadas e decisões anotadas — mais o certificado de conclusão ao concluir a trilha.",
-      "É material de estudo real, feito para durar além do cohort: seu acesso à plataforma permanece por doze meses após o encerramento da turma.",
+      "Esta é a primeira turma, então não tenho depoimento de aluno para mostrar — e não vou inventar um. O que eu tenho é melhor: você pode conferir o método antes de pagar.",
+      "A calculadora de dosimetria da Escola percorre as três fases do art. 68 do Código Penal em 50 tipos penais, e está aberta a qualquer um. O blog tem análises de decisões recentes do STJ e do STF. Se o modo de raciocinar ali fizer sentido para você, é exatamente esse o modo do cohort.",
+      "O que a Edição Lançamento inclui: 10 aulas gravadas somando 2h47, com os slides de cada aula para download; fórum por aula com minha resposta em até 72 horas; quatro encontros ao vivo ao longo do cohort; certificado de conclusão ao concluir a trilha; e acesso à plataforma por 12 meses após o encerramento da turma.",
     ],
-    ctas: [{ label: "Ler as avaliações", href: r.curso }],
+    ctas: [
+      { label: "Testar a calculadora de pena", href: r.calculadora },
+      { label: "Ver o programa completo", href: r.curso },
+    ],
   });
 };
 

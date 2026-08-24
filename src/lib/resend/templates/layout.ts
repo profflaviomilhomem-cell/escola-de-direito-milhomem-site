@@ -162,7 +162,10 @@ export function emailRoutes(baseUrl: string) {
     // quando os títulos foram alinhados ao Livro-Guia.
     materiais: `${baseUrl}/materiais`,
     reembolso: `${baseUrl}/reembolso`,
+    calculadora: `${baseUrl}/calculadora-de-pena`,
+    newsletter: `${baseUrl}/newsletter`,
     alunoDashboard: `${baseUrl}/aluno/dashboard`,
+    alunoForum: `${baseUrl}/aluno/forum`,
     youtube: `https://www.youtube.com/watch?v=${siteConfig.social.edicaoLancamentoVideoId}`,
   } as const;
 }

@@ -14,17 +14,25 @@ const welcome1: SequenceTemplate = (input: SequenceEmailInput) => {
   const r = emailRoutes(input.ctx.baseUrl);
   return composeEmail({
     input,
-    subject: "Bem-vindo ao Bastidor da Acusação — seu material está aqui",
+    // 24/08/2026: o assunto dizia "seu material está aqui" e o CTA era "Baixar
+    // o material". Não existe arquivo: a tabela LeadMagnet está vazia e nenhum
+    // PDF foi produzido. Prometer download que não entrega queima a lista no
+    // primeiro e-mail. Volta a prometer quando os PDFs existirem.
+    subject: "Sua inscrição no Bastidor da Acusação está confirmada",
     eyebrow: "Bastidor da Acusação",
     title:
       'Bem-vindo ao <em style="color:#f1bb41;font-style:italic;">Bastidor da Acusação</em>.',
     titleText: "Bem-vindo ao Bastidor da Acusação.",
     paragraphs: [
       "Sua inscrição está confirmada. A partir de agora você recebe, a cada quinze dias, análise de decisões recentes do STJ e do STF em matéria penal, leitura recomendada e o que se move na Escola — sem filler, sem spam.",
-      "Para começar, deixei disponível o material que motivou sua inscrição. Ele resume, em uma página, como a acusação se constrói: da notícia do fato à sustentação em tribunal.",
+      "O material que motivou sua inscrição está em finalização — quero que ele saia conferido, com jurisprudência real e citação verificável, e não apressado. Você vai recebê-lo aqui, em primeira mão, assim que ficar pronto.",
+      "Enquanto isso, o que já está no ar: a calculadora de dosimetria da pena, que percorre as três fases do art. 68 do Código Penal, e o blog da Escola, com análises de decisões recentes do STJ e do STF.",
       "Guarde este e-mail. Nos próximos dias eu escrevo de novo, contando quem sou e por que a perspectiva da acusação muda o modo de estudar Direito Penal.",
     ],
-    ctas: [{ label: "Baixar o material", href: r.materiais }],
+    ctas: [
+      { label: "Abrir a calculadora de pena", href: r.calculadora },
+      { label: "Ler o blog da Escola", href: r.blog },
+    ],
   });
 };
 
@@ -33,20 +41,21 @@ const welcome2: SequenceTemplate = (input: SequenceEmailInput) => {
   const r = emailRoutes(input.ctx.baseUrl);
   return composeEmail({
     input,
-    subject: "Quem escreve para você — em três minutos",
+    // 24/08/2026: prometia um vídeo de três minutos gravado para esta série. O
+    // único vídeo publicado é o de abertura do canal, provisório (site.ts,
+    // `edicaoLancamentoVideoId`, marcado como "trocar quando houver vídeo da
+    // edição"). Sai o vídeo do e-mail; volta quando o vídeo-convite for gravado.
+    subject: "Quem escreve para você",
     eyebrow: "Quem conduz a Escola",
     title:
       'Antes de seguirmos, deixe eu me <em style="color:#f1bb41;font-style:italic;">apresentar</em>.',
     titleText: "Antes de seguirmos, deixe eu me apresentar.",
     paragraphs: [
       "Sou Flávio Milhomem. Leciono Direito Penal e Processo Penal há trinta anos, sou autor de obras adotadas em graduação e em preparação para concursos, e me formei academicamente na Universidade Católica Portuguesa e na École Nationale de la Magistrature, na França.",
-      "Gravei um vídeo curto — cerca de três minutos — contando por que decidi abrir uma escola e o que ela se propõe a fazer diferente dos cursos que você já conhece.",
+      "Abri a Escola porque, em três décadas dentro do sistema de justiça criminal, vi a mesma lacuna se repetir: cursos que ensinam a teoria e não mostram como a acusação de fato se constrói.",
       "A trajetória completa, com credenciais verificáveis e os vínculos institucionais descritos com transparência, está na página Sobre.",
     ],
-    ctas: [
-      { label: "Assistir ao vídeo (3 min)", href: r.youtube },
-      { label: "Ler a biografia", href: r.sobre },
-    ],
+    ctas: [{ label: "Ler a biografia", href: r.sobre }],
   });
 };
 
@@ -63,9 +72,9 @@ const welcome3: SequenceTemplate = (input: SequenceEmailInput) => {
     paragraphs: [
       "A maioria dos cursos de direito criminal ensina para a prova. Poucos ensinam para a prática — e quase nenhum parte de quem constrói a denúncia.",
       "Não basta dominar a teoria. Para sustentar uma tese, é preciso saber como a prova é produzida, por que cada linha da acusação é escrita daquela forma e quais precedentes a sustentam. Esse recorte raramente aparece com densidade nos cursos generalistas.",
-      "Reuni esse raciocínio em um artigo no blog da Escola. Ele é a melhor porta de entrada para o método que você vai encontrar aqui.",
+      "É esse raciocínio que sustenta o blog da Escola: análise de decisões recentes do STJ e do STF, lidas pelo que elas mudam na prática — não pelo resumo de ementa. É a melhor porta de entrada para o método que você vai encontrar aqui.",
     ],
-    ctas: [{ label: "Ler o artigo", href: r.blog }],
+    ctas: [{ label: "Ler o blog da Escola", href: r.blog }],
   });
 };
 
@@ -100,10 +109,10 @@ const welcome5: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "As vagas da turma fundadora são limitadas.",
     paragraphs: [
       "A Edição Lançamento abre com um número reduzido de vagas — o suficiente para manter escala humana, fórum vivo e resposta do professor em até 72 horas.",
-      "Quem entra na lista de espera é avisado primeiro quando as inscrições abrirem, e tem prioridade na condição de turma fundadora. É um passo a mais, opcional, e você decide.",
-      "Se fizer sentido para o seu momento, entre na lista. Se preferir apenas acompanhar o Bastidor da Acusação, também está ótimo — você continua recebendo as edições quinzenais.",
+      "Você já está na lista que recebe o aviso primeiro: quando as inscrições abrirem, este e-mail chega antes de qualquer anúncio público. Não precisa fazer nada para garantir isso.",
+      "Se quiser conhecer o programa com calma antes, a ementa completa e o formato estão na página do curso. E se preferir apenas acompanhar o Bastidor da Acusação, também está ótimo — você continua recebendo as edições quinzenais.",
     ],
-    ctas: [{ label: "Entrar na lista de espera", href: r.curso }],
+    ctas: [{ label: "Conhecer a Edição Lançamento", href: r.curso }],
   });
 };
 

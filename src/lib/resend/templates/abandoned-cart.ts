@@ -19,7 +19,11 @@ const cart1: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "Você chegou quase lá.",
     paragraphs: [
       "Notei que você começou a inscrição na Edição Lançamento, mas não concluiu. Acontece — às vezes é só o momento que não ajudou.",
-      "Sua vaga na turma fundadora ainda está reservada por enquanto. É só retomar de onde parou; leva menos de um minuto.",
+      // 24/08/2026: dizia "sua vaga ainda está reservada". Não fica: a contagem
+      // de vagas (50 − pedidos PAGOS, ver catalog.ts) só considera pagamento
+      // confirmado, então pedido pendente não segura lugar nenhum. Reservar
+      // vaga que o sistema não reserva é promessa que o código desmente.
+      "As vagas da turma fundadora são limitadas, e a inscrição só se conclui com o pagamento. Retomar leva menos de um minuto.",
       "Se ficou alguma dúvida antes de finalizar, responda este e-mail. Eu leio e ajudo pessoalmente.",
     ],
     ctas: [{ label: "Concluir minha inscrição", href: r.checkout }],
@@ -38,7 +42,7 @@ const cart2: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "O risco de experimentar é zero.",
     paragraphs: [
       "Quando alguém hesita na hora de concluir, quase sempre é a mesma pergunta: e se não for para mim? É uma dúvida legítima.",
-      "Por isso a Edição Lançamento tem garantia incondicional de quinze dias. Você entra, conhece as aulas, o fórum e os materiais por dentro — e, se concluir que não é o caminho certo agora, pede o reembolso integral, conforme a política publicada em /reembolso. Prazo superior ao mínimo legal de sete dias.",
+      "Por isso a Edição Lançamento tem garantia incondicional de quinze dias. Você entra, assiste às aulas, baixa os slides e acompanha o fórum por dentro — e, se concluir que não é o caminho certo agora, pede o reembolso integral, conforme a política publicada em /reembolso. Prazo superior ao mínimo legal de sete dias.",
       "Na prática, você decide de verdade só depois de ver o curso por dentro, sem risco financeiro.",
     ],
     ctas: [
@@ -53,13 +57,15 @@ const cart3: SequenceTemplate = (input: SequenceEmailInput) => {
   const r = emailRoutes(input.ctx.baseUrl);
   return composeEmail({
     input,
-    subject: "Sua vaga na turma fundadora não fica reservada para sempre",
+    // 24/08/2026: o assunto era "sua vaga não fica reservada para sempre" —
+    // mesma promessa que saiu do A1: pedido pendente não reserva vaga alguma.
+    subject: "A turma fundadora fecha — e a condição é da primeira turma",
     eyebrow: "Última lembrança",
     title:
       'A condição de <em style="color:#f1bb41;font-style:italic;">turma fundadora</em> tem prazo.',
     titleText: "A condição de turma fundadora tem prazo.",
     paragraphs: [
-      "Este é o último lembrete sobre a inscrição que você começou. Não quero insistir além da conta — mas também não quero que você perca a vaga por esquecimento.",
+      "Este é o último lembrete sobre a inscrição que você começou. Não quero insistir além da conta — mas também não quero que você fique de fora por esquecimento.",
       "As vagas da turma fundadora são limitadas e o preço fundador é da primeira turma. Quando o carrinho fechar, essa condição não se repete nos próximos cohorts.",
       "Se fizer sentido, conclua agora. Se preferir esperar um próximo cohort, sem problema — você continua no Bastidor da Acusação, recebendo as edições quinzenais.",
     ],
