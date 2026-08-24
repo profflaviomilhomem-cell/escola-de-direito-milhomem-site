@@ -9,6 +9,22 @@ const nextConfig: NextConfig = {
    *  308 no nível de config para preservar o SEO do endereço antigo. */
   async redirects() {
     return [
+      // 24/08/2026 — as duas iscas gratuitas foram CANCELADAS pelo Flávio
+      // ("quero suprimir estas 03 entregas gratuitas; num segundo lançamento
+      // posso produzir o material"). As páginas prometiam um PDF que nunca
+      // existiu — a tabela LeadMagnet sempre esteve vazia. Os três endereços
+      // estiveram no sitemap e podem estar indexados, então seguem
+      // redirecionando para o quiz, que é a isca a partir de agora.
+      {
+        source: "/materiais",
+        destination: "/quiz-penal",
+        permanent: true,
+      },
+      {
+        source: "/materiais/:slug",
+        destination: "/quiz-penal",
+        permanent: true,
+      },
       {
         source: "/cursos/edicao-lancamento",
         destination: "/cursos/prova-digital-no-processo-penal",

@@ -79,7 +79,9 @@ export const copy = {
       bio: "A maioria dos cursos de direito criminal ensina para a prova. Este foi construído para a prática.",
       ctaPrimary: "Conhecer o curso",
       ctaSecondary: "Receber o boletim",
-      ctaCalculadora: "Calculadora de pena",
+      // `ctaCalculadora` removido em 24/08/2026: não era lido por nenhum
+      // componente (config morta) e apontaria a calculadora no hero, que é
+      // o oposto do que o Flávio pediu.
     },
     /** Depoimentos: ver `src/data/turma-fundadora-avaliacoes.ts` */
     testimonials: {
@@ -465,7 +467,15 @@ export const copy = {
       },
       {
         q: "Que conteúdo gratuito a Escola mantém?",
-        a: "Um blog editorial com análises de decisões do STJ e do STF em matéria penal, um boletim quinzenal por e-mail (Bastidor da Acusação), a Calculadora de Pena Hipotética — ferramenta didática gratuita — e aulas abertas no canal do YouTube.",
+        // 24/08/2026: saíram duas coisas desta resposta.
+        // A Calculadora, porque o Flávio pediu para não explorar o tema (a
+        // Escola não trata de execução penal) — ela continua no ar e acessível
+        // pelo rodapé, só deixa de ser anunciada.
+        // "Aulas abertas no canal do YouTube", porque NÃO CONSEGUI VERIFICAR
+        // que existem: o único vídeo referenciado no código é o de abertura,
+        // marcado como provisório. Promessa que não se confere não fica no ar.
+        // Se o canal tiver aulas abertas, o Flávio confirma e ela volta.
+        a: "Um blog editorial com análises de decisões do STJ e do STF em matéria penal, um boletim quinzenal por e-mail (Bastidor da Acusação) e um quiz de 20 questões com diagnóstico de trilha de estudo.",
       },
       {
         q: "Como entrar em contato com a Escola?",
@@ -511,36 +521,6 @@ export const copy = {
       "Deixe seu e-mail para receber a data, o convite e o material da aula inaugural assim que forem divulgados.",
     rsvpCta: "Quero ser avisado",
     rsvpSuccess: "Registrado. Você receberá a nova data por e-mail.",
-  },
-
-  /**
-   * Iscas de topo de funil.
-   *
-   * Os títulos vêm do Livro-Guia (cap. 3.9, "Gancho editorial por persona"), que
-   * define uma isca por persona e elege Mariana e Rafael como as duas prioritárias
-   * do lançamento — exatamente os dois slots desta vitrine.
-   *
-   * Antes daqui existiam "Mapa da acusação" e "Checklist do inquérito", que não
-   * constam do Livro-Guia em lugar nenhum: o site tinha divergido da especificação.
-   * Corrigido em 03/08/2026, por decisão do Carlos.
-   *
-   * ⚠️ Nenhum dos dois PDFs existe ainda (a tabela `LeadMagnet` em produção está
-   * vazia). O conteúdo é jurisprudência real e precisa ser conferido pelo Flávio
-   * antes de publicar — julgado inventado em site assinado por Promotor de Justiça
-   * em atividade é erro sem volta.
-   */
-  materiais: {
-    bySlug: {
-      "20-decisoes-stj-acusacao": {
-        title:
-          "As 20 decisões do STJ que a acusação cita mais e o que a defesa precisa saber sobre elas",
-        lead: "As decisões que aparecem com mais frequência na fundamentação do Ministério Público, comentadas pelo lado que as invoca — e o que elas exigem de quem precisa enfrentá-las.",
-      },
-      "dez-pontos-defesa-acusacao-ataca": {
-        title: "Guia prático: dez pontos da defesa que a acusação mais ataca",
-        lead: "O que o Promotor procura antes de oferecer denúncia: as dez fragilidades recorrentes da tese defensiva, na ordem em que costumam ser exploradas.",
-      },
-    },
   },
 
   sobre: {

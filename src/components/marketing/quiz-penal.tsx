@@ -104,14 +104,22 @@ export function QuizPenal() {
           </Link>
         </div>
 
-        {/* Captura de e-mail (lead) */}
+        {/* Captura de e-mail (lead).
+            24/08/2026: o quiz passou a ser a isca principal da Escola, no lugar
+            dos dois PDFs cancelados pelo Flávio. Por isso o texto foi corrigido:
+            prometia "enviamos um resumo do seu diagnóstico" — e não envia, o
+            lead entra na sequência de boas-vindas padrão, sem o resultado — e
+            "os materiais de apoio", que eram justamente os PDFs cancelados.
+            O diagnóstico fica onde ele de fato está: nesta tela.
+            PENDENTE: fazer o resultado viajar junto com o lead e sair no e-mail
+            é o que transformaria isto numa isca forte. Exige campo novo no Lead
+            e mudança no template — dimensionado, não feito. */}
         <div className="border-paper-100 bg-carbon-elevated/30 mt-8 rounded-xl border p-6">
-          <h2 className="font-serif text-xl">
-            Receba a trilha e materiais por e-mail
-          </h2>
+          <h2 className="font-serif text-xl">Acompanhe a Escola por e-mail</h2>
           <p className="text-paper-600 mt-2 max-w-prose text-sm leading-relaxed">
-            Enviamos um resumo do seu diagnóstico, a recomendação de estudo e os
-            materiais de apoio. Confirmação por e-mail (duplo opt-in).
+            O Bastidor da Acusação, a cada quinze dias: análise de decisões
+            recentes do STJ e do STF em matéria penal. Confirmação por e-mail
+            (duplo opt-in).
           </p>
           <div className="mt-5 max-w-md">
             <NewsletterForm source="quiz-penal" />

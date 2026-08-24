@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/config/site";
-import { copy } from "@/config/copy";
 import { CURSO_PRINCIPAL_PATH } from "@/data/produtos-escola";
 import { getPublishedBlogListPosts } from "@/lib/blog/content";
 
@@ -28,7 +27,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/newsletter`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/faq`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/livros`, changeFrequency: "yearly", priority: 0.7 },
-    { url: `${base}/materiais`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/contato`, changeFrequency: "yearly", priority: 0.5 },
     {
       url: `${base}/eventos/dia-do-advogado-2026-brasilia`,
@@ -45,13 +43,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/reembolso`, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const materialSlugs = Object.keys(copy.materiais.bySlug);
-  const materialPages: MetadataRoute.Sitemap = materialSlugs.map((slug) => ({
-    url: `${base}/materiais/${slug}`,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
-
   const blogPosts = await getPublishedBlogListPosts();
   const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => {
     const lastModified = post.modifiedAt ?? post.publishedAt;
@@ -63,5 +54,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  return [...staticPages, ...materialPages, ...blogPages];
+  return [...staticPages, ...blogPages];
 }

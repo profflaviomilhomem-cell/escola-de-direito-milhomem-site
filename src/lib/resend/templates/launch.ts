@@ -71,11 +71,11 @@ const launch3: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "Não peça para acreditar. Teste.",
     paragraphs: [
       "Esta é a primeira turma, então não tenho depoimento de aluno para mostrar — e não vou inventar um. O que eu tenho é melhor: você pode conferir o método antes de pagar.",
-      "A calculadora de dosimetria da Escola percorre as três fases do art. 68 do Código Penal em 50 tipos penais, e está aberta a qualquer um. O blog tem análises de decisões recentes do STJ e do STF. Se o modo de raciocinar ali fizer sentido para você, é exatamente esse o modo do cohort.",
+      "O quiz de 20 questões da Escola está aberto a qualquer um: ele mapeia sua base em Direito Penal e Processo Penal e devolve uma trilha de estudo. O blog tem análises de decisões recentes do STJ e do STF. Se o modo de raciocinar ali fizer sentido para você, é exatamente esse o modo do cohort.",
       "O que a Edição Lançamento inclui: 10 aulas gravadas somando 2h47, com os slides de cada aula para download; fórum por aula com minha resposta em até 72 horas; quatro encontros ao vivo ao longo do cohort; certificado de conclusão ao concluir a trilha; e acesso à plataforma por 12 meses após o encerramento da turma.",
     ],
     ctas: [
-      { label: "Testar a calculadora de pena", href: r.calculadora },
+      { label: "Fazer o quiz de 20 questões", href: r.quiz },
       { label: "Ver o programa completo", href: r.curso },
     ],
   });

@@ -25,12 +25,17 @@ const welcome1: SequenceTemplate = (input: SequenceEmailInput) => {
     titleText: "Bem-vindo ao Bastidor da Acusação.",
     paragraphs: [
       "Sua inscrição está confirmada. A partir de agora você recebe, a cada quinze dias, análise de decisões recentes do STJ e do STF em matéria penal, leitura recomendada e o que se move na Escola — sem filler, sem spam.",
-      "O material que motivou sua inscrição está em finalização — quero que ele saia conferido, com jurisprudência real e citação verificável, e não apressado. Você vai recebê-lo aqui, em primeira mão, assim que ficar pronto.",
-      "Enquanto isso, o que já está no ar: a calculadora de dosimetria da pena, que percorre as três fases do art. 68 do Código Penal, e o blog da Escola, com análises de decisões recentes do STJ e do STF.",
+      // 24/08/2026: este parágrafo prometia um material em finalização e
+      // apontava para a calculadora. Os dois PDFs gratuitos foram cancelados
+      // pelo Flávio (ficam para um segundo lançamento) e a calculadora saiu de
+      // cena a pedido dele. A entrada da lista passa a ser o quiz, que existe,
+      // é de direito penal e devolve um diagnóstico na hora.
+      "Se você ainda não fez, comece pelo quiz de 20 questões: ele mapeia onde está sua base em Direito Penal e Processo Penal e devolve, na hora, uma trilha de estudo. Leva poucos minutos.",
+      "E o blog da Escola tem análises de decisões recentes do STJ e do STF, lidas pelo que mudam na prática — é a melhor amostra do método que você vai encontrar aqui.",
       "Guarde este e-mail. Nos próximos dias eu escrevo de novo, contando quem sou e por que a perspectiva da acusação muda o modo de estudar Direito Penal.",
     ],
     ctas: [
-      { label: "Abrir a calculadora de pena", href: r.calculadora },
+      { label: "Fazer o quiz (20 questões)", href: r.quiz },
       { label: "Ler o blog da Escola", href: r.blog },
     ],
   });

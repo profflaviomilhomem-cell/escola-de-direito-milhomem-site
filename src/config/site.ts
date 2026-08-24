@@ -97,11 +97,15 @@ export const siteConfig = {
     { label: "Sobre", href: "/sobre" },
     { label: "Cursos", href: "/cursos" },
     { label: "Blog", href: "/blog" },
-    { label: "Calculadora", href: "/calculadora-de-pena" },
+    // 24/08/2026: a Calculadora saiu do menu principal a pedido do Flávio
+    // ("se já tá implantada, então pode deixar; mas não vamos explorar este
+    // tema" — a Escola não trata de execução penal). Continua no ar e no menu
+    // secundário; deixa de ser vitrine.
     { label: "FAQ", href: "/faq" },
   ],
   /** Links secundários (footer e menu mobile “Mais”) */
   secondaryNav: [
+    { label: "Calculadora", href: "/calculadora-de-pena" },
     { label: "Eventos", href: "/eventos/dia-do-advogado-2026-brasilia" },
     { label: "Contato", href: "/contato" },
   ],

@@ -157,12 +157,8 @@ export function emailRoutes(baseUrl: string) {
     checkout: `${baseUrl}/checkout/prova-digital-no-processo-penal`,
     blog: `${baseUrl}/blog`,
     sobre: `${baseUrl}/sobre`,
-    // Índice, não uma isca específica: apontar para um slug fixo daqui quebrava
-    // todo e-mail já enviado sempre que a vitrine mudasse — e ela mudou em 03/08,
-    // quando os títulos foram alinhados ao Livro-Guia.
-    materiais: `${baseUrl}/materiais`,
     reembolso: `${baseUrl}/reembolso`,
-    calculadora: `${baseUrl}/calculadora-de-pena`,
+    quiz: `${baseUrl}/quiz-penal`,
     newsletter: `${baseUrl}/newsletter`,
     alunoDashboard: `${baseUrl}/aluno/dashboard`,
     alunoForum: `${baseUrl}/aluno/forum`,
