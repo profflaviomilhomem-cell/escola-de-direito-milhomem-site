@@ -85,8 +85,8 @@ export default function EventoDiaAdvogadoPage() {
         >
           Conheça o curso Prova Digital no Processo Penal
         </Link>{" "}
-        — a nova data das inscrições da Edição Lançamento será anunciada em
-        breve para quem está na lista.
+        — a Edição Lançamento começa em 1º de setembro de 2026, e a abertura das
+        inscrições é anunciada primeiro para quem está na lista.
       </p>
     </article>
   );

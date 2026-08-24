@@ -63,11 +63,13 @@ export const copy = {
 
   home: {
     hero: {
-      // 21/08/2026: o lançamento (evento de 11/08, inscrições de 17/08 e turma
-      // de 1º/09) foi ADIADO. Enquanto as novas datas não são confirmadas, o
-      // texto mais visível da home não pode prometer inscrição nem data — só o
-      // que o visitante pode fazer hoje: entrar na lista para saber primeiro.
-      eyebrow: "Edição Lançamento · nova data em breve · entre na lista",
+      // 24/08/2026 (decisão do Carlos): a turma volta a ser datada em 1º de
+      // setembro de 2026 — a mesma data que os e-mails de lançamento e de
+      // pós-compra já anunciam, então o site passa a falar a mesma língua que
+      // o funil. O eyebrow diz a data e NÃO diz "inscrições abertas": enquanto
+      // o checkout não tem conta Pagar.me e responde "pagamento indisponível",
+      // prometer inscrição é mandar o visitante para uma porta fechada.
+      eyebrow: "Edição Lançamento · turma começa 1º de setembro",
       titleLine1: "A",
       titleEmphasis1: "Escola",
       titleLine2: "de direito",
@@ -247,12 +249,13 @@ export const copy = {
     // ponto do art. 30 do CDC: a oferta veiculada vincula, então ela precisa
     // dizer o que o comprador recebe e quando.
     cronogramaItems: [
-      // 21/08/2026: datas de inscrição (17/08), início (1º/09) e encerramento
-      // (23/11) removidas — o lançamento foi adiado e as novas datas ainda não
-      // foram confirmadas. Voltar a datar estas linhas só com data fechada.
-      "Inscrições: nova data em breve — anunciada primeiro para quem está na lista",
-      "Início da turma: a confirmar — comunicado por e-mail e nesta página",
-      "Duração: 12 semanas",
+      // 24/08/2026 (decisão do Carlos): início e encerramento voltam a ser
+      // datados. A linha de inscrições continua sem data porque a abertura
+      // depende da conta Pagar.me, que ainda não existe — datar o que não pode
+      // ser cumprido é o risco que o art. 30 do CDC endereça (a oferta vincula).
+      "Inscrições: abertura em breve — anunciada primeiro para quem está na lista",
+      "Início da turma: 1º de setembro de 2026",
+      "Duração: 12 semanas — encerramento previsto para 23 de novembro de 2026",
       // Carga horária real, medida nos arquivos de vídeo em 04/08/2026 (2h47min37s
       // somando as 10 aulas). O texto anterior anunciava "60–80 horas", número que
       // não corresponde a nada medido — carga inflada em peça assinada por Promotor
@@ -303,10 +306,8 @@ export const copy = {
     investimentoCta: "Entrar na lista de espera",
     // Linha de contexto da barra fixa (13/08/2026). A barra acompanha o scroll
     // e é o único lugar onde preço e chamada aparecem juntos o tempo todo.
-    // 24/08/2026: a data saiu daqui junto com as demais — enquanto o site não
-    // anuncia início de turma em lugar nenhum, a barra fixa não pode ser a
-    // exceção que continua prometendo dia.
-    barraOfertaNote: "Turma fundadora · nova data em breve",
+    // 24/08/2026: a data volta, junto com o cronograma e o hero.
+    barraOfertaNote: "Turma começa 1º de setembro",
     faqTitle: "Perguntas frequentes",
     faq: [
       {
@@ -314,9 +315,10 @@ export const copy = {
         // Reescrito em 06/08/2026. A resposta anterior ancorava a data no "evento
         // de 11 de agosto em Brasília" — evento anterior à entrada do site no ar
         // (17/08), que o leitor encontraria já vencido.
-        // 21/08/2026: datas removidas (lançamento adiado). Reescrever com as
-        // datas novas assim que confirmadas.
-        a: "A data de início da turma será anunciada em breve. Quem está na lista recebe a data, o calendário completo e a abertura das inscrições por e-mail antes de todo mundo.",
+        // 24/08/2026: a data volta (1º/09), mas a resposta não afirma que as
+        // inscrições já estão abertas — elas dependem do checkout, que ainda
+        // não vende.
+        a: "A turma começa em 1º de setembro de 2026 e vai até 23 de novembro. A abertura das inscrições é anunciada primeiro para quem está na lista — quem entra nela recebe a data, o calendário completo e os acessos por e-mail antes de todo mundo.",
       },
       {
         q: "Quanto tempo por semana?",
@@ -449,7 +451,7 @@ export const copy = {
       },
       {
         q: "Quais cursos a Escola oferece?",
-        a: "O programa principal é a Edição Lançamento — cohort inaugural de 12 semanas sobre cadeia de custódia e prova digital no processo penal, com data de início a ser anunciada. O catálogo completo, com ementas, está na página de cursos.",
+        a: "O programa principal é a Edição Lançamento — cohort inaugural de 12 semanas sobre cadeia de custódia e prova digital no processo penal, com início em 1º de setembro de 2026. O catálogo completo, com ementas, está na página de cursos.",
       },
       {
         q: "Os cursos emitem certificado?",
