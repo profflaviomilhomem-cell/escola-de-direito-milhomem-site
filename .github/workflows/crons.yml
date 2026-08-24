@@ -1,0 +1,109 @@
+name: Crons
+
+# Agendador dos dois crons do site.
+#
+# POR QUE AQUI E NÃO NO vercel.json: os crons saíram do vercel.json em 08/07/2026
+# (commit f77e977) porque o plano Hobby limita a um por dia. O GitHub Actions
+# agenda de graça e com a frequência que precisamos. Se um dia o projeto for para
+# o plano Pro, o caminho natural é devolver os crons ao vercel.json e apagar este
+# arquivo — não manter os dois, ou cada envio sai em duplicidade.
+#
+# O QUE ELES DESTRAVAM: sem isto, as 18 sequências de e-mail nunca passam do
+# passo 0 — boas-vindas, lançamento, carrinho abandonado e pós-compra ficam
+# gravados no banco e não saem. E pedido PIX pago fora do webhook nunca é
+# reconciliado.
+#
+# CONFIGURAÇÃO NECESSÁRIA (uma vez, no GitHub → Settings):
+#   Secrets → CRON_SECRET  — a MESMA string que estiver em CRON_SECRET na Vercel.
+#                            Gere com: openssl rand -hex 32
+#   Variables → SITE_URL   — opcional. Sem ela, usa o endereço .vercel.app.
+#                            Quando o domínio próprio entrar no ar, é só mudar
+#                            esta variável — nenhum código muda.
+#
+# Enquanto o CRON_SECRET não existir, os jobs saem sem fazer nada e sem falhar,
+# para não encher sua caixa de e-mail de alerta falso. Depois de configurado,
+# qualquer resposta diferente de 200 FALHA de propósito — o objetivo é justamente
+# você ficar sabendo quando quebrar.
+#
+# RESSALVA DO GITHUB: agendamento aqui é "melhor esforço" — sob carga, uma
+# execução pode atrasar alguns minutos. Para cadências de hora em hora isso é
+# irrelevante. E o GitHub desativa workflows agendados em repositório sem
+# atividade por 60 dias; se o projeto ficar parado, reative em Actions.
+
+on:
+  schedule:
+    # Sequências de e-mail: de 10 em 10 minutos (a menor cadência da sequência
+    # de carrinho abandonado é +1h, então 10 min dá folga de sobra).
+    - cron: "*/10 * * * *"
+    # Reconciliação de pagamentos: de 30 em 30 minutos. A regra de negócio olha
+    # PENDING com mais de 15 minutos, então meia hora cobre.
+    - cron: "*/30 * * * *"
+  # Permite disparar na mão pela aba Actions, para testar sem esperar o relógio.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  email-sequences:
+    name: Drenar sequências de e-mail
+    if: github.event.schedule == '*/10 * * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cron-email-sequences
+      cancel-in-progress: false
+    steps:
+      - name: Chamar /api/cron/email-sequences
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://escola-de-direito-milhomem-site.vercel.app' }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "::notice::CRON_SECRET ainda não configurado no GitHub — nada a fazer."
+            echo "Configure em Settings → Secrets and variables → Actions, com o mesmo valor da Vercel."
+            exit 0
+          fi
+          corpo=$(mktemp)
+          codigo=$(curl -sS --max-time 60 --retry 2 --retry-delay 5 \
+            -o "$corpo" -w '%{http_code}' \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$SITE_URL/api/cron/email-sequences")
+          echo "HTTP $codigo"
+          cat "$corpo"
+          echo
+          if [ "$codigo" != "200" ]; then
+            echo "::error::cron de sequências respondeu $codigo (esperado 200)."
+            exit 1
+          fi
+
+  reconcile-pagarme:
+    name: Reconciliar pagamentos pendentes
+    if: github.event.schedule == '*/30 * * * *' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: cron-reconcile-pagarme
+      cancel-in-progress: false
+    steps:
+      - name: Chamar /api/cron/reconcile-pagarme
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://escola-de-direito-milhomem-site.vercel.app' }}
+        run: |
+          if [ -z "$CRON_SECRET" ]; then
+            echo "::notice::CRON_SECRET ainda não configurado no GitHub — nada a fazer."
+            exit 0
+          fi
+          corpo=$(mktemp)
+          codigo=$(curl -sS --max-time 60 --retry 2 --retry-delay 5 \
+            -o "$corpo" -w '%{http_code}' \
+            -H "Authorization: Bearer $CRON_SECRET" \
+            "$SITE_URL/api/cron/reconcile-pagarme")
+          echo "HTTP $codigo"
+          cat "$corpo"
+          echo
+          # Sem PAGARME_SECRET_KEY a rota responde 200 {"skipped":true} — isso é
+          # o estado esperado hoje, não erro.
+          if [ "$codigo" != "200" ]; then
+            echo "::error::cron de reconciliação respondeu $codigo (esperado 200)."
+            exit 1
+          fi
