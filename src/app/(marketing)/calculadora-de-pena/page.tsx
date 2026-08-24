@@ -97,19 +97,28 @@ export default function CalculadoraPage() {
         {/* Opt-in (LGPD, duplo opt-in via /api/leads · source=calculadora).
             Reusa o NewsletterForm; o lead é gravado com a origem da ferramenta. */}
         <aside className="border-paper-100 mx-auto mt-12 max-w-2xl border-t pt-10 sm:mt-16 sm:pt-12">
+          {/* 24/08/2026 — reescrito a pedido do Flávio ("essa promessa tem que
+              sair"). O texto anterior prometia "análises de dosimetria na
+              perspectiva da acusação", mais "casos comentados, leitura de
+              precedentes e material de estudo". Nenhuma das três se cumpre:
+              não existe série sobre dosimetria (a Escola não trata de execução
+              penal), não há casos comentados, e o "material de estudo" eram os
+              dois PDFs que foram cancelados na mesma conversa. A captura fica —
+              a promessa passa a ser exatamente o que o boletim entrega. */}
           <p className="text-amber font-mono text-[9px] tracking-[0.18em] uppercase sm:text-[10px] sm:tracking-[0.2em]">
-            Vai além da calculadora
+            Bastidor da Acusação
           </p>
           <h2
             className="text-paper mt-3 font-serif leading-[1.1]"
             style={fmTitleClamp("22px", "5vw", "34px")}
           >
-            Receba análises de dosimetria{" "}
-            <em className="text-amber italic">na perspectiva da acusação</em>
+            Decisões recentes do STJ e do STF{" "}
+            <em className="text-amber italic">lidas pela acusação</em>
           </h2>
           <p className="text-paper-700 mt-3 text-[14px] leading-relaxed sm:text-[15px]">
-            Casos comentados, leitura de precedentes e material de estudo direto
-            no seu e-mail. Sem spam — confirmação dupla por LGPD.
+            O boletim da Escola, a cada quinze dias: análise de julgados em
+            matéria penal e o que eles mudam na prática. Sem spam — confirmação
+            dupla por LGPD.
           </p>
           <NewsletterForm source="calculadora" />
         </aside>
