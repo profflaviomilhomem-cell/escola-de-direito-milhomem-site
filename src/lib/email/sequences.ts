@@ -69,12 +69,13 @@ export const SEQUENCES: Record<EmailSequence, SequenceDefinition> = {
     param: "launch",
     steps: buildSteps(LAUNCH_TEMPLATES, [0, 24, 48, 72, 96, 120, 144]),
   },
-  // GATILHO DE ENTRADA PENDENTE: o guia pede o sinal `cart_initiated`, que
-  // hoje é um evento de analytics client-side, sem persistência confiável no
-  // servidor. `enrollLead("ABANDONED_CART", email)` já funciona — falta só
-  // decidir a fonte de entrada (o pedido PENDING do checkout é candidato, mas
-  // conflita com pagamento por PIX/boleto legitimamente em aberto). A saída
-  // já está ligada: a compra concluída cancela esta sequência (webhook PAID).
+  // Entrada ligada em 24/08/2026 (`/api/orders/create`): pedido PENDING **de
+  // PIX** inscreve na sequência. Boleto fica de fora de propósito — compensa
+  // em 1 a 3 dias úteis, então PENDING ali é pagamento em aberto legítimo, não
+  // abandono. Saída: `settle.ts` cancela quando o pedido vira PAID.
+  //
+  // Continua sem cobrir quem abre /checkout e sai sem criar pedido: o sinal
+  // `cart_initiated` do guia é client-side e não tem persistência no servidor.
   ABANDONED_CART: {
     param: "cart",
     steps: buildSteps(ABANDONED_CART_TEMPLATES, [1, 12, 36]),

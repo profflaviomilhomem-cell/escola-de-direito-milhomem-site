@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { recordUtmEvent } from "@/lib/analytics/utm-event";
 import { getSessionFromCookies } from "@/lib/auth/session";
+import { enrollLead } from "@/lib/email/sequences";
 import { createCheckoutOrder } from "@/lib/orders/create-checkout";
 import { mergeUtm, utmFromBody, utmFromRequest } from "@/lib/orders/utm";
 import { prisma } from "@/lib/prisma";
@@ -88,6 +89,36 @@ export async function POST(req: NextRequest) {
       { ok: false, error: result.message, code: result.code },
       { status: result.status },
     );
+  }
+
+  // Carrinho abandonado (guia 6.13) — gatilho de ENTRADA da sequência.
+  //
+  // Só PIX. A nota anterior neste arquivo dizia que `PENDING` conflita com
+  // "pagamento legitimamente em aberto", e conflita mesmo — mas só para
+  // boleto, que leva de 1 a 3 dias úteis para compensar. Inscrever um boleto
+  // recém-emitido faria o e-mail de +1h dizer "sua inscrição ficou pela
+  // metade" para quem já concluiu e está com o documento na mão: e-mail
+  // errado, em peça assinada por Promotor de Justiça. O PIX expira em minutos,
+  // então PENDING de PIX depois de uma hora é abandono de verdade — que é
+  // exatamente a cadência que a sequência foi desenhada para atender
+  // (+1h / +12h / +36h).
+  //
+  // A SAÍDA já estava ligada desde sempre: `settle.ts` cancela ABANDONED_CART
+  // quando o pedido vira PAID, então quem pagar no meio do caminho para de
+  // receber. `enrollLead` é idempotente por (email, sequência).
+  //
+  // Não cobre quem abre /checkout e vai embora sem criar pedido — esse sinal
+  // (`cart_initiated`) só existe no cliente e precisaria de persistência
+  // própria no servidor. Fica registrado como o pedaço que falta.
+  if (parsed.data.paymentMethod === "PIX") {
+    void enrollLead("ABANDONED_CART", user.email, {
+      orderId: result.orderId,
+    }).catch((err) => {
+      console.error(
+        "[orders/create] falha ao inscrever em ABANDONED_CART:",
+        err,
+      );
+    });
   }
 
   // Funil de compra por campanha (best-effort).
