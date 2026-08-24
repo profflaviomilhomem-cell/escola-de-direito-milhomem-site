@@ -27,7 +27,7 @@
         "durationSec": 1075
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-01/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-01/slides",
         "bytes": 4594716,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "CADEIA DE CUSTÓDIA-Aula 01.pptx"
@@ -51,7 +51,7 @@
         "durationSec": 1361
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-02/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-02/slides",
         "bytes": 4590975,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "CADEIA DE CUSTÓDIA-Aula 02.pptx"
@@ -75,7 +75,7 @@
         "durationSec": 956
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-03/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-03/slides",
         "bytes": 4591543,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 03.pptx"
@@ -99,7 +99,7 @@
         "durationSec": 726
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-04/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-04/slides",
         "bytes": 4591207,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 04.pptx"
@@ -123,7 +123,7 @@
         "durationSec": 1452
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-05/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-05/slides",
         "bytes": 4601875,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 05.pptx"
@@ -147,7 +147,7 @@
         "durationSec": 676
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-06/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-06/slides",
         "bytes": 4591198,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 06.pptx"
@@ -171,7 +171,7 @@
         "durationSec": 803
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-07/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-07/slides",
         "bytes": 4596049,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-003.zip",
         "sourceFile": "PROVA DIGITAL-Aula 07.pptx"
@@ -195,7 +195,7 @@
         "durationSec": 1538
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-08/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-08/slides",
         "bytes": 12726079,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 8.pptx"
@@ -219,7 +219,7 @@
         "durationSec": 579
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-09/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-09/slides",
         "bytes": 4588953,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 9-A.pptx"
@@ -243,7 +243,7 @@
         "durationSec": 890
       },
       "slides": {
-        "path": "/curso/provas-digitais/aula-10/slides.pptx",
+        "path": "/api/aluno/material/prova-digital-no-processo-penal/aula-10/slides",
         "bytes": 4593595,
         "sourceArchive": "CURSO PROVAS DIGITAIS-20260519T182653Z-3-002.zip",
         "sourceFile": "PROVA DIGITAL-Aula 10.pptx"

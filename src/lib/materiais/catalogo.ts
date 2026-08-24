@@ -80,16 +80,25 @@ export function urlDoMaterial(
 /**
  * Token da store onde vivem os materiais.
  *
- * O projeto tem DUAS stores de Blob, e a diferença importa: a original
- * (`escola-milhomem-uploads`) é PÚBLICA e serve capa de blog, que deve mesmo
- * ser pública; material de curso pago precisa de store PRIVADA, e o Vercel
- * recusa `access: "private"` numa store pública — foi exatamente o erro que
- * barrou a primeira tentativa de migração em 24/08/2026.
+ * O projeto tem DUAS stores de Blob, e a diferença importa:
  *
- * Por isso o token é próprio: `BLOB_MATERIAIS_TOKEN`. Enquanto ele não existir,
- * cai no token geral — o que faz a rota responder 404 em vez de entregar, que é
- * o comportamento certo enquanto não há material no lugar novo.
+ * - `escola-milhomem-uploads` — PÚBLICA, criada em jul/2026 para capa de blog.
+ *   Capa deve mesmo ser pública: é imagem de página, vem do CDN, cacheada.
+ * - `materiais-curso` — PRIVADA, criada em 24/08/2026 para material pago.
+ *
+ * Não é escolha de estilo: o Vercel recusa `access: "private"` numa store
+ * pública, e o modo de acesso é definido na CRIAÇÃO, sem endpoint para alterar
+ * depois — o próprio endereço carrega (`…public.blob…` × `…private.blob…`).
+ * A primeira tentativa de migração parou nisso.
+ *
+ * O nome da variável vem da conexão feita no painel, com prefixo `MATERIAIS`:
+ * a Vercel SUBSTITUI o "BLOB" pelo prefixo, então saiu
+ * `MATERIAIS_READ_WRITE_TOKEN` e não `MATERIAIS_BLOB_READ_WRITE_TOKEN`.
+ *
+ * Sem essa variável, NÃO cai no token geral de propósito: apontar para a store
+ * pública entregaria material pago do lugar errado. Melhor a rota responder
+ * 503 e alguém notar.
  */
 export function tokenDosMateriais(): string | undefined {
-  return process.env.BLOB_MATERIAIS_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+  return process.env.MATERIAIS_READ_WRITE_TOKEN;
 }

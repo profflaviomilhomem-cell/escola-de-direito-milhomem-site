@@ -73,13 +73,14 @@ function kb(n) {
 }
 
 async function main() {
-  const token = process.env.BLOB_MATERIAIS_TOKEN;
+  const token = process.env.MATERIAIS_READ_WRITE_TOKEN;
   if (!token) {
     console.error(
-      "BLOB_MATERIAIS_TOKEN ausente.\n" +
+      "MATERIAIS_READ_WRITE_TOKEN ausente.\n" +
         "Material de curso pago precisa de uma store PRIVADA — a store original\n" +
         "do projeto é pública, e o Vercel recusa access:'private' nela.\n" +
-        "Crie a store privada e exporte o token dela nesta variável.",
+        "Conecte a store privada `materiais-curso` ao projeto no painel,\n" +
+        "com prefixo MATERIAIS, e puxe as variáveis.",
     );
     process.exit(1);
   }
