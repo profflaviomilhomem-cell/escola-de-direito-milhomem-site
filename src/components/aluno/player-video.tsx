@@ -1,13 +1,21 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { LabeledProgress } from "@/components/aluno/labeled-progress";
 import type { MockLesson } from "@/lib/course/types";
 import { formatDuration } from "@/lib/course/format";
 import type { MockCourse } from "@/lib/course/types";
 import { primaryCourse } from "@/lib/course/aluno-courses";
+import {
+  carregarStreamSdk,
+  type StreamPlayer,
+} from "@/lib/lessons/cloudflare-stream";
 import { patchLessonProgress } from "@/lib/lessons/progress-client";
+import {
+  concluiAoTerminar,
+  devePersistir,
+} from "@/lib/lessons/progresso-regras";
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { progressPercentFromRatio } from "@/lib/utils";
@@ -47,13 +55,13 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
     player: "cloudflare-stream" as const,
   };
 
-  const handleMarkComplete = () => {
+  const handleMarkComplete = (source: "manual" | "auto" = "manual") => {
     if (completedTracked.current) return;
     completedTracked.current = true;
     setMarkedComplete(true);
     track(ANALYTICS_EVENTS.LESSON_COMPLETED, {
       ...lessonProps,
-      completion_source: "manual",
+      completion_source: source,
     });
     void patchLessonProgress({
       productSlug: course.slug,
@@ -68,18 +76,78 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
     "iframe.cloudflarestream.com";
   const src = `https://${domain}/${lesson.videoId}`;
 
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const lastPersistedSec = useRef(Math.floor(lesson.watchedSec));
+
+  // Progresso no Stream. Um <iframe> não emite onTimeUpdate: quem abre essa
+  // porta é o SDK oficial do player. Sem isto, subir os vídeos para o Stream
+  // faria o progresso parar de ser gravado — e, como o certificado exige 100%
+  // das aulas concluídas, ninguém receberia certificado.
+  useEffect(() => {
+    let vivo = true;
+    let player: StreamPlayer | null = null;
+
+    const aoTempo = () => {
+      if (!player || completedTracked.current) return;
+      const assistido = player.currentTime;
+      if (!devePersistir(assistido, lastPersistedSec.current)) return;
+      lastPersistedSec.current = Math.floor(assistido);
+      void patchLessonProgress({
+        productSlug: course.slug,
+        lessonSlug: lesson.slug,
+        watchedSec: Math.floor(assistido),
+      });
+    };
+
+    const aoTocar = () => {
+      if (startedTracked.current) return;
+      startedTracked.current = true;
+      track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
+    };
+
+    const aoTerminar = () => {
+      if (!player) return;
+      if (concluiAoTerminar(player.currentTime, player.duration)) {
+        handleMarkComplete("auto");
+      }
+    };
+
+    void carregarStreamSdk().then((Stream) => {
+      if (!vivo || !Stream || !iframeRef.current) return;
+      try {
+        player = Stream(iframeRef.current);
+        player.addEventListener("play", aoTocar);
+        player.addEventListener("timeupdate", aoTempo);
+        player.addEventListener("ended", aoTerminar);
+      } catch {
+        // SDK presente mas incompatível: o vídeo segue tocando, sem telemetria.
+      }
+    });
+
+    return () => {
+      vivo = false;
+      player?.removeEventListener?.("play", aoTocar);
+      player?.removeEventListener?.("timeupdate", aoTempo);
+      player?.removeEventListener?.("ended", aoTerminar);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lesson.slug, lesson.videoId]);
+
   return (
     <div
       data-fm-media-surface
       className="border-paper-100 bg-carbon relative aspect-video w-full overflow-hidden border"
     >
       <iframe
+        ref={iframeRef}
         src={src}
         title={lesson.title}
         className="h-full w-full"
         allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
         allowFullScreen
         onLoad={() => {
+          // Rede de segurança: se o SDK não carregar, ao menos o início da aula
+          // fica registrado.
           if (startedTracked.current) return;
           startedTracked.current = true;
           track(ANALYTICS_EVENTS.LESSON_STARTED, lessonProps);
@@ -89,7 +157,7 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
         <div className="absolute right-3 bottom-3 left-3 sm:left-auto">
           <button
             type="button"
-            onClick={handleMarkComplete}
+            onClick={() => handleMarkComplete("manual")}
             className="bg-amber/95 text-carbon hover:bg-amber fm-mono w-full rounded px-3 py-2 text-[10px] tracking-[0.14em] uppercase transition-colors sm:w-auto"
           >
             Marcar aula como concluída
@@ -99,11 +167,6 @@ function PlayerVideoStream({ lesson, course = primaryCourse }: Props) {
     </div>
   );
 }
-
-/** Intervalo mínimo (s de vídeo assistido) entre gravações de progresso. */
-const NATIVE_PROGRESS_SAVE_STEP_SEC = 15;
-/** Fração assistida a partir da qual a aula conta como concluída ao terminar. */
-const NATIVE_COMPLETE_RATIO = 0.95;
 
 function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -146,9 +209,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
     const el = videoRef.current;
     if (!el) return;
     const watchedSec = Math.floor(el.currentTime);
-    if (watchedSec - lastPersistedSec.current < NATIVE_PROGRESS_SAVE_STEP_SEC) {
-      return;
-    }
+    if (!devePersistir(watchedSec, lastPersistedSec.current)) return;
     lastPersistedSec.current = watchedSec;
     void patchLessonProgress({
       productSlug: course.slug,
@@ -162,13 +223,7 @@ function PlayerVideoNative({ lesson, course = primaryCourse }: Props) {
     const duration = el?.duration;
     const watched = el?.currentTime ?? 0;
     // Só auto-conclui se o aluno realmente chegou ao fim (não em seek/replay).
-    if (
-      duration &&
-      Number.isFinite(duration) &&
-      watched / duration >= NATIVE_COMPLETE_RATIO
-    ) {
-      handleMarkComplete("auto");
-    }
+    if (concluiAoTerminar(watched, duration)) handleMarkComplete("auto");
   };
 
   return (
