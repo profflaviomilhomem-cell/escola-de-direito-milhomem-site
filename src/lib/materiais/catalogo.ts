@@ -76,3 +76,20 @@ export function urlDoMaterial(
 ): string {
   return `/api/aluno/material/${produtoSlug}/${aulaSlug}/${tipo}`;
 }
+
+/**
+ * Token da store onde vivem os materiais.
+ *
+ * O projeto tem DUAS stores de Blob, e a diferença importa: a original
+ * (`escola-milhomem-uploads`) é PÚBLICA e serve capa de blog, que deve mesmo
+ * ser pública; material de curso pago precisa de store PRIVADA, e o Vercel
+ * recusa `access: "private"` numa store pública — foi exatamente o erro que
+ * barrou a primeira tentativa de migração em 24/08/2026.
+ *
+ * Por isso o token é próprio: `BLOB_MATERIAIS_TOKEN`. Enquanto ele não existir,
+ * cai no token geral — o que faz a rota responder 404 em vez de entregar, que é
+ * o comportamento certo enquanto não há material no lugar novo.
+ */
+export function tokenDosMateriais(): string | undefined {
+  return process.env.BLOB_MATERIAIS_TOKEN || process.env.BLOB_READ_WRITE_TOKEN;
+}

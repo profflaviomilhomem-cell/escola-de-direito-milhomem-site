@@ -56,10 +56,12 @@ function blobOk() {
 }
 
 const TOKEN_ORIGINAL = process.env.BLOB_READ_WRITE_TOKEN;
+const TOKEN_MAT_ORIGINAL = process.env.BLOB_MATERIAIS_TOKEN;
 
 beforeEach(() => {
   jest.clearAllMocks();
   process.env.BLOB_READ_WRITE_TOKEN = "vercel_blob_rw_teste";
+  process.env.BLOB_MATERIAIS_TOKEN = "vercel_blob_rw_materiais_teste";
   getSessionFromCookies.mockResolvedValue({ sub: "user_1", role: "aluno" });
   rateLimit.mockResolvedValue({ success: true });
   acesso.mockResolvedValue(true);
@@ -70,6 +72,8 @@ beforeEach(() => {
 afterAll(() => {
   if (TOKEN_ORIGINAL === undefined) delete process.env.BLOB_READ_WRITE_TOKEN;
   else process.env.BLOB_READ_WRITE_TOKEN = TOKEN_ORIGINAL;
+  if (TOKEN_MAT_ORIGINAL === undefined) delete process.env.BLOB_MATERIAIS_TOKEN;
+  else process.env.BLOB_MATERIAIS_TOKEN = TOKEN_MAT_ORIGINAL;
 });
 
 describe("GET /api/aluno/material — quem NÃO pode baixar", () => {
@@ -124,6 +128,7 @@ describe("GET /api/aluno/material — quem pode", () => {
     expect(res.status).toBe(200);
     expect(get).toHaveBeenCalledWith(`curso/${PRODUTO}/${AULA}/slides.pptx`, {
       access: "private",
+      token: "vercel_blob_rw_materiais_teste",
     });
     const cd = res.headers.get("Content-Disposition") ?? "";
     expect(cd).toContain("attachment");
@@ -142,6 +147,7 @@ describe("GET /api/aluno/material — quem pode", () => {
     await chamar(PRODUTO, AULA, "apostila");
     expect(get).toHaveBeenCalledWith(`curso/${PRODUTO}/${AULA}/apostila.pdf`, {
       access: "private",
+      token: "vercel_blob_rw_materiais_teste",
     });
   });
 
@@ -161,6 +167,7 @@ describe("GET /api/aluno/material — quem pode", () => {
   });
 
   it("sem armazenamento configurado responde 503", async () => {
+    delete process.env.BLOB_MATERIAIS_TOKEN;
     delete process.env.BLOB_READ_WRITE_TOKEN;
     const res = await chamar();
     expect(res.status).toBe(503);

@@ -9,6 +9,7 @@ import {
   isTipoMaterial,
   nomeParaDownload,
   TIPOS_MATERIAL,
+  tokenDosMateriais,
 } from "@/lib/materiais/catalogo";
 import { prisma } from "@/lib/prisma";
 import { rateLimit } from "@/lib/upstash/rate-limit";
@@ -97,7 +98,8 @@ export async function GET(
     );
   }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  const token = tokenDosMateriais();
+  if (!token) {
     return NextResponse.json(
       { ok: false, error: "Armazenamento de materiais não configurado." },
       { status: 503 },
@@ -106,7 +108,10 @@ export async function GET(
 
   let blob;
   try {
-    blob = await get(caminhoNoBlob(produto, aula, tipo), { access: "private" });
+    blob = await get(caminhoNoBlob(produto, aula, tipo), {
+      access: "private",
+      token,
+    });
   } catch (err) {
     console.error("[aluno/material] falha ao ler do Blob:", err);
     return NextResponse.json(
