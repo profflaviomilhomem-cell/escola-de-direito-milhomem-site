@@ -7,6 +7,40 @@ const nextConfig: NextConfig = {
   turbopack: {},
   /** O curso único da Edição Lançamento vive no slug do produto;
    *  308 no nível de config para preservar o SEO do endereço antigo. */
+  /**
+   * Security headers das rotas de API.
+   *
+   * O `matcher` do `proxy.ts` exclui `api` de propósito — o proxy existe para
+   * guardar página, e rodá-lo em toda chamada de API custaria latência e
+   * arriscaria o webhook do Pagar.me. A consequência, medida em produção em
+   * 26/08/2026: **nenhuma rota `/api/*` recebia security header**, nem o
+   * `nosniff`. Só chegava o HSTS que a própria Vercel injeta.
+   *
+   * A rota do material pago já se protegia sozinha (manda `nosniff` e
+   * `Content-Disposition: attachment` no próprio handler). O resto devolve JSON,
+   * e JSON sem `nosniff` é o caso clássico de conteúdo interpretado como outra
+   * coisa pelo browser.
+   *
+   * Isto cobre a lacuna sem passar pelo proxy: são headers de resposta
+   * aplicados pela plataforma, sem código rodando por requisição.
+   *
+   * `X-Frame-Options: DENY` aqui é mais estrito do que o `SAMEORIGIN` das
+   * páginas, de propósito — resposta de API não tem por que ser enquadrada,
+   * nem pelo próprio site.
+   */
+  async headers() {
+    return [
+      {
+        source: "/api/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Referrer-Policy", value: "no-referrer" },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // 24/08/2026 — as duas iscas gratuitas foram CANCELADAS pelo Flávio
