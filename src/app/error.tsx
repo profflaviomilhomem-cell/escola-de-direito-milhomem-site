@@ -10,8 +10,26 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // TODO: encaminhar para Sentry quando configurado.
+    // 26/08/2026: aqui havia um `// TODO: encaminhar para Sentry` e um
+    // console.error — que escreve no console DO VISITANTE. Quando a aplicação
+    // quebrava para um aluno, ninguém do lado de cá ficava sabendo.
+    // Agora o erro também vai para `/api/client-error`, que registra no log da
+    // função. Não é Sentry; é o projeto saindo do zero de observabilidade.
     console.error("Erro de aplicação:", error);
+
+    // `keepalive` para o envio sobreviver a uma navegação imediata; falha
+    // silenciosa porque uma tela de erro não pode gerar um segundo erro.
+    void fetch("/api/client-error", {
+      method: "POST",
+      keepalive: true,
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        message: error.message,
+        stack: error.stack,
+        digest: error.digest,
+        path: typeof window === "undefined" ? "" : window.location.pathname,
+      }),
+    }).catch(() => {});
   }, [error]);
 
   return (
