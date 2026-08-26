@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
 import { EdicaoLancamentoLanding } from "@/components/marketing/edicao-lancamento-landing";
@@ -149,20 +150,10 @@ export default async function CursoSlugPage({ params }: Props) {
     );
   }
 
-  return (
-    <article className="fm-site-page max-w-prose-wide py-page">
-      <h1 className="text-heading-1 text-tinta-700 font-serif">
-        Curso não encontrado
-      </h1>
-      <p className="mt-4 leading-relaxed text-slate-700">
-        O endereço pode estar incorreto ou o programa foi removido do catálogo.
-      </p>
-      <Link
-        href="/cursos"
-        className="text-amber mt-6 inline-block font-mono text-[11px] tracking-widest uppercase hover:underline"
-      >
-        ← Voltar aos cursos
-      </Link>
-    </article>
-  );
+  // 26/08/2026: aqui havia uma página "Curso não encontrado" escrita à mão,
+  // devolvida com status **200**. Soft 404: para o Google, um endereço
+  // inventado sob /cursos/ era uma página válida do catálogo, e entrava no
+  // índice competindo com as reais. `notFound()` renderiza o mesmo tipo de
+  // aviso e devolve 404 de verdade.
+  notFound();
 }
