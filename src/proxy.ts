@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { verifySession } from "@/lib/auth/jwt";
 import { DEV_ROLE_COOKIE, resolveDevFakeSession } from "@/lib/auth/dev-session";
 import { sessionCookieName } from "@/lib/auth/session";
+import { buildSecurityHeaders } from "@/lib/security/headers";
 
 /**
  * Proxy Next.js — defesa em profundidade.
@@ -11,7 +12,7 @@ import { sessionCookieName } from "@/lib/auth/session";
  * passou a se chamar `proxy`. Funcionalidade idêntica.
  *
  * - Bloqueia acesso à área do aluno sem sessão válida.
- * - Aplica security headers básicos.
+ * - Aplica os security headers (ver `@/lib/security/headers`).
  *
  * NOTA: Next.js 16.0.7+ corrige o CVE-2025-29927 (bypass de
  * autenticação via header). Mantenha 16.2.x mínimo.
@@ -73,8 +74,16 @@ export async function proxy(req: NextRequest) {
   }
 
   const res = NextResponse.next();
-  res.headers.set("X-Content-Type-Options", "nosniff");
-  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
-  res.headers.set("X-Frame-Options", "SAMEORIGIN");
+  // 26/08/2026: os três headers que ficavam aqui à mão passaram para
+  // `@/lib/security/headers`, junto com HSTS, Permissions-Policy e uma CSP em
+  // Report-Only. Ver a nota naquele arquivo sobre por que Report-Only.
+  const isSecure =
+    req.nextUrl.protocol === "https:" ||
+    req.headers.get("x-forwarded-proto") === "https";
+  for (const [name, value] of Object.entries(
+    buildSecurityHeaders({ isSecure }),
+  )) {
+    res.headers.set(name, value);
+  }
   return res;
 }
