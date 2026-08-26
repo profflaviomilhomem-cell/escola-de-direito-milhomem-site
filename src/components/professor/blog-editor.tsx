@@ -8,6 +8,7 @@ import {
   PROFESSOR_STATUS_LABEL,
   type ProfessorBlogPost,
 } from "@/lib/blog/professor";
+import { sanitizeBlogHtml } from "@/lib/blog/sanitize-html";
 
 type Props = {
   post?: ProfessorBlogPost;
@@ -210,8 +211,15 @@ export function BlogEditor({ post }: Props) {
           </p>
           <div
             className="prose-juridica text-paper-800 mt-5 max-h-[280px] overflow-y-auto text-[14px] leading-[1.7]"
+            // 26/08/2026: o preview jogava `bodyHtml` cru aqui. Hoje é
+            // self-XSS — só admin escreve post, e ele executaria o próprio
+            // script na própria sessão. Passa pelo mesmo sanitizador do
+            // caminho público mesmo assim: custa uma linha, e no dia em que
+            // existir um segundo papel de autor a porta já está fechada.
             dangerouslySetInnerHTML={{
-              __html: bodyHtml || "<p><em>Corpo vazio…</em></p>",
+              __html: sanitizeBlogHtml(
+                bodyHtml || "<p><em>Corpo vazio…</em></p>",
+              ),
             }}
           />
         </div>
