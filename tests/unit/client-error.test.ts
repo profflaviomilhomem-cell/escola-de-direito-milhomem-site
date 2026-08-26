@@ -66,6 +66,26 @@ describe("normalização de erro de cliente", () => {
     expect(JSON.stringify(r)).not.toContain("SEGREDO");
   });
 
+  it("tira query string também de message e stack, não só de path", () => {
+    // A regressão que isto trava: a nota do arquivo prometia que nada digitado
+    // entra no log, mas a limpeza valia só para `path`. Stack de cliente
+    // carrega a URL de um fetch que falhou — e num fluxo de recuperação de
+    // senha isso é o token.
+    const r = normalizeClientError({
+      message: "Failed to fetch /recuperar?token=SEGREDO123",
+      stack:
+        "Error\n  at https://site.com/_next/chunk.js?v=abc\n  at /api/x?k=SEGREDO456",
+      path: "/recuperar?token=SEGREDO789",
+    });
+    const tudo = JSON.stringify(r);
+    expect(tudo).not.toContain("SEGREDO123");
+    expect(tudo).not.toContain("SEGREDO456");
+    expect(tudo).not.toContain("SEGREDO789");
+    // ...sem destruir a parte útil:
+    expect(r.message).toContain("/recuperar");
+    expect(r.stack).toContain("chunk.js");
+  });
+
   it("ignora campo extra que o cliente tente empurrar", () => {
     const r = normalizeClientError({
       message: "erro",
