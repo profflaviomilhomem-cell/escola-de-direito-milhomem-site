@@ -7,13 +7,26 @@ import { useState } from "react";
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { track } from "@/lib/analytics/track";
 import { UTM_STORAGE_KEY, type UtmFields } from "@/lib/orders/utm";
+import { buildInstallmentPlan } from "@/lib/pagarme/installments";
+import { isCardEnabled, tokenizeCard } from "@/lib/pagarme/tokenize-card";
 
 type Props = {
   productSlug: string;
   productName: string;
   priceLabel: string;
+  /** Preço em centavos — base do plano de parcelas do cartão. */
+  priceCents: number;
   userName: string;
   userEmail: string;
+};
+
+type PaymentMethod = "PIX" | "BOLETO" | "CARD";
+
+/** Rótulo humano. O `value` continua sendo o enum que o backend espera. */
+const METHOD_LABEL: Record<PaymentMethod, string> = {
+  PIX: "PIX",
+  BOLETO: "BOLETO",
+  CARD: "CARTÃO",
 };
 
 type Status =
@@ -36,12 +49,24 @@ export function CheckoutForm({
   productSlug,
   productName,
   priceLabel,
+  priceCents,
   userName,
   userEmail,
 }: Props) {
   const router = useRouter();
   const [status, setStatus] = useState<Status>({ state: "idle" });
-  const [paymentMethod, setPaymentMethod] = useState<"PIX" | "BOLETO">("PIX");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("PIX");
+  // O cartão só aparece se houver chave pública do Pagar.me. Sem a conta do
+  // professor, oferecer a opção seria mandar o comprador para uma porta que
+  // não abre — o mesmo erro que o checkout já cometia com "garantir vaga".
+  const [cardOn] = useState(isCardEnabled);
+  const [cardNumber, setCardNumber] = useState("");
+  const [cardHolder, setCardHolder] = useState("");
+  const [cardExpMonth, setCardExpMonth] = useState("");
+  const [cardExpYear, setCardExpYear] = useState("");
+  const [cardCvv, setCardCvv] = useState("");
+  const [installments, setInstallments] = useState(1);
+  const plano = buildInstallmentPlan(priceCents);
   const [document, setDocument] = useState("");
   const [phone, setPhone] = useState("");
   const [billingLine1, setBillingLine1] = useState("");
@@ -56,6 +81,28 @@ export function CheckoutForm({
     e.preventDefault();
     setStatus({ state: "submitting" });
 
+    // Cartão: o número é trocado por um token direto com o Pagar.me, no
+    // browser. Nada de dado de cartão entra no POST abaixo.
+    let cardToken: string | undefined;
+    if (paymentMethod === "CARD") {
+      const r = await tokenizeCard({
+        number: cardNumber,
+        holderName: cardHolder,
+        expMonth: cardExpMonth,
+        expYear: cardExpYear,
+        cvv: cardCvv,
+      });
+      if (!r.ok) {
+        setStatus({ state: "error", message: r.error });
+        return;
+      }
+      cardToken = r.token;
+    }
+
+    // Endereço vale para boleto (obrigatório no schema) e para cartão, onde
+    // ajuda a antifraude do adquirente.
+    const comEndereco = paymentMethod === "BOLETO" || paymentMethod === "CARD";
+
     try {
       const res = await fetch("/api/orders/create", {
         method: "POST",
@@ -65,11 +112,12 @@ export function CheckoutForm({
           paymentMethod,
           document,
           phone,
-          billingLine1: paymentMethod === "BOLETO" ? billingLine1 : undefined,
-          billingZipCode:
-            paymentMethod === "BOLETO" ? billingZipCode : undefined,
-          billingCity: paymentMethod === "BOLETO" ? billingCity : undefined,
-          billingState: paymentMethod === "BOLETO" ? billingState : undefined,
+          cardToken,
+          installments: paymentMethod === "CARD" ? installments : undefined,
+          billingLine1: comEndereco ? billingLine1 : undefined,
+          billingZipCode: comEndereco ? billingZipCode : undefined,
+          billingCity: comEndereco ? billingCity : undefined,
+          billingState: comEndereco ? billingState : undefined,
           ...utm,
         }),
       });
@@ -129,7 +177,10 @@ export function CheckoutForm({
           Forma de pagamento
         </legend>
         <div className="grid gap-3 sm:grid-cols-2">
-          {(["PIX", "BOLETO"] as const).map((method) => (
+          {(cardOn
+            ? (["PIX", "BOLETO", "CARD"] as const)
+            : (["PIX", "BOLETO"] as const)
+          ).map((method) => (
             <label
               key={method}
               className={`border-paper-100 cursor-pointer border px-4 py-3 transition-colors ${
@@ -146,7 +197,9 @@ export function CheckoutForm({
                 onChange={() => setPaymentMethod(method)}
                 className="sr-only"
               />
-              <span className="text-paper font-mono text-sm">{method}</span>
+              <span className="text-paper font-mono text-sm">
+                {METHOD_LABEL[method]}
+              </span>
             </label>
           ))}
         </div>
@@ -181,7 +234,96 @@ export function CheckoutForm({
         </label>
       </div>
 
-      {paymentMethod === "BOLETO" ? (
+      {paymentMethod === "CARD" ? (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <label className="block sm:col-span-2">
+            <span className="text-paper-700 mb-1 block text-sm">
+              Número do cartão
+            </span>
+            <input
+              required
+              inputMode="numeric"
+              autoComplete="cc-number"
+              value={cardNumber}
+              onChange={(e) => setCardNumber(e.target.value)}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+              placeholder="0000 0000 0000 0000"
+            />
+          </label>
+          <label className="block sm:col-span-2">
+            <span className="text-paper-700 mb-1 block text-sm">
+              Nome como está no cartão
+            </span>
+            <input
+              required
+              autoComplete="cc-name"
+              value={cardHolder}
+              onChange={(e) => setCardHolder(e.target.value.toUpperCase())}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+              placeholder="FLAVIO MILHOMEM"
+            />
+          </label>
+          <label className="block">
+            <span className="text-paper-700 mb-1 block text-sm">
+              Validade (mês)
+            </span>
+            <input
+              required
+              inputMode="numeric"
+              autoComplete="cc-exp-month"
+              maxLength={2}
+              value={cardExpMonth}
+              onChange={(e) => setCardExpMonth(e.target.value)}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+              placeholder="12"
+            />
+          </label>
+          <label className="block">
+            <span className="text-paper-700 mb-1 block text-sm">
+              Validade (ano)
+            </span>
+            <input
+              required
+              inputMode="numeric"
+              autoComplete="cc-exp-year"
+              maxLength={4}
+              value={cardExpYear}
+              onChange={(e) => setCardExpYear(e.target.value)}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+              placeholder="2030"
+            />
+          </label>
+          <label className="block">
+            <span className="text-paper-700 mb-1 block text-sm">CVV</span>
+            <input
+              required
+              inputMode="numeric"
+              autoComplete="cc-csc"
+              maxLength={4}
+              value={cardCvv}
+              onChange={(e) => setCardCvv(e.target.value)}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+              placeholder="123"
+            />
+          </label>
+          <label className="block">
+            <span className="text-paper-700 mb-1 block text-sm">Parcelas</span>
+            <select
+              value={installments}
+              onChange={(e) => setInstallments(Number(e.target.value))}
+              className="border-paper-100 bg-carbon text-paper focus:border-amber focus-visible:outline-amber w-full border px-3 py-2.5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              {plano.map((opcao) => (
+                <option key={opcao.installments} value={opcao.installments}>
+                  {opcao.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      ) : null}
+
+      {paymentMethod === "BOLETO" || paymentMethod === "CARD" ? (
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block sm:col-span-2">
             <span className="text-paper-700 mb-1 block text-sm">Endereço</span>

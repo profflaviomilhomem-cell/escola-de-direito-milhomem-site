@@ -8,6 +8,7 @@ import { userHasAccess } from "@/lib/enrollment";
 import { resolveCheckoutProductSlug } from "@/lib/orders/checkout-slugs";
 import { getPublishedProductBySlug } from "@/lib/marketing/catalog";
 import { isPagarmeConfigured } from "@/lib/pagarme/config";
+import { isCardEnabled } from "@/lib/pagarme/tokenize-card";
 import { formatBRLFromCents } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -49,8 +50,15 @@ export default async function CheckoutPage({ params }: Props) {
         Finalizar matrícula
       </h1>
       <p className="text-paper-700 mt-4 text-base leading-relaxed">
-        Escolha PIX ou boleto. Após a confirmação do pagamento, o acesso ao
-        curso é liberado automaticamente na área do aluno.
+        {/* A frase acompanha o que a tela realmente oferece: sem chave pública
+            do Pagar.me a opção de cartão não existe, e prometer três formas
+            quando só há duas é o mesmo defeito do "garantir vaga" que levava a
+            um checkout fechado. */}
+        {isCardEnabled()
+          ? "Escolha PIX, boleto ou cartão de crédito em até 12×."
+          : "Escolha PIX ou boleto."}{" "}
+        Após a confirmação do pagamento, o acesso ao curso é liberado
+        automaticamente na área do aluno.
       </p>
 
       {!pagarmeReady ? (
@@ -76,6 +84,7 @@ export default async function CheckoutPage({ params }: Props) {
             productSlug={product.slug}
             productName={product.name}
             priceLabel={formatBRLFromCents(product.priceCents)}
+            priceCents={product.priceCents}
             userName={session.name ?? "Aluno"}
             userEmail={session.email ?? ""}
           />
