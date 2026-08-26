@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import type { PaymentMethod } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
 
 import { ordersBecomingPaid, settleOrdersPaid } from "@/lib/orders/settle";
@@ -40,13 +41,26 @@ function getSignature(req: NextRequest) {
   };
 }
 
-function paymentMethodFromPagarme(value: unknown) {
+/**
+ * Traduz o método de pagamento do Pagar.me para o enum do banco.
+ *
+ * 26/08/2026 — antes o `default` era `"CARD"`, então **ausência de informação
+ * virava afirmação**: um `order.refunded` sem array de `charges` sobrescrevia o
+ * método de um pedido PIX para CARD. Ninguém perde acesso com isso, mas o
+ * relatório de receita por método passa a mentir — e é dele que sai a decisão
+ * sobre continuar oferecendo boleto.
+ *
+ * Devolve `null` quando não dá para saber; quem chama decide não gravar.
+ */
+function paymentMethodFromPagarme(value: unknown): PaymentMethod | null {
   const s = String(value ?? "").toLowerCase();
+  if (!s) return null;
   if (s.includes("pix")) return "PIX";
   if (s.includes("boleto") || s.includes("bank_slip") || s.includes("bank")) {
     return "BOLETO";
   }
-  return "CARD";
+  if (s.includes("credit") || s.includes("card")) return "CARD";
+  return null;
 }
 
 function normalizeExternalId(v: unknown) {
@@ -57,6 +71,38 @@ function normalizeExternalId(v: unknown) {
 function asRecord(value: unknown): Record<string, unknown> {
   return value !== null && typeof value === "object"
     ? (value as Record<string, unknown>)
+    : {};
+}
+
+/**
+ * Estados a partir dos quais um pedido pode virar PAID.
+ *
+ * 26/08/2026 — antes, os dois `updateMany` de status eram cegos: um evento
+ * `charge.paid`/`order.paid` sobrescrevia QUALQUER estado, inclusive REFUNDED e
+ * CHARGEDBACK. Como `ordersBecomingPaid` só filtra `status != PAID`, um pedido
+ * estornado voltaria a PAID **e o acesso ao curso seria reconcedido**.
+ *
+ * Não havia caminho realista para isso hoje — todo evento exige assinatura
+ * válida, e o Pagar.me não manda "pago" depois de um estorno da mesma cobrança.
+ * Mas a defesa não deve depender do comportamento educado do adquirente: um
+ * reenvio fora de ordem, um teste no painel ou uma mudança futura na API
+ * bastariam. O `reconcile.ts` já fazia certo desde sempre (`status: { not:
+ * "PAID" }`); o webhook é que estava fora do padrão.
+ *
+ * PENDING e AUTHORIZED são os únicos estados de onde "pagou" faz sentido.
+ * Boleto pago depois do sweep de 3 dias entra por REFUSED, que segue permitido
+ * de propósito: pagou, recebe.
+ */
+const ESTADOS_QUE_PODEM_VIRAR_PAGO = [
+  "PENDING",
+  "AUTHORIZED",
+  "REFUSED",
+] as const;
+
+/** `where` extra do update, para não ressuscitar pedido estornado. */
+function guardaDeTransicao(desiredStatus: string) {
+  return desiredStatus === "PAID"
+    ? { status: { in: [...ESTADOS_QUE_PODEM_VIRAR_PAGO] } }
     : {};
 }
 
@@ -87,12 +133,19 @@ async function handleOrderEvent(type: string, data: Record<string, unknown>) {
   const becomingPaid =
     desiredStatus === "PAID" ? await ordersBecomingPaid(matchOrder) : [];
 
-  await prisma.order.updateMany({
-    where: matchOrder,
-    data: { status: desiredStatus, paymentMethod },
+  const res = await prisma.order.updateMany({
+    where: { ...matchOrder, ...guardaDeTransicao(desiredStatus) },
+    // `paymentMethod` só entra no update quando o evento realmente disse qual
+    // é — ver a nota em `paymentMethodFromPagarme`.
+    data: {
+      status: desiredStatus,
+      ...(paymentMethod ? { paymentMethod } : {}),
+    },
   });
 
-  settleOrdersPaid(becomingPaid);
+  // Só liquida se ESTE evento transicionou o pedido — mesmo raciocínio do
+  // `reconcile.ts`. Sem isso, um replay duplicaria e-mail e tracking.
+  if (res.count > 0) settleOrdersPaid(becomingPaid);
 }
 
 async function handleChargeEvent(type: string, data: Record<string, unknown>) {
@@ -129,12 +182,17 @@ async function handleChargeEvent(type: string, data: Record<string, unknown>) {
   const becomingPaid =
     desiredStatus === "PAID" ? await ordersBecomingPaid(matchCharge) : [];
 
-  await prisma.order.updateMany({
-    where: matchCharge,
-    data: { status: desiredStatus, paymentMethod },
+  const res = await prisma.order.updateMany({
+    where: { ...matchCharge, ...guardaDeTransicao(desiredStatus) },
+    // `paymentMethod` só entra no update quando o evento realmente disse qual
+    // é — ver a nota em `paymentMethodFromPagarme`.
+    data: {
+      status: desiredStatus,
+      ...(paymentMethod ? { paymentMethod } : {}),
+    },
   });
 
-  settleOrdersPaid(becomingPaid);
+  if (res.count > 0) settleOrdersPaid(becomingPaid);
 }
 
 async function handleSubscriptionEvent(
@@ -194,7 +252,19 @@ export async function POST(req: NextRequest) {
   const rawBody = Buffer.from(await req.arrayBuffer());
   const payload = parsePayload(rawBody);
 
-  const eventId = payload.id ?? req.headers.get("x-event-id") ?? "unknown";
+  // 26/08/2026 — antes caía no literal `"unknown"`. O primeiro evento sem id
+  // gravava a linha `id="unknown"` na tabela de deduplicação, e **todos os
+  // seguintes sem id viravam "duplicate" para sempre** — deixando de conceder
+  // acesso, em silêncio, sem erro em lugar nenhum. Falha fechada, mas fechada
+  // do lado errado: o comprador paga e não recebe.
+  //
+  // Sem id, o fallback passa a ser o hash do corpo cru: dois eventos idênticos
+  // continuam deduplicados (que é o objetivo), dois eventos diferentes não
+  // colidem mais.
+  const eventId =
+    payload.id ??
+    req.headers.get("x-event-id") ??
+    `sha256:${crypto.createHash("sha256").update(rawBody).digest("hex")}`;
   const type = payload.type ?? "unknown";
 
   const { sig256, sigSha1 } = getSignature(req);
