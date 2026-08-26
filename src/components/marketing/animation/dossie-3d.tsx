@@ -404,7 +404,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
                   INÍCIO
                 </span>
                 <span className="text-[10px] leading-none font-extrabold tracking-[0.08em]">
-                  11 AGOSTO
+                  {copy.dossie.startLabel}
                 </span>
               </div>
               <div
@@ -468,7 +468,10 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
               <strong className="text-[#1a0f05]">CONFIDENCIAL</strong>
             </div>
             <div className="text-right">
-              INÍCIO <strong className="text-[#1a0f05]">11 AGO</strong>
+              INÍCIO{" "}
+              <strong className="text-[#1a0f05]">
+                {copy.dossie.startLabelShort}
+              </strong>
             </div>
           </div>
         </div>
@@ -495,7 +498,10 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
               }}
             >
               <span className="whitespace-nowrap">
-                INÍCIO <strong className="font-extrabold">11 AGO</strong>
+                INÍCIO{" "}
+                <strong className="font-extrabold">
+                  {copy.dossie.startLabelShort}
+                </strong>
               </span>
             </div>
 

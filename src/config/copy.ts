@@ -158,6 +158,14 @@ export const copy = {
     coverSubtitle: "Programa inaugural · Brasília · 2026",
     sealLabel: "FM",
     gyroHint: "Toque para ativar o movimento",
+    // 26/08/2026: o carimbo do dossiê dizia "11 AGOSTO" / "11 AGO" cravado à
+    // mão em três pontos de dossie-3d.tsx — fora deste arquivo, e por isso
+    // sobreviveu à limpeza de 06/08 que tirou o marco de 11 de agosto do
+    // cronograma. A data venceu: um carimbo "INÍCIO 11 AGO" na home em 26/08
+    // é o marco vencido que aquela limpeza existia para evitar. O rótulo passa
+    // a morar aqui — para voltar a datar, basta trocar a string.
+    startLabel: "EM BREVE",
+    startLabelShort: "EM BREVE",
   },
 
   edicaoLancamento: {
