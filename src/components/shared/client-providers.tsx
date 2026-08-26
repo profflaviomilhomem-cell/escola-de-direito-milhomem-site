@@ -5,6 +5,10 @@ import { CookieConsentBanner } from "@/components/shared/cookie-consent-banner";
 import { Toaster } from "sonner";
 import { useEffect, useState } from "react";
 
+// Efeito de módulo: desliga o JIT do Zod no navegador. Ver a nota no arquivo —
+// é o que tira a única violação recorrente da CSP em Report-Only.
+import "@/lib/zod-jitless-client";
+
 type ToasterTheme = "light" | "dark";
 
 function readHtmlTheme(): ToasterTheme {
