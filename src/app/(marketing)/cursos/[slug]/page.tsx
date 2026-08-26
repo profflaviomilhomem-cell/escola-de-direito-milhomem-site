@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 
 import { EdicaoLancamentoLanding } from "@/components/marketing/edicao-lancamento-landing";
 import { CursoProdutoPublico } from "@/components/marketing/curso-produto-publico";
@@ -129,26 +128,20 @@ export default async function CursoSlugPage({ params }: Props) {
     );
   }
 
-  const existing = await getCatalogProductBySlug(slug);
-  if (existing) {
-    return (
-      <article className="fm-site-page max-w-prose-wide py-page">
-        <h1 className="text-heading-1 text-tinta-700 font-serif">
-          {existing.name}
-        </h1>
-        <p className="mt-4 leading-relaxed text-slate-700">
-          Este programa ainda não está publicado na vitrine. Volte em breve ou
-          entre em contato para saber sobre a próxima turma.
-        </p>
-        <Link
-          href="/cursos"
-          className="text-amber mt-6 inline-block font-mono text-[11px] tracking-widest uppercase hover:underline"
-        >
-          ← Voltar aos cursos
-        </Link>
-      </article>
-    );
-  }
+  // 26/08/2026 — removido: um ramo que respondia 200 exibindo `existing.name`
+  // para produto que existe no catálogo mas NÃO está publicado.
+  //
+  // Isso era um oráculo. Quem chutasse endereços sob /cursos/ distinguia três
+  // respostas — produto publicado, produto em rascunho (com o NOME impresso na
+  // tela) e slug inventado —, e o nome de um produto ainda não anunciado é
+  // exatamente o tipo de informação que a Escola controla o tempo de divulgar.
+  // Não era regressão de hoje: o oráculo já existia no texto da página, com
+  // status 200 nos três casos. Só ficou visível quando a correção do soft 404
+  // separou os status.
+  //
+  // Agora rascunho e inexistente respondem a mesma coisa. Se um dia for preciso
+  // mostrar "em breve" para quem tem o link, o caminho é uma página própria com
+  // endereço próprio, e não um vazamento por diferença de resposta.
 
   // 26/08/2026: aqui havia uma página "Curso não encontrado" escrita à mão,
   // devolvida com status **200**. Soft 404: para o Google, um endereço

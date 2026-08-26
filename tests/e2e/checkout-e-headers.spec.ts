@@ -125,6 +125,29 @@ test.describe("status de 'não encontrado' nas rotas dinâmicas", () => {
     });
   }
 
+  test("produto em rascunho responde igual a produto inexistente", async ({
+    page,
+  }) => {
+    // Até 26/08 havia um ramo em /cursos/[slug] que respondia 200 exibindo o
+    // NOME de produto existente mas não publicado — enquanto slug inventado
+    // dava outra resposta. Isso deixava chutar endereços e descobrir o nome de
+    // um curso que a Escola ainda não anunciou. As duas respostas precisam ser
+    // indistinguíveis.
+    const inventado = await page.goto("/cursos/slug-que-nunca-existiu-xyz", {
+      waitUntil: "domcontentloaded",
+    });
+    expect(inventado?.status()).toBe(404);
+
+    // Um slug plausível de rascunho não pode responder diferente do inventado.
+    const rascunho = await page.goto("/cursos/edicao-2027-turma-avancada", {
+      waitUntil: "domcontentloaded",
+    });
+    expect(rascunho?.status()).toBe(inventado?.status());
+
+    const corpo = await page.locator("body").innerText();
+    expect(corpo).not.toMatch(/ainda não está publicado/i);
+  });
+
   test("resultado de pedido inexistente responde 404 (com sessão)", async ({
     page,
     context,
