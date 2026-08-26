@@ -9,6 +9,24 @@ import { copy } from "@/config/copy";
 const DOSSIE_NEWSPAPER_TEXTURE = "/images/dossie/newspaper-correio-folha.jpg";
 
 /**
+ * Textura do recorte.
+ *
+ * Até 26/08/2026 esta folha puxava a imagem **ao vivo do servidor da biblioteca
+ * digital da UNESP** (`bibdig.biblioteca.unesp.br`), em toda visita à home. Isso
+ * apareceu na varredura de CSP: uma origem externa que ninguém sabia que o site
+ * usava, e que a política em Report-Only registrou como violação de `img-src`.
+ *
+ * Três problemas, do menor para o maior: quebraria sob CSP bloqueando; quebraria
+ * em silêncio no dia em que a UNESP movesse o arquivo; e usa a banda de uma
+ * instituição pública para decorar a home de um produto pago.
+ *
+ * O arquivo passou a ser servido daqui, como a outra folha já era. **A questão
+ * de licença continua aberta e é do Carlos:** as duas texturas são digitalização
+ * de jornal de terceiro usada como decoração.
+ */
+const DOSSIE_CLIPPING_TEXTURE = "/images/dossie/newspaper-recorte.jpg";
+
+/**
  * Dossiê 3D — capa institucional com parallax no desktop (mouse).
  * No mobile: inclinação do aparelho via giroscópio (`deviceorientation`)
  * quando disponível; senão, animação automática de fallback.
@@ -311,7 +329,7 @@ export function Dossie3D({ compact = false }: Dossie3DProps) {
               style={{
                 backgroundColor: isTexturePaper ? "#f3ece0" : "#FDFBF7",
                 backgroundImage: isClipping
-                  ? `url("https://bibdig.biblioteca.unesp.br/server/api/core/bitstreams/a588e871-dfbf-4260-9e4e-109e5ae42beb/content")`
+                  ? `url("${DOSSIE_CLIPPING_TEXTURE}")`
                   : isNewspaper
                     ? `url("${DOSSIE_NEWSPAPER_TEXTURE}")`
                     : "none",
