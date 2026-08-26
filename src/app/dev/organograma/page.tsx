@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
 /**
@@ -8,6 +9,13 @@ import Link from "next/link";
  * mostrava os ~101 itens do markdown de fases.
  *
  * Ferramenta interna de desenvolvimento (no-index).
+ *
+ * 26/08/2026 — **respondia 200 em produção, sem login.** `/dev` e `/dev/sessao`
+ * já abortavam fora de desenvolvimento; esta página tinha ficado de fora do
+ * padrão. Hoje ela vaza pouco, porque a fonte (`docs/`) saiu do versionamento e
+ * `/dev/organograma/master` devolve 404 — mas o conteúdo que ela existe para
+ * exibir é o roteiro interno do negócio, e `noindex` não é controle de acesso:
+ * pede gentileza ao buscador e não impede ninguém de abrir o endereço.
  */
 export const metadata: Metadata = {
   title: "Organograma Mestre (308 nós)",
@@ -15,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default function OrganogramaPage() {
+  if (process.env.NODE_ENV === "production") notFound();
+
   return (
     <div className="fixed inset-0 z-[100] flex flex-col bg-[#030024]">
       <div className="flex items-center justify-between gap-4 border-b border-[#f1bb41]/20 bg-[#030024] px-4 py-2">

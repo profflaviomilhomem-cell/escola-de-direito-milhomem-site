@@ -98,6 +98,8 @@ Disallow: /
 # === Áreas privadas — bloqueio universal ===
 User-agent: *
 Disallow: /admin/
+Disallow: /dev/
+Disallow: /professor/
 Disallow: /api/
 Disallow: /aluno/
 Disallow: /checkout/

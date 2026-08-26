@@ -1697,7 +1697,28 @@ function updateStaticHtmlFile(phases: Phase[]) {
   fs.writeFileSync(STATIC_HTML_PATH, htmlContent, "utf-8");
 }
 
+/**
+ * 26/08/2026 — guarda de ambiente.
+ *
+ * Esta rota lê e **escreve** arquivo, e não tinha autenticação nenhuma: GET e
+ * POST abertos. Hoje ela é inofensiva em produção por acidente — `docs/` não é
+ * deployado e o sistema de arquivos da Vercel é somente leitura, então o
+ * resultado é 404 ou 500. Depender de acidente não é controle de acesso.
+ *
+ * `/dev`, `/dev/sessao` e `/dev/organograma` já abortam fora de
+ * desenvolvimento; esta era a última rota `/dev` fora do padrão.
+ */
+function foraDeDesenvolvimento(): Response | null {
+  if (process.env.NODE_ENV === "production") {
+    return new Response("Not found", { status: 404 });
+  }
+  return null;
+}
+
 export async function GET() {
+  const bloqueado = foraDeDesenvolvimento();
+  if (bloqueado) return bloqueado;
+
   try {
     if (!fs.existsSync(CHECKLIST_PATH)) {
       return NextResponse.json(
@@ -1719,6 +1740,9 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
+  const bloqueado = foraDeDesenvolvimento();
+  if (bloqueado) return bloqueado;
+
   try {
     const { itemId, status } = await req.json();
     if (!itemId || !status) {

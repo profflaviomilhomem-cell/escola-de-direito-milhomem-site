@@ -7,6 +7,11 @@ import path from "node:path";
  * `/dev/organograma`. Ferramenta interna de desenvolvimento (no-index).
  *
  * Lê o arquivo de `docs/` em tempo de request (estado vivo).
+ *
+ * 26/08/2026 — guarda de ambiente acrescentada junto com a da página. Hoje esta
+ * rota já devolve 404 em produção porque `docs/` saiu do versionamento; a
+ * guarda existe para o dia em que o arquivo voltar, para que a volta dele não
+ * publique o roteiro interno do negócio sem que ninguém perceba.
  */
 export const dynamic = "force-dynamic";
 
@@ -17,6 +22,10 @@ const MASTER_PATH = path.join(
 );
 
 export function GET() {
+  if (process.env.NODE_ENV === "production") {
+    return new Response("Not found", { status: 404 });
+  }
+
   if (!fs.existsSync(MASTER_PATH)) {
     return new Response(
       "Organograma mestre não encontrado (organograma-checklist.html).",
