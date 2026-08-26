@@ -62,6 +62,12 @@ const IMG_SRC = [
 
 const CONNECT_SRC = [
   "'self'",
+  // Tokenização do cartão. O browser fala DIRETO com o Pagar.me para trocar o
+  // número por um token — é por isso que o PAN nunca toca o nosso servidor.
+  // Sem esta origem, promover a política a enforcing mataria o pagamento com
+  // cartão em produção, para todo mundo, de uma vez. Falha segura (o `catch`
+  // do `tokenize-card.ts` devolve erro e o POST nem sai), mas ninguém compra.
+  "https://api.pagar.me",
   "https://us.i.posthog.com",
   "https://us-assets.i.posthog.com",
   "https://graph.facebook.com",

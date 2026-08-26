@@ -94,6 +94,14 @@ describe("security headers", () => {
       expect(csp).toContain("https://*.public.blob.vercel-storage.com");
     });
 
+    it("libera o Pagar.me — sem isso, enforcing mata o cartão", () => {
+      // O browser tokeniza falando direto com api.pagar.me. Esta linha é a
+      // diferença entre "promover a CSP" e "derrubar o checkout".
+      expect(csp).toContain("https://api.pagar.me");
+      const connect = csp.split("; ").find((d) => d.startsWith("connect-src"));
+      expect(connect).toContain("https://api.pagar.me");
+    });
+
     it("libera o Cloudflare Stream antes do dia do upload", () => {
       // O videoId das 10 aulas está vazio esperando a conta do Flávio. Quando
       // o primeiro vídeo subir, a CSP não pode ser a surpresa do dia.
